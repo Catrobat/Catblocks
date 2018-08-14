@@ -1,0 +1,360 @@
+if( block === "StartScript3"){
+
+con =con + "&lt;next >" +"&lt;block type=\"event_wps\" > " + "<br>"  ;
+
+} else if ( block === "WaitBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_w1s\" > " + "<br>"  ;
+
+} else if ( block === "NoteBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_n\" > " + "<br>"  ;
+
+} else if ( block === "ForeverBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_f\" > " + "<br>"  ;
+
+} else if ( block === "IfThenLogicBeginBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control__iitt\" > " + "<br>"  ;
+
+} else if( block === "WaitUntilBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_wuit\" > " + "<br>"  ;
+
+}else if( block === "RepeatBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_rt\" > " + "<br>"  ;
+
+}else if( block === "RepeatUntilBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_ruit\" > " + "<br>"  ;
+
+}else if( block === "SceneTransitionBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_cs\" > " + "<br>"  ;
+
+}else if( block === "SceneStartBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_ss\" > " + "<br>"  ;
+
+}else if( block === "CloneBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_cco\" > " + "<br>"  ;
+
+}else if( block === "DeleteThisCloneBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_dtc\" > " + "<br>"  ;
+
+}else if( block === "WhenClonedScript"){
+
+con =con + "&lt;next >" +"&lt;block type=\"control_wysaac\" > " + "<br>"  ;
+
+}else if( block === "PlaceAtBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_pa\" > " + "<br>"  ;
+
+}else if( block === "SetXBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_sxt\" > " + "<br>"  ;
+
+}else if( block === "SetYBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_syt\" > " + "<br>"  ;
+
+}else if( block === "ChangeXByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_cxb\" > " + "<br>"  ;
+
+}else if( block === "ChangeYByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_cyb\" > " + "<br>"  ;
+
+}else if( block === "GoToBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_gt\" > " + "<br>"  ;
+
+}else if( block === "IfOnEdgeBounceBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_ioeb\" > " + "<br>"  ;
+
+}else if( block === "MoveNStepsBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_ms\" > " + "<br>"  ;
+
+}else if( block === "TurnLeftBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_trd\" > " + "<br>"  ;
+
+} else if( block === "TurnRightBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_trd\" > " + "<br>"  ;
+
+} else if( block === "PointInDirectionBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_pidd\" > " + "<br>"  ;
+
+} else if( block === "PointToBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_pt\" > " + "<br>"  ;
+
+} else if( block === "GlideToBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_g\" > " + "<br>"  ;
+
+}  else if( block === "GoNStepsBackBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_gbl\" > " + "<br>"  ;
+
+}  else if( block === "ComeToFrontBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_gtf\" > " + "<br>"  ;
+
+}  else if( block === "VibrationBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_vfs\" > " + "<br>"  ;
+
+
+}  else if( block === "SetPhysicsObjectTypeBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_smto\" > " + "<br>"  ;
+
+} else if( block === "SetVelocityBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_svt\" > " + "<br>"  ;
+
+} else if( block === "TurnLeftSpeedBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_rlds\" > " + "<br>"  ;
+
+} else if( block === "TurnRightSpeedBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_rrds\" > " + "<br>"  ;
+
+} else if( block === "SetGravityBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_sgfaot\" > " + "<br>"  ;
+
+}else if( block === "SetMassBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_smtk\" > " + "<br>"  ;
+
+}else if( block === "SetBounceBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_sbft\" > " + "<br>"  ;
+
+}else if( block === "SetFrictionBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motion_sft\" > " + "<br>"  ;
+
+}else if( block === "SetRotationStyleBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"motionk_srs\" > " + "<br>"  ;
+
+}else if( block === "PlaySoundBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_ss\" > " + "<br>"  ;
+
+}else if( block === "PlaySoundAndWaitBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_ssaw\" > " + "<br>"  ;
+
+}else if( block === "StopAllSoundsBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_sas\" > " + "<br>"  ;
+
+}else if( block === "SetVolumeToBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_svt\" > " + "<br>"  ;
+
+}else if( block === "ChangeVolumeByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_cvb\" > " + "<br>"  ;
+
+}else if( block === "SpeakBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_s\" > " + "<br>"  ;
+
+}else if( block === "SpeakAndWaitBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_saw\" > " + "<br>"  ;
+
+}else if( block === "AskSpeechBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"sound_aassai\" > " + "<br>"  ;
+
+}else if( block === "SetLookBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_stl\" > " + "<br>"  ;
+
+}else if( block === "NextLookBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_nl\" > " + "<br>"  ;
+
+}else if( block === "PreviousLookBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_pl\" > " + "<br>"  ;
+
+}else if( block === "SetSizeToBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sst\" > " + "<br>"  ;
+
+}else if( block === "ChangeSizeByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_csb\" > " + "<br>"  ;
+
+}else if( block === "HideBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_h\" > " + "<br>"  ;
+
+}else if( block === "ShowBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_s\" > " + "<br>"  ;
+
+}else if( block === "SetTransparencyBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_stt\" > " + "<br>"  ;
+
+}else if( block === "ChangeTransparencyByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_stb\" > " + "<br>"  ;
+
+}else if( block === "SetBrightnessBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sbt\" > " + "<br>"  ;
+
+}else if( block === "ChangeBrightnessByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_cbb\" > " + "<br>"  ;
+
+}else if( block === "SetColorBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sct\" > " + "<br>"  ;
+
+}else if( block === "ChangeColorByNBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_ccb\" > " + "<br>"  ;
+
+}else if( block === "ClearGraphicEffectBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_cge\" > " + "<br>"  ;
+
+}else if( block === "AskBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_aaswai\" > " + "<br>"  ;
+
+}else if( block === "SetBackgroundBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sb\" > " + "<br>"  ;
+
+}else if( block === "SetBackgroundAndWaitBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sbaw\" > " + "<br>"  ;
+
+}else if( block === "SayBubbleBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sh\" > " + "<br>"  ;
+
+}else if( block === "SayForBubbleBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sfs\" > " + "<br>"  ;
+
+}else if( block === "ThinkBubbleBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_th\" > " + "<br>"  ;
+
+}else if( block === "ThinkForBubbleBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_tfs\" > " + "<br>"  ;
+
+}else if( block === "WhenBackgroundChangesScript"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_wbct\" > " + "<br>"  ;
+
+}else if( block === "SetBackgroundByIndexBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sb\" > " + "<br>"  ;
+
+}else if( block === "SetBackgroundByIndexAndWaitBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_sbtn\" > " + "<br>"  ;
+
+}else if( block === "ChooseCameraBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_uc\" > " + "<br>"  ;
+
+}else if( block === "CameraBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_tc\" > " + "<br>"  ;
+
+}else if( block === "FlashBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"looks_tf\" > " + "<br>"  ;
+
+}else if( block === "PenDownBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_pd\" > " + "<br>"  ;
+
+}else if( block === "PenUpBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_pu\" > " + "<br>"  ;
+
+}else if( block === "SetPenSizeBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_spst\" > " + "<br>"  ;
+
+}else if( block === "SetPenColorBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_spct\" > " + "<br>"  ;
+
+}else if( block === "StampBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_s\" > " + "<br>"  ;
+
+}else if( block === "ClearBackgroundBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"pen_c\" > " + "<br>"  ;
+
+}else if( block === "SetVariableBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_svt\" > " + "<br>"  ;
+
+}else if( block === "ChangeVariableBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_cvb\" > " + "<br>"  ;
+
+}else if( block === "ShowTextBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_sva\" > " + "<br>"  ;
+
+}else if( block === "HideTextBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_hv\" > " + "<br>"  ;
+
+}else if( block === "AddItemToUserListBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_atl\" > " + "<br>"  ;
+
+}else if( block === "DeleteItemOfUserListBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_diflap\" > " + "<br>"  ;
+
+}else if( block === "InsertItemIntoUserListBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_iilap\" > " + "<br>"  ;
+
+}else if( block === "ReplaceItemInUserListBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_riilapw\" > " + "<br>"  ;
+
+}else if( block === "AskBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_aaswai\" > " + "<br>"  ;
+
+}else if( block === "AskSpeechBrick"){
+
+con =con + "&lt;next >" +"&lt;block type=\"data_aassai\" > " + "<br>"  ;
+
+}else{
+con =con + "&lt;next >" +"&lt;block type=\"ublock_type\" > " + "<br>"  ;
+}
