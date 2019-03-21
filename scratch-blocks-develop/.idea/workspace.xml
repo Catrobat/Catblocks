@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/tests/playground.html" line="198" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9122202c-3556-4b9e-bc73-2f23cb3a8f3b" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/dist/" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.6168122">
+      <split-first>
+        <splitter split-orientation="horizontal" split-proportion="0.5">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/tests/vertical_playground.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="435">
+                      <caret line="29" selection-start-line="9" selection-start-column="2" selection-end-line="29" />
+                      <folding>
+                        <element signature="n#style#0;n#xml#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                        <element signature="n#style#0;n#textarea#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/core/blockly.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="390">
+                      <caret line="26" selection-start-line="26" selection-end-line="26" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/tests/import.xml">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="120">
+                      <caret line="8" column="34" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="34" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/tests/translation.xml">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="345">
+                      <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/tests/import.xml">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="630">
+                      <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/tests/scratchToCatrobatConverter">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="769">
+                      <caret line="2354" column="60" selection-start-line="2354" selection-start-column="60" selection-end-line="2354" selection-end-column="60" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/code.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="38" column="48" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>blocklyScroll</find>
+      <find>blocklyToolboxDiv</find>
+      <find>scratchCategoryMenu</find>
+      <find>blockly.Toolbox</find>
+      <find>compressed</find>
+      <find>blockly.toolbox</find>
+      <find>scratchCategoryID-</find>
+      <find>sprinkles</find>
+      <find>blocklyFlyOut</find>
+      <find>blocklyFlyout</find>
+      <find>fly</find>
+      <find>toolbox</find>
+      <find>base</find>
+      <find>sound</find>
+      <find>Import from xml</find>
+      <find>importExport</find>
+      <find>blocklyFly</find>
+      <find>settings</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/blockly_compressed_vertical.js" />
+        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js" />
+        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/css.js" />
+        <option value="$PROJECT_DIR$/blockly_uncompressed_vertical.js" />
+        <option value="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" />
+        <option value="$PROJECT_DIR$/tests/start.html" />
+        <option value="$PROJECT_DIR$/tests/vertical_playground.html" />
+        <option value="$PROJECT_DIR$/tests/playground.html" />
+        <option value="$PROJECT_DIR$/tests/import.xml" />
+        <option value="$PROJECT_DIR$/tests/code.xml" />
+        <option value="$PROJECT_DIR$/tests/translation.xml" />
+        <option value="$PROJECT_DIR$/tests/scratchToCatrobatConverter" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="182" />
+    <option name="y" value="208" />
+    <option name="width" value="1851" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
+              <item name="blocks_vertical" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.playground.html">
+    <configuration name="playground.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63345/scratch-blocks-develop/tests/playground.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63344/scratch-blocks-develop/tests/start.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="vertical_playground.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63344/scratch-blocks-develop/tests/vertical_playground.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.playground.html" />
+        <item itemvalue="JavaScript Debug.vertical_playground.html" />
+        <item itemvalue="JavaScript Debug.start.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9122202c-3556-4b9e-bc73-2f23cb3a8f3b" name="Default Changelist" comment="" />
+      <created>1550085881407</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1550085881407</updated>
+      <workItem from="1550085896477" duration="16281000" />
+      <workItem from="1550742241181" duration="613000" />
+      <workItem from="1551797384272" duration="59000" />
+      <workItem from="1553158376930" duration="10372000" />
+      <workItem from="1553185284150" duration="207000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="27325000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="182" y="208" width="1851" height="1040" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09080963" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/blockly_compressed_horizontal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="2143" column="2" selection-start-line="2143" selection-start-column="2" selection-end-line="2143" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/blockly_compressed_vertical.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="2125" column="153" selection-start-line="2125" selection-start-column="136" selection-end-line="2125" selection-end-column="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/blockly_compressed_horizontal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="2161" column="76" selection-start-line="2161" selection-start-column="76" selection-end-line="2161" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blockly_compressed_vertical.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="2151" lean-forward="true" selection-start-line="2151" selection-end-line="2151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/blocks/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/motion.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/control.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/msg/messages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-810" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="165" lean-forward="true" selection-start-line="150" selection-end-line="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/css.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="489" column="6" lean-forward="true" selection-start-line="489" selection-start-column="6" selection-end-line="493" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/toolbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1093">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/vertical_extensions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2115" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/default_toolbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blockly_uncompressed_vertical.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15255">
+          <caret line="90" column="49" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/xml.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1120">
+          <caret line="387" selection-start-line="387" selection-end-line="387" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/blockly.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/vertical_playground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="9" selection-start-column="2" selection-end-line="29" />
+          <folding>
+            <element signature="n#style#0;n#xml#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#15583#15589#0" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#15838#15844#0" expanded="true" />
+            <element signature="e#15944#15950#0" expanded="true" />
+            <element signature="e#16104#16110#0" expanded="true" />
+            <element signature="e#16482#16488#0" expanded="true" />
+            <element signature="e#16618#16624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/start.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/playground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="67" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/code.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/translation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/import.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/scratchToCatrobatConverter">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4817">
+          <caret line="2354" column="60" selection-start-line="2354" selection-start-column="60" selection-end-line="2354" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
