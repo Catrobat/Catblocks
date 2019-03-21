@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Playground</title>
 
-    <!--Reactivate code below if needed-->
     <script src="../blockly_uncompressed_vertical.js"></script>
-    <!--<script src="../msg/messages.js"></script>-->
-    <!--<script src="../msg/scratch_msgs.js"></script>-->
-    <!--<script src="../blocks_vertical/vertical_extensions.js"></script>-->
-    <!--<script src="../blocks_common/math.js"></script>-->
-    <!--<script src="../blocks_common/matrix.js"></script>-->
-    <!--<script src="../blocks_common/note.js"></script>-->
-    <!--<script src="../blocks_common/text.js"></script>-->
-    <!--<script src="../blocks_common/colour.js"></script>-->
-    <!--<script src="../blocks_vertical/control.js"></script>-->
-    <!--<script src="../blocks_vertical/event.js"></script>-->
-    <!--<script src="../blocks_vertical/motion.js"></script>-->
-    <!--<script src="../blocks_vertical/looks.js"></script>-->
-    <!--<script src="../blocks_vertical/procedures.js"></script>-->
-    <!--<script src="../blocks_vertical/operators.js"></script>-->
-    <!--<script src="../blocks_vertical/sound.js"></script>-->
-    <!--<script src="../blocks_vertical/sensing.js"></script>-->
-    <!--<script src="../blocks_vertical/data.js"></script>-->
-    <!--<script src="../blocks_vertical/extensions.js"></script>-->
+  <script src="../msg/messages.js"></script>
+  <script src="../msg/scratch_msgs.js"></script>
+  <script src="../blocks_vertical/vertical_extensions.js"></script>
+  <script src="../blocks_common/math.js"></script>
+  <script src="../blocks_common/matrix.js"></script>
+  <script src="../blocks_common/note.js"></script>
+  <script src="../blocks_common/text.js"></script>
+  <script src="../blocks_common/colour.js"></script>
+  <script src="../blocks_vertical/control.js"></script>
+  <script src="../blocks_vertical/event.js"></script>
+  <script src="../blocks_vertical/motion.js"></script>
+  <script src="../blocks_vertical/looks.js"></script>
+  <script src="../blocks_vertical/procedures.js"></script>
+  <script src="../blocks_vertical/operators.js"></script>
+  <script src="../blocks_vertical/pen.js"></script>
+  <script src="../blocks_vertical/sound.js"></script>
+  <script src="../blocks_vertical/sensing.js"></script>
+  <script src="../blocks_vertical/data.js"></script>
+  <script src="../blocks_vertical/extensions.js"></script>
+
 
   <script>
     'use strict';
@@ -32,8 +33,6 @@
     var workspace = null;
 
     function start() {
-      // Setup blocks
-      // Parse the URL arguments.
       var match = location.search.match(/dir=([^&]+)/);
       var rtl = match && match[1] == 'rtl';
 
@@ -69,7 +68,18 @@
           dragShadowOpacity: 0.6
         }
       });
+      fromXml();
 
+
+    }
+    function fromXml() {
+      var xmlHTTP = new XMLHttpRequest();
+      xmlHTTP.open("GET", "import.xml", false);
+      xmlHTTP.send(null);
+      var xml = xmlHTTP.responseText;
+      //console.log(xml);
+      var xml2 = Blockly.Xml.textToDom(xml);
+      Blockly.Xml.domToWorkspace(xml2, workspace);
     }
 
   </script>
