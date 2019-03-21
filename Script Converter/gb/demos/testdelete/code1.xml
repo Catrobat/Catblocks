@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.33</applicationVersion>
+    <catrobatLanguageVersion>0.995</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>Redmi Note 3</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>true</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>23.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>test3</programName>
+    <remixOf></remixOf>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>1080</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1920</screenWidth>
+    <tags/>
+    <url>/pocketcode/program/59942</url>
+    <userHandle>gstanwar16</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList>
+            <look name="Background">
+              <fileName>90edb80c4fa3524e31c52f67f39919ea_Background.png</fileName>
+            </look>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="Clouds1">
+          <lookList>
+            <look name="Clouds">
+              <fileName>d2c7b03e439b7554073db6b7c9dec849_Background.png</fileName>
+            </look>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="GlideToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>20.0</value>
+                    </formula>
+                    <formula category="Y_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>1920</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>1920</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="GlideToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>10.0</value>
+                    </formula>
+                    <formula category="Y_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>1920</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>1920</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="Bird">
+          <lookList>
+            <look name="Bird wings up">
+              <fileName>cf42fa2816ca1086096ec5a864024d48_Bird wings up.png</fileName>
+            </look>
+            <look name="Bird wings down">
+              <fileName>dce2f33ca2cb877b2cef9b5c9ce67766_Bird wings down.png</fileName>
+            </look>
+          </lookList>
+          <soundList>
+            <sound>
+              <fileName>47d46612ebf6507b6290492e6f73a50d_Tweet1.m4a</fileName>
+              <name>Tweet1</name>
+            </sound>
+            <sound>
+              <fileName>69ab7d679193083ba453a002dd2d6c95_Tweet2.m4a</fileName>
+              <name>Tweet2</name>
+            </sound>
+          </soundList>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="GlideToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>00</value>
+                    </formula>
+                    <formula category="Y_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>00</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>STRING</type>
+                      <value>random (-260-260)</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="NextLookBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="WaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>0.2</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+            <script type="WhenScript">
+              <brickList>
+                <brick type="PlaySoundBrick">
+                  <commentedOut>false</commentedOut>
+                  <sound reference="../../../../../soundList/sound"/>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <action>Tapped</action>
+            </script>
+            <script type="WhenScript">
+              <brickList>
+                <brick type="SceneStartBrick">
+                  <commentedOut>false</commentedOut>
+                  <sceneToStart>yyr</sceneToStart>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <action>Tapped</action>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>1920</originalWidth>
+      <originalHeight>1080</originalHeight>
+    </scene>
+    <scene>
+      <name>yyr</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList>
+            <look name="day">
+              <fileName>049cea649859415316495d55801fb350_day.png</fileName>
+            </look>
+          </lookList>
+          <soundList>
+            <sound>
+              <fileName>afde66b0881c93bcc2db1b93d29bfd52_02_-_Kyun_Main_Jaagoon_MyMp3Song.Com_.mp3</fileName>
+              <name>02_-_Kyun_Main_Jaagoon_MyMp3Song.Com_</name>
+            </sound>
+          </soundList>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="PlaySoundBrick">
+                  <commentedOut>false</commentedOut>
+                  <sound reference="../../../../../soundList/sound"/>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+            <script type="WhenScript">
+              <brickList>
+                <brick type="SceneStartBrick">
+                  <commentedOut>false</commentedOut>
+                  <sceneToStart>hshshsb</sceneToStart>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <action>Tapped</action>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="hshshs">
+          <lookList>
+            <look name="hshshs">
+              <fileName>c5cc02176af881ae90aaae6ae8571c46_splash.jpg</fileName>
+            </look>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>1920</originalWidth>
+      <originalHeight>1080</originalHeight>
+    </scene>
+    <scene>
+      <name>hshshsb</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList/>
+          <soundList/>
+          <scriptList>
+            <script type="WhenScript">
+              <brickList/>
+              <commentedOut>false</commentedOut>
+              <action>Tapped</action>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="olx_image_2018-07-02_23-40-36">
+          <lookList>
+            <look name="olx_image_2018-07-02_23-40-36">
+              <fileName>cbb464ee504234c00db91ecba8f8d717_olx_image_2018-07-02_23-40-36.jpg</fileName>
+            </look>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>1920</originalWidth>
+      <originalHeight>1080</originalHeight>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+</program>

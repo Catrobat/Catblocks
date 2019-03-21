@@ -1,0 +1,1894 @@
+[{
+  "type": "event_wps",
+  "lastDummyAlign0": "RIGHT",
+  "message0": "When program starts",
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_wsit",
+  "lastDummyAlign0": "RIGHT",
+  "message0": "When screen is touched",
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_wt",
+  "lastDummyAlign0": "RIGHT",
+  "message0": "When tapped",
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_wyr",
+  "lastDummyAlign0": "RIGHT",
+  "message0": "When you receive %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "new message",
+          "new message"
+        ],
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_baw",
+  "message0": "Broadcast and wait %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "new message",
+          "new message"
+        ],
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_bc",
+  "message0": "Broadcast %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "new message",
+          "new message"
+        ],
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_wpcw",
+  "message0": "When physical collision with %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "anything",
+          "anything"
+        ]
+      ]
+    }
+  ],
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "event_wbct",
+  "message0": "when background changes to %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_w1s",
+  "message0": "Wait %1 second",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_n",
+  "message0": "Note %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'add comment here...'"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 64,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_f",
+  "message0": "Forever",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control__iitt",
+  "message0": "If %1 is true then",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1<2"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_wuit",
+  "message0": "Wait until %1 is true",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1<2"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_rt",
+  "message0": "Repeat %1 times",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "10"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_ruit",
+  "message0": "Repeat until %1 is true",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1<2"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_cs",
+  "message0": "Continue scene %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_ss",
+  "message0": "Start scene %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_cco",
+  "message0": "Create clone of %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "yourshelf",
+          "yourshelf"
+        ],
+        [
+          "new",
+          "new"
+        ],
+        [
+          "DJ2",
+          "DJ2"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_dtc",
+  "message0": "Delete this clone",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_wysaac",
+  "message0": "When you start as a clone",
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "control_s",
+  "message0": "Stop %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "this script",
+          "this script"
+        ],
+        [
+          "all script",
+          "all script"
+        ],
+        [
+          "other script of this object",
+          "other script of this object"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_pa",
+  "message0": "Place at %1 x: %2 y: %3",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "100"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "200"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_sxt",
+  "message0": "Set X to %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "100"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_syt",
+  "message0": "Set Y to %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "200"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_cxb",
+  "message0": "Change X BY %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "10"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_cyb",
+  "message0": "Change Y by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "10"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_gt",
+  "message0": "Go to %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "Touch position",
+          "Touch position"
+        ],
+        [
+          "Random position",
+          "Random position"
+        ],
+        [
+          "new",
+          "new"
+        ],
+        [
+          "DJ2",
+          "DJ2"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_ioeb",
+  "message0": "If On Edge Bounce",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_ms",
+  "message0": "Move %1 steps",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "10.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_trd",
+  "message0": "Turn right %1 degrees",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "15"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_pidd",
+  "message0": "point in direction %1 degrees",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "90"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_pt",
+  "message0": "point towards %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "new",
+          "new"
+        ],
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_g",
+  "message0": "Glide %1 %2 second to %3 X: %4 Y: %5",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "100"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "200"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_gbl",
+  "message0": "Go back %1 %2 layer",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_gtf",
+  "message0": "Go to front %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_vfs",
+  "message0": "vibrate for %1 second %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_smto",
+  "message0": "set motion type of %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "bouncing with gravity",
+          "bouncing with gravity"
+        ],
+        [
+          "others bounce off it",
+          "others bounce off it"
+        ],
+        [
+          "no bouncing",
+          "no bouncing"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_svt",
+  "message0": "set velocity to %1 x: %2 Y: %3 steps/second",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0.0"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_rlds",
+  "message0": "Rotate left %1 degrees/second",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "15.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_rrds",
+  "message0": "Rotate right %1 degrees/second",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "15.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_sgfaot",
+  "message0": "set gravity for all objects to %1 X: %2 Y: %3 steps /seconds",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0.0"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "-10.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_smtk",
+  "message0": "Set mass to %1 kilogram",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_sbft",
+  "message0": "Set bounce factor to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "80.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motion_sft",
+  "message0": "Set friction to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "20.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "motionk_srs",
+  "message0": "Set rotation style %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "left-right only",
+          "left-right only"
+        ],
+        [
+          "all-around",
+          "all-around"
+        ],
+        [
+          "don't rotate",
+          "don't rotate"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_ss",
+  "message0": "Start sound %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_ssaw",
+  "message0": "Start sound and wait %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_sas",
+  "message0": "Stop all sound",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_svt",
+  "message0": "Set volume to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "60"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_cvb",
+  "message0": "Change volume by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "-10"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_s",
+  "message0": "Speak %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'Hello!'"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_saw",
+  "message0": "Speak %1 and wait",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'Hello!'"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "sound_aassai",
+  "message0": "Ask %1 %2 and store spoken answer in %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "\"What's your name?"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_stl",
+  "message0": "Switch to look %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ],
+        [
+          "new",
+          "new"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_nl",
+  "message0": "Next look",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_pl",
+  "message0": "Previous look",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sst",
+  "message0": "Set size to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "60.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_csb",
+  "message0": "Change size by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "10.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_h",
+  "message0": "Hide",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_s",
+  "message0": "Show",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_stt",
+  "message0": "Set transperency to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "50.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_stb",
+  "message0": "Set transparency by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "25.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sbt",
+  "message0": "Set brightness to %1 %%",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "50.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_cbb",
+  "message0": "Change brightness by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "25.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sct",
+  "message0": "set color to %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_ccb",
+  "message0": "Change color by %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "25.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_cge",
+  "message0": "Clear graphic effects",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_aaswai",
+  "message0": "Ask %1 %2 and store written answer in %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "\"What's your name?\""
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sb",
+  "message0": "Set background %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sbaw",
+  "message0": "Set background %1 %2 %3 and wait",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sh",
+  "message0": "Say'Hello!'",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sfs",
+  "message0": "Say %1 %2 for %3 second",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'Hello!'"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_th",
+  "message0": "Think'Hmmmm!'",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_tfs",
+  "message0": "Think %1 %2 for %3 second",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'Hmmmm!'"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_nb",
+  "message0": "Next background",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_pb",
+  "message0": "Previous background",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_wbct",
+  "message0": "When background changes to %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "New...",
+          "New..."
+        ]
+      ]
+    }
+  ],
+  "nextStatement": null,
+  "colour": 14,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_sbtn",
+  "message0": "Set background to number %1 %2 and wait",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_uc",
+  "message0": "Use camera %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "front",
+          "front"
+        ],
+        [
+          "back",
+          "back"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_tc",
+  "message0": "Turn camera %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "on",
+          "on"
+        ],
+        [
+          "off",
+          "off"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "looks_tf",
+  "message0": "Turn flashlight %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "NAME",
+      "options": [
+        [
+          "on",
+          "on"
+        ],
+        [
+          "off",
+          "off"
+        ]
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_pd",
+  "message0": "Pen down",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_pu",
+  "message0": "Pen up",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_spst",
+  "message0": "set pen size to %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "4"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_spct",
+  "message0": "Set pen color to %1 Red %2 Green %3 blue %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "0"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "255"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_s",
+  "message0": "Stamp",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pen_c",
+  "message0": "Clear",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 159,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_svt",
+  "message0": "Set variable %1 %2 %3 to %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_cvb",
+  "message0": "Change variable %1 %2 by %3",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_sva",
+  "message0": "Show variable %1 %2 %3 at X: %4 Y: %5",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "100"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "200"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_hv",
+  "message0": "Hide variable %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_atl",
+  "message0": "Add %1 to list %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_diflap",
+  "message0": "Delete item from list %1 %2 at position %3",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_iilap",
+  "message0": "Insert %1 into list %2 %3 at position %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_riilapw",
+  "message0": "Replace item in list %1 %2 at position %3 with %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "1.0"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_aaswai",
+  "message0": "Ask %1 %2 and store written answer in %3 %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'What's  your name?\""
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "data_aassai",
+  "message0": "Ask %1 %2 and store spoken answer in %3 %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "'What's  your name?\""
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "New..."
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 290,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "ublock_type",
+  "message0": "unknown block ! %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "uscript_type",
+  "message0": "unknown script ! %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+}]

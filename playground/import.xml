@@ -1,0 +1,43 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="" id="~~q^WjHhqAl`NK@[Jg%j" islocal="false" iscloud="false">test</variable>
+  </variables>
+  <block type="event_whenflagclicked" id="ZLycc.Mq3wT_Bu6|.pyZ" x="297" y="361">
+    <next>
+      <block type="control_if" id="1ucVrun(q*^rK3Hm-m(w">
+        <value name="CONDITION">
+          <block type="operator_lt" id="{q)yRjb2YU,ve$Euh4iq">
+            <value name="OPERAND1">
+              <shadow type="text" id="}S|prWR)[3jBzD%_El%]">
+                <field name="TEXT">1</field>
+              </shadow>
+            </value>
+            <value name="OPERAND2">
+              <shadow type="text" id="+iLFG02!+#7;*dsyaMx.">
+                <field name="TEXT">2</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="SUBSTACK">
+          <block type="control_wait" id="$Hz|1|`c)-%t8pxZo^~-">
+            <value name="DURATION">
+              <shadow type="math_positive_number" id="Hk.)r!B`%IBH@M_gwNnt">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+        <next>
+          <block type="sound_setvolumeto" id="},*ZEGMS?[mU_*?i6/fj">
+            <value name="VOLUME">
+              <shadow type="math_number" id="JX3R[L7F$ZWWM7qV4^1C">
+                <field name="NUM">60</field>
+              </shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
