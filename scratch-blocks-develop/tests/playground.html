@@ -75,7 +75,7 @@
     function fromXml() {
       var xmlHTTP = new XMLHttpRequest();
       xmlHTTP.open("GET", "import.xml", false);
-      xmlHTTP.send(null);
+      xmlHTTP.send();
       var xml = xmlHTTP.responseText;
       //console.log(xml);
       var xml2 = Blockly.Xml.textToDom(xml);
