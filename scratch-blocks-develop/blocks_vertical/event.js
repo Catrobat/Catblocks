@@ -27,6 +27,22 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
+
+//Cat Blocks
+Blockly.Blocks['event_whenscenestarts'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+
+
+//Scratch Blocks
+
 Blockly.Blocks['event_whentouchingobject'] = {
   /**
    * Block for when a sprite is touching an object.
