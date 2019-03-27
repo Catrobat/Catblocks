@@ -39,7 +39,24 @@ Blockly.Blocks['event_whenscenestarts'] = {
   }
 };
 
-
+Blockly.Blocks['event_broadcast'] = {
+  init: function() {
+    this.jsonInit({
+      "id": "event_broadcast",
+      "message0": Blockly.Msg.EVENT_BROADCASTE,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.DEFAULT_BROADCAST_MESSAGE_NAME
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "statement_shape"]
+    });
+  }
+};
 
 //Scratch Blocks
 
