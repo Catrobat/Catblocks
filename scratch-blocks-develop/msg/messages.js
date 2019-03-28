@@ -140,8 +140,7 @@ Blockly.Msg.DATA_INSERTINTOLIST= 'Insert %1 into list \n%2\n at position %3';
 Blockly.Msg.DATA_REPLACEITEMINLIST= 'Replace item in list \n%1\n at position %2 with %3';
 
 
-
-
+Blockly.Msg.STRING_NEW_MESSAGE = 'new message';
 
 
 

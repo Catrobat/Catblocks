@@ -58,6 +58,24 @@ Blockly.Blocks['event_broadcast'] = {
   }
 };
 
+Blockly.Blocks['event_whenyoureceived'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
 //Scratch Blocks
 
 Blockly.Blocks['event_whentouchingobject'] = {
