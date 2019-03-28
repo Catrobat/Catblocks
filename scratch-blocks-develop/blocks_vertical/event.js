@@ -39,6 +39,26 @@ Blockly.Blocks['event_whenscenestarts'] = {
   }
 };
 
+Blockly.Blocks['event_whentapped'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whenstageistapped'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
 Blockly.Blocks['event_broadcast'] = {
   init: function() {
     this.jsonInit({
@@ -54,6 +74,22 @@ Blockly.Blocks['event_broadcast'] = {
       ],
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "statement_shape"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whenbecomestrue'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "VALUE"
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
     });
   }
 };
