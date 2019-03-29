@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="event_broadcast" id="" x="333" y="149">
+    <value name="BROADCAST_INPUT">
+      <shadow type="event_broadcast_menu" id="">
+        <field name="BROADCAST_OPTION" id="" variabletype="broadcast_msg">new message</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

@@ -10,8 +10,9 @@ Blockly.Msg["EVENT_WHENSCENESTARTS"] = "When scene starts";
 Blockly.Msg["EVENT_WHENTAPPED"] = "When tapped";
 Blockly.Msg["EVENT_WHENSTAGEISTAPPED"] = "When stage is tapped";
 Blockly.Msg["EVENT_WHENYOURECEIVE"] = "When \n you \n receive\n%1";
-Blockly.Msg["EVENT_BROADCAST"] = "Broadcast\n%1";
-Blockly.Msg["EVENT_BROADCASTANDWAIT"] = "Broadcast and wait\n%1";
+Blockly.Msg["EVENT_BROADCAST_CB"] = "Broadcast\n%1";
+Blockly.Msg["EVENT_BROADCASTANDWAIT_CB"] = "Broadcast and wait Hika?1827" +
+  "%1";
 Blockly.Msg["EVENT_WHENBECOMESTRUE"] = "When %1 becomes true";
 Blockly.Msg["EVENT_WHENYOUBOUNCEOFF"] = "When you bounce off\n%1";
 Blockly.Msg["EVENT_WHENBACKGROUNDCHANGES"] = "When background changes to\n%1";
