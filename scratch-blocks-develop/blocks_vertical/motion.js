@@ -331,9 +331,6 @@ Blockly.Blocks['motion_gobacklayer'] = {
 
 
 Blockly.Blocks['motion_gotofront'] = {
-  /**
-   * Not working yet
-   */
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_GOTOFRONT,
@@ -344,9 +341,6 @@ Blockly.Blocks['motion_gotofront'] = {
 };
 
 Blockly.Blocks['motion_vibrateforsecond'] = {
-  /**
-   * Not working yet
-     */
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_VIBRATEFORSECOND,
@@ -362,8 +356,166 @@ Blockly.Blocks['motion_vibrateforsecond'] = {
   }
 };
 
+Blockly.Blocks['motion_setyourmotiontypeto_menu'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "TOWARDS",
+          "options": [
+            [Blockly.Msg.MOTION_POINTTOWARDS_RANDOM, '_random_']
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.motion.secondary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+Blockly.Blocks['motion_setyourmotiontypeto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETYOURMOTIONTYPETO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TOWARDS"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
 
 
+
+Blockly.Blocks['motion_setvelocitytoxystepssecond'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETVELOCITYTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        },
+        {
+          "type": "input_value",
+          "name": "Y"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['motion_spinleftdegreessecond'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SPINLEFTDEGREESSECOND,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['motion_spinrightdegreessecond'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SPINRIGHTDEGREESSECOND,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['motion_setgravityforallactorsandobjectstoxystepssecond2'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        },
+        {
+          "type": "input_value",
+          "name": "Y"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['motion_setmasstokilogram'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETMASSTOKILOGRAM,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "STEPS"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['motion_setbouncefactorto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETBOUNCEFACTORTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['motion_setfrictionto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.MOTION_SETFRICTIONTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "X"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_motion", "shape_statement"]
+    });
+  }
+};
 
 
 //Scratch Blocks
