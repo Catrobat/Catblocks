@@ -27,12 +27,9 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
+// Cat Blocks
+
 Blockly.Blocks['control_forever'] = {
-  /**
-   * Block for repeat n times (external number).
-   * https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#5eke39
-   * @this Blockly.Block
-   */
   init: function() {
     this.jsonInit({
       "id": "control_forever",
@@ -62,6 +59,42 @@ Blockly.Blocks['control_forever'] = {
   }
 };
 
+Blockly.Blocks['control_wait'] = {
+  init: function() {
+    this.jsonInit({
+      "id": "control_wait",
+      "message0": Blockly.Msg.CONTROL_WAIT,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "DURATION"
+        }
+      ],
+      "category": Blockly.Categories.control,
+      "extensions": ["colours_control", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['control_note'] = {
+  init: function() {
+    this.jsonInit({
+      "id": "control_note",
+      "message0": Blockly.Msg.CONTROL_NOTE,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "NOTE"
+        }
+      ],
+      "category": Blockly.Categories.control,
+      "extensions": ["colours_control", "shape_statement"]
+    });
+  }
+};
+
+
+// Scratch Blocks
 Blockly.Blocks['control_repeat'] = {
   /**
    * Block for repeat n times (external number).
@@ -224,26 +257,6 @@ Blockly.Blocks['control_stop'] = {
   }
 };
 
-Blockly.Blocks['control_wait'] = {
-  /**
-   * Block to wait (pause) stack.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "id": "control_wait",
-      "message0": Blockly.Msg.CONTROL_WAIT,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "DURATION"
-        }
-      ],
-      "category": Blockly.Categories.control,
-      "extensions": ["colours_control", "shape_statement"]
-    });
-  }
-};
 
 Blockly.Blocks['control_wait_until'] = {
   /**
