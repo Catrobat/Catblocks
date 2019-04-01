@@ -102,7 +102,7 @@ Blockly.Msg["PEN_SETPENCOLORTO"] = "Set pen color to\n red %1 green %2 blue %3";
 Blockly.Msg["PEN_STAMP"] = "Stamp";
 Blockly.Msg["PEN_CLEAR"] = "Clear";
 
-Blockly.Msg["DATA_SETVARIABLETO"] = "Set variable \n%1\nto %2";
+Blockly.Msg["DATA_SETVARIABLETOCAT"] = "Set variable \n%1\nto %2";
 Blockly.Msg["DATA_CHANGEVARIABLEBY"] = "Change variable \n%1\nby %2";
 Blockly.Msg["DATA_SHOWVARIABLEAT"] = "Show variable \n%1\nat x: %2 y: %3";
 Blockly.Msg["DATA_SHOWVARIABLEATSIZECOLORALIGNED"] = "Show variable \n%1\nat x: %2 y: %3\nsize: %4\% color: %5\naligned\n%6";
