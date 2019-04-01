@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sound_startsound" id="" x="141" y="180">
+    <value name="SOUND_MENU">
+      <shadow type="sound_startsound_menu" id="">
+        <field name="SOUND_MENU">new...</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

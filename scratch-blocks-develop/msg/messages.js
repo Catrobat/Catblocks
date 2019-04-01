@@ -92,7 +92,7 @@ Blockly.Msg.SOUND_SETVOLUMETO = 'Set volume to %1 %';
 Blockly.Msg.SOUND_CHANGEVOLUMEBY = 'Change volume by %1';
 Blockly.Msg.SOUND_SPEAK = 'Speak %1';
 Blockly.Msg.SOUND_SPEAKANDWAIT = 'Speak %1 and wait';
-Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN = 'ASK %1\n and store spoken answer in\n%1';
+Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN = 'Ask %1\n and store spoken answer in\n%2';
 
 Blockly.Msg.LOOKS_SWITCHTOLOOK = 'Switch to look\n%1';
 Blockly.Msg.LOOKS_SWITCHTOLOOKWITHNUMBER = 'Switch to look with number %1';
