@@ -47,15 +47,16 @@ Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES = 'When background changes to\n%1';
 Blockly.Msg.CONTROL_WAITSECOND = 'Wait %1 second';
 Blockly.Msg.CONTROL_NOTE = 'Note %1';
 Blockly.Msg.CONTROL_FOREVER = 'Forever';
-Blockly.Msg.CONTROL_IFISTRUEELSE = 'If %1 is true then ... Else ...';
+Blockly.Msg.CONTROL_IFISTRUEELSEIF = 'If %1 is true then';
+Blockly.Msg.CONTROL_IFISTRUEELSEELSE = 'Else';
 Blockly.Msg.CONTROL_IFISTRUE = 'If %1 is true then ...';
 Blockly.Msg.CONTROL_WAITUNTILTRUE = 'Wait until %1 is true';
 Blockly.Msg.CONTROL_REPEATTIMES = 'Repeat %1 times';
 Blockly.Msg.CONTROL_REPEATUNTILISTRUE = 'Repeat until %1 is true';
 Blockly.Msg.CONTROL_CONTINUESCENE = 'Continue scene\n%1';
 Blockly.Msg.CONTROL_STARTSCENE = 'Start scene\n%1';
-Blockly.Msg.CONTROL_STOP = 'Stop\n%1';
-Blockly.Msg.CONTROL_CREATECLONEOF = 'Create clone of\n%1';
+Blockly.Msg.CONTROL_STOPCAT = 'Stop\n%1';
+Blockly.Msg.CONTROL_CREATECLONEOFCAT = 'Create clone of\n%1';
 Blockly.Msg.CONTROL_DELETECLONE = 'Delete this clone';
 Blockly.Msg.CONTROL_WHENYOUSTARTASACLONE = 'When you start as a clone';
 
@@ -92,7 +93,7 @@ Blockly.Msg.SOUND_SETVOLUMETO = 'Set volume to %1 %';
 Blockly.Msg.SOUND_CHANGEVOLUMEBY = 'Change volume by %1';
 Blockly.Msg.SOUND_SPEAK = 'Speak %1';
 Blockly.Msg.SOUND_SPEAKANDWAIT = 'Speak %1 and wait';
-Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN = 'ASK %1\n and store spoken answer in\n%1';
+Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN = 'Ask %1\n and store spoken answer in\n%2';
 
 Blockly.Msg.LOOKS_SWITCHTOLOOK = 'Switch to look\n%1';
 Blockly.Msg.LOOKS_SWITCHTOLOOKWITHNUMBER = 'Switch to look with number %1';
@@ -130,7 +131,7 @@ Blockly.Msg.PEN_SETPENCOLORTO = 'Set pen color to\n red %1 green %2 blue %3';
 Blockly.Msg.PEN_STAMP = 'Stamp';
 Blockly.Msg.PEN_CLEAR = 'Clear';
 
-Blockly.Msg.DATA_SETVARIABLETO = 'Set variable \n%1\nto %2';
+Blockly.Msg.DATA_SETVARIABLETOCAT = 'Set variable \n%1\nto %2';
 Blockly.Msg.DATA_CHANGEVARIABLEBY = 'Change variable \n%1\nby %2';
 Blockly.Msg.DATA_SHOWVARIABLEAT = 'Show variable \n%1\nat x: %2 y: %3';
 Blockly.Msg.DATA_SHOWVARIABLEATSIZECOLORALIGNED = 'Show variable \n%1\nat x: %2 y: %3\nsize: %4\% color: %5\naligned\n%6';

@@ -28,6 +28,165 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
+//CAT BLOCKS PENS
+Blockly.Blocks['pen_pendown'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_PENDOWN,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['pen_penup'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_PENUP,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_setpensizeto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_SETPENSIZETO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "SIZE"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_setpencolorto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_SETPENCOLORTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "red"
+        },
+        {
+          "type": "input_value",
+          "name": "green"
+        },
+        {
+          "type": "input_value",
+          "name": "blue"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_stamp'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_STAMP,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_clear'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_CLEAR,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+//CAT BLOCKS DATA
+Blockly.Blocks['data_setvariabletocat'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_SETVARIABLETOCAT,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "EFFECT",
+          "options": [
+            ["name"]
+          ]
+        },
+        {
+          "type": "input_value",
+          "name": "CHANGE"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_data", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['data_changevariablebycat'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_CHANGEVARIABLEBY,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "EFFECT",
+          "options": [
+            ["name"]
+          ]
+        },
+        {
+          "type": "input_value",
+          "name": "CHANGE"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_data", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['data_showvariableat'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_SHOWVARIABLEAT,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "EFFECT",
+          "options": [
+            ["name"]
+          ]
+        },
+        {
+          "type": "input_value",
+          "name": "X"
+        },
+        {
+          "type": "input_value",
+          "name": "Y"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_data", "shape_statement"]
+    });
+  }
+};
+
+
+
+//SCRATCH BLOCKS
 Blockly.Blocks['operator_add'] = {
   /**
    * Block for adding two numbers.
