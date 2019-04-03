@@ -281,6 +281,7 @@ Blockly.Blocks['control_startscene_menu'] = {
           "type": "field_dropdown",
           "name": "SCENE_OPTION",
           "options": [
+            ["new..."],
             ["Scene 1"]
           ]
         }
