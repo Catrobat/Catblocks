@@ -38,7 +38,7 @@ Blockly.Blocks['sound_startsound_menu'] = {
           "type": "field_dropdown",
           "name": "SOUND_MENU",
           "options": [
-            ['1', '0']
+            ["new..."]
           ]
         }
       ],
@@ -75,7 +75,7 @@ Blockly.Blocks['sound_startsoundandwait_menu'] = {
           "type": "field_dropdown",
           "name": "SOUND_MENU",
           "options": [
-            ['1', '0']
+            ["new..."]
           ]
         }
       ],
@@ -188,7 +188,7 @@ Blockly.Blocks['sound_askandstorespokenanswerin_menu'] = {
           "type": "field_dropdown",
           "name": "SOUND_MENU",
           "options": [
-            ['1', '0']
+            ["name"]
           ]
         }
       ],

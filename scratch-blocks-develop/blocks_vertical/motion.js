@@ -122,8 +122,8 @@ Blockly.Blocks['motion_goto_menu'] = {
           "type": "field_dropdown",
           "name": "TO",
           "options": [
-            [Blockly.Msg.MOTION_GOTO_POINTER, '_mouse_'],
-            [Blockly.Msg.MOTION_GOTO_RANDOM, '_random_']
+            ["touch position"],
+            ["random position"]
           ]
         }
       ],
@@ -237,8 +237,7 @@ Blockly.Blocks['motion_pointtowards_menu'] = {
           "type": "field_dropdown",
           "name": "TOWARDS",
           "options": [
-            [Blockly.Msg.MOTION_POINTTOWARDS_POINTER, '_mouse_'],
-            [Blockly.Msg.MOTION_POINTTOWARDS_RANDOM, '_random_']
+            ["new..."]
           ]
         }
       ],
@@ -275,9 +274,9 @@ Blockly.Blocks['motion_setrotationstyle'] = {
           "type": "field_dropdown",
           "name": "STYLE",
           "options": [
-            [Blockly.Msg.MOTION_SETROTATIONSTYLE_LEFTRIGHT, 'left-right'],
-            [Blockly.Msg.MOTION_SETROTATIONSTYLE_DONTROTATE, 'don\'t rotate'],
-            [Blockly.Msg.MOTION_SETROTATIONSTYLE_ALLAROUND, 'all around']
+            ["left-right only"],
+            ["all-around"],
+            ["don't rotate"]
           ]
         }
       ],
@@ -365,7 +364,9 @@ Blockly.Blocks['motion_setyourmotiontypeto_menu'] = {
           "type": "field_dropdown",
           "name": "TOWARDS",
           "options": [
-            [Blockly.Msg.MOTION_POINTTOWARDS_RANDOM, '_random_']
+            ["moving and bouncing under gravity"],
+            ["not moving under gravity, but others bounce of you under gravity"],
+            ["not moving or bouncing under gravitiy (default)"]
           ]
         }
       ],

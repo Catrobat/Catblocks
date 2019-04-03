@@ -129,7 +129,7 @@ Blockly.Blocks['looks_askandstorewrittenanswerin'] = {
         {
           "type": "field_dropdown",
           "name": "EFFECT",
-          "options": [[Blockly.Msg.LOOKS_EFFECT_SHIPX, 'ShipX']]
+          "options": [[Blockly.Msg.LOOKS_EFFECT_SHIPX, "name"]]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -594,6 +594,85 @@ Blockly.Blocks['looks_setstretchto'] = {
   }
 };
 
+
+Blockly.Blocks['looks_background'] = {
+  /**
+   * Costumes drop-down menu.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "COSTUME",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.looks.secondary,
+      "colourSecondary": Blockly.Colours.looks.secondary,
+      "colourTertiary": Blockly.Colours.looks.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+Blockly.Blocks['looks_camera'] = {
+  /**
+   * Costumes drop-down menu.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "COSTUME",
+          "options": [
+            ["on"],
+            ["off"]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.looks.secondary,
+      "colourSecondary": Blockly.Colours.looks.secondary,
+      "colourTertiary": Blockly.Colours.looks.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+
+Blockly.Blocks['looks_camera2'] = {
+  /**
+   * Costumes drop-down menu.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "COSTUME",
+          "options": [
+            ["front"],
+            ["rear"]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.looks.secondary,
+      "colourSecondary": Blockly.Colours.looks.secondary,
+      "colourTertiary": Blockly.Colours.looks.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
 Blockly.Blocks['looks_costume'] = {
   /**
    * Costumes drop-down menu.
@@ -607,8 +686,8 @@ Blockly.Blocks['looks_costume'] = {
           "type": "field_dropdown",
           "name": "COSTUME",
           "options": [
-            ['costume1', 'COSTUME1'],
-            ['costume2', 'COSTUME2']
+            ["new..."],
+            ["player"]
           ]
         }
       ],
