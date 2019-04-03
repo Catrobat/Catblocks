@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="motion_setyourmotiontypeto" id="" x="183" y="401">
+    <value name="TOWARDS">
+      <shadow type="motion_setyourmotiontypeto_menu" id="">
+        <field name="TOWARDS">moving and bouncing under gravity</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

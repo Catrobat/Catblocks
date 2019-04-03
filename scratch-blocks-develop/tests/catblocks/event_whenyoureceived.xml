@@ -1,0 +1,8 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="broadcast_msg" id="" islocal="false" iscloud="false">new message</variable>
+  </variables>
+  <block type="event_whenyoureceived" id="" x="263" y="268">
+    <field name="BROADCAST_OPTION" id="" variabletype="broadcast_msg">new message</field>
+  </block>
+</xml>

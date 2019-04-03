@@ -5,6 +5,115 @@
 goog.provide('Blockly.Msg.en');
 goog.require('Blockly.Msg');
 
+/////CatBlocks Blocks
+Blockly.Msg["EVENT_WHENSCENESTARTS"] = "When scene starts";
+Blockly.Msg["EVENT_WHENTAPPED"] = "When tapped";
+Blockly.Msg["EVENT_WHENSTAGEISTAPPED"] = "When stage is tapped";
+Blockly.Msg["EVENT_WHENYOURECEIVE"] = "When \n you \n receive\n%1";
+Blockly.Msg["EVENT_BROADCAST_CB"] = "Broadcast\n%1";
+Blockly.Msg["EVENT_BROADCASTANDWAIT_CB"] = "Broadcast and wait Hika?1827" +
+  "%1";
+Blockly.Msg["EVENT_WHENBECOMESTRUE"] = "When %1 becomes true";
+Blockly.Msg["EVENT_WHENYOUBOUNCEOFF"] = "When you bounce off\n%1";
+Blockly.Msg["EVENT_WHENBACKGROUNDCHANGES"] = "When background changes to\n%1";
+
+Blockly.Msg["CONTROL_WAITSECOND"] = "Wait %1 second";
+Blockly.Msg["CONTROL_NOTE"] = "Note %1";
+Blockly.Msg["CONTROL_FOREVER"] = "Forever";
+Blockly.Msg["CONTROL_IFISTRUEELSEIF"] = "If %1 is true then ... Else ...";
+Blockly.Msg["CONTROL_IFISTRUEELSEELSE"] = "Else";
+Blockly.Msg["CONTROL_IFISTRUE"] = "If %1 is true then ...";
+Blockly.Msg["CONTROL_WAITUNTILTRUE"] = "Wait until %1 is true";
+Blockly.Msg["CONTROL_REPEATTIMES"] = "Repeat %1 times";
+Blockly.Msg["CONTROL_REPEATUNTILISTRUE"] = "Repeat until %1 is true";
+Blockly.Msg["CONTROL_CONTINUESCENE"] = "Continue scene\n%1";
+Blockly.Msg["CONTROL_STARTSCENE"] = "Start scene\n%1";
+Blockly.Msg["CONTROL_STOPCAT"] = "Stop\n%1";
+Blockly.Msg["CONTROL_CREATECLONEOFCAT"] = "Create clone of\n%1";
+Blockly.Msg["CONTROL_DELETECLONE"] = "Delete this clone";
+Blockly.Msg["CONTROL_WHENYOUSTARTASACLONE"] = "When you start as a clone";
+
+Blockly.Msg["MOTION_PLACEATXY"] = "Place at x: %1 y: %2";
+Blockly.Msg["MOTION_SETXTO"] = "Set x to %1";
+Blockly.Msg["MOTION_SETYTO"] = "Set y to %1";
+Blockly.Msg["MOTION_CHANGEXBY"] = "Change x by %1";
+Blockly.Msg["MOTION_CHANGEYBY"] = "Change y by %1";
+Blockly.Msg["MOTION_GOTO"] = "Go to\n%1";
+Blockly.Msg["MOTION_IFONEDGEBOUNCE"] = "If on edge, bounce";
+Blockly.Msg["MOTION_MOVESTEPS"] = "Move %1 steps";
+Blockly.Msg["MOTION_TURNLEFTDEGREES"] = "Turn left %1 degrees";
+Blockly.Msg["MOTION_TURNRIGHTDEGREES"] = "Turn right %1 degrees";
+Blockly.Msg["MOTION_POINTINDIRECTIONDEGREES"] = "Point in direction %1 degrees";
+Blockly.Msg["MOTION_POINTTOWARDS"] = "Point towards\n%1";
+Blockly.Msg["MOTION_SETROTATIONSTYLE"] = "Set rotation style\n%1";
+Blockly.Msg["MOTION_GLIDESECONDTOXY"] = "Glide %1 second to x: %2 y: %3";
+Blockly.Msg["MOTION_GOBACKLAYER"] = "Go back %1 layer";
+Blockly.Msg["MOTION_GOTOFRONT"] = "Go to front";
+Blockly.Msg["MOTION_VIBRATEFORSECOND"] = "Vibrate for %1 second";
+Blockly.Msg["MOTION_SETYOURMOTIONTYPETO"] = "Set your motion type to\n%1";
+Blockly.Msg["MOTION_SETVELOCITYTO"] = "Set velocity to x: %1 y: %2 steps/second";
+Blockly.Msg["MOTION_SPINLEFTDEGREESSECOND"] = "Spin left %1 degrees/second";
+Blockly.Msg["MOTION_SPINRIGHTDEGREESSECOND"] = "Spin right %1 degrees/second";
+Blockly.Msg["MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO"] = "Set gravity for all actors and objects to x: %1 and y: %2 steps/seconds";
+Blockly.Msg["MOTION_SETMASSTOKILOGRAM"] = "Set mass to %1 kilogram";
+Blockly.Msg["MOTION_SETBOUNCEFACTORTO"] = "Set bounce factor to %1 %";
+Blockly.Msg["MOTION_SETFRICTIONTO"] = "Set friction to %1 %";
+
+Blockly.Msg["SOUND_STARTSOUND"] = "Start sound\n%1";
+Blockly.Msg["SOUND_STARTSOUNDANDWAIT"] = "Start sound and wait\n%1";
+Blockly.Msg["SOUND_STOPALLSOUNDS"] = "Stop all sounds";
+Blockly.Msg["SOUND_SETVOLUMETO"] = "Set volume to %1 %";
+Blockly.Msg["SOUND_CHANGEVOLUMEBY"] = "Change volume by %1";
+Blockly.Msg["SOUND_SPEAK"] = "Speak %1";
+Blockly.Msg["SOUND_SPEAKANDWAIT"] = "Speak %1 and wait";
+Blockly.Msg["SOUND_ASKANDSTORESPOKENANSWERIN"] = "Ask %1\n and store spoken answer in\n%2";
+
+Blockly.Msg["LOOKS_SWITCHTOLOOK"] = "Switch to look\n%1";
+Blockly.Msg["LOOKS_SWITCHTOLOOKWITHNUMBER"] = "Switch to look with number %1";
+Blockly.Msg["LOOKS_NEXTLOOK"] = "Next look";
+Blockly.Msg["LOOKS_PREVIOUSLOOK"] = "Previous look";
+Blockly.Msg["LOOKS_SETSIZETO"] = "Set size to %1\%";
+Blockly.Msg["LOOKS_CHANGESIZEBY"] = "Change size by %1\%";
+Blockly.Msg["LOOKS_HIDE"] = "Hide";
+Blockly.Msg["LOOKS_SHOW"] = "Show";
+Blockly.Msg["LOOKS_SAY"] = "Say %1";
+Blockly.Msg["LOOKS_SAYFORSECOND"] = "Say %1 for %2 second";
+Blockly.Msg["LOOKS_THINK"] = "Think %1";
+Blockly.Msg["LOOKS_THINKFORSECONDS"] = "Think %1\n for %2 second";
+Blockly.Msg["LOOKS_SETTRANSPARENCYTO"] = "Set transparency to %1\%";
+Blockly.Msg["LOOKS_CHANGETRANSPARENCYBY"] = "Change transparency by %1";
+Blockly.Msg["LOOKS_SETBRIGHTHNESSTO"] =  "Set brightness to %1\%";
+Blockly.Msg["LOOKS_CHANGEBRIGHTHNESSBY "] = "Change brightness by %1";
+Blockly.Msg["LOOKS_SETCOLORTO"] = "Set color to %1";
+Blockly.Msg["LOOKS_CHANGECOLORBY "] = "Change color by %1";
+Blockly.Msg["LOOKS_CLEARGRAPHICEFFECTS_CAT"] = "Clear graphic effects";
+Blockly.Msg["LOOKS_SETBACKGROUND"] = "Set background\n%1";
+Blockly.Msg["LOOKS_SETBACKGROUNDTONUMBER"] = "Set background to number %1";
+Blockly.Msg["LOOKS_SETBACKGROUNDANDWAIT"] = "Set background and wait\n%1";
+Blockly.Msg["LOOKS_SETBACKGROUNDTONUMBERANDWAIT"] = "Set background to number %1\n and wait";
+Blockly.Msg["LOOKS_TURNCAMERA"] = "Turn camera\n%1";
+Blockly.Msg["LOOKS_USECAMERA"] = "Use camera\n%1";
+Blockly.Msg["LOOKS_TURNFLASHLIGHT"]= "Turn flashlight\n%1";
+
+Blockly.Msg["PEN_PENDOWN"] = "Pen down";
+Blockly.Msg["PEN_PENUP"] = "Pen up";
+Blockly.Msg["PEN_SETPENSIZETO"] = "Set pen size to %1";
+Blockly.Msg["PEN_SETPENCOLORTO"] = "Set pen color to\n red %1 green %2 blue %3";
+Blockly.Msg["PEN_STAMP"] = "Stamp";
+Blockly.Msg["PEN_CLEAR"] = "Clear";
+
+Blockly.Msg["DATA_SETVARIABLETOCAT"] = "Set variable \n%1\nto %2";
+Blockly.Msg["DATA_CHANGEVARIABLEBY"] = "Change variable \n%1\nby %2";
+Blockly.Msg["DATA_SHOWVARIABLEAT"] = "Show variable \n%1\nat x: %2 y: %3";
+Blockly.Msg["DATA_SHOWVARIABLEATSIZECOLORALIGNED"] = "Show variable \n%1\nat x: %2 y: %3\nsize: %4\% color: %5\naligned\n%6";
+Blockly.Msg["DATA_ADDTOLIST"] = "Add %1 to list\n%2";
+Blockly.Msg["DATA_DELETEITEMFROMLIST"] = "Delete item form list \n%1\n at position %2";
+Blockly.Msg["DATA_INSERTINTOLIST"] = "Insert %1 into list \n%2\n at position %3";
+Blockly.Msg["DATA_REPLACEITEMINLIST"] = "Replace item in list \n%1\n at position %2 with %3";
+
+
+
+//OLD
 Blockly.Msg["CONTROL_FOREVER"] = "forever";
 Blockly.Msg["CONTROL_REPEAT"] = "repeat %1";
 Blockly.Msg["CONTROL_IF"] = "if %1 then";
@@ -30,7 +139,6 @@ Blockly.Msg["DATA_SETVARIABLETO"] = "set %1 to %2";
 Blockly.Msg["DATA_CHANGEVARIABLEBY"] = "change %1 by %2";
 Blockly.Msg["DATA_SHOWVARIABLE"] = "show variable %1";
 Blockly.Msg["DATA_HIDEVARIABLE"] = "hide variable %1";
-Blockly.Msg["DATA_ADDTOLIST"] = "add %1 to %2";
 Blockly.Msg["DATA_DELETEOFLIST"] = "delete %1 of %2";
 Blockly.Msg["DATA_DELETEALLOFLIST"] = "delete all of %1";
 Blockly.Msg["DATA_INSERTATLIST"] = "insert %1 at %2 of %3";
@@ -125,7 +233,7 @@ Blockly.Msg["MOTION_CHANGEYBY"] = "change y by %1";
 Blockly.Msg["MOTION_SETY"] = "set y to %1";
 Blockly.Msg["MOTION_IFONEDGEBOUNCE"] = "if on edge, bounce";
 Blockly.Msg["MOTION_SETROTATIONSTYLE"] = "set rotation style %1";
-Blockly.Msg["MOTION_SETROTATIONSTYLE_LEFTRIGHT"] = "left-right";
+Blockly.Msg["MOTION_SETROTATIONSTYLE_LEFTRIGHT"] = "left-right only";
 Blockly.Msg["MOTION_SETROTATIONSTYLE_DONTROTATE"] = "don't rotate";
 Blockly.Msg["MOTION_SETROTATIONSTYLE_ALLAROUND"] = "all around";
 Blockly.Msg["MOTION_XPOSITION"] = "x position";

@@ -1,0 +1,15 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="data_insertintolist" id="" x="30" y="211">
+    <value name="VALUE">
+      <shadow type="math_integer" id="">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <field name="LIST" id="" variabletype="list">list</field>
+    <value name="INDEX">
+      <shadow type="math_integer" id="">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

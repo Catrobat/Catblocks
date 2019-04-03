@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="motion_pointindirectiondegrees" id="" x="113" y="391">
+    <value name="DIRECTION">
+      <shadow type="math_angle" id="">
+        <field name="NUM">90</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

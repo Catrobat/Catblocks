@@ -27,6 +27,201 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
+//Cat Blocks
+
+Blockly.Blocks['sound_startsound_menu'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "SOUND_MENU",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.sounds.secondary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_startsound'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_STARTSOUND,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "SOUND_MENU"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_startsoundandwait_menu'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "SOUND_MENU",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.sounds.secondary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+
+Blockly.Blocks['sound_startsoundandwait'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_STARTSOUNDANDWAIT,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "SOUND_MENU"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_stopallsounds'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_STOPALLSOUNDS,
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_setvolumeto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_SETVOLUMETO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "VOLUME"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_changevolumeby'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_CHANGEVOLUMEBY,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "VOLUME"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_speak'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_SPEAK,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TEXT"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_speakandwait'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_SPEAKANDWAIT,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TEXT"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['sound_askandstorespokenanswerin_menu'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "SOUND_MENU",
+          "options": [
+            ["name"]
+          ]
+        }
+      ],
+      "colour": Blockly.Colours.sounds.secondary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary,
+      "extensions": ["output_string"]
+    });
+  }
+};
+
+Blockly.Blocks['sound_askandstorespokenanswerin'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TEXT"
+        },
+        {
+          "type": "input_value",
+          "name": "SOUND_MENU"
+        }
+      ],
+      "category": Blockly.Categories.sound,
+      "extensions": ["colours_sounds", "shape_statement"]
+    });
+  }
+};
+
+
+//Scratch Blocks
 Blockly.Blocks['sound_sounds_menu'] = {
   /**
    * Sound effects drop-down menu.
@@ -189,45 +384,6 @@ Blockly.Blocks['sound_cleareffects'] = {
   }
 };
 
-Blockly.Blocks['sound_changevolumeby'] = {
-  /**
-   * Block to change the sprite's volume by a certain value
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.SOUND_CHANGEVOLUMEBY,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "VOLUME"
-        }
-      ],
-      "category": Blockly.Categories.sound,
-      "extensions": ["colours_sounds", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['sound_setvolumeto'] = {
-  /**
-   * Block to set the sprite's volume to a certain percent
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.SOUND_SETVOLUMETO,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "VOLUME"
-        }
-      ],
-      "category": Blockly.Categories.sound,
-      "extensions": ["colours_sounds", "shape_statement"]
-    });
-  }
-};
 
 Blockly.Blocks['sound_volume'] = {
   /**

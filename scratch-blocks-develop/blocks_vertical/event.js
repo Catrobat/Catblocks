@@ -27,6 +27,147 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
+//Cat Blocks
+Blockly.Blocks['event_whenscenestarts'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whentapped'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"],
+      "args0": [],
+    });
+  }
+};
+
+Blockly.Blocks['event_whenstageistapped'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whenyoureceived'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_broadcast'] = {
+  init: function() {
+    this.jsonInit({
+      "id": "event_broadcast",
+      "message0": Blockly.Msg.EVENT_BROADCAST_CB,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.DEFAULT_BROADCAST_MESSAGE_NAME
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "statement_shape"]
+    });
+  }
+};
+
+Blockly.Blocks['event_broadcastandwait'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_BROADCASTANDWAIT_CB,
+      "args0": [
+        {
+          "type":"input_value",
+          "name":"BROADCAST_INPUT"
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_statement"]
+    });
+  }
+};
+
+
+
+Blockly.Blocks['event_whenbecomestrue'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "VALUE"
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whenyoubounceoff'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+Blockly.Blocks['event_whenbackgroundchangesto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "BROADCAST_OPTION",
+          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
+          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+//Scratch Blocks
+
 Blockly.Blocks['event_whentouchingobject'] = {
   /**
    * Block for when a sprite is touching an object.

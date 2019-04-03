@@ -28,6 +28,90 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
+//CAT BLOCKS PENS
+Blockly.Blocks['pen_pendown'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_PENDOWN,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['pen_penup'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_PENUP,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_setpensizeto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_SETPENSIZETO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "SIZE"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_setpencolorto'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_SETPENCOLORTO,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "red"
+        },
+        {
+          "type": "input_value",
+          "name": "green"
+        },
+        {
+          "type": "input_value",
+          "name": "blue"
+        }
+      ],
+      "category": Blockly.Categories.motion,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_stamp'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_STAMP,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+Blockly.Blocks['pen_clear'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.PEN_CLEAR,
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_pen", "shape_statement"]
+    });
+  }
+};
+
+
+//SCRATCH BLOCKS
 Blockly.Blocks['operator_add'] = {
   /**
    * Block for adding two numbers.

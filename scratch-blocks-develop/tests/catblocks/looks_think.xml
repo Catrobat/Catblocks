@@ -1,0 +1,10 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="looks_think" id="" x="144" y="382">
+    <value name="MESSAGE">
+      <shadow type="text" id="">
+        <field name="TEXT">Hmmmm!</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

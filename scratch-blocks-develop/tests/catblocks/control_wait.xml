@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="control_wait" id="" x="255" y="414">
+    <value name="DURATION">
+      <shadow type="math_positive_number" id="">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+</xml>
