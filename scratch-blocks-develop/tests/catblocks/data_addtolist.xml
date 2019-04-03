@@ -1,0 +1,10 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="data_addtolist" id="" x="243" y="379">
+    <field name="LIST" id="" variabletype="list">list</field>
+    <value name="ITEM">
+      <shadow type="text" id="">
+        <field name="TEXT">name</field>
+      </shadow>
+    </value>
+  </block>
+</xml>
