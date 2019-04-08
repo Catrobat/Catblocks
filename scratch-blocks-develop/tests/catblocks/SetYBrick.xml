@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="SetYBrick" x="307" y="553">
+    <value name="Y_POSITION">
+      <shadow type="text">
+        <field name="TEXT">200</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

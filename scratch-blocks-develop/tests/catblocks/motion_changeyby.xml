@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="motion_changeyby" id="" x="411" y="679">
-    <value name="DY">
-      <shadow type="math_number" id="">
-        <field name="NUM">10</field>
-      </shadow>
-    </value>
-  </block>
-</xml>

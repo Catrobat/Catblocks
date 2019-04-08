@@ -28,18 +28,18 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 //Cat Blocks
-Blockly.Blocks['motion_placeatxy'] = {
+Blockly.Blocks['PlaceAtBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_PLACEATXY,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "X_POSITION"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "Y_POSITION"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -49,14 +49,14 @@ Blockly.Blocks['motion_placeatxy'] = {
 };
 
 
-Blockly.Blocks['motion_setxto'] = {
+Blockly.Blocks['SetXBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETXTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "X_POSITION"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -65,14 +65,14 @@ Blockly.Blocks['motion_setxto'] = {
   }
 };
 
-Blockly.Blocks['motion_setyto'] = {
+Blockly.Blocks['SetYBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETYTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "Y_POSITION"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -81,14 +81,14 @@ Blockly.Blocks['motion_setyto'] = {
   }
 };
 
-Blockly.Blocks['motion_changexby'] = {
+Blockly.Blocks['ChangeXByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_CHANGEXBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "DX"
+          "name": "X_POSITION_CHANGE"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -97,14 +97,14 @@ Blockly.Blocks['motion_changexby'] = {
   }
 };
 
-Blockly.Blocks['motion_changeyby'] = {
+Blockly.Blocks['ChangeYByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_CHANGEYBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "DY"
+          "name": "Y_POSITION_CHANGE"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -137,7 +137,7 @@ Blockly.Blocks['motion_goto_menu'] = {
 
 
 
-Blockly.Blocks['motion_goto'] = {
+Blockly.Blocks['GoToBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_GOTO,
@@ -153,7 +153,7 @@ Blockly.Blocks['motion_goto'] = {
   }
 };
 
-Blockly.Blocks['motion_ifonedgebounce'] = {
+Blockly.Blocks['IfOnEdgeBounceBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_IFONEDGEBOUNCE,
@@ -163,7 +163,7 @@ Blockly.Blocks['motion_ifonedgebounce'] = {
   }
 };
 
-Blockly.Blocks['motion_movesteps'] = {
+Blockly.Blocks['MoveNStepsBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_MOVESTEPS,
@@ -179,14 +179,14 @@ Blockly.Blocks['motion_movesteps'] = {
   }
 };
 
-Blockly.Blocks['motion_turnrightdegrees'] = {
+Blockly.Blocks['TurnRightBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_TURNRIGHTDEGREES,
       "args0": [
         {
           "type": "input_value",
-          "name": "DEGREES"
+          "name": "TURN_RIGHT_DEGREES"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -195,14 +195,14 @@ Blockly.Blocks['motion_turnrightdegrees'] = {
   }
 };
 
-Blockly.Blocks['motion_turnleftdegrees'] = {
+Blockly.Blocks['TurnLeftBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_TURNLEFTDEGREES,
       "args0": [
         {
           "type": "input_value",
-          "name": "DEGREES"
+          "name": "TURN_LEFT_DEGREES"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -212,14 +212,14 @@ Blockly.Blocks['motion_turnleftdegrees'] = {
 };
 
 
-Blockly.Blocks['motion_pointindirectiondegrees'] = {
+Blockly.Blocks['PointInDirectionBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_POINTINDIRECTIONDEGREES,
       "args0": [
         {
           "type": "input_value",
-          "name": "DIRECTION"
+          "name": "DEGREES"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -249,7 +249,7 @@ Blockly.Blocks['motion_pointtowards_menu'] = {
   }
 };
 
-Blockly.Blocks['motion_pointtowards'] = {
+Blockly.Blocks['PointToBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_POINTTOWARDS,
@@ -265,7 +265,7 @@ Blockly.Blocks['motion_pointtowards'] = {
   }
 };
 
-Blockly.Blocks['motion_setrotationstyle'] = {
+Blockly.Blocks['SetRotationStyleBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETROTATIONSTYLE,
@@ -287,22 +287,22 @@ Blockly.Blocks['motion_setrotationstyle'] = {
 };
 
 
-Blockly.Blocks['motion_glidesecondtoxy'] = {
+Blockly.Blocks['GlideToBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_GLIDESECONDTOXY,
       "args0": [
         {
           "type": "input_value",
-          "name": "SECS"
+          "name": "DURATION_IN_SECONDS"
         },
         {
           "type": "input_value",
-          "name": "X"
+          "name": "X_DESTINATION"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "Y_DESTINATION"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -312,7 +312,7 @@ Blockly.Blocks['motion_glidesecondtoxy'] = {
 };
 
 
-Blockly.Blocks['motion_gobacklayer'] = {
+Blockly.Blocks['GoNStepsBackBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_GOBACKLAYER,
@@ -329,7 +329,7 @@ Blockly.Blocks['motion_gobacklayer'] = {
 };
 
 
-Blockly.Blocks['motion_gotofront'] = {
+Blockly.Blocks['ComeToFrontBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_GOTOFRONT,
@@ -339,14 +339,14 @@ Blockly.Blocks['motion_gotofront'] = {
   }
 };
 
-Blockly.Blocks['motion_vibrateforsecond'] = {
+Blockly.Blocks['VibrationBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_VIBRATEFORSECOND,
       "args0": [
         {
           "type": "input_value",
-          "name": "STEPS"
+          "name": "VIBRATE_DURATION_IN_SECONDS"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -378,7 +378,7 @@ Blockly.Blocks['motion_setyourmotiontypeto_menu'] = {
   }
 };
 
-Blockly.Blocks['motion_setyourmotiontypeto'] = {
+Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETYOURMOTIONTYPETO,
@@ -396,18 +396,18 @@ Blockly.Blocks['motion_setyourmotiontypeto'] = {
 
 
 
-Blockly.Blocks['motion_setvelocitytoxystepssecond'] = {
+Blockly.Blocks['SetVelocityBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETVELOCITYTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_VELOCITY_X"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "PHYSICS_VELOCITY_Y"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -416,14 +416,14 @@ Blockly.Blocks['motion_setvelocitytoxystepssecond'] = {
   }
 };
 
-Blockly.Blocks['motion_spinleftdegreessecond'] = {
+Blockly.Blocks['TurnLeftSpeedBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SPINLEFTDEGREESSECOND,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_TURN_LEFT_SPEED"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -432,14 +432,14 @@ Blockly.Blocks['motion_spinleftdegreessecond'] = {
   }
 };
 
-Blockly.Blocks['motion_spinrightdegreessecond'] = {
+Blockly.Blocks['TurnRightSpeedBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SPINRIGHTDEGREESSECOND,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_TURN_RIGHT_SPEED"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -449,18 +449,18 @@ Blockly.Blocks['motion_spinrightdegreessecond'] = {
 };
 
 
-Blockly.Blocks['motion_setgravityforallactorsandobjectstoxystepssecond2'] = {
+Blockly.Blocks['SetGravityBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_GRAVITY_X"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "PHYSICS_GRAVITY_Y"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -470,14 +470,14 @@ Blockly.Blocks['motion_setgravityforallactorsandobjectstoxystepssecond2'] = {
 };
 
 
-Blockly.Blocks['motion_setmasstokilogram'] = {
+Blockly.Blocks['SetMassBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETMASSTOKILOGRAM,
       "args0": [
         {
           "type": "input_value",
-          "name": "STEPS"
+          "name": "PHYSICS_MASS"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -486,14 +486,14 @@ Blockly.Blocks['motion_setmasstokilogram'] = {
   }
 };
 
-Blockly.Blocks['motion_setbouncefactorto'] = {
+Blockly.Blocks['SetBounceBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETBOUNCEFACTORTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_BOUNCE_FACTOR"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -502,14 +502,14 @@ Blockly.Blocks['motion_setbouncefactorto'] = {
   }
 };
 
-Blockly.Blocks['motion_setfrictionto'] = {
+Blockly.Blocks['SetFrictionBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_SETFRICTIONTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "X"
+          "name": "PHYSICS_FRICTION"
         }
       ],
       "category": Blockly.Categories.motion,

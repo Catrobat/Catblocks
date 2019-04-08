@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="motion_setrotationstyle" id="" x="243" y="632">
+  <block type="SetRotationStyleBrick" x="243" y="632">
     <field name="STYLE">left-right only</field>
   </block>
 </xml>

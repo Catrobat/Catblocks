@@ -1,6 +1,6 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="SetFrictionBrick" x="161" y="756">
-    <value name="PHYSICS_FRICTION">
+  <block type="SetBounceBrick" x="161" y="756">
+    <value name="PHYSICS_BOUNCE_FACTOR">
       <shadow type="text">
         <field name="TEXT">80</field>
       </shadow>

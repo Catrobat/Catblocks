@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="motion_pointtowards" id="" x="183" y="401">
+  <block type="PointToBrick" x="183" y="401">
     <value name="TOWARDS">
       <shadow type="motion_pointtowards_menu" id="">
         <field name="TOWARDS">new...</field>

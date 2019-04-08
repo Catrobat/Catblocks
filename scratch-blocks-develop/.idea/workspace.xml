@@ -5,38 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9122202c-3556-4b9e-bc73-2f23cb3a8f3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changebrightnessby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changecolourby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changesizeby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changetransparencyby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_cleargraphicseffects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_hide.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_say.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbrightnessto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setcolourto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_settransparencyto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_show.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_switchtolook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_switchtolookswithnumber.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_think.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_thinkforsecond.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/catblocks/SetGravityBrick.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks_vertical/looks.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks_vertical/looks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msg/js/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/msg/js/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msg/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/msg/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/import.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/import.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks_vertical/motion.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks_vertical/motion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_changexby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/ChangeXByNBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_changeyby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/ChangeYByNBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_glidesecondtoxy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/GlideToBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_gobacklayer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/GoNStepsBackBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_goto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/GoToBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_gotofront.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/ComeToFrontBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_ifonedgebounce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/IfOnEdgeBounceBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_movesteps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/MoveNStepsBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_placeatxy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/PlaceAtBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_pointindirectiondegrees" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/PointInDirectionBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_pointtowards.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/PointToBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setbouncefactorto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetBounceBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setfrictionto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/motion_setfrictionto.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setgravityforallactorsandobjectstoxystepssecond2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setmasstokilogram" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetMassBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setrotationstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetRotationFileBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setvelocitytoxystepssecond.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetVelocityBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setxto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetXBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setyourmotiontypeto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetPhysicsObjectTypeBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_setyto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/SetYBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_spinleftdegreessecond.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/TurnLeftSpeedBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_spinrightdegreessecond.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/TurnRightSpeedBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_turnleftdegrees.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/TurnLeftBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_turnrightdegrees.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/TurnRightBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/catblocks/motion_vibrateforsecond.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/catblocks/VibrationBrick.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -50,92 +47,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocks_vertical/looks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="433" column="50" selection-start-line="433" selection-start-column="50" selection-end-line="433" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/msg/messages.js">
+        <entry file="file://$PROJECT_DIR$/blocks_vertical/motion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
+            <state relative-caret-position="345">
+              <caret line="264" column="3" lean-forward="true" selection-start-line="264" selection-start-column="3" selection-end-line="264" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml">
+        <entry file="file://$PROJECT_DIR$/blocks_vertical/default_toolbox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
+            <state relative-caret-position="360">
+              <caret line="212" column="28" selection-start-line="212" selection-start-column="28" selection-end-line="212" selection-end-column="28" />
+              <folding>
+                <element signature="n#style#0;n#xml#0;n#!!top" expanded="true" />
+                <element signature="e#13966#13970#0" expanded="true" />
+                <element signature="e#15141#15145#0" expanded="true" />
+                <element signature="e#15351#15355#0" expanded="true" />
+                <element signature="e#15556#15560#0" expanded="true" />
+                <element signature="e#15965#15969#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml">
+        <entry file="file://$PROJECT_DIR$/tests/catblocks/motion_setfrictionto.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/msg/js/en.js">
+        <entry file="file://$PROJECT_DIR$/tests/catblocks/PointToBrick.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4189">
-              <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="45">
+              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -180,6 +131,7 @@
       <find>think</find>
       <find>cleargraphicef</find>
       <find>cleargrap</find>
+      <find>motion</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,28 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/blockly_compressed_vertical.js" />
-        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js" />
-        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/css.js" />
-        <option value="$PROJECT_DIR$/blockly_uncompressed_vertical.js" />
-        <option value="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" />
-        <option value="$PROJECT_DIR$/tests/start.html" />
-        <option value="$PROJECT_DIR$/tests/vertical_playground.html" />
-        <option value="$PROJECT_DIR$/tests/playground.html" />
-        <option value="$PROJECT_DIR$/tests/code.xml" />
-        <option value="$PROJECT_DIR$/tests/translation.xml" />
-        <option value="$PROJECT_DIR$/tests/scratchToCatrobatConverter" />
-        <option value="$PROJECT_DIR$/tests/catblocks/event_whenyoureceived.xml" />
-        <option value="$PROJECT_DIR$/blocks_vertical/event.js" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_switchtolook.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml" />
-        <option value="$PROJECT_DIR$/tests/import.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_changesizeby.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_show.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_hide.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswer.xml" />
         <option value="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml" />
         <option value="$PROJECT_DIR$/tests/catblocks/looks_say.xml" />
         <option value="$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml" />
@@ -234,14 +164,41 @@
         <option value="$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml" />
         <option value="$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml" />
         <option value="$PROJECT_DIR$/blocks_vertical/looks.js" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_placeatxy.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setxto.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setyto.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_changexby.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_changeyby.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_goto.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_ifonedgebounce.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_movesteps.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_turnrightdegrees.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/TurnLeftBrick.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/PointInDirectionBrick.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_pointtowards.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setrotationstyle.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_glidesecondtoxy.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_gobacklayer.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_gotofront.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_vibrateforsecond.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setyourmotiontypeto.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setvelocitytoxystepssecond.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_spinrightdegreessecond.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_spinleftdegreessecond.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setgravityforallactorsandobjectstoxystepssecond2.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/SetMassBrick.xml" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setbouncefactorto.xml" />
+        <option value="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" />
+        <option value="$PROJECT_DIR$/tests/catblocks/motion_setfrictionto.xml" />
+        <option value="$PROJECT_DIR$/blocks_vertical/motion.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1788" />
+    <option name="x" value="110" />
     <option name="y" value="-4" />
-    <option name="width" value="1026" />
-    <option name="height" value="586" />
+    <option name="width" value="1024" />
+    <option name="height" value="550" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -249,7 +206,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -288,6 +244,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,18 +315,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41667000" />
+    <option name="totallyTimeSpent" value="50336000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="-4" width="1920" height="1204" extended-state="6" />
+    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.15287296" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.19583023" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32970026" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32970026" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32925585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -388,174 +345,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/blocks/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js" />
-    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/css.js" />
-    <entry file="file://$PROJECT_DIR$/core/toolbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1093">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/vertical_extensions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2115" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/default_toolbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blockly_uncompressed_vertical.js" />
-    <entry file="file://$PROJECT_DIR$/core/xml.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="387" selection-start-line="387" selection-end-line="387" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/start.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/scratchToCatrobatConverter">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="2354" column="60" selection-start-line="2354" selection-start-column="60" selection-end-line="2354" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/code.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/translation.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/vertical_playground.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="9" selection-start-column="2" selection-end-line="29" />
-          <folding>
-            <element signature="n#style#0;n#xml#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/blockly.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/event_whenyoureceived.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/playground.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="47" column="48" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/data.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/control.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_show.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/motion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="598" column="29" selection-start-line="598" selection-start-column="23" selection-end-line="598" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_thinkforsecond.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_think.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_say.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -682,13 +471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/looks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="433" column="50" selection-start-line="433" selection-start-column="50" selection-end-line="433" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -705,15 +487,222 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/msg/js/en.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4189">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
+        <state relative-caret-position="570">
+          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/msg/messages.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
+        <state>
+          <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/looks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/control_ifistruethen.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/PlaceAtBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/GoToBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/IfOnEdgeBounceBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/TurnRightBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/TurnLeftBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetYBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetXBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/ChangeXByNBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/ChangeYByNBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/PointInDirectionBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetRotationFileBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/GlideToBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/GoNStepsBackBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/ComeToFrontBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/VibrationBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetPhysicsObjectTypeBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetVelocityBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/TurnLeftSpeedBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetGravityBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetMassBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/SetBounceBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/MoveNStepsBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/TurnRightSpeedBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/default_toolbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="212" column="28" selection-start-line="212" selection-start-column="28" selection-end-line="212" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#xml#0;n#!!top" expanded="true" />
+            <element signature="e#13966#13970#0" expanded="true" />
+            <element signature="e#15141#15145#0" expanded="true" />
+            <element signature="e#15351#15355#0" expanded="true" />
+            <element signature="e#15556#15560#0" expanded="true" />
+            <element signature="e#15965#15969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/motion_setfrictionto.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/catblocks/PointToBrick.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocks_vertical/motion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="264" column="3" lean-forward="true" selection-start-line="264" selection-start-column="3" selection-end-line="264" selection-end-column="3" />
         </state>
       </provider>
     </entry>

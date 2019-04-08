@@ -30,187 +30,187 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
   '<category name="%{BKY_CATEGORY_MOTION}" id="motion" colour="#4C97FF" secondaryColour="#3373CC">' +
-  '<block type="motion_placeatxy" id="" x="252" y="544">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">100</field>\n' +
+  '<block type="PlaceAtBrick" x="252" y="544">\n' +
+  '    <value name="X_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">100</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">200</field>\n' +
+  '    <value name="Y_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">200</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setxto" id="" x="307" y="553">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">100</field>\n' +
+  '<block type="SetXBrick" x="307" y="553">\n' +
+  '    <value name="X_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">100</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>'  +
-  '<block type="motion_setyto" id="" x="307" y="553">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">200</field>\n' +
+  '<block type="SetYBrick" x="307" y="553">\n' +
+  '    <value name="Y_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">200</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_changexby" id="" x="411" y="679">\n' +
-  '<value name="DX">\n' +
-  '<shadow type="math_number" id="">\n' +
-  '<field name="NUM">10</field>\n' +
+  '<block type="ChangeXByNBrick" x="411" y="679">\n' +
+  '<value name="X_POSITION_CHANGE">\n' +
+  '<shadow type="text">\n' +
+  '<field name="TEXT">10</field>\n' +
   '</shadow>\n' +
   '</value>\n' +
   '</block>' +
-  '<block type="motion_changeyby" id="" x="411" y="679">\n' +
-  '    <value name="DY">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">10</field>\n' +
+  '<block type="ChangeYByNBrick" x="411" y="679">\n' +
+  '    <value name="Y_POSITION_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="Text">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_goto" id="" x="275" y="585">\n' +
+  '<block type="GoToBrick" x="275" y="585">\n' +
   '    <value name="TO">\n' +
-  '      <shadow type="motion_goto_menu" id="">\n' +
+  '      <shadow type="motion_goto_menu">\n' +
   '        <field name="TO">touch position</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_ifonedgebounce" id="" x="285" y="772"></block>' +
-  '<block type="motion_movesteps" id="" x="37" y="213">\n' +
+  '<block type="IfOnEdgeBounceBrick" x="285" y="772"></block>' +
+  '<block type="MoveNStepsBrick" x="37" y="213">\n' +
   '    <value name="STEPS">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">10</field>\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_turnleftdegrees" id="" x="24" y="187">\n' +
+  '<block type="TurnLeftBrick" x="24" y="187">\n' +
+  '    <value name="TURN_LEFT_DEGREES">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">15</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+  '<block type="TurnRightBrick" x="24" y="187">\n' +
+  '    <value name="TURN_RIGHT_DEGREES">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">15</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+  '<block type="PointInDirectionBrick" id="" x="113" y="391">\n' +
   '    <value name="DEGREES">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">15</field>\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">90</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_turnrightdegrees" id="" x="24" y="187">\n' +
-  '    <value name="DEGREES">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">15</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-  '<block type="motion_pointindirectiondegrees" id="" x="113" y="391">\n' +
-  '    <value name="DIRECTION">\n' +
-  '      <shadow type="math_angle" id="">\n' +
-  '        <field name="NUM">90</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-  '<block type="motion_pointtowards" id="" x="183" y="401">\n' +
+  '<block type="PointToBrick" x="183" y="401">\n' +
   '    <value name="TOWARDS">\n' +
-  '      <shadow type="motion_pointtowards_menu" id="">\n' +
+  '      <shadow type="motion_pointtowards_menu">\n' +
   '        <field name="TOWARDS">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setrotationstyle" id="" x="243" y="632">\n' +
+  '<block type="SetRotationStyleBrick" x="243" y="632">\n' +
   '    <field name="STYLE">left-right only</field>\n' +
   '  </block>' +
-  '<block type="motion_glidesecondtoxy" id="" x="188" y="512">\n' +
-  '    <value name="SECS">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="GlideToBrick" x="188" y="512">\n' +
+  '    <value name="DURATION_IN_SECONDS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">100</field>\n' +
+  '    <value name="X_DESTINATION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">100</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">200</field>\n' +
+  '    <value name="Y_DESTINATION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">200</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_gobacklayer" id="" x="172" y="249">\n' +
+  '<block type="GoNStepsBackBrick" x="172" y="249">\n' +
   '    <value name="STEPS">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_gotofront" id="" x="252" y="611"></block>' +
-  '<block type="motion_vibrateforsecond" id="" x="241" y="277">\n' +
-  '    <value name="STEPS">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="ComeToFrontBrick" x="252" y="611"></block>' +
+  '<block type="VibrationBrick" x="241" y="277">\n' +
+  '    <value name="VIBRATE_DURATION_IN_SECONDS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setyourmotiontypeto" id="" x="183" y="401">\n' +
+  '<block type="SetPhysicsObjectTypeBrick" x="183" y="401">\n' +
   '    <value name="TOWARDS">\n' +
   '      <shadow type="motion_setyourmotiontypeto_menu" id="">\n' +
   '        <field name="TOWARDS">moving and bouncing under gravity</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setvelocitytoxystepssecond" id="" x="243" y="440">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">0</field>\n' +
+  '<block type="SetVelocityBrick" x="243" y="440">\n' +
+  '    <value name="PHYSICS_VELOCITY_X">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">0</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">0</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-  '<block type="motion_spinleftdegreessecond" id="" x="163" y="696">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">15</field>\n' +
+  '    <value name="PHYSICS_VELOCITY_Y">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">0</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_spinrightdegreessecond" id="" x="163" y="696">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">15</field>\n' +
+  '<block type="TurnLeftSpeedBrick" x="163" y="696">\n' +
+  '    <value name="PHYSICS_TURN_LEFT_SPEED">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setgravityforallactorsandobjectstoxystepssecond2" id="" x="276" y="457">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">0</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">-10</field>\n' +
+  '<block type="TurnRightSpeedBrick" x="163" y="696">\n' +
+  '    <value name="PHYSICS_TURN_RIGHT_SPEED">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setmasstokilogram" id="" x="307" y="235">\n' +
-  '    <value name="STEPS">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="SetGravityBrick" x="276" y="457">\n' +
+  '    <value name="PHYSICS_GRAVITY_X">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">0</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '    <value name="PHYSICS_GRAVITY_Y">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">-10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setbouncefactorto" id="" x="161" y="756">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">80</field>\n' +
+  '<block type="SetMassBrick" x="307" y="235">\n' +
+  '    <value name="PHYSICS_MASS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="motion_setfrictionto" id="" x="161" y="756">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number" id="">\n' +
-  '        <field name="NUM">80</field>\n' +
+  '<block type="SetBounceBrick" x="161" y="756">\n' +
+  '    <value name="PHYSICS_BOUNCE_FACTOR">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">80</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+  '<block type="SetFrictionBrick" x="161" y="756">\n' +
+  '    <value name="PHYSICS_FRICTION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">80</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
