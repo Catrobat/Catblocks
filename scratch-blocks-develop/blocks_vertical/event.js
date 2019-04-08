@@ -28,7 +28,7 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 //Cat Blocks
-Blockly.Blocks['event_whenscenestarts'] = {
+Blockly.Blocks['WhenStartedBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
@@ -38,7 +38,7 @@ Blockly.Blocks['event_whenscenestarts'] = {
   }
 };
 
-Blockly.Blocks['event_whentapped'] = {
+Blockly.Blocks['WhenBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENTAPPED,
@@ -49,7 +49,7 @@ Blockly.Blocks['event_whentapped'] = {
   }
 };
 
-Blockly.Blocks['event_whenstageistapped'] = {
+Blockly.Blocks['WhenTouchDownBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENSTAGEISTAPPED,
@@ -59,7 +59,7 @@ Blockly.Blocks['event_whenstageistapped'] = {
   }
 };
 
-Blockly.Blocks['event_whenyoureceived'] = {
+Blockly.Blocks['BroadcastReceiverBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
@@ -77,26 +77,46 @@ Blockly.Blocks['event_whenyoureceived'] = {
   }
 };
 
-Blockly.Blocks['event_broadcast'] = {
+
+Blockly.Blocks['BroadcastBrick_menu'] = {
   init: function() {
     this.jsonInit({
-      "id": "event_broadcast",
-      "message0": Blockly.Msg.EVENT_BROADCAST_CB,
+      "message0": "%1",
       "args0": [
         {
-          "type": "field_variable",
-          "name": "BROADCAST_OPTION",
-          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
-          "variable": Blockly.Msg.DEFAULT_BROADCAST_MESSAGE_NAME
+          "type": "field_dropdown",
+          "name": "BROADCAST_MENU",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "statement_shape"]
+      "colour": Blockly.Colours.event.secondary,
+      "colourSecondary": Blockly.Colours.event.secondary,
+      "colourTertiary": Blockly.Colours.event.tertiary,
+      "extensions": ["output_string"]
     });
   }
 };
 
-Blockly.Blocks['event_broadcastandwait'] = {
+Blockly.Blocks['BroadcastBrick'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.EVENT_BROADCAST_CB,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "BROADCAST_MENU"
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_statement"]
+    });
+  }
+};
+
+
+Blockly.Blocks['BroadcastWaitBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_BROADCASTANDWAIT_CB,
@@ -114,14 +134,14 @@ Blockly.Blocks['event_broadcastandwait'] = {
 
 
 
-Blockly.Blocks['event_whenbecomestrue'] = {
+Blockly.Blocks['WhenConditionBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
       "args0": [
         {
           "type": "input_value",
-          "name": "VALUE"
+          "name": "IF_CONDITION"
         }
       ],
       "category": Blockly.Categories.event,
