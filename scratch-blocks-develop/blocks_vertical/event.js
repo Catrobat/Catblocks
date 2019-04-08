@@ -52,7 +52,7 @@ Blockly.Blocks['event_whentapped'] = {
 Blockly.Blocks['event_whenstageistapped'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "message0": Blockly.Msg.EVENT_WHENSTAGEISTAPPED,
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "shape_hat"]
     });
