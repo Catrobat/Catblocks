@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="control_waituntilistrue" id="" x="269" y="411">
+  <block type="IfLogicBeginBrick" id="" x="269" y="411">
     <value name="TEXT">
       <shadow type="text" id="">
         <field name="TEXT">1&lt;2</field>

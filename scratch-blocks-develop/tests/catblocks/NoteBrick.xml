@@ -1,6 +1,6 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
-  <block type="control_note" id="" x="248" y="454">
+  <block type="NoteBrick" id="" x="248" y="454">
     <value name="NOTE">
       <shadow type="text" id="">
         <field name="TEXT">add comment here...</field>

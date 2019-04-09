@@ -1,6 +1,6 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="control_createcloneof" id="" x="359" y="480">
-    <value name="SCENE_OPTION">
+  <block type="CloneBrick" id="" x="359" y="480">
+    <value name="objectToClone">
       <shadow type="control_createcloneof_menu" id="">
         <field name="SCENE_OPTION">yourself</field>
       </shadow>

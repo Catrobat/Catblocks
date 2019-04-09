@@ -1,0 +1,10 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="RepeatBrick" id="" x="269" y="411">
+    <value name="TIMES_TO_REPEAT">
+      <shadow type="text" id="">
+        <field name="TEXT">10</field>
+      </shadow>
+    </value>
+  </block>
+</xml>
+

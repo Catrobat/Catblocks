@@ -29,10 +29,10 @@ goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 // Cat Blocks
 
-Blockly.Blocks['control_forever'] = {
+Blockly.Blocks['ForeverBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_forever",
+      "id": "ForeverBrick",
       "message0": Blockly.Msg.CONTROL_FOREVER,
       "message1": "%1", // Statement
       "message2": "%1", // Icon
@@ -59,15 +59,15 @@ Blockly.Blocks['control_forever'] = {
   }
 };
 
-Blockly.Blocks['control_wait'] = {
+Blockly.Blocks['WaitBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_wait",
+      "id": "WaitBrick",
       "message0": Blockly.Msg.CONTROL_WAIT,
       "args0": [
         {
           "type": "input_value",
-          "name": "DURATION"
+          "name": "TIME_TO_WAIT_IN_SECONDS"
         }
       ],
       "category": Blockly.Categories.control,
@@ -76,10 +76,10 @@ Blockly.Blocks['control_wait'] = {
   }
 };
 
-Blockly.Blocks['control_note'] = {
+Blockly.Blocks['NoteBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_note",
+      "id": "NoteBrick",
       "message0": Blockly.Msg.CONTROL_NOTE,
       "args0": [
         {
@@ -93,10 +93,10 @@ Blockly.Blocks['control_note'] = {
   }
 };
 
-Blockly.Blocks['control_ifistruethenelse'] = {
+Blockly.Blocks['IfElseLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
-      "type": "control_ifistruethenelse",
+      "type": "IfElseLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1",
       "message2": Blockly.Msg.CONTROL_IFISTRUEELSEELSE,
@@ -125,10 +125,10 @@ Blockly.Blocks['control_ifistruethenelse'] = {
   }
 };
 
-Blockly.Blocks['control_ifistruethen'] = {
+Blockly.Blocks['IfLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
-      "type": "control_ifistruethen",
+      "type": "IfLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1", // Statement
       "args0": [
@@ -149,14 +149,14 @@ Blockly.Blocks['control_ifistruethen'] = {
   }
 };
 
-Blockly.Blocks['control_waituntilistrue'] = {
+Blockly.Blocks['WaitUntilBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.CONTROL_WAITUNTILTRUE,
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "IF_CONDITION"
         }
       ],
       "category": Blockly.Categories.control,
@@ -165,10 +165,10 @@ Blockly.Blocks['control_waituntilistrue'] = {
   }
 };
 
-Blockly.Blocks['control_repeattimes'] = {
+Blockly.Blocks['RepeatBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_repeattimes",
+      "id": "RepeatBrick",
       "message0": Blockly.Msg.CONTROL_REPEATTIMES,
       "message1": "%1", // Statement
       "message2": "%1", // Icon
@@ -176,7 +176,7 @@ Blockly.Blocks['control_repeattimes'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "NUM"
+          "name": "TIMES_TO_REPEAT"
         }
       ],
       "args1": [
@@ -201,10 +201,10 @@ Blockly.Blocks['control_repeattimes'] = {
   }
 };
 
-Blockly.Blocks['control_repeatuntilistrue'] = {
+Blockly.Blocks['RepeatUntilBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_repeatuntilistrue",
+      "id": "RepeatUntilBrick",
       "message0": Blockly.Msg.CONTROL_REPEATUNTILISTRUE,
       "message1": "%1", // Statement
       "message2": "%1", // Icon
@@ -212,7 +212,7 @@ Blockly.Blocks['control_repeatuntilistrue'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "REPEAT_UNTIL_CONDITION"
         }
       ],
       "args1": [
@@ -255,15 +255,15 @@ Blockly.Blocks['control_continuescene_menu'] = {
   }
 };
 
-Blockly.Blocks['control_continuescene'] = {
+Blockly.Blocks['SceneTransitionBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_continuescene",
+      "id": "SceneTransitionBrick",
       "message0": Blockly.Msg.CONTROL_CONTINUESCENE,
       "args0": [
         {
           "type": "input_value",
-          "name": "SCENE_OPTION"
+          "name": "sceneForTransition"
         }
       ],
       "category": Blockly.Categories.control,
@@ -291,15 +291,15 @@ Blockly.Blocks['control_startscene_menu'] = {
   }
 };
 
-Blockly.Blocks['control_startscene'] = {
+Blockly.Blocks['SceneStartBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_startscene",
+      "id": "SceneStartBrick",
       "message0": Blockly.Msg.CONTROL_STARTSCENE,
       "args0": [
         {
           "type": "input_value",
-          "name": "SCENE_OPTION"
+          "name": "sceneToStart"
         }
       ],
       "category": Blockly.Categories.control,
@@ -328,15 +328,15 @@ Blockly.Blocks['control_stopscript_menu'] = {
   }
 };
 
-Blockly.Blocks['control_stopscript'] = {
+Blockly.Blocks['StopScriptBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_stopscript",
+      "id": "StopScriptBrick",
       "message0": Blockly.Msg.CONTROL_STOPCAT,
       "args0": [
         {
           "type": "input_value",
-          "name": "SCENE_OPTION"
+          "name": "spinnerSelection"
         }
       ],
       "category": Blockly.Categories.control,
@@ -363,15 +363,15 @@ Blockly.Blocks['control_createcloneof_menu'] = {
   }
 };
 
-Blockly.Blocks['control_createcloneof'] = {
+Blockly.Blocks['CloneBrick'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_createcloneof",
+      "id": "CloneBrick",
       "message0": Blockly.Msg.CONTROL_CREATECLONEOFCAT,
       "args0": [
         {
           "type": "input_value",
-          "name": "SCENE_OPTION"
+          "name": "objectToClone"
         }
       ],
       "category": Blockly.Categories.control,
@@ -380,7 +380,7 @@ Blockly.Blocks['control_createcloneof'] = {
   }
 };
 
-Blockly.Blocks['control_delete_this_clone'] = {
+Blockly.Blocks['DeleteThisCloneBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.CONTROL_DELETETHISCLONE,

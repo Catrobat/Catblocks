@@ -30,7 +30,7 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
   '<category name="%{BKY_CATEGORY_MOTION}" id="motion" colour="#4C97FF" secondaryColour="#3373CC">' +
-  '<block type="PlaceAtBrick" x="252" y="544">\n' +
+  '<block type="PlaceAtBrick">\n' +
 '    <value name="X_POSITION">\n' +
 '      <shadow type="text">\n' +
 '        <field name="TEXT">100</field>\n' +
@@ -42,81 +42,81 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '      </shadow>\n' +
 '    </value>\n' +
 '  </block>' +
-  '<block type="SetXBrick" x="307" y="553">\n' +
+  '<block type="SetXBrick">\n' +
   '    <value name="X_POSITION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">100</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>'  +
-  '<block type="SetYBrick" x="307" y="553">\n' +
+  '<block type="SetYBrick">\n' +
   '    <value name="Y_POSITION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">200</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="ChangeXByNBrick" x="411" y="679">\n' +
+  '<block type="ChangeXByNBrick">\n' +
   '<value name="X_POSITION_CHANGE">\n' +
   '<shadow type="text">\n' +
   '<field name="TEXT">10</field>\n' +
   '</shadow>\n' +
   '</value>\n' +
   '</block>' +
-  '<block type="ChangeYByNBrick" x="411" y="679">\n' +
+  '<block type="ChangeYByNBrick">\n' +
   '    <value name="Y_POSITION_CHANGE">\n' +
   '      <shadow type="text">\n' +
   '        <field name="Text">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="GoToBrick" x="275" y="585">\n' +
+  '<block type="GoToBrick">\n' +
   '    <value name="TO">\n' +
   '      <shadow type="motion_goto_menu">\n' +
   '        <field name="TO">touch position</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="IfOnEdgeBounceBrick" x="285" y="772"></block>' +
-  '<block type="MoveNStepsBrick" x="37" y="213">\n' +
+  '<block type="IfOnEdgeBounceBrick"></block>' +
+  '<block type="MoveNStepsBrick">\n' +
   '    <value name="STEPS">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="TurnLeftBrick" x="24" y="187">\n' +
+  '<block type="TurnLeftBrick">\n' +
   '    <value name="TURN_LEFT_DEGREES">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="TurnRightBrick" x="24" y="187">\n' +
+  '<block type="TurnRightBrick">\n' +
   '    <value name="TURN_RIGHT_DEGREES">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="PointInDirectionBrick" id="" x="113" y="391">\n' +
+  '<block type="PointInDirectionBrick">\n' +
   '    <value name="DEGREES">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">90</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="PointToBrick" x="183" y="401">\n' +
+  '<block type="PointToBrick">\n' +
   '    <value name="TOWARDS">\n' +
   '      <shadow type="motion_pointtowards_menu">\n' +
   '        <field name="TOWARDS">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetRotationStyleBrick" x="243" y="632">\n' +
+  '<block type="SetRotationStyleBrick">\n' +
   '    <field name="STYLE">left-right only</field>\n' +
   '  </block>' +
-  '<block type="GlideToBrick" x="188" y="512">\n' +
+  '<block type="GlideToBrick">\n' +
   '    <value name="DURATION_IN_SECONDS">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1</field>\n' +
@@ -133,14 +133,14 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="GoNStepsBackBrick" x="172" y="249">\n' +
+  '<block type="GoNStepsBackBrick">\n' +
   '    <value name="STEPS">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="ComeToFrontBrick" x="252" y="611"></block>' +
+  '<block type="ComeToFrontBrick"></block>' +
   '<block type="VibrationBrick" x="241" y="277">\n' +
   '    <value name="VIBRATE_DURATION_IN_SECONDS">\n' +
   '      <shadow type="text">\n' +
@@ -148,14 +148,14 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetPhysicsObjectTypeBrick" x="183" y="401">\n' +
+  '<block type="SetPhysicsObjectTypeBrick">\n' +
   '    <value name="TOWARDS">\n' +
   '      <shadow type="motion_setyourmotiontypeto_menu">\n' +
   '        <field name="TOWARDS">moving and bouncing under gravity</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetVelocityBrick" x="243" y="440">\n' +
+  '<block type="SetVelocityBrick">\n' +
   '    <value name="PHYSICS_VELOCITY_X">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">0</field>\n' +
@@ -167,21 +167,21 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="TurnLeftSpeedBrick" x="163" y="696">\n' +
+  '<block type="TurnLeftSpeedBrick">\n' +
   '    <value name="PHYSICS_TURN_LEFT_SPEED">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="TurnRightSpeedBrick" x="163" y="696">\n' +
+  '<block type="TurnRightSpeedBrick">\n' +
   '    <value name="PHYSICS_TURN_RIGHT_SPEED">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetGravityBrick" x="276" y="457">\n' +
+  '<block type="SetGravityBrick">\n' +
   '    <value name="PHYSICS_GRAVITY_X">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">0</field>\n' +
@@ -193,21 +193,21 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetMassBrick" x="307" y="235">\n' +
+  '<block type="SetMassBrick">\n' +
   '    <value name="PHYSICS_MASS">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetBounceBrick" x="161" y="756">\n' +
+  '<block type="SetBounceBrick">\n' +
   '    <value name="PHYSICS_BOUNCE_FACTOR">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">80</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="SetFrictionBrick" x="161" y="756">\n' +
+  '<block type="SetFrictionBrick">\n' +
   '    <value name="PHYSICS_FRICTION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">80</field>\n' +
@@ -480,85 +480,85 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '  </block>' +
   '</category>' +
   '<category name="%{BKY_CATEGORY_CONTROL}" id="control" colour="#FFAB19" secondaryColour="#CF8B17">' +
-    '<block type="control_wait">\n' +
-  '    <value name="DURATION">\n' +
-  '      <shadow type="math_positive_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+    '<block type="WaitBrick" id="" x="255" y="414">\n' +
+  '    <value name="TIME_TO_WAIT_IN_SECONDS">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_note">\n' +
+    '<block type="NoteBrick">\n' +
   '    <value name="NOTE">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">add comment here...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_forever"></block>' +
-    '<block type="control_ifistruethenelse">\n' +
+    '<block type="ForeverBrick"></block>' +
+    '<block type="IfElseLogicBeginBrick">\n' +
   '        <value name="TEXT">\n' +
   '          <shadow type="text">\n' +
   '            <field name="TEXT">1&lt;2</field>\n' +
   '          </shadow>\n' +
   '        </value>\n' +
   '  </block>' +
-    '<block type="control_ifistruethen">\n' +
+    '<block type="IfLogicBeginBrick">\n' +
   '    <value name="TEXT">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1&lt;2</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_waituntilistrue">\n' +
-  '    <value name="TEXT">\n' +
+    '<block type="WaitUntilBrick">\n' +
+  '    <value name="IF_CONDITION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1&lt;2</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_repeattimes">\n' +
-  '    <value name="NUM">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">10</field>\n' +
+    '<block type="RepeatBrick">\n' +
+  '    <value name="TIMES_TO_REPEAT">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_repeatuntilistrue">\n' +
-  '    <value name="TEXT">\n' +
+    '<block type="RepeatUntilBrick">\n' +
+  '    <value name="REPEAT_UNTIL_CONDITION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1&lt;2</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_continuescene">\n' +
-  '    <value name="SCENE_OPTION">\n' +
+    '<block type="SceneTransitionBrick">\n' +
+  '    <value name="sceneForTransition">\n' +
   '      <shadow type="control_continuescene_menu">\n' +
   '        <field name="SCENE_OPTION">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_startscene">\n' +
-  '    <value name="SCENE_OPTION">\n' +
+    '<block type="SceneStartBrick">\n' +
+  '    <value name="sceneToStart">\n' +
   '      <shadow type="control_startscene_menu">\n' +
   '        <field name="SCENE_OPTION">Scene 1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_stopscript">\n' +
-  '    <value name="SCENE_OPTION">\n' +
+    '<block type="StopScriptBrick">\n' +
+  '    <value name="spinnerSelection">\n' +
   '      <shadow type="control_stopscript_menu">\n' +
   '        <field name="SCENE_OPTION">this script</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_createcloneof">\n' +
-  '    <value name="SCENE_OPTION">\n' +
+    '<block type="CloneBrick">\n' +
+  '    <value name="objectToClone">\n' +
   '      <shadow type="control_createcloneof_menu">\n' +
   '        <field name="SCENE_OPTION">yourself</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="control_delete_this_clone"></block>' +
+    '<block type="DeleteThisCloneBrick"></block>' +
   '</category>' +
   '<category name="Pen" id="sensing" colour="#0fBD8C" secondaryColour="#2E8EB8">' +
     '<block type="pen_pendown"></block>' +
