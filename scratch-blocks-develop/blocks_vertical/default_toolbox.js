@@ -448,9 +448,13 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '<block type="WhenStartedBrick"></block>' +
     '<block type="WhenBrick"></block>' +
     '<block type="WhenTouchDownBrick"></block>' +
-    '<block type="BroadcastReceiverBrick">' +
-  '    <field name="BROADCAST_OPTION" variabletype="broadcast_msg">new message</field>' +
-  '  </block>' +
+    '<block type="BroadcastReceiverBrick" id="" x="333" y="149">\n' +
+  '  <value name="BROADCAST_MENU">\n' +
+  '    <shadow type="BroadcastBrick_menu" id="">\n' +
+  '      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>\n' +
+  '    </shadow>\n' +
+  '  </value>\n' +
+  '</block>' +
     '<block type="BroadcastBrick">\n' +
     '  <value name="BROADCAST_MENU">\n' +
     '    <shadow type="BroadcastBrick_menu">\n' +
@@ -459,9 +463,9 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '  </value>\n' +
     '</block>' +
     '<block type="BroadcastWaitBrick">\n' +
-  '    <value name="BROADCAST_INPUT">\n' +
-  '      <shadow type="event_broadcast_menu">\n' +
-  '        <field name="BROADCAST_OPTION" variabletype="broadcast_msg">new message</field>\n' +
+  '    <value name="BROADCAST_MENU">\n' +
+  '      <shadow type="BroadcastBrick_menu">\n' +
+  '        <field name="BROADCAST_MENU" variabletype="broadcast_msg">new message</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +

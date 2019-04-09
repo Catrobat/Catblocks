@@ -65,10 +65,8 @@ Blockly.Blocks['BroadcastReceiverBrick'] = {
       "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "BROADCAST_OPTION",
-          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
-          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+          "type": "input_value",
+          "name": "BROADCAST_MENU"
         }
       ],
       "category": Blockly.Categories.event,
@@ -123,7 +121,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
       "args0": [
         {
           "type":"input_value",
-          "name":"BROADCAST_INPUT"
+          "name":"BROADCAST_MENU"
         }
       ],
       "category": Blockly.Categories.event,
