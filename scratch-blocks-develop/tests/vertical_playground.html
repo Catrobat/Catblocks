@@ -100,7 +100,7 @@
           if (text) {
             document.getElementById('importExport').value = text;
           }
-          taChange();
+          //taChange();
         }
 
         if (sessionStorage) {
@@ -125,14 +125,14 @@
         output.value = Blockly.Xml.domToPrettyText(xml);
         output.focus();
         output.select();
-        taChange();
+        //taChange();
       }
 
       function fromXml() {
         var input = document.getElementById('importExport');
         var xml = Blockly.Xml.textToDom(input.value);
         Blockly.Xml.domToWorkspace(xml, workspace);
-        taChange();
+        //taChange();
       }
 
       // Disable the "Import from XML" button if the XML is invalid.
