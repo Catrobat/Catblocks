@@ -148,7 +148,7 @@ Blockly.Blocks['WhenConditionBrick'] = {
   }
 };
 
-Blockly.Blocks['event_whenyoubounceoff'] = {
+Blockly.Blocks['CollisionReceiverBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
@@ -166,7 +166,7 @@ Blockly.Blocks['event_whenyoubounceoff'] = {
   }
 };
 
-Blockly.Blocks['event_whenbackgroundchangesto'] = {
+Blockly.Blocks['WhenBackgroundChangesBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,

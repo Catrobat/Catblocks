@@ -29,7 +29,7 @@ goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
 //CAT BLOCKS PENS
-Blockly.Blocks['pen_pendown'] = {
+Blockly.Blocks['PenDownBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_PENDOWN,
@@ -40,7 +40,7 @@ Blockly.Blocks['pen_pendown'] = {
 };
 
 
-Blockly.Blocks['pen_penup'] = {
+Blockly.Blocks['PenUpBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_PENUP,
@@ -50,14 +50,14 @@ Blockly.Blocks['pen_penup'] = {
   }
 };
 
-Blockly.Blocks['pen_setpensizeto'] = {
+Blockly.Blocks['SetPenSizeBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_SETPENSIZETO,
       "args0": [
         {
           "type": "input_value",
-          "name": "SIZE"
+          "name": "PEN_SIZE"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -66,22 +66,22 @@ Blockly.Blocks['pen_setpensizeto'] = {
   }
 };
 
-Blockly.Blocks['pen_setpencolorto'] = {
+Blockly.Blocks['SetPenColorBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_SETPENCOLORTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "red"
+          "name": "PEN_COLOR_RED"
         },
         {
           "type": "input_value",
-          "name": "green"
+          "name": "PEN_COLOR_GREEN"
         },
         {
           "type": "input_value",
-          "name": "blue"
+          "name": "PEN_COLOR_BLUE"
         }
       ],
       "category": Blockly.Categories.motion,
@@ -90,7 +90,7 @@ Blockly.Blocks['pen_setpencolorto'] = {
   }
 };
 
-Blockly.Blocks['pen_stamp'] = {
+Blockly.Blocks['StampBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_STAMP,
@@ -100,7 +100,7 @@ Blockly.Blocks['pen_stamp'] = {
   }
 };
 
-Blockly.Blocks['pen_clear'] = {
+Blockly.Blocks['ClearBackgroundBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.PEN_CLEAR,

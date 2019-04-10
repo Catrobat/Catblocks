@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="event_whenyoubounceoff" x="263" y="268">
+  <block type="CollisionReceiverBrick" x="263" y="268">
     <field name="BROADCAST_OPTION" variabletype="broadcast_msg">any edge, actor, or object</field>
   </block>
 </xml>

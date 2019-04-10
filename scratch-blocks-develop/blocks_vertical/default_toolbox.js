@@ -388,57 +388,57 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '  </block>' +
   '</category>' +
   '<category name="%{BKY_CATEGORY_SOUND}" id="sound" colour="#9966FF" secondaryColour="#9966FF">' +
-    '<block type="sound_startsound">\n' +
+    '<block type="PlaySoundBrick">\n' +
   '    <value name="SOUND_MENU">\n' +
-  '      <shadow type="sound_startsound_menu">\n' +
+  '      <shadow type="PlaySoundBrick_menu">\n' +
   '        <field name="SOUND_MENU">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_startsoundandwait">\n' +
+    '<block type="PlaySoundAndWaitBrick">\n' +
   '    <value name="SOUND_MENU">\n' +
-  '      <shadow type="sound_startsoundandwait_menu">\n' +
+  '      <shadow type="PlaySoundAndWaitBrick_menu">\n' +
   '        <field name="SOUND_MENU">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_stopallsounds"></block>' +
-    '<block type="sound_setvolumeto">\n' +
+    '<block type="StopAllSoundsBrick"></block>' +
+    '<block type="SetVolumeToBrick">\n' +
   '    <value name="VOLUME">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">60</field>\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">60</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_changevolumeby">\n' +
-  '    <value name="VOLUME">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">-10</field>\n' +
+    '<block type="ChangeVolumeByNBrick">\n' +
+  '    <value name="VOLUME_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">-10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_speak">\n' +
-  '    <value name="TEXT">\n' +
+    '<block type="SpeakBrick">\n' +
+  '    <value name="SPEAK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hello!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_speakandwait">\n' +
-  '    <value name="TEXT">\n' +
+    '<block type="SpeakAndWaitBrick">\n' +
+  '    <value name="SPEAK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hello!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="sound_askandstorespokenanswerin">\n' +
-  '    <value name="TEXT">\n' +
+    '<block type="AskSpeechBrick">\n' +
+  '    <value name="ASK_SPEECH_QUESTION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">What\'s your name?</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '    <value name="SOUND_MENU">\n' +
-  '      <shadow type="sound_askandstorespokenanswerin_menu">\n' +
+  '      <shadow type="AskSpeechBrick_menu">\n' +
   '        <field name="SOUND_MENU">name</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
@@ -476,11 +476,11 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="event_whenyoubounceoff">\n' +
+    '<block type="CollisionReceiverBrick">\n' +
   '    <field name="BROADCAST_OPTION" variabletype="broadcast_msg">any edge, actor, or object</field>\n' +
   '  </block>' +
-    '<block type="event_whenbackgroundchangesto" id="/|-$mkxN`/P8hPfOH(AU">\n' +
-  '    <field name="BROADCAST_OPTION" id="bd0`~YlSD]d06p}UJ!yX" variabletype="broadcast_msg">Background</field>\n' +
+    '<block type="WhenBackgroundChangesBrick" >\n' +
+  '    <field name="BROADCAST_OPTION" variabletype="broadcast_msg">Background</field>\n' +
   '  </block>' +
   '</category>' +
   '<category name="%{BKY_CATEGORY_CONTROL}" id="control" colour="#FFAB19" secondaryColour="#CF8B17">' +
@@ -565,34 +565,34 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '<block type="DeleteThisCloneBrick"></block>' +
   '</category>' +
   '<category name="Pen" id="sensing" colour="#0fBD8C" secondaryColour="#2E8EB8">' +
-    '<block type="pen_pendown"></block>' +
-    '<block type="pen_penup"></block>' +
-    '<block type="pen_setpensizeto">\n' +
-  '    <value name="SIZE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">3.15</field>\n' +
+    '<block type="PenDownBrick"></block>' +
+    '<block type="PenUpBrick"></block>' +
+    '<block type="SetPenSizeBrick">\n' +
+  '    <value name="PEN_SIZE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">3.15</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="pen_setpencolorto">\n' +
-  '    <value name="red">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">0</field>\n' +
+    '<block type="SetPenColorBrick">\n' +
+  '    <value name="PEN_COLOR_RED">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">0</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="green">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">0</field>\n' +
+  '    <value name="PEN_COLOR_GREEN">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">0</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="blue">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">255</field>\n' +
+  '    <value name="PEN_COLOR_BLUE">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">255</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="pen_stamp"></block>' +
-    '<block type="pen_clear"></block>' +
+    '<block type="StampBrick"></block>' +
+    '<block type="ClearBackgroundBrick"></block>' +
   '</category>' +
   '<category name="Data" id="operators" colour="#FF6680" secondaryColour="#389438">' +
     '<block type="data_setvariabletocat">\n' +
