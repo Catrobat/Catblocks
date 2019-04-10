@@ -216,170 +216,170 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '  </block>' +
   '</category>' +
   '<category name="%{BKY_CATEGORY_LOOKS}" id="looks" colour="#59C059" secondaryColour="#59C059">' +
-  '<block type="looks_switchtolook">\n' +
+  '<block type="SetLookBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_costume">\n' +
   '        <field name="COSTUME">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_switchtolookwithnumber">\n' +
-  '    <value name="COSTUME">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="SetLookByIndexBrick">\n' +
+  '    <value name="LOOK_INDEX">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_nextlook"></block>' +
-  '<block type="looks_previouslook"></block>' +
-  '<block type="looks_setsizeto">\n' +
+  '<block type="NextLookBrick"></block>' +
+  '<block type="PreviousLookBrick"></block>' +
+  '<block type="SetSizeToBrick">\n' +
   '    <value name="SIZE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">60</field>\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">60</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_changesizeby">\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">10</field>\n' +
+  '<block type="ChangeSizeByNBrick">\n' +
+  '    <value name="SIZE_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">10</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_hide"></block>' +
-  '<block type="looks_show"></block>' +
-  '<block type="looks_askandstorewrittenanswerin">\n' +
-  '    <field name="EFFECT">ShipX</field>\n' +
-  '    <value name="CHANGE">\n' +
+  '<block type="HideBrick"></block>' +
+  '<block type="ShowBrick"></block>' +
+  '<block type="AskBrick">\n' +
+  '    <field name="EFFECT">name</field>\n' +
+  '    <value name="ASK_QUESTION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">What\'s your name?</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_say">\n' +
-  '    <value name="MESSAGE">\n' +
+  '<block type="SayBubbleBrick">\n' +
+  '    <value name="SAY_BRICK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hello!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_sayforsecond">\n' +
-  '    <value name="MESSAGE">\n' +
+  '<block type="SayForBubbleBrick">\n' +
+  '    <value name="SAY_BRICK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hello!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="SECS">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '    <value name="DURATION_IN_SECONDS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_think">\n' +
-  '    <value name="MESSAGE">\n' +
+  '<block type="ThinkBubbleBrick">\n' +
+  '    <value name="THINK_BRICK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hmmmm!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_thinkforsecond">\n' +
-  '    <value name="MESSAGE">\n' +
+  '<block type="ThinkForBubbleBrick">\n' +
+  '    <value name="THINK_BRICK">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">Hmmmm!</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="SECS">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '    <value name="DURATION_IN_SECONDS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_settransparencyto">\n' +
-  '    <value name="SIZE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">50</field>\n' +
+  '<block type="SetTransparencyBrick">\n' +
+  '    <value name="TRANSPARENCY">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">50</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_changetransparencyby">\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">25</field>\n' +
+  '<block type="ChangeTransparencyByNBrick">\n' +
+  '    <value name="TRANSPARENCY_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">25</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_setbrightnessto">\n' +
-  '    <value name="SIZE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">50</field>\n' +
+  '<block type="SetBrightnessBrick">\n' +
+  '    <value name="BRIGHTNESS">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">50</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_changebrightnessby">\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">25</field>\n' +
+  '<block type="ChangeBrightnessByNBrick">\n' +
+  '    <value name="BRIGHTNESS_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">25</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_setcolourto">\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">0</field>\n' +
+  '<block type="SetColorBrick">\n' +
+  '    <value name="COLOR">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">0</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_changecolourby">\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">25</field>\n' +
+  '<block type="ChangeColorByNBrick">\n' +
+  '    <value name="COLOR_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">25</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_cleargraphiceffects"></block>' +
-  '<block type="looks_setbackground">\n' +
+  '<block type="ClearGraphicEffectBrick"></block>' +
+  '<block type="SetBackgroundBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_background">\n' +
   '        <field name="COSTUME">new...</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_setbackgroundtonumber">\n' +
-  '    <value name="COSTUME">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="SetBackgroundByIndexBrick">\n' +
+  '    <value name="LOOK_INDEX">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_setbackgroundandwait">\n' +
+  '<block type="SetBackgroundAndWaitBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_costume">\n' +
   '        <field name="COSTUME">Space_Background_bigger</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_setbackgroundtonumberandwait">\n' +
-  '    <value name="COSTUME">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '<block type="SetBackgroundByIndexAndWaitBrick">\n' +
+  '    <value name="LOOK_INDEX">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_turncamera">\n' +
+  '<block type="CameraBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_camera">\n' +
   '        <field name="COSTUME">on</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_usecamera">\n' +
+  '<block type="ChooseCameraBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_camera2">\n' +
   '        <field name="COSTUME">front</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-  '<block type="looks_turnflashlight">\n' +
+  '<block type="FlashBrick">\n' +
   '    <value name="COSTUME">\n' +
   '      <shadow type="looks_camera">\n' +
   '        <field name="COSTUME">on</field>\n' +
@@ -595,106 +595,106 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '<block type="ClearBackgroundBrick"></block>' +
   '</category>' +
   '<category name="Data" id="operators" colour="#FF6680" secondaryColour="#389438">' +
-    '<block type="data_setvariabletocat">\n' +
+    '<block type="SetVariableBrick">\n' +
   '    <field name="EFFECT">name</field>\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-    '<block type="data_changevariablebycat">\n' +
-  '    <field name="EFFECT">name</field>\n' +
-  '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-    '<block type="data_showvariableat">\n' +
-  '    <field name="EFFECT">name</field>\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">100</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">200</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '  </block>' +
-    '<block type="data_showvariableatsizecoloraligned">\n' +
-  '    <value name="X">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">100</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '    <value name="Y">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">200</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '    <value name="size">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">120</field>\n' +
-  '      </shadow>\n' +
-  '    </value>\n' +
-  '    <value name="color">\n' +
+  '    <value name="VARIABLE">\n' +
   '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+    '<block type="ChangeVariableBrick">\n' +
+  '    <field name="EFFECT">name</field>\n' +
+  '    <value name="VARIABLE_CHANGE">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+    '<block type="ShowTextBrick">\n' +
+  '    <field name="EFFECT">name</field>\n' +
+  '    <value name="X_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">100</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '    <value name="Y_POSITION">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">200</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '  </block>' +
+    '<block type="ShowTextColorSizeAlignmentBrick">\n' +
+  '    <value name="X_POSITION">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">100</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '    <value name="Y_POSITION">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">200</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '    <value name="SIZE">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">120</field>\n' +
+  '      </shadow>\n' +
+  '    </value>\n' +
+  '    <value name="COLOR">\n' +
+  '      <shadow type="text" id="">\n' +
   '        <field name="TEXT">#FF0000</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '    <value name="CHANGE">\n' +
-  '      <shadow type="math_number">\n' +
+  '      <shadow type="math_number" id="">\n' +
   '        <field name="NUM">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '    <field name="NAME">name</field>\n' +
   '    <field name="ALIGNMENT">centered</field>\n' +
   '  </block>' +
-    '<block type="data_hidevariable">\n' +
+    '<block type="HideTextBrick">\n' +
   '    <field name="VARIABLE" variabletype="">name</field>\n' +
   '  </block>' +
-    '<block type="data_addtolist">\n' +
+    '<block type="AddItemToUserListBrick">\n' +
   '    <field name="LIST" variabletype="list">list</field>\n' +
-  '    <value name="ITEM">\n' +
+  '    <value name="LIST_ADD_ITEM">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">name</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="data_deletefromlist">\n' +
+    '<block type="DeleteItemOfUserListBrick">\n' +
   '    <field name="LIST" variabletype="list">list</field>\n' +
-  '    <value name="INDEX">\n' +
-  '      <shadow type="math_number">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '    <value name="LIST_DELETE_ITEM">\n' +
+  '      <shadow type="text">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="data_insertintolist">\n' +
-  '    <value name="VALUE">\n' +
-  '      <shadow type="math_integer">\n' +
-  '        <field name="NUM">1</field>\n' +
+    '<block type="InsertItemIntoUserListBrick">\n' +
+  '    <value name="INSERT_ITEM_INTO_USERLIST_VALUE">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <field name="LIST" variabletype="list">list</field>\n' +
-  '    <value name="INDEX">\n' +
-  '      <shadow type="math_integer">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '    <field name="LIST" id="" variabletype="list">list</field>\n' +
+  '    <value name="INSERT_ITEM_INTO_USERLIST_INDEX">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="data_replaceiteminlist">\n' +
-  '    <field name="LIST" variabletype="list">list</field>\n' +
-  '    <value name="INDEX1">\n' +
-  '      <shadow type="math_integer">\n' +
-  '        <field name="NUM">1</field>\n' +
+    '<block type="ReplaceItemInUserListBrick">\n' +
+  '    <field name="LIST" id="" variabletype="list">list</field>\n' +
+  '    <value name="INSERT_ITEM_INTO_USERLIST_INDEX">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
-  '    <value name="INDEX2">\n' +
-  '      <shadow type="math_integer">\n' +
-  '        <field name="NUM">1</field>\n' +
+  '    <value name="INSERT_ITEM_INTO_USERLIST_VALUE">\n' +
+  '      <shadow type="text" id="">\n' +
+  '        <field name="TEXT">1</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
