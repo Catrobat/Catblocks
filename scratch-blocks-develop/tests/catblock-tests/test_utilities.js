@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Test utilities.
  * @author marisaleung@google.com (Marisa Leung)
  */

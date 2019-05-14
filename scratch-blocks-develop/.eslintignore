@@ -4,6 +4,7 @@
 /core/css.js
 /i18n/*
 /tests/jsunit/*
+/tests/catblock-tests/*
 /tests/workspace_svg/*
 /tests/blocks/*
 /demos/*
