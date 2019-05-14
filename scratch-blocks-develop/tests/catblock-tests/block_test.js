@@ -21,8 +21,13 @@
 
 function test_ForeverExists() {
 
-  console.debug(Blockly.Blocks['ForeverBrick']);
+  var workspace = new Blockly.Workspace();
 
-  assertNotNull(Blockly.Blocks['ForeverBrick']);
+  var text = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="WhenStartedBrick" id="[o^[E$HNVwUIJ=8I[Un3" x="393" y="76"> <next> <block type="WaitBrick" id="L9cGX`#NH}Vg=wyUMHmI"> <value name="TIME_TO_WAIT_IN_SECONDS"> <shadow type="text" id="p=:9g`L~Pt5%c0fp;Di$"> <field name="TEXT">1</field> </shadow> </value> <next> <block type="SetColorBrick" id="fDgz@lgrr~7pQqh]Upa."> <value name="COLOR"> <shadow type="text" id="qViCQ1)-!*3`s`]oua=7"> <field name="TEXT">0</field> </shadow> </value> </block> </next> </block> </next> </block> </xml>';
 
+  var xml = Blockly.Xml.textToDom(text);
+
+  Blockly.Xml.domToWorkspace(xml, workspace);
+
+  console.debug(workspace.getTopBlocks())
 }
