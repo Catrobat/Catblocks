@@ -30,7 +30,7 @@ goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
 //CAT BLOCKS DATA
-Blockly.Blocks['data_setvariabletocat'] = {
+Blockly.Blocks['SetVariableBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_SETVARIABLETOCAT,
@@ -44,7 +44,7 @@ Blockly.Blocks['data_setvariabletocat'] = {
         },
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "VARIABLE"
         }
       ],
       "category": Blockly.Categories.operators,
@@ -53,7 +53,7 @@ Blockly.Blocks['data_setvariabletocat'] = {
   }
 };
 
-Blockly.Blocks['data_changevariablebycat'] = {
+Blockly.Blocks['ChangeVariableBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_CHANGEVARIABLEBY,
@@ -67,7 +67,7 @@ Blockly.Blocks['data_changevariablebycat'] = {
         },
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "VARIABLE_CHANGE"
         }
       ],
       "category": Blockly.Categories.operators,
@@ -76,7 +76,7 @@ Blockly.Blocks['data_changevariablebycat'] = {
   }
 };
 
-Blockly.Blocks['data_showvariableat'] = {
+Blockly.Blocks['ShowTextBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_SHOWVARIABLEAT,
@@ -90,11 +90,11 @@ Blockly.Blocks['data_showvariableat'] = {
         },
         {
           "type": "input_value",
-          "name": "X"
+          "name": "X_POSITION"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "Y_POSITION"
         }
       ],
       "category": Blockly.Categories.operators,
@@ -104,7 +104,7 @@ Blockly.Blocks['data_showvariableat'] = {
 };
 
 
-Blockly.Blocks['data_showvariableatsizecoloraligned'] = {
+Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_SHOWVARIABLEATSIZECOLORALIGNED,
@@ -118,19 +118,19 @@ Blockly.Blocks['data_showvariableatsizecoloraligned'] = {
         },
         {
           "type": "input_value",
-          "name": "X"
+          "name": "X_POSITION"
         },
         {
           "type": "input_value",
-          "name": "Y"
+          "name": "Y_POSITION"
         },
         {
           "type": "input_value",
-          "name": "size"
+          "name": "SIZE"
         },
         {
           "type": "input_value",
-          "name": "color"
+          "name": "COLOR"
         },
         {
           "type": "field_dropdown",
@@ -147,7 +147,7 @@ Blockly.Blocks['data_showvariableatsizecoloraligned'] = {
 };
 
 
-Blockly.Blocks['data_deletefromlist'] = {
+Blockly.Blocks['DeleteItemOfUserListBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_DELETEITEMFROMLIST,
@@ -159,7 +159,7 @@ Blockly.Blocks['data_deletefromlist'] = {
         },
         {
           "type": "input_value",
-          "name": "INDEX"
+          "name": "LIST_DELETE_ITEM"
         }
       ],
       "category": Blockly.Categories.dataLists,
@@ -169,14 +169,14 @@ Blockly.Blocks['data_deletefromlist'] = {
 };
 
 
-Blockly.Blocks['data_addtolist'] = {
+Blockly.Blocks['AddItemToUserListBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_ADDTOLIST,
       "args0": [
         {
           "type": "input_value",
-          "name": "ITEM"
+          "name": "LIST_ADD_ITEM"
         },
         {
           "type": "field_variable",
@@ -190,14 +190,14 @@ Blockly.Blocks['data_addtolist'] = {
   }
 };
 
-Blockly.Blocks['data_insertintolist'] = {
+Blockly.Blocks['InsertItemIntoUserListBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_INSERTINTOLIST,
       "args0": [
         {
           "type": "input_value",
-          "name": "VALUE"
+          "name": "INSERT_ITEM_INTO_USERLIST_VALUE"
         },
         {
           "type": "field_variable",
@@ -206,7 +206,7 @@ Blockly.Blocks['data_insertintolist'] = {
         },
         {
           "type": "input_value",
-          "name": "INDEX"
+          "name": "INSERT_ITEM_INTO_USERLIST_INDEX"
         }
       ],
       "category": Blockly.Categories.dataLists,
@@ -215,7 +215,7 @@ Blockly.Blocks['data_insertintolist'] = {
   }
 };
 
-Blockly.Blocks['data_replaceiteminlist'] = {
+Blockly.Blocks['ReplaceItemInUserListBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_REPLACEITEMINLIST,
@@ -227,11 +227,11 @@ Blockly.Blocks['data_replaceiteminlist'] = {
         },
         {
           "type": "input_value",
-          "name": "INDEX1"
+          "name": "INSERT_ITEM_INTO_USERLIST_INDEX"
         },
         {
           "type": "input_value",
-          "name": "INDEX2"
+          "name": "INSERT_ITEM_INTO_USERLIST_VALUE"
         }
       ],
       "category": Blockly.Categories.dataLists,
@@ -358,7 +358,7 @@ Blockly.Blocks['data_showvariable'] = {
   }
 };
 
-Blockly.Blocks['data_hidevariable'] = {
+Blockly.Blocks['HideTextBrick'] = {
   /**
    * Block to hide a variable
    * @this Blockly.Block

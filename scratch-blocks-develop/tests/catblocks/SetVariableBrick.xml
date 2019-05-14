@@ -1,0 +1,10 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="SetVariableBrick" id="" x="176" y="533">
+    <field name="EFFECT">name</field>
+    <value name="VARIABLE">
+      <shadow type="text" id="">
+        <field name="TEXT">1</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

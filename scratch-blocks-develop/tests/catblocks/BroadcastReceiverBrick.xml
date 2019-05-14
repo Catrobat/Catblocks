@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block type="BroadcastReceiverBrick" id="" x="333" y="149">
+  <value name="BROADCAST_MENU">
+    <shadow type="BroadcastBrick_menu" id="">
+      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>
+    </shadow>
+  </value>
+</block>
+</xml>

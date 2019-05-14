@@ -29,7 +29,7 @@ goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
 //Cat Blocks
-Blockly.Blocks['looks_switchtolook'] = {
+Blockly.Blocks['SetLookBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SWITCHTOLOOK,
@@ -45,14 +45,14 @@ Blockly.Blocks['looks_switchtolook'] = {
   }
 };
 
-Blockly.Blocks['looks_switchtolookwithnumber'] = {
+Blockly.Blocks['SetLookByIndexBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SWITCHTOLOOKWITHNUMBER,
       "args0": [
         {
           "type": "input_value",
-          "name": "COSTUME"
+          "name": "LOOK_INDEX"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -61,7 +61,7 @@ Blockly.Blocks['looks_switchtolookwithnumber'] = {
   }
 };
 
-Blockly.Blocks['looks_nextlook'] = {
+Blockly.Blocks['NextLookBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_NEXTLOOK,
@@ -71,7 +71,7 @@ Blockly.Blocks['looks_nextlook'] = {
   }
 };
 
-Blockly.Blocks['looks_previouslook'] = {
+Blockly.Blocks['PreviousLookBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_PREVIOUSLOOK,
@@ -81,7 +81,7 @@ Blockly.Blocks['looks_previouslook'] = {
   }
 };
 
-Blockly.Blocks['looks_setsizeto'] = {
+Blockly.Blocks['SetSizeToBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETSIZETO,
@@ -97,7 +97,7 @@ Blockly.Blocks['looks_setsizeto'] = {
   }
 };
 
-Blockly.Blocks['looks_hide'] = {
+Blockly.Blocks['HideBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_HIDE,
@@ -107,7 +107,7 @@ Blockly.Blocks['looks_hide'] = {
   }
 };
 
-Blockly.Blocks['looks_show'] = {
+Blockly.Blocks['ShowBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SHOW,
@@ -117,14 +117,14 @@ Blockly.Blocks['looks_show'] = {
   }
 };
 
-Blockly.Blocks['looks_askandstorewrittenanswerin'] = {
+Blockly.Blocks['AskBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_ASKANDSTOREWRITTENANSWERIN,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "ASK_QUESTION"
         },
         {
           "type": "field_dropdown",
@@ -138,14 +138,14 @@ Blockly.Blocks['looks_askandstorewrittenanswerin'] = {
   }
 };
 
-Blockly.Blocks['looks_say'] = {
+Blockly.Blocks['SayBubbleBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SAY_CAT,
       "args0": [
         {
           "type": "input_value",
-          "name": "MESSAGE"
+          "name": "SAY_BRICK"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -154,18 +154,18 @@ Blockly.Blocks['looks_say'] = {
   }
 };
 
-Blockly.Blocks['looks_sayforsecond'] = {
+Blockly.Blocks['SayForBubbleBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SAYFORSECOND,
       "args0": [
         {
           "type": "input_value",
-          "name": "MESSAGE"
+          "name": "SAY_BRICK"
         },
         {
           "type": "input_value",
-          "name": "SECS"
+          "name": "DURATION_IN_SECONDS"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -174,14 +174,14 @@ Blockly.Blocks['looks_sayforsecond'] = {
   }
 };
 
-Blockly.Blocks['looks_think'] = {
+Blockly.Blocks['ThinkBubbleBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_THINK_CAT,
       "args0": [
         {
           "type": "input_value",
-          "name": "MESSAGE"
+          "name": "THINK_BRICK"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -190,18 +190,18 @@ Blockly.Blocks['looks_think'] = {
   }
 };
 
-Blockly.Blocks['looks_thinkforsecond'] = {
+Blockly.Blocks['ThinkForBubbleBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_THINKFORSECONDS,
       "args0": [
         {
           "type": "input_value",
-          "name": "MESSAGE"
+          "name": "THINK_BRICK"
         },
         {
           "type": "input_value",
-          "name": "SECS"
+          "name": "DURATION_IN_SECONDS"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -210,14 +210,14 @@ Blockly.Blocks['looks_thinkforsecond'] = {
   }
 };
 
-Blockly.Blocks['looks_settransparencyto'] = {
+Blockly.Blocks['SetTransparencyBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETTRANSPARENCYTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "SIZE"
+          "name": "TRANSPARENCY"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -226,14 +226,14 @@ Blockly.Blocks['looks_settransparencyto'] = {
   }
 };
 
-Blockly.Blocks['looks_changesizeby'] = {
+Blockly.Blocks['ChangeSizeByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_CHANGESIZEBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "SIZE_CHANGE"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -242,14 +242,14 @@ Blockly.Blocks['looks_changesizeby'] = {
   }
 };
 
-Blockly.Blocks['looks_changetransparencyby'] = {
+Blockly.Blocks['ChangeTransparencyByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_CHANGETRANSPARENCYBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "TRANSPARENCY_CHANGE"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -258,14 +258,14 @@ Blockly.Blocks['looks_changetransparencyby'] = {
   }
 };
 
-Blockly.Blocks['looks_setbrightnessto'] = {
+Blockly.Blocks['SetBrightnessBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETBRIGHTHNESSTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "SIZE"
+          "name": "BRIGHTNESS"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -274,14 +274,14 @@ Blockly.Blocks['looks_setbrightnessto'] = {
   }
 };
 
-Blockly.Blocks['looks_changebrightnessby'] = {
+Blockly.Blocks['ChangeBrightnessByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_CHANGEBRIGHTHNESSBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "BRIGHTNESS_CHANGE"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -290,14 +290,14 @@ Blockly.Blocks['looks_changebrightnessby'] = {
   }
 };
 
-Blockly.Blocks['looks_setcolourto'] = {
+Blockly.Blocks['SetColorBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETCOLORTO,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "COLOR"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -306,14 +306,14 @@ Blockly.Blocks['looks_setcolourto'] = {
   }
 };
 
-Blockly.Blocks['looks_changecolourby'] = {
+Blockly.Blocks['ChangeColorByNBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_CHANGECOLORBY,
       "args0": [
         {
           "type": "input_value",
-          "name": "CHANGE"
+          "name": "COLOR_CHANGE"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -322,7 +322,7 @@ Blockly.Blocks['looks_changecolourby'] = {
   }
 };
 
-Blockly.Blocks['looks_cleargraphiceffects'] = {
+Blockly.Blocks['ClearGraphicEffectBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_CLEARGRAPHICEFFECTS_CAT,
@@ -332,7 +332,7 @@ Blockly.Blocks['looks_cleargraphiceffects'] = {
   }
 };
 
-Blockly.Blocks['looks_setbackground'] = {
+Blockly.Blocks['SetBackgroundBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETBACKGROUND,
@@ -348,14 +348,14 @@ Blockly.Blocks['looks_setbackground'] = {
   }
 };
 
-Blockly.Blocks['looks_setbackgroundtonumber'] = {
+Blockly.Blocks['SetBackgroundByIndexBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETBACKGROUNDTONUMBER,
       "args0": [
         {
           "type": "input_value",
-          "name": "COSTUME"
+          "name": "LOOK_INDEX"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -364,7 +364,7 @@ Blockly.Blocks['looks_setbackgroundtonumber'] = {
   }
 };
 
-Blockly.Blocks['looks_setbackgroundandwait'] = {
+Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETBACKGROUNDANDWAIT,
@@ -380,14 +380,14 @@ Blockly.Blocks['looks_setbackgroundandwait'] = {
   }
 };
 
-Blockly.Blocks['looks_setbackgroundtonumberandwait'] = {
+Blockly.Blocks['SetBackgroundByIndexAndWaitBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_SETBACKGROUNDTONUMBERANDWAIT,
       "args0": [
         {
           "type": "input_value",
-          "name": "COSTUME"
+          "name": "LOOK_INDEX"
         }
       ],
       "category": Blockly.Categories.looks,
@@ -396,7 +396,7 @@ Blockly.Blocks['looks_setbackgroundtonumberandwait'] = {
   }
 };
 
-Blockly.Blocks['looks_turncamera'] = {
+Blockly.Blocks['CameraBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_TURNCAMERA,
@@ -412,7 +412,7 @@ Blockly.Blocks['looks_turncamera'] = {
   }
 };
 
-Blockly.Blocks['looks_usecamera'] = {
+Blockly.Blocks['ChooseCameraBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_USECAMERA,
@@ -428,7 +428,7 @@ Blockly.Blocks['looks_usecamera'] = {
   }
 };
 
-Blockly.Blocks['looks_turnflashlight'] = {
+Blockly.Blocks['FlashBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.LOOKS_TURNFLASHLIGHT,

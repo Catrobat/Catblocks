@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="SpeakBrick" id="" x="137" y="400">
+    <value name="SPEAK">
+      <shadow type="text" id="">
+        <field name="TEXT">Hello!</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

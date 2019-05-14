@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="control_continuescene" id="" x="359" y="480">
-    <value name="SCENE_OPTION">
-      <shadow type="control_continuescene_menu" id="">
-        <field name="SCENE_OPTION">new...</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
