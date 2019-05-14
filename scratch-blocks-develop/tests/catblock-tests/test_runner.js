@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 var webdriverio = require('webdriverio');
 var options = {
   desiredCapabilities: {
@@ -20,12 +19,10 @@ var testHtml = function(htmlString) {
   console.log("============Unit Test Summary=================");
   if (parseInt(numOfFailure) !== 0) {
     console.log(htmlString);
-    // eslint-disable-next-line no-undef
     process.exit(1);
   }
 };
 
-// eslint-disable-next-line no-undef
 var path = process.cwd();
 var browser = webdriverio
     .remote(options)
@@ -37,6 +34,5 @@ browser.url("file://" + path + "/tests/catblock-tests/index.html").pause(5000)
     .catch(function(err) {
       console.log(err);
       browser.end();
-      // eslint-disable-next-line no-undef
       process.exit(1);
     });
