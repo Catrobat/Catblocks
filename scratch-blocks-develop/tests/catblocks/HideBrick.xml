@@ -1,4 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
-  <block type="HideBrick" id="" x="115" y="176"></block>
+  <block type="HideBrick" id="" x="115" y="176">
+  </block>
 </xml>

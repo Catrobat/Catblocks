@@ -1,3 +1,4 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="IfOnEdgeBounceBrick" x="285" y="772"></block>
+  <block type="IfOnEdgeBounceBrick" x="285" y="772">
+  </block>
 </xml>
