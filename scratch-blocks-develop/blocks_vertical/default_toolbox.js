@@ -445,10 +445,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '  </block>' +
   '</category>' +
   '<category name="%{BKY_CATEGORY_EVENTS}" id="events" colour="#FF661A" secondaryColour="#CC9900">' +
-    '<block type="WhenStartedBrick"></block>' +
+    '<block type="StartScript"></block>' +
     '<block type="WhenBrick"></block>' +
     '<block type="WhenTouchDownBrick"></block>' +
-    '<block type="BroadcastReceiverBrick" id="" x="333" y="149">\n' +
+    '<block type="BroadcastScript" id="" x="333" y="149">\n' +
   '  <value name="BROADCAST_MENU">\n' +
   '    <shadow type="BroadcastBrick_menu" id="">\n' +
   '      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>\n' +
@@ -469,17 +469,17 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="WhenConditionBrick">\n' +
+    '<block type="WhenConditionScript">\n' +
   '    <value name="IF_CONDITION">\n' +
   '      <shadow type="text">\n' +
   '        <field name="TEXT">1 &lt; 2</field>\n' +
   '      </shadow>\n' +
   '    </value>\n' +
   '  </block>' +
-    '<block type="CollisionReceiverBrick">\n' +
+    '<block type="CollisionScript">\n' +
   '    <field name="BROADCAST_OPTION" variabletype="broadcast_msg">any edge, actor, or object</field>\n' +
   '  </block>' +
-    '<block type="WhenBackgroundChangesBrick" >\n' +
+    '<block type="WhenBackgroundChangesScript" >\n' +
   '    <field name="BROADCAST_OPTION" variabletype="broadcast_msg">Background</field>\n' +
   '  </block>' +
   '</category>' +
