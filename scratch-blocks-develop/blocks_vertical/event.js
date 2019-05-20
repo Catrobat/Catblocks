@@ -28,7 +28,7 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 //Cat Blocks
-Blockly.Blocks['WhenStartedBrick'] = {
+Blockly.Blocks['StartScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
@@ -59,7 +59,7 @@ Blockly.Blocks['WhenTouchDownBrick'] = {
   }
 };
 
-Blockly.Blocks['BroadcastReceiverBrick'] = {
+Blockly.Blocks['BroadcastScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
@@ -132,7 +132,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
 
 
 
-Blockly.Blocks['WhenConditionBrick'] = {
+Blockly.Blocks['WhenConditionScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
@@ -148,7 +148,7 @@ Blockly.Blocks['WhenConditionBrick'] = {
   }
 };
 
-Blockly.Blocks['CollisionReceiverBrick'] = {
+Blockly.Blocks['CollisionScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
@@ -166,7 +166,7 @@ Blockly.Blocks['CollisionReceiverBrick'] = {
   }
 };
 
-Blockly.Blocks['WhenBackgroundChangesBrick'] = {
+Blockly.Blocks['WhenBackgroundChangesScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,
