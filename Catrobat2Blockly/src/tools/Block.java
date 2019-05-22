@@ -1,7 +1,9 @@
 package tools;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Block {
     private String name;
@@ -10,6 +12,8 @@ public class Block {
     private String rightChild;
     private String operator;
 
+    private Map<String,String> formValues;
+
     private String field;
 
     private List<Block> subblock;
@@ -17,10 +21,21 @@ public class Block {
 
     private boolean inSTMT1;
     private boolean inSTMT2;
+    private String curr;
+
+    public String getFormValue(String key) {
+        return formValues.get(key);
+    }
+
+    public void addFormValues(String key, String val) {
+        this.formValues.put(key, val);
+    }
 
     public Block(String name) {
         this.subblock = new LinkedList<>();
         this.subblock2 = new LinkedList<>();
+
+        this.formValues = new HashMap<>();
 
         this.inSTMT1 = false;
         this.inSTMT2 = false;
@@ -39,7 +54,7 @@ public class Block {
     }
 
     public String getField() {
-        return field;
+        return formValues.get(this.curr);
     }
 
     public void setLeftChild(String leftChild) {
@@ -103,6 +118,12 @@ public class Block {
 
     public void updateBlockField(){
         this.field = this.leftChild + whatOP(this.operator) + this.rightChild;
+        if(this.name.contains("RepeatUntilBrick")){
+            this.formValues.put("REPEAT_UNTIL_CONDITION",this.field);
+        }
+        else{
+            this.formValues.put("TEXT",this.field);
+        }
     }
 
     private String whatOP(String operator) {
@@ -136,5 +157,9 @@ public class Block {
             default:
                 return operator;
         }
+    }
+
+    public void setCurr(String curr) {
+        this.curr = curr;
     }
 }

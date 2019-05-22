@@ -48,13 +48,16 @@ public class Parser {
 
     private List<Script> scripts;
     private Script currScript;
-    private Block cur_block;
+    private Block condBlock;
     private boolean skip = false;
-    private Block edit_block;
+    private Block currBlock;
+    private boolean inAppendVal = false;
+    private String currVal;
+
 
     public Parser() {
         scripts = new LinkedList<>();
-        cur_block = null;
+        condBlock = null;
         filePath = new File("").getAbsolutePath().split("Catrobat2Blockly")[0];
     }
 
@@ -70,27 +73,31 @@ public class Parser {
             addNewBlock(line);
         }
         if(inFormularList){
+            if(line.contains("<formula category=")){
+                currVal = (line.split("category=\"")[1].split("\">")[0]);
+            }
             if(inLeftChild){
                 //Parse left child <value>1</value>
                 if(line.contains("<value>")) {
                     String name = line.split("</?value>")[1];
-                    edit_block.setLeftChild(name);
+                    currBlock.setLeftChild(name);
                 }
-            }
-            if(inOperator){
+            }else if(inOperator){
                 //Parse operator child
                 if(line.contains("<value>")) {
                     String name = line.split("</?value>")[1];
                     inOperator = false;
-                    edit_block.setOperator(name);
+                    currBlock.setOperator(name);
                 }
-            }
-            if(inRightChild){
+            } else if(inRightChild){
                 //Parse left child
                 if(line.contains("<value>")) {
                     String name = line.split("</?value>")[1];
-                    edit_block.setRightChild(name);
+                    currBlock.setRightChild(name);
                 }
+            } else if(line.contains("<value>")){
+                String name = line.split("</?value>")[1];
+                currBlock.addFormValues(currVal, name);
             }
         }
 
@@ -108,27 +115,32 @@ public class Parser {
     private void addNewBlock(String line) {
         String name = (line.split(BRICK_TYPE)[1]).split("\"")[1];
 
-        Block block = new Block(name);
-        edit_block = block;
+        String path = getPath(name);
+        File file = new File(path);
 
-        if(isLoop(name)){
-            cur_block = block;
-        }
+        if(file.exists()){
+            Block block = new Block(name);
+            currBlock = block;
 
-        if(cur_block != null){
-            if(cur_block.isInSTMT1()){
-                cur_block.addSubblock(block);
-            }else if(cur_block.isInSTMT2()){
-                cur_block.addSubblock2(block);
+            if(isCondition(name)){
+                condBlock = block;
+            }
+
+            if(condBlock != null){
+                if(condBlock.isInSTMT1()){
+                    condBlock.addSubblock(block);
+                }else if(condBlock.isInSTMT2()){
+                    condBlock.addSubblock2(block);
+                }else{
+                    currScript.addBlock(block);
+                }
             }else{
                 currScript.addBlock(block);
             }
-        }else{
-            currScript.addBlock(block);
         }
     }
 
-    private boolean isLoop(String name) {
+    private boolean isCondition(String name) {
         return name.equals(IF_ELSE_DEF) || name.equals(REPEAT_DEF) ||
                 name.equals(IF_DEF) || name.equals(FOREVER_DEF) ||
                 name.equals(REPEAT_UNTIL_DEF);
@@ -140,10 +152,9 @@ public class Parser {
         }
         if(line.contains(BRICKLIST_END)){
             inBrickList = false;
-            skip = false;
         }
 
-        if(edit_block != null){
+        if(currBlock != null){
             if(line.contains(FORMULARLIST_BEGIN)){
                 inFormularList = true;
             }
@@ -157,18 +168,18 @@ public class Parser {
             if(inFormularList && line.contains(RIGHTCHILD)){
                 inRightChild = !inRightChild;
             }
-            if(inFormularList && (line.contains(OPERATOR) || line.contains(STRING) || line.contains(NUMBER))){
+            if(inFormularList && line.contains(OPERATOR)){
                 inOperator = true;
             }
         }
 
-        if(cur_block != null && line.contains(ELSEBRANCH_DEF)){
-            cur_block.workon2();
+        if(condBlock != null && line.contains(ELSEBRANCH_DEF)){
+            condBlock.workon2();
         }
 
-        if(cur_block != null && (line.contains(IFBRANCH_DEF) || line.contains(LOOP_DEF))){
-            cur_block.workon1();
-            if(!cur_block.getworkon1() && cur_block.getName().equals(FOREVER_DEF)){
+        if(condBlock != null && (line.contains(IFBRANCH_DEF) || line.contains(LOOP_DEF))){
+            condBlock.workon1();
+            if(!condBlock.getworkon1() && condBlock.getName().equals(FOREVER_DEF)){
                 skip = true;
             }
         }
@@ -222,7 +233,7 @@ public class Parser {
 
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
-        String line = "";
+        String line;
 
         while((line = reader.readLine())!= null){
             if(!(line.contains("xml") || line.contains("<variables>"))){
@@ -239,6 +250,11 @@ public class Parser {
                         writer.println(SUB_END);
                     }
                     writeNextBlock(writer, blocks, index+1, true);
+                }
+
+                if(line.contains("<value name=")){
+                    String text = line.split("value name=\"")[1].replaceAll("\">", "") ;//"<value name=\"NOTE\">"
+                    block.setCurr(text);
                 }
 
                 if(line.contains("<field name=\"TEXT\">")){
@@ -270,5 +286,17 @@ public class Parser {
             updateBlocklist(block.getSubblock());
             updateBlocklist(block.getSubblock2());
         }
+    }
+
+    public void parseFile(String inputFile) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+
+        String line = "";
+
+        while((line = reader.readLine())!= null){
+            parse(line);
+        }
+
+        reader.close();
     }
 }

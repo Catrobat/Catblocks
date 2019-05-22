@@ -12,6 +12,15 @@ public class Catrobat2Blockly {
 
     public static void main(String[] args) throws IOException {
 
+        checkArgs(args);
+
+        Parser parser = new Parser();
+        parser.parseFile(inputFile);
+        parser.update();
+        parser.write(outputFile);
+    }
+
+    private static void checkArgs(String[] args) {
         if (args.length == 2){
             // I/O
             inputFile = args[0];
@@ -20,22 +29,7 @@ public class Catrobat2Blockly {
         else{
             // Fail
             System.out.println("[ERROR] useage Catrobat2Blockly <inputfile> <outputfile>");
-            return;
+            System.exit(-1);
         }
-        Parser parser = new Parser();
-
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-
-        String line = "";
-
-        while((line = reader.readLine())!= null){
-            parser.parse(line);
-        }
-
-        reader.close();
-
-        parser.update();
-
-        parser.write(outputFile);
     }
 }
