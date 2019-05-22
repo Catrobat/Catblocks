@@ -1,28 +1,72 @@
 package tools;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Block {
     private String name;
+
+    private String leftChild;
+    private String rightChild;
+    private String operator;
+
+    private Map<String,String> formValues;
+
+    private String field;
+
     private List<Block> subblock;
     private List<Block> subblock2;
 
     private boolean inSTMT1;
     private boolean inSTMT2;
+    private String curr;
 
-    public Block(String name_) {
-        subblock = new LinkedList<>();
-        subblock2 = new LinkedList<>();
+    public String getFormValue(String key) {
+        return formValues.get(key);
+    }
 
-        inSTMT1 = false;
-        inSTMT2 = false;
+    public void addFormValues(String key, String val) {
+        this.formValues.put(key, val);
+    }
 
-        this.name = name_;
+    public Block(String name) {
+        this.subblock = new LinkedList<>();
+        this.subblock2 = new LinkedList<>();
+
+        this.formValues = new HashMap<>();
+
+        this.inSTMT1 = false;
+        this.inSTMT2 = false;
+
+        this.leftChild = "";
+        this.operator = "";
+        this.rightChild = "";
+
+        this.field = "";
+
+        this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getField() {
+        return formValues.get(this.curr);
+    }
+
+    public void setLeftChild(String leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(String rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public void addSubblock(Block block){
@@ -47,7 +91,6 @@ public class Block {
 
     public void addSubblock2(Block block){
         if(this.name.equals("IfLogicBeginBrick")){
-            System.out.println("Rename");
             this.name = "IfElseLogicBeginBrick";
         }
         subblock2.add(block);
@@ -71,5 +114,52 @@ public class Block {
 
     public boolean getworkon1(){
         return inSTMT1;
+    }
+
+    public void updateBlockField(){
+        this.field = this.leftChild + whatOP(this.operator) + this.rightChild;
+        if(this.name.contains("RepeatUntilBrick")){
+            this.formValues.put("REPEAT_UNTIL_CONDITION",this.field);
+        }
+        else{
+            this.formValues.put("TEXT",this.field);
+        }
+    }
+
+    private String whatOP(String operator) {
+        switch(operator){
+            case "PLUS":
+                return "+";
+            case "MINUS":
+                return "-";
+            case "MULT":
+                return "*";
+            case "DIVIDE":
+                return "/";
+            case "POW":
+                return "^";
+            case "EQUAL":
+                return "=";
+            case "NOT_EQUAL":
+                return "&ne;";
+            case "GREATER_THAN":
+                return "&gt;";
+            case "GREATER_OR_EQUAL":
+                return "&ge;";
+            case "SMALLER_THAN":
+                return "&lt;";
+            case "SMALLER_OR_EQUAL":
+                return "&le;";
+            case "LOGICAL_AND":
+                return "and";
+            case "LOGICAL_OR":
+                return "or";
+            default:
+                return operator;
+        }
+    }
+
+    public void setCurr(String curr) {
+        this.curr = curr;
     }
 }
