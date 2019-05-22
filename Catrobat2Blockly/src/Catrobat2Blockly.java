@@ -24,9 +24,6 @@ public class Catrobat2Blockly {
         }
         Parser parser = new Parser();
 
-        System.out.println(inputFile);
-        System.out.println(outputFile);
-
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
         String line = "";
@@ -36,6 +33,8 @@ public class Catrobat2Blockly {
         }
 
         reader.close();
+
+        parser.update();
 
         parser.write(outputFile);
     }

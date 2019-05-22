@@ -5,24 +5,53 @@ import java.util.List;
 
 public class Block {
     private String name;
+
+    private String leftChild;
+    private String rightChild;
+    private String operator;
+
+    private String field;
+
     private List<Block> subblock;
     private List<Block> subblock2;
 
     private boolean inSTMT1;
     private boolean inSTMT2;
 
-    public Block(String name_) {
-        subblock = new LinkedList<>();
-        subblock2 = new LinkedList<>();
+    public Block(String name) {
+        this.subblock = new LinkedList<>();
+        this.subblock2 = new LinkedList<>();
 
-        inSTMT1 = false;
-        inSTMT2 = false;
+        this.inSTMT1 = false;
+        this.inSTMT2 = false;
 
-        this.name = name_;
+        this.leftChild = "";
+        this.operator = "";
+        this.rightChild = "";
+
+        this.field = "";
+
+        this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setLeftChild(String leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(String rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public void addSubblock(Block block){
@@ -47,7 +76,6 @@ public class Block {
 
     public void addSubblock2(Block block){
         if(this.name.equals("IfLogicBeginBrick")){
-            System.out.println("Rename");
             this.name = "IfElseLogicBeginBrick";
         }
         subblock2.add(block);
@@ -71,5 +99,22 @@ public class Block {
 
     public boolean getworkon1(){
         return inSTMT1;
+    }
+
+    public void updateBlockField(){
+        this.field = this.leftChild + whatOP(this.operator) + this.rightChild;
+    }
+
+    private String whatOP(String operator) {
+        if(operator.equals("")){
+            return "";
+        }
+        else if(operator.equals("SMALLER_THAN")){
+            return "&lt;";
+        }
+        else if(operator.equals("GREATER_THAN")){
+            return "&gt;";
+        }
+        return operator;
     }
 }
