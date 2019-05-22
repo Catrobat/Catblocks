@@ -106,15 +106,35 @@ public class Block {
     }
 
     private String whatOP(String operator) {
-        if(operator.equals("")){
-            return "";
+        switch(operator){
+            case "PLUS":
+                return "+";
+            case "MINUS":
+                return "-";
+            case "MULT":
+                return "*";
+            case "DIVIDE":
+                return "/";
+            case "POW":
+                return "^";
+            case "EQUAL":
+                return "=";
+            case "NOT_EQUAL":
+                return "&ne;";
+            case "GREATER_THAN":
+                return "&gt;";
+            case "GREATER_OR_EQUAL":
+                return "&ge;";
+            case "SMALLER_THAN":
+                return "&lt;";
+            case "SMALLER_OR_EQUAL":
+                return "&le;";
+            case "LOGICAL_AND":
+                return "and";
+            case "LOGICAL_OR":
+                return "or";
+            default:
+                return operator;
         }
-        else if(operator.equals("SMALLER_THAN")){
-            return "&lt;";
-        }
-        else if(operator.equals("GREATER_THAN")){
-            return "&gt;";
-        }
-        return operator;
     }
 }

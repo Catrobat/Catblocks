@@ -74,7 +74,6 @@ public class Parser {
                 //Parse left child <value>1</value>
                 if(line.contains("<value>")) {
                     String name = line.split("</?value>")[1];
-                    System.out.println(name);
                     edit_block.setLeftChild(name);
                 }
             }
@@ -82,7 +81,6 @@ public class Parser {
                 //Parse operator child
                 if(line.contains("<value>")) {
                     String name = line.split("</?value>")[1];
-                    System.out.println(name);
                     inOperator = false;
                     edit_block.setOperator(name);
                 }
