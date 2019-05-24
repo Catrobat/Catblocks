@@ -1,9 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="WaitBrick" id="" x="255" y="414">
-    <value name="TIME_TO_WAIT_IN_SECONDS">
-      <shadow type="text" id="">
-        <field name="TEXT">1</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="WaitBrick" id="" x="" y="">
+  <value name="TIME_TO_WAIT_IN_SECONDS">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>

@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="SetBackgroundAndWaitBrick" id="" x="267" y="335">
-    <value name="COSTUME">
-      <shadow type="looks_costume" id="">
-        <field name="COSTUME">Space_Background_bigger</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SetBackgroundAndWaitBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_costume" id="">
+      <field name="COSTUME">Space_Background_bigger</field>
+    </shadow>
+  </value>
+</block>

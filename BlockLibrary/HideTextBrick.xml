@@ -1,5 +1,3 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="HideTextBrick" id="" x="100" y="405">
-    <field name="VARIABLE" id="" variabletype="">name</field>
-  </block>
-</xml>
+<block type="HideTextBrick" id="" x="" y="">
+  <field name="VARIABLE" id="" variabletype="">name</field>
+</block>

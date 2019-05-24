@@ -1,15 +1,13 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="ShowTextBrick" id="" x="176" y="533">
-    <field name="EFFECT">name</field>
-    <value name="X_POSITION">
-      <shadow type="text" id="">
-        <field name="TEXT">100</field>
-      </shadow>
-    </value>
-    <value name="Y_POSITION">
-      <shadow type="text" id="">
-        <field name="TEXT">200</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="ShowTextBrick" id="" x="" y="">
+  <field name="EFFECT">name</field>
+  <value name="X_POSITION">
+    <shadow type="text" id="">
+      <field name="TEXT">100</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text" id="">
+      <field name="TEXT">200</field>
+    </shadow>
+  </value>
+</block>

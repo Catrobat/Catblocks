@@ -1,15 +1,12 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="PlaceAtBrick" x="252" y="544">
-    <value name="X_POSITION">
-      <shadow type="text">
-        <field name="TEXT">100</field>
-      </shadow>
-    </value>
-    <value name="Y_POSITION">
-      <shadow type="text">
-        <field name="TEXT">200</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+      <field name="TEXT">100</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+      <field name="TEXT">200</field>
+    </shadow>
+  </value>
+</block>

@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="ThinkBubbleBrick" id="" x="144" y="382">
-    <value name="THINK_BRICK">
-      <shadow type="text" id="">
-        <field name="TEXT">Hmmmm!</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="ThinkBubbleBrick" id="" x="" y="">
+  <value name="THINK_BRICK">
+    <shadow type="text" id="">
+      <field name="TEXT">Hmmmm!</field>
+    </shadow>
+  </value>
+</block>

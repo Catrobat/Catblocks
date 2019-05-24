@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="IfLogicBeginBrick" id="" x="269" y="411">
-    <value name="TEXT">
-      <shadow type="text" id="">
-        <field name="TEXT">1&lt;2</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
-
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="TEXT">
+    <shadow type="text" id="">
+      <field name="TEXT">1&lt;2</field>
+    </shadow>
+  </value>
+</block>

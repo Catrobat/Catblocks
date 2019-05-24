@@ -1,9 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="TurnRightBrick" x="24" y="187">
-    <value name="TURN_RIGHT_DEGREES">
-      <shadow type="text">
-        <field name="TEXT">15</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="TurnRightBrick" x="" y="">
+  <value name="TURN_RIGHT_DEGREES">
+    <shadow type="text">
+      <field name="TEXT">15</field>
+    </shadow>
+  </value>
+</block>

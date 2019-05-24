@@ -1,15 +1,13 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="ReplaceItemInUserListBrick" id="" x="30" y="211">
-    <field name="LIST" id="" variabletype="list">list</field>
-    <value name="INSERT_ITEM_INTO_USERLIST_INDEX">
-      <shadow type="text" id="">
-        <field name="TEXT">1</field>
-      </shadow>
-    </value>
-    <value name="INSERT_ITEM_INTO_USERLIST_VALUE">
-      <shadow type="text" id="">
-        <field name="TEXT">1</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="ReplaceItemInUserListBrick" id="" x="" y="">
+  <field name="LIST" id="" variabletype="list">list</field>
+  <value name="INSERT_ITEM_INTO_USERLIST_INDEX">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+  <value name="INSERT_ITEM_INTO_USERLIST_VALUE">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>

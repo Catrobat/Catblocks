@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="SayBubbleBrick" id="" x="144" y="382">
-    <value name="SAY_BRICK">
-      <shadow type="text" id="">
-        <field name="TEXT">Hello!</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SayBubbleBrick" id="" x="" y="">
+  <value name="SAY_BRICK">
+    <shadow type="text" id="">
+      <field name="TEXT">Hello!</field>
+    </shadow>
+  </value>
+</block>

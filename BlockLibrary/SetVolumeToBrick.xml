@@ -1,9 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="SetVolumeToBrick" id="" x="168" y="321">
-    <value name="VOLUME">
-      <shadow type="text" id="">
-        <field name="TEXT">60</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SetVolumeToBrick" id="" x="" y="">
+  <value name="VOLUME">
+    <shadow type="text" id="">
+      <field name="TEXT">60</field>
+    </shadow>
+  </value>
+</block>

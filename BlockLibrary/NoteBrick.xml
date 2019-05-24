@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="NoteBrick" id="" x="248" y="454">
-    <value name="NOTE">
-      <shadow type="text" id="">
-        <field name="TEXT">add comment here...</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="NoteBrick" id="" x="" y="">
+  <value name="NOTE">
+    <shadow type="text" id="">
+      <field name="TEXT">add comment here...</field>
+    </shadow>
+  </value>
+</block>

@@ -1,19 +1,17 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="SetPenColorBrick" id="" x="207" y="557">
-    <value name="PEN_COLOR_RED">
-      <shadow type="text" id="">
-        <field name="TEXT">0</field>
-      </shadow>
-    </value>
-    <value name="PEN_COLOR_GREEN">
-      <shadow type="text" id="">
-        <field name="TEXT">0</field>
-      </shadow>
-    </value>
-    <value name="PEN_COLOR_BLUE">
-      <shadow type="text" id="">
-        <field name="TEXT">255</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SetPenColorBrick" id="" x="" y="">
+  <value name="PEN_COLOR_RED">
+    <shadow type="text" id="">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="PEN_COLOR_GREEN">
+    <shadow type="text" id="">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="PEN_COLOR_BLUE">
+    <shadow type="text" id="">
+      <field name="TEXT">255</field>
+    </shadow>
+  </value>
+</block>

@@ -1,9 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="SetLookBrick" id="" x="267" y="335">
-    <value name="COSTUME">
-      <shadow type="looks_costume" id="">
-        <field name="COSTUME">new...</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SetLookBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_costume" id="">
+      <field name="COSTUME">new...</field>
+    </shadow>
+  </value>
+</block>

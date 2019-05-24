@@ -1,10 +1,7 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="SetBackgroundBrick" id="" x="267" y="335">
-    <value name="COSTUME">
-      <shadow type="looks_background" id="">
-        <field name="COSTUME">new...</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
+<block type="SetBackgroundBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_background" id="">
+      <field name="COSTUME">new...</field>
+    </shadow>
+  </value>
+</block>

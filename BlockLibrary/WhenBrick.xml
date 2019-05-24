@@ -1,4 +1,2 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="WhenBrick" id="" x="123" y="244">
-  </block>
-</xml>
+<block type="WhenBrick" id="" x="" y="">
+</block>
