@@ -1,0 +1,9 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="SceneStartBrick" id="" x="359" y="480">
+    <value name="sceneToStart">
+      <shadow type="control_startscene_menu" id="">
+        <field name="SCENE_OPTION">Scene 1</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

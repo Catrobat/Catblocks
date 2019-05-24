@@ -199,7 +199,7 @@ public class Parser {
     }
 
     private String getPath(String name) {
-        return filePath + "scratch-blocks-develop/tests/catblocks/" + name + ".xml";
+        return filePath + "BlockLibrary/" + name + ".xml";
     }
 
     private void writeToFile(PrintWriter writer, String path, Script script) throws IOException {
