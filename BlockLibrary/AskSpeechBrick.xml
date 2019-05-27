@@ -1,0 +1,12 @@
+<block type="AskSpeechBrick" id="" x="" y="">
+  <value name="ASK_SPEECH_QUESTION">
+    <shadow type="text" id="">
+      <field name="TEXT">What's your name?</field>
+    </shadow>
+  </value>
+  <value name="SOUND_MENU">
+    <shadow type="AskSpeechBrick_menu" id="">
+      <field name="SOUND_MENU">name</field>
+    </shadow>
+  </value>
+</block>

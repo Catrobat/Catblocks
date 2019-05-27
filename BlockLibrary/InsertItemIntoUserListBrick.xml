@@ -1,0 +1,13 @@
+<block type="InsertItemIntoUserListBrick" id="" x="" y="">
+  <value name="INSERT_ITEM_INTO_USERLIST_VALUE">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+  <field name="LIST" id="" variabletype="list">list</field>
+  <value name="INSERT_ITEM_INTO_USERLIST_INDEX">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>

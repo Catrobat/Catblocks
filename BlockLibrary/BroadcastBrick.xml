@@ -1,0 +1,9 @@
+<block type="BroadcastBrick" id="" x="" y="">
+  <value name="BROADCAST_MENU">
+    <shadow type="BroadcastBrick_menu" id="">
+      <field name="BROADCAST_MENU">new...</field>
+    </shadow>
+  </value>
+</block>
+
+

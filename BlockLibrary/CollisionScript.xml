@@ -1,0 +1,3 @@
+<block type="CollisionScript" x="" y="">
+  <field name="BROADCAST_OPTION" variabletype="broadcast_msg">any edge, actor, or object</field>
+</block>

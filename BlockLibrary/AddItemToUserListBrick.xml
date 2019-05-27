@@ -1,0 +1,8 @@
+<block type="AddItemToUserListBrick" id="" x="" y="">
+  <field name="LIST" id="" variabletype="list">list</field>
+  <value name="LIST_ADD_ITEM">
+    <shadow type="text" id="">
+      <field name="TEXT">name</field>
+    </shadow>
+  </value>
+</block>

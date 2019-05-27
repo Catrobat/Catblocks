@@ -1,0 +1,7 @@
+<block type="SceneStartBrick" id="" x="" y="">
+  <value name="sceneToStart">
+    <shadow type="control_startscene_menu" id="">
+      <field name="SCENE_OPTION">Scene 1</field>
+    </shadow>
+  </value>
+</block>

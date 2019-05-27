@@ -1,0 +1,7 @@
+<block type="TurnLeftSpeedBrick" x="" y="">
+  <value name="PHYSICS_TURN_LEFT_SPEED">
+    <shadow type="text">
+      <field name="TEXT">15</field>
+    </shadow>
+  </value>
+</block>

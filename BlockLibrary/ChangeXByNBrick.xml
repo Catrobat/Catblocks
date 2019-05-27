@@ -1,0 +1,7 @@
+<block type="ChangeXByNBrick" x="" y="">
+  <value name="X_POSITION_CHANGE">
+    <shadow type="text">
+      <field name="TEXT">10</field>
+    </shadow>
+  </value>
+</block>

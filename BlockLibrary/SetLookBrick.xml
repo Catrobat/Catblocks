@@ -1,0 +1,7 @@
+<block type="SetLookBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_costume" id="">
+      <field name="COSTUME">new...</field>
+    </shadow>
+  </value>
+</block>

@@ -1,0 +1,7 @@
+<block type="SetBounceBrick" x="" y="">
+  <value name="PHYSICS_BOUNCE_FACTOR">
+    <shadow type="text">
+      <field name="TEXT">80</field>
+    </shadow>
+  </value>
+</block>

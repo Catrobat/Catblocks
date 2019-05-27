@@ -1,0 +1,7 @@
+<block type="SetBackgroundAndWaitBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_costume" id="">
+      <field name="COSTUME">Space_Background_bigger</field>
+    </shadow>
+  </value>
+</block>

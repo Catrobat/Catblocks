@@ -1,0 +1,83 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="StartScript" id="" x="123" y="244">
+<next>
+  <block type="ForeverBrick" id="" x="295" y="275">
+<statement name="SUBSTACK">
+  <block type="NoteBrick" id="" x="248" y="454">
+    <value name="NOTE">
+      <shadow type="text" id="">
+<field name="TEXT">99</field>
+      </shadow>
+    </value>
+<next>
+  <block type="SetVolumeToBrick" id="" x="168" y="321">
+    <value name="VOLUME">
+      <shadow type="text" id="">
+<field name="TEXT">LOUDNESS</field>
+      </shadow>
+    </value>
+<next>
+  <block type="PlaceAtBrick" x="252" y="544">
+    <value name="X_POSITION">
+      <shadow type="text">
+<field name="TEXT">99</field>
+      </shadow>
+    </value>
+    <value name="Y_POSITION">
+      <shadow type="text">
+<field name="TEXT">98</field>
+      </shadow>
+    </value>
+<next>
+  <block type="SetLookBrick" id="" x="267" y="335">
+    <value name="COSTUME">
+      <shadow type="looks_costume" id="">
+        <field name="COSTUME">new...</field>
+      </shadow>
+    </value>
+<next>
+  <block type="ShowTextBrick" id="" x="176" y="533">
+    <field name="EFFECT">name</field>
+    <value name="X_POSITION">
+      <shadow type="text" id="">
+<field name="TEXT">1</field>
+      </shadow>
+    </value>
+    <value name="Y_POSITION">
+      <shadow type="text" id="">
+<field name="TEXT">2</field>
+      </shadow>
+    </value>
+<next>
+  <block type="SetPenColorBrick" id="" x="207" y="557">
+    <value name="PEN_COLOR_RED">
+      <shadow type="text" id="">
+<field name="TEXT">1</field>
+      </shadow>
+    </value>
+    <value name="PEN_COLOR_GREEN">
+      <shadow type="text" id="">
+<field name="TEXT">2</field>
+      </shadow>
+    </value>
+    <value name="PEN_COLOR_BLUE">
+      <shadow type="text" id="">
+<field name="TEXT">3</field>
+      </shadow>
+    </value>
+  </block>
+</next>
+  </block>
+</next>
+  </block>
+</next>
+  </block>
+</next>
+  </block>
+</next>
+  </block>
+</statement>
+  </block>
+</next>
+  </block>
+</xml>

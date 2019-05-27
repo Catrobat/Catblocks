@@ -1,0 +1,7 @@
+<block type="CameraBrick" id="" x="" y="">
+  <value name="COSTUME">
+    <shadow type="looks_camera" id="">
+      <field name="COSTUME">on</field>
+    </shadow>
+  </value>
+</block>

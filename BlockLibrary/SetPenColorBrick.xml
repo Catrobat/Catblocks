@@ -1,0 +1,17 @@
+<block type="SetPenColorBrick" id="" x="" y="">
+  <value name="PEN_COLOR_RED">
+    <shadow type="text" id="">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="PEN_COLOR_GREEN">
+    <shadow type="text" id="">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="PEN_COLOR_BLUE">
+    <shadow type="text" id="">
+      <field name="TEXT">255</field>
+    </shadow>
+  </value>
+</block>

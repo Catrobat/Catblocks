@@ -1,0 +1,7 @@
+<block type="GoToBrick" x="" y="">
+  <value name="TO">
+    <shadow type="motion_goto_menu" id="">
+      <field name="TO">touch position</field>
+    </shadow>
+  </value>
+</block>

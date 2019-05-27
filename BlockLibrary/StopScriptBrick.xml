@@ -1,0 +1,7 @@
+<block type="StopScriptBrick" id="" x="" y="">
+  <value name="spinnerSelection">
+    <shadow type="control_stopscript_menu" id="">
+      <field name="SCENE_OPTION">this script</field>
+    </shadow>
+  </value>
+</block>

@@ -1,0 +1,7 @@
+<block type="BroadcastScript" id="" x="" y="">
+  <value name="BROADCAST_MENU">
+    <shadow type="BroadcastBrick_menu" id="">
+      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>
+    </shadow>
+  </value>
+</block>

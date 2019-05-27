@@ -1,0 +1,8 @@
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="EFFECT">name</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>

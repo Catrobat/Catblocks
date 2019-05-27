@@ -1,0 +1,7 @@
+<block type="CloneBrick" id="" x="" y="">
+  <value name="objectToClone">
+    <shadow type="control_createcloneof_menu" id="">
+      <field name="SCENE_OPTION">yourself</field>
+    </shadow>
+  </value>
+</block>
