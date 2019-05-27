@@ -1,0 +1,7 @@
+<block type="SetFrictionBrick">
+<value name="PHYSICS_FRICTION">
+<shadow type="text">
+<field name="TEXT">80</field>
+  </shadow>
+</value>
+</block>

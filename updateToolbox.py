@@ -37,13 +37,13 @@ goog.require('Blockly.Blocks');
 
 
 def initColors():
-    blockToColor['motion']      = {'name':"\"Motion\"", 'color':"\"#4C97FF\"", 'secondaryColour':"\"#3373CC\""}
-    blockToColor['looks']       = {'name':"\"Looks\"",  'color':"\"#59C059\"", 'secondaryColour':"\"#59C059\""}
-    blockToColor['sound']       = {'name':"\"Sound\"",  'color':"\"#9966FF\"", 'secondaryColour':"\"#9966FF\""}
-    blockToColor['event']       = {'name':"\"Event\"",  'color':"\"#FF661A\"", 'secondaryColour':"\"#CC9900\""}
-    blockToColor['control']     = {'name':"\"Control\"",'color':"\"#FFAB19\"", 'secondaryColour':"\"#CF8B17\""}
-    blockToColor['pen']         = {'name':"\"Pen\"",    'color':"\"#0fBD8C\"", 'secondaryColour':"\"#2E8EB8\""}
-    blockToColor['data']        = {'name':"\"Data\"",   'color':"\"#FF6680\"", 'secondaryColour':"\"#389438\""}
+    blockToColor['motion']      = {'name':"\"%{BKY_CATEGORY_MOTION}\"",         'id':"\"motion\"", 'color':"\"#4C97FF\"", 'secondaryColour':"\"#3373CC\""}
+    blockToColor['looks']       = {'name':"\"%{BKY_CATEGORY_LOOKS}\"",          'id':"\"looks\"",  'color':"\"#59C059\"", 'secondaryColour':"\"#59C059\""}
+    blockToColor['sound']       = {'name':"\"%{BKY_CATEGORY_SOUND}\"",          'id':"\"sound\"",  'color':"\"#9966FF\"", 'secondaryColour':"\"#9966FF\""}
+    blockToColor['event']       = {'name':"\"%{BKY_CATEGORY_EVENTS}\"",         'id':"\"events\"",  'color':"\"#FF661A\"", 'secondaryColour':"\"#CC9900\""}
+    blockToColor['control']     = {'name':"\"%{BKY_CATEGORY_CONTROL}\"", 'id':"\"control\"", 'color':"\"#FFAB19\"", 'secondaryColour':"\"#CF8B17\""}
+    blockToColor['pen']         = {'name':"\"Pen\"",    'color':"\"#0fBD8C\"",  'id':"\"sensing\"", 'secondaryColour':"\"#2E8EB8\""}
+    blockToColor['data']        = {'name':"\"Data\"",   'color':"\"#FF6680\"",  'id':"\"operators\"", 'secondaryColour':"\"#389438\""}
 
 def main():
     getData()
@@ -79,10 +79,9 @@ def createFile():
     output = open(outputPath + "default_toolbox.js", "w")
     output.write(HEADER + "\n")
     output.write("Blockly.Blocks.defaultToolbox = '<xml id=\"toolbox-categories\" style=\"display: none\">'")
-    for category in blockDict:
+    for category in blockToColor:
         if(len(blockDict[category]) != 0):
-            output.write(" +\n '<category name=" + blockToColor[category]['name'] + " id=\"" + category + "\" colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">' +\n")
-
+            output.write(" +\n '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">' +\n")
             for filename in blockDict[category]:
                 with open(blockPath+filename, "r") as f:
                     for line in f:
