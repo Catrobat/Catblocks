@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Catrobat2Blockly {
 
-    public static String inputFile;
-    public static String outputFile;
+    private static String inputFile;
+    private static String outputFile;
 
     public Catrobat2Blockly() {
     }

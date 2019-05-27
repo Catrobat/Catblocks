@@ -1,21 +1,21 @@
 package tools;
 
-public class Formula {
-    Formula left;
-    Formula right;
-    String value;
+class Formula {
+    private Formula left;
+    private Formula right;
+    private String value;
 
-    public Formula() {
+    Formula() {
         this.value = "";
         this.left = null;
         this.right = null;
     }
 
-    public Formula getLeft() {
+    Formula getLeft() {
         return left;
     }
 
-    public void setLeft(Formula left) {
+    void setLeft(Formula left) {
         if(this.left == null){
             this.left = left;
         }else{
@@ -24,11 +24,11 @@ public class Formula {
         }
     }
 
-    public Formula getRight() {
+    Formula getRight() {
         return right;
     }
 
-    public void setRight(Formula right) {
+    void setRight(Formula right) {
         if(this.right == null){
             this.right = right;
         }else{
@@ -37,11 +37,11 @@ public class Formula {
         }
     }
 
-    public void setValue(String value) {
+    void setValue(String value) {
         this.value = value;
     }
 
-    public String getValue() {
+    String getValue() {
         return value;
     }
 }

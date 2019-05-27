@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Block {
+class Block {
     private Formula formula;
     private String name;
 
@@ -21,15 +21,11 @@ public class Block {
     private boolean inSTMT2;
     private String curr;
 
-    public String getFormValue(String key) {
-        return formValues.get(key);
-    }
-
-    public void addFormValues(String key, String val) {
+    void addFormValues(String key, String val) {
         this.formValues.put(key, val);
     }
 
-    public Block(String name) {
+    Block(String name) {
         this.subblock = new LinkedList<>();
         this.subblock2 = new LinkedList<>();
 
@@ -45,70 +41,58 @@ public class Block {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public String getField() {
+    String getField() {
         return formValues.get(this.curr);
     }
 
-    public void setFormula(Formula formula){
+    void setFormula(Formula formula){
         this.formula = formula;
     }
 
-    public Formula getFormula() {
-        return formula;
-    }
-
-    public void addSubblock(Block block){
+    void addSubblock(Block block){
         subblock.add(block);
     }
 
-    public List<Block> getSubblock() {
+    List<Block> getSubblock() {
         return subblock;
     }
 
-    public void setSubblock(List<Block> subblock) {
-        this.subblock = subblock;
-    }
-
-    public List<Block> getSubblock2() {
+    List<Block> getSubblock2() {
         return subblock2;
     }
 
-    public void setSubblock2(List<Block> subblock2) {
-        this.subblock2 = subblock2;
-    }
-
-    public void addSubblock2(Block block){
+    void addSubblock2(Block block){
         if(this.name.equals("IfLogicBeginBrick")){
             this.name = "IfElseLogicBeginBrick";
         }
         subblock2.add(block);
     }
 
-    public boolean isInSTMT1() {
+    boolean isInSTMT1() {
         return inSTMT1;
     }
 
-    public boolean isInSTMT2() {
+    boolean isInSTMT2() {
         return inSTMT2;
     }
 
-    public void workon2() {
+    void workon2() {
         inSTMT2 = !inSTMT2;
     }
 
-    public void workon1() {
+    void workon1() {
         inSTMT1 = !inSTMT1;
     }
 
-    public boolean getworkon1(){
+    boolean getworkon1(){
         return inSTMT1;
     }
 
-    public void updateBlockField(){
+    void updateBlockField(){
 
         updateFormula();
 
@@ -124,11 +108,11 @@ public class Block {
 
     }
 
-    public void setCurr(String curr) {
+    void setCurr(String curr) {
         this.curr = curr;
     }
 
-    public String convertFormula() {
+    String convertFormula() {
         StringBuilder formula = new StringBuilder();
 
         concatFormula(formula, this.formula);
@@ -143,7 +127,7 @@ public class Block {
     private void concatFormula(StringBuilder formula_str, Formula formula) {
 
         if(isFunction(formula.getValue())){
-            formula_str.append(whatOP(formula.value) + "(");
+            formula_str.append(whatOP(formula.getValue())).append("(");
 
             if (formula.getLeft() != null) {
                 concatFormula(formula_str, formula.getLeft());
@@ -161,7 +145,7 @@ public class Block {
                 concatFormula(formula_str, formula.getLeft());
             }
 
-            formula_str.append(whatOP(formula.value));
+            formula_str.append(whatOP(formula.getValue()));
             formula_str.append(" ");
 
             if (formula.getRight() != null) {
@@ -199,6 +183,9 @@ public class Block {
             case "CONTAINS":
             case "NUMBER_OF_ITEMS":
             case "RASPIDIGITAL":
+            case "MULTI_FINGER_X":
+            case "MULTI_FINGER_Y":
+            case "MULTI_FINGER_TOUCHED":
                 return true;
             default:
                 return false;
@@ -407,33 +394,55 @@ public class Block {
                 return "nfc tag id";
             case "NFC_TAG_MESSAGE":
                 return "nfc tag message";
-
-
-            case "GAMEPAD_A_PRESSED":
-            case "GAMEPAD_B_PRESSED":
-            case "GAMEPAD_UP_PRESSED":
-            case "GAMEPAD_DOWN_PRESSED":
-            case "GAMEPAD_LEFT_PRESSED":
-            case "GAMEPAD_RIGHT_PRESSED":
-            case "MULTI_FINGER_X":
-            case "MULTI_FINGER_Y":
-            case "MULTI_FINGER_TOUCHED":
-            case "LAST_FINGER_INDEX":
-            case "FINGER_X":
-            case "FINGER_Y":
-            case "FINGER_TOUCHED":
             case "OBJECT_ROTATION":
-            case "OBJECT_DISTANCE_TO":
-            case "NXT_SENSOR_1":
-            case "NXT_SENSOR_2":
-            case "NXT_SENSOR_3":
-            case "NXT_SENSOR_4":
-            case "EV3_SENSOR_1":
-            case "EV3_SENSOR_2":
-            case "EV3_SENSOR_3":
-            case "EV3_SENSOR_4":
+                return "direction";
             case "OBJECT_LOOK_NUMBER":
+                return "look number";
             case "OBJECT_LOOK_NAME":
+                return "look name";
+            case "FINGER_X":
+                return "stage touch x";
+            case "FINGER_Y":
+                return "stage touch y";
+            case "FINGER_TOUCHED":
+                return "stage is touched";
+            case "MULTI_FINGER_X":
+                return "stage touch x";
+            case "MULTI_FINGER_Y":
+                return "stage touch y";
+            case "LAST_FINGER_INDEX":
+                return "last stage touch index";
+            case "MULTI_FINGER_TOUCHED":
+                return "stage is touched";
+            case "NXT_SENSOR_1":
+                return "NXT sensor 1";
+            case "NXT_SENSOR_2":
+                return "NXT sensor 2";
+            case "NXT_SENSOR_3":
+                return "NXT sensor 3";
+            case "NXT_SENSOR_4":
+                return "NXT sensor 4";
+            case "EV3_SENSOR_1":
+                return "EV3 sensor 1";
+            case "EV3_SENSOR_2":
+                return "EV3 sensor 2";
+            case "EV3_SENSOR_3":
+                return "EV3 sensor 3";
+            case "EV3_SENSOR_4":
+                return "EV3 sensor 4";
+            case "GAMEPAD_A_PRESSED":
+                return"gamepad a pressed";
+            case "GAMEPAD_B_PRESSED":
+                return"gamepad b pressed";
+            case "GAMEPAD_UP_PRESSED":
+                return"gamepad up pressed";
+            case "GAMEPAD_DOWN_PRESSED":
+                return"gamepad down pressed";
+            case "GAMEPAD_LEFT_PRESSED":
+                return"gamepad left pressed";
+            case "GAMEPAD_RIGHT_PRESSED":
+                return"gamepad right pressed";
+            case "OBJECT_DISTANCE_TO":
             default:
                 return operator;
         }

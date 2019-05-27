@@ -26,8 +26,6 @@ public class Parser {
 
     private static final String LEFTCHILD = "<leftChild";
     private static final String RIGHTCHILD = "<rightChild";
-    private static final String STRING = "STRING";
-    private static final String NUMBER = "NUMBER";
 
     private static final String SCRIPT_DEF = "<script ";
     private static final String BRICK_TYPE = "type=";
@@ -44,19 +42,14 @@ public class Parser {
 
     private boolean inBrickList = false;
     private boolean inFormularList = false;
-    private boolean inLeftChild = false;
-    private boolean inRightChild = false;
-    private boolean inOperator = false;
 
     private List<Script> scripts;
     private Script currScript;
     private Block condBlock;
     private boolean skip = false;
     private Block currBlock;
-    private boolean inAppendVal = false;
     private String currVal;
     private Stack<Formula> formulaStack;
-    private Formula currFormula;
 
 
     public Parser() {
@@ -66,7 +59,7 @@ public class Parser {
         formulaStack = new Stack<>();
     }
 
-    public void parse(String line) {
+    private void parse(String line) {
 
         if (skip) {
             return;
@@ -207,7 +200,7 @@ public class Parser {
 
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
-        String line = "";
+        String line;
 
         while ((line = reader.readLine()) != null) {
             if (!(line.contains("xml") || line.contains("<variables>"))) {
@@ -292,7 +285,7 @@ public class Parser {
     public void parseFile(String inputFile) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
-        String line = "";
+        String line;
 
         while ((line = reader.readLine()) != null) {
             parse(line);
