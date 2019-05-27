@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Block {
+    private Formula formula;
     private String name;
 
-    private String leftChild;
-    private String rightChild;
-    private String operator;
 
     private Map<String,String> formValues;
 
@@ -40,9 +38,7 @@ public class Block {
         this.inSTMT1 = false;
         this.inSTMT2 = false;
 
-        this.leftChild = "";
-        this.operator = "";
-        this.rightChild = "";
+        this.formula = new Formula();
 
         this.field = "";
 
@@ -57,16 +53,12 @@ public class Block {
         return formValues.get(this.curr);
     }
 
-    public void setLeftChild(String leftChild) {
-        this.leftChild = leftChild;
+    public void setFormula(Formula formula){
+        this.formula = formula;
     }
 
-    public void setRightChild(String rightChild) {
-        this.rightChild = rightChild;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
+    public Formula getFormula() {
+        return formula;
     }
 
     public void addSubblock(Block block){
@@ -117,13 +109,19 @@ public class Block {
     }
 
     public void updateBlockField(){
-        this.field = this.leftChild + whatOP(this.operator) + this.rightChild;
+
+        updateFormula();
+
         if(this.name.contains("RepeatUntilBrick")){
             this.formValues.put("REPEAT_UNTIL_CONDITION",this.field);
         }
         else{
             this.formValues.put("TEXT",this.field);
         }
+    }
+
+    private void updateFormula() {
+
     }
 
     private String whatOP(String operator) {
@@ -161,5 +159,54 @@ public class Block {
 
     public void setCurr(String curr) {
         this.curr = curr;
+    }
+
+    public String convertFormula() {
+        StringBuilder formula = new StringBuilder();
+
+        concatFormula(formula, this.formula);
+
+        if(formula.toString().endsWith(" ")){
+            formula.setLength(formula.length()-1);
+        }
+
+        return formula.toString();
+    }
+
+    private void concatFormula(StringBuilder formula_str, Formula formula) {
+
+        if(isFunction(formula.getValue())){
+            formula_str.append(formula.value + "(");
+
+            if (formula.getLeft() != null) {
+                concatFormula(formula_str, formula.getLeft());
+            }
+            if (formula.getRight() != null) {
+                formula_str.append(",");
+                concatFormula(formula_str, formula.getRight());
+            }
+            formula_str.setLength(formula_str.length()-1);
+            formula_str.append(")");
+        }else {
+            if (formula.getLeft() != null) {
+                concatFormula(formula_str, formula.getLeft());
+            }
+
+            formula_str.append(whatOP(formula.value));
+            formula_str.append(" ");
+
+            if (formula.getRight() != null) {
+                concatFormula(formula_str, formula.getRight());
+            }
+        }
+    }
+
+    private boolean isFunction(String value) {
+        switch(value){
+            case "LOG":
+                return true;
+            default:
+                return false;
+        }
     }
 }
