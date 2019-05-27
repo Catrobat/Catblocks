@@ -83,11 +83,8 @@ public class Parser {
             }
             if (line.contains("<value>")) {
                 String name = line.split("</?value>")[1];
-                System.out.println(formulaStack.size());
                 Formula formula = formulaStack.pop();
-                System.out.println(formulaStack.size());
                 formula.setValue(name);
-                System.out.println(line);
             }
             if(line.contains(FORMULA_END)){
                 String formula = currBlock.convertFormula();
@@ -156,14 +153,12 @@ public class Parser {
                 inFormularList = false;
             }
             if (line.contains(FORMULA_BEGIN)) {
-                System.out.println("NEW Formula");
                 Formula formula = new Formula();
                 currBlock.setFormula(formula);
                 formulaStack.push(formula);
             }
 
             if (inFormularList && line.contains(LEFTCHILD)) {
-                System.out.println("NEW LEFT CHILD");
                 Formula curr = formulaStack.pop();
                 Formula formula = new Formula();
                 curr.setLeft(formula);
@@ -171,7 +166,6 @@ public class Parser {
                 formulaStack.push(formula);
             }
             if (inFormularList && line.contains(RIGHTCHILD)) {
-                System.out.println("NEW RIGHT CHILD");
                 Formula curr = formulaStack.pop();
                 Formula formula = new Formula();
                 curr.setRight(formula);
