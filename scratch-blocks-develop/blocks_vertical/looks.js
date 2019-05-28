@@ -35,8 +35,11 @@ Blockly.Blocks['SetLookBrick'] = {
       "message0": Blockly.Msg.LOOKS_SWITCHTOLOOK,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -128,8 +131,10 @@ Blockly.Blocks['AskBrick'] = {
         },
         {
           "type": "field_dropdown",
-          "name": "EFFECT",
-          "options": [[Blockly.Msg.LOOKS_EFFECT_SHIPX, "name"]]
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -338,8 +343,11 @@ Blockly.Blocks['SetBackgroundBrick'] = {
       "message0": Blockly.Msg.LOOKS_SETBACKGROUND,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -370,8 +378,11 @@ Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
       "message0": Blockly.Msg.LOOKS_SETBACKGROUNDANDWAIT,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -402,8 +413,11 @@ Blockly.Blocks['CameraBrick'] = {
       "message0": Blockly.Msg.LOOKS_TURNCAMERA,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["on"]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -418,8 +432,11 @@ Blockly.Blocks['ChooseCameraBrick'] = {
       "message0": Blockly.Msg.LOOKS_USECAMERA,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["front"]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,
@@ -434,8 +451,11 @@ Blockly.Blocks['FlashBrick'] = {
       "message0": Blockly.Msg.LOOKS_TURNFLASHLIGHT,
       "args0": [
         {
-          "type": "input_value",
-          "name": "COSTUME"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["on"]
+          ]
         }
       ],
       "category": Blockly.Categories.looks,

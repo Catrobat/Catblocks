@@ -1,7 +1,3 @@
 <block type="PointToBrick" x="" y="">
-  <value name="TOWARDS">
-    <shadow type="motion_pointtowards_menu" id="">
-      <field name="TOWARDS">new...</field>
-    </shadow>
-  </value>
+  <field name="DROPDOWN">new...</field>
 </block>

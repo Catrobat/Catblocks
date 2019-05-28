@@ -1,7 +1,3 @@
 <block type="PlaySoundBrick" id="" x="" y="">
-  <value name="SOUND_MENU">
-    <shadow type="PlaySoundBrick_menu" id="">
-      <field name="SOUND_MENU">new...</field>
-    </shadow>
-  </value>
+  <field name="DROPDOWN">new...</field>>
 </block>

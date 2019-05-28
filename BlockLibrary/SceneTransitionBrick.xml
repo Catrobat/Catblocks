@@ -1,7 +1,3 @@
 <block type="SceneTransitionBrick" id="" x="" y="">
-  <value name="sceneForTransition">
-    <shadow type="control_continuescene_menu" id="">
-      <field name="SCENE_OPTION">new...</field>
-    </shadow>
-  </value>
+  <field name="DROPDOWN">new...</field>
 </block>

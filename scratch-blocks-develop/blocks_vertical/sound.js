@@ -29,35 +29,17 @@ goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 //Cat Blocks
 
-Blockly.Blocks['PlaySoundBrick_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SOUND_MENU",
-          "options": [
-            ["new..."]
-          ]
-        }
-      ],
-      "colour": Blockly.Colours.sounds.secondary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary,
-      "extensions": ["output_string"]
-    });
-  }
-};
-
 Blockly.Blocks['PlaySoundBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.SOUND_STARTSOUND,
       "args0": [
         {
-          "type": "input_value",
-          "name": "SOUND_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.sound,
@@ -94,8 +76,11 @@ Blockly.Blocks['PlaySoundAndWaitBrick'] = {
       "message0": Blockly.Msg.SOUND_STARTSOUNDANDWAIT,
       "args0": [
         {
-          "type": "input_value",
-          "name": "SOUND_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.sound,
@@ -179,27 +164,6 @@ Blockly.Blocks['SpeakAndWaitBrick'] = {
 };
 
 
-Blockly.Blocks['AskSpeechBrick_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SOUND_MENU",
-          "options": [
-            ["name"]
-          ]
-        }
-      ],
-      "colour": Blockly.Colours.sounds.secondary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary,
-      "extensions": ["output_string"]
-    });
-  }
-};
-
 Blockly.Blocks['AskSpeechBrick'] = {
   init: function() {
     this.jsonInit({
@@ -210,8 +174,11 @@ Blockly.Blocks['AskSpeechBrick'] = {
           "name": "ASK_SPEECH_QUESTION"
         },
         {
-          "type": "input_value",
-          "name": "SOUND_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.sound,
