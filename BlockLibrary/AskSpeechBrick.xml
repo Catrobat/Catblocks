@@ -4,9 +4,5 @@
       <field name="TEXT">What's your name?</field>
     </shadow>
   </value>
-  <value name="SOUND_MENU">
-    <shadow type="AskSpeechBrick_menu" id="">
-      <field name="SOUND_MENU">name</field>
-    </shadow>
-  </value>
+  <field name="DROPDOWN">name</field>
 </block>

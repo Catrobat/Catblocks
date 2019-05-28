@@ -1,7 +1,3 @@
 <block type="SetBackgroundBrick" id="" x="" y="">
-  <value name="COSTUME">
-    <shadow type="looks_background" id="">
-      <field name="COSTUME">new...</field>
-    </shadow>
-  </value>
+  <field name="DROPDOWN">new...</field>
 </block>

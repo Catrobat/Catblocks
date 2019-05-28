@@ -1,5 +1,5 @@
 <block type="DeleteItemOfUserListBrick" id="" x="" y="">
-  <field name="LIST" id="" variabletype="list">list</field>
+  <field name="DROPDOWN">new...</field>
   <value name="LIST_DELETE_ITEM">
     <shadow type="text" id="">
       <field name="TEXT">1</field>
