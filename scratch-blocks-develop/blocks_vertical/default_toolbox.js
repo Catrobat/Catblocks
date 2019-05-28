@@ -70,11 +70,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="GoToBrick" x="" y="">' +
-'  <value name="TO">' +
-'    <shadow type="motion_goto_menu" id="">' +
-'      <field name="TO">touch position</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">touch position</field>' +
 '</block>' +
 '<block type="IfOnEdgeBounceBrick" x="" y="">' +
 '</block>' +
@@ -107,14 +103,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="PointToBrick" x="" y="">' +
-'  <value name="TOWARDS">' +
-'    <shadow type="motion_pointtowards_menu" id="">' +
-'      <field name="TOWARDS">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 ' <block type="SetRotationStyleBrick">' +
-'	 <field name="STYLE">left-right only</field>' +
+'	 <field name="DROPDOWN">left-right only</field>' +
 ' </block>' +
 '<block type="GlideToBrick" x="" y="">' +
 '  <value name="DURATION_IN_SECONDS">' +
@@ -150,11 +142,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="SetPhysicsObjectTypeBrick" x="" y="">' +
-'  <value name="TOWARDS">' +
-'    <shadow type="motion_setyourmotiontypeto_menu">' +
-'      <field name="TOWARDS">moving and bouncing under gravity</field>' +
-'    </shadow>' +
-'  </value>' +
+'    <field name="DROPDOWN">moving and bouncing under gravity</field>' +
 '</block>' +
 '<block type="SetVelocityBrick" x="" y="">' +
 '  <value name="PHYSICS_VELOCITY_X">' +
@@ -218,11 +206,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '</category>' +
  '<category name="%{BKY_CATEGORY_LOOKS}" id= "looks" colour="#59C059" secondaryColour="#59C059">' +
 '<block type="SetLookBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_costume" id="">' +
-'      <field name="COSTUME">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="SetLookByIndexBrick" id="" x="" y="">' +
 '  <value name="LOOK_INDEX">' +
@@ -345,11 +329,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="ClearGraphicEffectBrick" id="" x="" y="">' +
 '</block>' +
 '<block type="SetBackgroundBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_background" id="">' +
-'      <field name="COSTUME">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="SetBackgroundByIndexBrick" id="" x="" y="">' +
 '  <value name="LOOK_INDEX">' +
@@ -359,11 +339,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="SetBackgroundAndWaitBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_costume" id="">' +
-'      <field name="COSTUME">Space_Background_bigger</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="SetBackgroundByIndexAndWaitBrick" id="" x="" y="">' +
 '  <value name="LOOK_INDEX">' +
@@ -373,42 +349,22 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="CameraBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_camera" id="">' +
-'      <field name="COSTUME">on</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">on</field>' +
 '</block>' +
 '<block type="ChooseCameraBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_camera2" id="">' +
-'      <field name="COSTUME">front</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">front</field>' +
 '</block>' +
 '<block type="FlashBrick" id="" x="" y="">' +
-'  <value name="COSTUME">' +
-'    <shadow type="looks_camera" id="">' +
-'      <field name="COSTUME">on</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">on</field>' +
 '</block>' +
 '</category>' +
  '<category name="%{BKY_CATEGORY_SOUND}" id= "sound" colour="#9966FF" secondaryColour="#9966FF">' +
 '<block type="PlaySoundBrick" id="" x="" y="">' +
-'  <value name="SOUND_MENU">' +
-'    <shadow type="PlaySoundBrick_menu" id="">' +
-'      <field name="SOUND_MENU">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>>' +
 '</block>' +
 '<block type="PlaySoundAndWaitBrick" id="" x="" y="">' +
-'  <value name="SOUND_MENU">' +
-'    <shadow type="PlaySoundAndWaitBrick_menu" id="">' +
-'      <field name="SOUND_MENU">new...</field>' +
-'    </shadow>' +
-'  </value>' +
-'</block>' +
+'  <field name="DROPDOWN">new...</field>' +
+' </block>' +
 '<block type="StopAllSoundsBrick" id="" x="" y="">' +
 '</block>' +
 '<block type="SetVolumeToBrick" id="" x="" y="">' +
@@ -460,27 +416,15 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="WhenTouchDownBrick" id="" x="" y="">' +
 '</block>' +
 '<block type="BroadcastScript" id="" x="" y="">' +
-'  <value name="BROADCAST_MENU">' +
-'    <shadow type="BroadcastBrick_menu" id="">' +
-'      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="BroadcastBrick" id="" x="" y="">' +
-'  <value name="BROADCAST_MENU">' +
-'    <shadow type="BroadcastBrick_menu" id="">' +
-'      <field name="BROADCAST_MENU">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '' +
 '' +
 '<block type="BroadcastWaitBrick" id="" x="" y="">' +
-'  <value name="BROADCAST_MENU">' +
-'    <shadow type="BroadcastBrick_menu" id="">' +
-'      <field name="BROADCAST_MENU" id="" variabletype="broadcast_msg">new message</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="WhenConditionScript" id="" x="" y="">' +
 '  <value name="IF_CONDITION">' +
@@ -490,10 +434,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="CollisionScript" x="" y="">' +
-'  <field name="BROADCAST_OPTION" variabletype="broadcast_msg">any edge, actor, or object</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
-'<block type="WhenBackgroundChangesScript" id="/|-$mkxN`/P8hPfOH(AU" x="" y="">' +
-'  <field name="BROADCAST_OPTION" id="bd0`~YlSD]d06p}UJ!yX" variabletype="broadcast_msg">Background</field>' +
+'<block type="WhenBackgroundChangesScript" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '</category>' +
  '<category name="%{BKY_CATEGORY_CONTROL}" id= "control" colour="#FFAB19" secondaryColour="#CF8B17">' +
@@ -549,32 +493,16 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="SceneTransitionBrick" id="" x="" y="">' +
-'  <value name="sceneForTransition">' +
-'    <shadow type="control_continuescene_menu" id="">' +
-'      <field name="SCENE_OPTION">new...</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="SceneStartBrick" id="" x="" y="">' +
-'  <value name="sceneToStart">' +
-'    <shadow type="control_startscene_menu" id="">' +
-'      <field name="SCENE_OPTION">Scene 1</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="StopScriptBrick" id="" x="" y="">' +
-'  <value name="spinnerSelection">' +
-'    <shadow type="control_stopscript_menu" id="">' +
-'      <field name="SCENE_OPTION">this script</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="CloneBrick" id="" x="" y="">' +
-'  <value name="objectToClone">' +
-'    <shadow type="control_createcloneof_menu" id="">' +
-'      <field name="SCENE_OPTION">yourself</field>' +
-'    </shadow>' +
-'  </value>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '<block type="DeleteThisCloneBrick" id="" x="" y="">' +
 '</block>' +
@@ -617,7 +545,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '</category>' +
  '<category name="Data" id= "operators" colour="#FF6680" secondaryColour="#389438">' +
 '<block type="SetVariableBrick" id="" x="" y="">' +
-'  <field name="EFFECT">name</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="VARIABLE">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1</field>' +
@@ -625,7 +553,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="ChangeVariableBrick" id="" x="" y="">' +
-'  <field name="EFFECT">name</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="VARIABLE_CHANGE">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1</field>' +
@@ -633,7 +561,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="ShowTextBrick" id="" x="" y="">' +
-'  <field name="EFFECT">name</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="X_POSITION">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">100</field>' +
@@ -646,6 +574,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="ShowTextColorSizeAlignmentBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="X_POSITION">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">100</field>' +
@@ -671,11 +600,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '      <field name="NUM">1</field>' +
 '    </shadow>' +
 '  </value>' +
-'  <field name="NAME">name</field>' +
-'  <field name="ALIGNMENT">centered</field>' +
+'  <field name="DROPDOWN2">new...</field>' +
 '</block>' +
 '<block type="DeleteItemOfUserListBrick" id="" x="" y="">' +
-'  <field name="LIST" id="" variabletype="list">list</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="LIST_DELETE_ITEM">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1</field>' +
@@ -683,7 +611,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="AddItemToUserListBrick" id="" x="" y="">' +
-'  <field name="LIST" id="" variabletype="list">list</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="LIST_ADD_ITEM">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">name</field>' +
@@ -696,7 +624,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '      <field name="TEXT">1</field>' +
 '    </shadow>' +
 '  </value>' +
-'  <field name="LIST" id="" variabletype="list">list</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="INSERT_ITEM_INTO_USERLIST_INDEX">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1</field>' +
@@ -704,7 +632,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="ReplaceItemInUserListBrick" id="" x="" y="">' +
-'  <field name="LIST" id="" variabletype="list">list</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '  <value name="INSERT_ITEM_INTO_USERLIST_INDEX">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1</field>' +
@@ -717,6 +645,6 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="HideTextBrick" id="" x="" y="">' +
-'  <field name="VARIABLE" id="" variabletype="">name</field>' +
+'  <field name="DROPDOWN">new...</field>' +
 '</block>' +
 '</category>'+ '</xml>';

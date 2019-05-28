@@ -1,5 +1,5 @@
 <block type="ShowTextBrick" id="" x="" y="">
-  <field name="EFFECT">name</field>
+  <field name="DROPDOWN">new...</field>
   <value name="X_POSITION">
     <shadow type="text" id="">
       <field name="TEXT">100</field>

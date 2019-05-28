@@ -37,9 +37,9 @@ Blockly.Blocks['SetVariableBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "EFFECT",
+          "name": "DROPDOWN",
           "options": [
-            ["name"]
+            ["new..."]
           ]
         },
         {
@@ -60,9 +60,9 @@ Blockly.Blocks['ChangeVariableBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "EFFECT",
+          "name": "DROPDOWN",
           "options": [
-            ["name"]
+            ["new..."]
           ]
         },
         {
@@ -83,9 +83,9 @@ Blockly.Blocks['ShowTextBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "EFFECT",
+          "name": "DROPDOWN",
           "options": [
-            ["name"]
+            ["new..."]
           ]
         },
         {
@@ -111,9 +111,9 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "NAME",
+          "name": "DROPDOWN",
           "options": [
-            ["name"]
+            ["new..."]
           ]
         },
         {
@@ -134,9 +134,9 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
         },
         {
           "type": "field_dropdown",
-          "name": "ALIGNMENT",
+          "name": "DROPDOWN2",
           "options": [
-            ["left"], ["centered"], ["right"]
+            ["new..."]
           ]
         }
       ],
@@ -153,9 +153,11 @@ Blockly.Blocks['DeleteItemOfUserListBrick'] = {
       "message0": Blockly.Msg.DATA_DELETEITEMFROMLIST,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "LIST",
-          "variableTypes": [Blockly.LIST_VARIABLE_TYPE]
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         },
         {
           "type": "input_value",
@@ -179,9 +181,11 @@ Blockly.Blocks['AddItemToUserListBrick'] = {
           "name": "LIST_ADD_ITEM"
         },
         {
-          "type": "field_variable",
-          "name": "LIST",
-          "variableTypes": [Blockly.LIST_VARIABLE_TYPE]
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.dataLists,
@@ -200,9 +204,11 @@ Blockly.Blocks['InsertItemIntoUserListBrick'] = {
           "name": "INSERT_ITEM_INTO_USERLIST_VALUE"
         },
         {
-          "type": "field_variable",
-          "name": "LIST",
-          "variableTypes": [Blockly.LIST_VARIABLE_TYPE]
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         },
         {
           "type": "input_value",
@@ -221,9 +227,11 @@ Blockly.Blocks['ReplaceItemInUserListBrick'] = {
       "message0": Blockly.Msg.DATA_REPLACEITEMINLIST,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "LIST",
-          "variableTypes": [Blockly.LIST_VARIABLE_TYPE]
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         },
         {
           "type": "input_value",
@@ -240,15 +248,45 @@ Blockly.Blocks['ReplaceItemInUserListBrick'] = {
   }
 };
 
+Blockly.Blocks['HideTextBrick'] = {
+  /**
+   * Block to hide a variable
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_HIDEVARIABLE,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.data,
+      "colour": Blockly.Colours.data.primary,
+      "colourSecondary": Blockly.Colours.data.secondary,
+      "colourTertiary": Blockly.Colours.data.tertiary
+    });
+  }
+};
+
+
 Blockly.Blocks['data_deleteitemfromlist'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DATA_DELETEITEMFROMLIST,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "LIST",
-          "variableTypes": [Blockly.LIST_VARIABLE_TYPE]
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         },
         {
           "type": "input_value",
@@ -357,32 +395,6 @@ Blockly.Blocks['data_showvariable'] = {
     });
   }
 };
-
-Blockly.Blocks['HideTextBrick'] = {
-  /**
-   * Block to hide a variable
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.DATA_HIDEVARIABLE,
-      "args0": [
-        {
-          "type": "field_variable",
-          "name": "VARIABLE"
-        }
-      ],
-      "previousStatement": null,
-      "nextStatement": null,
-      "category": Blockly.Categories.data,
-      "colour": Blockly.Colours.data.primary,
-      "colourSecondary": Blockly.Colours.data.secondary,
-      "colourTertiary": Blockly.Colours.data.tertiary
-    });
-  }
-};
-
-
 
 Blockly.Blocks['data_listcontents'] = {
   /**

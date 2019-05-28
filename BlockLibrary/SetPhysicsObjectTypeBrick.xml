@@ -1,7 +1,3 @@
 <block type="SetPhysicsObjectTypeBrick" x="" y="">
-  <value name="TOWARDS">
-    <shadow type="motion_setyourmotiontypeto_menu">
-      <field name="TOWARDS">moving and bouncing under gravity</field>
-    </shadow>
-  </value>
+    <field name="DROPDOWN">moving and bouncing under gravity</field>
 </block>

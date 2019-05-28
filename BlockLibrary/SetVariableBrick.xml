@@ -1,5 +1,5 @@
 <block type="SetVariableBrick" id="" x="" y="">
-  <field name="EFFECT">name</field>
+  <field name="DROPDOWN">new...</field>
   <value name="VARIABLE">
     <shadow type="text" id="">
       <field name="TEXT">1</field>
