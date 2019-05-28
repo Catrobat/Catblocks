@@ -3,14 +3,17 @@ package tools;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class Parser {
 
     private static final String BRICK_DEF = "<brick ";
     private static final String BRICKLIST_DEF = "<brickList>";
-    private static final String FORMULARLIST_BEGIN = "<formulaList>";
+    private static final String FORMULALIST_BEGIN = "<formulaList>";
+    private static final String FORMULA_BEGIN = "<formula ";
+    private static final String FORMULA_END = "</formula>";
     private static final String BRICKLIST_END = "</brickList>";
-    private static final String FORMULARLIST_END = "</formulaList>";
+    private static final String FORMULALIST_END = "</formulaList>";
 
     private static final String FOREVER_DEF = "ForeverBrick";
     private static final String IF_DEF = "IfThenLogicBeginBrick";
@@ -21,11 +24,8 @@ public class Parser {
     private static final String IFBRANCH_DEF = "ifBranchBricks";
     private static final String LOOP_DEF = "loopBricks";
 
-    private static final String LEFTCHILD = "leftChild";
-    private static final String RIGHTCHILD = "rightChild";
-    private static final String OPERATOR = "OPERATOR";
-    private static final String STRING = "STRING";
-    private static final String NUMBER = "NUMBER";
+    private static final String LEFTCHILD = "<leftChild";
+    private static final String RIGHTCHILD = "<rightChild";
 
     private static final String SCRIPT_DEF = "<script ";
     private static final String BRICK_TYPE = "type=";
@@ -42,66 +42,50 @@ public class Parser {
 
     private boolean inBrickList = false;
     private boolean inFormularList = false;
-    private boolean inLeftChild = false;
-    private boolean inRightChild= false;
-    private boolean inOperator = false;
 
     private List<Script> scripts;
     private Script currScript;
     private Block condBlock;
     private boolean skip = false;
     private Block currBlock;
-    private boolean inAppendVal = false;
     private String currVal;
+    private Stack<Formula> formulaStack;
 
 
     public Parser() {
         scripts = new LinkedList<>();
         condBlock = null;
         filePath = new File("").getAbsolutePath().split("Catrobat2Blockly")[0];
+        formulaStack = new Stack<>();
     }
 
-    public void parse(String line) {
+    private void parse(String line) {
 
-        if(skip){
+        if (skip) {
             return;
-        }else {
+        } else {
             checkWhereWeAre(line);
         }
 
-        if(inBrickList && line.contains(BRICK_DEF) && line.contains(BRICK_TYPE)){
+        if (inBrickList && line.contains(BRICK_DEF) && line.contains(BRICK_TYPE)) {
             addNewBlock(line);
         }
-        if(inFormularList){
-            if(line.contains("<formula category=")){
+        if (inFormularList) {
+            if (line.contains("<formula category=")) {
                 currVal = (line.split("category=\"")[1].split("\">")[0]);
             }
-            if(inLeftChild){
-                //Parse left child <value>1</value>
-                if(line.contains("<value>")) {
-                    String name = line.split("</?value>")[1];
-                    currBlock.setLeftChild(name);
-                }
-            }else if(inOperator){
-                //Parse operator child
-                if(line.contains("<value>")) {
-                    String name = line.split("</?value>")[1];
-                    inOperator = false;
-                    currBlock.setOperator(name);
-                }
-            } else if(inRightChild){
-                //Parse left child
-                if(line.contains("<value>")) {
-                    String name = line.split("</?value>")[1];
-                    currBlock.setRightChild(name);
-                }
-            } else if(line.contains("<value>")){
+            if (line.contains("<value>")) {
                 String name = line.split("</?value>")[1];
-                currBlock.addFormValues(currVal, name);
+                Formula formula = formulaStack.pop();
+                formula.setValue(name);
+            }
+            if(line.contains(FORMULA_END)){
+                String formula = currBlock.convertFormula();
+                currBlock.addFormValues(currVal, formula);
             }
         }
 
-        if(line.contains(SCRIPT_DEF) && line.contains(BRICK_TYPE)){
+        if (line.contains(SCRIPT_DEF) && line.contains(BRICK_TYPE)) {
             String name = (line.split(BRICK_TYPE)[1]).split("\"")[1];
 
             Script script = new Script(name);
@@ -118,23 +102,23 @@ public class Parser {
         String path = getPath(name);
         File file = new File(path);
 
-        if(file.exists()){
+        if (file.exists()) {
             Block block = new Block(name);
             currBlock = block;
 
-            if(isCondition(name)){
+            if (isCondition(name)) {
                 condBlock = block;
             }
 
-            if(condBlock != null){
-                if(condBlock.isInSTMT1()){
+            if (condBlock != null) {
+                if (condBlock.isInSTMT1()) {
                     condBlock.addSubblock(block);
-                }else if(condBlock.isInSTMT2()){
+                } else if (condBlock.isInSTMT2()) {
                     condBlock.addSubblock2(block);
-                }else{
+                } else {
                     currScript.addBlock(block);
                 }
-            }else{
+            } else {
                 currScript.addBlock(block);
             }
         }
@@ -147,39 +131,49 @@ public class Parser {
     }
 
     private void checkWhereWeAre(String line) {
-        if(line.contains(BRICKLIST_DEF)){
+        if (line.contains(BRICKLIST_DEF)) {
             inBrickList = true;
         }
-        if(line.contains(BRICKLIST_END)){
+        if (line.contains(BRICKLIST_END)) {
             inBrickList = false;
         }
 
-        if(currBlock != null){
-            if(line.contains(FORMULARLIST_BEGIN)){
+        if (currBlock != null) {
+            if (line.contains(FORMULALIST_BEGIN)) {
                 inFormularList = true;
             }
-            if(line.contains(FORMULARLIST_END)){
+            if (line.contains(FORMULALIST_END)) {
                 inFormularList = false;
             }
+            if (line.contains(FORMULA_BEGIN)) {
+                Formula formula = new Formula();
+                currBlock.setFormula(formula);
+                formulaStack.push(formula);
+            }
 
-            if(inFormularList && line.contains(LEFTCHILD)){
-                inLeftChild = !inLeftChild;
+            if (inFormularList && line.contains(LEFTCHILD)) {
+                Formula curr = formulaStack.pop();
+                Formula formula = new Formula();
+                curr.setLeft(formula);
+                formulaStack.push(curr);
+                formulaStack.push(formula);
             }
-            if(inFormularList && line.contains(RIGHTCHILD)){
-                inRightChild = !inRightChild;
-            }
-            if(inFormularList && line.contains(OPERATOR)){
-                inOperator = true;
+            if (inFormularList && line.contains(RIGHTCHILD)) {
+                Formula curr = formulaStack.pop();
+                Formula formula = new Formula();
+                curr.setRight(formula);
+                formulaStack.push(curr);
+                formulaStack.push(formula);
             }
         }
 
-        if(condBlock != null && line.contains(ELSEBRANCH_DEF)){
+        if (condBlock != null && line.contains(ELSEBRANCH_DEF)) {
             condBlock.workon2();
         }
 
-        if(condBlock != null && (line.contains(IFBRANCH_DEF) || line.contains(LOOP_DEF))){
+        if (condBlock != null && (line.contains(IFBRANCH_DEF) || line.contains(LOOP_DEF))) {
             condBlock.workon1();
-            if(!condBlock.getworkon1() && condBlock.getName().equals(FOREVER_DEF)){
+            if (!condBlock.getworkon1() && condBlock.getName().equals(FOREVER_DEF)) {
                 skip = true;
             }
         }
@@ -189,7 +183,7 @@ public class Parser {
         PrintWriter writer = new PrintWriter(outFile);
         writer.println(XML_BEGIN);
 
-        for(Script script : scripts){
+        for (Script script : scripts) {
             String path = getPath(script.getName());
             writeToFile(writer, path, script);
         }
@@ -206,11 +200,11 @@ public class Parser {
 
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
-        String line = "";
+        String line;
 
-        while((line = reader.readLine())!= null){
-            if(!(line.contains("xml") || line.contains("<variables>"))){
-                if(line.contains("</block>")){
+        while ((line = reader.readLine()) != null) {
+            if (!(line.contains("xml") || line.contains("<variables>"))) {
+                if (line.contains("</block>")) {
                     writeNextBlock(writer, script.getBlocks(), 0, true);
                 }
                 writer.println(line);
@@ -221,10 +215,10 @@ public class Parser {
     }
 
     private void writeNextBlock(PrintWriter writer, List<Block> blocks, Integer index, Boolean next) throws IOException {
-        if(blocks.isEmpty() || blocks.size() == index){
+        if (blocks.isEmpty() || blocks.size() == index) {
             return;
         }
-        if(next) {
+        if (next) {
             writer.println(NEXT_BEGIN);
         }
         Block block = blocks.get(index);
@@ -235,53 +229,53 @@ public class Parser {
 
         String line;
 
-        while((line = reader.readLine())!= null){
-            if(!(line.contains("xml") || line.contains("<variables>"))){
+        while ((line = reader.readLine()) != null) {
+            if (!(line.contains("xml") || line.contains("<variables>"))) {
 
-                if(line.contains("</block>")){
-                    if(!block.getSubblock().isEmpty()){
+                if (line.contains("</block>")) {
+                    if (!block.getSubblock().isEmpty()) {
                         writer.println(SUB1_BEGIN);
                         writeNextBlock(writer, block.getSubblock(), 0, false);
                         writer.println(SUB_END);
                     }
-                    if(!block.getSubblock2().isEmpty()){
+                    if (!block.getSubblock2().isEmpty()) {
                         writer.println(SUB2_BEGIN);
                         writeNextBlock(writer, block.getSubblock2(), 0, false);
                         writer.println(SUB_END);
                     }
-                    writeNextBlock(writer, blocks, index+1, true);
+                    writeNextBlock(writer, blocks, index + 1, true);
                 }
 
-                if(line.contains("<value name=")){
-                    String text = line.split("value name=\"")[1].replaceAll("\">", "") ;//"<value name=\"NOTE\">"
+                if (line.contains("<value name=")) {
+                    String text = line.split("value name=\"")[1].replaceAll("\">", "");//"<value name=\"NOTE\">"
                     block.setCurr(text);
                 }
 
-                if(line.contains("<field name=\"TEXT\">")){
+                if (line.contains("<field name=\"TEXT\">")) {
                     writer.println("<field name=\"TEXT\">" + block.getField() + "</field>");
-                }else{
+                } else {
                     writer.println(line);
                 }
             }
         }
 
         reader.close();
-        if(next){
+        if (next) {
             writer.println(NEXT_END);
         }
     }
 
     public void update() {
-        for(Script script : scripts){
+        for (Script script : scripts) {
             updateBlocklist(script.getBlocks());
         }
     }
 
     private void updateBlocklist(List<Block> blocks) {
-        if(blocks.isEmpty()){
+        if (blocks.isEmpty()) {
             return;
         }
-        for(Block block : blocks){
+        for (Block block : blocks) {
             block.updateBlockField();
             updateBlocklist(block.getSubblock());
             updateBlocklist(block.getSubblock2());
@@ -291,9 +285,9 @@ public class Parser {
     public void parseFile(String inputFile) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
-        String line = "";
+        String line;
 
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             parse(line);
         }
 
