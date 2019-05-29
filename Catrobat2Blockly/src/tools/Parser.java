@@ -265,23 +265,6 @@ public class Parser {
         }
     }
 
-    public void update() {
-        for (Script script : scripts) {
-            updateBlocklist(script.getBlocks());
-        }
-    }
-
-    private void updateBlocklist(List<Block> blocks) {
-        if (blocks.isEmpty()) {
-            return;
-        }
-        for (Block block : blocks) {
-            block.updateBlockField();
-            updateBlocklist(block.getSubblock());
-            updateBlocklist(block.getSubblock2());
-        }
-    }
-
     public void parseFile(String inputFile) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 

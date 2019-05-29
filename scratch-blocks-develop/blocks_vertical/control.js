@@ -104,7 +104,7 @@ Blockly.Blocks['IfElseLogicBeginBrick'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "IF_CONDITION"
         }
       ],
       "args1": [
@@ -134,7 +134,7 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "IF_CONDITION"
         }
       ],
       "args1": [
