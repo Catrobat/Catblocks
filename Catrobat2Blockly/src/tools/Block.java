@@ -92,22 +92,6 @@ class Block {
         return inSTMT1;
     }
 
-    void updateBlockField(){
-
-        updateFormula();
-
-        if(this.name.contains("RepeatUntilBrick")){
-            this.formValues.put("REPEAT_UNTIL_CONDITION",this.field);
-        }
-        else{
-            this.formValues.put("TEXT",this.field);
-        }
-    }
-
-    private void updateFormula() {
-
-    }
-
     void setCurr(String curr) {
         this.curr = curr;
     }

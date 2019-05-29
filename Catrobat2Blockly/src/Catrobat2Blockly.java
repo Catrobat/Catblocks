@@ -16,7 +16,6 @@ public class Catrobat2Blockly {
 
         Parser parser = new Parser();
         parser.parseFile(inputFile);
-        parser.update();
         parser.write(outputFile);
     }
 
