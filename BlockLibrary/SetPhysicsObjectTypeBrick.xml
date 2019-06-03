@@ -1,0 +1,3 @@
+<block type="SetPhysicsObjectTypeBrick" x="" y="">
+    <field name="DROPDOWN">moving and bouncing under gravity</field>
+</block>

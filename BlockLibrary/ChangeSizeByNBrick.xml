@@ -1,0 +1,7 @@
+<block type="ChangeSizeByNBrick" id="" x="" y="">
+  <value name="SIZE_CHANGE">
+    <shadow type="text" id="">
+      <field name="TEXT">10</field>
+    </shadow>
+  </value>
+</block>

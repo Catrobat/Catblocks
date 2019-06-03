@@ -1,0 +1,12 @@
+<block type="SetVelocityBrick" x="" y="">
+  <value name="PHYSICS_VELOCITY_X">
+    <shadow type="text">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="PHYSICS_VELOCITY_Y">
+    <shadow type="text">
+      <field name="TEXT">0</field>
+    </shadow>
+  </value>
+</block>

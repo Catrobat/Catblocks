@@ -1,0 +1,7 @@
+<block type="ThinkBubbleBrick" id="" x="" y="">
+  <value name="THINK_BRICK">
+    <shadow type="text" id="">
+      <field name="TEXT">Hmmmm!</field>
+    </shadow>
+  </value>
+</block>

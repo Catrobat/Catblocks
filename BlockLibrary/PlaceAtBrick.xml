@@ -1,0 +1,12 @@
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+      <field name="TEXT">100</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+      <field name="TEXT">200</field>
+    </shadow>
+  </value>
+</block>

@@ -1,0 +1,7 @@
+<block type="SetVolumeToBrick" id="" x="" y="">
+  <value name="VOLUME">
+    <shadow type="text" id="">
+      <field name="TEXT">60</field>
+    </shadow>
+  </value>
+</block>

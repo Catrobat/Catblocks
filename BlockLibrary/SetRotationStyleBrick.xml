@@ -1,0 +1,3 @@
+ <block type="SetRotationStyleBrick">
+	 <field name="DROPDOWN">left-right only</field>
+ </block>

@@ -1,0 +1,12 @@
+<block type="ThinkForBubbleBrick" id="" x="" y="">
+  <value name="THINK_BRICK">
+    <shadow type="text" id="">
+      <field name="TEXT">Hmmmm!</field>
+    </shadow>
+  </value>
+  <value name="DURATION_IN_SECONDS">
+    <shadow type="text" id="">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>

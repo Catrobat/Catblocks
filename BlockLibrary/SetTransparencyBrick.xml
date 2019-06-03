@@ -1,0 +1,7 @@
+<block type="SetTransparencyBrick" id="" x="" y="">
+  <value name="TRANSPARENCY">
+    <shadow type="text" id="">
+      <field name="TEXT">50</field>
+    </shadow>
+  </value>
+</block>

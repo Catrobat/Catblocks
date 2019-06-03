@@ -1,0 +1,7 @@
+<block type="SetYBrick" x="" y="">
+  <value name="Y_POSITION">
+    <shadow type="text">
+      <field name="TEXT">200</field>
+    </shadow>
+  </value>
+</block>

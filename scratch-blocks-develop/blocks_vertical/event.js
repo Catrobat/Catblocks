@@ -28,7 +28,7 @@ goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 //Cat Blocks
-Blockly.Blocks['WhenStartedBrick'] = {
+Blockly.Blocks['StartScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
@@ -59,14 +59,17 @@ Blockly.Blocks['WhenTouchDownBrick'] = {
   }
 };
 
-Blockly.Blocks['BroadcastReceiverBrick'] = {
+Blockly.Blocks['BroadcastScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
       "args0": [
         {
-          "type": "input_value",
-          "name": "BROADCAST_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.event,
@@ -76,35 +79,17 @@ Blockly.Blocks['BroadcastReceiverBrick'] = {
 };
 
 
-Blockly.Blocks['BroadcastBrick_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "BROADCAST_MENU",
-          "options": [
-            ["new..."]
-          ]
-        }
-      ],
-      "colour": Blockly.Colours.event.secondary,
-      "colourSecondary": Blockly.Colours.event.secondary,
-      "colourTertiary": Blockly.Colours.event.tertiary,
-      "extensions": ["output_string"]
-    });
-  }
-};
-
 Blockly.Blocks['BroadcastBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_BROADCAST_CB,
       "args0": [
         {
-          "type": "input_value",
-          "name": "BROADCAST_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.event,
@@ -120,8 +105,11 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
       "message0": Blockly.Msg.EVENT_BROADCASTANDWAIT_CB,
       "args0": [
         {
-          "type":"input_value",
-          "name":"BROADCAST_MENU"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.event,
@@ -132,7 +120,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
 
 
 
-Blockly.Blocks['WhenConditionBrick'] = {
+Blockly.Blocks['WhenConditionScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
@@ -148,16 +136,17 @@ Blockly.Blocks['WhenConditionBrick'] = {
   }
 };
 
-Blockly.Blocks['CollisionReceiverBrick'] = {
+Blockly.Blocks['CollisionScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "BROADCAST_OPTION",
-          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
-          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["any edge, actor, or object"]
+          ]
         }
       ],
       "category": Blockly.Categories.event,
@@ -166,16 +155,17 @@ Blockly.Blocks['CollisionReceiverBrick'] = {
   }
 };
 
-Blockly.Blocks['WhenBackgroundChangesBrick'] = {
+Blockly.Blocks['WhenBackgroundChangesScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,
       "args0": [
         {
-          "type": "field_variable",
-          "name": "BROADCAST_OPTION",
-          "variableTypes": [Blockly.BROADCAST_MESSAGE_VARIABLE_TYPE],
-          "variable": Blockly.Msg.STRING_NEW_MESSAGE
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.event,

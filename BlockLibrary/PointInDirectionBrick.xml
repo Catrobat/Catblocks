@@ -1,0 +1,7 @@
+<block type="PointInDirectionBrick" x="" y="">
+  <value name="DEGREES">
+    <shadow type="math_angle">
+      <field name="TEXT">90</field>
+    </shadow>
+  </value>
+</block>

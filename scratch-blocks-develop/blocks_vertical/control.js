@@ -104,7 +104,7 @@ Blockly.Blocks['IfElseLogicBeginBrick'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "IF_CONDITION"
         }
       ],
       "args1": [
@@ -134,7 +134,7 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "input_value",
-          "name": "TEXT"
+          "name": "IF_CONDITION"
         }
       ],
       "args1": [
@@ -237,24 +237,6 @@ Blockly.Blocks['RepeatUntilBrick'] = {
   }
 };
 
-Blockly.Blocks['control_continuescene_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SCENE_OPTION",
-          "options": [
-            ["new..."]
-          ]
-        }
-      ],
-      "extensions": ["colours_control", "output_string"]
-    });
-  }
-};
-
 Blockly.Blocks['SceneTransitionBrick'] = {
   init: function() {
     this.jsonInit({
@@ -262,31 +244,15 @@ Blockly.Blocks['SceneTransitionBrick'] = {
       "message0": Blockly.Msg.CONTROL_CONTINUESCENE,
       "args0": [
         {
-          "type": "input_value",
-          "name": "sceneForTransition"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.control,
       "extensions": ["colours_control", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['control_startscene_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SCENE_OPTION",
-          "options": [
-            ["new..."],
-            ["Scene 1"]
-          ]
-        }
-      ],
-      "extensions": ["colours_control", "output_string"]
     });
   }
 };
@@ -298,32 +264,15 @@ Blockly.Blocks['SceneStartBrick'] = {
       "message0": Blockly.Msg.CONTROL_STARTSCENE,
       "args0": [
         {
-          "type": "input_value",
-          "name": "sceneToStart"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.control,
       "extensions": ["colours_control", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['control_stopscript_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SCENE_OPTION",
-          "options": [
-            ["this script"],
-            ["all scripts"],
-            ["other scripts of this actor or object"]
-          ]
-        }
-      ],
-      "extensions": ["colours_control", "output_string"]
     });
   }
 };
@@ -335,30 +284,15 @@ Blockly.Blocks['StopScriptBrick'] = {
       "message0": Blockly.Msg.CONTROL_STOPCAT,
       "args0": [
         {
-          "type": "input_value",
-          "name": "spinnerSelection"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.control,
       "extensions": ["colours_control", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['control_createcloneof_menu'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "SCENE_OPTION",
-          "options": [
-            ["yourself"]
-          ]
-        }
-      ],
-      "extensions": ["colours_control", "output_string"]
     });
   }
 };
@@ -370,8 +304,11 @@ Blockly.Blocks['CloneBrick'] = {
       "message0": Blockly.Msg.CONTROL_CREATECLONEOFCAT,
       "args0": [
         {
-          "type": "input_value",
-          "name": "objectToClone"
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
         }
       ],
       "category": Blockly.Categories.control,
