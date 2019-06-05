@@ -55,6 +55,9 @@ function test_AllBlocksExists() {
   })
 }
 
+
+// TODO: add some more test here
+
 // function test_ForeverExists() {
 
 //   var workspace = new Blockly.Workspace();
