@@ -157,3 +157,73 @@ function defineGetVarBlock() {
 function undefineGetVarBlock() {
   delete Blockly.Blocks['get_var_block'];
 }
+
+// some const stuff
+const PROTOCOL = 'http';
+const HOST = 'localhost';
+const PORT = '8080';
+const SERVER_URL = PROTOCOL + '://' + HOST + ':' + PORT;
+
+/**
+ * get url relative to server
+ * @param {*} path
+ * @param {*} server
+ */
+const getUrl = (path, server = SERVER_URL) => {
+  assertTrue(hasStringValue(server));
+  return SERVER_URL + path;
+}
+
+/**
+ * Check if value is valid string
+ * @param {*} value
+ */
+const hasStringValue = value =>
+  value != "" && value != null && value.length != 0;
+
+/**
+ * load page data syncroniously
+ * @param {*} url
+ */
+const loadPageSync = url => {
+  assertTrue(hasStringValue(url));
+
+  var req = new XMLHttpRequest();
+  req.open("GET", url, false);
+  req.send(null);
+  if (req.status == 200) {
+    return req.responseText;
+  }
+};
+
+/**
+ * list directory
+ * @param {*} dir
+ * @param {*} methode
+ */
+const listDir = (dir, methode = loadPageSync) => {
+  assertTrue(hasStringValue(dir));
+  return parseTextToDirArray(methode(dir));
+};
+
+/**
+ * parse html payload to array, key is class name
+ * @param {*} text
+ * @param {*} cssclassname
+ */
+const parseTextToDirArray = text => {
+  assertTrue(hasStringValue(text));
+  const tmp = document.createElement("html");
+  tmp.innerHTML = text;
+  const files = tmp.getElementsByClassName("display-name");
+  return Object.keys(files).map(idx => files[idx].children[0].text);
+};
+
+/**
+ * Print out message if debug is enabled
+ * @param {*} message 
+ */
+const consoleDebug = message => {
+  if(DEBUG == true)
+    console.log(message);
+}
