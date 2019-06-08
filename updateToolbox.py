@@ -56,9 +56,6 @@ def getData():
     xmlFiles = [f for f in os.listdir(blockPath) if os.path.isfile(os.path.join(blockPath, f))]
     categoryFiles = [f for f in os.listdir(categoryPath) if os.path.isfile(os.path.join(categoryPath, f))]
 
-    print(xmlFiles)
-    print(categoryFiles)
-
     for category in categoryFiles:
         file_ = open(categoryPath + "/" + category,"r")
         data = file_.readlines()
