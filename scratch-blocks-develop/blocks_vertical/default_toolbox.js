@@ -454,14 +454,14 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  </value>' +
 '</block>' +
 '<block type="IfElseLogicBeginBrick" id="" x="" y="">' +
-'    <value name="TEXT">' +
+'    <value name="IF_CONDITION">' +
 '      <shadow type="text" id="">' +
 '        <field name="TEXT">1&lt;2</field>' +
 '      </shadow>' +
 '    </value>' +
 '</block>' +
 '<block type="IfLogicBeginBrick" id="" x="" y="">' +
-'  <value name="TEXT">' +
+'  <value name="IF_CONDITION">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">1&lt;2</field>' +
 '    </shadow>' +
