@@ -105,9 +105,9 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="PointToBrick" x="" y="">' +
 '  <field name="DROPDOWN">new...</field>' +
 '</block>' +
-' <block type="SetRotationStyleBrick">' +
-'	 <field name="DROPDOWN">left-right only</field>' +
-' </block>' +
+'<block type="SetRotationStyleBrick">' +
+'  <field name="DROPDOWN">left-right only</field>' +
+'</block>' +
 '<block type="GlideToBrick" x="" y="">' +
 '  <value name="DURATION_IN_SECONDS">' +
 '    <shadow type="text">' +

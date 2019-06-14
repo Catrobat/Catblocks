@@ -227,3 +227,43 @@ const consoleDebug = message => {
   if(DEBUG == true)
     console.log(message);
 }
+
+/**
+ * check if test and ref are the same blocky xml blocks
+ * @param {*} test 
+ * @param {*} ref 
+ */
+const sameXmlBlock = (test, ref) => {
+  if (test.tagName !== ref.tagName || test.attributs !== ref.attributs)
+    return false;
+
+  if (ref.getAttributeNames().length !== test.getAttributeNames().length)
+    return false;
+
+  for (const attr of ref.getAttributeNames()) {
+    if (ref.getAttribute(attr) !== test.getAttribute(attr)) return false;
+  }
+
+  if (ref.childElementCount !== test.childElementCount) return false;
+
+  if (ref.childElementCount === 0) {
+    if (
+      ref.innerHTML.replaceAll("\n", "") !== test.innerHTML.replaceAll("\n", "")
+    )
+      return false;
+  } else {
+    for (let idx = 0; idx < ref.childElementCount; idx++) {
+      if (!sameXmlBlock(ref.children[idx], test.children[idx])) return false;
+    }
+  }
+
+  return true;
+};
+
+/**
+ * Add replaceAll function to String class
+ */
+String.prototype.replaceAll = function(search, replace) {
+  var source = this;
+  return source.split(search).join(replace);
+};
