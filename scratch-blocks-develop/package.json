@@ -24,7 +24,7 @@
     "translate:sync:src": "tx-push-src scratch-editor blocks msg/json/en.json",
     "translate:sync:translations": "node i18n/sync_tx_translations.js",
     "translate:update": "npm run translate:sync:src && npm run translate:sync:translations",
-    "translate-scratch": "node i18n/catblocks/create_msg_json.js"
+    "translate-scratch": "node i18n/catblocks/create_msg_json.js && node i18n/catblocks/create_messages.js"
   },
   "dependencies": {
     "exports-loader": "0.6.3",
