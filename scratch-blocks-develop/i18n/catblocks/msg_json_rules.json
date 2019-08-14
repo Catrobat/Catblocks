@@ -1,0 +1,15 @@
+{
+  "@metadata": {
+    "author": "Andreas.Karner@student.tugraz.at",
+    "description": "Generator rules for msg JSON files, source are catroid string xmls"
+  },
+  "CONTROL_FOREVER": "${brick_forever}",
+  "CONTROL_REPEAT": "${brick_repeat} %1",
+  "CONTROL_IF": "${brick_if_begin} %1",
+  "CONTROL_ELSE": "${brick_if_else}",
+  "CONTROL_STOP": "${brick_if_end}",
+  "CONTROL_STOP_ALL": "${brick_stop_all_scripts}",
+  "CONTROL_STOP_THIS": "${brick_stop_this_script}",
+  "CONTROL_STOP_OTHER": "${brick_stop_other_scripts}",
+  "CONTROL_WAIT": "${brick_wait} %1 ${phiro_seconds}"
+}
