@@ -64,8 +64,17 @@
 
       document.forms.options.elements.side.value = side;
 
+      // Setup locale
+      var select = document.getElementsByName("locale")[0];
+      Object.keys(Blockly.ScratchMsgs.locales).forEach(locale => {
+        var lcoale_opt = document.createElement('option');
+        lcoale_opt.value = locale;
+        lcoale_opt.innerHTML = locale;
+        select.appendChild(lcoale_opt);
+      });
+
       match = location.search.match(/locale=([^&]+)/);
-      var locale = match ? match[1] : 'en';
+      var locale = match ? match[1] : select.options[0].value;
       Blockly.ScratchMsgs.setLocale(locale);
       document.forms.options.elements.locale.value = locale;
 
@@ -495,14 +504,14 @@
       <option value="bottom">Bottom</option>
     </select>
     <select name="locale" onchange="setLocale(this.value)">
-      <option value="en_rAU">English</option>
+      <!-- <option value="en_rAU">English</option>
       <option value="es_rES">Catalan</option>
       <option value="cs">Czech</option>
       <option value="da">Danish</option>
       <option value="nl">Dutch</option>
       <option value="fi">Finnish</option>
       <option value="fr">French</option>
-      <option value="de">German</option>
+      <option value="de_rDE">German</option>
       <option value="el">Greek</option>
       <option value="he">Hebrew</option>
       <option value="hu">Hungarian</option>
@@ -526,7 +535,7 @@
       <option value="vi">Vietnamese</option>
       <option value="cy">Welsh</option>
       <option value="zh-cn">Chinese (China)</option>
-      <option value="zh-tw">Chinese (TW)</option>
+      <option value="zh-tw">Chinese (TW)</option> -->
     </select>
   </form>
 
