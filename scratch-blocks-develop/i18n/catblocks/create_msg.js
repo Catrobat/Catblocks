@@ -42,7 +42,7 @@ fs.writeSync(message_js_fd, MESSAGE_HEADER);
 const LANG_FILES = fs.readdirSync(JSON_DIR, { encoding: 'utf-8' });
 LANG_FILES.forEach(langfile => {
   if (langfile.match(/.+\.json$/)) {
-    const lang_name = langfile.substr(0, langfile.indexOf('.')).replace('-', '_');
+    const lang_name = langfile.substr(0, langfile.indexOf('.'))
     const lang_json_path = path.join(JSON_DIR, langfile);
     const lang_json_object = JSON.parse(fs.readFileSync(lang_json_path, { encoding: 'utf-8' }));
 

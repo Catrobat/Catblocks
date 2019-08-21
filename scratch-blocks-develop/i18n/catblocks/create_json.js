@@ -80,7 +80,7 @@ LANG_DIRS.forEach(dirname => {
   const lang_file_path = path.join(STRINGS_DIR, dirname, STRINGS_FILE);
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
   const lang_values = PARSE_STRING_VALUES(xml2json.toJson(lang_file));
-  const lang_name = PARSE_STRING_DIR(dirname);
+  const lang_name = PARSE_STRING_DIR(dirname).replace('-', '_');
   const dst_json_path = path.join(DEST_DIR, lang_name + '.json');
 
   const result = {};

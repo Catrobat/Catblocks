@@ -68,7 +68,7 @@ function isEqualArrays(array1, array2) {
  * @return {!goog.testing.MockInterface} The mocked method.
  */
 function setUpMockMethod(mockControl, scope, funcName, parameters,
-	return_values) {
+  return_values) {
   var mockMethod = mockControl.createMethodMock(scope, funcName);
   if (return_values) {
     for (var i = 0, return_value; return_value = return_values[i]; i++) {
@@ -201,9 +201,9 @@ const loadPageSync = url => {
  * @param {*} dir
  * @param {*} methode
  */
-const listDir = (dir, methode = loadPageSync) => {
+const listDir = (dir, removeDefault = false, methode = loadPageSync) => {
   assertTrue(hasStringValue(dir));
-  return parseTextToDirArray(methode(dir));
+  return parseTextToDirArray(methode(dir), removeDefault);
 };
 
 /**
@@ -211,11 +211,14 @@ const listDir = (dir, methode = loadPageSync) => {
  * @param {*} text
  * @param {*} cssclassname
  */
-const parseTextToDirArray = text => {
+const parseTextToDirArray = (text, removeDefault) => {
   assertTrue(hasStringValue(text));
   const tmp = document.createElement("html");
   tmp.innerHTML = text;
   const files = tmp.getElementsByClassName("display-name");
+  if (removeDefault) {
+    return Object.keys(files).map(idx => files[idx].children[0].text).filter(file => !(file === '../' || file === './'));
+  }
   return Object.keys(files).map(idx => files[idx].children[0].text);
 };
 
@@ -224,6 +227,6 @@ const parseTextToDirArray = text => {
  * @param {*} message 
  */
 const consoleDebug = message => {
-  if(DEBUG == true)
+  if (DEBUG == true)
     console.log(message);
 }
