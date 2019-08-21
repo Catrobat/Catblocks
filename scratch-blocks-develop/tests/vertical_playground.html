@@ -317,6 +317,8 @@
       workspace.getFlyout().setRecyclingEnabled(false);
       var xml = Blockly.Xml.workspaceToDom(workspace);
       Blockly.ScratchMsgs.setLocale(locale);
+      // regenerate toolbox with new locale values
+      Blockly.updateToolbox(Blockly.Blocks.defaultToolbox);
       Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
       workspace.getFlyout().setRecyclingEnabled(true);
     }
