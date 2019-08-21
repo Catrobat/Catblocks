@@ -23,9 +23,34 @@ const LANG_DIRS = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
 const PARSE_STRING_DIR = function (dirname) { return dirname.replace('values-', ''); };
 const PARSE_STRING_VALUES = function (jsonstream) {
   let values = {};
-  JSON.parse(jsonstream).resources.string.forEach(stringpair => {
-    values[stringpair['name']] = stringpair['$t'];
-  });
+  const data = JSON.parse(jsonstream).resources;
+
+  Object.keys(data).forEach(xmltag => {
+    switch (xmltag) {
+      case "string": {
+        data.string.forEach(stringpair => {
+          values[stringpair['name']] = stringpair['$t'];
+        });
+        break;
+      }
+      case "plurals": {
+        data.plurals.forEach(pluralpair => {
+          if (pluralpair.item instanceof Object) {
+            values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = pluralpair.item['$t'];
+          } else {
+            pluralpair.item.forEach(pluralitem => {
+              values[`${pluralpair['name']}.${pluralitem['quantity']}`] = pluralitem['$t'];
+            })
+          }
+        });
+        break;
+      }
+      default: {
+        console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
+        break;
+      }
+    }
+  })
   return values;
 };
 
@@ -56,8 +81,7 @@ LANG_DIRS.forEach(dirname => {
   const result = {};
   Object.keys(RULES).filter(key => !key.startsWith(RULE_COMMENT)).forEach(rule => {
     let value = substituteVariableData(RULES[rule], lang_values);
-    result[rule] = value;;
+    result[rule] = value.split('"').join('');
   });
   fs.writeFileSync(dst_json_path, JSON.stringify(result), { encoding: 'utf-8' });
-  process.exit(0);
 });

@@ -6,6 +6,8 @@
 goog.provide('Blockly.ScratchMsgs.allLocales');
 goog.require('Blockly.ScratchMsgs');
 
+import de_rDE from './js/de_rDE.js'
+Blockly.ScratchMsgs.locales["de_rDE"] = de_rDE;
 import en_rAU from './js/en_rAU.js'
 Blockly.ScratchMsgs.locales["en_rAU"] = en_rAU;
 import en_rCA from './js/en_rCA.js'
