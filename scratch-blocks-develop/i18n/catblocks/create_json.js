@@ -14,13 +14,13 @@ const xml2json = require('xml2json');
 // please define here the configuration if needed
 const RULES_FILE = path.join('i18n', 'catblocks', 'msg_json_rules.json');
 const STRINGS_DIR = path.join('msg', 'catroid_strings');
-const RULE_COMMENT = '@';
 const STRINGS_FILE = 'strings.xml';
 const DEST_DIR = path.join('msg', 'json');
-const RULES = JSON.parse(fs.readFileSync(RULES_FILE, { encoding: 'utf-8' }))
-const LANG_DIRS = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
+const RULE_COMMENT = '@';
 
-const PARSE_STRING_DIR = function (dirname) { return dirname.replace('values-', ''); };
+// please check the parse function if needed -> defined how to parese the values
+const PARSE_STRING_DIR = (dirname) => dirname.replace('values-', '');
+const ESCAPE_STRING_VALUE = (value) => value ? value.split('\n').join(' ') : '';
 const PARSE_STRING_VALUES = function (jsonstream) {
   let values = {};
   const data = JSON.parse(jsonstream).resources;
@@ -29,18 +29,18 @@ const PARSE_STRING_VALUES = function (jsonstream) {
     switch (xmltag) {
       case "string": {
         data.string.forEach(stringpair => {
-          values[stringpair['name']] = stringpair['$t'];
+          values[stringpair['name']] = ESCAPE_STRING_VALUE(stringpair['$t']);
         });
         break;
       }
       case "plurals": {
         data.plurals.forEach(pluralpair => {
-          if (pluralpair.item instanceof Object) {
-            values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = pluralpair.item['$t'];
-          } else {
+          if (pluralpair.item instanceof Array) {
             pluralpair.item.forEach(pluralitem => {
-              values[`${pluralpair['name']}.${pluralitem['quantity']}`] = pluralitem['$t'];
-            })
+              values[`${pluralpair['name']}.${pluralitem['quantity']}`] = ESCAPE_STRING_VALUE(pluralitem['$t']);
+            });
+          } else {
+            values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = ESCAPE_STRING_VALUE(pluralpair.item['$t']);
           }
         });
         break;
@@ -71,6 +71,11 @@ function substituteVariableData(variable, data) {
   return result;
 }
 
+/**
+ * main stuff
+ */
+const RULES = JSON.parse(fs.readFileSync(RULES_FILE, { encoding: 'utf-8' }))
+const LANG_DIRS = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
 LANG_DIRS.forEach(dirname => {
   const lang_file_path = path.join(STRINGS_DIR, dirname, STRINGS_FILE);
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });

@@ -6,8 +6,28 @@
 goog.provide('Blockly.ScratchMsgs.allLocales');
 goog.require('Blockly.ScratchMsgs');
 
+import af_rZA from './js/af_rZA.js'
+Blockly.ScratchMsgs.locales["af_rZA"] = af_rZA;
+import ar_rSA from './js/ar_rSA.js'
+Blockly.ScratchMsgs.locales["ar_rSA"] = ar_rSA;
+import az_rAZ from './js/az_rAZ.js'
+Blockly.ScratchMsgs.locales["az_rAZ"] = az_rAZ;
+import bg_rBG from './js/bg_rBG.js'
+Blockly.ScratchMsgs.locales["bg_rBG"] = bg_rBG;
+import bn_rBD from './js/bn_rBD.js'
+Blockly.ScratchMsgs.locales["bn_rBD"] = bn_rBD;
+import bs_rBA from './js/bs_rBA.js'
+Blockly.ScratchMsgs.locales["bs_rBA"] = bs_rBA;
+import ca_rES from './js/ca_rES.js'
+Blockly.ScratchMsgs.locales["ca_rES"] = ca_rES;
+import cs_rCZ from './js/cs_rCZ.js'
+Blockly.ScratchMsgs.locales["cs_rCZ"] = cs_rCZ;
+import da_rDK from './js/da_rDK.js'
+Blockly.ScratchMsgs.locales["da_rDK"] = da_rDK;
 import de_rDE from './js/de_rDE.js'
 Blockly.ScratchMsgs.locales["de_rDE"] = de_rDE;
+import el_rGR from './js/el_rGR.js'
+Blockly.ScratchMsgs.locales["el_rGR"] = el_rGR;
 import en_rAU from './js/en_rAU.js'
 Blockly.ScratchMsgs.locales["en_rAU"] = en_rAU;
 import en_rCA from './js/en_rCA.js'
