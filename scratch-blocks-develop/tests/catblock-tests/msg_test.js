@@ -59,9 +59,8 @@ function test_messageFilesGenerated() {
   STRING_FILES.forEach(strfolder => {
     const locale = strfolder.replace('values-', '').replace('-', '_').replace('/', '');
     console.log(`Check locale: ${locale} has generated .js and .json file`);
-    // console.log("JSON exists:");
+
     assertTrue(JSON_FILES.includes(`${locale}.json`));
-    // console.log("JS exists:");
     assertTrue(JS_FILES.includes(`${locale}.js`));
   });
 };
@@ -74,6 +73,7 @@ function test_allRulesInJSON() {
     if (testfile.match(/.json$/)) {
       console.log(`Check file ${testfile} if all rules got generated`);
       const test = loadRules(`${JSON_FOLDER_PATH}${testfile}`);
+
       assertTrue(JSON.stringify(Object.keys(RULES).sort()) === JSON.stringify(Object.keys(test).sort()));
     }
   });
@@ -87,6 +87,7 @@ function test_allRulesInJS() {
     if (testfile.match(/.js$/)) {
       console.log(`Check file ${testfile} if all rules got generated`);
       const test = loadPageSync(`${JS_FOLDER_PATH}${testfile}`).split('\n').join(' ').split('\r').join(' ');
+
       Object.keys(RULES).forEach(rule => {
         assertTrue(test.indexOf(rule) > -1);
       })
@@ -102,7 +103,23 @@ function test_messageImports() {
   JS_FILES.forEach(jsfile => {
     console.log(`Check if imports are fine for ${jsfile}`);
     const name = jsfile.split('.')[0];
+
     assertTrue(message_lines.includes(`import ${name} from './js/${name}.js'`));
     assertTrue(message_lines.includes(`Blockly.ScratchMsgs.locales[\"${name}\"] = ${name};`));
   });
 };
+
+/**
+ * Check if Blockly.ScratchMsgs object has loaded all locations properly
+ */
+function test_blocklyLoadedLocations() {
+  injectTestWorkspace();
+  JS_FILES.forEach(jsfile => {
+    if (jsfile.match(/.js$/)) {
+      const lang = jsfile.replace('.js', '');
+      console.log(`Check if lang ${lang} loaded into Blockly object`);
+      
+      assertTrue(Blockly.ScratchMsgs.locales[lang] !== null);
+    }
+  });
+}

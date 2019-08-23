@@ -5,6 +5,8 @@
  * @description generate crowdin json files based on build rules and string templates from catroid
  *  
  * @changelog 2019-08-14: initial version
+ *            2019-08-21: fixed some bugs, update to support different xml tags
+ *            2019-08-23: added some more comments, refactor code
  */
 
 const fs = require('fs');
@@ -13,15 +15,31 @@ const xml2json = require('xml2json');
 
 // please define here the configuration if needed
 const RULES_FILE = path.join('i18n', 'catblocks', 'msg_json_rules.json');
-const STRINGS_DIR = path.join('msg', 'catroid_strings');
-const STRINGS_FILE = 'strings.xml';
-const DEST_DIR = path.join('msg', 'json');
 const RULE_COMMENT = '@';
 
-// please check the parse function if needed -> defined how to parese the values
-const PARSE_STRING_DIR = (dirname) => dirname.replace('values-', '');
-const ESCAPE_STRING_VALUE = (value) => value ? value.split('\n').join(' ') : '';
-const PARSE_STRING_VALUES = function (jsonstream) {
+const STRINGS_DIR = path.join('msg', 'catroid_strings');
+const STRINGS_FILE = 'strings.xml';
+
+const JSON_DIR = path.join('msg', 'json');
+
+
+/**
+ * Parse/prepare dirname from localfilesystem to use in code
+ * @param {*} dirname 
+ */
+const prepareStringFolderName = (dirname) => dirname.replace('values-', '');
+
+/**
+ * Escape received string values from strings xml and return value
+ * @param {*} value 
+ */
+const escapeStringValue = (value) => value ? value.split('\n').join(' ') : '';
+
+/**
+ * parse json string stream from catroid string files and return object for value substitution 
+ * @param {*} jsonstream 
+ */
+const parseStringFile = function (jsonstream) {
   let values = {};
   const data = JSON.parse(jsonstream).resources;
 
@@ -29,7 +47,7 @@ const PARSE_STRING_VALUES = function (jsonstream) {
     switch (xmltag) {
       case "string": {
         data.string.forEach(stringpair => {
-          values[stringpair['name']] = ESCAPE_STRING_VALUE(stringpair['$t']);
+          values[stringpair['name']] = escapeStringValue(stringpair['$t']);
         });
         break;
       }
@@ -37,10 +55,10 @@ const PARSE_STRING_VALUES = function (jsonstream) {
         data.plurals.forEach(pluralpair => {
           if (pluralpair.item instanceof Array) {
             pluralpair.item.forEach(pluralitem => {
-              values[`${pluralpair['name']}.${pluralitem['quantity']}`] = ESCAPE_STRING_VALUE(pluralitem['$t']);
+              values[`${pluralpair['name']}.${pluralitem['quantity']}`] = escapeStringValue(pluralitem['$t']);
             });
           } else {
-            values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = ESCAPE_STRING_VALUE(pluralpair.item['$t']);
+            values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = escapeStringValue(pluralpair.item['$t']);
           }
         });
         break;
@@ -74,19 +92,24 @@ function substituteVariableData(variable, data) {
 /**
  * main stuff
  */
-const RULES = JSON.parse(fs.readFileSync(RULES_FILE, { encoding: 'utf-8' }))
-const LANG_DIRS = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
-LANG_DIRS.forEach(dirname => {
-  const lang_file_path = path.join(STRINGS_DIR, dirname, STRINGS_FILE);
+
+const rules = JSON.parse(
+  fs.readFileSync(RULES_FILE, { encoding: 'utf-8' })
+)
+const languages = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
+
+languages.forEach(language => {
+  const lang_file_path = path.join(STRINGS_DIR, language, STRINGS_FILE);
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
-  const lang_values = PARSE_STRING_VALUES(xml2json.toJson(lang_file));
-  const lang_name = PARSE_STRING_DIR(dirname).replace('-', '_');
-  const dst_json_path = path.join(DEST_DIR, lang_name + '.json');
+  const lang_values = parseStringFile(xml2json.toJson(lang_file));
+  const lang_name = prepareStringFolderName(language).replace('-', '_');
+  const dst_json_path = path.join(JSON_DIR, lang_name + '.json');
 
   const result = {};
-  Object.keys(RULES).filter(key => !key.startsWith(RULE_COMMENT)).forEach(rule => {
-    let value = substituteVariableData(RULES[rule], lang_values);
+  Object.keys(rules).filter(key => !key.startsWith(RULE_COMMENT)).forEach(rule => {
+    let value = substituteVariableData(rules[rule], lang_values);
     result[rule] = value.split('"').join('');
   });
+
   fs.writeFileSync(dst_json_path, JSON.stringify(result), { encoding: 'utf-8' });
 });

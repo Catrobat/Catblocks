@@ -163,6 +163,7 @@ const PROTOCOL = 'http';
 const HOST = 'localhost';
 const PORT = '8080';
 const SERVER_URL = PROTOCOL + '://' + HOST + ':' + PORT;
+const BLOCKLY_DIV = 'blocklyDiv';
 
 /**
  * get url relative to server
@@ -229,4 +230,43 @@ const parseTextToDirArray = (text, removeDefault) => {
 const consoleDebug = message => {
   if (DEBUG == true)
     console.log(message);
+}
+
+/**
+ * Inject workspace with given config
+ * @param {*} config 
+ */
+const injectTestWorkspace = (config = {}) => {
+  return Blockly.inject(BLOCKLY_DIV, {
+    comments: config['comments'] ? config['comments'] : true,
+    disable: config['disable'] ? config['disable'] : false,
+    collapse: config['collapse'] ? config['collapse'] : false,
+    media: config['media'] ? config['media'] : '../media/',
+    readOnly: config['readOnly'] ? config['readOnly'] : false,
+    rtl: config['rtl'] ? config['rtl'] : 'LRT',
+    scrollbars: config['scrollbars'] ? config['scrollbars'] : true,
+    toolbox: config['toolbox'] ? config['toolbox'] : null,
+    toolboxPosition: config['toolboxPosition'] ? config['toolboxPosition'] : 'start',
+    horizontalLayout: config['horizontalLayout'] ? config['horizontalLayout'] : 'top',
+    sounds: config['sounds'] ? config['sounds'] : false,
+    zoom: (function () {
+      if (config['zoom']) return config['zoom'];
+      else return {
+        controls: true,
+        wheel: true,
+        startScale: 0.75,
+        maxScale: 4,
+        minScale: 0.25,
+        scaleSpeed: 1.1
+      }
+    })()
+    ,
+    colours: (function () {
+      if (config['colours']) return config['colours']
+      else return {
+        fieldShadow: 'rgba(255, 255, 255, 0.3)',
+        dragShadowOpacity: 0.6
+      }
+    })()
+  });
 }
