@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const xml2json = require('xml2json');
+const { locales } = require('./locales_names');
 
 // please define here the configuration if needed
 const MAPPING_FILE = path.join('i18n', 'catblocks', 'strings_to_json_mapping.json');
@@ -27,7 +28,7 @@ const JSON_DIR = path.join('msg', 'json');
  * Parse/prepare dirname from localfilesystem to use in code
  * @param {*} dirname 
  */
-const prepareStringFolderName = (dirname) => dirname.replace('values-', '');
+const prepareStringFolderName = (dirname) => dirname.replace('values-', '').replace('-r', '-').replace('-', '_');
 
 /**
  * Escape received string values from strings xml and return value
@@ -101,10 +102,13 @@ languages.forEach(language => {
   const lang_file_path = path.join(STRINGS_DIR, language, STRINGS_FILE);
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
   const lang_values = parseStringFile(xml2json.toJson(lang_file));
-  const lang_name = prepareStringFolderName(language).replace('-', '_');
+  const lang_name = prepareStringFolderName(language);
   const json_file = path.join(JSON_DIR, lang_name + '.json');
 
-  const result = {};
+  const result = {
+    "DROPDOWN_NAME": locales[lang_name] ? locales[lang_name] : lang_name
+  };
+
   Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
     let value = substituteVariableData(mapping[rule], lang_values);
     result[rule] = value.split('"').join('');
