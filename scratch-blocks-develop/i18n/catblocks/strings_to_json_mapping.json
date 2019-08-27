@@ -1,7 +1,7 @@
 {
   "@metadata": {
     "author": "Andreas.Karner@student.tugraz.at",
-    "description": "Generator rules for msg JSON files, source are catroid string xmls"
+    "description": "Mapping from catroid strings xml file to catblocks json file"
   },
   "@category": "category menue",
   "CATEGORY_MOTION": "${category_motion}",

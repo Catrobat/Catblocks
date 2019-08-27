@@ -2,7 +2,7 @@
 
 /**
  * @author Andreas Karner <andreas.karner@student.tugraz.at>
- * @description generate crowdin json files based on build rules and string templates from catroid
+ * @description generate crowdin json files based on build mapping and string templates from catroid
  *  
  * @changelog 2019-08-14: initial version
  *            2019-08-21: fixed some bugs, update to support different xml tags
@@ -14,8 +14,8 @@ const path = require('path');
 const xml2json = require('xml2json');
 
 // please define here the configuration if needed
-const RULES_FILE = path.join('i18n', 'catblocks', 'msg_json_rules.json');
-const RULE_COMMENT = '@';
+const MAPPING_FILE = path.join('i18n', 'catblocks', 'strings_to_json_mapping.json');
+const MAPPING_COMMENT = '@';
 
 const STRINGS_DIR = path.join('msg', 'catroid_strings');
 const STRINGS_FILE = 'strings.xml';
@@ -92,9 +92,8 @@ function substituteVariableData(variable, data) {
 /**
  * main stuff
  */
-
-const rules = JSON.parse(
-  fs.readFileSync(RULES_FILE, { encoding: 'utf-8' })
+const mapping = JSON.parse(
+  fs.readFileSync(MAPPING_FILE, { encoding: 'utf-8' })
 )
 const languages = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
 
@@ -103,13 +102,13 @@ languages.forEach(language => {
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
   const lang_values = parseStringFile(xml2json.toJson(lang_file));
   const lang_name = prepareStringFolderName(language).replace('-', '_');
-  const dst_json_path = path.join(JSON_DIR, lang_name + '.json');
+  const json_file = path.join(JSON_DIR, lang_name + '.json');
 
   const result = {};
-  Object.keys(rules).filter(key => !key.startsWith(RULE_COMMENT)).forEach(rule => {
-    let value = substituteVariableData(rules[rule], lang_values);
+  Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
+    let value = substituteVariableData(mapping[rule], lang_values);
     result[rule] = value.split('"').join('');
   });
 
-  fs.writeFileSync(dst_json_path, JSON.stringify(result), { encoding: 'utf-8' });
+  fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
 });

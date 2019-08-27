@@ -32,8 +32,8 @@ const JS_FOLDER_PATH = "/scratch-blocks-develop/msg/js/";
 const JS_FILES = listDir(getUrl(JS_FOLDER_PATH), true);
 
 // rules file
-const RULES_FILE_PATH = "/scratch-blocks-develop/i18n/catblocks/msg_json_rules.json";
-const RULES = loadRules(RULES_FILE_PATH);
+const MAPPING_FILE = "/scratch-blocks-develop/i18n/catblocks/strings_to_json_mapping.json";
+const MAPPING = loadRules(MAPPING_FILE);
 
 // message file
 const MESSAGE_PATH = "/scratch-blocks-develop/msg/catblocks_msgs.js";
@@ -74,7 +74,7 @@ function test_allRulesInJSON() {
       console.log(`Check file ${testfile} if all rules got generated`);
       const test = loadRules(`${JSON_FOLDER_PATH}${testfile}`);
 
-      assertTrue(JSON.stringify(Object.keys(RULES).sort()) === JSON.stringify(Object.keys(test).sort()));
+      assertTrue(JSON.stringify(Object.keys(MAPPING).sort()) === JSON.stringify(Object.keys(test).sort()));
     }
   });
 };
@@ -88,7 +88,7 @@ function test_allRulesInJS() {
       console.log(`Check file ${testfile} if all rules got generated`);
       const test = loadPageSync(`${JS_FOLDER_PATH}${testfile}`).split('\n').join(' ').split('\r').join(' ');
 
-      Object.keys(RULES).forEach(rule => {
+      Object.keys(MAPPING).forEach(rule => {
         assertTrue(test.indexOf(rule) > -1);
       })
     }
