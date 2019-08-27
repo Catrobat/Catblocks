@@ -37,12 +37,12 @@ const MAPPING = loadRules(MAPPING_FILE);
 
 // message file
 const MESSAGE_PATH = "/scratch-blocks-develop/msg/catblocks_msgs.js";
-const MESSAGE = loadPageSync(MESSAGE_PATH);
+const MESSAGE = loadPageSync(getUrl(MESSAGE_PATH));
 
 // helper
 function loadRules(filepath) {
   let rules = {};
-  const all_rules = JSON.parse(loadPageSync(filepath));
+  const all_rules = JSON.parse(loadPageSync(getUrl(filepath)));
   Object.keys(all_rules).forEach(key => {
     if (!key.startsWith("@")) {
       rules[key] = all_rules[key];

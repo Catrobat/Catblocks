@@ -172,6 +172,12 @@ const BLOCKLY_DIV = 'blocklyDiv';
  */
 const getUrl = (path, server = SERVER_URL) => {
   assertTrue(hasStringValue(server));
+  const re = new RegExp(/\/scratch-blocks-develop\//);
+  const location = window.location.toLocaleString();
+  if(!location.match(re)) {
+    console.log("HTTP in root");
+    path = path.replace("/scratch-blocks-develop", "");
+  }
   return SERVER_URL + path;
 }
 
