@@ -57,7 +57,7 @@ function loadRules(filepath) {
  */
 function test_messageFilesGenerated() {
   STRING_FILES.forEach(strfolder => {
-    const locale = strfolder.replace('values-', '').replace('-', '_').replace('/', '');
+    const locale = strfolder.replace('values-', '').replace('-', '_').replace('/', '').replace('_r', '_');
     console.log(`Check locale: ${locale} has generated .js and .json file`);
 
     assertTrue(JSON_FILES.includes(`${locale}.json`));

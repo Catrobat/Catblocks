@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const xml2json = require('xml2json');
-const { locales } = require('./locales_names');
+const { locales } = require('./lang_codes_mapping');
 
 // please define here the configuration if needed
 const MAPPING_FILE = path.join('i18n', 'catblocks', 'strings_to_json_mapping.json');
@@ -105,14 +105,13 @@ languages.forEach(language => {
   const lang_name = prepareStringFolderName(language);
   const json_file = path.join(JSON_DIR, lang_name + '.json');
 
-  const result = {
-    "DROPDOWN_NAME": locales[lang_name] ? locales[lang_name] : lang_name
-  };
+  const result = {};
 
   Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
     let value = substituteVariableData(mapping[rule], lang_values);
     result[rule] = value.split('"').join('');
   });
+  result["DROPDOWN_NAME"] = locales[lang_name] ? locales[lang_name] : lang_name
 
   fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
 });

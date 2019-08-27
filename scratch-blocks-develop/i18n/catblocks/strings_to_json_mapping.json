@@ -5,6 +5,7 @@
     "description": "Mapping from catroid strings xml file to catblocks json file",
     "info": "unknown matches got the value ???"
   },
+  "DROPDOWN_NAME": "",
   "@category": "category menue",
   "CATEGORY_MOTION": "${category_motion}",
   "CATEGORY_LOOKS": "${category_looks}",
