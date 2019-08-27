@@ -138,7 +138,7 @@
   "OPERATORS_RANDOM": "${formula_editor_function_rand} %1 ${to_label} %2",
   "OPERATORS_GT": "%1 ${formula_editor_logic_greaterthan} %2",
   "OPERATORS_LT": "%1 ${formula_editor_logic_lesserthan} %2",
-  "OPERATORS_EQUALS": "%1 ${} %2",
+  "OPERATORS_EQUALS": "%1 ${formula_editor_logic_equal} %2",
   "OPERATORS_AND": "%1 ${formula_editor_logic_and} %2",
   "OPERATORS_OR": "%1 ${formula_editor_logic_or} %2",
   "OPERATORS_NOT": "%1 ${formula_editor_logic_not} %2",
