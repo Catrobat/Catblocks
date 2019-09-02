@@ -68,7 +68,7 @@ function isEqualArrays(array1, array2) {
  * @return {!goog.testing.MockInterface} The mocked method.
  */
 function setUpMockMethod(mockControl, scope, funcName, parameters,
-	return_values) {
+  return_values) {
   var mockMethod = mockControl.createMethodMock(scope, funcName);
   if (return_values) {
     for (var i = 0, return_value; return_value = return_values[i]; i++) {
@@ -163,6 +163,7 @@ const PROTOCOL = 'http';
 const HOST = 'localhost';
 const PORT = '8080';
 const SERVER_URL = PROTOCOL + '://' + HOST + ':' + PORT;
+const BLOCKLY_DIV = 'blocklyDiv';
 
 /**
  * get url relative to server
@@ -171,6 +172,12 @@ const SERVER_URL = PROTOCOL + '://' + HOST + ':' + PORT;
  */
 const getUrl = (path, server = SERVER_URL) => {
   assertTrue(hasStringValue(server));
+  const re = new RegExp(/\/scratch-blocks-develop\//);
+  const location = window.location.toLocaleString();
+  if(!location.match(re)) {
+    console.log("HTTP in root");
+    path = path.replace("/scratch-blocks-develop", "");
+  }
   return SERVER_URL + path;
 }
 
@@ -201,9 +208,9 @@ const loadPageSync = url => {
  * @param {*} dir
  * @param {*} methode
  */
-const listDir = (dir, methode = loadPageSync) => {
+const listDir = (dir, removeDefault = false, methode = loadPageSync) => {
   assertTrue(hasStringValue(dir));
-  return parseTextToDirArray(methode(dir));
+  return parseTextToDirArray(methode(dir), removeDefault);
 };
 
 /**
@@ -211,11 +218,14 @@ const listDir = (dir, methode = loadPageSync) => {
  * @param {*} text
  * @param {*} cssclassname
  */
-const parseTextToDirArray = text => {
+const parseTextToDirArray = (text, removeDefault) => {
   assertTrue(hasStringValue(text));
   const tmp = document.createElement("html");
   tmp.innerHTML = text;
   const files = tmp.getElementsByClassName("display-name");
+  if (removeDefault) {
+    return Object.keys(files).map(idx => files[idx].children[0].text).filter(file => !(file === '../' || file === './'));
+  }
   return Object.keys(files).map(idx => files[idx].children[0].text);
 };
 
@@ -224,6 +234,45 @@ const parseTextToDirArray = text => {
  * @param {*} message 
  */
 const consoleDebug = message => {
-  if(DEBUG == true)
+  if (DEBUG == true)
     console.log(message);
+}
+
+/**
+ * Inject workspace with given config
+ * @param {*} config 
+ */
+const injectTestWorkspace = (config = {}) => {
+  return Blockly.inject(BLOCKLY_DIV, {
+    comments: config['comments'] ? config['comments'] : true,
+    disable: config['disable'] ? config['disable'] : false,
+    collapse: config['collapse'] ? config['collapse'] : false,
+    media: config['media'] ? config['media'] : '../media/',
+    readOnly: config['readOnly'] ? config['readOnly'] : false,
+    rtl: config['rtl'] ? config['rtl'] : 'LRT',
+    scrollbars: config['scrollbars'] ? config['scrollbars'] : true,
+    toolbox: config['toolbox'] ? config['toolbox'] : null,
+    toolboxPosition: config['toolboxPosition'] ? config['toolboxPosition'] : 'start',
+    horizontalLayout: config['horizontalLayout'] ? config['horizontalLayout'] : 'top',
+    sounds: config['sounds'] ? config['sounds'] : false,
+    zoom: (function () {
+      if (config['zoom']) return config['zoom'];
+      else return {
+        controls: true,
+        wheel: true,
+        startScale: 0.75,
+        maxScale: 4,
+        minScale: 0.25,
+        scaleSpeed: 1.1
+      }
+    })()
+    ,
+    colours: (function () {
+      if (config['colours']) return config['colours']
+      else return {
+        fieldShadow: 'rgba(255, 255, 255, 0.3)',
+        dragShadowOpacity: 0.6
+      }
+    })()
+  });
 }
