@@ -72,6 +72,7 @@
         lcoale_opt.value = locale;
         lcoale_opt.innerHTML = Blockly.ScratchMsgs.locales[locale]['DROPDOWN_NAME'];
         select.appendChild(lcoale_opt);
+        // TODO: set default to SHARE LANGUAGE
         if (locale === 'en_GB') hasDefault = true;
       });
 
