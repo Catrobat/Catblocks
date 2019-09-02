@@ -22,7 +22,10 @@ const STRINGS_DIR = path.join('msg', 'catroid_strings');
 const STRINGS_FILE = 'strings.xml';
 
 const JSON_DIR = path.join('msg', 'json');
-
+// create dir if not exists
+if (!fs.existsSync(JSON_DIR)) {
+  fs.mkdirSync(JSON_DIR);
+}
 
 /**
  * Parse/prepare dirname from localfilesystem to use in code

@@ -33,6 +33,11 @@ goog.require('Blockly.ScratchMsgs');
 
 `;
 
+// create dir if not exists
+if (!fs.existsSync(JS_DIR)) {
+  fs.mkdirSync(JS_DIR);
+}
+
 // generate main catblocks_msgs.js file
 const message_fd = fs.openSync(MESSAGE_FILE, 'w');
 fs.writeSync(message_fd, MESSAGE_HEADER);

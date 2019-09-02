@@ -86,7 +86,7 @@ function test_allRulesInJS() {
   JS_FILES.forEach(testfile => {
     if (testfile.match(/.js$/)) {
       console.log(`Check file ${testfile} if all rules got generated`);
-      const test = loadPageSync(`${JS_FOLDER_PATH}${testfile}`).split('\n').join(' ').split('\r').join(' ');
+      const test = loadPageSync(getUrl(`${JS_FOLDER_PATH}${testfile}`)).split('\n').join(' ').split('\r').join(' ');
 
       Object.keys(MAPPING).forEach(rule => {
         assertTrue(test.indexOf(rule) > -1);
