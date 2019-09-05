@@ -6,131 +6,67 @@
 goog.provide('Blockly.ScratchMsgs.allLocales');
 goog.require('Blockly.ScratchMsgs');
 
-import af_ZA from './js/af_ZA.js'
-Blockly.ScratchMsgs.locales["af_ZA"] = af_ZA;
-import ar_SA from './js/ar_SA.js'
-Blockly.ScratchMsgs.locales["ar_SA"] = ar_SA;
-import az_AZ from './js/az_AZ.js'
-Blockly.ScratchMsgs.locales["az_AZ"] = az_AZ;
-import bg_BG from './js/bg_BG.js'
-Blockly.ScratchMsgs.locales["bg_BG"] = bg_BG;
-import bn_BD from './js/bn_BD.js'
-Blockly.ScratchMsgs.locales["bn_BD"] = bn_BD;
-import bs_BA from './js/bs_BA.js'
-Blockly.ScratchMsgs.locales["bs_BA"] = bs_BA;
-import ca_ES from './js/ca_ES.js'
-Blockly.ScratchMsgs.locales["ca_ES"] = ca_ES;
-import cs_CZ from './js/cs_CZ.js'
-Blockly.ScratchMsgs.locales["cs_CZ"] = cs_CZ;
-import da_DK from './js/da_DK.js'
-Blockly.ScratchMsgs.locales["da_DK"] = da_DK;
-import de_DE from './js/de_DE.js'
-Blockly.ScratchMsgs.locales["de_DE"] = de_DE;
-import el_GR from './js/el_GR.js'
-Blockly.ScratchMsgs.locales["el_GR"] = el_GR;
-import en_AU from './js/en_AU.js'
-Blockly.ScratchMsgs.locales["en_AU"] = en_AU;
-import en_CA from './js/en_CA.js'
-Blockly.ScratchMsgs.locales["en_CA"] = en_CA;
-import en_GB from './js/en_GB.js'
-Blockly.ScratchMsgs.locales["en_GB"] = en_GB;
-import es_ES from './js/es_ES.js'
-Blockly.ScratchMsgs.locales["es_ES"] = es_ES;
-import fa_AF from './js/fa_AF.js'
-Blockly.ScratchMsgs.locales["fa_AF"] = fa_AF;
-import fa_IR from './js/fa_IR.js'
-Blockly.ScratchMsgs.locales["fa_IR"] = fa_IR;
-import fi_FI from './js/fi_FI.js'
-Blockly.ScratchMsgs.locales["fi_FI"] = fi_FI;
-import fr_FR from './js/fr_FR.js'
-Blockly.ScratchMsgs.locales["fr_FR"] = fr_FR;
-import gl_ES from './js/gl_ES.js'
-Blockly.ScratchMsgs.locales["gl_ES"] = gl_ES;
-import gu_IN from './js/gu_IN.js'
-Blockly.ScratchMsgs.locales["gu_IN"] = gu_IN;
-import ha_HG from './js/ha_HG.js'
-Blockly.ScratchMsgs.locales["ha_HG"] = ha_HG;
-import hi_IN from './js/hi_IN.js'
-Blockly.ScratchMsgs.locales["hi_IN"] = hi_IN;
-import hr_HR from './js/hr_HR.js'
-Blockly.ScratchMsgs.locales["hr_HR"] = hr_HR;
-import hu_HU from './js/hu_HU.js'
-Blockly.ScratchMsgs.locales["hu_HU"] = hu_HU;
-import ig_NG from './js/ig_NG.js'
-Blockly.ScratchMsgs.locales["ig_NG"] = ig_NG;
-import in_ID from './js/in_ID.js'
-Blockly.ScratchMsgs.locales["in_ID"] = in_ID;
-import it_IT from './js/it_IT.js'
-Blockly.ScratchMsgs.locales["it_IT"] = it_IT;
-import iw_IL from './js/iw_IL.js'
-Blockly.ScratchMsgs.locales["iw_IL"] = iw_IL;
-import ja_JP from './js/ja_JP.js'
-Blockly.ScratchMsgs.locales["ja_JP"] = ja_JP;
-import kk_KZ from './js/kk_KZ.js'
-Blockly.ScratchMsgs.locales["kk_KZ"] = kk_KZ;
-import kn_IN from './js/kn_IN.js'
-Blockly.ScratchMsgs.locales["kn_IN"] = kn_IN;
-import ko_KR from './js/ko_KR.js'
-Blockly.ScratchMsgs.locales["ko_KR"] = ko_KR;
-import lt_LT from './js/lt_LT.js'
-Blockly.ScratchMsgs.locales["lt_LT"] = lt_LT;
-import mk_MK from './js/mk_MK.js'
-Blockly.ScratchMsgs.locales["mk_MK"] = mk_MK;
-import ml_IN from './js/ml_IN.js'
-Blockly.ScratchMsgs.locales["ml_IN"] = ml_IN;
-import ms_MY from './js/ms_MY.js'
-Blockly.ScratchMsgs.locales["ms_MY"] = ms_MY;
-import nl_NL from './js/nl_NL.js'
-Blockly.ScratchMsgs.locales["nl_NL"] = nl_NL;
-import no_NO from './js/no_NO.js'
-Blockly.ScratchMsgs.locales["no_NO"] = no_NO;
-import pl_PL from './js/pl_PL.js'
-Blockly.ScratchMsgs.locales["pl_PL"] = pl_PL;
-import ps_AF from './js/ps_AF.js'
-Blockly.ScratchMsgs.locales["ps_AF"] = ps_AF;
-import pt_BR from './js/pt_BR.js'
-Blockly.ScratchMsgs.locales["pt_BR"] = pt_BR;
-import pt_PT from './js/pt_PT.js'
-Blockly.ScratchMsgs.locales["pt_PT"] = pt_PT;
-import ro_RO from './js/ro_RO.js'
-Blockly.ScratchMsgs.locales["ro_RO"] = ro_RO;
-import ru_RU from './js/ru_RU.js'
-Blockly.ScratchMsgs.locales["ru_RU"] = ru_RU;
-import sd_PK from './js/sd_PK.js'
-Blockly.ScratchMsgs.locales["sd_PK"] = sd_PK;
-import si_LK from './js/si_LK.js'
-Blockly.ScratchMsgs.locales["si_LK"] = si_LK;
-import sk_SK from './js/sk_SK.js'
-Blockly.ScratchMsgs.locales["sk_SK"] = sk_SK;
-import sl_SI from './js/sl_SI.js'
-Blockly.ScratchMsgs.locales["sl_SI"] = sl_SI;
-import sq_AL from './js/sq_AL.js'
-Blockly.ScratchMsgs.locales["sq_AL"] = sq_AL;
-import sr_CS from './js/sr_CS.js'
-Blockly.ScratchMsgs.locales["sr_CS"] = sr_CS;
-import sr_SP from './js/sr_SP.js'
-Blockly.ScratchMsgs.locales["sr_SP"] = sr_SP;
-import sv_SE from './js/sv_SE.js'
-Blockly.ScratchMsgs.locales["sv_SE"] = sv_SE;
-import sw_KE from './js/sw_KE.js'
-Blockly.ScratchMsgs.locales["sw_KE"] = sw_KE;
-import ta_IN from './js/ta_IN.js'
-Blockly.ScratchMsgs.locales["ta_IN"] = ta_IN;
-import te_IN from './js/te_IN.js'
-Blockly.ScratchMsgs.locales["te_IN"] = te_IN;
-import th_TH from './js/th_TH.js'
-Blockly.ScratchMsgs.locales["th_TH"] = th_TH;
-import tr_TR from './js/tr_TR.js'
-Blockly.ScratchMsgs.locales["tr_TR"] = tr_TR;
-import tw_TW from './js/tw_TW.js'
-Blockly.ScratchMsgs.locales["tw_TW"] = tw_TW;
-import uk_UA from './js/uk_UA.js'
-Blockly.ScratchMsgs.locales["uk_UA"] = uk_UA;
-import ur_PK from './js/ur_PK.js'
-Blockly.ScratchMsgs.locales["ur_PK"] = ur_PK;
-import vi_VN from './js/vi_VN.js'
-Blockly.ScratchMsgs.locales["vi_VN"] = vi_VN;
-import zh_CN from './js/zh_CN.js'
-Blockly.ScratchMsgs.locales["zh_CN"] = zh_CN;
-import zh_TW from './js/zh_TW.js'
-Blockly.ScratchMsgs.locales["zh_TW"] = zh_TW;
+Blockly.ScratchMsgs.locales["af_ZA"] = require('./js/af_ZA.js');
+Blockly.ScratchMsgs.locales["ar_SA"] = require('./js/ar_SA.js');
+Blockly.ScratchMsgs.locales["az_AZ"] = require('./js/az_AZ.js');
+Blockly.ScratchMsgs.locales["bg_BG"] = require('./js/bg_BG.js');
+Blockly.ScratchMsgs.locales["bn_BD"] = require('./js/bn_BD.js');
+Blockly.ScratchMsgs.locales["bs_BA"] = require('./js/bs_BA.js');
+Blockly.ScratchMsgs.locales["ca_ES"] = require('./js/ca_ES.js');
+Blockly.ScratchMsgs.locales["cs_CZ"] = require('./js/cs_CZ.js');
+Blockly.ScratchMsgs.locales["da_DK"] = require('./js/da_DK.js');
+Blockly.ScratchMsgs.locales["de_DE"] = require('./js/de_DE.js');
+Blockly.ScratchMsgs.locales["el_GR"] = require('./js/el_GR.js');
+Blockly.ScratchMsgs.locales["en_AU"] = require('./js/en_AU.js');
+Blockly.ScratchMsgs.locales["en_CA"] = require('./js/en_CA.js');
+Blockly.ScratchMsgs.locales["en_GB"] = require('./js/en_GB.js');
+Blockly.ScratchMsgs.locales["es_ES"] = require('./js/es_ES.js');
+Blockly.ScratchMsgs.locales["fa_AF"] = require('./js/fa_AF.js');
+Blockly.ScratchMsgs.locales["fa_IR"] = require('./js/fa_IR.js');
+Blockly.ScratchMsgs.locales["fi_FI"] = require('./js/fi_FI.js');
+Blockly.ScratchMsgs.locales["fr_FR"] = require('./js/fr_FR.js');
+Blockly.ScratchMsgs.locales["gl_ES"] = require('./js/gl_ES.js');
+Blockly.ScratchMsgs.locales["gu_IN"] = require('./js/gu_IN.js');
+Blockly.ScratchMsgs.locales["ha_HG"] = require('./js/ha_HG.js');
+Blockly.ScratchMsgs.locales["hi_IN"] = require('./js/hi_IN.js');
+Blockly.ScratchMsgs.locales["hr_HR"] = require('./js/hr_HR.js');
+Blockly.ScratchMsgs.locales["hu_HU"] = require('./js/hu_HU.js');
+Blockly.ScratchMsgs.locales["ig_NG"] = require('./js/ig_NG.js');
+Blockly.ScratchMsgs.locales["in_ID"] = require('./js/in_ID.js');
+Blockly.ScratchMsgs.locales["it_IT"] = require('./js/it_IT.js');
+Blockly.ScratchMsgs.locales["iw_IL"] = require('./js/iw_IL.js');
+Blockly.ScratchMsgs.locales["ja_JP"] = require('./js/ja_JP.js');
+Blockly.ScratchMsgs.locales["kk_KZ"] = require('./js/kk_KZ.js');
+Blockly.ScratchMsgs.locales["kn_IN"] = require('./js/kn_IN.js');
+Blockly.ScratchMsgs.locales["ko_KR"] = require('./js/ko_KR.js');
+Blockly.ScratchMsgs.locales["lt_LT"] = require('./js/lt_LT.js');
+Blockly.ScratchMsgs.locales["mk_MK"] = require('./js/mk_MK.js');
+Blockly.ScratchMsgs.locales["ml_IN"] = require('./js/ml_IN.js');
+Blockly.ScratchMsgs.locales["ms_MY"] = require('./js/ms_MY.js');
+Blockly.ScratchMsgs.locales["nl_NL"] = require('./js/nl_NL.js');
+Blockly.ScratchMsgs.locales["no_NO"] = require('./js/no_NO.js');
+Blockly.ScratchMsgs.locales["pl_PL"] = require('./js/pl_PL.js');
+Blockly.ScratchMsgs.locales["ps_AF"] = require('./js/ps_AF.js');
+Blockly.ScratchMsgs.locales["pt_BR"] = require('./js/pt_BR.js');
+Blockly.ScratchMsgs.locales["pt_PT"] = require('./js/pt_PT.js');
+Blockly.ScratchMsgs.locales["ro_RO"] = require('./js/ro_RO.js');
+Blockly.ScratchMsgs.locales["ru_RU"] = require('./js/ru_RU.js');
+Blockly.ScratchMsgs.locales["sd_PK"] = require('./js/sd_PK.js');
+Blockly.ScratchMsgs.locales["si_LK"] = require('./js/si_LK.js');
+Blockly.ScratchMsgs.locales["sk_SK"] = require('./js/sk_SK.js');
+Blockly.ScratchMsgs.locales["sl_SI"] = require('./js/sl_SI.js');
+Blockly.ScratchMsgs.locales["sq_AL"] = require('./js/sq_AL.js');
+Blockly.ScratchMsgs.locales["sr_CS"] = require('./js/sr_CS.js');
+Blockly.ScratchMsgs.locales["sr_SP"] = require('./js/sr_SP.js');
+Blockly.ScratchMsgs.locales["sv_SE"] = require('./js/sv_SE.js');
+Blockly.ScratchMsgs.locales["sw_KE"] = require('./js/sw_KE.js');
+Blockly.ScratchMsgs.locales["ta_IN"] = require('./js/ta_IN.js');
+Blockly.ScratchMsgs.locales["te_IN"] = require('./js/te_IN.js');
+Blockly.ScratchMsgs.locales["th_TH"] = require('./js/th_TH.js');
+Blockly.ScratchMsgs.locales["tr_TR"] = require('./js/tr_TR.js');
+Blockly.ScratchMsgs.locales["tw_TW"] = require('./js/tw_TW.js');
+Blockly.ScratchMsgs.locales["uk_UA"] = require('./js/uk_UA.js');
+Blockly.ScratchMsgs.locales["ur_PK"] = require('./js/ur_PK.js');
+Blockly.ScratchMsgs.locales["vi_VN"] = require('./js/vi_VN.js');
+Blockly.ScratchMsgs.locales["zh_CN"] = require('./js/zh_CN.js');
+Blockly.ScratchMsgs.locales["zh_TW"] = require('./js/zh_TW.js');

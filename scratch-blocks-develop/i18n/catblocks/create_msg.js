@@ -53,17 +53,20 @@ langfiles.forEach(langfile => {
     const js_path = path.join(JS_DIR, `${lang_name}.js`);
     const js_fd = fs.openSync(js_path, 'w');
     fs.writeSync(js_fd, JS_HEADER);
-    fs.writeSync(js_fd, `export default {\n`);
+    fs.writeSync(js_fd, `module.exports = {`)
+    // fs.writeSync(js_fd, `export default {\n`);
 
     Object.keys(json_object).forEach(key => {
       fs.writeSync(js_fd, `  "${key}": "${json_object[key]}",\n`);
     });
-    fs.writeSync(js_fd, `};`);
+    // fs.writeSync(js_fd, `};`);
+    fs.writeSync(js_fd, `}`);
     fs.closeSync(js_fd);
 
     // link it to the global catblocks message file
-    fs.writeSync(message_fd, `import ${lang_name} from './js/${lang_name}.js'\n`);
-    fs.writeSync(message_fd, `Blockly.ScratchMsgs.locales["${lang_name}"] = ${lang_name};\n`);
+    //fs.writeSync(message_fd, `import ${lang_name} from './js/${lang_name}.js'\n`);
+    //fs.writeSync(message_fd, `Blockly.ScratchMsgs.locales["${lang_name}"] = ${lang_name};\n`);
+    fs.writeSync(message_fd, `Blockly.ScratchMsgs.locales["${lang_name}"] = require('./js/${lang_name}.js');\n`)
   }
 });
 

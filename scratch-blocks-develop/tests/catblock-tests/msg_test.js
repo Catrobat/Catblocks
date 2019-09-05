@@ -104,8 +104,8 @@ function test_messageImports() {
     console.log(`Check if imports are fine for ${jsfile}`);
     const name = jsfile.split('.')[0];
 
-    assertTrue(message_lines.includes(`import ${name} from './js/${name}.js'`));
-    assertTrue(message_lines.includes(`Blockly.ScratchMsgs.locales[\"${name}\"] = ${name};`));
+    // assertTrue(message_lines.includes(`import ${name} from './js/${name}.js'`));
+    assertTrue(message_lines.includes(`Blockly.ScratchMsgs.locales[\"${name}\"] = require('./js/${name}.js');`));
   });
 };
 
