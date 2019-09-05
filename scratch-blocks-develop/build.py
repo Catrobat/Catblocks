@@ -470,6 +470,8 @@ class Gen_compressed(threading.Thread):
         print("UNKNOWN ERROR")
 
 
+'''
+# original generate logic for scratch, please see new one for catblocks below
 class Gen_langfiles(threading.Thread):
   """Generate JavaScript file for each natural language supported.
 
@@ -546,6 +548,38 @@ class Gen_langfiles(threading.Thread):
         print("SUCCESS: " + f)
       else:
         print("FAILED to create " + f)
+'''
+class Gen_langfiles(threading.Thread):
+  """Generate JSON and JS files from catroid strings files
+  Runs in a separate thread.
+  """
+
+  def __init__(self):
+    threading.Thread.__init__(self)
+
+  def run(self):
+    ''' Generate first JSON files from catroid strings.
+    JSON files should be the source or catblocks, in case of fork from catroid
+    JS files will be loaded be imported to catblocks_msgs.js files
+    This file should be loaded as module to your workspace page.
+    '''
+    try:
+      cmd = [
+        "node",
+        "i18n/catblocks/create_json.js"
+      ]
+      subprocess.check_call(cmd)
+      cmd = [
+        "node",
+        "i18n/catblocks/create_msg.js"
+      ]
+      subprocess.check_call(cmd)
+      print("SUCCESS: catblocks_msg.js")
+    except (subprocess.CalledProcessError, OSError, Exception) as e:
+      print("Error, failed to create messages for catblocks")
+      print("Please verify that catroid strings.xml folder and files exists")
+      print(e)
+      sys.exit(1)
 
 def exclude_vertical(item):
   return not item.endswith("block_render_svg_vertical.js")
@@ -622,4 +656,4 @@ if __name__ == "__main__":
   Gen_compressed(search_paths_vertical, search_paths_horizontal, closure_env).start()
 
   # This is run locally in a separate thread.
-  # Gen_langfiles().start()
+  Gen_langfiles().start()
