@@ -3,11 +3,11 @@
 
 'use strict';
 
-goog.provide('Blockly.ScratchMsgs.allLocales');
-goog.require('Blockly.ScratchMsgs');
+goog.provide('Blockly.CatblocksMsgs.allLocales');
+goog.require('Blockly.CatblocksMsgs');
 
 
-Blockly.ScratchMsgs.locales["af_ZA"] = {
+Blockly.CatblocksMsgs.locales["af_ZA"] = {
   "DROPDOWN_NAME": "Afrikaans (South Africa)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -164,7 +164,7 @@ Blockly.ScratchMsgs.locales["af_ZA"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ar_SA"] = {
+Blockly.CatblocksMsgs.locales["ar_SA"] = {
   "DROPDOWN_NAME": "Arabic (Saudi Arabia)",
   "CATEGORY": "الفئات",
   "CATEGORY_EMBROIDERY": "التطريز",
@@ -321,7 +321,7 @@ Blockly.ScratchMsgs.locales["ar_SA"] = {
   "REDO": "الإعادة",
 }
 
-Blockly.ScratchMsgs.locales["az_AZ"] = {
+Blockly.CatblocksMsgs.locales["az_AZ"] = {
   "DROPDOWN_NAME": "Azeri (Cyrillic) (Azerbaijan)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -478,7 +478,7 @@ Blockly.ScratchMsgs.locales["az_AZ"] = {
   "REDO": "Təkrar et",
 }
 
-Blockly.ScratchMsgs.locales["bg_BG"] = {
+Blockly.CatblocksMsgs.locales["bg_BG"] = {
   "DROPDOWN_NAME": "Bulgarian (Bulgaria)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -635,7 +635,7 @@ Blockly.ScratchMsgs.locales["bg_BG"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["bn_BD"] = {
+Blockly.CatblocksMsgs.locales["bn_BD"] = {
   "DROPDOWN_NAME": "Bengali",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -792,7 +792,7 @@ Blockly.ScratchMsgs.locales["bn_BD"] = {
   "REDO": "আবার করুন",
 }
 
-Blockly.ScratchMsgs.locales["bs_BA"] = {
+Blockly.CatblocksMsgs.locales["bs_BA"] = {
   "DROPDOWN_NAME": "Bosnian (Bosnia and Herzegovina)",
   "CATEGORY": "Kategorije",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -949,7 +949,7 @@ Blockly.ScratchMsgs.locales["bs_BA"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ca_ES"] = {
+Blockly.CatblocksMsgs.locales["ca_ES"] = {
   "DROPDOWN_NAME": "Catalan (Spain)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -1106,7 +1106,7 @@ Blockly.ScratchMsgs.locales["ca_ES"] = {
   "REDO": "Refés",
 }
 
-Blockly.ScratchMsgs.locales["cs_CZ"] = {
+Blockly.CatblocksMsgs.locales["cs_CZ"] = {
   "DROPDOWN_NAME": "Czech (Czech Republic)",
   "CATEGORY": "Kategorie",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -1263,7 +1263,7 @@ Blockly.ScratchMsgs.locales["cs_CZ"] = {
   "REDO": "Provést znovu",
 }
 
-Blockly.ScratchMsgs.locales["da_DK"] = {
+Blockly.CatblocksMsgs.locales["da_DK"] = {
   "DROPDOWN_NAME": "Danish (Denmark)",
   "CATEGORY": "Kategorier",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -1420,7 +1420,7 @@ Blockly.ScratchMsgs.locales["da_DK"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["de_DE"] = {
+Blockly.CatblocksMsgs.locales["de_DE"] = {
   "DROPDOWN_NAME": "German (Germany)",
   "CATEGORY": "Kategorien",
   "CATEGORY_EMBROIDERY": "Sticken",
@@ -1577,7 +1577,7 @@ Blockly.ScratchMsgs.locales["de_DE"] = {
   "REDO": "Wiederholen",
 }
 
-Blockly.ScratchMsgs.locales["el_GR"] = {
+Blockly.CatblocksMsgs.locales["el_GR"] = {
   "DROPDOWN_NAME": "Greek (Greece)",
   "CATEGORY": "Κατηγορίες",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -1734,7 +1734,7 @@ Blockly.ScratchMsgs.locales["el_GR"] = {
   "REDO": "Ακύρωση Αναίρεσης",
 }
 
-Blockly.ScratchMsgs.locales["en_AU"] = {
+Blockly.CatblocksMsgs.locales["en_AU"] = {
   "DROPDOWN_NAME": "English (Australia)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -1891,7 +1891,7 @@ Blockly.ScratchMsgs.locales["en_AU"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["en_CA"] = {
+Blockly.CatblocksMsgs.locales["en_CA"] = {
   "DROPDOWN_NAME": "English (Canada)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2048,7 +2048,7 @@ Blockly.ScratchMsgs.locales["en_CA"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["en_GB"] = {
+Blockly.CatblocksMsgs.locales["en_GB"] = {
   "DROPDOWN_NAME": "English (United Kingdom)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2205,7 +2205,7 @@ Blockly.ScratchMsgs.locales["en_GB"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["es_ES"] = {
+Blockly.CatblocksMsgs.locales["es_ES"] = {
   "DROPDOWN_NAME": "Spanish (Spain)",
   "CATEGORY": "Categorías",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2362,7 +2362,7 @@ Blockly.ScratchMsgs.locales["es_ES"] = {
   "REDO": "Rehacer",
 }
 
-Blockly.ScratchMsgs.locales["fa_AF"] = {
+Blockly.CatblocksMsgs.locales["fa_AF"] = {
   "DROPDOWN_NAME": "Persian",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2519,7 +2519,7 @@ Blockly.ScratchMsgs.locales["fa_AF"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["fa_IR"] = {
+Blockly.CatblocksMsgs.locales["fa_IR"] = {
   "DROPDOWN_NAME": "Farsi (Iran)",
   "CATEGORY": "دسته ها",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2676,7 +2676,7 @@ Blockly.ScratchMsgs.locales["fa_IR"] = {
   "REDO": "انجام دوباره",
 }
 
-Blockly.ScratchMsgs.locales["fi_FI"] = {
+Blockly.CatblocksMsgs.locales["fi_FI"] = {
   "DROPDOWN_NAME": "Finnish (Finland)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2833,7 +2833,7 @@ Blockly.ScratchMsgs.locales["fi_FI"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["fr_FR"] = {
+Blockly.CatblocksMsgs.locales["fr_FR"] = {
   "DROPDOWN_NAME": "French (France)",
   "CATEGORY": "Catégories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -2990,7 +2990,7 @@ Blockly.ScratchMsgs.locales["fr_FR"] = {
   "REDO": "Refaire",
 }
 
-Blockly.ScratchMsgs.locales["gl_ES"] = {
+Blockly.CatblocksMsgs.locales["gl_ES"] = {
   "DROPDOWN_NAME": "Galician (Spain)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3147,7 +3147,7 @@ Blockly.ScratchMsgs.locales["gl_ES"] = {
   "REDO": "Refacer",
 }
 
-Blockly.ScratchMsgs.locales["gu_IN"] = {
+Blockly.CatblocksMsgs.locales["gu_IN"] = {
   "DROPDOWN_NAME": "Gujarati (India)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3304,7 +3304,7 @@ Blockly.ScratchMsgs.locales["gu_IN"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ha_HG"] = {
+Blockly.CatblocksMsgs.locales["ha_HG"] = {
   "DROPDOWN_NAME": "Hausa",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3461,7 +3461,7 @@ Blockly.ScratchMsgs.locales["ha_HG"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["hi_IN"] = {
+Blockly.CatblocksMsgs.locales["hi_IN"] = {
   "DROPDOWN_NAME": "Hindi (India)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3618,7 +3618,7 @@ Blockly.ScratchMsgs.locales["hi_IN"] = {
   "REDO": "फिर से करें",
 }
 
-Blockly.ScratchMsgs.locales["hr_HR"] = {
+Blockly.CatblocksMsgs.locales["hr_HR"] = {
   "DROPDOWN_NAME": "Croatian (Croatia)",
   "CATEGORY": "Kategorije",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3775,7 +3775,7 @@ Blockly.ScratchMsgs.locales["hr_HR"] = {
   "REDO": "Vrati poništeno",
 }
 
-Blockly.ScratchMsgs.locales["hu_HU"] = {
+Blockly.CatblocksMsgs.locales["hu_HU"] = {
   "DROPDOWN_NAME": "Hungarian (Hungary)",
   "CATEGORY": "Kategóriák",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -3932,7 +3932,7 @@ Blockly.ScratchMsgs.locales["hu_HU"] = {
   "REDO": "Ismétlés",
 }
 
-Blockly.ScratchMsgs.locales["ig_NG"] = {
+Blockly.CatblocksMsgs.locales["ig_NG"] = {
   "DROPDOWN_NAME": "Igbo (Nigeria)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -4089,7 +4089,7 @@ Blockly.ScratchMsgs.locales["ig_NG"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["in_ID"] = {
+Blockly.CatblocksMsgs.locales["in_ID"] = {
   "DROPDOWN_NAME": "Indonesien (Indonesia)",
   "CATEGORY": "Kategori",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -4246,7 +4246,7 @@ Blockly.ScratchMsgs.locales["in_ID"] = {
   "REDO": "Ulangi",
 }
 
-Blockly.ScratchMsgs.locales["it_IT"] = {
+Blockly.CatblocksMsgs.locales["it_IT"] = {
   "DROPDOWN_NAME": "Italian (Italy)",
   "CATEGORY": "Categorie",
   "CATEGORY_EMBROIDERY": "Ricamo",
@@ -4403,7 +4403,7 @@ Blockly.ScratchMsgs.locales["it_IT"] = {
   "REDO": "Ripeti",
 }
 
-Blockly.ScratchMsgs.locales["iw_IL"] = {
+Blockly.CatblocksMsgs.locales["iw_IL"] = {
   "DROPDOWN_NAME": "Hebrew (Israel)",
   "CATEGORY": "קטגוריות",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -4560,7 +4560,7 @@ Blockly.ScratchMsgs.locales["iw_IL"] = {
   "REDO": "בצע שוב",
 }
 
-Blockly.ScratchMsgs.locales["ja_JP"] = {
+Blockly.CatblocksMsgs.locales["ja_JP"] = {
   "DROPDOWN_NAME": "Japanese (Japan)",
   "CATEGORY": "範囲",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -4717,7 +4717,7 @@ Blockly.ScratchMsgs.locales["ja_JP"] = {
   "REDO": "リドゥー",
 }
 
-Blockly.ScratchMsgs.locales["kk_KZ"] = {
+Blockly.CatblocksMsgs.locales["kk_KZ"] = {
   "DROPDOWN_NAME": "Kazakh (Kazakhstan)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -4874,7 +4874,7 @@ Blockly.ScratchMsgs.locales["kk_KZ"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["kn_IN"] = {
+Blockly.CatblocksMsgs.locales["kn_IN"] = {
   "DROPDOWN_NAME": "Kannada (India)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5031,7 +5031,7 @@ Blockly.ScratchMsgs.locales["kn_IN"] = {
   "REDO": "ರೀ-ಡು",
 }
 
-Blockly.ScratchMsgs.locales["ko_KR"] = {
+Blockly.CatblocksMsgs.locales["ko_KR"] = {
   "DROPDOWN_NAME": "Korean (Korea)",
   "CATEGORY": "카테고리",
   "CATEGORY_EMBROIDERY": "자수",
@@ -5188,7 +5188,7 @@ Blockly.ScratchMsgs.locales["ko_KR"] = {
   "REDO": "다시 실행",
 }
 
-Blockly.ScratchMsgs.locales["lt_LT"] = {
+Blockly.CatblocksMsgs.locales["lt_LT"] = {
   "DROPDOWN_NAME": "Lithuanian (Lithuania)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5345,7 +5345,7 @@ Blockly.ScratchMsgs.locales["lt_LT"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["mk_MK"] = {
+Blockly.CatblocksMsgs.locales["mk_MK"] = {
   "DROPDOWN_NAME": "FYRO Macedonian (Former Yugoslav Republic of Macedonia)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5502,7 +5502,7 @@ Blockly.ScratchMsgs.locales["mk_MK"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ml_IN"] = {
+Blockly.CatblocksMsgs.locales["ml_IN"] = {
   "DROPDOWN_NAME": "Malayalam",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5659,7 +5659,7 @@ Blockly.ScratchMsgs.locales["ml_IN"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ms_MY"] = {
+Blockly.CatblocksMsgs.locales["ms_MY"] = {
   "DROPDOWN_NAME": "Malay (Malaysia)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5816,7 +5816,7 @@ Blockly.ScratchMsgs.locales["ms_MY"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["nl_NL"] = {
+Blockly.CatblocksMsgs.locales["nl_NL"] = {
   "DROPDOWN_NAME": "Dutch (Netherlands)",
   "CATEGORY": "Categorieën",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -5973,7 +5973,7 @@ Blockly.ScratchMsgs.locales["nl_NL"] = {
   "REDO": "Opnieuw uitvoeren",
 }
 
-Blockly.ScratchMsgs.locales["no_NO"] = {
+Blockly.CatblocksMsgs.locales["no_NO"] = {
   "DROPDOWN_NAME": "Norwegian",
   "CATEGORY": "Kategorier",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -6130,7 +6130,7 @@ Blockly.ScratchMsgs.locales["no_NO"] = {
   "REDO": "Gjenta",
 }
 
-Blockly.ScratchMsgs.locales["pl_PL"] = {
+Blockly.CatblocksMsgs.locales["pl_PL"] = {
   "DROPDOWN_NAME": "Polish (Poland)",
   "CATEGORY": "Kategorie",
   "CATEGORY_EMBROIDERY": "Haft",
@@ -6287,7 +6287,7 @@ Blockly.ScratchMsgs.locales["pl_PL"] = {
   "REDO": "Ponów",
 }
 
-Blockly.ScratchMsgs.locales["ps_AF"] = {
+Blockly.CatblocksMsgs.locales["ps_AF"] = {
   "DROPDOWN_NAME": "Pushto",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -6444,7 +6444,7 @@ Blockly.ScratchMsgs.locales["ps_AF"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["pt_BR"] = {
+Blockly.CatblocksMsgs.locales["pt_BR"] = {
   "DROPDOWN_NAME": "Portuguese (Brazil)",
   "CATEGORY": "Categorias",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -6601,7 +6601,7 @@ Blockly.ScratchMsgs.locales["pt_BR"] = {
   "REDO": "Refazer",
 }
 
-Blockly.ScratchMsgs.locales["pt_PT"] = {
+Blockly.CatblocksMsgs.locales["pt_PT"] = {
   "DROPDOWN_NAME": "Portuguese (Portugal)",
   "CATEGORY": "Categorias",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -6758,7 +6758,7 @@ Blockly.ScratchMsgs.locales["pt_PT"] = {
   "REDO": "Refazer",
 }
 
-Blockly.ScratchMsgs.locales["ro_RO"] = {
+Blockly.CatblocksMsgs.locales["ro_RO"] = {
   "DROPDOWN_NAME": "Romanian (Romania)",
   "CATEGORY": "Categorii",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -6915,7 +6915,7 @@ Blockly.ScratchMsgs.locales["ro_RO"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ru_RU"] = {
+Blockly.CatblocksMsgs.locales["ru_RU"] = {
   "DROPDOWN_NAME": "Russian (Russia)",
   "CATEGORY": "Категории",
   "CATEGORY_EMBROIDERY": "Вышивка",
@@ -7072,7 +7072,7 @@ Blockly.ScratchMsgs.locales["ru_RU"] = {
   "REDO": "Повторить",
 }
 
-Blockly.ScratchMsgs.locales["sd_PK"] = {
+Blockly.CatblocksMsgs.locales["sd_PK"] = {
   "DROPDOWN_NAME": "Sindh (Pakistan)",
   "CATEGORY": "ڪئٽيگريون",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -7229,7 +7229,7 @@ Blockly.ScratchMsgs.locales["sd_PK"] = {
   "REDO": "واپس موٽايو",
 }
 
-Blockly.ScratchMsgs.locales["si_LK"] = {
+Blockly.CatblocksMsgs.locales["si_LK"] = {
   "DROPDOWN_NAME": "Sinhala (Sri Lanka)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -7386,7 +7386,7 @@ Blockly.ScratchMsgs.locales["si_LK"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["sk_SK"] = {
+Blockly.CatblocksMsgs.locales["sk_SK"] = {
   "DROPDOWN_NAME": "Slovak (Slovakia)",
   "CATEGORY": "Kategórie",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -7543,7 +7543,7 @@ Blockly.ScratchMsgs.locales["sk_SK"] = {
   "REDO": "Krok vpred",
 }
 
-Blockly.ScratchMsgs.locales["sl_SI"] = {
+Blockly.CatblocksMsgs.locales["sl_SI"] = {
   "DROPDOWN_NAME": "Slovenian (Slovenia)",
   "CATEGORY": "Oddelki",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -7700,7 +7700,7 @@ Blockly.ScratchMsgs.locales["sl_SI"] = {
   "REDO": "Ponovi",
 }
 
-Blockly.ScratchMsgs.locales["sq_AL"] = {
+Blockly.CatblocksMsgs.locales["sq_AL"] = {
   "DROPDOWN_NAME": "Albanian (Albania)",
   "CATEGORY": "Kategoritë",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -7857,7 +7857,7 @@ Blockly.ScratchMsgs.locales["sq_AL"] = {
   "REDO": "Ribëje",
 }
 
-Blockly.ScratchMsgs.locales["sr_CS"] = {
+Blockly.CatblocksMsgs.locales["sr_CS"] = {
   "DROPDOWN_NAME": "Serbian (Latin)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8014,7 +8014,7 @@ Blockly.ScratchMsgs.locales["sr_CS"] = {
   "REDO": "Ponovi",
 }
 
-Blockly.ScratchMsgs.locales["sr_SP"] = {
+Blockly.CatblocksMsgs.locales["sr_SP"] = {
   "DROPDOWN_NAME": "Serbian (Cyrillic) (Serbia and Montenegro)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8171,7 +8171,7 @@ Blockly.ScratchMsgs.locales["sr_SP"] = {
   "REDO": "Понови",
 }
 
-Blockly.ScratchMsgs.locales["sv_SE"] = {
+Blockly.CatblocksMsgs.locales["sv_SE"] = {
   "DROPDOWN_NAME": "Swedish (Sweden)",
   "CATEGORY": "Kategorier",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8328,7 +8328,7 @@ Blockly.ScratchMsgs.locales["sv_SE"] = {
   "REDO": "Gör om",
 }
 
-Blockly.ScratchMsgs.locales["sw_KE"] = {
+Blockly.CatblocksMsgs.locales["sw_KE"] = {
   "DROPDOWN_NAME": "Swahili (Kenya)",
   "CATEGORY": "Jamii",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8485,7 +8485,7 @@ Blockly.ScratchMsgs.locales["sw_KE"] = {
   "REDO": "Rudia",
 }
 
-Blockly.ScratchMsgs.locales["ta_IN"] = {
+Blockly.CatblocksMsgs.locales["ta_IN"] = {
   "DROPDOWN_NAME": "Tamil (India)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8642,7 +8642,7 @@ Blockly.ScratchMsgs.locales["ta_IN"] = {
   "REDO": "மறுபடியும் செய்",
 }
 
-Blockly.ScratchMsgs.locales["te_IN"] = {
+Blockly.CatblocksMsgs.locales["te_IN"] = {
   "DROPDOWN_NAME": "Telugu (India)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8799,7 +8799,7 @@ Blockly.ScratchMsgs.locales["te_IN"] = {
   "REDO": "పునరావృత్తం",
 }
 
-Blockly.ScratchMsgs.locales["th_TH"] = {
+Blockly.CatblocksMsgs.locales["th_TH"] = {
   "DROPDOWN_NAME": "Thai (Thailand)",
   "CATEGORY": "หมวดหมู่",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -8956,7 +8956,7 @@ Blockly.ScratchMsgs.locales["th_TH"] = {
   "REDO": "ทำซ้ำ",
 }
 
-Blockly.ScratchMsgs.locales["tr_TR"] = {
+Blockly.CatblocksMsgs.locales["tr_TR"] = {
   "DROPDOWN_NAME": "Turkish (Turkey)",
   "CATEGORY": "Kategoriler",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -9113,7 +9113,7 @@ Blockly.ScratchMsgs.locales["tr_TR"] = {
   "REDO": "Yinele",
 }
 
-Blockly.ScratchMsgs.locales["tw_TW"] = {
+Blockly.CatblocksMsgs.locales["tw_TW"] = {
   "DROPDOWN_NAME": "Twi",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -9270,7 +9270,7 @@ Blockly.ScratchMsgs.locales["tw_TW"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["uk_UA"] = {
+Blockly.CatblocksMsgs.locales["uk_UA"] = {
   "DROPDOWN_NAME": "Ukrainian (Ukraine)",
   "CATEGORY": "Categories",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -9427,7 +9427,7 @@ Blockly.ScratchMsgs.locales["uk_UA"] = {
   "REDO": "Redo",
 }
 
-Blockly.ScratchMsgs.locales["ur_PK"] = {
+Blockly.CatblocksMsgs.locales["ur_PK"] = {
   "DROPDOWN_NAME": "Urdu (Islamic Republic of Pakistan)",
   "CATEGORY": "درجہ بندی",
   "CATEGORY_EMBROIDERY": "کشیدہ کاری",
@@ -9584,7 +9584,7 @@ Blockly.ScratchMsgs.locales["ur_PK"] = {
   "REDO": "واپس ے آؤ",
 }
 
-Blockly.ScratchMsgs.locales["vi_VN"] = {
+Blockly.CatblocksMsgs.locales["vi_VN"] = {
   "DROPDOWN_NAME": "Vietnamese (Viet Nam)",
   "CATEGORY": "Danh mục",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -9741,7 +9741,7 @@ Blockly.ScratchMsgs.locales["vi_VN"] = {
   "REDO": "Làm lại",
 }
 
-Blockly.ScratchMsgs.locales["zh_CN"] = {
+Blockly.CatblocksMsgs.locales["zh_CN"] = {
   "DROPDOWN_NAME": "Chinese (S)",
   "CATEGORY": "类别",
   "CATEGORY_EMBROIDERY": "Embroidery",
@@ -9898,7 +9898,7 @@ Blockly.ScratchMsgs.locales["zh_CN"] = {
   "REDO": "重做",
 }
 
-Blockly.ScratchMsgs.locales["zh_TW"] = {
+Blockly.CatblocksMsgs.locales["zh_TW"] = {
   "DROPDOWN_NAME": "Chinese (T)",
   "CATEGORY": "程式塊分類",
   "CATEGORY_EMBROIDERY": "Embroidery",

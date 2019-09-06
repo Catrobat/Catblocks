@@ -77,7 +77,7 @@ function test_allRulesInJSON() {
 };
 
 /**
- * Check if Blockly.ScratchMsgs object has loaded all locations properly
+ * Check if Blockly.CatblocksMsgs object has loaded all locations properly
  */
 function test_blocklyLoadedLocations() {
   injectTestWorkspace();
@@ -86,7 +86,7 @@ function test_blocklyLoadedLocations() {
       const lang = jsonfile.replace('.json', '');
       console.log(`Check if lang ${lang} loaded into Blockly object`);
       
-      assertTrue(Blockly.ScratchMsgs.locales[lang] !== null);
+      assertTrue(Blockly.CatblocksMsgs.locales[lang] !== null);
     }
   });
 }

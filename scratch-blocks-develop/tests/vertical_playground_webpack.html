@@ -47,10 +47,10 @@
       // Setup locale
       var select = document.getElementsByName("locale")[0];
       var hasDefault = false;
-      Object.keys(Blockly.ScratchMsgs.locales).forEach(locale => {
+      Object.keys(Blockly.CatblocksMsgs.locales).forEach(locale => {
         var lcoale_opt = document.createElement('option');
         lcoale_opt.value = locale;
-        lcoale_opt.innerHTML = Blockly.ScratchMsgs.locales[locale]['DROPDOWN_NAME'];
+        lcoale_opt.innerHTML = Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
         select.appendChild(lcoale_opt);
         // TODO: set default to SHARE LANGUAGE
         if (locale === 'en_GB') hasDefault = true;
@@ -58,7 +58,7 @@
 
       match = location.search.match(/locale=([^&]+)/);
       var locale = match ? match[1] : (hasDefault ? 'en_GB' : select.options[0].value);
-      Blockly.ScratchMsgs.setLocale(locale);
+      Blockly.CatblocksMsgs.setLocale(locale);
       document.forms.options.elements.locale.value = locale;
 
       // Create main workspace.
@@ -297,7 +297,7 @@
     function setLocale(locale) {
       workspace.getFlyout().setRecyclingEnabled(false);
       var xml = Blockly.Xml.workspaceToDom(workspace);
-      Blockly.ScratchMsgs.setLocale(locale);
+      Blockly.CatblocksMsgs.setLocale(locale);
       // regenerate toolbox with new locale values
       Blockly.updateToolbox(Blockly.Blocks.defaultToolbox);
       Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
