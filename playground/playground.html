@@ -42,7 +42,7 @@
 
       match = location.search.match(/locale=([^&]+)/);
       var locale = match ? match[1] : 'en';
-      Blockly.ScratchMsgs.setLocale(locale);
+      Blockly.CatblocksMsgs.setLocale(locale);
 
       // Create main workspace.
       workspace = Blockly.inject('blocklyDiv', {
