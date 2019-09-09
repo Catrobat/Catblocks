@@ -27,10 +27,6 @@ const STRING_FILES = listDir(getUrl(STRINGS_FOLDER_PATH), true);
 const JSON_FOLDER_PATH = "/scratch-blocks-develop/msg/json/";
 const JSON_FILES = listDir(getUrl(JSON_FOLDER_PATH), true);
 
-// js folder
-const JS_FOLDER_PATH = "/scratch-blocks-develop/msg/js/";
-const JS_FILES = listDir(getUrl(JS_FOLDER_PATH), true);
-
 // rules file
 const MAPPING_FILE = "/scratch-blocks-develop/i18n/catblocks/strings_to_json_mapping.json";
 const MAPPING = loadRules(MAPPING_FILE);
@@ -58,11 +54,12 @@ function loadRules(filepath) {
 function test_messageFilesGenerated() {
   STRING_FILES.forEach(strfolder => {
     const locale = strfolder.replace('values-', '').replace('-', '_').replace('/', '').replace('_r', '_');
-    console.log(`Check locale: ${locale} has generated .js and .json file`);
+    console.log(`Check locale: ${locale} has generated .json file`);
 
     assertTrue(JSON_FILES.includes(`${locale}.json`));
-    assertTrue(JS_FILES.includes(`${locale}.js`));
   });
+  console.log(`Check if message file ${MESSAGE_PATH} exists`)
+  assertTrue(MESSAGE != undefined || MESSAGE != null);
 };
 
 /**
@@ -80,46 +77,16 @@ function test_allRulesInJSON() {
 };
 
 /**
- * Check if each js file includes all keys from msg_json_rules.json
- */
-function test_allRulesInJS() {
-  JS_FILES.forEach(testfile => {
-    if (testfile.match(/.js$/)) {
-      console.log(`Check file ${testfile} if all rules got generated`);
-      const test = loadPageSync(getUrl(`${JS_FOLDER_PATH}${testfile}`)).split('\n').join(' ').split('\r').join(' ');
-
-      Object.keys(MAPPING).forEach(rule => {
-        assertTrue(test.indexOf(rule) > -1);
-      })
-    }
-  });
-};
-
-/**
- * Check if all js files are included in the final catblocks_msgs.js file
- */
-function test_messageImports() {
-  const message_lines = MESSAGE.split('\n');
-  JS_FILES.forEach(jsfile => {
-    console.log(`Check if imports are fine for ${jsfile}`);
-    const name = jsfile.split('.')[0];
-
-    assertTrue(message_lines.includes(`import ${name} from './js/${name}.js'`));
-    assertTrue(message_lines.includes(`Blockly.ScratchMsgs.locales[\"${name}\"] = ${name};`));
-  });
-};
-
-/**
- * Check if Blockly.ScratchMsgs object has loaded all locations properly
+ * Check if Blockly.CatblocksMsgs object has loaded all locations properly
  */
 function test_blocklyLoadedLocations() {
   injectTestWorkspace();
-  JS_FILES.forEach(jsfile => {
-    if (jsfile.match(/.js$/)) {
-      const lang = jsfile.replace('.js', '');
+  JSON_FILES.forEach(jsonfile => {
+    if (jsonfile.match(/.json$/)) {
+      const lang = jsonfile.replace('.json', '');
       console.log(`Check if lang ${lang} loaded into Blockly object`);
       
-      assertTrue(Blockly.ScratchMsgs.locales[lang] !== null);
+      assertTrue(Blockly.CatblocksMsgs.locales[lang] !== null);
     }
   });
 }

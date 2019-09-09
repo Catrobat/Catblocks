@@ -469,83 +469,37 @@ class Gen_compressed(threading.Thread):
       else:
         print("UNKNOWN ERROR")
 
-
 class Gen_langfiles(threading.Thread):
-  """Generate JavaScript file for each natural language supported.
-
+  """Generate JSON and JS files from catroid strings files
   Runs in a separate thread.
   """
 
   def __init__(self):
     threading.Thread.__init__(self)
 
-  def _rebuild(self, srcs, dests):
-    # Determine whether any of the files in srcs is newer than any in dests.
-    try:
-      return (max(os.path.getmtime(src) for src in srcs) >
-              min(os.path.getmtime(dest) for dest in dests))
-    except OSError as e:
-      # Was a file not found?
-      if e.errno == errno.ENOENT:
-        # If it was a source file, we can't proceed.
-        if e.filename in srcs:
-          print("Source file missing: " + e.filename)
-          sys.exit(1)
-        else:
-          # If a destination file was missing, rebuild.
-          return True
-      else:
-        print("Error checking file creation times: " + e)
-
   def run(self):
-    # The files msg/json/{en,qqq,synonyms}.json depend on msg/messages.js.
-    if self._rebuild([os.path.join("msg", "messages.js")],
-                     [os.path.join("msg", "json", f) for f in
-                      ["en.json", "qqq.json", "synonyms.json"]]):
-      try:
-        subprocess.check_call([
-            "python",
-            os.path.join("i18n", "js_to_json.py"),
-            "--input_file", "msg/messages.js",
-            "--output_dir", "msg/json/",
-            "--quiet"])
-      except (subprocess.CalledProcessError, OSError) as e:
-        # Documentation for subprocess.check_call says that CalledProcessError
-        # will be raised on failure, but I found that OSError is also possible.
-        print("Error running i18n/js_to_json.py: ", e)
-        sys.exit(1)
-
-    # Checking whether it is necessary to rebuild the js files would be a lot of
-    # work since we would have to compare each <lang>.json file with each
-    # <lang>.js file.  Rebuilding is easy and cheap, so just go ahead and do it.
+    ''' Generate first JSON files from catroid strings.
+    JSON files should be the source or catblocks, in case of fork from catroid
+    JS files will be loaded be imported to catblocks_msgs.js files
+    This file should be loaded as module to your workspace page.
+    '''
     try:
-      # Use create_messages.py to create .js files from .json files.
       cmd = [
-          "python",
-          os.path.join("i18n", "create_messages.py"),
-          "--source_lang_file", os.path.join("msg", "json", "en.json"),
-          "--source_synonym_file", os.path.join("msg", "json", "synonyms.json"),
-          "--source_constants_file", os.path.join("msg", "json", "constants.json"),
-          "--key_file", os.path.join("msg", "json", "keys.json"),
-          "--output_dir", os.path.join("msg", "js"),
-          "--quiet"]
-      json_files = glob.glob(os.path.join("msg", "json", "*.json"))
-      json_files = [file for file in json_files if not
-                    (file.endswith(("keys.json", "synonyms.json", "qqq.json", "constants.json")))]
-      cmd.extend(json_files)
+        "node",
+        "i18n/catblocks/create_json.js"
+      ]
       subprocess.check_call(cmd)
-    except (subprocess.CalledProcessError, OSError) as e:
-      print("Error running i18n/create_messages.py: ", e)
+      cmd = [
+        "node",
+        "i18n/catblocks/create_msg.js"
+      ]
+      subprocess.check_call(cmd)
+      print("SUCCESS: catblocks_msg.js")
+    except (subprocess.CalledProcessError, OSError, Exception) as e:
+      print("Error, failed to create messages for catblocks")
+      print("Please verify that catroid strings.xml folder and files exists")
+      print(e)
       sys.exit(1)
-
-    # Output list of .js files created.
-    for f in json_files:
-      # This assumes the path to the current directory does not contain "json".
-      f = f.replace("json", "js")
-      if os.path.isfile(f):
-        print("SUCCESS: " + f)
-      else:
-        print("FAILED to create " + f)
 
 def exclude_vertical(item):
   return not item.endswith("block_render_svg_vertical.js")
@@ -622,4 +576,4 @@ if __name__ == "__main__":
   Gen_compressed(search_paths_vertical, search_paths_horizontal, closure_env).start()
 
   # This is run locally in a separate thread.
-  # Gen_langfiles().start()
+  Gen_langfiles().start()

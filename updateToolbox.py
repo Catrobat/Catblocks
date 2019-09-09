@@ -42,8 +42,8 @@ def initColors():
     blockToColor['sound']       = {'name':"\"%{BKY_CATEGORY_SOUND}\"",          'id':"\"sound\"",  'color':"\"#9966FF\"", 'secondaryColour':"\"#9966FF\""}
     blockToColor['event']       = {'name':"\"%{BKY_CATEGORY_EVENTS}\"",         'id':"\"events\"",  'color':"\"#FF661A\"", 'secondaryColour':"\"#CC9900\""}
     blockToColor['control']     = {'name':"\"%{BKY_CATEGORY_CONTROL}\"", 'id':"\"control\"", 'color':"\"#FFAB19\"", 'secondaryColour':"\"#CF8B17\""}
-    blockToColor['pen']         = {'name':"\"Pen\"",    'color':"\"#0fBD8C\"",  'id':"\"sensing\"", 'secondaryColour':"\"#2E8EB8\""}
-    blockToColor['data']        = {'name':"\"Data\"",   'color':"\"#FF6680\"",  'id':"\"operators\"", 'secondaryColour':"\"#389438\""}
+    blockToColor['pen']         = {'name':"\"%{BKY_CATEGORY_PEN}\"",    'color':"\"#0fBD8C\"",  'id':"\"sensing\"", 'secondaryColour':"\"#2E8EB8\""}
+    blockToColor['data']        = {'name':"\"%{BKY_CATEGORY_VARIABLES}\"",   'color':"\"#FF6680\"",  'id':"\"operators\"", 'secondaryColour':"\"#389438\""}
 
 def main():
     getData()

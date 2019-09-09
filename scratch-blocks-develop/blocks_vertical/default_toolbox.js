@@ -319,7 +319,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '</value>' +
 '</block>' +
 '</category>' +
- '<category name="Pen" id= "sensing" colour="#0fBD8C" secondaryColour="#2E8EB8">' +
+ '<category name="%{BKY_CATEGORY_PEN}" id= "sensing" colour="#0fBD8C" secondaryColour="#2E8EB8">' +
 '<block type="PenDownBrick" id="" x="" y="">' +
 '</block>' +
 '<block type="PenUpBrick" id="" x="" y="">' +
@@ -507,7 +507,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  <field name="DROPDOWN">on</field>' +
 '</block>' +
 '</category>' +
- '<category name="Data" id= "operators" colour="#FF6680" secondaryColour="#389438">' +
+ '<category name="%{BKY_CATEGORY_VARIABLES}" id= "operators" colour="#FF6680" secondaryColour="#389438">' +
 '<block type="SetVariableBrick" id="" x="" y="">' +
 '  <field name="DROPDOWN">new...</field>' +
 '  <value name="VARIABLE">' +
