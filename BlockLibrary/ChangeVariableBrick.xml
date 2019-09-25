@@ -1,5 +1,5 @@
 <block type="ChangeVariableBrick" id="" x="" y="">
-  <field name="DROPDOWN">new...</field>
+  <field name="DROPDOWN">���</field>
   <value name="VARIABLE_CHANGE">
     <shadow type="text" id="">
       <field name="TEXT">1</field>
