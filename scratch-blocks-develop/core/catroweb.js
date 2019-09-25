@@ -45,8 +45,9 @@ Blockly.Catroweb.initBlockly = function (locale = "en_GB") {
 /**
  * Create new workspace for Scene DOM DIV
  * @param {DOM} div to from scene where we should inject the workspace
+ * @param {integer} blockscale block scale for workspace
  */
-Blockly.Catroweb.createSceneWorkspace = function (div) {
+Blockly.Catroweb.createSceneWorkspace = function (div, blockscale = 0.75) {
   if (div.tagName !== "DIV") {
     console.error("Please provide a div in args0 - createSceneWorkspace");
   }
@@ -60,7 +61,7 @@ Blockly.Catroweb.createSceneWorkspace = function (div) {
     zoom: {
       controls: false,
       wheel: false,
-      startScale: 0.75,
+      startScale: blockscale
     }
   });
   return workspace;
