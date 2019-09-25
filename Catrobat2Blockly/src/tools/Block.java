@@ -88,10 +88,6 @@ class Block {
         inSTMT1 = !inSTMT1;
     }
 
-    boolean getworkon1(){
-        return inSTMT1;
-    }
-
     void setCurr(String curr) {
         this.curr = curr;
     }
