@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Catroweb test</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='./../dist/web/vertical.js'></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    #catblocks {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+
+    #catblocks-workspace {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='catblocks'>
+    <div id='catblocks-workspace1'></div>
+    <div id='catblocks-workspace2'></div>
+    <div id='catblocks-workspace3'></div>
+    <div id='catblocks-workspace4'></div>
+    <div id='catblocks-workspace5'></div>
+  </div>
+
+  <script>
+    function initBlockly(locale = "en_GB") {
+      // #TODO: use the locale from the server
+      Blockly.CatblocksMsgs.setLocale("en_GB");
+    }
+
+    function clearSceneWorkspace(workspace) {
+      injectDiv = workspace.blockDragSurface_.container_.parentElement;
+      const mainBlock = injectDiv.getElementsByTagName('svg')[0];
+
+      workspace.clear();
+      injectDiv.setAttribute('height', '0px');
+      mainBlock.setAttribute('height', '0px');
+    }
+
+    function createSceneWorkspace(div) {
+      if (div.tagName !== "DIV") {
+        console.error("Please provide a div in args0 - createSceneWorkspace");
+      }
+
+      // force to use the entire width
+      div.style.width = "100%";
+
+      // inject a new workspace, we will reuse this one for all scenes
+      workspace = Blockly.inject(div.id, {
+        readOnly: true,
+        zoom: {
+          controls: false,
+          wheel: false,
+          startScale: 0.75,
+        }
+      });
+      return workspace;
+    }
+
+    function loadSceneXml(xml, workspace) {
+      // get some data from php code
+      const xmlDom = Blockly.Xml.textToDom(xml);
+
+      injectDiv = workspace.blockDragSurface_.container_.parentElement;
+      const mainBlock = injectDiv.getElementsByTagName('svg')[0];
+
+      heightOffset = 50;
+      workspaceWidth = injectDiv.clientWidth;
+      widthOffset = workspaceWidth / 2;
+
+      // move it awai from the edges
+      const blocks = xmlDom.getElementsByTagName('block');
+      if (blocks.length > 0) {
+        blocks[0].setAttribute('x', widthOffset);
+        blocks[0].setAttribute('y', heightOffset);
+      }
+      clearSceneWorkspace(workspace);
+      Blockly.Xml.domToWorkspace(xmlDom, workspace);
+
+      // remove first the size define by blockly
+      const gbox = mainBlock.getBBox();
+      mainBlock.setAttribute('height', gbox.height + heightOffset + 'px');
+      mainBlock.style.position = 'inherit';
+      injectDiv.setAttribute('height', gbox.height + heightOffset + 'px');
+    }
+
+    const xmlSmall = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="StartScript"><next><block type="HideTextBrick"><field name="DROPDOWN">new...</field><next><block type="SetLookByIndexBrick"><value name="LOOK_INDEX"><shadow type="text"><field name="TEXT">1</field></shadow></value></block></next></block></next></block></xml>';
+    const sceneXml = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="PlaySoundBrick" id="t8Y|}SroXRBjuX7Je1IJ" ><field name="DROPDOWN">new...</field><next><block type="PlaySoundAndWaitBrick" id=",mWM1)^AbPMnnQj~SrY4"><field name="DROPDOWN">new...</field><next><block type="SetVolumeToBrick" id="mZ]lGPAQ`=!~CIe0KQ+?"><value name="VOLUME"><shadow type="text" id="vovt!}|{G4Kr6Va@C]%B"><field name="TEXT">60</field></shadow></value><next><block type="StopAllSoundsBrick" id="kQzLtP@{fKN06?9/?oNT"><next><block type="SetVolumeToBrick" id="z4zzZ^!SjrW$ZPMjbJ[z"><value name="VOLUME"><shadow type="text" id="A;O8vU-[W`Hf3-ByL2d0"><field name="TEXT">60</field></shadow></value><next><block type="ChangeVolumeByNBrick" id="Sksw:iDGf$q_p0zOz{tp"><value name="VOLUME_CHANGE"><shadow type="text" id="25,?$fu4%%Ml?}0h4*dt"><field name="TEXT">-10</field></shadow></value><next><block type="SpeakAndWaitBrick" id="0WM!G:fdzeQfk4;7x}SA"><value name="SPEAK"><shadow type="text" id=",(y~ePdD3]EV,jC$7cDv"><field name="TEXT">Hello!</field></shadow></value><next><block type="AskSpeechBrick" id="[NMU!TS+l2F`D5HyOuh`"><field name="DROPDOWN">name</field><value name="ASK_SPEECH_QUESTION"><shadow type="text" id="dr(}H0tW6L_)epBixjmU"><field name="TEXT">Whats your name?</field></shadow></value><next><block type="ForeverBrick" id="M[mK0HM1^Mi[)mR)jF5V"><statement name="SUBSTACK"><block type="NoteBrick" id="}sPpC2F$Ljm|/-fxtEH9"><value name="NOTE"><shadow type="text" id="DgtCUnACUwF#MRFkg#._"><field name="TEXT">add comment here...</field></shadow></value></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>';
+
+    initBlockly();
+
+    loadSceneXml(sceneXml, createSceneWorkspace(document.getElementById('catblocks-workspace1')));
+    loadSceneXml(sceneXml, createSceneWorkspace(document.getElementById('catblocks-workspace2')));
+    loadSceneXml(sceneXml, createSceneWorkspace(document.getElementById('catblocks-workspace3')));
+    loadSceneXml(sceneXml, createSceneWorkspace(document.getElementById('catblocks-workspace4')));
+    loadSceneXml(sceneXml, createSceneWorkspace(document.getElementById('catblocks-workspace5')));
+
+  </script>
+</body>
+
+</html>
