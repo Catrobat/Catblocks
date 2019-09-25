@@ -254,6 +254,8 @@ class Gen_compressed(threading.Thread):
     # Read in all the source files.
     filenames = calcdeps.CalculateDependencies(search_paths,
       [os.path.join("core", "blockly.js")])
+    # also include catroweb.js file
+    filenames.append(os.path.join("core", "catroweb.js"))
     filenames.sort()  # Deterministic build.
     for filename in filenames:
       # Append filenames as false arguments the step before compiling will
