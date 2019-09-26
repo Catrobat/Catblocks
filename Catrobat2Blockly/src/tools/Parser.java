@@ -22,8 +22,10 @@ public class Parser {
     private Script currentScript;
     private Stack<Block> conditionStack;
     private Stack<Block> blockStack;
+    private Stack<Formula> formulaStack;
     private Block currentCondBlock;
     private Block currentBlock;
+    private String currVal;
 
 
     public Parser() {
@@ -31,6 +33,7 @@ public class Parser {
         sceneList = new LinkedList<>();
         conditionStack = new Stack<>();
         blockStack = new Stack<>();
+        formulaStack = new Stack<>();
     }
 
     private void parse(String line){
@@ -48,6 +51,40 @@ public class Parser {
                     }
                     if(line.contains("elseBranchBricks")){
                         currentCondBlock.workon1();
+                    }
+                    if(line.contains("formulaList")){
+                        currentBlock.workonFormula();
+                    }
+                    if(currentBlock != null && currentBlock.isInFormula()){
+                        if (line.contains("<formula category=")) {
+                            Formula formula = new Formula();
+                            currentBlock.setFormula(formula);
+                            formulaStack.push(formula);
+                            currVal = (line.split("category=\"")[1].split("\">")[0]);
+                        }
+                        if (line.contains("<value>")) {
+                            String name = line.split("</?value>")[1];
+                            Formula formula = formulaStack.pop();
+                            formula.setValue(name);
+                        }
+                        if (line.contains("<leftChild")) {
+                            Formula curr = formulaStack.pop();
+                            Formula formula = new Formula();
+                            curr.setLeft(formula);
+                            formulaStack.push(curr);
+                            formulaStack.push(formula);
+                        }
+                        if (line.contains("<rightChild")) {
+                            Formula curr = formulaStack.pop();
+                            Formula formula = new Formula();
+                            curr.setRight(formula);
+                            formulaStack.push(curr);
+                            formulaStack.push(formula);
+                        }
+                        if(line.contains("</formula>")){
+                            String formula = currentBlock.convertFormula();
+                            currentBlock.addFormValues(currVal, formula);
+                        }
                     }
                     if (line.contains("<brick ")) {
                         String name = line.split("type=\"")[1].replace("\">", "");

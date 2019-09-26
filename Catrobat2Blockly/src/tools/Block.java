@@ -19,6 +19,7 @@ class Block {
 
     private boolean inSTMT1;
     private boolean inSTMT2;
+    private boolean inFormula;
     private String curr;
 
     void addFormValues(String key, String val) {
@@ -33,6 +34,7 @@ class Block {
 
         this.inSTMT1 = false;
         this.inSTMT2 = false;
+        this.inFormula = false;
 
         this.formula = new Formula();
 
@@ -80,12 +82,20 @@ class Block {
         return inSTMT2;
     }
 
+    boolean isInFormula() {
+        return inFormula;
+    }
+
     void workon2() {
         inSTMT2 = !inSTMT2;
     }
 
     void workon1() {
         inSTMT1 = !inSTMT1;
+    }
+
+    public void workonFormula() {
+        inFormula = !inFormula;
     }
 
     void setCurr(String curr) {
