@@ -23,4 +23,8 @@ public class Scene {
     public void addObject(Object object){
         objectList.add(object);
     }
+
+    public List<Object> getObjects() {
+        return objectList;
+    }
 }

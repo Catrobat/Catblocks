@@ -15,4 +15,12 @@ public class Object {
     public void addScript(Script script){
         scriptList.add(script);
     }
+
+    public String getName() {
+        return name;
+    }
+    public List<Script> getScriptList(){
+
+        return scriptList;
+    }
 }
