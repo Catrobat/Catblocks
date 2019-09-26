@@ -38,22 +38,22 @@ public class Parser {
     }
 
     private void parse(String line){
-
-        line = "<" + line.split("<",2)[1];
-        //System.out.println(line);
+        if(line.contains("<")) {
+            line = "<" + line.split("<", 2)[1];
+        }
 
         if(currentScene != null) {
 
             if(currentObject != null) {
 
                 if(currentScript != null) {
-                    if(line.contains("loopBricks") || line.contains("ifBranchBricks")){
+                    if(line.contains("loopBricks>") || line.contains("ifBranchBricks>")){
                         currentCondBlock.workon1();
                     }
-                    if(line.contains("elseBranchBricks")){
+                    if(line.contains("elseBranchBricks>")){
                         currentCondBlock.workon2();
                     }
-                    if(line.contains("formulaList")){
+                    if(line.contains("formulaList>")){
                         currentBlock.workonFormula();
                     }
                     if(currentBlock != null && currentBlock.isInFormula()){
@@ -104,9 +104,7 @@ public class Parser {
                             currentScript.addBlock(block);
                         }
                         if (isConditionBrick(name)){
-                            System.out.println("PRE PUSH SIZE COND STACK:  " + conditionStack.size());
                             conditionStack.push(block);
-                            System.out.println("POST PUSH SIZE COND STACK: " + conditionStack.size());
                             currentCondBlock = block;
                         }
                     }
@@ -119,7 +117,6 @@ public class Parser {
             }
 
             if (line.contains("<object ")) {
-                System.out.println(line);
                 String name = line.split("name=\"")[1].replace("\">", "");
                 currentObject = new Object(name);
                 currentScene.addObject(currentObject);
@@ -136,9 +133,7 @@ public class Parser {
             currentBlock = null;
             if(isConditionBrick(toBeRemoved.getName())){
                 currentCondBlock = null;
-                System.out.println("PRE POP SIZE COND STACK:  " + conditionStack.size());
                 conditionStack.pop();
-                System.out.println("POST POP SIZE COND STACK: " + conditionStack.size());
                 if(conditionStack.size()>0){
                     currentCondBlock = conditionStack.lastElement();
                 }
@@ -159,7 +154,8 @@ public class Parser {
     }
 
     private boolean isConditionBrick(String name) {
-        return name.equals("ForeverBrick") || name.equals("RepeatBrick") || name.equals("IfThenLogicBeginBrick") || name.equals("IfLogicBeginBrick");
+        return name.equals("ForeverBrick") || name.equals("RepeatBrick") || name.equals("RepeatUntilBrick") ||
+               name.equals("IfThenLogicBeginBrick") || name.equals("IfLogicBeginBrick") || name.equals("IfElseLogicBeginBrick");
     }
 
 

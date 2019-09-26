@@ -21,7 +21,7 @@ public class Catrobat2Blockly {
         }
         Parser parser = new Parser();
         parser.parseFile(file.getName());
-        parser.write("test.xml");
+        parser.write("catblocks.xml");
         return;
     }
 }
