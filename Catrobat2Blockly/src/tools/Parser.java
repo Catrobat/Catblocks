@@ -14,6 +14,7 @@ public class Parser {
     private static final String SUB1_BEGIN = "<statement name=\"SUBSTACK\">";
     private static final String SUB2_BEGIN = "<statement name=\"SUBSTACK2\">";
     private static final String SUB_END = "</statement>";
+    private static final String FORMULA_DEFINITION = "<formula category=";
 
     private final String filePath;
     private List<Scene> sceneList;
@@ -39,7 +40,7 @@ public class Parser {
     private void parse(String line){
 
         line = "<" + line.split("<",2)[1];
-        System.out.println(line);
+        //System.out.println(line);
 
         if(currentScene != null) {
 
@@ -50,13 +51,13 @@ public class Parser {
                         currentCondBlock.workon1();
                     }
                     if(line.contains("elseBranchBricks")){
-                        currentCondBlock.workon1();
+                        currentCondBlock.workon2();
                     }
                     if(line.contains("formulaList")){
                         currentBlock.workonFormula();
                     }
                     if(currentBlock != null && currentBlock.isInFormula()){
-                        if (line.contains("<formula category=")) {
+                        if (line.contains(FORMULA_DEFINITION)) {
                             Formula formula = new Formula();
                             currentBlock.setFormula(formula);
                             formulaStack.push(formula);
@@ -103,7 +104,9 @@ public class Parser {
                             currentScript.addBlock(block);
                         }
                         if (isConditionBrick(name)){
+                            System.out.println("PRE PUSH SIZE COND STACK:  " + conditionStack.size());
                             conditionStack.push(block);
+                            System.out.println("POST PUSH SIZE COND STACK: " + conditionStack.size());
                             currentCondBlock = block;
                         }
                     }
@@ -128,12 +131,14 @@ public class Parser {
             sceneList.add(currentScene);
         }
 
-        if(line.equals("</block>")) {
+        if(line.equals("</brick>")) {
             Block toBeRemoved = blockStack.pop();
             currentBlock = null;
             if(isConditionBrick(toBeRemoved.getName())){
                 currentCondBlock = null;
+                System.out.println("PRE POP SIZE COND STACK:  " + conditionStack.size());
                 conditionStack.pop();
+                System.out.println("POST POP SIZE COND STACK: " + conditionStack.size());
                 if(conditionStack.size()>0){
                     currentCondBlock = conditionStack.lastElement();
                 }
