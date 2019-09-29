@@ -63,7 +63,7 @@
       </script>
     </object>
   </scene>
-  <!-- <scene type="Scene0ToView">
+  <scene type="Scene0ToView">
     <object type="TestObject0Scene0">
       <script type="StartScript">
         <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">
@@ -140,5 +140,5 @@
         </block>
       </script>
     </object>
-  </scene> -->
+  </scene>
 </xml>

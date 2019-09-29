@@ -153,7 +153,7 @@ Blockly.Web.createReadonlyWorkspace_ = function (container, blockscale = 0.75) {
   // inject a new workspace, we will reuse this one for all scenes
   let workspace = Blockly.inject(container, {
     readOnly: true,
-    media: './../../media/',
+    media: '/public/images/catblocks/',
     zoom: {
       controls: false,
       wheel: false,
@@ -189,7 +189,7 @@ Blockly.Web.addBlockXmlToWorkspace_ = function (xml, workspace, erase = true) {
   let xmlDom = goog.isString(xml) ? Blockly.Xml.textToDom(xml) : xml;
 
   // some dom nodes we need to deal with
-  console.log(workspace);
+  //console.log(workspace);
 
   let injectContainer = workspace.blockDragSurface_.container_.parentElement;
   workspace.getInjectionDiv().id = workspace.id;
@@ -374,7 +374,8 @@ Blockly.Web.codeClickHandler = function (event) {
 
     // Blockly does not draw the svg's if the container is display none
     // so we need to call svgResize for each expaned workspace
-    if (className === 'injectionDiv') {
+    // TODO: fix bug -> on window change with compinatin display: 'none'
+    if (className === 'injectionDiv' && object.style.display === 'block') {
       let workspaceId = object.id;
       console.log(workspaceId);
       Blockly.svgResize(Blockly.Workspace.WorkspaceDB_[workspaceId]);
@@ -386,5 +387,28 @@ Blockly.Web.codeClickHandler = function (event) {
 /**
  * Array making up the CSS content for Blockly.
  */
-Blockly.Web.CSS_CONTENT = [
-];
+Blockly.Web.CSS_CONTENT = ['#catblocks {',
+  '    height: 100%;',
+  '    margin: 0px;',
+  '    padding: 10px;',
+  '}',
+  '',
+  '.catblocks-scene,',
+  '.catblocks-object {',
+  '    padding: 5px 10px;',
+  '    border-radius: 20px;',
+  '    margin: 5px 0px;',
+  '}',
+  '',
+  '.catblocks-scene {',
+  '    background-color: gainsboro;',
+  '}',
+  '',
+  '.catblocks-object {',
+  '    background-color: bisque;',
+  '}',
+  '',
+  '.injectionDiv {',
+  '    border-radius: 20px;',
+  '    overflow: hidden;',
+  '}'];
