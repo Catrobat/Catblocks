@@ -99,14 +99,14 @@ Blockly.Web.initBlockly = function(locale) {
 
 /**
  * Parse xml for Web into catblocks dom object
- * @param {string} xml to parse into catblocks dom object
+ * @param {string} xmlString to parse into catblocks dom object
  * @return {Element} xml object
  * @public
  */
-Blockly.Web.xmlToDom = function(xml) {
-  var xmlDoc = Blockly.Web.domParser_.parseFromString(xml, Blockly.Web.parseFormats_.XML);
+Blockly.Web.xmlToDom = function(xmlString) {
+  var xmlDoc = Blockly.Web.domParser_.parseFromString(xmlString, Blockly.Web.parseFormats_.XML);
   if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-    console.error("Failed to parse Web xml");
+    console.error("Failed to parse xml string, please check if you have passed a valid xml file.");
     return undefined;
   }
   return xmlDoc;
@@ -244,19 +244,15 @@ Blockly.Web.injectNewDom_ = function(container, tagName, idName, className) {
  * @private
  */
 Blockly.Web.addSceneContainer_ = function(container, sceneName, options) {
-  // TODO(add some code which parse done the default options and generate a new object)
-  console.log(options);
-  var options_ = options === undefined ? Blockly.Web.defaultOptions_.createSceneContainer : options;
+  var sceneOptions = Blockly.Web.parseOptions_(options, Blockly.Web.defaultOptions_.createSceneContainer);
   var sceneContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, sceneName, 'catblocks-scene');
 
   var sceneHeader = null;
-  if (options_.writeHeader) {
+  if (sceneOptions.writeHeader) {
     sceneHeader = Blockly.Web.injectNewDom_(sceneContainer, goog.dom.TagName.DIV, sceneName + '-header', 'catblocks-scene-header');
-
     var sceneText = Blockly.Web.injectNewDom_(sceneHeader, goog.dom.TagName.H3, '', 'catblocks-scene-text');
     sceneText.textContent = 'Scene - ' + sceneName;
-
-    if (options_.expandable) {
+    if (sceneOptions.expandable) {
       sceneText.addEventListener('click', Blockly.Web.codeClickHandler_);
     }
   }
@@ -273,17 +269,15 @@ Blockly.Web.addSceneContainer_ = function(container, sceneName, options) {
  * @private
  */
 Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
-  // TODO(add some code which parse done the default options and generate a new object)
-  var options_ = options === undefined ? Blockly.Web.defaultOptions_.createObjectContainer : options;
-
+  var objectOptions = Blockly.Web.parseOptions_(options, Blockly.Web.defaultOptions_.createObjectContainer);
   var objectContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, objectName, 'catblocks-object');
 
   var objectHeader = null;
-  if (options_.writeHeader) {
+  if (objectOptions.writeHeader) {
     objectHeader = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, objectName + '-header', 'catblocks-object-header');
     var objectText = Blockly.Web.injectNewDom_(objectHeader, goog.dom.TagName.H4, '', 'catblocks-object-text');
     objectText.textContent = 'Object - ' + objectName;
-    if (options_.expandable) {
+    if (objectOptions.expandable) {
       objectText.addEventListener('click', Blockly.Web.codeClickHandler_);
     }
   }
@@ -291,6 +285,30 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
   return objectContainer;
 };
 
+
+/**
+ * Parse options, if value exists in inputValues use this one
+ * Otherwise go with the value from defaultValues
+ * @param {Object<string, string} inputValues to use if exists
+ * @param {Object<string, string} defaultValues to parse down
+ * @return {Object<string, string} either input or default value
+ * @private
+ */
+Blockly.Web.parseOptions_ = function(inputValues, defaultValues) {
+  if (!goog.isDefAndNotNull(inputValues)) {
+    return defaultValues;
+  } else {
+    var resultObject = {};
+    var keys = Object.keys(defaultValues);
+    for (var ikey = 0; ikey < keys.length; ikey++) {
+      if (goog.isDefAndNotNull(inputValues[keys])) {
+        resultObject[key] = inputValues[key];
+      } else {
+        inputValues[keys] = defaultValues[key];
+      }
+    }
+  }
+}
 
 /**
  * Inject all catblocks scenes from xml into div
@@ -304,25 +322,22 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
     container = document.getElementById(container) ||
       document.querySelector(container);
   }
-  // Verify that the container is in document.
   if (!goog.dom.contains(document, container)) {
     throw 'Error: container is not in current document.';
   }
 
-  // TODO(add some code which parse done the default options and generate a new object)
-  var options_ = options === null ? Blockly.Web.defaultOptions_.injectAllScenes : options;
-  if (options_) {
-    console.error('');
-  }
+  var injectOptions = Blockly.Web.parseOptions_(options, Blockly.Web.defaultOptions_.injectAllScenes);
 
-  var xmlDom = Blockly.Web.xmlToDom(xmlString);
-  if (!xmlDom) {
+  var xmlElement = Blockly.Web.xmlToDom(xmlString);
+  if (!goog.isDefAndNotNull(xmlElement)) {
     console.error('Failed to injectAllScenes, could not parse xmlString');
     return;
   }
 
-  // iterate over all scenes -> objects -> scripts
-  var scenes = xmlDom.firstChild.children;
+
+
+  // INFO: all preperations are done, let's start with the injection
+  var scenes = xmlElement.firstChild.children;
   for (var iscene = 0; iscene < scenes.length; iscene++) {
     var scene = scenes[iscene];
     var sceneContainer = Blockly.Web.addSceneContainer_(container, scene.getAttribute('type'));
@@ -333,25 +348,14 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
       var object = objects[iobject];
       var objectName = object.getAttribute('type');
       var objectContainer = Blockly.Web.addObjectContainer_(sceneContainer, objectName);
-      //var svgContainer = objectContainer.lastElementChild;
 
       Blockly.Web.transformXml_(object, {
         'block': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id']
       });
 
-      // // wrap all the childs -> script into one xml for import
-      // var mainNode = goog.dom.createDom('xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
-      // while (object.childElementCount > 0) {
-      //   var subNode = object.firstElementChild.children;
-      //   Object.keys(subNode).forEach(iblock => {
-      //     mainNode.appendChild(subNode[iblock]);
-      //   });
-      //   object.removeChild(object.firstElementChild);
-      // }
-
-      // injectAllScenes new read only workspace
       var workspace = Blockly.Web.createReadonlyWorkspace_(objectContainer, 0.75);
       //console.log(workspace);
+
       // load all scripts and update workspace size
       while (object.childElementCount > 0) {
         var script = object.firstElementChild;
@@ -364,16 +368,8 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
       }
       workspace.getInjectionDiv().style.display = 'none';
       objectContainer.style.display = 'none';
-
-      // TODO: find a better logic, this does not work
-      // append svg image into catblocks container to remove all EventHandler and enable scrolling, etc.
-      //var injectDiv = workspace.getParentSvg().parentElement;
-      //svgContainer.appendChild(workspace.getParentSvg());
-      //objectContainer.removeChild(injectDiv);
     }
   }
-  // INFO: remove before fly
-  //container.style.display = 'none';
 };
 
 
