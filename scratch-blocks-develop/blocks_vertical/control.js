@@ -329,10 +329,10 @@ Blockly.Blocks['DeleteThisCloneBrick'] = {
   }
 };
 
-Blockly.Blocks['control_whenyoustartasaclone'] = {
+Blockly.Blocks['WhenClonedScript'] = {
   init: function() {
     this.jsonInit({
-      "id": "control_whenyoustartasaclone",
+      "id": "WhenClonedScript",
       "message0": Blockly.Msg.CONTROL_WHENYOUSTARTASACLONE,
       "args0": [
       ],

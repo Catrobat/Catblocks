@@ -136,7 +136,7 @@ Blockly.Blocks['WhenConditionScript'] = {
   }
 };
 
-Blockly.Blocks['CollisionScript'] = {
+Blockly.Blocks['WhenBounceOffScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
