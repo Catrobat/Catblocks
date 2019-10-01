@@ -27,6 +27,7 @@ public class Parser {
     private Block currentCondBlock;
     private Block currentBlock;
     private String currVal;
+    private Boolean parse;
 
 
     public Parser() {
@@ -35,11 +36,24 @@ public class Parser {
         conditionStack = new Stack<>();
         blockStack = new Stack<>();
         formulaStack = new Stack<>();
+        parse = true;
     }
 
     private void parse(String line){
         if(line.contains("<")) {
             line = "<" + line.split("<", 2)[1];
+        }
+
+        if(line.contains("<applicationVersion>"))
+        {
+            String[] version = (line.split("</?applicationVersion>")[1].replaceAll("[a-z]*", "")).split("\\.");
+            parse = checkVersion(version);
+            if(parse){
+                System.out.println("Correct Version!");
+            }
+            else{
+                System.out.println("Wrong Version!");
+            }
         }
 
         if(currentScene != null) {
@@ -55,6 +69,38 @@ public class Parser {
                     }
                     if(line.contains("formulaList>")){
                         currentBlock.workonFormula();
+                    }
+                    if(line.contains("userList>")){
+                        currentBlock.workonUserList();
+                    }
+                    if(currentBlock != null && currentBlock.isInUserList() && line.contains("<name>")){
+                        String name = line.split("</?name>")[1];
+                        currentBlock.addFormValues("DROPDOWN", name);
+                    }
+                    if (line.contains("reference=\"")){
+                        String ref = getReference(line);
+                        String value = "";
+                        int pos = getPosition(ref);
+                        if(line.startsWith("<look")){
+                            if(ref.startsWith("object/")){
+                                value = (currentScene.getObjects().get(0).getLookList().get(pos-1));
+                            }
+                            else{
+                                value = (currentObject.getLookList().get(pos-1));
+                            }
+                        }
+                        if(line.startsWith("<sound")){
+                            value = (currentObject.getSoundList().get(pos-1));
+                        }
+                        addFormValue(value);
+                    }
+                    if(line.contains("<broadcastMessage>")){
+                        String message = line.split("</?broadcastMessage>")[1];
+                        addFormValue(message);
+                    }
+                    if(line.contains("<receivedMessage>")){
+                        String message = line.split("</?receivedMessage>")[1];
+                        addFormValue(message);
                     }
                     if(currentBlock != null && currentBlock.isInFormula()){
                         if (line.contains(FORMULA_DEFINITION)) {
@@ -109,6 +155,16 @@ public class Parser {
                         }
                     }
                 }
+                else{
+                    if(line.contains("<look fileName=\"")){
+                        String name = line.split("name=\"")[1].replace("\"/>", "");
+                        currentObject.addLook(name);
+                    }
+                    if(line.contains("<sound fileName=\"")){
+                        String name = line.split("name=\"")[1].replace("\"/>", "");
+                        currentObject.addSound(name);
+                    }
+                }
                 if (line.contains("<script ")) {
                     String name = line.split("type=\"")[1].replace("\">", "");
                     currentScript = new Script(name);
@@ -148,8 +204,32 @@ public class Parser {
         if(line.equals("</scene>")) {
             currentScene = null;
         }
-        if(line.contains("<name>") && currentScene.getName().equals("")){
+        if(currentScene != null && line.contains("<name>") && currentScene.getName().equals("")){
             currentScene.setName(line.replaceAll("</?name>", ""));
+        }
+    }
+
+    private Boolean checkVersion(String[] version) {
+        return Integer.parseInt(version[0]) > 0 || Integer.parseInt(version[1]) > 9 || (Integer.parseInt(version[1]) == 9 && Integer.parseInt(version[2]) >= 64);
+    }
+
+    private int getPosition(String ref) {
+        if(ref.contains("[")){
+            return Integer.parseInt(ref.split("\\[")[1].replaceAll("]",""));
+        }
+        return 1;
+    }
+
+    private String getReference(String line) {
+        return (line.split("reference=\"")[1]).replace("\"/>","").replace("../", "");
+    }
+
+    private void addFormValue(String value) {
+        if(currentBlock != null) {
+            currentBlock.addFormValues("DROPDOWN", value);
+        }
+        else{
+            currentScript.addFormValues(value);
         }
     }
 
@@ -164,7 +244,7 @@ public class Parser {
 
         String line;
 
-        while ((line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null && parse) {
             parse(line);
         }
         reader.close();
@@ -207,7 +287,23 @@ public class Parser {
                 if (line.contains("</block>")) {
                     writeNextBlock(writer, script.getBlocks(), 0, true);
                 }
-                writer.println(line);
+                if (line.contains("<value name=")) {
+                    String text = line.split("value name=\"")[1].replaceAll("\">", "");//"<value name=\"NOTE\">"
+                    script.setCurr(text);
+                }
+                if (line.contains("<field name=\"TEXT\">")) {
+                    writer.println("<field name=\"TEXT\">" + script.getField() + "</field>");
+                } else if (line.contains("<field name=\"DROPDOWN\">")) {
+                    script.setCurr("DROPDOWN");
+                    if(script.getField() != null) {
+                        writer.println("<field name=\"DROPDOWN\">" + script.getField() + "</field>");
+                    }
+                    else{
+                        writer.println(line);
+                    }
+                } else{
+                    writer.println(line);
+                }
             }
         }
 
@@ -250,10 +346,18 @@ public class Parser {
                     String text = line.split("value name=\"")[1].replaceAll("\">", "");//"<value name=\"NOTE\">"
                     block.setCurr(text);
                 }
-
-                if (line.contains("<field name=\"TEXT\">")) {
+                if (line.contains("<field name=\"TEXT\">") && block.getField() != null) {
                     writer.println("<field name=\"TEXT\">" + block.getField() + "</field>");
-                } else {
+                } else if (line.contains("<field name=\"DROPDOWN\">")){
+                    block.setCurr("DROPDOWN");
+                    if(block.getField() != null) {
+                        writer.println("<field name=\"DROPDOWN\">" + block.getField() + "</field>");
+                    }
+                    else{
+                        writer.println(line);
+                    }
+                }
+                else{
                     writer.println(line);
                 }
             }

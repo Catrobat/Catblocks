@@ -12,19 +12,19 @@ public class Scene {
         this.name = name;
     }
 
-    public String getName(){
+    String getName(){
         return name;
     }
 
-    public void setName(String name){
+    void setName(String name){
         this.name = name;
     }
 
-    public void addObject(Object object){
+    void addObject(Object object){
         objectList.add(object);
     }
 
-    public List<Object> getObjects() {
+    List<Object> getObjects() {
         return objectList;
     }
 }
