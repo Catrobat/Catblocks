@@ -201,15 +201,23 @@ Blockly.Web.addBlockXmlToWorkspace_ = function(xml, workspace, erase) {
   }
 
   Blockly.Xml.domToWorkspace(xmlDom, workspace);
+
   var gbox = blockSvg.getBBox();
   blockSvg.setAttribute('height', gbox.height + 100 + 'px');
-  var svgWidth = gbox.width + widthOffset;
-  if (injectContainer.clientWidth < svgWidth) {
-    blockSvg.setAttribute('width', svgWidth + 'px');
-    blockSvg.style.width = svgWidth + 'px';
-  }
   workspace.getInjectionDiv().style.height = blockSvg.getAttribute('height');
   blockSvg.style.position = 'inherit';
+
+  // get maximal width from the workspace and set use it as min-width
+  var minWidth = 0;
+  var blockNames = Object.keys(workspace.blockDB_);
+  for (var iblock = 0; iblock < blockNames.length; iblock++) {
+    var blockName = blockNames[iblock];
+    var block = workspace.blockDB_[blockName];
+    if (minWidth < block.width) {
+      minWidth = block.width;
+    }
+  }
+  blockSvg.style.minWidth = minWidth + 'px';
 };
 
 /**
@@ -469,10 +477,13 @@ Blockly.Web.codeClickHandler_ = function(event) {
 
     // Blockly does not draw the svg's if the container is display none
     // so we need to call svgResize for each expaned workspace
-    // TODO: fix bug -> on window change with compinatin display: 'none'
-    if (className === 'injectionDiv' && object.style.display === 'block') {
-      var workspaceId = object.id;
-      Blockly.svgResize(Blockly.Workspace.WorkspaceDB_[workspaceId]);
+    if (object.style.display === 'block') {
+      var workspaceNames = Object.keys(Blockly.Workspace.WorkspaceDB_);
+      for (var iworkspace = 0; iworkspace < workspaceNames.length; iworkspace++) {
+        var workspaceName = workspaceNames[iworkspace];
+        Blockly.svgResize(Blockly.Workspace.WorkspaceDB_[workspaceName]);
+      }
+
     }
   }
 };

@@ -1,0 +1,4770 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<scene type="Scene 1">
+<object type="Background">
+</object>
+<object type="upper left">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">270</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">1 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 1</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">1 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">1 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="Human starts">
+<script type="StartScript">
+<block type="StartScript" id="" x="" y="">
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 265</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="WaitBrick" id="" x="" y="">
+  <value name="TIME_TO_WAIT_IN_SECONDS">
+    <shadow type="text" id="">
+<field name="TEXT">0.1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="HideBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="Computer starts">
+<script type="StartScript">
+<block type="StartScript" id="" x="" y="">
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 402</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="HideBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="Computer">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="WaitBrick" id="" x="" y="">
+  <value name="TIME_TO_WAIT_IN_SECONDS">
+    <shadow type="text" id="">
+<field name="TEXT">0.2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 1</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2 * random value from to(0 ,1) + 1 + 6 * random value from to(0 ,1)</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 3</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">field = 5</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1  * 9 = 2 3 + * 7 = 2 7 + * 3 = 2 9 + * 1 = 2   </field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">field = 1 or field = 3 or field = 7 or field = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">7 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">9 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 5</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">continuation strategy = 1 and won = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1  * 1 = 0 3 + * 3 = 0 7 + * 7 = 0 9 + * 9 = 0   </field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">continuation strategy = 2 and won = 0 and loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1  * 1 = 0 and 2 = 0 and 4 = 0 3 + * 3 = 0 and 2 = 0 and 6 = 0 7 + * 7 = 0 and 4 = 0 and 8 = 0 9 + * 9 = 0 and 6 = 0 and 8 = 0   </field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 2</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">5 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1 + 2 * random value from to(0 ,1) + 6 * random value from to(0 ,1)</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 4</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">continuation strategy = 3 and won = 0 and loss = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">7 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">9 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and loss = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT"> 1 = 1 and 9 = 1 or 3 = 1 and 7 = 1 </field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2 + random value from to(0 ,3) * 2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT"> 2 = 1  and 4 = 1 or 6 = 1  8 = 1 or and 4 = 1 or 6 = 1 </field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1  * 2 = 1 and 4 = 1 3 + * 2 = 1 and 6 = 1 7 + * 4 = 1 and 8 = 1 9 + * 6 = 1 and 8 = 1   </field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT"> 1 = 1  and 6 = 1 or 8 = 1  3 = 1 or and 4 = 1 or 8 = 1  7 = 1 or and 2 = 1 or 6 = 1  9 = 1 or and 2 = 1 or 4 = 1   </field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1  * 9 = 1 3 + * 7 = 1 7 + * 3 = 1 9 + * 1 = 1   </field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT"> 2 = 1 and 8 = 1 or 4 = 1 and 6 = 1 </field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">random value from to(0 ,1)</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2  * 2 = 0 and choice = 0 8 + * 8 = 0 and choice = 1 4 + * 4 = 0 and choice = 0 6 + * 6 = 0 and choice = 1   </field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 6 and continuation strategy = 5 and won = 0 and loss = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">4 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">6 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">8 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">turn counter = 6 and continuation strategy = 4 and won = 0 and loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">2 != 6</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">4 != 8</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">2 != 4</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">random value from to(1 ,10 - turn counter)</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">1 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 1</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 1 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 2 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 2</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 2 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 3 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 3</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 3 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 4 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 4</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 4 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 5 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 5</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 5 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 6 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 6</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 6 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 7 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 7</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 7 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won = 0 and 8 = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 8</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT"> 8 != 0</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">won = 0 and 9 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index &gt; 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">choice = 9</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">won != 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">won</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">loss != 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">loss</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="upper middle">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">270</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">2 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 2</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">2 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">2 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="Game Master">
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</script>
+<script type="StartScript">
+<block type="StartScript" id="" x="" y="">
+<next>
+<block type="SetTransparencyBrick" id="" x="" y="">
+  <value name="TRANSPARENCY">
+    <shadow type="text" id="">
+<field name="TEXT">20</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetYBrick" x="" y="">
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">1000</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">- 1</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1 = 1</field>
+    </shadow>
+  </value>
+<next>
+<block type="PointInDirectionBrick" x="" y="">
+  <value name="DEGREES">
+    <shadow type="math_angle">
+<field name="TEXT">90.0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">turn counter = - 1</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="StopAllSoundsBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</statement>
+<next>
+<block type="BroadcastWaitBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ComeToFrontBrick" x="" y="">
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 in 1 index = 0</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">turn counter = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="ChangeVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE_CHANGE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">!= turn counter / 2 round(turn counter / 2) </field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">next player = 1</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="TurnLeftBrick" x="" y="">
+  <value name="TURN_LEFT_DEGREES">
+    <shadow type="text">
+<field name="TEXT">red win bar rotation angle</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">turn counter &gt;= 5</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">1 &gt; 0 and 1 = 2 and 2 = 3</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">265</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">2 &gt; 0 and 2 = 5 and 5 = 8</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 &gt; 0 and 3 = 6 and 6 = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">160</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">4 &gt; 0 and 4 = 1 and 4 = 7</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 160</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">90</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">5 &gt; 0 and 5 = 1 and 5 = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">125</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">- 45</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">6 &gt; 0 and 6 = 5 and 5 = 4</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">105</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">7 &gt; 0 and 7 = 5 and 5 = 3</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">125</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">50</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">8 &gt; 0 and 8 = 7 and 8 = 9</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 65</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="upper right">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">270</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">3 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 3</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">3 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">3 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="middle left">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">4 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 4</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">4 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">4 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="middle">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">5 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 5</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">5 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">5 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="middle right">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">100</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">6 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 6</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">6 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">6 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="lower left">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 70</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">7 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 7</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">7 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">7 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="lower middle">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 70</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">8 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 8</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">8 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">8 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="lower right">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="SetSizeToBrick" id="" x="" y="">
+  <value name="SIZE">
+    <shadow type="text" id="">
+<field name="TEXT">80</field>
+    </shadow>
+  </value>
+<next>
+<block type="PlaceAtBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+<field name="TEXT">170</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 70</field>
+    </shadow>
+  </value>
+<next>
+<block type="HideBrick" id="" x="" y="">
+<next>
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">9 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">field = 9</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">9 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="HideBrick" id="" x="" y="">
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">9 = 0</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">odd turn</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="SetLookBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+</statement>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">9</field>
+    </shadow>
+  </value>
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+
+
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="restart">
+<script type="StartScript">
+<block type="StartScript" id="" x="" y="">
+<next>
+<block type="SetYBrick" x="" y="">
+  <value name="Y_POSITION">
+    <shadow type="text">
+<field name="TEXT">- 329</field>
+    </shadow>
+  </value>
+</block>
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="ShowBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</script>
+<script type="WhenScript">
+<block type="WhenBrick" id="" x="" y="">
+<next>
+<block type="BroadcastBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+</block>
+
+
+</next>
+</block>
+</script>
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="HideBrick" id="" x="" y="">
+</block>
+</next>
+</block>
+</script>
+</object>
+<object type="&quot;can win?&quot; checker">
+<script type="BroadcastScript">
+<block type="BroadcastScript" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+<next>
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">0</field>
+    </shadow>
+  </value>
+<next>
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">turn counter &gt;= 4</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">1 &gt; 0 and 1 = 2 and 2 = 3</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">1</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">2 &gt; 0 and 2 = 5 and 5 = 8</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">3 &gt; 0 and 3 = 6 and 6 = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">3</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">4 &gt; 0 and 4 = 1 and 4 = 7</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">4</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">5 &gt; 0 and 5 = 1 and 5 = 9</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">5</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">6 &gt; 0 and 6 = 5 and 5 = 4</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">6</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfElseLogicBeginBrick" id="" x="" y="">
+    <value name="IF_CONDITION">
+      <shadow type="text" id="">
+<field name="TEXT">7 &gt; 0 and 7 = 5 and 5 = 3</field>
+      </shadow>
+    </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">7</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+<statement name="SUBSTACK2">
+<block type="IfLogicBeginBrick" id="" x="" y="">
+  <value name="IF_CONDITION">
+    <shadow type="text" id="">
+<field name="TEXT">8 &gt; 0 and 8 = 7 and 8 = 9</field>
+    </shadow>
+  </value>
+<statement name="SUBSTACK">
+<block type="SetVariableBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="VARIABLE">
+    <shadow type="text" id="">
+<field name="TEXT">8</field>
+    </shadow>
+  </value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</script>
+</object>
+</scene>
+</xml>
