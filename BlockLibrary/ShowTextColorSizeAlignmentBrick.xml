@@ -1,5 +1,5 @@
 <block type="ShowTextColorSizeAlignmentBrick" id="" x="" y="">
-  <field name="DROPDOWN">new...</field>
+  <field name="DROPDOWN">���</field>
   <value name="X_POSITION">
     <shadow type="text" id="">
       <field name="TEXT">100</field>
@@ -25,5 +25,5 @@
       <field name="NUM">1</field>
     </shadow>
   </value>
-  <field name="DROPDOWN2">new...</field>
+  <field name="DROPDOWN2">���</field>
 </block>

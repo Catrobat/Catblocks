@@ -19,6 +19,7 @@ class Block {
 
     private boolean inSTMT1;
     private boolean inSTMT2;
+    private boolean inFormula;
     private String curr;
 
     void addFormValues(String key, String val) {
@@ -33,6 +34,7 @@ class Block {
 
         this.inSTMT1 = false;
         this.inSTMT2 = false;
+        this.inFormula = false;
 
         this.formula = new Formula();
 
@@ -80,6 +82,10 @@ class Block {
         return inSTMT2;
     }
 
+    boolean isInFormula() {
+        return inFormula;
+    }
+
     void workon2() {
         inSTMT2 = !inSTMT2;
     }
@@ -88,8 +94,8 @@ class Block {
         inSTMT1 = !inSTMT1;
     }
 
-    boolean getworkon1(){
-        return inSTMT1;
+    public void workonFormula() {
+        inFormula = !inFormula;
     }
 
     void setCurr(String curr) {
@@ -179,254 +185,255 @@ class Block {
     private String whatOP(String operator) {
         switch(operator){
             case "PLUS":
-                return "+";
+                return "${formula_editor_operator_plus}";
             case "MINUS":
-                return "-";
+                return "${formula_editor_operator_minus}";
             case "MULT":
-                return "*";
+                return "${formula_editor_operator_mult}";
             case "DIVIDE":
-                return "/";
+                return "${formula_editor_operator_divide}";
             case "POW":
-                return "^";
+                return "${formula_editor_operator_power}";
             case "EQUAL":
-                return "=";
+                return "${formula_editor_logic_equal}";
             case "NOT_EQUAL":
-                return "!=";
+                return "${formula_editor_logic_notequal}";
             case "GREATER_THAN":
-                return "&gt;";
+                return "${formula_editor_logic_greaterthan}";
             case "GREATER_OR_EQUAL":
-                return "&gt;=";
+                return "${formula_editor_logic_greaterequal}";
             case "SMALLER_THAN":
-                return "&lt;";
+                return "${formula_editor_logic_lesserthan}";
             case "SMALLER_OR_EQUAL":
-                return "&lt;=";
+                return "${formula_editor_logic_leserequal}";
             case "LOGICAL_AND":
-                return "and";
+                return "${formula_editor_logic_and}";
             case "LOGICAL_OR":
-                return "or";
+                return "${formula_editor_logic_or}";
             case "LOG":
-                return "decimal logarithm";
+                return "${formula_editor_function_log}";
             case "RAND":
-                return "random value from to";
+                return "${formula_editor_function_rand}";
             case "SQRT":
-                return "square root";
+                return "${formula_editor_function_sqrt}";
             case "SIN":
-                return "sinus";
+                return "${formula_editor_function_sin}";
             case "COS":
-                return "cosinus";
+                return "${formula_editor_function_cos}";
             case "TAN":
-                return "tangens";
+                return "${formula_editor_function_tan}";
             case "LN":
-                return "natural logarithm";
+                return "${formula_editor_function_ln}";
             case "ROUND":
-                return "round";
+                return "${formula_editor_function_round}";
             case "ABS":
-                return "absolute value";
+                return "${formula_editor_function_abs}";
             case "MOD":
-                return "modulo";
+                return "${formula_editor_function_mod}";
             case "ARCSIN":
-                return "arcsinus";
+                return "${formula_editor_function_arcsin}";
             case "ARCCOS":
-                return "arccosinus";
+                return "${formula_editor_function_arccos}";
             case "ARCTAN":
-                return "arctangens";
+                return "${formula_editor_function_arctan}";
             case "EXP":
-                return "exponent";
+                return "${formula_editor_function_exp}";
             case "POWER":
-                return "power";
+                return "${formula_editor_function_power}";
             case "FLOOR":
-                return "floor";
+                return "${formula_editor_function_floor}";
             case "CEIL":
-                return "ceiling";
+                return "${formula_editor_function_ceil}";
             case "MAX":
-                return "maximum of";
+                return "${formula_editor_function_max}";
             case "MIN":
-                return "minimum of";
+                return "${formula_editor_function_min}";
             case "LENGTH":
-                return "length";
+                return "${formula_editor_function_length}";
             case "LETTER":
-                return "letter";
+                return "${formula_editor_function_letter}";
             case "JOIN":
-                return "join";
+                return "${formula_editor_function_join}";
             case "REGEX":
-                return "regular expression";
+                return "${formula_editor_function_regex}";
             case "LIST_ITEM":
-                return "item";
+                return "${formula_editor_function_list_item}";
             case "CONTAINS":
-                return "contains";
+                return "${formula_editor_function_contains}";
             case "NUMBER_OF_ITEMS":
-                return "number of items";
+                return "${formula_editor_function_number_of_items}";
             case "PI":
-                return "pi";
+                return "${formula_editor_function_pi}";
             case "TRUE":
-                return "true";
+                return "${formula_editor_function_true}";
             case "FALSE":
-                return "false";
+                return "${formula_editor_function_false}";
             case "ARDUINOANALOG":
-                return "arduino analog pin";
+                return "${formula_editor_function_arduino_read_pin_value_analog}";
             case "ARDUINODIGITAL":
-                return "arduino digital pin";
+                return "${formula_editor_function_arduino_read_pin_value_digital}";
             case "RASPIDIGITAL":
-                return "raspberry pi pin";
+                return "${formula_editor_function_raspi_read_pin_value_digital}";
             case "LOGICAL_NOT":
-                return "not";
+                return "${formula_editor_logic_not}";
             case "X_ACCELERATION":
-                return "acceleration x";
+                return "${formula_editor_sensor_x_acceleration}";
             case "Y_ACCELERATION":
-                return "acceleration y";
+                return "${formula_editor_sensor_y_acceleration}";
             case "Z_ACCELERATION":
-                return "acceleration z";
+                return "${formula_editor_sensor_z_acceleration}";
             case "COMPASS_DIRECTION":
-                return "compass direction";
+                return "${formula_editor_sensor_compass_direction}";
             case "X_INCLINATION":
-                return "inclination x";
+                return "${formula_editor_sensor_x_inclination}";
             case "Y_INCLINATION":
-                return "inclination y";
+                return "${formula_editor_sensor_y_inclination}";
             case "LOUDNESS":
-                return "loudness";
+                return "${formula_editor_sensor_loudness}";
             case "LATITUDE":
-                return "latitude";
+                return "${formula_editor_sensor_latitude}";
             case "LONGITUDE":
-                return "longitude";
+                return "${formula_editor_sensor_longitude}";
             case "LOCATION_ACCURACY":
-                return "location accuracy";
+                return "${formula_editor_sensor_location_accuracy}";
             case "ALTITUDE":
-                return "altitude";
+                return "${formula_editor_sensor_altitude}";
             case "DATE_YEAR":
-                return "year";
+                return "${formula_editor_sensor_date_year}";
             case "DATE_MONTH":
-                return "month";
+                return "${formula_editor_sensor_date_month}";
             case "DATE_DAY":
-                return "day";
+                return "${formula_editor_sensor_date_day}";
             case "DATE_WEEKDAY":
-                return "weekday";
+                return "${formula_editor_sensor_date_weekday}";
             case "TIME_HOUR":
-                return "hour";
+                return "${formula_editor_sensor_time_hour}";
             case "TIME_MINUTE":
-                return "minute";
+                return "${formula_editor_sensor_time_minute}";
             case "TIME_SECOND":
-                return "second";
+                return "${formula_editor_sensor_time_second}";
             case "FACE_DETECTED":
-                return "face is visible";
+                return "${formula_editor_sensor_face_detected}";
             case "FACE_SIZE":
-                return "face size";
+                return "${formula_editor_sensor_face_size}";
             case "FACE_X_POSITION":
-                return "face x position";
+                return "${formula_editor_sensor_face_x_position}";
             case "FACE_Y_POSITION":
-                return "face y position";
+                return "${formula_editor_sensor_face_y_position}";
             case "OBJECT_X":
-                return "position x";
+                return "${formula_editor_object_x}";
             case "OBJECT_Y":
-                return "position y";
+                return "${formula_editor_object_y}";
             case "OBJECT_TRANSPARENCY":
-                return "transparency";
+                return "${formula_editor_object_transparency}";
             case "OBJECT_BRIGHTNESS":
-                return "brightness";
+                return "${formula_editor_object_brightness}";
             case "OBJECT_COLOR":
-                return "color";
+                return "${formula_editor_object_color}";
             case "OBJECT_SIZE":
-                return "size";
+                return "${formula_editor_object_size}";
             case "OBJECT_LAYER":
-                return "layer";
+                return "${formula_editor_object_layer}";
             case "PHIRO_FRONT_LEFT":
-                return "phiro front left sensor";
+                return "${phiro_sensor_front_left}";
             case "PHIRO_FRONT_RIGHT":
-                return "phiro front right sensor";
+                return "${phiro_sensor_front_right}";
             case "PHIRO_SIDE_LEFT":
-                return "phiro side left sensor";
+                return "${phiro_sensor_side_left}";
             case "PHIRO_SIDE_RIGHT":
-                return "phiro side right sensor";
+                return "${phiro_sensor_side_right}";
             case "PHIRO_BOTTOM_LEFT":
-                return "phiro bottom left sensor";
+                return "${phiro_sensor_bottom_left}";
             case "PHIRO_BOTTOM_RIGHT":
-                return "phiro bottom right sensor";
+                return "${phiro_sensor_bottom_right}";
             case "DRONE_BATTERY_STATUS":
-                return "drone battery status";
+                return "${formula_editor_sensor_drone_battery_status}";
             case "DRONE_EMERGENCY_STATE":
-                return "drone emergency state";
+                return "${formula_editor_sensor_drone_emergency_state}";
             case "DRONE_FLYING":
-                return "drone flying";
+                return "${formula_editor_sensor_drone_flying}";
             case "DRONE_INITIALIZED":
-                return "drone initialized";
+                return "${formula_editor_sensor_drone_initialized}";
             case "DRONE_USB_ACTIVE":
-                return "drone usb active";
+                return "${formula_editor_sensor_drone_usb_active}";
             case "DRONE_USB_REMAINING_TIME":
-                return "drone usb remaining time";
+                return "${formula_editor_sensor_drone_usb_remaining_time}";
             case "DRONE_CAMERA_READY":
-                return "drone camera ready";
+                return "${formula_editor_sensor_drone_camera_ready}";
             case "DRONE_RECORD_READY":
-                return "drone record ready";
+                return "${formula_editor_sensor_drone_record_ready}";
             case "DRONE_RECORDING":
-                return "drone camera recording";
+                return "${formula_editor_sensor_drone_recording}";
             case "DRONE_NUM_FRAMES":
-                return "drone camera number of frames";
+                return "${formula_editor_sensor_drone_num_frames}";
             case "COLLIDES_WITH_EDGE":
-                return "touches edge";
+                return "${formula_editor_function_collides_with_edge}";
             case "COLLIDES_WITH_FINGER":
-                return "touches finger";
+                return "${formula_editor_function_collides_with_edge}";
             case "OBJECT_X_VELOCITY":
-                return "x velocity";
+                return "${formula_editor_object_x_velocity}";
             case "OBJECT_Y_VELOCITY":
-                return "y velocity";
+                return "${formula_editor_object_y_velocity}";
             case "OBJECT_ANGULAR_VELOCITY":
-                return "angular velocity";
+                return "${formula_editor_object_angular_velocity}";
             case "OBJECT_BACKGROUND_NUMBER":
-                return "background number";
+                return "${formula_editor_object_background_number}";
             case "OBJECT_BACKGROUND_NAME":
-                return "background name";
+                return "${formula_editor_object_background_name}";
             case "NFC_TAG_ID":
-                return "nfc tag id";
+                return "${formula_editor_nfc_tag_id}";
             case "NFC_TAG_MESSAGE":
-                return "nfc tag message";
+                return "${formula_editor_nfc_tag_message}";
             case "OBJECT_ROTATION":
-                return "direction";
+                return "${formula_editor_object_rotation}";
             case "OBJECT_LOOK_NUMBER":
-                return "look number";
+                return "${formula_editor_object_look_number}";
             case "OBJECT_LOOK_NAME":
-                return "look name";
+                return "${formula_editor_object_look_name}";
             case "FINGER_X":
-                return "stage touch x";
+                return "${formula_editor_function_finger_x}";
             case "FINGER_Y":
-                return "stage touch y";
+                return "${formula_editor_function_finger_y}";
             case "FINGER_TOUCHED":
-                return "stage is touched";
+                return "${formula_editor_function_is_finger_touching}";
             case "MULTI_FINGER_X":
-                return "stage touch x";
+                return "${formula_editor_function_multi_finger_x}";
             case "MULTI_FINGER_Y":
-                return "stage touch y";
+                return "${formula_editor_function_multi_finger_y}";
             case "LAST_FINGER_INDEX":
-                return "last stage touch index";
+                return "${formula_editor_function_index_of_last_finger}";
             case "MULTI_FINGER_TOUCHED":
-                return "stage is touched";
+                return "${formula_editor_function_is_multi_finger_touching}";
             case "NXT_SENSOR_1":
-                return "NXT sensor 1";
+                return "${formula_editor_sensor_lego_nxt_1}";
             case "NXT_SENSOR_2":
-                return "NXT sensor 2";
+                return "${formula_editor_sensor_lego_nxt_2}";
             case "NXT_SENSOR_3":
-                return "NXT sensor 3";
+                return "${formula_editor_sensor_lego_nxt_3}";
             case "NXT_SENSOR_4":
-                return "NXT sensor 4";
+                return "${formula_editor_sensor_lego_nxt_4}";
             case "EV3_SENSOR_1":
-                return "EV3 sensor 1";
+                return "${formula_editor_sensor_lego_ev3_1}";
             case "EV3_SENSOR_2":
-                return "EV3 sensor 2";
+                return "${formula_editor_sensor_lego_ev3_2}";
             case "EV3_SENSOR_3":
-                return "EV3 sensor 3";
+                return "${formula_editor_sensor_lego_ev3_3}";
             case "EV3_SENSOR_4":
-                return "EV3 sensor 4";
+                return "${formula_editor_sensor_lego_ev3_4}";
             case "GAMEPAD_A_PRESSED":
-                return"gamepad a pressed";
+                return "${formula_editor_sensor_gamepad_a_pressed}";
             case "GAMEPAD_B_PRESSED":
-                return"gamepad b pressed";
+                return "${formula_editor_sensor_gamepad_b_pressed}";
             case "GAMEPAD_UP_PRESSED":
-                return"gamepad up pressed";
+                return "${formula_editor_sensor_gamepad_up_pressed}";
             case "GAMEPAD_DOWN_PRESSED":
-                return"gamepad down pressed";
+                return "${formula_editor_sensor_gamepad_down_pressed}";
             case "GAMEPAD_LEFT_PRESSED":
-                return"gamepad left pressed";
+                return "${formula_editor_sensor_gamepad_left_pressed}";
             case "GAMEPAD_RIGHT_PRESSED":
-                return"gamepad right pressed";
+                return "${formula_editor_sensor_gamepad_right_pressed}";
             case "OBJECT_DISTANCE_TO":
+                return "$formula_editor_object_distance_to";
             default:
                 return operator;
         }
