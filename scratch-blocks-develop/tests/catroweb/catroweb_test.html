@@ -185,14 +185,14 @@
     // INFO: get the divs
     const workspaceDiv = document.getElementById('codeview-wrapper');
     Blockly.Web.initBlockly('en_GB', workspaceDiv);
-    Blockly.Web.injectAllScenes(workspaceDiv, xml);
+    // Blockly.Web.injectAllScenes(workspaceDiv, xml);
 
     // INFO: place this somewhere in the header
-    // fetch('http://localhost:8080/scratch-blocks-develop/tests/catroweb/catblocks_large.xml')
-    //   .then(stream => stream.text())
-    //   .then(string => {
-    //     Blockly.Web.injectAllScenes(workspaceDiv, string);
-    //   });
+    fetch('http://192.168.8.101:8080/scratch-blocks-develop/tests/catroweb/catblocks_large.xml')
+      .then(stream => stream.text())
+      .then(string => {
+        Blockly.Web.injectAllScenes(workspaceDiv, string);
+      });
 
   </script>
 
