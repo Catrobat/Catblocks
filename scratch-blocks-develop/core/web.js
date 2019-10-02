@@ -50,6 +50,13 @@ Blockly.Web.domParser_ = null;
 Blockly.Web.renderWorkspace_ = null;
 
 /**
+ * Default image if we have not found the source
+ * @type {string}
+ * @private
+ */
+Blockly.Web.noImageFound_ = '/scratch-blocks-develop/tests/catroweb/public/resources/No_Image_Available.jpg';
+
+/**
  * Parsing formats for DomParser object
  * @enum {string}
  * @private
@@ -82,6 +89,7 @@ Blockly.Web.defaultOptions_ = {
   createObjectContainer: {
     writeHeader: true,
     writeStats: true,
+    writeLook: true,
     expandable: true
   }
 };
@@ -96,16 +104,16 @@ Blockly.Web.defaultOptions_ = {
  */
 Blockly.Web.parseOptions_ = function(inputValues, defaultValues) {
   if (!goog.isDefAndNotNull(inputValues)) {
-    return defaultValues;
+    return Object.assign({}, defaultValues);
   } else {
-    var resultObject = {};
-    var keys = Object.keys(defaultValues);
+    var resultObject = Object.assign({});
+    var keys = Object.keys(inputValues).concat(Object.keys(defaultValues));
     for (var ikey = 0; ikey < keys.length; ikey++) {
       var key = keys[ikey];
       if (goog.isDefAndNotNull(inputValues[key])) {
         resultObject[key] = inputValues[key];
       } else {
-        inputValues[key] = defaultValues[key];
+        resultObject[key] = defaultValues[key];
       }
     }
   }
@@ -274,15 +282,29 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
   var objectOptions = Blockly.Web.parseOptions_(options, Blockly.Web.defaultOptions_.createObjectContainer);
   var objectContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, { 'class': 'catblocks-object', 'id': objectName });
 
-  var objectHeader = null;
   if (objectOptions.writeHeader) {
-    objectHeader = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, { 'class': objectName + ' - header', 'id': 'catblocks-object-header' });
+    var objectHeader = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, { 'class': objectName + ' - header', 'id': 'catblocks-object-header' });
     var objectText = Blockly.Web.injectNewDom_(objectHeader, goog.dom.TagName.P, 'catblocks-object-text');
     objectText.innerHTML = 'Object: <span class="catblocks-object-name">' + objectName + '</span>';
   }
 
+  var objectProps = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-object-props-container');
+
+  if (objectOptions.writeLook && goog.isString(objectOptions.lookImgPath)) {
+    var lookContainer = Blockly.Web.injectNewDom_(objectProps, goog.dom.TagName.DIV, 'catblocks-object-look-container');
+    // INFO: we get this information via {{ path }} twig attribute
+    var lookImgRoot = '/scratch-blocks-develop/tests/catroweb/public/resources/extract/adf0839ae32edc6d5664dc637c24b6c4/';
+    var lookImg = Blockly.Web.injectNewDom_(lookContainer, goog.dom.TagName.IMG, {
+      'class': 'catblocks-object-look-item',
+      'src': lookImgRoot + options.lookImgPath.split('#').join('%23'),
+      'onerror': function(event) { event.target.src = Blockly.Web.noImageFound_ }
+      // 'title': 'Look-' + sceneName,
+      // 'alt': goog.isString(options.lookAlt) ? options.lookAlt : 'Look from current scene'
+    });
+  }
+
   if (objectOptions.writeStats) {
-    var statsContainer = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-container');
+    var statsContainer = Blockly.Web.injectNewDom_(objectProps, goog.dom.TagName.DIV, 'catblocks-object-stats-container');
     var labelContainer = Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-label-container');
     var valueContainer = Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-value-container');
     Blockly.Web.injectNewDom_(labelContainer, goog.dom.TagName.UL, "catblocks-object-stats-lable-list");
@@ -496,14 +518,16 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
     for (var iobject = 0; iobject < objects.length; iobject++) {
       var object = objects[iobject];
       var objectName = object.getAttribute('type');
-      var objectContainer = Blockly.Web.addObjectContainer_(sceneObjectContainer, objectName);
-      var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-scripts-container')[0];
+      var objectContainer = Blockly.Web.addObjectContainer_(sceneObjectContainer, objectName, {
+        lookImgPath: sceneName + '/images/' + object.getAttribute('look')
+      });
 
       // object stats with init values
       var objectStats = {
         'name': objectName,
         'scripts': 0
       };
+      var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-scripts-container')[0];
 
       if (object.childElementCount === 0) {
         var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container catblocks-empty-script');
@@ -552,7 +576,7 @@ Blockly.Web.CSS_CONTENT = [
   '}',
   '.catblocks-scene,',
   '.catblocks-object {',
-  '    padding: 5px 10px;',
+  '    padding: 5px 20px;',
   '    border-radius: 20px;',
   '    margin: 5px 0px;',
   '}',
@@ -564,6 +588,12 @@ Blockly.Web.CSS_CONTENT = [
   '',
   '.catblocks-object {',
   '    background-color: #17a5b8;',
+  '}',
+  '.catblocks-scene:hover {',
+  '   background-color: aliceblue;',
+  '}',
+  '.catblocks-object:hover {',
+  '   background-color: #17a5b880;',
   '}',
   '',
   '.catblocks-scene-text, ',
@@ -578,6 +608,8 @@ Blockly.Web.CSS_CONTENT = [
   '',
   '.catblocks-object-stats-container {',
   '    display: flex;',
+  '    min-width: 400px;',
+  '    max-width: 400px;',
   '}',
   '.catblocks-object-stats-label-container {',
   '    font-weight: bold;',
@@ -602,5 +634,16 @@ Blockly.Web.CSS_CONTENT = [
   '    line-height: 50px;',
   '    font-weight: bold;',
   '}',
-];
-
+  '.catblocks-object-props-container {',
+  '    display: flex;',
+  '    flex-wrap: wrap;',
+  '}',
+  '.catblocks-object-look-container {',
+  '    min-width: 100px;',
+  '    max-width: 100px;',
+  '}',
+  '.catblocks-object-look-item {',
+  '    min-width: 100px;',
+  '    max-width: 100px;',
+  '    border-radius: 20%;',
+  '}'];
