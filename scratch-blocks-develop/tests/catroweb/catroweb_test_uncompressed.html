@@ -48,7 +48,7 @@
 
     // INFO: get the divs
     const workspaceDiv = document.getElementById('catblocks-code-container');
-    Blockly.Web.initBlockly('en_GB', workspaceDiv);
+    Blockly.Web.initBlockly('en_GB', { 'container': workspaceDiv, 'blockScale': 0.75 });
 
     fetch('http://localhost:8080/scratch-blocks-develop/tests/catroweb/catblocks_large.xml')
       .then(stream => stream.text())

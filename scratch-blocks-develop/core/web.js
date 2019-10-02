@@ -35,7 +35,6 @@ goog.require('goog.dom');
 goog.require('goog.dom.TagName');
 
 
-
 /**
  * DomParser_ instance for Web
  * @type {Object}
@@ -64,11 +63,15 @@ Blockly.Web.parseFormats_ = {
 };
 
 /**
- * Default options for functioncalls
+ * Default options defined here
  * @enum {object}
  * @private
  */
 Blockly.Web.defaultOptions_ = {
+  renderOptions: {
+    container: 'body',
+    blockScale: 0.75
+  },
   injectAllScenes: {
     expandable: true
   },
@@ -84,33 +87,30 @@ Blockly.Web.defaultOptions_ = {
 };
 
 /**
- * Initiate Blockly for Web
- * @param {string} locale to use for Web, loaded from CatblocksMsgs
- * @param {Element} container container to init stuff
- * @public
+ * Parse options, if value exists in inputValues use this one
+ * Otherwise go with the value from defaultValues
+ * @param {Object} inputValues to use if exists
+ * @param {Object} defaultValues to parse down
+ * @return {Object} either input or default value
+ * @private
  */
-Blockly.Web.initBlockly = function(locale, container) {
-
-  // #TODO: use the locale from the server
-  var locale_ = goog.isString(locale) ? locale : "en_GB";
-  Blockly.CatblocksMsgs.setLocale(locale_);
-  Blockly.Web.domParser_ = new DOMParser();
-
-  // injectAllScenes css into document head
-  var cssNode = document.createElement('style');
-  document.head.insertBefore(cssNode, document.head.firstChild);
-
-  var cssText = document.createTextNode(Blockly.Web.CSS_CONTENT.join('\n'));
-  cssNode.appendChild(cssText);
-
-  // to render svg images we need a hidden workspace
-  if (goog.isDefAndNotNull(container)) {
-    var hiddenContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, {
-      id: 'hidden-workspace',
-      class: 'hidden'
-    });
-    Blockly.Web.renderWorkspace_ = Blockly.Web.createReadonlyWorkspace_(hiddenContainer, 0.75);
+Blockly.Web.parseOptions_ = function(inputValues, defaultValues) {
+  if (!goog.isDefAndNotNull(inputValues)) {
+    return defaultValues;
+  } else {
+    var resultObject = {};
+    var keys = Object.keys(defaultValues);
+    for (var ikey = 0; ikey < keys.length; ikey++) {
+      var key = keys[ikey];
+      if (goog.isDefAndNotNull(inputValues[key])) {
+        resultObject[key] = inputValues[key];
+      } else {
+        inputValues[key] = defaultValues[key];
+      }
+    }
   }
+
+  return resultObject;
 };
 
 /**
@@ -120,6 +120,11 @@ Blockly.Web.initBlockly = function(locale, container) {
  * @public
  */
 Blockly.Web.xmlToDom = function(xmlString) {
+  if (!goog.isDefAndNotNull(Blockly.Web.domParser_)) {
+    console.error("Blockly.Web.domParser_ is not initiated yet, please run initBlockly first.");
+    return;
+  }
+
   var xmlDoc = Blockly.Web.domParser_.parseFromString(xmlString, Blockly.Web.parseFormats_.XML);
   if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
     console.error("Failed to parse xml string, please check if you have passed a valid xml file.");
@@ -135,25 +140,34 @@ Blockly.Web.xmlToDom = function(xmlString) {
  * @private
  */
 Blockly.Web.transformXml_ = function(xml, tagActions) {
-  // TODO: may move into xml.js file
   var xmlDom = goog.isString(xml) ? Blockly.Web.xmlToDom(xml) : xml;
-  // run actions against xmlDom
 
   var tagNames = Object.keys(tagActions);
   for (var itag = 0; itag < tagNames.length; itag++) {
     var tagName = tagNames[itag];
     var nodes = xmlDom.getElementsByTagName(tagName);
     for (var inodes = 0; inodes < nodes.length; inodes++) {
-      nodes[inodes].removeAttribute('id');
-      nodes[inodes].removeAttribute('x');
-      nodes[inodes].removeAttribute('y');
+      var actions = tagActions[tagName];
+      for (var iaction = 0; iaction < actions.length; iaction++) {
+        var actionType = actions[iaction].split('-')[0];
+        var actionValue = actions[iaction].split('-')[1];
+        switch (actionType) {
+          case 'remAttr': {
+            nodes[inodes].removeAttribute(actionValue);
+            break;
+          }
+          default: {
+            console.warn("Ignore undefined XML transformation.");
+          }
+        }
+      }
     }
   }
 };
 
 /**
- * Create new read only workspace and injectAllScenes it into container
- * @param {Element} container to from scene where we should injectAllScenes the workspace
+ * Create new read only workspace and inject it into container Element
+ * @param {Element} container where to inject Blockly workspace
  * @param {number} blockscale block scale for workspace
  * @returns {workspace} created workspace object
  * @private
@@ -162,7 +176,6 @@ Blockly.Web.createReadonlyWorkspace_ = function(container, blockscale) {
   if (container.tagName !== goog.dom.TagName.DIV.tagName_) {
     console.error("Please provide a div as container - createSceneWorkspace");
   }
-  var blockscale_ = goog.isNumber(blockscale) ? blockscale : 0.75;
 
   var workspace = Blockly.inject(container, {
     readOnly: true,
@@ -170,7 +183,7 @@ Blockly.Web.createReadonlyWorkspace_ = function(container, blockscale) {
     zoom: {
       controls: false,
       wheel: false,
-      startScale: blockscale_
+      startScale: blockscale
     }
   });
   workspace.getInjectionDiv().id = workspace.id;
@@ -179,10 +192,10 @@ Blockly.Web.createReadonlyWorkspace_ = function(container, blockscale) {
 };
 
 /**
- * Inject new dom into container with id and class given
+ * Inject new dom into container with provided attributes and textContent is present
  * @param {Element} container dom where to injectAllScenes the new scene
  * @param {Object} tagName to injectAllScenes into container
- * @param {Object<string, string>|string} attributes to set for the new dom element
+ * @param {?Object<string, string>|?string} attributes attribute object or just class name
  * @param {?string} textContent to set for new dom element
  * @return {Element} new created subcontainer
  * @private
@@ -197,8 +210,31 @@ Blockly.Web.injectNewDom_ = function(container, tagName, attributes, textContent
 };
 
 /**
- * Inject new scene into cotainer
- * @param {Element} container dom where to injectAllScenes the new scene
+ * Wrap element into new element, type defined via wrapTag
+ * Map all attributes to wrap element
+ * @param {Element|string} element to wrap
+ * @param {Object} wrapTag to wrap element into
+ * @param {?Object} attributes map to wrapTag element
+ * @return {Element} wrapped element and mapped attributes
+ * @private
+ */
+Blockly.Web.wrapElement_ = function(element, wrapTag, attributes) {
+  var parent = goog.dom.createDom(wrapTag);
+  if (goog.isDefAndNotNull(attributes)) {
+    var keys = Object.keys(attributes);
+    for (var ikey = 0; ikey < keys.length; ikey++) {
+      var key = keys[ikey];
+      parent.setAttribute(key, attributes[key]);
+    }
+  }
+  parent.appendChild(element);
+
+  return parent;
+};
+
+/**
+ * Inject new scene container into Element container provied in params
+ * @param {Element} container append new scene container to this element
  * @param {string} sceneName mapped to id from the new dom
  * @param {!object<string, object>} options how we should build up the scene container
  * @return {Element} new created scene container
@@ -227,8 +263,8 @@ Blockly.Web.addSceneContainer_ = function(container, sceneName, options) {
 };
 
 /**
- * Inject new object into cotainer
- * @param {Element} container dom where to injectAllScenes the new scene
+ * Inject new object container into Element container provied in params
+ * @param {Element} container append new object container to this element
  * @param {string} objectName mapped to id from the new dom
  * @param {!object<string, object>} options how we should build up the scene container
  * @return {Element} new created object container
@@ -244,11 +280,15 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
     var objectText = Blockly.Web.injectNewDom_(objectHeader, goog.dom.TagName.P, 'catblocks-object-text');
     objectText.innerHTML = 'Object: <span class="catblocks-object-name">' + objectName + '</span>';
   }
+
   if (objectOptions.writeStats) {
     var statsContainer = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-container');
-    Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-label-container');
-    Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-value-container');
+    var labelContainer = Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-label-container');
+    var valueContainer = Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-value-container');
+    Blockly.Web.injectNewDom_(labelContainer, goog.dom.TagName.UL, "catblocks-object-stats-lable-list");
+    Blockly.Web.injectNewDom_(valueContainer, goog.dom.TagName.UL, "catblocks-object-stats-value-list");
   }
+
   var objectScriptContainer = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-scripts-container');
 
   // TODO: use something different than the name element
@@ -261,9 +301,10 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
 };
 
 /**
- * Update object stats, merge oldStats with new Stats
- * @param {Object} oldStats known stats get updated by newStats
- * @param {Object} newStats will update oldStats
+ * Little helper function to update object stats object
+ * It returns the merged objects, on same key we generate the sum
+ * @param {Object} oldStats status to update
+ * @param {Object} newStats update, either append or sum up
  * @returns {Object} updated stats
  * @private
  */
@@ -272,7 +313,6 @@ Blockly.Web.updateObjectStats_ = function(oldStats, newStats) {
   var statNames = Object.keys(newStats);
   for (var istat = 0; istat < statNames.length; istat++) {
     var statName = statNames[istat];
-
     if (goog.isDefAndNotNull(oldStats[statName])) {
       updatedStats[statName] += newStats[statName];
     } else {
@@ -283,30 +323,26 @@ Blockly.Web.updateObjectStats_ = function(oldStats, newStats) {
   return updatedStats;
 };
 
-
 /**
- * Write Object stats to page
+ * Write objects stats to object stats elements
+ * Remove the old stats first before we write the new one
+ * Please use updateObjectStats_ to get the sum or multiple substats
  * @param {Element} objectContainer to update the stats
  * @param {Object} stats stats to write into Elemnt
  * @private
  */
 Blockly.Web.writeObjectStats_ = function(objectContainer, stats) {
-
-  // Update new fetched stats into container
-  var labelContainer = objectContainer.getElementsByClassName('catblocks-object-stats-label-container')[0];
-  var valueContainer = objectContainer.getElementsByClassName('catblocks-object-stats-value-container')[0];
-  goog.dom.removeChildren(labelContainer);
-  goog.dom.removeChildren(valueContainer);
-
-  var labelList = Blockly.Web.injectNewDom_(labelContainer, goog.dom.TagName.UL, "catblocks-object-stats-lable-list");
-  var valueList = Blockly.Web.injectNewDom_(valueContainer, goog.dom.TagName.UL, "catblocks-object-stats-value-list");
+  var labelList = objectContainer.getElementsByClassName('catblocks-object-stats-lable-list')[0];
+  var valueList = objectContainer.getElementsByClassName('catblocks-object-stats-value-list')[0];
+  goog.dom.removeChildren(labelList);
+  goog.dom.removeChildren(valueList);
 
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Name:");
-  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", objectContainer.id);
+  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", stats['name']);
+  delete (stats['name']);
 
-  var scriptCount = goog.isNumber(stats['scripts']) ? stats['scripts'] : 0;
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Scripts:");
-  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", scriptCount);
+  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", stats['scripts']);
   delete (stats['scripts']);
 
   var categories = Object.keys(stats).sort();
@@ -320,57 +356,38 @@ Blockly.Web.writeObjectStats_ = function(objectContainer, stats) {
 };
 
 /**
- * Wrap element into new element, type defined via wrapTag
- * Map all attributes to wrap element
- * @param {Element|string} element to wrap
- * @param {Object} wrapTag to wrap element into
- * @param {?Object} attributes map to wrapTag element
- * @return {Element} wrapped element and mapped attributes
+ * Get workspace stats and return it
+ * @param {object} workspace to parse stats
+ * @returns {object} stats from worspace
  * @private
  */
-Blockly.Web.wrapElement_ = function(element, wrapTag, attributes) {
-  var parent = goog.dom.createDom(wrapTag);
-  if (goog.isDefAndNotNull(attributes)) {
-    var keys = Object.keys(attributes);
-    for (var ikey = 0; ikey < keys.length; ikey++) {
-      var key = keys[ikey];
-      parent.setAttribute(key, attributes[key]);
-    }
-  }
-  parent.appendChild(element);
-  return parent;
-};
+Blockly.Web.getWorkspaceBlockStats_ = function(workspace) {
+  var workspaceStats = {
+    scripts: 1
+  };
 
-
-/**
- * Parse options, if value exists in inputValues use this one
- * Otherwise go with the value from defaultValues
- * @param {Object} inputValues to use if exists
- * @param {Object} defaultValues to parse down
- * @return {Object} either input or default value
- * @private
- */
-Blockly.Web.parseOptions_ = function(inputValues, defaultValues) {
-  if (!goog.isDefAndNotNull(inputValues)) {
-    return defaultValues;
-  } else {
-    var resultObject = {};
-    var keys = Object.keys(defaultValues);
-    for (var ikey = 0; ikey < keys.length; ikey++) {
-      if (goog.isDefAndNotNull(inputValues[keys])) {
-        resultObject[ikey] = inputValues[ikey];
+  var blockNames = Object.keys(workspace.blockDB_);
+  for (var iblock = 0; iblock < blockNames.length; iblock++) {
+    var blockName = blockNames[iblock];
+    var block = workspace.blockDB_[blockName];
+    if (goog.isDefAndNotNull(block.category_)) {
+      if (goog.isDefAndNotNull(workspaceStats[block.category_])) {
+        workspaceStats[block.category_]++;
       } else {
-        inputValues[keys] = defaultValues[ikey];
+        workspaceStats[block.category_] = 1;
       }
     }
   }
+
+  return workspaceStats;
 };
 
 /**
- * Render svg from blockXml, need to use a workspace for this
- * @param {Element} blockXml to render to svg
+ * Render svg from blockXml via renderWorkspace
+ * After rendering, we deep copy just the svg and return it
+ * @param {Element} blockXml blocks to render into svg
  * @param {?Object} workspace to render in
- * @returns {Object<Element, Object>} renderd svg with block stats
+ * @returns {Object<Element, Object>} svg with block stats
  * @public
  */
 Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
@@ -379,10 +396,14 @@ Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
     console.error('Can not render block xml without workspace, please init first default or pass one as param');
     return;
   }
-
-  // move it away from the edges
   var xOffset = 50;
   var yOffset = 50;
+
+  // move it away from the edges
+  Blockly.Web.transformXml_(blockXml, {
+    'block': ['remAttr-id', 'remAttr-x', 'remAttr-y'],
+    'shadow': ['remAttr-id', 'remAttr-x', 'remAttr-y']
+  });
   blockXml.firstElementChild.setAttribute('x', xOffset);
   blockXml.firstElementChild.setAttribute('y', yOffset);
 
@@ -398,24 +419,42 @@ Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
   newSvg.setAttribute('height', oriBox.height + yOffset);
   newSvg.setAttribute('class', 'catblocks-svg');
 
-  var blockStats = {
-    scripts: 1
+  return {
+    svg: newSvg,
+    stats: Blockly.Web.getWorkspaceBlockStats_(renderWorkspace)
   };
-  var blockNames = Object.keys(renderWorkspace.blockDB_);
-  for (var iblock = 0; iblock < blockNames.length; iblock++) {
-    var blockName = blockNames[iblock];
-    var block = renderWorkspace.blockDB_[blockName];
-    if (goog.isDefAndNotNull(block.category_)) {
-      if (goog.isDefAndNotNull(blockStats[block.category_])) {
-        blockStats[block.category_]++;
-      } else {
-        blockStats[block.category_] = 1;
-      }
-    }
-  }
-
-  return { svg: newSvg, stats: blockStats };
 };
+
+
+/**
+ * Initiate Blockly for Web useage
+ * In case you need to render SVG elements, please set a container in params
+ * @param {string} locale to use for Web, loaded from CatblocksMsgs
+ * @param {object} renderOptions with settings for the hidden render workspace
+ * @public
+ */
+Blockly.Web.initBlockly = function(locale, renderOptions) {
+
+  var blockLocale = goog.isString(locale) ? locale : "en_GB";
+  Blockly.CatblocksMsgs.setLocale(blockLocale);
+  Blockly.Web.domParser_ = new DOMParser();
+
+  var cssNode = document.createElement('style');
+  document.head.insertBefore(cssNode, document.head.firstChild);
+  var cssText = document.createTextNode(Blockly.Web.CSS_CONTENT.join('\n'));
+  cssNode.appendChild(cssText);
+
+  // create hidden workspace for svg rendering
+  var renderConfig = Blockly.Web.parseOptions_(renderOptions, Blockly.Web.defaultOptions_.renderOptions);
+  if (goog.isDefAndNotNull(renderConfig)) {
+    var hiddenContainer = Blockly.Web.injectNewDom_(renderConfig.container, goog.dom.TagName.DIV, {
+      id: 'hidden-workspace',
+      class: 'hidden'
+    });
+    Blockly.Web.renderWorkspace_ = Blockly.Web.createReadonlyWorkspace_(hiddenContainer, renderConfig.blockScale);
+  }
+};
+
 
 /**
  * Inject all catblocks scenes from xml into div
@@ -459,12 +498,12 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
       var objectName = object.getAttribute('type');
       var objectContainer = Blockly.Web.addObjectContainer_(sceneObjectContainer, objectName);
       var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-scripts-container')[0];
-      var objectStats = {};
 
-      Blockly.Web.transformXml_(object, {
-        'block': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id'],
-        'shadow': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id'],
-      });
+      // object stats with init values
+      var objectStats = {
+        'name': objectName,
+        'scripts': 0
+      };
 
       if (object.childElementCount === 0) {
         var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container catblocks-empty-script');
@@ -485,6 +524,7 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
     }
   }
 };
+
 
 /**
  * EventHandler for code, expand/collapse scene and object
@@ -510,12 +550,6 @@ Blockly.Web.CSS_CONTENT = [
   '    height: 0px;',
   '    width: 0px;',
   '}',
-  '#catblocks {',
-  '    height: 100%;',
-  '    margin: 0px;',
-  '    padding: 10px;',
-  '}',
-  '',
   '.catblocks-scene,',
   '.catblocks-object {',
   '    padding: 5px 10px;',
