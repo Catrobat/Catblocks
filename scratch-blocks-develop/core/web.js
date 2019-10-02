@@ -64,8 +64,8 @@ Blockly.Web.parseFormats_ = {
 };
 
 /**
- * Default options for function calls
- * @enum {object<}
+ * Default options for functioncalls
+ * @enum {object}
  * @private
  */
 Blockly.Web.defaultOptions_ = {
@@ -303,8 +303,10 @@ Blockly.Web.writeObjectStats_ = function(objectContainer, stats) {
 
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Name:");
   Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", objectContainer.id);
+
+  var scriptCount = goog.isNumber(stats['scripts']) ? stats['scripts'] : 0;
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Scripts:");
-  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", stats['scripts']);
+  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", scriptCount);
   delete (stats['scripts']);
 
   var categories = Object.keys(stats).sort();
@@ -422,7 +424,7 @@ Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
  * @param {Object} options how we should inject all scenes
  * @public
  */
-Blockly.Web.injectAllScenes = async function(container, xmlString, options) {
+Blockly.Web.injectAllScenes = function(container, xmlString, options) {
   if (goog.isString(container)) {
     container = document.getElementById(container) ||
       document.querySelector(container);
@@ -464,16 +466,20 @@ Blockly.Web.injectAllScenes = async function(container, xmlString, options) {
         'shadow': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id'],
       });
 
-      while (object.childElementCount > 0) {
-        var script = object.firstElementChild;
-        var blockXml = Blockly.Web.wrapElement_(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
-        object.removeChild(script);
+      if (object.childElementCount === 0) {
+        var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container catblocks-empty-script');
+        Blockly.Web.injectNewDom_(scriptContainer, goog.dom.TagName.P, 'catblocks-empty-script-text', "No Script defined here");
+      } else {
+        while (object.childElementCount > 0) {
+          var script = object.firstElementChild;
+          var blockXml = Blockly.Web.wrapElement_(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+          object.removeChild(script);
 
-
-        var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container');
-        var svgBlock = Blockly.Web.domToSvgWithStats(blockXml);
-        scriptContainer.appendChild(svgBlock.svg);
-        objectStats = Blockly.Web.updateObjectStats_(objectStats, svgBlock.stats);
+          var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container');
+          var svgBlock = Blockly.Web.domToSvgWithStats(blockXml);
+          scriptContainer.appendChild(svgBlock.svg);
+          objectStats = Blockly.Web.updateObjectStats_(objectStats, svgBlock.stats);
+        }
       }
       Blockly.Web.writeObjectStats_(objectContainer, objectStats);
     }
@@ -555,6 +561,12 @@ Blockly.Web.CSS_CONTENT = [
   '    background: aliceblue;',
   '    width: 100%;',
   '    border-radius: 20px;',
-  '}'
+  '}',
+  '.catblocks-empty-script-text {',
+  '    text-align: center;',
+  '    vertical-align: middle;',
+  '    line-height: 50px;',
+  '    font-weight: bold;',
+  '}',
 ];
 
