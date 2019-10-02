@@ -6,7 +6,7 @@ import java.util.List;
 class Object {
     private List<Script> scriptList;
     private List<String> soundList;
-    private List<String> lookList;
+    private List<Look> lookList;
     private String name;
 
     Object(String name) {
@@ -20,8 +20,9 @@ class Object {
         scriptList.add(script);
     }
 
-    void addLook(String name){
-        lookList.add(name);
+    void addLook(String name, String location){
+        Look look = new Look(name, location);
+        lookList.add(look);
     }
 
     void addSound(String name){
@@ -40,7 +41,7 @@ class Object {
         return soundList;
     }
 
-    List<String> getLookList() {
+    List<Look> getLookList() {
         return lookList;
     }
 }

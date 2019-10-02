@@ -83,10 +83,10 @@ public class Parser {
                         int pos = getPosition(ref);
                         if(line.startsWith("<look")){
                             if(ref.startsWith("object/")){
-                                value = (currentScene.getObjects().get(0).getLookList().get(pos-1));
+                                value = (currentScene.getObjects().get(0).getLookList().get(pos-1).getName());
                             }
                             else{
-                                value = (currentObject.getLookList().get(pos-1));
+                                value = (currentObject.getLookList().get(pos-1).getName());
                             }
                         }
                         if(line.startsWith("<sound")){
@@ -100,6 +100,14 @@ public class Parser {
                     }
                     if(line.contains("<receivedMessage>")){
                         String message = line.split("</?receivedMessage>")[1];
+                        addFormValue(message);
+                    }
+                    if(line.contains("<sceneToStart>")){
+                        String message = line.split("</?sceneToStart>")[1];
+                        addFormValue(message);
+                    }
+                    if(line.contains("<sceneForTransition>")){
+                        String message = line.split("</?sceneForTransition>")[1];
                         addFormValue(message);
                     }
                     if(currentBlock != null && currentBlock.isInFormula()){
@@ -158,7 +166,8 @@ public class Parser {
                 else{
                     if(line.contains("<look fileName=\"")){
                         String name = line.split("name=\"")[1].replace("\"/>", "");
-                        currentObject.addLook(name);
+                        String file = line.split("\" name=\"")[0].replace("<look fileName=\"", "");
+                        currentObject.addLook(name,file);
                     }
                     if(line.contains("<sound fileName=\"")){
                         String name = line.split("name=\"")[1].replace("\"/>", "");
@@ -256,7 +265,7 @@ public class Parser {
         for(Scene scene : sceneList){
             writer.println("<scene type=\"" + scene.getName() + "\">");
             for(Object object : scene.getObjects()) {
-                writer.println("<object type=\"" + object.getName() + "\">");
+                writer.println("<object type=\"" + object.getName() + "\" look=\"" + object.getLookList().get(0).getFile() + "\">");
                 for (Script script : object.getScriptList()) {
                     writer.println("<script type=\"" + script.getName() + "\">");
                     String path = getPath(script.getName());
