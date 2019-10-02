@@ -6,9 +6,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Catroweb test</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <!-- <script src='./../../dist/web/vertical.js'></script> -->
+  <script src='./../../dist/web/vertical.js'></script>
 
-  <script src="../../blockly_uncompressed_vertical.js"></script>
+  <!-- <script src="../../blockly_uncompressed_vertical.js"></script>
   <script src="../../msg/catblocks_msgs.js"></script>
   <script src="../../blocks_vertical/vertical_extensions.js"></script>
   <script src="../../blocks_common/math.js"></script>
@@ -26,168 +26,30 @@
   <script src="../../blocks_vertical/sensing.js"></script>
   <script src="../../blocks_vertical/data.js"></script>
   <script src="../../blocks_vertical/extensions.js"></script>
-  <script src="../../blocks_vertical/default_toolbox.js"></script>
+  <script src="../../blocks_vertical/default_toolbox.js"></script> -->
 
+  <script>
+    function openSceneContainer(event) {
+      const sceneContainer = document.getElementById('catblocks-scene-container');
+      sceneContainer.style.display = sceneContainer.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
 </head>
 
 <body>
-  <div id='codeview-wrapper'>
+  <div id='show-code' onclick="openSceneContainer()">
+    SHOW CODE
+  </div>
+  <div id='catblocks'>
   </div>
   </div>
 
   <script>
 
-    const xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' +
-      '  <scene type="Scene0ToView">' +
-      '    <object type="TestObject0Scene0">' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ShowTextColorSizeAlignmentBrick" id="_DnyCmzGPY]K0~ukl%]m">' +
-      '              <field name="DROPDOWN">���</field>' +
-      '              <field name="DROPDOWN2">���</field>' +
-      '              <value name="X_POSITION">' +
-      '                <shadow type="text" id="#S?T.Et:ehEKnH^l*@r=">' +
-      '                  <field name="TEXT">100</field>' +
-      '                </shadow>' +
-      '              </value>' +
-      '              <value name="Y_POSITION">' +
-      '                <shadow type="text" id="]e#/)~T3^y,*F-$^%3G*">' +
-      '                  <field name="TEXT">200</field>' +
-      '                </shadow>' +
-      '              </value>' +
-      '              <value name="SIZE">' +
-      '                <shadow type="text" id="p~2w[(@svXm%*C;x?P|i">' +
-      '                  <field name="TEXT">120</field>' +
-      '                </shadow>' +
-      '              </value>' +
-      '              <value name="COLOR">' +
-      '                <shadow type="text" id="LyvGe1,jI|Oj-csd_R-p">' +
-      '                  <field name="TEXT">#FF0000</field>' +
-      '                </shadow>' +
-      '              </value>' +
-      '              <next>' +
-      '                <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '                  <statement name="SUBSTACK">' +
-      '                    <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                      <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                        <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                          <field name="TEXT">1</field>' +
-      '                        </shadow>' +
-      '                      </value>' +
-      '                    </block>' +
-      '                  </statement>' +
-      '                </block>' +
-      '              </next>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '              <statement name="SUBSTACK">' +
-      '                <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                  <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                    <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                      <field name="TEXT">1</field>' +
-      '                    </shadow>' +
-      '                  </value>' +
-      '                </block>' +
-      '              </statement>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '    </object>' +
-      '  </scene>' +
-      '  <scene type="Scene0ToView">' +
-      '    <object type="TestObject0Scene0">' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '              <statement name="SUBSTACK">' +
-      '                <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                  <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                    <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                      <field name="TEXT">1</field>' +
-      '                    </shadow>' +
-      '                  </value>' +
-      '                </block>' +
-      '              </statement>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '    </object>' +
-      '    <object type="TestObject0Scene0">' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '              <statement name="SUBSTACK">' +
-      '                <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                  <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                    <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                      <field name="TEXT">1</field>' +
-      '                    </shadow>' +
-      '                  </value>' +
-      '                </block>' +
-      '              </statement>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '    </object>' +
-      '    <object type="TestObject0Scene0">' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '              <statement name="SUBSTACK">' +
-      '                <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                  <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                    <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                      <field name="TEXT">1</field>' +
-      '                    </shadow>' +
-      '                  </value>' +
-      '                </block>' +
-      '              </statement>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '    </object>' +
-      '    <object type="TestObject0Scene0">' +
-      '      <script type="StartScript">' +
-      '        <block type="StartScript" id="kyPeLQC%|3uFBc,+BtQ]" x="425" y="128">' +
-      '          <next>' +
-      '            <block type="ForeverBrick" id="NIPI;Q8Z+iaa3nY~wLlj">' +
-      '              <statement name="SUBSTACK">' +
-      '                <block type="WaitBrick" id="V8X,LMon9l=1?3MiKqWu">' +
-      '                  <value name="TIME_TO_WAIT_IN_SECONDS">' +
-      '                    <shadow type="text" id="W65o1;?A}*B/hm}#IO)}">' +
-      '                      <field name="TEXT">1</field>' +
-      '                    </shadow>' +
-      '                  </value>' +
-      '                </block>' +
-      '              </statement>' +
-      '            </block>' +
-      '          </next>' +
-      '        </block>' +
-      '      <\/script>' +
-      '    </object>' +
-      '  </scene>' +
-      '</xml>';
-
     // INFO: get the divs
-    const workspaceDiv = document.getElementById('codeview-wrapper');
+    const workspaceDiv = document.getElementById('catblocks');
     Blockly.Web.initBlockly('en_GB', workspaceDiv);
-    // Blockly.Web.injectAllScenes(workspaceDiv, xml);
 
-    // INFO: place this somewhere in the header
     fetch('http://192.168.8.101:8080/scratch-blocks-develop/tests/catroweb/catblocks_large.xml')
       .then(stream => stream.text())
       .then(string => {

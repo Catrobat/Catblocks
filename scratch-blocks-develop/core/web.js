@@ -70,7 +70,7 @@ Blockly.Web.parseFormats_ = {
  */
 Blockly.Web.defaultOptions_ = {
   injectAllScenes: {
-    'test': 'test'
+    expandable: true
   },
   createSceneContainer: {
     writeHeader: true,
@@ -215,6 +215,14 @@ Blockly.Web.addSceneContainer_ = function(container, sceneName, options) {
     sceneText.innerHTML = 'Scene: <span class="catblocks-scene-name">' + sceneName + '</span>';
   }
 
+  var sceneObjectContainer = Blockly.Web.injectNewDom_(sceneContainer, goog.dom.TagName.DIV, 'catblocks-object-container');
+
+  // TODO: use something different than the name element
+  if (sceneOptions.expandable) {
+    sceneText.addEventListener('click', Blockly.Web.codeClickHandler_);
+    sceneObjectContainer.style.display = 'none';
+  }
+
   return sceneContainer;
 };
 
@@ -236,14 +244,18 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
     var objectText = Blockly.Web.injectNewDom_(objectHeader, goog.dom.TagName.P, 'catblocks-object-text');
     objectText.innerHTML = 'Object: <span class="catblocks-object-name">' + objectName + '</span>';
   }
-
   if (objectOptions.writeStats) {
     var statsContainer = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-container');
     Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-label-container');
     Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-value-container');
   }
+  var objectScriptContainer = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, 'catblocks-scripts-container');
 
-  Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, { 'class': 'catblocks-object-scripts-container' });
+  // TODO: use something different than the name element
+  if (objectOptions.expandable) {
+    objectText.addEventListener('click', Blockly.Web.codeClickHandler_);
+    objectScriptContainer.style.display = 'none';
+  }
 
   return objectContainer;
 };
@@ -410,7 +422,7 @@ Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
  * @param {Object} options how we should inject all scenes
  * @public
  */
-Blockly.Web.injectAllScenes = function(container, xmlString, options) {
+Blockly.Web.injectAllScenes = async function(container, xmlString, options) {
   if (goog.isString(container)) {
     container = document.getElementById(container) ||
       document.querySelector(container);
@@ -427,18 +439,24 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
     return;
   }
 
+  var scenesContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, { 'class': 'catblocks-scene-container', 'id': 'catblocks-scene-container' });
+  if (injectOptions.expandable) {
+    scenesContainer.style.display = 'none';
+  }
+
   var scenes = xmlElement.firstChild.children;
   for (var iscene = 0; iscene < scenes.length; iscene++) {
     var scene = scenes[iscene];
     var sceneName = scene.getAttribute('type');
-    var sceneContainer = Blockly.Web.addSceneContainer_(container, sceneName);
+    var sceneContainer = Blockly.Web.addSceneContainer_(scenesContainer, sceneName);
+    var sceneObjectContainer = sceneContainer.getElementsByClassName('catblocks-object-container')[0];
 
     var objects = scene.children;
     for (var iobject = 0; iobject < objects.length; iobject++) {
       var object = objects[iobject];
       var objectName = object.getAttribute('type');
-      var objectContainer = Blockly.Web.addObjectContainer_(sceneContainer, objectName);
-      var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-object-scripts-container')[0];
+      var objectContainer = Blockly.Web.addObjectContainer_(sceneObjectContainer, objectName);
+      var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-scripts-container')[0];
       var objectStats = {};
 
       Blockly.Web.transformXml_(object, {
@@ -462,8 +480,6 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
   }
 };
 
-
-
 /**
  * EventHandler for code, expand/collapse scene and object
  * @param {Event} event to handle
@@ -472,22 +488,11 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
 Blockly.Web.codeClickHandler_ = function(event) {
   var container = event.target.parentElement.parentElement;
 
-  var className = event.target.classList.contains('catblocks-scene-text') ? 'catblocks-object' : 'injectionDiv';
+  var className = container.classList.contains('catblocks-scene') ? 'catblocks-object-container' : 'catblocks-scripts-container';
   var objects = container.getElementsByClassName(className);
   for (var iobject = 0; iobject < objects.length; iobject++) {
     var object = objects[iobject];
     object.style.display = object.style.display === 'none' ? 'block' : 'none';
-
-    // Blockly does not draw the svg's if the container is display none
-    // so we need to call svgResize for each expaned workspace
-    if (object.style.display === 'block') {
-      var workspaceNames = Object.keys(Blockly.Workspace.WorkspaceDB_);
-      for (var iworkspace = 0; iworkspace < workspaceNames.length; iworkspace++) {
-        var workspaceName = workspaceNames[iworkspace];
-        Blockly.svgResize(Blockly.Workspace.WorkspaceDB_[workspaceName]);
-      }
-
-    }
   }
 };
 
