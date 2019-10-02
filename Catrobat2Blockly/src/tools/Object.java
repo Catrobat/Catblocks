@@ -5,8 +5,8 @@ import java.util.List;
 
 class Object {
     private List<Script> scriptList;
-    private List<String> soundList;
-    private List<Look> lookList;
+    private List<CatFile> soundList;
+    private List<CatFile> lookList;
     private String name;
 
     Object(String name) {
@@ -21,12 +21,13 @@ class Object {
     }
 
     void addLook(String name, String location){
-        Look look = new Look(name, location);
+        CatFile look = new CatFile(name, location);
         lookList.add(look);
     }
 
-    void addSound(String name){
-        soundList.add(name);
+    void addSound(String name, String location){
+        CatFile sound = new CatFile(name, location);
+        soundList.add(sound);
     }
 
     String getName() {
@@ -37,11 +38,11 @@ class Object {
         return scriptList;
     }
 
-    List<String> getSoundList(){
+    List<CatFile> getSoundList(){
         return soundList;
     }
 
-    List<Look> getLookList() {
+    List<CatFile> getLookList() {
         return lookList;
     }
 }

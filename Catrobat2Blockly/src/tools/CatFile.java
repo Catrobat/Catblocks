@@ -1,10 +1,10 @@
 package tools;
 
-public class Look {
+public class CatFile {
     String name;
     String file;
 
-    public Look(String name, String file) {
+    public CatFile(String name, String file) {
         this.name = name;
         this.file = file;
     }
