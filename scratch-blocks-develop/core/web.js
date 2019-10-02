@@ -44,6 +44,13 @@ goog.require('goog.dom.TagName');
 Blockly.Web.domParser_ = null;
 
 /**
+ * Hidden workspace to render svg images
+ * @type {Object}
+ * @private
+ */
+Blockly.Web.renderWorkspace_ = null;
+
+/**
  * Parsing formats for DomParser object
  * @enum {string}
  * @private
@@ -79,9 +86,10 @@ Blockly.Web.defaultOptions_ = {
 /**
  * Initiate Blockly for Web
  * @param {string} locale to use for Web, loaded from CatblocksMsgs
+ * @param {Element} container container to init stuff
  * @public
  */
-Blockly.Web.initBlockly = function(locale) {
+Blockly.Web.initBlockly = function(locale, container) {
 
   // #TODO: use the locale from the server
   var locale_ = goog.isString(locale) ? locale : "en_GB";
@@ -94,6 +102,15 @@ Blockly.Web.initBlockly = function(locale) {
 
   var cssText = document.createTextNode(Blockly.Web.CSS_CONTENT.join('\n'));
   cssNode.appendChild(cssText);
+
+  // to render svg images we need a hidden workspace
+  if (goog.isDefAndNotNull(container)) {
+    var hiddenContainer = Blockly.Web.injectNewDom_(container, goog.dom.TagName.DIV, {
+      id: 'hidden-workspace',
+      class: 'hidden'
+    });
+    Blockly.Web.renderWorkspace_ = Blockly.Web.createReadonlyWorkspace_(hiddenContainer, 0.75);
+  }
 };
 
 /**
@@ -121,8 +138,10 @@ Blockly.Web.transformXml_ = function(xml, tagActions) {
   // TODO: may move into xml.js file
   var xmlDom = goog.isString(xml) ? Blockly.Web.xmlToDom(xml) : xml;
   // run actions against xmlDom
-  for (var iaction = 0; iaction < tagActions.length; iaction++) {
-    var tagName = tagActions[iaction];
+
+  var tagNames = Object.keys(tagActions);
+  for (var itag = 0; itag < tagNames.length; itag++) {
+    var tagName = tagNames[itag];
     var nodes = xmlDom.getElementsByTagName(tagName);
     for (var inodes = 0; inodes < nodes.length; inodes++) {
       nodes[inodes].removeAttribute('id');
@@ -160,67 +179,6 @@ Blockly.Web.createReadonlyWorkspace_ = function(container, blockscale) {
 };
 
 /**
- * Clean workspace, reset size to 0 and remove all blocks
- * @param {workspace} workspace to clean
- * @public
- */
-Blockly.Web.clearSceneWorkspace = function(workspace) {
-  var injectContainer = workspace.blockDragSurface_.container_.parentElement;
-  var mainBlock = injectContainer.getElementsByTagName('svg')[0];
-  workspace.clear();
-  injectContainer.setAttribute('height', '0px');
-  mainBlock.setAttribute('height', '0px');
-};
-
-
-/**
- * Load new xml to workspace, clean first if not already done
- * @param {Element|string} xml to load into workspace
- * @param {workspace} workspace to which we should load the xml
- * @param {boolean} erase workspace or not
- * @private
- */
-Blockly.Web.addBlockXmlToWorkspace_ = function(xml, workspace, erase) {
-  // get DOM xml, either convert or directly
-  var xmlDom = goog.isString(xml) ? Blockly.Xml.textToDom(xml) : xml;
-  var cleanWorkspace = goog.isBoolean(erase) ? erase : true;
-
-  var injectContainer = workspace.blockDragSurface_.container_.parentElement;
-  var blockSvg = injectContainer.getElementsByTagName('svg')[0];
-
-  var heightOffset = injectContainer.clientHeight === 0 ? 50 : injectContainer.clientHeight;
-  //var workspaceWidth = injectContainer.clientWidth;
-  var widthOffset = 20; //workspaceWidth / 2;
-
-  // move it awai from the edges
-  xmlDom.firstElementChild.setAttribute('x', widthOffset);
-  xmlDom.firstElementChild.setAttribute('y', heightOffset);
-  // erase if require
-  if (cleanWorkspace) {
-    Blockly.Web.clearSceneWorkspace(workspace);
-  }
-
-  Blockly.Xml.domToWorkspace(xmlDom, workspace);
-
-  var gbox = blockSvg.getBBox();
-  blockSvg.setAttribute('height', gbox.height + 100 + 'px');
-  workspace.getInjectionDiv().style.height = blockSvg.getAttribute('height');
-  blockSvg.style.position = 'inherit';
-
-  // get maximal width from the workspace and set use it as min-width
-  var minWidth = 0;
-  var blockNames = Object.keys(workspace.blockDB_);
-  for (var iblock = 0; iblock < blockNames.length; iblock++) {
-    var blockName = blockNames[iblock];
-    var block = workspace.blockDB_[blockName];
-    if (minWidth < block.width) {
-      minWidth = block.width;
-    }
-  }
-  blockSvg.style.minWidth = minWidth + 'px';
-};
-
-/**
  * Inject new dom into container with id and class given
  * @param {Element} container dom where to injectAllScenes the new scene
  * @param {Object} tagName to injectAllScenes into container
@@ -255,10 +213,6 @@ Blockly.Web.addSceneContainer_ = function(container, sceneName, options) {
     sceneHeader = Blockly.Web.injectNewDom_(sceneContainer, goog.dom.TagName.DIV, { 'class': 'catblocks-scene-header', 'id': sceneName + '-header' });
     var sceneText = Blockly.Web.injectNewDom_(sceneHeader, goog.dom.TagName.P, 'catblocks-scene-text');
     sceneText.innerHTML = 'Scene: <span class="catblocks-scene-name">' + sceneName + '</span>';
-
-    if (sceneOptions.expandable) {
-      sceneText.addEventListener('click', Blockly.Web.codeClickHandler_);
-    }
   }
 
   return sceneContainer;
@@ -281,10 +235,6 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
     objectHeader = Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, { 'class': objectName + ' - header', 'id': 'catblocks-object-header' });
     var objectText = Blockly.Web.injectNewDom_(objectHeader, goog.dom.TagName.P, 'catblocks-object-text');
     objectText.innerHTML = 'Object: <span class="catblocks-object-name">' + objectName + '</span>';
-
-    if (objectOptions.expandable) {
-      objectText.addEventListener('click', Blockly.Web.codeClickHandler_);
-    }
   }
 
   if (objectOptions.writeStats) {
@@ -293,46 +243,46 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
     Blockly.Web.injectNewDom_(statsContainer, goog.dom.TagName.DIV, 'catblocks-object-stats-value-container');
   }
 
-
+  Blockly.Web.injectNewDom_(objectContainer, goog.dom.TagName.DIV, { 'class': 'catblocks-object-scripts-container' });
 
   return objectContainer;
 };
 
-
 /**
- * Update Object stats if we should write them
- * Based if the DIV Element exists, we konw if we should update them or not
- * @param {Element} objectContainer to update the stats
- * @param {workspace|string} workspace to parse the stats, either object or id
+ * Update object stats, merge oldStats with new Stats
+ * @param {Object} oldStats known stats get updated by newStats
+ * @param {Object} newStats will update oldStats
+ * @returns {Object} updated stats
  * @private
  */
-Blockly.Web.updateObjectStats_ = function(objectContainer, workspace) {
-  var workspaceObject = goog.isString(workspace) ? Blockly.Workspace.WorkspaceDB_[workspace] : workspace;
-  var container = objectContainer.getElementsByClassName('catblocks-object-stats-container')[0];
-  if (!goog.isDefAndNotNull(container)) {
-    console.warn("Called update object stats, but no container found for it, \
-      please ensure you have set writeStats during the workspace generation.");
-    return;
-  }
+Blockly.Web.updateObjectStats_ = function(oldStats, newStats) {
+  var updatedStats = Object.assign({}, oldStats);
+  var statNames = Object.keys(newStats);
+  for (var istat = 0; istat < statNames.length; istat++) {
+    var statName = statNames[istat];
 
-  var objectStats = {
-  };
-  var blockNames = Object.keys(workspaceObject.blockDB_);
-  for (var iblock = 0; iblock < blockNames.length; iblock++) {
-    var blockName = blockNames[iblock];
-    var block = workspaceObject.blockDB_[blockName];
-    if (goog.isDefAndNotNull(block.category_)) {
-      if (goog.isDefAndNotNull(objectStats[block.category_])) {
-        objectStats[block.category_]++;
-      } else {
-        objectStats[block.category_] = 1;
-      }
+    if (goog.isDefAndNotNull(oldStats[statName])) {
+      updatedStats[statName] += newStats[statName];
+    } else {
+      updatedStats[statName] = newStats[statName];
     }
   }
 
+  return updatedStats;
+};
+
+
+/**
+ * Write Object stats to page
+ * @param {Element} objectContainer to update the stats
+ * @param {Object} stats stats to write into Elemnt
+ * @private
+ */
+Blockly.Web.writeObjectStats_ = function(objectContainer, stats) {
+
   // Update new fetched stats into container
-  var labelContainer = container.getElementsByClassName('catblocks-object-stats-label-container')[0];
-  var valueContainer = container.getElementsByClassName('catblocks-object-stats-value-container')[0];
+  var labelContainer = objectContainer.getElementsByClassName('catblocks-object-stats-label-container')[0];
+  var valueContainer = objectContainer.getElementsByClassName('catblocks-object-stats-value-container')[0];
   goog.dom.removeChildren(labelContainer);
   goog.dom.removeChildren(valueContainer);
 
@@ -342,15 +292,16 @@ Blockly.Web.updateObjectStats_ = function(objectContainer, workspace) {
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Name:");
   Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", objectContainer.id);
   Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item", "Scripts:");
-  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", workspaceObject.topBlocks_.length);
+  Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item", stats['scripts']);
+  delete (stats['scripts']);
 
-  var categories = Object.keys(objectStats).sort();
+  var categories = Object.keys(stats).sort();
   for (var icat = 0; icat < categories.length; icat++) {
     var category = categories[icat];
     var label = Blockly.Web.injectNewDom_(labelList, goog.dom.TagName.LI, "catblocks-object-stats-lable-item");
     var value = Blockly.Web.injectNewDom_(valueList, goog.dom.TagName.LI, "catblocks-object-stats-value-item");
     label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-    value.textContent = objectStats[category];
+    value.textContent = stats[category];
   }
 };
 
@@ -402,6 +353,57 @@ Blockly.Web.parseOptions_ = function(inputValues, defaultValues) {
 };
 
 /**
+ * Render svg from blockXml, need to use a workspace for this
+ * @param {Element} blockXml to render to svg
+ * @param {?Object} workspace to render in
+ * @returns {Object<Element, Object>} renderd svg with block stats
+ * @public
+ */
+Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
+  var renderWorkspace = goog.isDefAndNotNull(workspace) ? workspace : Blockly.Web.renderWorkspace_;
+  if (!goog.isDefAndNotNull(renderWorkspace)) {
+    console.error('Can not render block xml without workspace, please init first default or pass one as param');
+    return;
+  }
+
+  // move it away from the edges
+  var xOffset = 50;
+  var yOffset = 50;
+  blockXml.firstElementChild.setAttribute('x', xOffset);
+  blockXml.firstElementChild.setAttribute('y', yOffset);
+
+  renderWorkspace.clear();
+  Blockly.Xml.domToWorkspace(blockXml, renderWorkspace);
+  var oriSvg = renderWorkspace.getParentSvg();
+  var oriBox = oriSvg.lastElementChild.getBBox();
+
+  // remove rect around it
+  var newSvg = oriSvg.cloneNode(true);
+  newSvg.lastElementChild.removeChild(newSvg.lastElementChild.firstElementChild);
+  newSvg.setAttribute('width', oriBox.width + xOffset);
+  newSvg.setAttribute('height', oriBox.height + yOffset);
+  newSvg.setAttribute('class', 'catblocks-svg');
+
+  var blockStats = {
+    scripts: 1
+  };
+  var blockNames = Object.keys(renderWorkspace.blockDB_);
+  for (var iblock = 0; iblock < blockNames.length; iblock++) {
+    var blockName = blockNames[iblock];
+    var block = renderWorkspace.blockDB_[blockName];
+    if (goog.isDefAndNotNull(block.category_)) {
+      if (goog.isDefAndNotNull(blockStats[block.category_])) {
+        blockStats[block.category_]++;
+      } else {
+        blockStats[block.category_] = 1;
+      }
+    }
+  }
+
+  return { svg: newSvg, stats: blockStats };
+};
+
+/**
  * Inject all catblocks scenes from xml into div
  * @param {Element} container dom to inject all loaded scenes
  * @param {string} xmlString which includes all scenes to inject
@@ -436,10 +438,12 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
       var object = objects[iobject];
       var objectName = object.getAttribute('type');
       var objectContainer = Blockly.Web.addObjectContainer_(sceneContainer, objectName);
+      var objectScriptContainer = objectContainer.getElementsByClassName('catblocks-object-scripts-container')[0];
+      var objectStats = {};
 
-      var workspace = Blockly.Web.createReadonlyWorkspace_(objectContainer, 0.75);
       Blockly.Web.transformXml_(object, {
-        'block': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id']
+        'block': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id'],
+        'shadow': ['rmAtt_id', 'rmAtt_id', 'rmAtt_id'],
       });
 
       while (object.childElementCount > 0) {
@@ -447,13 +451,13 @@ Blockly.Web.injectAllScenes = function(container, xmlString, options) {
         var blockXml = Blockly.Web.wrapElement_(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
         object.removeChild(script);
 
-        Blockly.Web.addBlockXmlToWorkspace_(blockXml, workspace, false);
+
+        var scriptContainer = Blockly.Web.injectNewDom_(objectScriptContainer, goog.dom.TagName.DIV, 'catblocks-object-script-container');
+        var svgBlock = Blockly.Web.domToSvgWithStats(blockXml);
+        scriptContainer.appendChild(svgBlock.svg);
+        objectStats = Blockly.Web.updateObjectStats_(objectStats, svgBlock.stats);
       }
-
-      Blockly.Web.updateObjectStats_(objectContainer, workspace);
-
-      workspace.getInjectionDiv().style.display = 'none';
-      objectContainer.style.display = 'none';
+      Blockly.Web.writeObjectStats_(objectContainer, objectStats);
     }
   }
 };
@@ -472,7 +476,6 @@ Blockly.Web.codeClickHandler_ = function(event) {
   var objects = container.getElementsByClassName(className);
   for (var iobject = 0; iobject < objects.length; iobject++) {
     var object = objects[iobject];
-    //console.log(object);
     object.style.display = object.style.display === 'none' ? 'block' : 'none';
 
     // Blockly does not draw the svg's if the container is display none
@@ -492,6 +495,10 @@ Blockly.Web.codeClickHandler_ = function(event) {
  * Array making up the CSS content for Blockly.
  */
 Blockly.Web.CSS_CONTENT = [
+  '.hidden {',
+  '    height: 0px;',
+  '    width: 0px;',
+  '}',
   '#catblocks {',
   '    height: 100%;',
   '    margin: 0px;',
@@ -524,14 +531,6 @@ Blockly.Web.CSS_CONTENT = [
   '    font-weight: bold;',
   '}',
   '',
-  '.injectionDiv {',
-  '    border-radius: 20px;',
-  '    overflow: scroll hidden;',
-  '    scrollbar-width: none; ',
-  '}',
-  '.injectionDiv::-webkit-scrollbar {',
-  '    display: none;',
-  '}',
   '.catblocks-object-stats-container {',
   '    display: flex;',
   '}',
@@ -542,5 +541,13 @@ Blockly.Web.CSS_CONTENT = [
   '}',
   '.catblocks-object-stats-value-container ul{',
   '    list-style-type: none;',
-  '}'];
+  '}',
+  '.catblocks-object-script-container {',
+  '    overflow: scroll hidden;',
+  '    scrollbar-width: none;',
+  '    background: aliceblue;',
+  '    width: 100%;',
+  '    border-radius: 20px;',
+  '}'
+];
 
