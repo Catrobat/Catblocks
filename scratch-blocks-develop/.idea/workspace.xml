@@ -1,146 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/tests/playground.html" line="102" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="9122202c-3556-4b9e-bc73-2f23cb3a8f3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changebrightnessby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changecolourby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changesizeby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_changetransparencyby.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_cleargraphicseffects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_hide.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_say.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setbrightnessto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setcolourto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_settransparencyto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_show.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_switchtolook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_switchtolookswithnumber.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_think.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_thinkforsecond.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks_vertical/looks.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks_vertical/looks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msg/js/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/msg/js/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msg/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/msg/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/import.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/import.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Catrobat2Blockly/src/tools/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/AddItemToUserListBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/AddItemToUserListBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/AskBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/AskBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/AskSpeechBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/AskSpeechBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/BroadcastBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/BroadcastBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/BroadcastScript.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/BroadcastScript.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/BroadcastWaitBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/BroadcastWaitBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/CameraBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/CameraBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/ChangeVariableBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/ChangeVariableBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/ChooseCameraBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/ChooseCameraBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/CloneBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/CloneBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/CollisionScript.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/CollisionScript.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/DeleteItemOfUserListBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/DeleteItemOfUserListBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/FlashBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/FlashBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/GoToBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/GoToBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/HideTextBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/HideTextBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/InsertItemIntoUserListBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/InsertItemIntoUserListBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/PlaySoundAndWaitBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/PlaySoundAndWaitBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/PlaySoundBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/PlaySoundBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/PointToBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/PointToBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/ReplaceItemInUserListBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/ReplaceItemInUserListBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SceneStartBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SceneStartBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SceneTransitionBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SceneTransitionBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetBackgroundAndWaitBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetBackgroundAndWaitBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetBackgroundBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetBackgroundBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetLookBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetLookBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetPhysicsObjectTypeBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetPhysicsObjectTypeBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetRotationStyleBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetRotationStyleBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/SetVariableBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/SetVariableBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/ShowTextBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/ShowTextBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/ShowTextColorSizeAlignmentBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/ShowTextColorSizeAlignmentBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/StopScriptBrick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/StopScriptBrick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlockLibrary/WhenBackgroundChangesScript.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlockLibrary/WhenBackgroundChangesScript.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Catrobat2Blockly/src/Catrobat2Blockly.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Catrobat2Blockly/src/Catrobat2Blockly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Catrobat2Blockly/src/tools/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Catrobat2Blockly/src/tools/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Catrobat2Blockly/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Catrobat2Blockly/test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/dist/" />
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocks_vertical/looks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="433" column="50" selection-start-line="433" selection-start-column="50" selection-end-line="433" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/msg/messages.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/msg/js/en.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4189">
-              <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -149,93 +53,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>blocklyScroll</find>
-      <find>blocklyToolboxDiv</find>
-      <find>scratchCategoryMenu</find>
-      <find>blockly.Toolbox</find>
-      <find>compressed</find>
-      <find>blockly.toolbox</find>
-      <find>scratchCategoryID-</find>
-      <find>sprinkles</find>
-      <find>blocklyFlyOut</find>
-      <find>blocklyFlyout</find>
-      <find>fly</find>
-      <find>toolbox</find>
-      <find>base</find>
-      <find>sound</find>
-      <find>Import from xml</find>
-      <find>importExport</find>
-      <find>blocklyFly</find>
-      <find>settings</find>
-      <find>switch</find>
-      <find>nex</find>
-      <find>show</find>
-      <find>changeeffect</find>
-      <find>changesi</find>
-      <find>changesize</find>
-      <find>gotoxy</find>
-      <find>say</find>
-      <find>think</find>
-      <find>cleargraphicef</find>
-      <find>cleargrap</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/blockly_compressed_vertical.js" />
-        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js" />
-        <option value="$PROJECT_DIR$/gh-pages/playgrounds/core/css.js" />
-        <option value="$PROJECT_DIR$/blockly_uncompressed_vertical.js" />
-        <option value="$PROJECT_DIR$/blocks_vertical/default_toolbox.js" />
-        <option value="$PROJECT_DIR$/tests/start.html" />
-        <option value="$PROJECT_DIR$/tests/vertical_playground.html" />
-        <option value="$PROJECT_DIR$/tests/playground.html" />
-        <option value="$PROJECT_DIR$/tests/code.xml" />
-        <option value="$PROJECT_DIR$/tests/translation.xml" />
-        <option value="$PROJECT_DIR$/tests/scratchToCatrobatConverter" />
-        <option value="$PROJECT_DIR$/tests/catblocks/event_whenyoureceived.xml" />
-        <option value="$PROJECT_DIR$/blocks_vertical/event.js" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_switchtolook.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml" />
-        <option value="$PROJECT_DIR$/tests/import.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_changesizeby.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_show.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_hide.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswer.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_say.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_think.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_thinkforseconds.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_thinkforsecond.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_settransparencyto.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_changetransparencyby.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setbrightnessto.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_changebrightnessby.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setcolourto.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_changecolourby.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_cleargraphicseffects.xml" />
-        <option value="$PROJECT_DIR$/msg/messages.js" />
-        <option value="$PROJECT_DIR$/msg/js/en.js" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_switchtolookswithnumber.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml" />
-        <option value="$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml" />
-        <option value="$PROJECT_DIR$/blocks_vertical/looks.js" />
-      </list>
-    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1788" />
@@ -244,52 +63,6 @@
     <option name="height" value="586" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-              <item name="blocks_vertical" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-              <item name="msg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-              <item name="msg" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="scratch-blocks-develop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scratch-blocks-develop" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="catblocks" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -357,365 +130,7 @@
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41667000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="1366" y="-4" width="1920" height="1204" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="1" side_tool="true" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.15287296" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32970026" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32925585" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/blocks/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/flyout_button.js" />
-    <entry file="file://$PROJECT_DIR$/gh-pages/playgrounds/core/css.js" />
-    <entry file="file://$PROJECT_DIR$/core/toolbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1093">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/vertical_extensions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2115" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/default_toolbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blockly_uncompressed_vertical.js" />
-    <entry file="file://$PROJECT_DIR$/core/xml.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="387" selection-start-line="387" selection-end-line="387" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/start.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/scratchToCatrobatConverter">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="2354" column="60" selection-start-line="2354" selection-start-column="60" selection-end-line="2354" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/code.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/translation.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/vertical_playground.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="9" selection-start-column="2" selection-end-line="29" />
-          <folding>
-            <element signature="n#style#0;n#xml#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/blockly.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/event_whenyoureceived.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/playground.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="47" column="48" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/data.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/control.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_previouslook.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_nextlook.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setsizeto.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_show.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/motion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="598" column="29" selection-start-line="598" selection-start-column="23" selection-end-line="598" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_sayforsecond.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_thinkforsecond.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_think.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_say.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_askandstorewrittenanswerin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/import.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" selection-start-column="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_settransparencyto.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbrightnessto.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_changetransparencyby.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setcolourto.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="32" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_changebrightnessby.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_hide.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_changesizeby.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_cleargraphicseffects.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_changecolourby.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_switchtolook.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_switchtolookswithnumber.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundandwait.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackgroundtonumber.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks.setbackgroundtonumberandwait.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_setbackground.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turncamera.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocks_vertical/looks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="433" column="50" selection-start-line="433" selection-start-column="50" selection-end-line="433" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_turnflashlight.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/catblocks/looks_usecamera.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/msg/js/en.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4189">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/msg/messages.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

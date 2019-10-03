@@ -7,28 +7,6 @@ import java.util.Stack;
 
 public class Parser {
 
-    private static final String BRICK_DEF = "<brick ";
-    private static final String BRICKLIST_DEF = "<brickList>";
-    private static final String FORMULALIST_BEGIN = "<formulaList>";
-    private static final String FORMULA_BEGIN = "<formula ";
-    private static final String FORMULA_END = "</formula>";
-    private static final String BRICKLIST_END = "</brickList>";
-    private static final String FORMULALIST_END = "</formulaList>";
-
-    private static final String FOREVER_DEF = "ForeverBrick";
-    private static final String IF_DEF = "IfThenLogicBeginBrick";
-    private static final String IF_ELSE_DEF = "IfLogicBeginBrick";
-    private static final String REPEAT_DEF = "RepeatBrick";
-    private static final String REPEAT_UNTIL_DEF = "RepeatUntilBrick";
-    private static final String ELSEBRANCH_DEF = "elseBranchBricks";
-    private static final String IFBRANCH_DEF = "ifBranchBricks";
-    private static final String LOOP_DEF = "loopBricks";
-
-    private static final String LEFTCHILD = "<leftChild";
-    private static final String RIGHTCHILD = "<rightChild";
-
-    private static final String SCRIPT_DEF = "<script ";
-    private static final String BRICK_TYPE = "type=";
     private static final String XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
     private static final String XML_END = "</xml>";
     private static final String NEXT_BEGIN = "<next>";
@@ -36,156 +14,178 @@ public class Parser {
     private static final String SUB1_BEGIN = "<statement name=\"SUBSTACK\">";
     private static final String SUB2_BEGIN = "<statement name=\"SUBSTACK2\">";
     private static final String SUB_END = "</statement>";
-
+    private static final String FORMULA_DEFINITION = "<formula category=";
 
     private final String filePath;
-
-    private boolean inBrickList = false;
-    private boolean inFormularList = false;
-
-    private List<Script> scripts;
-    private Script currScript;
-    private Block condBlock;
-    private boolean skip = false;
-    private Block currBlock;
-    private String currVal;
+    private List<Scene> sceneList;
+    private Scene currentScene;
+    private Object currentObject;
+    private Script currentScript;
+    private Stack<Block> conditionStack;
+    private Stack<Block> blockStack;
     private Stack<Formula> formulaStack;
+    private Block currentCondBlock;
+    private Block currentBlock;
+    private String currVal;
 
 
     public Parser() {
-        scripts = new LinkedList<>();
-        condBlock = null;
         filePath = new File("").getAbsolutePath().split("Catrobat2Blockly")[0];
+        sceneList = new LinkedList<>();
+        conditionStack = new Stack<>();
+        blockStack = new Stack<>();
         formulaStack = new Stack<>();
     }
 
-    private void parse(String line) {
-
-        if (skip) {
-            return;
-        } else {
-            checkWhereWeAre(line);
+    private void parse(String line){
+        if(line.contains("<")) {
+            line = "<" + line.split("<", 2)[1];
         }
 
-        if (inBrickList && line.contains(BRICK_DEF) && line.contains(BRICK_TYPE)) {
-            addNewBlock(line);
-        }
-        if (inFormularList) {
-            if (line.contains("<formula category=")) {
-                currVal = (line.split("category=\"")[1].split("\">")[0]);
-            }
-            if (line.contains("<value>")) {
-                String name = line.split("</?value>")[1];
-                Formula formula = formulaStack.pop();
-                formula.setValue(name);
-            }
-            if(line.contains(FORMULA_END)){
-                String formula = currBlock.convertFormula();
-                currBlock.addFormValues(currVal, formula);
-            }
-        }
+        if(currentScene != null) {
 
-        if (line.contains(SCRIPT_DEF) && line.contains(BRICK_TYPE)) {
-            String name = (line.split(BRICK_TYPE)[1]).split("\"")[1];
+            if(currentObject != null) {
 
-            Script script = new Script(name);
+                if(currentScript != null) {
+                    if(line.contains("loopBricks>") || line.contains("ifBranchBricks>")){
+                        currentCondBlock.workon1();
+                    }
+                    if(line.contains("elseBranchBricks>")){
+                        currentCondBlock.workon2();
+                    }
+                    if(line.contains("formulaList>")){
+                        currentBlock.workonFormula();
+                    }
+                    if(currentBlock != null && currentBlock.isInFormula()){
+                        if (line.contains(FORMULA_DEFINITION)) {
+                            Formula formula = new Formula();
+                            currentBlock.setFormula(formula);
+                            formulaStack.push(formula);
+                            currVal = (line.split("category=\"")[1].split("\">")[0]);
+                        }
+                        if (line.contains("<value>")) {
+                            String name = line.split("</?value>")[1];
+                            Formula formula = formulaStack.pop();
+                            formula.setValue(name);
+                        }
+                        if (line.contains("<leftChild")) {
+                            Formula curr = formulaStack.pop();
+                            Formula formula = new Formula();
+                            curr.setLeft(formula);
+                            formulaStack.push(curr);
+                            formulaStack.push(formula);
+                        }
+                        if (line.contains("<rightChild")) {
+                            Formula curr = formulaStack.pop();
+                            Formula formula = new Formula();
+                            curr.setRight(formula);
+                            formulaStack.push(curr);
+                            formulaStack.push(formula);
+                        }
+                        if(line.contains("</formula>")){
+                            String formula = currentBlock.convertFormula();
+                            currentBlock.addFormValues(currVal, formula);
+                        }
+                    }
+                    if (line.contains("<brick ")) {
+                        String name = line.split("type=\"")[1].replace("\">", "");
+                        //just add to script
+                        Block block = new Block(name);
+                        currentBlock = block;
+                        blockStack.push(block);
 
-            currScript = script;
-
-            scripts.add(script);
-        }
-    }
-
-    private void addNewBlock(String line) {
-        String name = (line.split(BRICK_TYPE)[1]).split("\"")[1];
-
-        String path = getPath(name);
-        File file = new File(path);
-
-        if (file.exists()) {
-            Block block = new Block(name);
-            currBlock = block;
-
-            if (isCondition(name)) {
-                condBlock = block;
-            }
-
-            if (condBlock != null) {
-                if (condBlock.isInSTMT1()) {
-                    condBlock.addSubblock(block);
-                } else if (condBlock.isInSTMT2()) {
-                    condBlock.addSubblock2(block);
-                } else {
-                    currScript.addBlock(block);
+                        if(currentCondBlock != null && currentCondBlock.isInSTMT1()) {
+                            currentCondBlock.addSubblock(block);
+                        }
+                        else if(currentCondBlock != null && currentCondBlock.isInSTMT2()){
+                            currentCondBlock.addSubblock2(block);
+                        }
+                        else{
+                            currentScript.addBlock(block);
+                        }
+                        if (isConditionBrick(name)){
+                            conditionStack.push(block);
+                            currentCondBlock = block;
+                        }
+                    }
                 }
-            } else {
-                currScript.addBlock(block);
+                if (line.contains("<script ")) {
+                    String name = line.split("type=\"")[1].replace("\">", "");
+                    currentScript = new Script(name);
+                    currentObject.addScript(currentScript);
+                }
             }
+
+            if (line.contains("<object ")) {
+                String name = line.split("name=\"")[1].replace("\">", "");
+                currentObject = new Object(name);
+                currentScene.addObject(currentObject);
+            }
+        }
+
+        if(line.equals("<scene>")) {
+            currentScene = new Scene("");
+            sceneList.add(currentScene);
+        }
+
+        if(line.equals("</brick>")) {
+            Block toBeRemoved = blockStack.pop();
+            currentBlock = null;
+            if(isConditionBrick(toBeRemoved.getName())){
+                currentCondBlock = null;
+                conditionStack.pop();
+                if(conditionStack.size()>0){
+                    currentCondBlock = conditionStack.lastElement();
+                }
+            }
+        }
+        if(line.equals("</script>")) {
+            currentScript = null;
+        }
+        if(line.equals("</object>")) {
+            currentObject = null;
+        }
+        if(line.equals("</scene>")) {
+            currentScene = null;
+        }
+        if(line.contains("<name>") && currentScene.getName().equals("")){
+            currentScene.setName(line.replaceAll("</?name>", ""));
         }
     }
 
-    private boolean isCondition(String name) {
-        return name.equals(IF_ELSE_DEF) || name.equals(REPEAT_DEF) ||
-                name.equals(IF_DEF) || name.equals(FOREVER_DEF) ||
-                name.equals(REPEAT_UNTIL_DEF);
+    private boolean isConditionBrick(String name) {
+        return name.equals("ForeverBrick") || name.equals("RepeatBrick") || name.equals("RepeatUntilBrick") ||
+               name.equals("IfThenLogicBeginBrick") || name.equals("IfLogicBeginBrick") || name.equals("IfElseLogicBeginBrick");
     }
 
-    private void checkWhereWeAre(String line) {
-        if (line.contains(BRICKLIST_DEF)) {
-            inBrickList = true;
-        }
-        if (line.contains(BRICKLIST_END)) {
-            inBrickList = false;
-        }
 
-        if (currBlock != null) {
-            if (line.contains(FORMULALIST_BEGIN)) {
-                inFormularList = true;
-            }
-            if (line.contains(FORMULALIST_END)) {
-                inFormularList = false;
-            }
-            if (line.contains(FORMULA_BEGIN)) {
-                Formula formula = new Formula();
-                currBlock.setFormula(formula);
-                formulaStack.push(formula);
-            }
+    public void parseFile(String inputFile) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
-            if (inFormularList && line.contains(LEFTCHILD)) {
-                Formula curr = formulaStack.pop();
-                Formula formula = new Formula();
-                curr.setLeft(formula);
-                formulaStack.push(curr);
-                formulaStack.push(formula);
-            }
-            if (inFormularList && line.contains(RIGHTCHILD)) {
-                Formula curr = formulaStack.pop();
-                Formula formula = new Formula();
-                curr.setRight(formula);
-                formulaStack.push(curr);
-                formulaStack.push(formula);
-            }
-        }
+        String line;
 
-        if (condBlock != null && line.contains(ELSEBRANCH_DEF)) {
-            condBlock.workon2();
+        while ((line = reader.readLine()) != null) {
+            parse(line);
         }
-
-        if (condBlock != null && (line.contains(IFBRANCH_DEF) || line.contains(LOOP_DEF))) {
-            condBlock.workon1();
-            if (!condBlock.getworkon1() && condBlock.getName().equals(FOREVER_DEF)) {
-                skip = true;
-            }
-        }
+        reader.close();
     }
-
     public void write(String outFile) throws IOException {
         PrintWriter writer = new PrintWriter(outFile);
         writer.println(XML_BEGIN);
 
-        for (Script script : scripts) {
-            String path = getPath(script.getName());
-            writeToFile(writer, path, script);
+        for(Scene scene : sceneList){
+            writer.println("<scene type=\"" + scene.getName() + "\">");
+            for(Object object : scene.getObjects()) {
+                writer.println("<object type=\"" + object.getName() + "\">");
+                for (Script script : object.getScriptList()) {
+                    writer.println("<script type=\"" + script.getName() + "\">");
+                    String path = getPath(script.getName());
+                    writeToFile(writer, path, script);
+                    writer.println("</script>");
+                }
+                writer.println("</object>");
+            }
+            writer.println("</scene>");
         }
 
         writer.println(XML_END);
@@ -263,17 +263,5 @@ public class Parser {
         if (next) {
             writer.println(NEXT_END);
         }
-    }
-
-    public void parseFile(String inputFile) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            parse(line);
-        }
-
-        reader.close();
     }
 }

@@ -4,5 +4,5 @@
       <field name="TEXT">What's your name?</field>
     </shadow>
   </value>
-  <field name="DROPDOWN">name</field>
+  <field name="DROPDOWN">���</field>
 </block>

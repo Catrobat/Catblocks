@@ -12,23 +12,16 @@ public class Catrobat2Blockly {
 
     public static void main(String[] args) throws IOException {
 
-        checkArgs(args);
+        String filename = "code.xml";
 
-        Parser parser = new Parser();
-        parser.parseFile(inputFile);
-        parser.write(outputFile);
-    }
-
-    private static void checkArgs(String[] args) {
-        if (args.length == 2){
-            // I/O
-            inputFile = args[0];
-            outputFile = args[1];
-        }
-        else{
-            // Fail
-            System.out.println("[ERROR] useage Catrobat2Blockly <inputfile> <outputfile>");
+        File file = new File(filename);
+        if(!file.exists()){
+            System.out.println("[ERROR] cannot find file");
             System.exit(-1);
         }
+        Parser parser = new Parser();
+        parser.parseFile(file.getName());
+        parser.write("catblocks.xml");
+        return;
     }
 }
