@@ -28,7 +28,7 @@ goog.require('Blockly.Blocks');
  * @fileoverview Provide a default toolbox XML.
  */
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
- '<category name="%{BKY_CATEGORY_MOTION}" id= "motion" colour="#4C97FF" secondaryColour="#3373CC">' +
+'<category name="%{BKY_CATEGORY_MOTION}" id= "motion" colour="#4C97FF" secondaryColour="#3373CC">' +
 '<block type="PlaceAtBrick" x="" y="">' +
 '  <value name="X_POSITION">' +
 '    <shadow type="text">' +
@@ -539,6 +539,187 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="ClearBackgroundBrick" id="" x="" y="">' +
 '</block>' +
 '</category>' +
+ '<category name="%{BKY_CATEGORY_SOUND}" id= "sound" colour="#9966FF" secondaryColour="#9966FF">' +
+'<block type="PlaySoundBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>>' +
+'</block>' +
+'<block type="PlaySoundAndWaitBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+' </block>' +
+'<block type="StopAllSoundsBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="SetVolumeToBrick" id="" x="" y="">' +
+'  <value name="VOLUME">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">60</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="ChangeVolumeByNBrick" id="" x="" y="">' +
+'  <value name="VOLUME_CHANGE">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">-10</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="SpeakBrick" id="" x="" y="">' +
+'  <value name="SPEAK">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">Hello!</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="SpeakAndWaitBrick" id="" x="" y="">' +
+'  <value name="SPEAK">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">Hello!</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="AskSpeechBrick" id="" x="" y="">' +
+'  <value name="ASK_SPEECH_QUESTION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">What\'s your name?</field>' +
+'    </shadow>' +
+'  </value>' +
+'  <field name="DROPDOWN">name</field>' +
+'</block>' +
+'</category>' +
+ '<category name="%{BKY_CATEGORY_EVENTS}" id= "events" colour="#FF661A" secondaryColour="#CC9900">' +
+'<block type="StartScript" id="" x="" y="">' +
+'</block>' +
+'<block type="WhenScript" id="" x="" y="">' +
+'</block>' +
+'<block type="WhenTouchDownScript" id="" x="" y="">' +
+'</block>' +
+'<block type="BroadcastScript" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="BroadcastBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'' +
+'' +
+'<block type="BroadcastWaitBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="WhenConditionScript" id="" x="" y="">' +
+'  <value name="IF_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1 &lt; 2</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="WhenBounceOffScript" x="" y="">' +
+'  <field name="DROPDOWN">���</field>' +
+'</block>' +
+'<block type="WhenBackgroundChangesScript" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'</category>' +
+ '<category name="%{BKY_CATEGORY_CONTROL}" id= "control" colour="#FFAB19" secondaryColour="#CF8B17">' +
+'<block type="ForeverBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="WaitBrick" id="" x="" y="">' +
+'  <value name="TIME_TO_WAIT_IN_SECONDS">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="NoteBrick" id="" x="" y="">' +
+'  <value name="NOTE">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">add comment here...</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="IfThenLogicBeginBrick" id="" x="" y="">' +
+'  <value name="IF_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1&lt;2</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="IfLogicBeginBrick" id="" x="" y="">' +
+'  <value name="IF_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1&lt;2</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="WaitUntilBrick" id="" x="" y="">' +
+'  <value name="IF_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1&lt;2</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="RepeatBrick" id="" x="" y="">' +
+'  <value name="TIMES_TO_REPEAT">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">10</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="RepeatUntilBrick" id="" x="" y="">' +
+'  <value name="REPEAT_UNTIL_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1&lt;2</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="SceneTransitionBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="SceneStartBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="StopScriptBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="CloneBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="DeleteThisCloneBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="WhenClonedScript" id="" x="" y="">' +
+'</block>' +
+'</category>' +
+ '<category name="%{BKY_CATEGORY_PEN}" id= "sensing" colour="#15855d" secondaryColour="#075b43">' +
+'<block type="PenDownBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="PenUpBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="SetPenSizeBrick" id="" x="" y="">' +
+'  <value name="PEN_SIZE">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">3.15</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="SetPenColorBrick" id="" x="" y="">' +
+'  <value name="PEN_COLOR_RED">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">0</field>' +
+'    </shadow>' +
+'  </value>' +
+'  <value name="PEN_COLOR_GREEN">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">0</field>' +
+'    </shadow>' +
+'  </value>' +
+'  <value name="PEN_COLOR_BLUE">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">255</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="StampBrick" id="" x="" y="">' +
+'</block>' +
+'<block type="ClearBackgroundBrick" id="" x="" y="">' +
+'</block>' +
+'</category>' +
  '<category name="%{BKY_CATEGORY_VARIABLES}" id= "operators" colour="#FF6680" secondaryColour="#389438">' +
 '<block type="SetVariableBrick" id="" x="" y="">' +
 '  <field name="DROPDOWN">���</field>' +
@@ -643,4 +824,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="HideTextBrick" id="" x="" y="">' +
 '  <field name="DROPDOWN">���</field>' +
 '</block>' +
-'</category>'+ '</xml>';
+'<block type="ReadVariableFromDeviceBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">���</field>' +
+'</block>' +
+'<block type="WriteVariableOnDeviceBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">���</field>' +
+'</block>' +
+'</category>' + '</xml>';
