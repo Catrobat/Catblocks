@@ -4,9 +4,6 @@ import java.io.*;
 
 public class Catrobat2Blockly {
 
-    private static String inputFile;
-    private static String outputFile;
-
     public Catrobat2Blockly() {
     }
 
@@ -22,6 +19,5 @@ public class Catrobat2Blockly {
         Parser parser = new Parser();
         parser.parseFile(file.getName());
         parser.write("catblocks.xml");
-        return;
     }
 }

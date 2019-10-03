@@ -9,10 +9,7 @@ class Block {
     private Formula formula;
     private String name;
 
-
     private Map<String,String> formValues;
-
-    private String field;
 
     private List<Block> subblock;
     private List<Block> subblock2;
@@ -20,11 +17,11 @@ class Block {
     private boolean inSTMT1;
     private boolean inSTMT2;
     private boolean inFormula;
+    private boolean inUserList;
+    private boolean inUserVar;
     private String curr;
-
-    void addFormValues(String key, String val) {
-        this.formValues.put(key, val);
-    }
+    private String userVariable;
+    private Object refObject;
 
     Block(String name) {
         this.subblock = new LinkedList<>();
@@ -35,12 +32,28 @@ class Block {
         this.inSTMT1 = false;
         this.inSTMT2 = false;
         this.inFormula = false;
+        this.inUserList = false;
+        this.inUserVar = false;
 
         this.formula = new Formula();
 
-        this.field = "";
-
         this.name = name;
+    }
+
+    void setRefObject(Object object){
+        refObject = object;
+    }
+
+    public Object getRefObject() {
+        return refObject;
+    }
+
+    void setUserVariable(String userVariable){
+        this.userVariable = userVariable;
+    }
+
+    String getUserVariable(){
+        return userVariable;
     }
 
     String getName() {
@@ -49,6 +62,10 @@ class Block {
 
     String getField() {
         return formValues.get(this.curr);
+    }
+
+    void addFormValues(String key, String val) {
+        this.formValues.put(key, val);
     }
 
     void setFormula(Formula formula){
@@ -86,6 +103,14 @@ class Block {
         return inFormula;
     }
 
+    boolean isInUserList() {
+        return inUserList;
+    }
+
+    boolean isInUserVar() {
+        return inUserVar;
+    }
+
     void workon2() {
         inSTMT2 = !inSTMT2;
     }
@@ -94,8 +119,16 @@ class Block {
         inSTMT1 = !inSTMT1;
     }
 
-    public void workonFormula() {
+    void workonFormula() {
         inFormula = !inFormula;
+    }
+
+    void workonUserList() {
+        inUserList = !inUserList;
+    }
+
+    void workonUserVar(Boolean bool) {
+        inUserVar = bool;
     }
 
     void setCurr(String curr) {
