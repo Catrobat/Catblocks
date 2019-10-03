@@ -1,6 +1,21 @@
 import os
-
-ignored = ["IfThenLogicEndBrick.xml","IfLogicElseBrick.xml","IfLogicEndBrick.xml", "LoopEndBrick.xml", "LoopEndlessBrick.xml"]
+ignored = [ "IfThenLogicEndBrick.xml",
+            "IfLogicElseBrick.xml",
+            "IfLogicEndBrick.xml",
+            "LoopEndBrick.xml",
+            "LoopEndlessBrick.xml",
+            "WhenBackgroundChangesBrick.xml",
+            "WhenBounceOffBrick.xml",
+            "WhenClonedBrick.xml",
+            "WhenConditionBrick.xml",
+            "WhenBrick.xml",
+            "WhenConditionBrick.xml",
+            "WhenTouchDownBrick.xml",
+            "WhenStartedBrick.xml",
+            "SetTextBrick.xml",
+            "BroadcastReceiverBrick.xml",
+            "WhenNfcScript.xml"
+          ]
 
 def main():
     print("Displaying differences between: ")

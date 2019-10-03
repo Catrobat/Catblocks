@@ -250,7 +250,7 @@ Blockly.Blocks['ReplaceItemInUserListBrick'] = {
 
 Blockly.Blocks['HideTextBrick'] = {
   /**
-   * Block to hide a variable
+   * Block to read a variable from device
    * @this Blockly.Block
    */
   init: function() {
@@ -275,6 +275,59 @@ Blockly.Blocks['HideTextBrick'] = {
   }
 };
 
+Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
+  /**
+   * Block to hide a variable
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_READVARIABLE,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.data,
+      "colour": Blockly.Colours.data.primary,
+      "colourSecondary": Blockly.Colours.data.secondary,
+      "colourTertiary": Blockly.Colours.data.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
+  /**
+   * Block to hide a variable
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DATA_WRITEVARIABLE,
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "DROPDOWN",
+          "options": [
+            ["new..."]
+          ]
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.data,
+      "colour": Blockly.Colours.data.primary,
+      "colourSecondary": Blockly.Colours.data.secondary,
+      "colourTertiary": Blockly.Colours.data.tertiary
+    });
+  }
+};
 
 Blockly.Blocks['data_deleteitemfromlist'] = {
   init: function() {

@@ -28,7 +28,7 @@ goog.require('Blockly.Blocks');
  * @fileoverview Provide a default toolbox XML.
  */
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
- '<category name="%{BKY_CATEGORY_MOTION}" id= "motion" colour="#4C97FF" secondaryColour="#3373CC">' +
+'<category name="%{BKY_CATEGORY_MOTION}" id= "motion" colour="#4C97FF" secondaryColour="#3373CC">' +
 '<block type="PlaceAtBrick" x="" y="">' +
 '  <value name="X_POSITION">' +
 '    <shadow type="text">' +
@@ -407,9 +407,9 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
  '<category name="%{BKY_CATEGORY_EVENTS}" id= "events" colour="#FF661A" secondaryColour="#CC9900">' +
 '<block type="StartScript" id="" x="" y="">' +
 '</block>' +
-'<block type="WhenBrick" id="" x="" y="">' +
+'<block type="WhenScript" id="" x="" y="">' +
 '</block>' +
-'<block type="WhenTouchDownBrick" id="" x="" y="">' +
+'<block type="WhenTouchDownScript" id="" x="" y="">' +
 '</block>' +
 '<block type="BroadcastScript" id="" x="" y="">' +
 '  <field name="DROPDOWN">new...</field>' +
@@ -450,6 +450,13 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '  <value name="NOTE">' +
 '    <shadow type="text" id="">' +
 '      <field name="TEXT">add comment here...</field>' +
+'    </shadow>' +
+'  </value>' +
+'</block>' +
+'<block type="IfThenLogicBeginBrick" id="" x="" y="">' +
+'  <value name="IF_CONDITION">' +
+'    <shadow type="text" id="">' +
+'      <field name="TEXT">1&lt;2</field>' +
 '    </shadow>' +
 '  </value>' +
 '</block>' +
@@ -498,7 +505,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="WhenClonedScript" id="" x="" y="">' +
 '</block>' +
 '</category>' +
- '<category name="%{BKY_CATEGORY_PEN}" id= "sensing" colour="#0fBD8C" secondaryColour="#2E8EB8">' +
+ '<category name="%{BKY_CATEGORY_PEN}" id= "sensing" colour="#15855d" secondaryColour="#075b43">' +
 '<block type="PenDownBrick" id="" x="" y="">' +
 '</block>' +
 '<block type="PenUpBrick" id="" x="" y="">' +
@@ -636,4 +643,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 '<block type="HideTextBrick" id="" x="" y="">' +
 '  <field name="DROPDOWN">new...</field>' +
 '</block>' +
-'</category>'+ '</xml>';
+'<block type="ReadVariableFromDeviceBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'<block type="WriteVariableOnDeviceBrick" id="" x="" y="">' +
+'  <field name="DROPDOWN">new...</field>' +
+'</block>' +
+'</category>' + '</xml>';

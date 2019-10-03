@@ -93,10 +93,10 @@ Blockly.Blocks['NoteBrick'] = {
   }
 };
 
-Blockly.Blocks['IfElseLogicBeginBrick'] = {
+Blockly.Blocks['IfThenLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
-      "type": "IfElseLogicBeginBrick",
+      "type": "IfThenLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1",
       "message2": Blockly.Msg.CONTROL_IFISTRUEELSEELSE,

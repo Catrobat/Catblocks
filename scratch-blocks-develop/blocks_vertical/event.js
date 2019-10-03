@@ -38,7 +38,7 @@ Blockly.Blocks['StartScript'] = {
   }
 };
 
-Blockly.Blocks['WhenBrick'] = {
+Blockly.Blocks['WhenScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENTAPPED,
@@ -49,7 +49,7 @@ Blockly.Blocks['WhenBrick'] = {
   }
 };
 
-Blockly.Blocks['WhenTouchDownBrick'] = {
+Blockly.Blocks['WhenTouchDownScript'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.EVENT_WHENSTAGEISTAPPED,
