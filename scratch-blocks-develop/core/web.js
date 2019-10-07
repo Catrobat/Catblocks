@@ -54,7 +54,14 @@ Blockly.Web.renderWorkspace_ = null;
  * @type {string}
  * @private
  */
-Blockly.Web.noImageFound_ = '/scratch-blocks-develop/tests/catroweb/public/resources/No_Image_Available.jpg';
+Blockly.Web.noImageFound_ = '/public/images/catblocks/No_Image_Available.jpg';
+
+/**
+ * Define look root path
+ * @type {string}
+ * @private
+ */
+Blockly.Web.shareRoot_ = '/public/';
 
 /**
  * Parsing formats for DomParser object
@@ -292,12 +299,10 @@ Blockly.Web.addObjectContainer_ = function(container, objectName, options) {
 
   if (objectOptions.writeLook && goog.isString(objectOptions.lookImgPath)) {
     var lookContainer = Blockly.Web.injectNewDom_(objectProps, goog.dom.TagName.DIV, 'catblocks-object-look-container');
-    // INFO: we get this information via {{ path }} twig attribute
-    var lookImgRoot = '/scratch-blocks-develop/tests/catroweb/public/resources/extract/adf0839ae32edc6d5664dc637c24b6c4/';
-    var lookImg = Blockly.Web.injectNewDom_(lookContainer, goog.dom.TagName.IMG, {
+    Blockly.Web.injectNewDom_(lookContainer, goog.dom.TagName.IMG, {
       'class': 'catblocks-object-look-item',
-      'src': lookImgRoot + options.lookImgPath.split('#').join('%23'),
-      'onerror': function(event) { event.target.src = Blockly.Web.noImageFound_ }
+      'src': Blockly.Web.shareRoot_ + options.lookImgPath.split('#').join('%23'),
+      'onerror': function(event) { event.target.src = Blockly.Web.noImageFound_; }
       // 'title': 'Look-' + sceneName,
       // 'alt': goog.isString(options.lookAlt) ? options.lookAlt : 'Look from current scene'
     });
@@ -452,10 +457,11 @@ Blockly.Web.domToSvgWithStats = function(blockXml, workspace) {
  * Initiate Blockly for Web useage
  * In case you need to render SVG elements, please set a container in params
  * @param {string} locale to use for Web, loaded from CatblocksMsgs
- * @param {object} renderOptions with settings for the hidden render workspace
+ * @param {string} shareRoot path from the share we all the data is filed
+ * @param {object} renderOptions settings for the hidden render workspace
  * @public
  */
-Blockly.Web.initBlockly = function(locale, renderOptions) {
+Blockly.Web.initBlockly = function(locale, shareRoot, renderOptions) {
 
   var blockLocale = goog.isString(locale) ? locale : "en_GB";
   Blockly.CatblocksMsgs.setLocale(blockLocale);
@@ -465,6 +471,9 @@ Blockly.Web.initBlockly = function(locale, renderOptions) {
   document.head.insertBefore(cssNode, document.head.firstChild);
   var cssText = document.createTextNode(Blockly.Web.CSS_CONTENT.join('\n'));
   cssNode.appendChild(cssText);
+
+  // set share prgramm root
+  Blockly.Web.shareRoot_ = '/public/' + shareRoot;
 
   // create hidden workspace for svg rendering
   var renderConfig = Blockly.Web.parseOptions_(renderOptions, Blockly.Web.defaultOptions_.renderOptions);
