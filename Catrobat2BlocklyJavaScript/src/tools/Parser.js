@@ -1,5 +1,8 @@
-export function parseFile(xml) {
+function parseFile(xml) {
     console.log("in parse file");
-    console.log(xml.responseText.length);
+    //console.log(xml.responseText);
+
+    
+
 
 }
