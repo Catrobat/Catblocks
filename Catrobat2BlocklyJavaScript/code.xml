@@ -8,159 +8,104 @@
         <applicationVersion>0.9.64</applicationVersion>
         <catrobatLanguageVersion>0.99992</catrobatLanguageVersion>
         <dateTimeUpload/>
-        <description>à finir</description>
-        <deviceName>SM-G935F</deviceName>
+        <description>my bot</description>
+        <deviceName>ONEPLUS A5010</deviceName>
         <isCastProject>false</isCastProject>
-        <landscapeMode>true</landscapeMode>
+        <landscapeMode>false</landscapeMode>
         <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
         <platform>Android</platform>
-        <platformVersion>26</platformVersion>
+        <platformVersion>28</platformVersion>
         <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-        <programName>pocket code final</programName>
+        <programName>T100654</programName>
         <remixOf></remixOf>
         <scenesEnabled>true</scenesEnabled>
-        <screenHeight>1440</screenHeight>
+        <screenHeight>2160</screenHeight>
         <screenMode>STRETCH</screenMode>
-        <screenWidth>2560</screenWidth>
-        <tags>Jeux,Animations</tags>
-        <url>/pocketcode/program/109515</url>
-        <userHandle>Pierrojumbo</userHandle>
+        <screenWidth>1080</screenWidth>
+        <tags>Experimental</tags>
+        <url>/pocketcode/program/108604</url>
+        <userHandle>Avocari</userHandle>
     </header>
     <settings/>
     <scenes>
         <scene>
-            <name>Scène 1</name>
+            <name>Scene 1</name>
             <objectList>
-                <object type="Sprite" name="Arrière-plan">
-                    <lookList>
-                        <look fileName="décor vide.jpg" name="décor vide"/>
-                    </lookList>
+                <object type="Sprite" name="Background">
+                    <lookList/>
                     <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="SetSizeToBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="SIZE">
-                                            <type>NUMBER</type>
-                                            <value>201</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="PlaceAtBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="Y_POSITION">
-                                            <type>NUMBER</type>
-                                            <value>0</value>
-                                        </formula>
-                                        <formula category="X_POSITION">
-                                            <type>NUMBER</type>
-                                            <value>0</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
+                    <scriptList/>
                     <nfcTagList/>
                     <userVariables/>
                     <userLists/>
                 </object>
-                <object type="Sprite" name="NUAGE">
+                <object type="Sprite" name="My actor or object">
                     <lookList>
-                        <look fileName="cloud-bright.png" name="cloud-bright"/>
+                        <look fileName="My actor or object.png" name="My actor or object"/>
                     </lookList>
-                    <soundList/>
+                    <soundList>
+                        <sound fileName="applause.wav" name="applause"/>
+                    </soundList>
                     <scriptList>
                         <script type="StartScript">
                             <brickList>
-                                <brick type="ForeverBrick">
+                                <brick type="IfLogicBeginBrick1">
                                     <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="PlaceAtBrick">
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>NUMBER</type>
+                                                <value>1</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>2</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>SMALLER_THAN</value>
+                                        </formula>
+                                    </formulaList>
+                                    <elseBranchBricks>
+                                        <brick type="WaitBrick5">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="Y_POSITION">
+                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
                                                     <type>NUMBER</type>
-                                                    <value>494</value>
-                                                </formula>
-                                                <formula category="X_POSITION">
-                                                    <type>NUMBER</type>
-                                                    <value>1905</value>
+                                                    <value>3</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="SetSizeToBrick">
+                                        <brick type="IfThenLogicBeginBrick6">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>320</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="GlideToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="X_DESTINATION">
+                                                <formula category="IF_CONDITION">
+                                                    <leftChild>
+                                                        <type>NUMBER</type>
+                                                        <value>1</value>
+                                                    </leftChild>
                                                     <rightChild>
                                                         <type>NUMBER</type>
-                                                        <value>2000</value>
+                                                        <value>2</value>
                                                     </rightChild>
                                                     <type>OPERATOR</type>
-                                                    <value>MINUS</value>
-                                                </formula>
-                                                <formula category="Y_DESTINATION">
-                                                    <type>SENSOR</type>
-                                                    <value>OBJECT_Y</value>
-                                                </formula>
-                                                <formula category="DURATION_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>25</value>
+                                                    <value>SMALLER_THAN</value>
                                                 </formula>
                                             </formulaList>
+                                            <ifBranchBricks>
+                                                <brick type="WaitBrick7">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                                            <type>NUMBER</type>
+                                                            <value>4</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                </brick>
+                                            </ifBranchBricks>
                                         </brick>
-                                        <brick type="IfOnEdgeBounceBrick">
-                                            <commentedOut>false</commentedOut>
-                                        </brick>
-                                    </loopBricks>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="NUAGE (1)">
-                    <lookList>
-                        <look fileName="cloud-bright_#0.png" name="cloud-bright"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="ForeverBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="PlaceAtBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="Y_POSITION">
-                                                    <type>NUMBER</type>
-                                                    <value>4</value>
-                                                </formula>
-                                                <formula category="X_POSITION">
-                                                    <type>NUMBER</type>
-                                                    <value>1901</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="WaitBrick">
+                                    </elseBranchBricks>
+                                    <ifBranchBricks>
+                                        <brick type="WaitBrick2">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
                                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
@@ -169,108 +114,7 @@
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="SetSizeToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>320</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="GlideToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="X_DESTINATION">
-                                                    <rightChild>
-                                                        <type>NUMBER</type>
-                                                        <value>2000</value>
-                                                    </rightChild>
-                                                    <type>OPERATOR</type>
-                                                    <value>MINUS</value>
-                                                </formula>
-                                                <formula category="Y_DESTINATION">
-                                                    <type>SENSOR</type>
-                                                    <value>OBJECT_Y</value>
-                                                </formula>
-                                                <formula category="DURATION_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>35</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="IfOnEdgeBounceBrick">
-                                            <commentedOut>false</commentedOut>
-                                        </brick>
-                                    </loopBricks>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="tuyau">
-                    <lookList>
-                        <look fileName="a-green-cartoon-pipe-hi.png" name="tuyau"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="ForeverBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="SetSizeToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>35</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="PlaceAtBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="Y_POSITION">
-                                                    <rightChild>
-                                                        <type>NUMBER</type>
-                                                        <value>375</value>
-                                                    </rightChild>
-                                                    <type>OPERATOR</type>
-                                                    <value>MINUS</value>
-                                                </formula>
-                                                <formula category="X_POSITION">
-                                                    <type>NUMBER</type>
-                                                    <value>1365</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="GlideToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="X_DESTINATION">
-                                                    <rightChild>
-                                                        <type>NUMBER</type>
-                                                        <value>1400</value>
-                                                    </rightChild>
-                                                    <type>OPERATOR</type>
-                                                    <value>MINUS</value>
-                                                </formula>
-                                                <formula category="Y_DESTINATION">
-                                                    <type>SENSOR</type>
-                                                    <value>OBJECT_Y</value>
-                                                </formula>
-                                                <formula category="DURATION_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>5</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                    </loopBricks>
+                                    </ifBranchBricks>
                                 </brick>
                             </brickList>
                             <commentedOut>false</commentedOut>

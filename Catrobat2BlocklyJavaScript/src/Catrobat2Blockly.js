@@ -6,12 +6,12 @@ function loadXMLDoc() {
 
 
     xmlhttp.open("GET", "../code.xml", true);
-    xmlhttp.responseType = 'text';
+    //xmlhttp.responseType = 'text';
     xmlhttp.send();
 
     xmlhttp.onload = function () {
         //console.log(xmlhttp.response.length);
-        parseFile(xmlhttp);
+        parseFile(xmlhttp.responseXML);
 
     }
 
