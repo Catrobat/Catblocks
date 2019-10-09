@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Catroweb test</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='./../../dist/web/vertical.js'></script>
+
+  <script>
+    function openSceneContainer(event) {
+      const sceneContainer = document.getElementById('catblocks-scene-container');
+      sceneContainer.style.display = sceneContainer.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</head>
+
+<body>
+  <div id='show-code' onclick="openSceneContainer()">
+    SHOW CODE
+  </div>
+  <div id='catblocks-code-container'>
+  </div>
+  </div>
+
+  <script>
+
+    // INFO: get the divs
+    const workspaceDiv = document.getElementById('catblocks-code-container');
+    Blockly.Web.initBlockly('en_GB', '', { 'container': workspaceDiv, 'blockScale': 0.75 });
+
+    fetch('http://localhost:8080/scratch-blocks-develop/tests/catroweb/catblocks_large.xml')
+      .then(stream => stream.text())
+      .then(string => {
+        Blockly.Web.injectAllScenes(workspaceDiv, string);
+      });
+
+  </script>
+
+</body>
+
+</html>

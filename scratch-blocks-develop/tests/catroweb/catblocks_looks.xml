@@ -1,0 +1,48 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <scene type="Scena 1">
+    <object type="Tło" look="Tło.png">
+    </object>
+    <object type="Mój aktor lub obiekt" look="Mój aktor lub obiekt.png">
+    </object>
+    <object type="Mój aktor lub obiekt (1)" look="Mój aktor lub obiekt_#0.png">
+    </object>
+    <object type="monster_purple-1" look="monster_purple-1.png">
+      <script type="StartScript">
+        <block type="StartScript" id="" x="" y="">
+          <next>
+            <block type="PlaceAtBrick" x="" y="">
+              <value name="X_POSITION">
+                <shadow type="text">
+                  <field name="TEXT">100</field>
+                </shadow>
+              </value>
+              <value name="Y_POSITION">
+                <shadow type="text">
+                  <field name="TEXT">200</field>
+                </shadow>
+              </value>
+              <next>
+                <block type="IfOnEdgeBounceBrick" x="" y="">
+                  <next>
+                    <block type="ClearBackgroundBrick" id="" x="" y="">
+                      <next>
+                        <block type="GoToBrick" x="" y="">
+                          <field name="DROPDOWN">���</field>
+                          <next>
+                            <block type="PlaySoundBrick" id="" x="" y="">
+                              <field name="DROPDOWN">nagranie</field>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+    </object>
+  </scene>
+</xml>
