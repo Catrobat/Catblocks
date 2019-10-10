@@ -1,18 +1,10 @@
 function loadXMLDoc() {
+    let request = new XMLHttpRequest();
 
-    //console.log("HERE");
-    var xmlhttp;
-    xmlhttp = new XMLHttpRequest();
+    request.open("GET", "../code.xml", true);
+    request.send();
 
-
-    xmlhttp.open("GET", "../code.xml", true);
-    //xmlhttp.responseType = 'text';
-    xmlhttp.send();
-
-    xmlhttp.onload = function () {
-        //console.log(xmlhttp.response.length);
-        parseFile(xmlhttp.responseXML);
-
+    request.onload = function () {
+        parseFile(request.responseXML);
     }
-
 }

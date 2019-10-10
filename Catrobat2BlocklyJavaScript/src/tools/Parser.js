@@ -26,119 +26,95 @@ class Script{
         this.name = name;
         this.brickList = [];
     }
-
 }
 
 class Brick{
     constructor(name){
         this.name = name;
-        this.subBlock1 = [];
-        this.subBlock2 = [];
+        this.loopOrIfBrickList = [];
+        this.elseBrickList = [];
         this.formula = "";
-        this.formValues = [];
     }
 }
 
 
 function parseFile(xml) {
-    var scenes = xml.getElementsByTagName('scene');
-    for(sceneIT = 0; sceneIT < scenes.length; sceneIT++)
+    let scenes = xml.getElementsByTagName('scene');
+    for(let i = 0; i < scenes.length; i++)
     {
-        parseScenes(scenes[sceneIT]);
+        parseScenes(scenes[i]);
     }
-
-
-
-
 }
 
 function parseScenes(scene) {
-    var name = (scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
-    var currScene = new Scene(name);
-    var objects = scene.getElementsByTagName('object');
 
+    let name = (scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
+    let currentScene = new Scene(name);
+    let objectList = scene.getElementsByTagName('object');
 
-    for(objectIT = 0; objectIT < objects.length; objectIT++)
+    for(let i = 0; i < objectList.length; i++)
     {
-        currScene.objectList.push(parseObjects(objects[objectIT]));
-
+        currentScene.objectList.push(parseObjects(objectList[i]));
     }
-    console.log(currScene);
+    console.log(currentScene);
 }
 
 function parseObjects(object) {
-    var name = object.getAttribute("name");
-    var currObject = new Object(name);
-    var looks = object.getElementsByTagName('look');
-    var sounds = object.getElementsByTagName('sound');
-    var scripts = object.getElementsByTagName('script');
+    let name = object.getAttribute("name");
+    let currentObject = new Object(name);
+    let lookList = object.getElementsByTagName('look');
+    let soundList = object.getElementsByTagName('sound');
+    let scriptList = object.getElementsByTagName('script');
 
-    for(lookIT = 0; lookIT < looks.length; lookIT++)
+    for(let i = 0; i < lookList.length; i++)
     {
-        currObject.lookList.push(new File(looks[lookIT].getAttribute("name"), looks[lookIT].getAttribute("fileName")));
+        currentObject.lookList.push(new File(lookList[i].getAttribute("name"), lookList[i].getAttribute("fileName")));
     }
-    for(soundIT = 0; soundIT < sounds.length; soundIT++)
+    for(let i = 0; i < soundList.length; i++)
     {
-        currObject.soundList.push(new File(sounds[soundIT].getAttribute("name"), sounds[soundIT].getAttribute("fileName")));
+        currentObject.soundList.push(new File(soundList[i].getAttribute("name"), soundList[i].getAttribute("fileName")));
     }
-
-    for(scriptIT = 0; scriptIT < scripts.length; scriptIT++)
+    for(let i = 0; i < scriptList.length; i++)
     {
-        currObject.scriptList.push(parseScripts(scripts[scriptIT]));
+        currentObject.scriptList.push(parseScripts(scriptList[i]));
     }
-
-
-    return currObject;
-
+    return currentObject;
 }
 
 function parseScripts(script){
-    var name  = script.getAttribute("type");
-    var currScript = new Script(name);
+    let name = script.getAttribute("type");
+    let currentScript = new Script(name);
+    let brickList = script.getElementsByTagName('brickList')[0].children;
 
-    var bricks = script.getElementsByTagName('brickList')[0].children;
-
-    for(brickIT = 0; brickIT < bricks.length; brickIT++)
+    for(let i = 0; i < brickList.length; i++)
     {
-        currScript.brickList.push(parseBrick(bricks[brickIT]));
+        currentScript.brickList.push(parseBrick(brickList[i]));
     }
-    return currScript;
+    return currentScript;
 }
 
 function parseBrick(brick){
-    var name = brick.getAttribute("type");
+    let name = brick.getAttribute("type");
+    let currentBrick = new Brick(name);
 
-    var currBrick = new Brick(name);
-    var brickList = [];
-    var brickList2 = [];
-
-    for(var childIT = 0; childIT < brick.childNodes.length; childIT++)
+    for(let i = 0; i < brick.childNodes.length; i++)
     {
-
-        if(brick.childNodes[childIT].nodeName == "ifBranchBricks" || brick.childNodes[childIT].nodeName == "loopBricks")
+        if(brick.childNodes[i].nodeName == "ifBranchBricks" || brick.childNodes[i].nodeName == "loopBricks")
         {
-
-
-            brickList = (brick.childNodes[childIT].children);
-
-            for(subBrickIT = 0; subBrickIT < brickList.length; subBrickIT++)
+            let loopOrIfBrickList = (brick.childNodes[i].children);
+            for(let j = 0; j < loopOrIfBrickList.length; j++)
             {
-                currBrick.subBlock1.push(parseBrick(brickList[subBrickIT]));
+                currentBrick.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
             }
         }
-        if(brick.childNodes[childIT].nodeName == "elseBranchBricks")
+        if(brick.childNodes[i].nodeName == "elseBranchBricks")
         {
-
-            brickList2 = (brick.childNodes[childIT].children);
-
-            for(subBrickIT2 = 0; subBrickIT2 < brickList2.length; subBrickIT2++)
+            let elseBrickList = (brick.childNodes[i].children);
+            for(let j = 0; j < elseBrickList.length; j++)
             {
-                currBrick.subBlock2.push(parseBrick(brickList2[subBrickIT2]));
-
+                currentBrick.elseBrickList.push(parseBrick(elseBrickList[j]));
             }
         }
-
     }
-
-    return currBrick;
+    return currentBrick;
 }
