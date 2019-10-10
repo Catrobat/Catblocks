@@ -99,7 +99,7 @@ function parseBrick(brick){
 
     for(let i = 0; i < brick.childNodes.length; i++)
     {
-        if(brick.childNodes[i].nodeName == "ifBranchBricks" || brick.childNodes[i].nodeName == "loopBricks")
+        if(brick.childNodes[i].nodeName === "ifBranchBricks" || brick.childNodes[i].nodeName === "loopBricks")
         {
             let loopOrIfBrickList = (brick.childNodes[i].children);
             for(let j = 0; j < loopOrIfBrickList.length; j++)
@@ -107,7 +107,7 @@ function parseBrick(brick){
                 currentBrick.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
             }
         }
-        if(brick.childNodes[i].nodeName == "elseBranchBricks")
+        if(brick.childNodes[i].nodeName === "elseBranchBricks")
         {
             let elseBrickList = (brick.childNodes[i].children);
             for(let j = 0; j < elseBrickList.length; j++)
