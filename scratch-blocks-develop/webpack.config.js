@@ -10,7 +10,7 @@ var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = [{
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
-    horizontal: './shim/horizontal.js',
+    // horizontal: './shim/horizontal.js',
     vertical: './shim/vertical.js'
   },
   output: {
@@ -28,7 +28,7 @@ module.exports = [{
 }, {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
-    horizontal: './shim/horizontal.js',
+    // horizontal: './shim/horizontal.js',
     vertical: './shim/vertical.js'
   },
   output: {
@@ -47,7 +47,7 @@ module.exports = [{
     ]
   },
   plugins: []
-},
+}/*,
 {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: './shim/gh-pages.js',
@@ -65,7 +65,7 @@ module.exports = [{
       new CopyWebpackPlugin([{
         from: 'node_modules/google-closure-library',
         to: 'closure-library'
-      }, {
+      } , {
         from: 'blocks_common',
         to: 'playgrounds/blocks_common',
       }, {
@@ -90,6 +90,6 @@ module.exports = [{
         from: '*.js',
         ignore: 'webpack.config.js',
         to: 'playgrounds'
-      }])
+      } ])
   ]
-}];
+}*/];
