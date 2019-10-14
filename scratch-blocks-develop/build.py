@@ -488,12 +488,12 @@ class Gen_langfiles(threading.Thread):
     try:
       cmd = [
         "node",
-        "i18n/catblocks/create_json.js"
+        "i18n/create_json.js"
       ]
       subprocess.check_call(cmd)
       cmd = [
         "node",
-        "i18n/catblocks/create_msg.js"
+        "i18n/create_msg.js"
       ]
       subprocess.check_call(cmd)
       print("SUCCESS: catblocks_msg.js")

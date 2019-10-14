@@ -15,7 +15,7 @@ const xml2json = require('xml2json');
 const { locales } = require('./lang_codes_mapping');
 
 // please define here the configuration if needed
-const MAPPING_FILE = path.join('i18n', 'catblocks', 'strings_to_json_mapping.json');
+const MAPPING_FILE = path.join('i18n', 'strings_to_json_mapping.json');
 const MAPPING_COMMENT = '@';
 
 const STRINGS_DIR = path.join('msg', 'catroid_strings');
