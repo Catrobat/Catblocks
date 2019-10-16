@@ -27,19 +27,20 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
-//Cat Blocks
 Blockly.Blocks['PlaceAtBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.MOTION_PLACEATXY,
       "args0": [
         {
-          "type": "input_value",
-          "name": "X_POSITION"
+          "type": "field_number",
+          "name": "X_POSITION",
+          "value": 100
         },
         {
-          "type": "input_value",
-          "name": "Y_POSITION"
+          "type": "field_number",
+          "name": "Y_POSITION",
+          "value": 200
         }
       ],
       "category": Blockly.Categories.motion,
@@ -55,8 +56,9 @@ Blockly.Blocks['SetXBrick'] = {
       "message0": Blockly.Msg.MOTION_SETXTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "X_POSITION"
+          "type": "field_number",
+          "name": "X_POSITION",
+          "value": 100
         }
       ],
       "category": Blockly.Categories.motion,
@@ -71,8 +73,9 @@ Blockly.Blocks['SetYBrick'] = {
       "message0": Blockly.Msg.MOTION_SETYTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "Y_POSITION"
+          "type": "field_number",
+          "name": "Y_POSITION",
+          "value": 200
         }
       ],
       "category": Blockly.Categories.motion,
@@ -87,8 +90,9 @@ Blockly.Blocks['ChangeXByNBrick'] = {
       "message0": Blockly.Msg.MOTION_CHANGEXBY,
       "args0": [
         {
-          "type": "input_value",
-          "name": "X_POSITION_CHANGE"
+          "type": "field_number",
+          "name": "X_POSITION_CHANGE",
+          "value": 100
         }
       ],
       "category": Blockly.Categories.motion,
@@ -103,8 +107,9 @@ Blockly.Blocks['ChangeYByNBrick'] = {
       "message0": Blockly.Msg.MOTION_CHANGEYBY,
       "args0": [
         {
-          "type": "input_value",
-          "name": "Y_POSITION_CHANGE"
+          "type": "field_number",
+          "name": "Y_POSITION_CHANGE",
+          "value": 200
         }
       ],
       "category": Blockly.Categories.motion,
@@ -122,7 +127,7 @@ Blockly.Blocks['GoToBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["touch position"]
+            ["touch position", "TOUCH"]
           ]
         }
       ],
@@ -148,8 +153,9 @@ Blockly.Blocks['MoveNStepsBrick'] = {
       "message0": Blockly.Msg.MOTION_MOVESTEPS,
       "args0": [
         {
-          "type": "input_value",
-          "name": "STEPS"
+          "type": "field_number",
+          "name": "STEPS",
+          "value": 10
         }
       ],
       "category": Blockly.Categories.motion,
@@ -164,8 +170,9 @@ Blockly.Blocks['TurnRightBrick'] = {
       "message0": Blockly.Msg.MOTION_TURNRIGHTDEGREES,
       "args0": [
         {
-          "type": "input_value",
-          "name": "TURN_RIGHT_DEGREES"
+          "type": "field_number",
+          "name": "TURN_RIGHT_DEGREES",
+          "value": 15
         }
       ],
       "category": Blockly.Categories.motion,
@@ -180,8 +187,9 @@ Blockly.Blocks['TurnLeftBrick'] = {
       "message0": Blockly.Msg.MOTION_TURNLEFTDEGREES,
       "args0": [
         {
-          "type": "input_value",
-          "name": "TURN_LEFT_DEGREES"
+          "type": "field_number",
+          "name": "TURN_LEFT_DEGREES",
+          "value": 15
         }
       ],
       "category": Blockly.Categories.motion,
@@ -197,8 +205,9 @@ Blockly.Blocks['PointInDirectionBrick'] = {
       "message0": Blockly.Msg.MOTION_POINTINDIRECTIONDEGREES,
       "args0": [
         {
-          "type": "input_value",
-          "name": "DEGREES"
+          "type": "field_number",
+          "name": "DEGREES",
+          "value": 0
         }
       ],
       "category": Blockly.Categories.motion,
@@ -216,7 +225,7 @@ Blockly.Blocks['PointToBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new..."]
+            ["new...", "NEW"]
           ]
         }
       ],
@@ -235,7 +244,7 @@ Blockly.Blocks['SetRotationStyleBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["left-right only"]
+            ["left-right only", "RIGHTLEFT"]
           ]
         }
       ],
@@ -252,16 +261,19 @@ Blockly.Blocks['GlideToBrick'] = {
       "message0": Blockly.Msg.MOTION_GLIDESECONDTOXY,
       "args0": [
         {
-          "type": "input_value",
-          "name": "DURATION_IN_SECONDS"
+          "type": "field_number",
+          "name": "DURATION_IN_SECONDS",
+          "value": 1
         },
         {
-          "type": "input_value",
-          "name": "X_DESTINATION"
+          "type": "field_number",
+          "name": "X_DESTINATION",
+          "value": 100
         },
         {
-          "type": "input_value",
-          "name": "Y_DESTINATION"
+          "type": "field_number",
+          "name": "Y_DESTINATION",
+          "value": 200
         }
       ],
       "category": Blockly.Categories.motion,
@@ -277,8 +289,9 @@ Blockly.Blocks['GoNStepsBackBrick'] = {
       "message0": Blockly.Msg.MOTION_GOBACKLAYER,
       "args0": [
         {
-          "type": "input_value",
-          "name": "STEPS"
+          "type": "field_number",
+          "name": "STEPS",
+          "value": 1
         }
       ],
       "category": Blockly.Categories.motion,
@@ -304,8 +317,9 @@ Blockly.Blocks['VibrationBrick'] = {
       "message0": Blockly.Msg.MOTION_VIBRATEFORSECOND,
       "args0": [
         {
-          "type": "input_value",
-          "name": "VIBRATE_DURATION_IN_SECONDS"
+          "type": "field_number",
+          "name": "VIBRATE_DURATION_IN_SECONDS",
+          "value": 1
         }
       ],
       "category": Blockly.Categories.motion,
@@ -323,7 +337,7 @@ Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["moving and bouncing under gravity"]
+            ["moving and bounce", "TOIT"]
           ]
         }
       ],
@@ -341,12 +355,14 @@ Blockly.Blocks['SetVelocityBrick'] = {
       "message0": Blockly.Msg.MOTION_SETVELOCITYTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_VELOCITY_X"
+          "type": "field_number",
+          "name": "PHYSICS_VELOCITY_X",
+          "value": 0
         },
         {
-          "type": "input_value",
-          "name": "PHYSICS_VELOCITY_Y"
+          "type": "field_number",
+          "name": "PHYSICS_VELOCITY_Y",
+          "value": 0
         }
       ],
       "category": Blockly.Categories.motion,
@@ -361,8 +377,9 @@ Blockly.Blocks['TurnLeftSpeedBrick'] = {
       "message0": Blockly.Msg.MOTION_SPINLEFTDEGREESSECOND,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_TURN_LEFT_SPEED"
+          "type": "field_number",
+          "name": "PHYSICS_TURN_LEFT_SPEED",
+          "value": 15
         }
       ],
       "category": Blockly.Categories.motion,
@@ -377,8 +394,9 @@ Blockly.Blocks['TurnRightSpeedBrick'] = {
       "message0": Blockly.Msg.MOTION_SPINRIGHTDEGREESSECOND,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_TURN_RIGHT_SPEED"
+          "type": "field_number",
+          "name": "PHYSICS_TURN_RIGHT_SPEED",
+          "value": 15
         }
       ],
       "category": Blockly.Categories.motion,
@@ -394,12 +412,14 @@ Blockly.Blocks['SetGravityBrick'] = {
       "message0": Blockly.Msg.MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_GRAVITY_X"
+          "type": "field_number",
+          "name": "PHYSICS_GRAVITY_X",
+          "value": 0
         },
         {
-          "type": "input_value",
-          "name": "PHYSICS_GRAVITY_Y"
+          "type": "field_number",
+          "name": "PHYSICS_GRAVITY_Y",
+          "value": 0
         }
       ],
       "category": Blockly.Categories.motion,
@@ -415,8 +435,9 @@ Blockly.Blocks['SetMassBrick'] = {
       "message0": Blockly.Msg.MOTION_SETMASSTOKILOGRAM,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_MASS"
+          "type": "field_number",
+          "name": "PHYSICS_MASS",
+          "value": 1
         }
       ],
       "category": Blockly.Categories.motion,
@@ -431,8 +452,9 @@ Blockly.Blocks['SetBounceBrick'] = {
       "message0": Blockly.Msg.MOTION_SETBOUNCEFACTORTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_BOUNCE_FACTOR"
+          "type": "field_number",
+          "name": "PHYSICS_BOUNCE_FACTOR",
+          "value": 80
         }
       ],
       "category": Blockly.Categories.motion,
@@ -447,390 +469,13 @@ Blockly.Blocks['SetFrictionBrick'] = {
       "message0": Blockly.Msg.MOTION_SETFRICTIONTO,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PHYSICS_FRICTION"
+          "type": "field_number",
+          "name": "PHYSICS_FRICTION",
+          "value": 80
         }
       ],
       "category": Blockly.Categories.motion,
       "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-//Scratch Blocks
-
-
-Blockly.Blocks['motion_turnright'] = {
-  /**
-   * Block to turn right.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_TURNRIGHT,
-      "args0": [
-        {
-          "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "rotate-right.svg",
-          "width": 24,
-          "height": 24
-        },
-        {
-          "type": "input_value",
-          "name": "DEGREES"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_turnleft'] = {
-  /**
-   * Block to turn left.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_TURNLEFT,
-      "args0": [
-        {
-          "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "rotate-left.svg",
-          "width": 24,
-          "height": 24
-        },
-        {
-          "type": "input_value",
-          "name": "DEGREES"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_pointindirection'] = {
-  /**
-   * Block to point in direction.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_POINTINDIRECTION,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "DIRECTION"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-
-
-Blockly.Blocks['motion_gotoxy'] = {
-  /**
-   * Block to go to X, Y.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GOTOXY,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "X"
-        },
-        {
-          "type": "input_value",
-          "name": "Y"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-Blockly.Blocks['motion_glidesecstoxy'] = {
-  /**
-   * Block to glide for a specified time.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GLIDESECSTOXY,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "SECS"
-        },
-        {
-          "type": "input_value",
-          "name": "X"
-        },
-        {
-          "type": "input_value",
-          "name": "Y"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-Blockly.Blocks['motion_glideto_menu'] = {
-  /**
-   * Glide to drop-down menu
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "TO",
-          "options": [
-            [Blockly.Msg.MOTION_GLIDETO_POINTER, '_mouse_'],
-            [Blockly.Msg.MOTION_GLIDETO_RANDOM, '_random_']
-          ]
-        }
-      ],
-      "colour": Blockly.Colours.motion.secondary,
-      "colourSecondary": Blockly.Colours.motion.secondary,
-      "colourTertiary": Blockly.Colours.motion.tertiary,
-      "extensions": ["output_string"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_glideto'] = {
-  /**
-   * Block to glide to a menu item
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GLIDETO,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "SECS"
-        },
-        {
-          "type": "input_value",
-          "name": "TO"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-
-Blockly.Blocks['motion_setx'] = {
-  /**
-   * Block to set X.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETX,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "X"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-Blockly.Blocks['motion_sety'] = {
-  /**
-   * Block to set Y.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETY,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "Y"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-
-
-Blockly.Blocks['motion_xposition'] = {
-  /**
-   * Block to report X.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_XPOSITION,
-      "category": Blockly.Categories.motion,
-      "checkboxInFlyout": true,
-      "extensions": ["colours_motion", "output_number"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_yposition'] = {
-  /**
-   * Block to report Y.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_YPOSITION,
-      "category": Blockly.Categories.motion,
-      "checkboxInFlyout": true,
-      "extensions": ["colours_motion", "output_number"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_direction'] = {
-  /**
-   * Block to report direction.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_DIRECTION,
-      "category": Blockly.Categories.motion,
-      "checkboxInFlyout": true,
-      "extensions": ["colours_motion", "output_number"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_scroll_right'] = {
-  /**
-   * Block to scroll the stage right. Does not actually do anything. This is
-   * an obsolete block that is implemented for compatibility with Scratch 2.0
-   * projects.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SCROLLRIGHT,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "DISTANCE"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_scroll_up'] = {
-  /**
-   * Block to scroll the stage up. Does not actually do anything. This is an
-   * obsolete block that is implemented for compatibility with Scratch 2.0
-   * projects.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SCROLLUP,
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "DISTANCE"
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_align_scene'] = {
-  /**
-   * Block to change the stage's scrolling alignment. Does not actually do
-   * anything. This is an obsolete block that is implemented for compatibility
-   * with Scratch 2.0 projects.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_ALIGNSCENE,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "ALIGNMENT",
-          "options": [
-            [Blockly.Msg.MOTION_ALIGNSCENE_BOTTOMLEFT, 'bottom-left'],
-            [Blockly.Msg.MOTION_ALIGNSCENE_BOTTOMRIGHT, 'bottom-right'],
-            [Blockly.Msg.MOTION_ALIGNSCENE_MIDDLE, 'middle'],
-            [Blockly.Msg.MOTION_ALIGNSCENE_TOPLEFT, 'top-left'],
-            [Blockly.Msg.MOTION_ALIGNSCENE_TOPRIGHT, 'top-right']
-          ]
-        }
-      ],
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_xscroll'] = {
-  /**
-   * Block to report the stage's scroll position's X value. Does not actually
-   * do anything. This is an obsolete block that is implemented for
-   * compatibility with Scratch 2.0 projects.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_XSCROLL,
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "output_number"]
-    });
-  }
-};
-
-Blockly.Blocks['motion_yscroll'] = {
-  /**
-   * Block to report the stage's scroll position's Y value. Does not actually
-   * do anything. This is an obsolete block that is implemented for
-   * compatibility with Scratch 2.0 projects.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.MOTION_YSCROLL,
-      "category": Blockly.Categories.motion,
-      "extensions": ["colours_motion", "output_number"]
     });
   }
 };
