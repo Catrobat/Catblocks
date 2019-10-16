@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 import re
 
@@ -84,11 +86,15 @@ def createFile():
             output.write(" +\n '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">' +\n")
             for filename in blockDict[category]:
                 with open(blockPath+filename, "r") as f:
-                    for line in f:
-                        if len(line) != 0:
-                            line = line.replace("\n", "")
-                            line = line.replace("'", "\\\'")
-                            output.write("'" + line + "' +\n")
+                    # change BLOCK-030, just write the block definition
+                    while True:
+                        # prettfy lines
+                        line = f.readline().replace("\n", "").replace("'", "\\\'")
+                        line = re.sub(r'( id="\d*")?( x="\d*")?( y="\d*")?', '', line)
+                        
+                        if (line != '' and len(line) > 0):
+                            output.write("'{0} </block>' \n".format(line))
+                            break
 
             output.write("'</category>'")
     output.write("+ '</xml>';")
