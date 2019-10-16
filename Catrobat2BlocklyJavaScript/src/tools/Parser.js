@@ -64,7 +64,7 @@ class Formula{
 let sceneList = [];
 
 function parseFile(xml) {
-    let scenes = xml.getElementsByTagName('scene');
+    let scenes = xml.getElementsByTagName('scenes')[0].children;
     for(let i = 0; i < scenes.length; i++)
     {
         sceneList.push(parseScenes(scenes[i]));
@@ -76,22 +76,21 @@ function parseScenes(scene) {
 
     let name = (scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
     let currentScene = new Scene(name);
-    let objectList = scene.getElementsByTagName('object');
+    let objectList = scene.getElementsByTagName('objectList')[0].children;
 
     for(let i = 0; i < objectList.length; i++)
     {
         currentScene.objectList.push(parseObjects(objectList[i]));
     }
-    console.log(currentScene);
     return currentScene;
 }
 
 function parseObjects(object) {
     let name = object.getAttribute("name");
     let currentObject = new Object(name);
-    let lookList = object.getElementsByTagName('look');
-    let soundList = object.getElementsByTagName('sound');
-    let scriptList = object.getElementsByTagName('script');
+    let lookList = object.getElementsByTagName('lookList')[0].children;
+    let soundList = object.getElementsByTagName('soundList')[0].children;
+    let scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     for(let i = 0; i < lookList.length; i++)
     {
