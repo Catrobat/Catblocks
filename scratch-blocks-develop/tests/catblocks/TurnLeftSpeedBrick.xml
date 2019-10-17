@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="TurnLeftSpeedBrick" x="163" y="696">
-    <value name="PHYSICS_TURN_LEFT_SPEED">
-      <shadow type="text">
-        <field name="TEXT">15</field>
-      </shadow>
-    </value>
-  </block>
-</xml>

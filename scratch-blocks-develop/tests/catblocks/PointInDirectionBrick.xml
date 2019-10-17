@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="PointInDirectionBrick" x="113" y="391">
-    <value name="DEGREES>
-      <shadow type="math_angle">
-        <field name="TEXT">90</field>
-      </shadow>
-    </value>
-  </block>
-</xml>

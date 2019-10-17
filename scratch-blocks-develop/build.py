@@ -227,7 +227,7 @@ class Gen_compressed(threading.Thread):
   def run(self):
     self.gen_core(True)
     self.gen_core(False)
-    self.gen_blocks("horizontal")
+    # self.gen_blocks("horizontal")
     self.gen_blocks("vertical")
     self.gen_blocks("common")
 

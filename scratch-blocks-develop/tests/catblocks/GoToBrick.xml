@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="GoToBrick" x="275" y="585">
-    <value name="TO">
-      <shadow type="motion_goto_menu" id="">
-        <field name="TO">touch position</field>
-      </shadow>
-    </value>
-  </block>
-</xml>

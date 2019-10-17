@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="VibrationBrick" x="241" y="277">
-    <value name="VIBRATE_DURATION_IN_SECONDS">
-      <shadow type="text">
-        <field name="TEXT">1</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
