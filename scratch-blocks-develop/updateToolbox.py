@@ -80,10 +80,10 @@ def getData():
 def createFile():
     output = open(blocklyLibraryPath + "/" + "default_toolbox.js", "w")
     output.write(HEADER + "\n")
-    output.write("Blockly.Blocks.defaultToolbox = '<xml id=\"toolbox-categories\" style=\"display: none\">' \n")
+    output.write("Blockly.Blocks.defaultToolbox = '<xml id=\"toolbox-categories\" style=\"display: none\">'\n")
     for category in blockToColor:
         if(len(blockDict[category]) != 0):
-            output.write(" + '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">' \n")
+            output.write(" + '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">'\n")
             for filename in blockDict[category]:
                 with open(libraryPath + "/" + filename, "r") as f:
                     # change BLOCK-030, just write the block definition
@@ -93,11 +93,11 @@ def createFile():
                         line = re.sub(r'( id="\d*")?( x="\d*")?( y="\d*")?', '', line)
                         
                         if (line != '' and len(line) > 0):
-                            output.write("  + '{0} </block>' \n".format(line))
+                            output.write("  + '{0} </block>'\n".format(line))
                             break
 
-            output.write(" + '</category>' \n")
-    output.write("+ '</xml>';")
+            output.write(" + '</category>'\n")
+    output.write("+ '</xml>';\n")
 
 if __name__ == "__main__":
     main()

@@ -54,7 +54,7 @@ Blockly.Blocks['SetLookByIndexBrick'] = {
         {
           "type": "field_number",
           "name": "LOOK_INDEX",
-          "value":1 
+          "value": 1
         }
       ],
       "category": Blockly.Categories.looks,
