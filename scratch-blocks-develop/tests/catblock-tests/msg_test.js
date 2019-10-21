@@ -28,7 +28,7 @@ const JSON_FOLDER_PATH = "/scratch-blocks-develop/msg/json/";
 const JSON_FILES = listDir(getUrl(JSON_FOLDER_PATH), true);
 
 // rules file
-const MAPPING_FILE = "/scratch-blocks-develop/i18n/catblocks/strings_to_json_mapping.json";
+const MAPPING_FILE = "/scratch-blocks-develop/i18n/strings_to_json_mapping.json";
 const MAPPING = loadRules(MAPPING_FILE);
 
 // message file

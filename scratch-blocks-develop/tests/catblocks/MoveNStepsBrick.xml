@@ -1,9 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="MoveNStepsBrick" x="37" y="213">
-    <value name="STEPS">
-      <shadow type="text">
-        <field name="TEXT">10</field>
-      </shadow>
-    </value>
-  </block>
-</xml>
