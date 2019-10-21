@@ -25,6 +25,7 @@ class Script{
     constructor(name){
         this.name = name;
         this.brickList = [];
+        this.formValues = new Map();
     }
 }
 
@@ -77,7 +78,6 @@ function parseScenes(scene) {
     let name = (scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
     let currentScene = new Scene(name);
     let objectList = scene.getElementsByTagName('objectList')[0].children;
-
     for(let i = 0; i < objectList.length; i++)
     {
         currentScene.objectList.push(parseObjects(objectList[i]));
@@ -87,30 +87,35 @@ function parseScenes(scene) {
 
 function parseObjects(object) {
     let name = object.getAttribute("name");
-    let currentObject = new Object(name);
-    let lookList = object.getElementsByTagName('lookList')[0].children;
-    let soundList = object.getElementsByTagName('soundList')[0].children;
-    let scriptList = object.getElementsByTagName('scriptList')[0].children;
+    if(name !== null){
+        let currentObject = new Object(name);
+        let lookList = object.getElementsByTagName('lookList')[0].children;
+        let soundList = object.getElementsByTagName('soundList')[0].children;
+        let scriptList = object.getElementsByTagName('scriptList')[0].children;
 
-    for(let i = 0; i < lookList.length; i++)
-    {
-        currentObject.lookList.push(new File(lookList[i].getAttribute("name"), lookList[i].getAttribute("fileName")));
+        for(let i = 0; i < lookList.length; i++)
+        {
+            currentObject.lookList.push(new File(lookList[i].getAttribute("name"), lookList[i].getAttribute("fileName")));
+        }
+        for(let i = 0; i < soundList.length; i++)
+        {
+            currentObject.soundList.push(new File(soundList[i].getAttribute("name"), soundList[i].getAttribute("fileName")));
+        }
+        for(let i = 0; i < scriptList.length; i++)
+        {
+            currentObject.scriptList.push(parseScripts(scriptList[i]));
+        }
+        return currentObject;
     }
-    for(let i = 0; i < soundList.length; i++)
-    {
-        currentObject.soundList.push(new File(soundList[i].getAttribute("name"), soundList[i].getAttribute("fileName")));
-    }
-    for(let i = 0; i < scriptList.length; i++)
-    {
-        currentObject.scriptList.push(parseScripts(scriptList[i]));
-    }
-    return currentObject;
 }
 
 function parseScripts(script){
     let name = script.getAttribute("type");
     let currentScript = new Script(name);
     let brickList = script.getElementsByTagName('brickList')[0].children;
+    for(let i = 0; i < script.childNodes.length; i++) {
+        checkUsage(script.childNodes[i], currentScript);
+    }
 
     for(let i = 0; i < brickList.length; i++)
     {
@@ -125,33 +130,55 @@ function parseBrick(brick){
 
     for(let i = 0; i < brick.childNodes.length; i++)
     {
-        if(brick.childNodes[i].nodeName === "formulaList"){
-            let formulaList =  brick.childNodes[i].children;
-            for(let j = 0; j  < formulaList.length; j++){
-                let formula = new Formula();
-                workFormula(formula, formulaList[j]);
-                let attribute = formulaList[j].getAttribute("category");
-                currentBrick.formValues.set(attribute, concatFormula(formula, ""));
-            }
-        }
-        if(brick.childNodes[i].nodeName === "ifBranchBricks" || brick.childNodes[i].nodeName === "loopBricks")
-        {
-            let loopOrIfBrickList = (brick.childNodes[i].children);
-            for(let j = 0; j < loopOrIfBrickList.length; j++)
-            {
-                currentBrick.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
-            }
-        }
-        if(brick.childNodes[i].nodeName === "elseBranchBricks")
-        {
-            let elseBrickList = (brick.childNodes[i].children);
-            for(let j = 0; j < elseBrickList.length; j++)
-            {
-                currentBrick.elseBrickList.push(parseBrick(elseBrickList[j]));
-            }
-        }
+        checkUsage(brick.childNodes[i],currentBrick);
     }
     return currentBrick;
+}
+
+function checkUsage(list, location){
+    if(list.nodeName === "broadcastMessage" || list.nodeName === "spriteToBounceOffName" || list.nodeName === "receivedMessage" || list.nodeName === "sceneToStart" || list.nodeName === "sceneForTransition") {
+        location.formValues.set("DROPDOWN", list.childNodes[0].nodeValue)
+    }
+    if(list.nodeName === "spinnerSelection"){
+        location.formValues.set("spinnerSelection", list.childNodes[0].nodeValue);
+    }
+    if(list.nodeName === "selection"){
+        location.formValues.set("selection", list.childNodes[0].nodeValue);
+    }
+    if(list.nodeName === "type"){
+        location.formValues.set("type", list.childNodes[0].nodeValue);
+    }
+    if(list.nodeName === "alignmentSelection"){
+        location.formValues.set("alignmentSelection", list.childNodes[0].nodeValue);
+    }
+    if(list.nodeName === "spinnerSelectionID"){
+        location.formValues.set("spinnerSelectionID", list.childNodes[0].nodeValue);
+    }
+    if (list.nodeName === "formulaMap" || list.nodeName === "formulaList") {
+        let formulaList = list.children;
+        for (let j = 0; j < formulaList.length; j++) {
+            let formula = new Formula();
+            workFormula(formula, formulaList[j]);
+            let attribute = formulaList[j].getAttribute("category");
+            location.formValues.set(attribute, concatFormula(formula, ""));
+        }
+    }
+    if(list.nodeName === "ifBranchBricks" || list.nodeName === "loopBricks")
+    {
+        let loopOrIfBrickList = (list.children);
+        for(let j = 0; j < loopOrIfBrickList.length; j++)
+        {
+            location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
+        }
+    }
+    if(list.nodeName === "elseBranchBricks")
+    {
+        let elseBrickList = (list.children);
+        for(let j = 0; j < elseBrickList.length; j++)
+        {
+            location.elseBrickList.push(parseBrick(elseBrickList[j]));
+        }
+    }
 }
 
 function workFormula(formula, input) {
