@@ -95,7 +95,8 @@ class Gen_uncompressed(threading.Thread):
     if self.vertical:
       target_filename = 'blockly_uncompressed_vertical.js'
     else:
-      target_filename = 'blockly_uncompressed_horizontal.js'
+      return
+      # target_filename = 'blockly_uncompressed_horizontal.js'
     f = open(target_filename, 'w')
     f.write(HEADER)
     f.write(self.format_js("""
@@ -226,17 +227,17 @@ class Gen_compressed(threading.Thread):
   def run(self):
     self.gen_core(True)
     self.gen_core(False)
-    self.gen_blocks("horizontal")
+    # self.gen_blocks("horizontal")
     self.gen_blocks("vertical")
     self.gen_blocks("common")
 
   def gen_core(self, vertical):
-    if vertical:
-      target_filename = 'blockly_compressed_vertical.js'
-      search_paths = self.search_paths_vertical
-    else:
-      target_filename = 'blockly_compressed_horizontal.js'
-      search_paths = self.search_paths_horizontal
+    # if vertical:
+    target_filename = 'blockly_compressed_vertical.js'
+    search_paths = self.search_paths_vertical
+    # else:
+      # target_filename = 'blockly_compressed_horizontal.js'
+      # search_paths = self.search_paths_horizontal
     # Define the parameters for the POST request.
     params = [
       ("compilation_level", "SIMPLE"),
@@ -265,10 +266,11 @@ class Gen_compressed(threading.Thread):
     self.do_compile(params, target_filename, filenames, "")
 
   def gen_blocks(self, block_type):
-    if block_type == "horizontal":
-      target_filename = "blocks_compressed_horizontal.js"
-      filenames = glob.glob(os.path.join("blocks_horizontal", "*.js"))
-    elif block_type == "vertical":
+    # if block_type == "horizontal":
+      # target_filename = "blocks_compressed_horizontal.js"
+      # filenames = glob.glob(os.path.join("blocks_horizontal", "*.js"))
+    if block_type == "vertical":
+    # elif block_type == "vertical":
       target_filename = "blocks_compressed_vertical.js"
       filenames = glob.glob(os.path.join("blocks_vertical", "*.js"))
     elif block_type == "common":
@@ -488,12 +490,12 @@ class Gen_langfiles(threading.Thread):
     try:
       cmd = [
         "node",
-        "i18n/catblocks/create_json.js"
+        "i18n/create_json.js"
       ]
       subprocess.check_call(cmd)
       cmd = [
         "node",
-        "i18n/catblocks/create_msg.js"
+        "i18n/create_msg.js"
       ]
       subprocess.check_call(cmd)
       print("SUCCESS: catblocks_msg.js")
@@ -556,7 +558,7 @@ if __name__ == "__main__":
   search_paths = calcdeps.ExpandDirectories(
       ["core", os.path.join(closure_root, closure_library)])
 
-  search_paths_horizontal = filter(exclude_vertical, search_paths)
+  # search_paths_horizontal = filter(exclude_vertical, search_paths)
   search_paths_vertical = filter(exclude_horizontal, search_paths)
 
   closure_env = {
@@ -583,10 +585,10 @@ if __name__ == "__main__":
   # Vertical:
   Gen_uncompressed(search_paths_vertical, True, closure_env).start()
   # Horizontal:
-  Gen_uncompressed(search_paths_horizontal, False, closure_env).start()
+  # Gen_uncompressed(search_paths_horizontal, False, closure_env).start()
 
   # Compressed forms of vertical and horizontal.
-  Gen_compressed(search_paths_vertical, search_paths_horizontal, closure_env).start()
+  Gen_compressed(search_paths_vertical, None, closure_env).start()
 
   # This is run locally in a separate thread.
   Gen_langfiles().start()
