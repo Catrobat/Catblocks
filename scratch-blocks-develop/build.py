@@ -568,6 +568,17 @@ if __name__ == "__main__":
     "closure_compiler": closure_compiler,
   }
 
+  # Update first toolbox before we generate un-/compressed files
+  try:
+      cmd = ["python", "./updateToolbox.py"]
+      subprocess.check_call(cmd)
+      print("SUCCESS: updateToolbox.py")
+  except (subprocess.CalledProcessError, OSError, Exception) as e:
+      print("Error, failed to updateToolbox for Catblocks")
+      print("Please verify that ./../BlockLibrary/ and ./blocks_*/ folder exists")
+      print(e)
+      sys.exit(1)
+
   # Run all tasks in parallel threads.
   # Uncompressed is limited by processor speed.
   # Compressed is limited by network and server speed.

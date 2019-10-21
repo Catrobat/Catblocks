@@ -50,18 +50,20 @@ Blockly.CatblocksMsgs.currentLocale_ = 'en_GB';
 /**
  * Helper function to check if CatblocksMsgs knows the requested locale
  * @param {string} locale E.g., 'en_GB', 'de_AT'
- * @return boolean
+ * @return {boolean} true if location exists
+ * @public
  */
-Blockly.CatblocksMsgs.hasLocale = function (locale) {
+Blockly.CatblocksMsgs.hasLocale = function(locale) {
   return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);
-}
+};
+
 /**
  * Change the Blockly.Msg strings to a new Locale
  * Does not exist in Blockly, but needed in scratch-blocks
  * @param {string} locale E.g., 'de', or 'zh-tw'
- * @package
+ * @public
  */
-Blockly.CatblocksMsgs.setLocale = function (locale) {
+Blockly.CatblocksMsgs.setLocale = function(locale) {
   if (Blockly.CatblocksMsgs.hasLocale(locale)) {
     Blockly.CatblocksMsgs.currentLocale_ = locale;
     Blockly.Msg = Object.assign({}, Blockly.Msg, Blockly.CatblocksMsgs.locales[locale]);
@@ -74,7 +76,8 @@ Blockly.CatblocksMsgs.setLocale = function (locale) {
 /**
  * Helper function to reload current locale to CatblocksMsgs
  * This function is mainly used for the init bootstrap process
+ * @public
  */
-Blockly.CatblocksMsgs.reloadCurrentLocale = function () {
+Blockly.CatblocksMsgs.reloadCurrentLocale = function() {
   Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_);
-}
+};

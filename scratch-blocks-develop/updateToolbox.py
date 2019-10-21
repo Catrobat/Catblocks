@@ -1,9 +1,15 @@
+#!/usr/bin/python
+
 import os
 import re
+import sys
 
 blockDict = {}
-
 blockToColor = {}
+
+curPath = os.getcwd()
+libraryPath = os.path.normpath(os.path.join(curPath, "./../BlockLibrary/"))
+blocklyLibraryPath = os.path.normpath(os.path.join(curPath, "./blocks_vertical/"))
 
 HEADER = """/**
  * @license
@@ -51,13 +57,11 @@ def main():
     createFile()
         
 def getData():
-    blockPath = os.getcwd() + "/BlockLibrary"
-    categoryPath = os.getcwd() + "/scratch-blocks-develop/blocks_vertical"
-    xmlFiles = [f for f in os.listdir(blockPath) if os.path.isfile(os.path.join(blockPath, f))]
-    categoryFiles = [f for f in os.listdir(categoryPath) if os.path.isfile(os.path.join(categoryPath, f))]
+    xmlFiles = [f for f in os.listdir(libraryPath) if os.path.isfile(os.path.join(libraryPath, f))]
+    categoryFiles = [f for f in os.listdir(blocklyLibraryPath) if os.path.isfile(os.path.join(blocklyLibraryPath, f))]
 
     for category in categoryFiles:
-        file_ = open(categoryPath + "/" + category,"r")
+        file_ = open(blocklyLibraryPath + "/" + category,"r")
         data = file_.readlines()
 
         category = category.replace(".js", "")
@@ -74,24 +78,26 @@ def getData():
                 blockDict[category].append(line)
 
 def createFile():
-    blockPath = os.getcwd() + "/BlockLibrary/"
-    outputPath = os.getcwd() + "/scratch-blocks-develop/blocks_vertical/"
-    output = open(outputPath + "default_toolbox.js", "w")
+    output = open(blocklyLibraryPath + "/" + "default_toolbox.js", "w")
     output.write(HEADER + "\n")
-    output.write("Blockly.Blocks.defaultToolbox = '<xml id=\"toolbox-categories\" style=\"display: none\">'")
+    output.write("Blockly.Blocks.defaultToolbox = '<xml id=\"toolbox-categories\" style=\"display: none\">'\n")
     for category in blockToColor:
         if(len(blockDict[category]) != 0):
-            output.write(" +\n '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">' +\n")
+            output.write(" + '<category name=" + blockToColor[category]['name'] + " id= " + blockToColor[category]['id'] + " colour=" + blockToColor[category]['color'] + " secondaryColour=" + blockToColor[category]['secondaryColour'] + ">'\n")
             for filename in blockDict[category]:
-                with open(blockPath+filename, "r") as f:
-                    for line in f:
-                        if len(line) != 0:
-                            line = line.replace("\n", "")
-                            line = line.replace("'", "\\\'")
-                            output.write("'" + line + "' +\n")
+                with open(libraryPath + "/" + filename, "r") as f:
+                    # change BLOCK-030, just write the block definition
+                    while True:
+                        # prettfy lines
+                        line = f.readline().replace("\n", "").replace("'", "\\\'")
+                        line = re.sub(r'( id="\d*")?( x="\d*")?( y="\d*")?', '', line)
+                        
+                        if (line != '' and len(line) > 0):
+                            output.write("  + '{0} </block>'\n".format(line))
+                            break
 
-            output.write("'</category>'")
-    output.write("+ '</xml>';")
+            output.write(" + '</category>'\n")
+    output.write("+ '</xml>';\n")
 
 if __name__ == "__main__":
     main()
