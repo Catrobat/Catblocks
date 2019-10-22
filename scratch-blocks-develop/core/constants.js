@@ -269,6 +269,13 @@ Blockly.Categories = {
   "control": "control",
   "sensing": "sensing",
   "operators": "operators",
+  "arduino": "arduino",
+  "drone": "drone",
+  "jumpingSumo": "jumpingSumo",
+  "legoEV3": "legoEV3",
+  "legoNXT": "legoNXT",
+  "phiro": "phiro",
+  "raspi": "raspi",
   "more": "more"
 };
 
