@@ -8,6 +8,10 @@
   <title>Vertical Playground Webpack</title>
 
   <script src="../dist/web/vertical.js"></script>
+  <script type="module">
+    import { Parser } from "../parser/src/parser.js";
+    window.XStreamParser = new Parser();
+  </script>
 
   <script>
     'use strict';
@@ -124,8 +128,14 @@
 
     function fromXml() {
       var input = document.getElementById('importExport');
-      var xml = Blockly.Xml.textToDom(input.value);
-      Blockly.Xml.domToWorkspace(xml, workspace);
+      var convertedXML = XStreamParser.parseText(input.value);
+      
+      if (convertedXML === undefined || convertedXML === "") {
+        throw "no response from XStreamParser";
+      } else {
+        var xml = Blockly.Xml.textToDom(convertedXML);
+        Blockly.Xml.domToWorkspace(xml, workspace);
+      }
       //taChange();
     }
 

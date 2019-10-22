@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>DUMMY HTML</h2>
+
+    <script type="module">
+        import { Parser } from "./parser.js";
+        window.XStreamParser = new Parser();
+        XStreamParser.parseFile('../code.xml');
+    </script>
+</body>
+</html>
