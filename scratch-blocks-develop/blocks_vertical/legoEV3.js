@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.legoEV3');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -19,7 +19,7 @@ Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "VARIABLE",
           "text": "180"
         }
@@ -43,7 +43,7 @@ Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "VARIABLE",
           "text": "100"
         }

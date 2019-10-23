@@ -83,7 +83,7 @@ Blockly.Colours = {
     "tertiary": "#FF3355"
   },
   "arduino": {
-    "primary": "#42ffd3",
+    "primary": "#34c8a5",
     "secondary": "#31bc9c",
     "tertiary": "#238770"
   },

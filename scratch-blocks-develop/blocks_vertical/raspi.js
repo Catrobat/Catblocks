@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.raspi');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -72,12 +72,12 @@ Blockly.Blocks['RaspiSendDigitalValueBrick'] = {
       "message0": Blockly.Msg.RASPI_SENDDIGITALVALUE,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "PIN1",
           "value": 3
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "PIN2",
           "value": 1
         }

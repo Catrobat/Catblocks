@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.legoNXT');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -19,7 +19,7 @@ Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "VARIABLE",
           "text": "180"
         }
@@ -64,7 +64,7 @@ Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "VARIABLE",
           "text": "100"
         }
@@ -81,12 +81,12 @@ Blockly.Blocks['LegoNxtPlayToneBrick'] = {
       "message0": Blockly.Msg.LEGONXT_PLAYTONE,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS",
           "value": 1
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "FREQUENCY",
           "value": 2
         }

@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.phiro');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -20,9 +20,9 @@ Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "SPEED",
-          "text": "100"
+          value: 100
         }
       ],
       "category": Blockly.Categories.phiro,
@@ -44,9 +44,9 @@ Blockly.Blocks['PhiroMotorMoveBackwardBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "SPEED",
-          "text": "100"
+          "value": 100
         }
       ],
       "category": Blockly.Categories.phiro,
@@ -87,9 +87,9 @@ Blockly.Blocks['PhiroPlayToneBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "DURATION",
-          "text": "1"
+          value: 1
         }
       ],
       "category": Blockly.Categories.phiro,

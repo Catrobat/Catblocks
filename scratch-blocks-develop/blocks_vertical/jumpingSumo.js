@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.jumpingSumo');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -12,11 +12,11 @@ Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
       "message0": Blockly.Msg.SUMO_MOVEFORWARD,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "STEPS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -32,11 +32,11 @@ Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
       "message0": Blockly.Msg.SUMO_MOVEBACKWARD,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "STEPS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -79,7 +79,7 @@ Blockly.Blocks['JumpingSumoSoundBrick'] = {
           ]
         },
         {
-          "type": "field_input",
+          "type": "field_number",
           "name": "VARIABLE",
           "text": "50"
         }

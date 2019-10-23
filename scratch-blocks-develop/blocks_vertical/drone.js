@@ -1,20 +1,10 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.drone');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
-
-Blockly.Blocks['DroneEmergencyBrick'] = {
-  init: function() {
-    this.jsonInit({
-      "message0": Blockly.Msg.DRONE_EMERGENCY,
-      "category": Blockly.Categories.drone,
-      "extensions": ["colours_drone", "shape_statement"]
-    });
-  }
-};
 
 
 Blockly.Blocks['DroneTakeOffLandBrick'] = {
@@ -27,17 +17,27 @@ Blockly.Blocks['DroneTakeOffLandBrick'] = {
   }
 };
 
+Blockly.Blocks['DroneEmergencyBrick'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.DRONE_EMERGENCY,
+      "category": Blockly.Categories.drone,
+      "extensions": ["colours_drone", "shape_statement"]
+    });
+  }
+};
+
 Blockly.Blocks['DroneMoveUpBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": Blockly.Msg.DRONE_MOVEUP,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -54,11 +54,11 @@ Blockly.Blocks['DroneMoveDownBrick'] = {
       "message0": Blockly.Msg.DRONE_MOVEDOWN,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -74,11 +74,11 @@ Blockly.Blocks['DroneMoveLeftBrick'] = {
       "message0": Blockly.Msg.DRONE_MOVELEFT,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -94,11 +94,11 @@ Blockly.Blocks['DroneMoveRightBrick'] = {
       "message0": Blockly.Msg.DRONE_MOVERIGHT,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -114,11 +114,11 @@ Blockly.Blocks['DroneMoveForwardBrick'] = {
       "message0": Blockly.Msg.DRONE_MOVEFORWARD,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -134,11 +134,11 @@ Blockly.Blocks['DroneMoveBackwardBrick'] = {
       "message0": Blockly.Msg.DRONE_MOVEBACKWARD,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -154,11 +154,11 @@ Blockly.Blocks['DroneTurnLeftBrick'] = {
       "message0": Blockly.Msg.DRONE_TURNLEFT,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],
@@ -174,11 +174,11 @@ Blockly.Blocks['DroneTurnRightBrick'] = {
       "message0": Blockly.Msg.DRONE_TURNRIGHT,
       "args0": [
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "SECONDS"
         },
         {
-          "type": "input_value",
+          "type": "field_number",
           "name": "POWER"
         }
       ],

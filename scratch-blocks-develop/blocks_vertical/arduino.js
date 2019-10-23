@@ -1,6 +1,6 @@
 'use strict';
 
-goog.provide('Blockly.Blocks.control');
+goog.provide('Blockly.Blocks.arduino');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -12,12 +12,14 @@ Blockly.Blocks['ArduinoSendDigitalValueBrick'] = {
       "message0": Blockly.Msg.ARDUINO_SENDDIGITALVALUE,
       "args0": [
         {
-          "type": "input_value",
-          "name": "DIGITAL_PIN"
+          "type": "field_number",
+          "name": "DIGITAL_PIN",
+          "value": 4
         },
         {
-          "type": "input_value",
-          "name": "DIGITAL_PIN_VALUE"
+          "type": "field_number",
+          "name": "DIGITAL_PIN_VALUE",
+          "value": 2
         }
       ],
       "category": Blockly.Categories.arduino,
@@ -33,12 +35,14 @@ Blockly.Blocks['ArduinoSendPWMValueBrick'] = {
       "message0": Blockly.Msg.ARDUINO_SENDPWMALVALUE,
       "args0": [
         {
-          "type": "input_value",
-          "name": "PWM_PIN"
+          "type": "field_number",
+          "name": "PWM_PIN",
+          "value": 4
         },
         {
-          "type": "input_value",
-          "name": "PWM_PIN_VALUE"
+          "type": "field_number",
+          "name": "PWM_PIN_VALUE",
+          "value": 2
         }
       ],
       "category": Blockly.Categories.arduino,
