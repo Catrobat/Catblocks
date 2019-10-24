@@ -42,6 +42,16 @@ module.exports = {
    * @param {*} relPath 
    */
   listDirectorySync: function(relPath) {
+    if (!this.isNotEmptyString(relPath)) return undefined;
     return fs.readdirSync(path.join(this.ROOT_PATH, relPath))
   },
+
+  /**
+   * Read file from relative path sync
+   * @param {*} relPath 
+   */
+  readFileSync: function(relPath) {
+    if (!this.isNotEmptyString(relPath)) return undefined;
+    return fs.readFileSync(path.join(this.ROOT_PATH, relPath));
+  }
 }
