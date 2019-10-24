@@ -1,0 +1,4 @@
+<block type="LegoNxtPlayToneBrick" id="" x="" y="">
+    <field name="SECONDS">1</field>
+    <field name="FREQUENCY">2</field>
+</block>

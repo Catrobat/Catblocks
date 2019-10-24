@@ -93,7 +93,7 @@ Blockly.Colours = {
     "tertiary": "#669334"
   },
   "lego": {
-    "primary": "#f3f24a",
+    "primary": "#cbca3e",
     "secondary": "#d2d140",
     "tertiary": "#acab34"
   },

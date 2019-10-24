@@ -91,8 +91,8 @@ Blockly.Blocks['LegoNxtPlayToneBrick'] = {
           "value": 2
         }
       ],
-      "category": Blockly.Categories.drone,
-      "extensions": ["colours_drone", "shape_statement"]
+      "category": Blockly.Categories.legoNXT,
+      "extensions": ["colours_lego", "shape_statement"]
     });
   }
 };

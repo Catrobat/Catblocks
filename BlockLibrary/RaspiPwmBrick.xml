@@ -1,0 +1,5 @@
+<block type="RaspiPwmBrick" id="" x="" y="">
+    <field name="PIN">3</field>
+    <field name="PERCENT">50</field>
+    <field name="HERTZ">100</field>
+</block>
