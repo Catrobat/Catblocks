@@ -1,0 +1,45 @@
+
+
+// create a inNode browser instance
+const JSDOM = require('jsdom').JSDOM;
+const browser = new JSDOM(`
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+  </head>
+  <body>
+    <div id="blocklyDiv"></div>
+  </body>
+</html>
+`);
+
+var window = browser.window;
+var document = window.document;
+var Element = window.Element;
+var Node = window.Node;
+var self = this;
+
+// init Browser DOMParser and XMLSerializer
+var xmldom = require('xmldom');
+var XMLSerializer = xmldom.XMLSerializer;
+var DOMParser = xmldom.DOMParser;
+
+eval(utils.readFileSync(utils.PATHS.BLOCKLY_COMPRESSED).toString().replace('\'use strict\';', ''));
+eval(utils.readFileSync(utils.PATHS.BLOCKS_COMPRESSED).toString().replace('\'use strict\';', ''));
+
+var workspace = new Blockly.Workspace();
+
+const xml = `<xml xmlns="http://www.w3.org/1999/xhtml">
+<variables></variables>
+<block type="PlaySoundAndWaitBrick" id="35KO1G64S%f}9F5$lh6H" x="39" y="199">
+  <field name="DROPDOWN">NEW</field>
+  <next>
+    <block type="StopAllSoundsBrick" id="N2?/U/q64z^!b*4]r#Wq"></block>
+  </next>
+</block>
+</xml>`;
+
+const xmlDom = Blockly.Xml.textToDom(xml);
+Blockly.Xml.domToWorkspace(xmlDom, workspace);

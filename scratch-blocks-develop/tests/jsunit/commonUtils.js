@@ -7,7 +7,6 @@ const realfs = require('fs');
 const fs = require('graceful-fs');
 fs.gracefulify(realfs);
 
-
 module.exports = {
   /**
    * root path from catblocks directory
@@ -18,7 +17,13 @@ module.exports = {
    * constant paths from project for testing
    */
   PATHS: {
-    BLOCKS: 'blocks_vertical/'
+    BLOCKS: 'blocks_vertical/',
+    TOOLBOX: 'blocks_vertical/default_toolbox.js',
+    BLOCKLY_COMPRESSED: 'blockly_compressed_vertical.js',
+    BLOCKLY_MEDIA: 'media/',
+    BLOCKS_COMPRESSED: 'blocks_compressed_vertical.js',
+    MESSAGE_MAPPING: 'i18n/strings_to_json_mapping.json',
+    WEBPACK: 'dist/web/vertical.js'
   },
 
   /**
