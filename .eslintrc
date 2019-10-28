@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "extends": ["eslint:recommended"],
+  "env": {
+    "browser": true, /* allow console */
+    "es6": true /* allow Promise */
+  },
+  "rules": {
+    "no-unused-vars": ["warn"],
+    "semi": ["warn"],
+    "prefer-const": ["warn"],
+    "no-var": ["warn"],
+    "indent": ["warn", "tab"]
+  }
+}

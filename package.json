@@ -1,0 +1,32 @@
+{
+  "name": "catblocks",
+  "version": "0.1.0",
+  "main": "",
+  "repository": "git@github.com:Catrobat/Catblocks.git",
+  "author": "TU Graz",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn watch:server --print-label",
+    "watch:server": "NODE_ENV=development && webpack-dev-server",
+    "watch:build": "NODE_ENV=development && webpack --watch",
+    "build": "NODE_ENV=production && webpack",
+    "build:dev": "NODE_ENV=development && webpack",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
+    "core-js": "^3.3.4",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-loader": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "scratch-blocks": "^0.1.0-prerelease.1570730963",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
