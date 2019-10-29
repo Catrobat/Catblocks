@@ -13,6 +13,10 @@
     "semi": ["warn"],
     "prefer-const": ["warn"],
     "no-var": ["warn"],
-    "indent": ["warn", "tab"]
+    "indent": ["warn", "tab"],
+    "no-mixed-spaces-and-tabs": ["warn"]
+  },
+  "globals": {
+    "Blockly": false
   }
 }

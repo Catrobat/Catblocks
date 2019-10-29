@@ -1,4 +1,5 @@
 import { ScratchMsgs, inject, Xml } from "scratch-blocks";
+import { Parser } from "./parser/parser";
 
 export class Application {
 	constructor() {
@@ -79,7 +80,7 @@ export class Application {
 			zoom: {
 				controls: true,
 				wheel: true,
-				startScale: 0.675,
+				startScale: 0.75,
 				maxScale: 4,
 				minScale: 0.25,
 				scaleSpeed: 1.1
@@ -96,7 +97,7 @@ export class Application {
 			if (text) {
 				document.getElementById('importExport').value = text;
 			}
-			this.taChange();
+			// this.taChange();
 		}
 
 		if (sessionStorage) {
@@ -171,40 +172,41 @@ export class Application {
 		output.value = Xml.domToPrettyText(xml);
 		output.focus();
 		output.select();
-		this.taChange();
+		// this.taChange();
 	}
 	fromXml() {
 		const input = document.getElementById('importExport');
-		const xml = Xml.textToDom(input.value);
-		Xml.domToWorkspace(xml, this.workspace);
-		this.taChange();
+		const convertedXML = Parser.parseText(input.value);
+
+		if (convertedXML === undefined || convertedXML === "") {
+			throw "no response from XStreamParser";
+		} else { 
+			const xml = Xml.textToDom(convertedXML);
+			Xml.domToWorkspace(xml, this.workspace);
+		}
+		// this.taChange();
 	}
 	glowBlock() {
 		if (Blockly.selected) {
 			this.workspace.glowBlock(Blockly.selected.id, true);
 		}
 	}
-
 	unglowBlock() {
 		if (Blockly.selected) {
 			this.workspace.glowBlock(Blockly.selected.id, false);
 		}
 	}
-
 	glowStack() {
 		if (Blockly.selected) {
 			this.workspace.glowStack(Blockly.selected.id, true);
 		}
 	}
-
 	unglowStack() {
 		if (Blockly.selected) {
 			this.workspace.glowStack(Blockly.selected.id, false);
 		}
 	}
-
 	sprinkles(n) {
-		const prototypes = [];
 		const toolbox = this.workspace.options.languageTree;
 		if (!toolbox) {
 			console.error('Toolbox not found; add a toolbox element to the DOM.');
@@ -260,7 +262,6 @@ export class Application {
 			);
 		}
 	}
-
 	setLocale(locale) {
 		this.workspace.getFlyout().setRecyclingEnabled(false);
 		const xml = Xml.workspaceToDom(this.workspace);

@@ -64,7 +64,8 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new CopyPlugin([
-      { from: 'assets', to: 'assets' }
+      { from: 'assets', to: 'assets' },
+      { from: 'node_modules/scratch-blocks/media', to: 'media' }
     ])
   ],
   // watch: true,
