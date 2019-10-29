@@ -74,5 +74,6 @@ module.exports = {
     hot: true,
     compress: !devMode,
     noInfo: true
-  }
+  },
+  target: 'web'
 };
