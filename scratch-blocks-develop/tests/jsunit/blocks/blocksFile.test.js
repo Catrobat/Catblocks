@@ -172,12 +172,17 @@ describe('WebView Block tests', () => {
     let workspaceBlocks = {};
 
     beforeEach(async () => {
-      await page.goto(PATH, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${SERVER}tests/jsunit/blocks/blockTests.html`, { waitUntil: 'domcontentloaded' });
 
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
         Object.keys(Blockly.Workspace.WorkspaceDB_).forEach(id => {
-          workspaces[id] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+          if (Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
+            workspaces['userWorkspace'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+          } else {
+            workspaces['toolbox'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+          }
+
         });
         return workspaces;
       });
@@ -195,20 +200,12 @@ describe('WebView Block tests', () => {
      *  and one not empty -> toolbox 
      */
     test('Found empty userWorkspace and not empty Toolbox', async () => {
-      let foundEmpty = false;
-      let foundNotEmpty = false;
-
-      Object.keys(workspaceBlocks).forEach(id => {
-        if (workspaceBlocks[id].length === 0) foundEmpty = true;
-        else foundNotEmpty = true;
-      });
-
-      expect(foundEmpty).toBeTruthy();
-      expect(foundNotEmpty).toBeTruthy();
+      expect(workspaceBlocks['userWorkspace'].length).toBe(0);
+      expect(workspaceBlocks['toolbox'].length).toBeGreaterThan(0);
     });
 
     test('Toolbox rendered all Blocks', () => {
-      const renderedBlocks = Object.keys(workspaceBlocks).flatMap(w => workspaceBlocks[w]);
+      const renderedBlocks = workspaceBlocks['toolbox'];
       const toolboxBlocks = getAllBlocksFromToolbox();
 
       toolboxBlocks.forEach(blockName => {

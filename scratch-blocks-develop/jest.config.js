@@ -6,7 +6,7 @@
 module.exports = {
   preset: "jest-puppeteer",
   globals: {
-    PATH: "http://localhost:8080/tests/vertical_playground_webpack.html"
+    SERVER: "http://localhost:8080/"
   },
   testMatch: [
     "**/tests/**/*.test.js"
