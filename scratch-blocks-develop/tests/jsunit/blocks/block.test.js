@@ -5,7 +5,6 @@
 const path = require('path');
 const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
-const puppeteer = require('puppeteer');
 
 const FILE_BLOCK_DEFINITION = 'Blockly.Blocks[\'';
 const BLOCK_CATEGORIES = ['control', 'data', 'event', 'looks', 'motion', 'pen', 'sound'];
@@ -95,7 +94,7 @@ const BLOCK_MSG_MAPPINGS = JSON.parse(utils.readFileSync(utils.PATHS.MESSAGE_MAP
 /**
  * Check if everything exists on filesystem level
  */
-describe('Filesystem Block test', () => {
+describe('Filesystem Block tests', () => {
   /**
    * Check if each defined blocks has a message0 referenced to BLOCK_MSG_MAPPINGS
    */
@@ -172,7 +171,7 @@ describe('WebView Block tests', () => {
     let workspaceBlocks = {};
 
     beforeEach(async () => {
-      await page.goto(`${SERVER}tests/jsunit/blocks/blockTests.html`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${SERVER}tests/jsunit/blocks/block.html`, { waitUntil: 'domcontentloaded' });
 
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
@@ -196,14 +195,16 @@ describe('WebView Block tests', () => {
     });
 
     /**
-     * Check if one empty -> userWorkspace
-     *  and one not empty -> toolbox 
+     * Check if empty userWorkspace and nonEmpty toolbox workspace exists
      */
     test('Found empty userWorkspace and not empty Toolbox', async () => {
       expect(workspaceBlocks['userWorkspace'].length).toBe(0);
       expect(workspaceBlocks['toolbox'].length).toBeGreaterThan(0);
     });
 
+    /**
+     * Check if all blocks are rendered in the toolbox
+     */
     test('Toolbox rendered all Blocks', () => {
       const renderedBlocks = workspaceBlocks['toolbox'];
       const toolboxBlocks = getAllBlocksFromToolbox();
@@ -211,6 +212,16 @@ describe('WebView Block tests', () => {
       toolboxBlocks.forEach(blockName => {
         expect(renderedBlocks.includes(blockName)).toBeTruthy();
       });
+    });
+
+    /**
+     * Check if categories from toolbox rendered properly
+     */
+    test('Toolbox categories rendered', async () => {
+      const renderedCategories = await page.evaluate(() => Object.keys(Blockly.Categories));
+      BLOCK_CATEGORIES.forEach(category => {
+        expect(renderedCategories.includes(category)).toBeTruthy();
+      })
     });
   });
 });

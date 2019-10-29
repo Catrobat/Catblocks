@@ -23,7 +23,10 @@ module.exports = {
     BLOCKLY_MEDIA: 'media/',
     BLOCKS_COMPRESSED: 'blocks_compressed_vertical.js',
     MESSAGE_MAPPING: 'i18n/strings_to_json_mapping.json',
-    WEBPACK: 'dist/web/vertical.js'
+    WEBPACK: 'dist/web/vertical.js',
+    CATROID_MSGS: 'msg/catroid_strings/',
+    CATBLOCKS_MSGS: 'msg/json/',
+    CATBLOCKS_MSG: 'msg/catblocks_msgs.js'
   },
 
   /**
