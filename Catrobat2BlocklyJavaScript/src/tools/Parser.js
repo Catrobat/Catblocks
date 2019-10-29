@@ -179,6 +179,58 @@ function checkUsage(list, location){
             location.elseBrickList.push(parseBrick(elseBrickList[j]));
         }
     }
+    if(list.nodeName === "sound")
+    {
+        let sound = list.getAttribute('reference');
+        sound = sound.split("/soundList/sound").pop();
+        let soundNR;
+        if(!sound.length)
+        {
+            soundNR = 1;
+            }
+        else
+        {
+            soundNR = sound.slice(1,-1);
+
+        }
+        let soundName = findSoundName(list, soundNR);
+        location.formValues.set("sound", soundName);
+    }if(list.nodeName === "look")
+    {
+        let look = list.getAttribute('reference');
+        look = look.split("/lookList/look").pop();
+        let lookNR;
+        if(!look.length)
+        {
+            lookNR = 1;
+        }
+        else
+        {
+            lookNR = look.slice(1,-1);
+
+        }
+        let lookName = findLookName(list, lookNR);
+        location.formValues.set("look", lookName);
+    }
+}
+
+function findSoundName(currentNode, soundNR){
+    if(currentNode.nodeName === "object"){
+        //console.log(typeof currentNode);
+        //console.log(currentNode.getElementsByTagName("soundList")[0].children);
+        let soundList = currentNode.getElementsByTagName("soundList")[0].children;
+        //console.log(soundList[soundNR - 1].getAttribute("name"));
+        return soundList[soundNR - 1].getAttribute("name");
+    }
+    return findSoundName(currentNode.parentElement, soundNR);
+}
+
+function findLookName(currentNode, lookNR){
+    if(currentNode.nodeName === "object"){
+        let lookList = currentNode.getElementsByTagName("lookList")[0].children;
+        return lookList[lookNR - 1].getAttribute("name");
+    }
+    return findLookName(currentNode.parentElement, lookNR);
 }
 
 function workFormula(formula, input) {
