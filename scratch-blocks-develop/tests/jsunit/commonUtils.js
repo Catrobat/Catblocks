@@ -81,7 +81,6 @@ const escapeJsonValues = (jsonString) => {
  * @param {*} category 
  */
 const parseBlockCategoryFile = (category) => {
-  console.log(PATHS);
   const payload = readFileSync(path.join(PATHS.BLOCKS, `${category}.js`));
   const blocks = payload.toString().split('Blockly.Blocks[\'').slice(1)
 
