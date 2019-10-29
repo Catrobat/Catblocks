@@ -6,47 +6,9 @@ const path = require('path');
 const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
 
-const FILE_BLOCK_DEFINITION = 'Blockly.Blocks[\'';
 const BLOCK_CATEGORIES = ['control', 'data', 'event', 'looks', 'motion', 'pen', 'sound'];
 const TOOLBOX_DEFINITION = 'Blockly.Blocks.defaultToolbox =';
 
-/**
- * Input is a json serialized as string
- * This funciton will excape all keys and values from the string with a double quoate
- * @param {*} jsonString 
- */
-const escapeJsonValues = (jsonString) => {
-  return jsonString
-    // remove all spaces where no char is lookahead/behind
-    .replace(/(?<!\w) +(?!\w)/g, '')
-    .replace(/ true /g, 'true')
-    .replace(/ false /g, 'false')
-    .split('\"').join('')
-    .replace(/([^:\{\}\[\]\,]+ ?)+/g, '"$&"')
-}
-
-/**
- * Parse the local stored file 
- * @param {*} category 
- */
-const parseBlockCategoryFile = (category) => {
-  const payload = utils.readFileSync(path.join(utils.PATHS.BLOCKS, `${category}.js`));
-  const blocks = payload.toString().split(FILE_BLOCK_DEFINITION).slice(1)
-
-  const parsedBlocks = {};
-  for (let block of blocks) {
-    let blockName = block.substr(0, block.indexOf('\''));
-
-    let blockBody = block.split('\n').join(' ').match(/this.jsonInit\(\{.*\}\)/);
-    if (blockBody.length === 0) return null;
-
-    blockBody = blockBody[0].substr('this.jsonInit('.length).slice(0, -1);
-    blockBody = escapeJsonValues(blockBody)
-    parsedBlocks[blockName] = JSON.parse(blockBody);
-  }
-
-  return parsedBlocks;
-};
 
 /**
  * Parse all defined blocks from BLOCK_CATEGORIES
@@ -54,7 +16,7 @@ const parseBlockCategoryFile = (category) => {
 const BLOCKS = (function() {
   let result = {};
   BLOCK_CATEGORIES.forEach(category => {
-    result[category] = parseBlockCategoryFile(category);
+    result[category] = utils.parseBlockCategoryFile(category);
   });
   return result;
 })();
@@ -205,7 +167,7 @@ describe('WebView Block tests', () => {
     /**
      * Check if all blocks are rendered in the toolbox
      */
-    test('Toolbox rendered all Blocks', () => {
+    test('Toolbox includes all Blocks', () => {
       const renderedBlocks = workspaceBlocks['toolbox'];
       const toolboxBlocks = getAllBlocksFromToolbox();
 
@@ -217,11 +179,89 @@ describe('WebView Block tests', () => {
     /**
      * Check if categories from toolbox rendered properly
      */
-    test('Toolbox categories rendered', async () => {
+    test('Toolbox includes all Categories', async () => {
       const renderedCategories = await page.evaluate(() => Object.keys(Blockly.Categories));
       BLOCK_CATEGORIES.forEach(category => {
         expect(renderedCategories.includes(category)).toBeTruthy();
       })
+    });
+
+    /**
+     * Check if all blocks are rendered properly
+     */
+    test('Toolbox rendered all Blocks properly', async () => {
+      const failed = await page.evaluate(() => {
+        let failedRender = false;
+
+        // first lets get the value for a wrong rendered block
+        const wrongBlockPath = (() => {
+          let block = blocklyWS.newBlock('someInvalidID');
+          block.initSvg();
+          block.render(false);
+          return block.svgPath_.outerHTML;
+        })();
+
+        // get workspace from toolbox
+        const toolboxWS = (() => {
+          for (let wsId in Blockly.Workspace.WorkspaceDB_) {
+            if (Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+              return Blockly.Workspace.WorkspaceDB_[wsId];
+            }
+          }
+        })();
+
+        toolboxWS.getAllBlocks().forEach(block => {
+          if (block.svgPath_.outerHTML === wrongBlockPath) {
+            failedRender = true;
+            return failedRender;
+          }
+        });
+
+        return failedRender;
+      });
+
+      expect(failed).toBeFalsy();
+    });
+  });
+
+  /**
+   * Test if Scratch-Blocks got initialized properly
+   */
+  describe('Workspace actions', () => {
+
+    test('Add all Blockly from toolbox ones to workspace via JS', async () => {
+      const failed = await page.evaluate(() => {
+        let failedRender = false;
+
+        // first lets get the value for a wrong rendered block
+        const wrongBlockPath = (() => {
+          let block = blocklyWS.newBlock('someInvalidID');
+          block.initSvg();
+          block.render(false);
+          return block.svgPath_.outerHTML;
+        })();
+
+        // get all blocks available in the toolbox
+        const toolboxBlocks = blocklyWS.toolbox_.categoryMenu_.categories_
+          .flatMap(cat => cat.contents_.map(block => block.getAttribute('type')));
+
+        // check if we can render each successfully
+        toolboxBlocks.forEach(blockName => {
+          blocklyWS.clear();
+          let block = blocklyWS.newBlock(blockName);
+          block.initSvg();
+          block.render(false);
+
+          if (block.svgPath_.outerHTML === wrongBlockPath) {
+            failedRender = true;
+            return failedRender;
+          }
+        });
+
+        return failedRender;
+      });
+
+      expect(failed).toBeFalsy();
     });
   });
 });

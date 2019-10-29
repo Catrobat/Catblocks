@@ -65,3 +65,24 @@ describe('Filesystem msg tests', () => {
     });
   });
 });
+
+describe('Webview test', () => {
+
+  test('Messages rendered to blocks', async () => {
+    // first get the message parts assigned to each block
+    
+
+
+     // get workspace from toolbox
+    //  const toolboxWS = (() => {
+    //   for (let wsId in Blockly.Workspace.WorkspaceDB_) {
+    //     if (Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+    //       return Blockly.Workspace.WorkspaceDB_[wsId];
+    //     }
+    //   }
+    // })();
+
+
+  });
+
+});
