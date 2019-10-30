@@ -82,6 +82,21 @@ Blockly.Colours = {
     "secondary": "#FF4D6A",
     "tertiary": "#FF3355"
   },
+  "arduino": {
+    "primary": "#34c8a5",
+    "secondary": "#31bc9c",
+    "tertiary": "#238770"
+  },
+  "drone": {
+    "primary": "#91d149",
+    "secondary": "#7bb13e",
+    "tertiary": "#669334"
+  },
+  "lego": {
+    "primary": "#cbca3e",
+    "secondary": "#d2d140",
+    "tertiary": "#acab34"
+  },
   "text": "#575E75",
   "workspace": "#F9F9F9",
   "toolboxHover": "#4C97FF",

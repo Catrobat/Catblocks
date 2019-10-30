@@ -34,7 +34,14 @@ function test_AllBlocksExists() {
     "event",
     "control",
     "pen",
-    "data"
+    "data",
+    "arduino",
+    "raspi",
+    "phiro",
+    "legoEV3",
+    "legoNXT",
+    "jumpingSumo",
+    "drone"
   ];
 
   const block_categories = listDir(

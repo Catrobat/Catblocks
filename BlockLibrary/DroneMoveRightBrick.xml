@@ -1,0 +1,4 @@
+<block type="DroneMoveRightBrick" id="" x="" y="">
+    <field name="SECONDS">0</field>
+    <field name="POWER">0</field>
+</block>

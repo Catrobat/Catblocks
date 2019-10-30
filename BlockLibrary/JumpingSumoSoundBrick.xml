@@ -1,0 +1,4 @@
+<block type="JumpingSumoSoundBrick" id="" x="" y="">
+    <field name="DROPDOWN">Robot</field>
+    <field name="VARIABLE">0</field>
+</block>
