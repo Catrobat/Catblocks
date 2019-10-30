@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh './scratch-blocks-develop/',
-                sh 'npm install' 
+                sh 'cd ./scratch-blocks-develop/ && npm install'
             }
         }
     }
