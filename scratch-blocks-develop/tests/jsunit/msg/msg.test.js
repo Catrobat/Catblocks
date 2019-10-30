@@ -1,5 +1,5 @@
 /**
- * @description Block tests
+ * @description Msg tests
  */
 
 const path = require('path');
