@@ -183,31 +183,22 @@ function checkUsage(list, location){
     {
         let sound = list.getAttribute('reference');
         sound = sound.split("/soundList/sound").pop();
-        let soundNR;
-        if(!sound.length)
-        {
-            soundNR = 1;
-            }
-        else
+        let soundNR = 1;
+        if(sound.length)
         {
             soundNR = sound.slice(1,-1);
-
         }
         let soundName = findSoundName(list, soundNR);
         location.formValues.set("sound", soundName);
-    }if(list.nodeName === "look")
+    }
+    if(list.nodeName === "look")
     {
         let look = list.getAttribute('reference');
         look = look.split("/lookList/look").pop();
-        let lookNR;
-        if(!look.length)
-        {
-            lookNR = 1;
-        }
-        else
+        let lookNR = 1;
+        if(look.length)
         {
             lookNR = look.slice(1,-1);
-
         }
         let lookName = findLookName(list, lookNR);
         location.formValues.set("look", lookName);
@@ -216,10 +207,7 @@ function checkUsage(list, location){
 
 function findSoundName(currentNode, soundNR){
     if(currentNode.nodeName === "object"){
-        //console.log(typeof currentNode);
-        //console.log(currentNode.getElementsByTagName("soundList")[0].children);
         let soundList = currentNode.getElementsByTagName("soundList")[0].children;
-        //console.log(soundList[soundNR - 1].getAttribute("name"));
         return soundList[soundNR - 1].getAttribute("name");
     }
     return findSoundName(currentNode.parentElement, soundNR);

@@ -42,6 +42,7 @@
                 <object type="Sprite" name="actor">
                     <lookList>
                         <look fileName="My actor or object.png" name="actor"/>
+                        <look fileName="actor.png" name="second actor"/>
                     </lookList>
                     <soundList>
                         <sound fileName="recording" name="sound1"/>
@@ -62,6 +63,17 @@
                                 <brick type="PlaySoundAndWaitBrick">
                                     <commentedOut>false</commentedOut>
                                     <sound reference="../../../../../soundList/sound"/>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look[2]"/>
+                                </brick>
+                                <brick type="NextLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
                                 </brick>
                             </brickList>
                             <commentedOut>false</commentedOut>
