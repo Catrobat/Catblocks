@@ -68,7 +68,7 @@ describe('Filesystem msg tests', () => {
 
 describe('Webview test', () => {
   beforeEach(async () => {
-    await page.goto(`${SERVER}tests/jsunit/msg/msg.html`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
   });
 
   test('en_GB Messages assigned to Blockly', async () => {
@@ -76,15 +76,6 @@ describe('Webview test', () => {
 
     const failed = await page.evaluate((msgDef) => {
       let failedLoading = false;
-
-      // get workspace from toolbox
-      const toolboxWS = (() => {
-        for (let wsId in Blockly.Workspace.WorkspaceDB_) {
-          if (Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-            return Blockly.Workspace.WorkspaceDB_[wsId];
-          }
-        }
-      })();
 
       toolboxWS.getAllBlocks().forEach(block => {
         const msgKeys = block.init.toString().match(/message\d\d?\:Blockly.Msg.[a-zA-Z_]+(?=,)/g);
@@ -100,7 +91,7 @@ describe('Webview test', () => {
           let msgBlockPart = msgBlockParts[idx];
           if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
             failedLoading = true;
-           // return failedLoading;
+            // return failedLoading;
           }
         }
       });

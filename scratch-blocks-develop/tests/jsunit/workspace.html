@@ -10,6 +10,7 @@
     'use strict'
 
     let blocklyWS = undefined;
+    let toolboxWS = undefined;
 
     const setLanguage = (langCode) => {
       blocklyWS.getFlyout().setRecyclingEnabled(false);
@@ -35,6 +36,15 @@
       });
 
       setLanguage('en_GB');
+
+      // get toolbox workspace object
+      toolboxWS = (() => {
+        for (let wsId in Blockly.Workspace.WorkspaceDB_) {
+          if (Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+            return Blockly.Workspace.WorkspaceDB_[wsId];
+          }
+        }
+      })();
     }
   </script>
 

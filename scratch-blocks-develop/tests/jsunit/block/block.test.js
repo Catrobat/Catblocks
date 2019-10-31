@@ -2,7 +2,6 @@
  * @description Block tests
  */
 
-const path = require('path');
 const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
 
@@ -133,7 +132,7 @@ describe('WebView Block tests', () => {
     let workspaceBlocks = {};
 
     beforeEach(async () => {
-      await page.goto(`${SERVER}tests/jsunit/blocks/block.html`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
 
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
@@ -201,15 +200,7 @@ describe('WebView Block tests', () => {
           return block.svgPath_.outerHTML;
         })();
 
-        // get workspace from toolbox
-        const toolboxWS = (() => {
-          for (let wsId in Blockly.Workspace.WorkspaceDB_) {
-            if (Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-              return Blockly.Workspace.WorkspaceDB_[wsId];
-            }
-          }
-        })();
-
+        // iterate over toolboxWS blocks
         toolboxWS.getAllBlocks().forEach(block => {
           if (block.svgPath_.outerHTML === wrongBlockPath) {
             failedRender = true;

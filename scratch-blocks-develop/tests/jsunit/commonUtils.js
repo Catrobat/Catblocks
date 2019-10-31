@@ -13,6 +13,11 @@ fs.gracefulify(realfs);
 const ROOT_PATH = './';
 
 /**
+ * Workspace html file path for unit test
+ */
+const WORKSPACE_URL = 'tests/jsunit/workspace.html';
+
+/**
  * constant paths from project for testing
  */
 const PATHS = {
@@ -101,6 +106,7 @@ const parseBlockCategoryFile = (category) => {
 
 module.exports = {
   ROOT_PATH,
+  WORKSPACE_URL,
   PATHS,
   isString,
   isNotEmptyString,
