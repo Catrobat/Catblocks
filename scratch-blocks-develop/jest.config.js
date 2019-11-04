@@ -1,6 +1,14 @@
 /**
  * Jest configuration file
- * Ref: https://itnext.io/testing-your-javascript-in-a-browser-with-jest-puppeteer-express-and-webpack-c998a37ef887
+ * 
+ * @author andreas.karner@student.tugraz.at
+ * 
+ * @description jest configuraiton file
+ *  use jest-puppeteer for testing
+ *  set global SERVER variable, this one is used by the test files
+ *    please validate that the port and host match up with the @file{jest-puppeteer.js}
+ * 
+ *  added jest-junit reporter for jenkins
  */
 
 module.exports = {

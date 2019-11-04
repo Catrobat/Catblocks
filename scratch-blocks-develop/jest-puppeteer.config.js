@@ -1,9 +1,30 @@
 /**
  * Jest configuration file
- * Ref: https://itnext.io/testing-your-javascript-in-a-browser-with-jest-puppeteer-express-and-webpack-c998a37ef887
+ * @author andreas.karner@student.tugraz.at
+ * 
+ * @description jest-puppeteer configuration file
+ *  as server we use the http-server from npm package manager
+ *  executable is defined for docker image catblocks:v1
+ *    otherwise we use the default -> undefined
+ * 
+ *  pass args sandbox params so we can start chome even as root
  */
 
 module.exports = {
+  launch: {
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ],
+    executablePath: (() => {
+      switch (process.env.DCONTAINER) {
+        case 'catblocks:v1':
+          return '/usr/bin/chromium';
+        default:
+          return undefined
+      }
+    })()
+  },
   server: {
     command: 'http-server',
     port: 8080
