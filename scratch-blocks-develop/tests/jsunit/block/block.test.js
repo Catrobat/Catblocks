@@ -5,7 +5,8 @@
 const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
 
-const BLOCK_CATEGORIES = ['control', 'data', 'event', 'looks', 'motion', 'pen', 'sound'];
+const BLOCK_CATEGORIES = ['motion', 'looks', 'sound', 'event', 'control', 'pen', 'data',
+  'drone', 'jumpingSumo', 'arduino', 'raspi', 'phiro', 'legoEV3', 'legoNXT'];
 const TOOLBOX_DEFINITION = 'Blockly.Blocks.defaultToolbox =';
 
 
