@@ -97,7 +97,7 @@ const parseBlockCategoryFile = (category) => {
     if (blockBody.length === 0) return null;
 
     blockBody = blockBody[0].substr('this.jsonInit('.length).slice(0, -1);
-    blockBody = escapeJsonValues(blockBody)
+    blockBody = escapeJsonValues(blockBody);
     parsedBlocks[blockName] = JSON.parse(blockBody);
   }
 

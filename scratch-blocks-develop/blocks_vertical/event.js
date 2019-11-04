@@ -27,7 +27,7 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
-//Cat Blocks
+
 Blockly.Blocks['StartScript'] = {
   init: function() {
     this.jsonInit({
@@ -44,7 +44,7 @@ Blockly.Blocks['WhenScript'] = {
       "message0": Blockly.Msg.EVENT_WHENTAPPED,
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "shape_hat"],
-      "args0": [],
+      "args0": []
     });
   }
 };
