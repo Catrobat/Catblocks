@@ -17,6 +17,7 @@ RUN pacman -S base-devel \
   libxtst \
   nss \
   jre-openjdk-headless \
+  procps \
   --noconfirm
 
 # install http-server

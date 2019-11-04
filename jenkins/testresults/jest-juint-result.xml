@@ -1,267 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="9" failures="6" time="0.642">
-  <testsuite name="Filesystem Block tests" errors="0" failures="6" skipped="0" timestamp="2019-11-04T22:16:50" time="0.609" tests="9">
-    <testcase classname="Filesystem Block tests Block Messages exists in i18n/strings_to_json_mapping.json" name="Filesystem Block tests Block Messages exists in i18n/strings_to_json_mapping.json" time="0.025">
+<testsuites name="jest tests" tests="14" failures="0" time="4.302">
+  <testsuite name="Export and Import XML files to workspace" errors="0" failures="0" skipped="0" timestamp="2019-11-04T22:35:03" time="1.856" tests="1">
+    <testcase classname="Export and Import XML files to workspace Blocks export/import Xml" name="Export and Import XML files to workspace Blocks export/import Xml" time="1.158">
     </testcase>
-    <testcase classname="Filesystem Block tests Block argsCount match with i18n/strings_to_json_mapping.json" name="Filesystem Block tests Block argsCount match with i18n/strings_to_json_mapping.json" time="0.008">
+  </testsuite>
+  <testsuite name="Filesystem msg tests" errors="0" failures="0" skipped="0" timestamp="2019-11-04T22:35:03" time="2.52" tests="4">
+    <testcase classname="Filesystem msg tests JSON exists for catroid_strings xml file" name="Filesystem msg tests JSON exists for catroid_strings xml file" time="0.017">
     </testcase>
-    <testcase classname="Filesystem Block tests All Blocks exists in Toolbox" name="Filesystem Block tests All Blocks exists in Toolbox" time="0.017">
+    <testcase classname="Filesystem msg tests JSON includes all i18n definitions" name="Filesystem msg tests JSON includes all i18n definitions" time="0.948">
     </testcase>
-    <testcase classname="WebView Block tests Workspace initialization Empty workspace is loaded with toolbox" name="WebView Block tests Workspace initialization Empty workspace is loaded with toolbox" time="0.028">
-      <failure>Error: ReferenceError: Blockly is not defined
-    at window.onload (http://localhost:8080/tests/jsunit/workspace.html:27:7)
-
-
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.test (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:155:5)
-    at addSpecsToSuite (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)</failure>
-      <failure>Error: expect(received).toBe(expected) // Object.is equality
-
-Expected: 2
-Received: 0
-    at Object.toBe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:156:51)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    <testcase classname="Filesystem msg tests Lang JSON file linked in CatblocksMsg.js" name="Filesystem msg tests Lang JSON file linked in CatblocksMsg.js" time="0.01">
     </testcase>
-    <testcase classname="WebView Block tests Workspace initialization Found empty userWorkspace and not empty Toolbox" name="WebView Block tests Workspace initialization Found empty userWorkspace and not empty Toolbox" time="0.017">
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:3:21
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:25)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:36)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: ReferenceError: Blockly is not defined
-    at window.onload (http://localhost:8080/tests/jsunit/workspace.html:27:7)
-
-
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.test (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:162:5)
-    at addSpecsToSuite (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)</failure>
-      <failure>TypeError: Cannot read property &apos;length&apos; of undefined
-    at Object.length (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:163:47)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    <testcase classname="Webview test en_GB Messages assigned to Blockly" name="Webview test en_GB Messages assigned to Blockly" time="0.788">
     </testcase>
-    <testcase classname="WebView Block tests Workspace initialization Toolbox includes all Blocks" name="WebView Block tests Workspace initialization Toolbox includes all Blocks" time="0.011">
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:3:21
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:25)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:36)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: ReferenceError: Blockly is not defined
-    at window.onload (http://localhost:8080/tests/jsunit/workspace.html:27:7)
-
-
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.test (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:170:5)
-    at addSpecsToSuite (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)</failure>
-      <failure>TypeError: Cannot read property &apos;includes&apos; of undefined
-    at includes (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:175:31)
-    at Array.forEach (&lt;anonymous&gt;)
-    at Object.forEach (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:174:21)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+  </testsuite>
+  <testsuite name="Filesystem Block tests" errors="0" failures="0" skipped="0" timestamp="2019-11-04T22:35:03" time="3.771" tests="9">
+    <testcase classname="Filesystem Block tests Block Messages exists in i18n/strings_to_json_mapping.json" name="Filesystem Block tests Block Messages exists in i18n/strings_to_json_mapping.json" time="0.035">
     </testcase>
-    <testcase classname="WebView Block tests Workspace initialization Toolbox includes all Categories" name="WebView Block tests Workspace initialization Toolbox includes all Categories" time="0.011">
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:3:21
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:25)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:36)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: ReferenceError: Blockly is not defined
-    at window.onload (http://localhost:8080/tests/jsunit/workspace.html:27:7)
-
-
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.test (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:182:5)
-    at addSpecsToSuite (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)</failure>
+    <testcase classname="Filesystem Block tests Block argsCount match with i18n/strings_to_json_mapping.json" name="Filesystem Block tests Block argsCount match with i18n/strings_to_json_mapping.json" time="0.01">
     </testcase>
-    <testcase classname="WebView Block tests Workspace initialization Toolbox rendered all Blocks properly" name="WebView Block tests Workspace initialization Toolbox rendered all Blocks properly" time="0.011">
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:3:21
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:25)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:36)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:1:20
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:183:34)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:183:45)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: ReferenceError: Blockly is not defined
-    at window.onload (http://localhost:8080/tests/jsunit/workspace.html:27:7)
-
-
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at it (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.test (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:192:5)
-    at addSpecsToSuite (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)</failure>
+    <testcase classname="Filesystem Block tests All Blocks exists in Toolbox" name="Filesystem Block tests All Blocks exists in Toolbox" time="0.019">
     </testcase>
-    <testcase classname="WebView Block tests Workspace actions Add all Blockly from toolbox ones to workspace via JS" name="WebView Block tests Workspace actions Add all Blockly from toolbox ones to workspace via JS" time="0.003">
-      <failure>Error: Evaluation failed: ReferenceError: Blockly is not defined
-    at __puppeteer_evaluation_script__:3:21
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:25)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:138:36)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: Evaluation failed: TypeError: Cannot read property &apos;newBlock&apos; of undefined
-    at __puppeteer_evaluation_script__:5:33
-    at __puppeteer_evaluation_script__:9:11
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:193:22)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:193:33)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
-      <failure>Error: Evaluation failed: TypeError: Cannot read property &apos;newBlock&apos; of undefined
-    at __puppeteer_evaluation_script__:5:33
-    at __puppeteer_evaluation_script__:9:11
-    at ExecutionContext._evaluateInternal (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at ExecutionContext.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/ExecutionContext.js:48:12)
-    at Object.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:225:22)
-  -- ASYNC --
-    at ExecutionContext.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at DOMWorld.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/DOMWorld.js:112:20)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-  -- ASYNC --
-    at Frame.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:111:15)
-    at Page.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/Page.js:863:43)
-    at Page.&lt;anonymous&gt; (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/puppeteer/lib/helper.js:112:23)
-    at Object.evaluate (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/tests/jsunit/block/block.test.js:225:33)
-    at Object.asyncJestTest (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (/home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /home/akarner/tulocal/catrobat/Catblocks/scratch-blocks-develop/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    <testcase classname="WebView Block tests Workspace initialization Empty workspace is loaded with toolbox" name="WebView Block tests Workspace initialization Empty workspace is loaded with toolbox" time="1.012">
+    </testcase>
+    <testcase classname="WebView Block tests Workspace initialization Found empty userWorkspace and not empty Toolbox" name="WebView Block tests Workspace initialization Found empty userWorkspace and not empty Toolbox" time="0.659">
+    </testcase>
+    <testcase classname="WebView Block tests Workspace initialization Toolbox includes all Blocks" name="WebView Block tests Workspace initialization Toolbox includes all Blocks" time="0.485">
+    </testcase>
+    <testcase classname="WebView Block tests Workspace initialization Toolbox includes all Categories" name="WebView Block tests Workspace initialization Toolbox includes all Categories" time="0.389">
+    </testcase>
+    <testcase classname="WebView Block tests Workspace initialization Toolbox rendered all Blocks properly" name="WebView Block tests Workspace initialization Toolbox rendered all Blocks properly" time="0.392">
+    </testcase>
+    <testcase classname="WebView Block tests Workspace actions Add all Blockly from toolbox ones to workspace via JS" name="WebView Block tests Workspace actions Add all Blockly from toolbox ones to workspace via JS" time="0.079">
     </testcase>
   </testsuite>
 </testsuites>
