@@ -43,20 +43,13 @@ goog.require('Blockly.Blocks');
 
 
 def initColors():
-    blockToColor['motion']      = {'name':"\"%{BKY_CATEGORY_MOTION}\"",         'id':"\"motion\"", 'color':"\"#4C97FF\"", 'secondaryColour':"\"#3373CC\""}
-    blockToColor['looks']       = {'name':"\"%{BKY_CATEGORY_LOOKS}\"",          'id':"\"looks\"",  'color':"\"#59C059\"", 'secondaryColour':"\"#59C059\""}
-    blockToColor['sound']       = {'name':"\"%{BKY_CATEGORY_SOUND}\"",          'id':"\"sound\"",  'color':"\"#9966FF\"", 'secondaryColour':"\"#9966FF\""}
-    blockToColor['event']       = {'name':"\"%{BKY_CATEGORY_EVENTS}\"",         'id':"\"event\"",  'color':"\"#FF661A\"", 'secondaryColour':"\"#CC9900\""}
-    blockToColor['control']     = {'name':"\"%{BKY_CATEGORY_CONTROL}\"", 'id':"\"control\"", 'color':"\"#FFAB19\"", 'secondaryColour':"\"#CF8B17\""}
-    blockToColor['pen']         = {'name':"\"%{BKY_CATEGORY_PEN}\"",    'color':"\"#0fBD8C\"",  'id':"\"pen\"", 'secondaryColour':"\"#2E8EB8\""}
-    blockToColor['data']        = {'name':"\"%{BKY_CATEGORY_VARIABLES}\"",   'color':"\"#FF6680\"",  'id':"\"data\"", 'secondaryColour':"\"#389438\""}
-    blockToColor['drone']        = {'name':"\"%{BKY_CATEGORY_DRONE}\"",   'color':"\"#91d149\"",  'id':"\"drone\"", 'secondaryColour':"\"#7bb13e\""}
-    blockToColor['jumpingSumo']        = {'name':"\"%{BKY_CATEGORY_JUMPING_SUMO}\"",   'color':"\"#91d149\"",  'id':"\"jumpingSumo\"", 'secondaryColour':"\"#7bb13e\""}
-    blockToColor['arduino']        = {'name':"\"%{BKY_CATEGORY_ARDUINO}\"",   'color':"\"#34c8a5\"",  'id':"\"arduino\"", 'secondaryColour':"\"#31bc9c\""}
-    blockToColor['raspi']        = {'name':"\"%{BKY_CATEGORY_RASPI}\"",   'color':"\"#34c8a5\"",  'id':"\"raspi\"", 'secondaryColour':"\"#31bc9c\""}
-    blockToColor['phiro']        = {'name':"\"%{BKY_CATEGORY_PHIRO}\"",   'color':"\"#34c8a5\"",  'id':"\"phiro\"", 'secondaryColour':"\"#31bc9c\""}
-    blockToColor['legoEV3']        = {'name':"\"%{BKY_CATEGORY_LEGO_EV3}\"",   'color':"\"#cbca3e\"",  'id':"\"legoEV3\"", 'secondaryColour':"\"#d2d140\""}
-    blockToColor['legoNXT']        = {'name':"\"%{BKY_CATEGORY_LEGO_NXT}\"",   'color':"\"#cbca3e\"",  'id':"\"legoNXT\"", 'secondaryColour':"\"#d2d140\""}
+    blockToColor['motion']      = {'name':"\"%{BKY_CATEGORY_MOTION}\"",         'id':"\"motion\"",  'color':"\"#4C97FF\"", 'secondaryColour':"\"#3373CC\""}
+    blockToColor['looks']       = {'name':"\"%{BKY_CATEGORY_LOOKS}\"",          'id':"\"looks\"",   'color':"\"#59C059\"", 'secondaryColour':"\"#59C059\""}
+    blockToColor['sound']       = {'name':"\"%{BKY_CATEGORY_SOUND}\"",          'id':"\"sound\"",   'color':"\"#9966FF\"", 'secondaryColour':"\"#9966FF\""}
+    blockToColor['event']       = {'name':"\"%{BKY_CATEGORY_EVENTS}\"",         'id':"\"event\"",   'color':"\"#FF661A\"", 'secondaryColour':"\"#CC9900\""}
+    blockToColor['control']     = {'name':"\"%{BKY_CATEGORY_CONTROL}\"",        'id':"\"control\"", 'color':"\"#FFAB19\"", 'secondaryColour':"\"#CF8B17\""}
+    blockToColor['pen']         = {'name':"\"%{BKY_CATEGORY_PEN}\"",            'id':"\"pen\"",     'color':"\"#0fBD8C\"", 'secondaryColour':"\"#2E8EB8\""}
+    blockToColor['data']        = {'name':"\"%{BKY_CATEGORY_VARIABLES}\"",      'id':"\"data\"",    'color':"\"#FF6680\"", 'secondaryColour':"\"#389438\""}
  
 
 def main():
