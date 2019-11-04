@@ -19,7 +19,7 @@ module.exports = {
     executablePath: (() => {
       switch (process.env.DCONTAINER) {
         case 'catblocks:v1':
-          return '/usr/bin/chromium';
+          return '/usr/bin/chromium-browser';
         default:
           return undefined
       }
