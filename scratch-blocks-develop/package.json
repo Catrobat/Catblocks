@@ -36,6 +36,7 @@
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
+    "jest-junit": "^9.0.0",
     "json": "9.0.4",
     "moka": "^0.2.0",
     "puppeteer": "^2.0.0",
