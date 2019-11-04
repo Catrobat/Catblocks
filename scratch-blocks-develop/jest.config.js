@@ -8,6 +8,13 @@ module.exports = {
   globals: {
     SERVER: "http://localhost:8080/"
   },
+  "reporters": [
+    "default",
+    ["jest-junit", {
+      "outputDirectory": "./../jenkins/testresults/",
+      "outputName": "jest-juint-result.xml"
+    }]
+  ],
   testMatch: [
     "**/tests/**/*.test.js"
   ]

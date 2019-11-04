@@ -11,11 +11,11 @@ pipeline {
                 sh 'cd ./scratch-blocks-develop/ && npm install'
             }
         }
-        stage ('Tests') {
-        withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
-            sh 'cd ./scratch-blocks-develop/ && npm test -- --ci --testResultsProcessor="jest-junit"'
-        }
-        junit 'jest-test-results.xml'
+        stage ('Test') {
+            steps {
+                sh 'cd ./scratch-blocks-develop/ && npm test'
+                junit './jenkins/testresults/jest-juint-result.xml'
+            }
         }
     }
 }
