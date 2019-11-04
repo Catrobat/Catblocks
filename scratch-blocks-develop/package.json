@@ -14,7 +14,7 @@
   "scripts": {
     "deploy": "rimraf gh-pages/closure-library/scripts/ci/CloseAdobeDialog.exe && gh-pages -t -d gh-pages -m \"Build for $(git log --pretty=format:%H -n1)\"",
     "prepare": "python build.py && webpack",
-    "test": "npm run test:lint",
+    "test": "jest",
     "version": "json -f package.json -I -e \"this.repository.sha = '$(git log -n1 --pretty=format:%H)'\"",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js"
   },

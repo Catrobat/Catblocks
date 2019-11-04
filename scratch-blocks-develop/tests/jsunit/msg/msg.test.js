@@ -78,12 +78,14 @@ describe('Webview test', () => {
       let failedLoading = false;
 
       toolboxWS.getAllBlocks().forEach(block => {
-        const msgKeys = block.init.toString().match(/message\d\d?\:Blockly.Msg.[a-zA-Z_]+(?=,)/g);
-
+        console.log(block);
+        const msgKeys = block.init.toString().match(/message\d\d?\:Blockly.Msg.[a-zA-Z_1-9]+(?=,)/g);
+      
         const msgDefParts = msgKeys.flatMap(key => {
           let msgKey = key.split(':')[1].trim().replace('Blockly.Msg.', '');
           return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
         });
+
         const msgBlockParts = Array.prototype.slice.call(block.svgGroup_.getElementsByClassName('blocklyText'))
           .filter(v => v.classList.length === 1);
 
@@ -91,14 +93,14 @@ describe('Webview test', () => {
           let msgBlockPart = msgBlockParts[idx];
           if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
             failedLoading = true;
-            // return failedLoading;
+            return failedLoading;
           }
         }
       });
 
       return failedLoading;
     }, msgDef);
-
+    
     expect(failed).toBeFalsy();
   });
 
