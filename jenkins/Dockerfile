@@ -1,22 +1,42 @@
-FROM node:12-alpine
+FROM archlinux/base:latest
 
-# install python
-RUN apk add --update make cmake gcc g++ gfortran
-RUN apk add --update python py-pip python-dev
+# update first
+RUN pacman -Syu --noconfirm
 
-# install chromeium (https://pkgs.alpinelinux.org/package/edge/community/x86_64/chromium)
-RUN apk add --update chromium
+# install stuff we need
+RUN pacman -S base-devel \
+  python2 \
+  nodejs \
+  npm \
+  git \
+  # dependencies for google chrome from AUR
+  alsa-lib \ 
+  gtk3 \
+  libcups \
+  libxss \
+  libxtst \
+  nss \
+  jre-openjdk-headless \
+  --noconfirm
 
 # install http-server
 RUN npm install -g http-server
 
-# set ENV to indicate we are catblocks container
-ENV DCONTAINER catblocks:v1
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+# link python2 as python
+RUN ln /usr/bin/python2 /usr/bin/python
 
+# for arch we use the downloaded chromemium from puppeteer
+#ENV DCONTAINER catblocks:v1
+#ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+
+# setup entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 ENTRYPOINT docker-entrypoint.sh
 
-CMD node
+# add catblocks user
+RUN useradd -ms /bin/bash catblocks
+USER catblocks
+WORKDIR /home/catblocks
+
+CMD /bin/sh
