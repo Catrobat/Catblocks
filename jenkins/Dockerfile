@@ -18,13 +18,16 @@ RUN pacman -S base-devel \
   nss \
   jre-openjdk-headless \
   procps \
+  musl \
   --noconfirm
 
 # install http-server
 RUN npm install -g http-server
+RUN npm set unsafe-perm true
 
 # link python2 as python
 RUN ln /usr/bin/python2 /usr/bin/python
+RUN ln -s /usr/lib/ld-musl-x86_64.so.1 /usr/lib/libc.musl-x86_64.so.1
 
 # for arch we use the downloaded chromemium from puppeteer
 #ENV DCONTAINER catblocks:v1

@@ -14,7 +14,7 @@ pipeline {
         stage ('Test') {
             steps {
                 sh 'cd ./scratch-blocks-develop/ && npm test'
-                junit './jenkins/testresults/jest-juint-result.xml'
+                junit './jest-juint-result.xml'
             }
         }
     }

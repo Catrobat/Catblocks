@@ -1,7 +1,8 @@
 # Catblocks Docker-image v1
 
 Please see a template **Dockerfile** for [Catblocks](https://github.com/Catrobat/Catblocks) project.
-It is build on top of the [Alpine-v12](https://github.com/nodejs/docker-node) image with additional python2.7 installed.
+It is build on top of the [Linux Arch](https://www.archlinux.org/).
+This image is just for testing, it is properly to big for real use.
  
 # Building the image
 ```

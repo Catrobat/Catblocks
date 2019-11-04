@@ -19,7 +19,7 @@ module.exports = {
   "reporters": [
     "default",
     ["jest-junit", {
-      "outputDirectory": "./../jenkins/testresults/",
+      "outputDirectory": "./",
       "outputName": "jest-juint-result.xml"
     }]
   ],
