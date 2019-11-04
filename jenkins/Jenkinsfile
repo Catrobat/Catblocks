@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        docker {
+            image 'catblocks:v1' 
+            args '-p 3000:3000' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'cd ./scratch-blocks-develop/ && npm install'
+            }
+        }
+    }
+}
