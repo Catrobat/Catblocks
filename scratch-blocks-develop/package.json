@@ -33,6 +33,8 @@
     "google-closure-compiler": "20180402.0.0",
     "google-closure-library": "20180204.0.0",
     "graceful-fs": "4.1.11",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
     "json": "9.0.4",
     "moka": "^0.2.0",
     "rimraf": "2.6.2",
