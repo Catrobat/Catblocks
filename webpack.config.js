@@ -65,7 +65,8 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: 'assets', to: 'assets' },
-      { from: 'node_modules/scratch-blocks/media', to: 'media' }
+      { from: 'node_modules/scratch-blocks/media', to: 'media' },
+      { from: 'i18n/json', to: 'i18n' }
     ])
   ],
   // watch: true,

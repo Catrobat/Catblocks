@@ -1,10 +1,18 @@
-import { ScratchMsgs, inject, Xml } from "scratch-blocks";
-import { Parser } from "./parser/parser";
+import Blockly from "scratch-blocks";
+import "./catblocks_msgs";
+import "./toolbox/loader";
+
+import XStreamParser from "./parser/parser";
 
 export class Application {
 	constructor() {
+		// for debugging
+		this.Blockly = Blockly;
 		this.workspace = null;
 
+
+	}
+	init() {
 		this.equalsXml = [
 			'  <shadow type="operator_equals">',
 			'    <value name="OPERAND1">',
@@ -28,8 +36,7 @@ export class Application {
 			'    <next></next>',
 			'  </block>'
 		].join('\n');
-	}
-	init() {
+
 		let soundsEnabled = null;
 		if (sessionStorage) {
 			// Restore sounds state.
@@ -52,20 +59,32 @@ export class Application {
 		const toolbox = this.getToolboxElement();
 		document.forms.options.elements.toolbox.selectedIndex =
           toolbox ? 1: 0;
-
+		
 		match = location.search.match(/side=([^&]+)/);
 
 		const side = match ? match[1] : 'start';
 
 		document.forms.options.elements.side.value = side;
 
+		// Setup locale
+		const select = document.getElementsByName("locale")[0];
+		let hasDefault = false;
+		Object.keys(Blockly.CatblocksMsgs.locales).forEach(locale => {
+			const lcoale_opt = document.createElement('option');
+			lcoale_opt.value = locale;
+			lcoale_opt.innerHTML = Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
+			select.appendChild(lcoale_opt);
+			// TODO: set default to SHARE LANGUAGE
+			if (locale === 'en_GB') hasDefault = true;
+		});
+
 		match = location.search.match(/locale=([^&]+)/);
-		const locale = match ? match[1] : 'en';
-		ScratchMsgs.setLocale(locale);
+		const locale = match ? match[1] : (hasDefault ? 'en_GB' : select.options[0].value);
+		Blockly.CatblocksMsgs.setLocale(locale);
 		document.forms.options.elements.locale.value = locale;
 
 		// Create main workspace.
-		this.workspace = inject('blocklyDiv', {
+		this.workspace = Blockly.inject('blocklyDiv', {
 			comments: true,
 			disable: false,
 			collapse: false,
@@ -130,7 +149,7 @@ export class Application {
 		}
 		let valid = true;
 		try {
-			Xml.textToDom(textarea.value);
+			Blockly.Xml.textToDom(textarea.value);
 		} catch (e) {
 			valid = false;
 		}
@@ -158,6 +177,7 @@ export class Application {
 		if (sessionStorage) {
 			sessionStorage.setItem('logFlyoutEvents', state ? 'checked' : '');
 		}
+		
 		const flyoutWorkspace = (this.workspace.flyout_) ? this.workspace.flyout_.workspace_ :
 			this.workspace.toolbox_.flyout_.workspace_;
 		if (state) {
@@ -168,21 +188,21 @@ export class Application {
 	}
 	toXml() {
 		const output = document.getElementById('importExport');
-		const xml = Xml.workspaceToDom(this.workspace);
-		output.value = Xml.domToPrettyText(xml);
+		const xml = Blockly.Xml.workspaceToDom(this.workspace);
+		output.value = Blockly.Xml.domToPrettyText(xml);
 		output.focus();
 		output.select();
 		// this.taChange();
 	}
 	fromXml() {
 		const input = document.getElementById('importExport');
-		const convertedXML = Parser.parseText(input.value);
+		const convertedXML = XStreamParser.parseText(input.value);
 
 		if (convertedXML === undefined || convertedXML === "") {
 			throw "no response from XStreamParser";
 		} else { 
-			const xml = Xml.textToDom(convertedXML);
-			Xml.domToWorkspace(xml, this.workspace);
+			const xml = Blockly.Xml.textToDom(convertedXML);
+			Blockly.Xml.domToWorkspace(xml, this.workspace);
 		}
 		// this.taChange();
 	}
@@ -215,7 +235,7 @@ export class Application {
 		const blocks = toolbox.getElementsByTagName('block');
 		for (let i = 0; i < n; i++) {
 			const blockXML = blocks[Math.floor(Math.random() * blocks.length)];
-			const block = Xml.domToBlock(blockXML, this.workspace);
+			const block = Blockly.Xml.domToBlock(blockXML, this.workspace);
 			block.initSvg();
 			block.moveBy(
 				Math.round(Math.random() * 450 + 40),
@@ -249,9 +269,9 @@ export class Application {
 			equalsBlock);
 
 		xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' + xml + '</xml>';
-		const dom = Xml.textToDom(xml);
+		const dom = Blockly.Xml.textToDom(xml);
 		console.time('Spaghetti domToWorkspace');
-		Xml.domToWorkspace(dom, this.workspace);
+		Blockly.Xml.domToWorkspace(dom, this.workspace);
 		console.timeEnd('Spaghetti domToWorkspace');
 	}
 	reportDemo() {
@@ -264,9 +284,9 @@ export class Application {
 	}
 	setLocale(locale) {
 		this.workspace.getFlyout().setRecyclingEnabled(false);
-		const xml = Xml.workspaceToDom(this.workspace);
-		ScratchMsgs.setLocale(locale);
-		Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
+		const xml = Blockly.Xml.workspaceToDom(this.workspace);
+		Blockly.ScratchMsgs.setLocale(locale);
+		Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
 		this.workspace.getFlyout().setRecyclingEnabled(true);
 	}
 }

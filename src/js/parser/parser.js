@@ -62,7 +62,7 @@ class Formula {
 	}
 }
 
-export class Parser {
+export default class Parser {
 	static parseText(xmlString) {
 		return this.parseXML(new window.DOMParser().parseFromString(xmlString, "text/xml"));
 	}
