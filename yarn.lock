@@ -6336,10 +6336,10 @@ schema-utils@^2.0.0, schema-utils@^2.2.0:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
 
-scratch-blocks@^0.1.0-prerelease.1570730963:
-  version "0.1.0-prerelease.1570730963"
-  resolved "https://registry.yarnpkg.com/scratch-blocks/-/scratch-blocks-0.1.0-prerelease.1570730963.tgz#54e449eb9b8164f1f366a8639203d82680268d1c"
-  integrity sha512-4rTLas2jImF/H3WE93CXwBYGuzVXgiLfF654EL96HXxViuBDNg35UE5VAyextKMxj4AGGULoVdnZaGIV9AfrjQ==
+scratch-blocks@latest:
+  version "0.1.0-prerelease.1572384380"
+  resolved "https://registry.yarnpkg.com/scratch-blocks/-/scratch-blocks-0.1.0-prerelease.1572384380.tgz#991713f06f39b509c2469ea096622e2d11139989"
+  integrity sha512-DTmX9wcShFV/cFNQt1rmexttJIe4hr11nz/omVKLovRsVUKaKJqSxpwbfjduqI9lj/xzCgYzfpC0EtjZFZmbRQ==
   dependencies:
     exports-loader "0.6.3"
     imports-loader "0.6.5"

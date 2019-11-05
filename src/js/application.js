@@ -8,9 +8,9 @@ export class Application {
 	constructor() {
 		// for debugging
 		this.Blockly = Blockly;
+		this.Parser = XStreamParser;
+
 		this.workspace = null;
-
-
 	}
 	init() {
 		this.equalsXml = [
