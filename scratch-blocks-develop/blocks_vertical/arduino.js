@@ -13,12 +13,12 @@ Blockly.Blocks['ArduinoSendDigitalValueBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "DIGITAL_PIN",
+          "name": "ARG1",
           "value": 4
         },
         {
           "type": "field_number",
-          "name": "DIGITAL_PIN_VALUE",
+          "name": "ARG2",
           "value": 2
         }
       ],
@@ -36,12 +36,12 @@ Blockly.Blocks['ArduinoSendPWMValueBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PWM_PIN",
+          "name": "ARG1",
           "value": 4
         },
         {
           "type": "field_number",
-          "name": "PWM_PIN_VALUE",
+          "name": "ARG2",
           "value": 2
         }
       ],

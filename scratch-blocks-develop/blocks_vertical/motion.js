@@ -34,12 +34,12 @@ Blockly.Blocks['PlaceAtBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "X_POSITION",
+          "name": "ARG1",
           "value": 100
         },
         {
           "type": "field_number",
-          "name": "Y_POSITION",
+          "name": "ARG2",
           "value": 200
         }
       ],
@@ -57,7 +57,7 @@ Blockly.Blocks['SetXBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "X_POSITION",
+          "name": "ARG1",
           "value": 100
         }
       ],
@@ -74,7 +74,7 @@ Blockly.Blocks['SetYBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "Y_POSITION",
+          "name": "ARG1",
           "value": 200
         }
       ],
@@ -91,7 +91,7 @@ Blockly.Blocks['ChangeXByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "X_POSITION_CHANGE",
+          "name": "ARG1",
           "value": 100
         }
       ],
@@ -108,7 +108,7 @@ Blockly.Blocks['ChangeYByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "Y_POSITION_CHANGE",
+          "name": "ARG1",
           "value": 200
         }
       ],
@@ -125,7 +125,7 @@ Blockly.Blocks['GoToBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["touch position", "TOUCH"]
           ]
@@ -154,7 +154,7 @@ Blockly.Blocks['MoveNStepsBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "STEPS",
+          "name": "ARG1",
           "value": 10
         }
       ],
@@ -171,7 +171,7 @@ Blockly.Blocks['TurnRightBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "TURN_RIGHT_DEGREES",
+          "name": "ARG1",
           "value": 15
         }
       ],
@@ -188,7 +188,7 @@ Blockly.Blocks['TurnLeftBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "TURN_LEFT_DEGREES",
+          "name": "ARG1",
           "value": 15
         }
       ],
@@ -206,7 +206,7 @@ Blockly.Blocks['PointInDirectionBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "DEGREES",
+          "name": "ARG1",
           "value": 0
         }
       ],
@@ -223,7 +223,7 @@ Blockly.Blocks['PointToBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -242,7 +242,7 @@ Blockly.Blocks['SetRotationStyleBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["left-right only", "RIGHTLEFT"]
           ]
@@ -262,17 +262,17 @@ Blockly.Blocks['GlideToBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "DURATION_IN_SECONDS",
+          "name": "ARG1",
           "value": 1
         },
         {
           "type": "field_number",
-          "name": "X_DESTINATION",
+          "name": "ARG2",
           "value": 100
         },
         {
           "type": "field_number",
-          "name": "Y_DESTINATION",
+          "name": "ARG3",
           "value": 200
         }
       ],
@@ -290,7 +290,7 @@ Blockly.Blocks['GoNStepsBackBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "STEPS",
+          "name": "ARG1",
           "value": 1
         }
       ],
@@ -318,7 +318,7 @@ Blockly.Blocks['VibrationBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "VIBRATE_DURATION_IN_SECONDS",
+          "name": "ARG1",
           "value": 1
         }
       ],
@@ -335,7 +335,7 @@ Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["moving and bounce", "TOIT"]
           ]
@@ -356,12 +356,12 @@ Blockly.Blocks['SetVelocityBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_VELOCITY_X",
+          "name": "ARG1",
           "value": 0
         },
         {
           "type": "field_number",
-          "name": "PHYSICS_VELOCITY_Y",
+          "name": "ARG2",
           "value": 0
         }
       ],
@@ -378,7 +378,7 @@ Blockly.Blocks['TurnLeftSpeedBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_TURN_LEFT_SPEED",
+          "name": "ARG1",
           "value": 15
         }
       ],
@@ -395,7 +395,7 @@ Blockly.Blocks['TurnRightSpeedBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_TURN_RIGHT_SPEED",
+          "name": "ARG1",
           "value": 15
         }
       ],
@@ -413,12 +413,12 @@ Blockly.Blocks['SetGravityBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_GRAVITY_X",
+          "name": "ARG1",
           "value": 0
         },
         {
           "type": "field_number",
-          "name": "PHYSICS_GRAVITY_Y",
+          "name": "ARG2",
           "value": 0
         }
       ],
@@ -436,7 +436,7 @@ Blockly.Blocks['SetMassBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_MASS",
+          "name": "ARG1",
           "value": 1
         }
       ],
@@ -453,7 +453,7 @@ Blockly.Blocks['SetBounceBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_BOUNCE_FACTOR",
+          "name": "ARG1",
           "value": 80
         }
       ],
@@ -470,7 +470,7 @@ Blockly.Blocks['SetFrictionBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PHYSICS_FRICTION",
+          "name": "ARG1",
           "value": 80
         }
       ],

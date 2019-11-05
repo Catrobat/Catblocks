@@ -13,14 +13,14 @@ Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
         },
         {
           "type": "field_number",
-          "name": "VARIABLE",
+          "name": "ARG2",
           "text": "180"
         }
       ],
@@ -38,7 +38,7 @@ Blockly.Blocks['LegoNxtMotorStopBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
@@ -58,14 +58,14 @@ Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
         },
         {
           "type": "field_number",
-          "name": "VARIABLE",
+          "name": "ARG2",
           "text": "100"
         }
       ],
@@ -82,12 +82,12 @@ Blockly.Blocks['LegoNxtPlayToneBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "SECONDS",
+          "name": "ARG1",
           "value": 1
         },
         {
           "type": "field_number",
-          "name": "FREQUENCY",
+          "name": "ARG2",
           "value": 2
         }
       ],

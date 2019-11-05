@@ -55,7 +55,7 @@ Blockly.Blocks['SetPenSizeBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PEN_SIZE",
+          "name": "ARG1",
           "value": 3.15
         }
       ],
@@ -72,17 +72,17 @@ Blockly.Blocks['SetPenColorBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "PEN_COLOR_RED",
+          "name": "ARG1",
           "value": 255
         },
         {
           "type": "field_number",
-          "name": "PEN_COLOR_GREEN",
+          "name": "ARG2",
           "value": 255
         },
         {
           "type": "field_number",
-          "name": "PEN_COLOR_BLUE",
+          "name": "ARG3",
           "value": 255
         }
       ],

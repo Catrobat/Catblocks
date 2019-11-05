@@ -64,7 +64,7 @@ Blockly.Blocks['WaitBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "TIME_TO_WAIT_IN_SECONDS",
+          "name": "ARG1",
           "value": 1
         }
       ],
@@ -82,7 +82,7 @@ Blockly.Blocks['NoteBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "NOTE",
+          "name": "ARG1",
           "text": "Add comment here..."
         }
       ],
@@ -103,7 +103,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "IF_CONDITION",
+          "name": "ARG1",
           "text": "1 < 2"
         }
       ],
@@ -134,7 +134,7 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "IF_CONDITION",
+          "name": "ARG1",
           "text": "1 < 2"
         }
       ],
@@ -157,7 +157,7 @@ Blockly.Blocks['WaitUntilBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "IF_CONDITION",
+          "name": "ARG1",
           "text": "1 < 2"
         }
       ],
@@ -178,7 +178,7 @@ Blockly.Blocks['RepeatBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "TIMES_TO_REPEAT",
+          "name": "ARG1",
           "text": "1 < 2"
         }
       ],
@@ -215,7 +215,7 @@ Blockly.Blocks['RepeatUntilBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "REPEAT_UNTIL_CONDITION",
+          "name": "ARG1",
           "text": "1 < 2"
         }
       ],
@@ -249,7 +249,7 @@ Blockly.Blocks['SceneTransitionBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -269,7 +269,7 @@ Blockly.Blocks['SceneStartBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -289,7 +289,7 @@ Blockly.Blocks['StopScriptBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -309,7 +309,7 @@ Blockly.Blocks['CloneBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]

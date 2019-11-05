@@ -35,14 +35,14 @@ Blockly.Blocks['SetVariableBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_input",
-          "name": "VARIABLE",
+          "name": "ARG2",
           "text": "Some Value"
         }
       ],
@@ -59,14 +59,14 @@ Blockly.Blocks['ChangeVariableBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_input",
-          "name": "VARIABLE_CHANGE",
+          "name": "ARG2",
           "text": "Some new Value"
         }
       ],
@@ -83,19 +83,19 @@ Blockly.Blocks['ShowTextBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_number",
-          "name": "X_POSITION",
+          "name": "ARG2",
           "value": 10
         },
         {
           "type": "field_number",
-          "name": "Y_POSITION",
+          "name": "ARG3",
           "value": 50
         }
       ],
@@ -113,34 +113,34 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_number",
-          "name": "X_POSITION",
+          "name": "ARG2",
           "value": 20
         },
         {
           "type": "field_number",
-          "name": "Y_POSITION",
+          "name": "ARG3",
           "value": 20
         },
         {
           "type": "field_number",
-          "name": "SIZE",
+          "name": "ARG4",
           "value": 100
         },
         {
           "type": "field_number",
-          "name": "COLOR",
+          "name": "ARG5",
           "value": 240
         },
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN2",
+          "name": "ARG6",
           "options": [
             ["new...", "NEW"]
           ]
@@ -160,14 +160,14 @@ Blockly.Blocks['DeleteItemOfUserListBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_number",
-          "name": "LIST_DELETE_ITEM",
+          "name": "ARG2",
           "value": 1
         }
       ],
@@ -185,12 +185,12 @@ Blockly.Blocks['AddItemToUserListBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "LIST_ADD_ITEM",
+          "name": "ARG1",
           "text": "name"
         },
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG2",
           "options": [
             ["new...", "NEW"]
           ]
@@ -209,19 +209,19 @@ Blockly.Blocks['InsertItemIntoUserListBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
+          "name": "ARG1",
           "text": "name"
         },
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG2",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_number",
-          "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
+          "name": "ARG3",
           "value": 1
         }
       ],
@@ -238,19 +238,19 @@ Blockly.Blocks['ReplaceItemInUserListBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
         },
         {
           "type": "field_number",
-          "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
+          "name": "ARG2",
           "value": 0
         },
         {
           "type": "field_input",
-          "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
+          "name": "ARG3",
           "text": "new Value"
         }
       ],
@@ -271,7 +271,7 @@ Blockly.Blocks['HideTextBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -294,7 +294,7 @@ Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]
@@ -317,7 +317,7 @@ Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["new...", "NEW"]
           ]

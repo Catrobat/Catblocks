@@ -64,13 +64,25 @@ class Formula{
 
 let sceneList = [];
 
+const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
+const XML_END = "\n</xml>";
+const NEXT_BEGIN = "\n<next>";
+const NEXT_END = "\n</next>";
+const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
+const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
+const SUB_END = "\n</statement>";
+const FORMULA_DEFINITION = "\n<formula category=";
+
+let XML = XML_BEGIN;
+
 function parseFile(xml) {
     let scenes = xml.getElementsByTagName('scenes')[0].children;
     for(let i = 0; i < scenes.length; i++)
     {
         sceneList.push(parseScenes(scenes[i]));
     }
-    console.log(sceneList);
+    //console.log(sceneList);
+    writeXML();
 }
 
 function parseScenes(scene) {
@@ -251,4 +263,147 @@ function concatFormula(formula, str){
         str = concatFormula(formula.right, str);
     }
     return str;
+}
+
+function writeXML() {
+    console.log(sceneList);
+
+    for(let i = 0; i < sceneList.length; i++){
+        //XML = XML.concat("\n<scene type=\"" + sceneList[i].name + "\">");
+        let currObjectList = sceneList[i].objectList;
+        for(let j = 0; j < currObjectList.length; j++){
+            if(currObjectList[j].lookList.length === 0)
+            {
+                //XML = XML.concat("\n<object type=\"" + currObjectList[j].name + "\" look=\"\">")
+            }
+            else
+            {
+               //XML = XML.concat("\n<object type=\"" + currObjectList[j].name + "\" look=\"" + currObjectList[j].lookList[0].name + "\">")
+            }
+            let currScriptList = currObjectList[j].scriptList;
+            for(let k = 0; k < currScriptList.length; k++){
+                //XML = XML.concat("\n<script type=\"" + currScriptList[k].name + "\">");
+
+                writeScriptsToXML(currScriptList[k]);
+
+                //XML = XML.concat("\n</script>");
+            }
+            //XML = XML.concat("\n</object>");
+        }
+        //XML = XML.concat("\n</scene>");
+    }
+
+    XML = XML.concat(XML_END);
+    console.log(XML);
+
+}
+
+function writeScriptsToXML(currScript) {
+    XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
+
+    let i = 1;
+    for(var value of currScript.formValues.values()){
+        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
+        i = i+1;
+    }
+    if(currScript.brickList.length !== 0)
+    {
+        writeBricksToXML(currScript, 0, true);
+    }
+    XML = XML.concat("\n</block>");
+}
+
+function writeBricksToXML(currScript, index, nextBrick) {
+    if(nextBrick === true)
+    {
+        XML = XML.concat(NEXT_BEGIN);
+    }
+    let currBrick = currScript.brickList[index];
+    //console.log(currBlock);
+    XML = XML.concat("\n<block type=\"" + currBrick.name + "\" id=\"\" x=\"\" y=\"\">");
+
+    let i = 1;
+    for(var value of currBrick.formValues.values()){
+        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
+        i = i+1;
+    }
+
+    if(currBrick.loopOrIfBrickList.length !== 0)
+    {
+        XML = XML.concat(SUB1_BEGIN);
+
+        writeSubBlockToXML(currBrick, 0, false, 1);
+
+        XML = XML.concat(SUB_END);
+    }
+    if(currBrick.elseBrickList.length !== 0)
+    {
+        XML = XML.concat(SUB2_BEGIN);
+
+        writeSubBlockToXML(currBrick, 0, false, 2);
+
+        XML = XML.concat(SUB_END);
+    }
+
+    if(currScript.brickList.length > index + 1)
+    {
+        writeBricksToXML(currScript, index + 1, true);
+    }
+    XML = XML.concat("\n</block>");
+    if(nextBrick === true)
+    {
+        XML = XML.concat(NEXT_END);
+    }
+}
+
+function writeSubBlockToXML(currBrick, index, nextBrick, subBlock) {
+    if(nextBrick === true)
+    {
+        XML = XML.concat(NEXT_BEGIN);
+    }
+    let currSubBrick = currBrick.loopOrIfBrickList[index];
+    if(subBlock === 2)
+    {
+        currSubBrick = currBrick.elseBrickList[index];
+    }
+
+    XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
+
+    let i = 1;
+    for(var value of currSubBrick.formValues.values()){
+        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
+        i = i+1;
+    }
+
+    if(currSubBrick.loopOrIfBrickList.length !== 0)
+    {
+        XML = XML.concat(SUB1_BEGIN);
+
+        writeSubBlockToXML(currSubBrick, 0, false, 1);
+
+        XML = XML.concat(SUB_END);
+    }
+    if(currSubBrick.elseBrickList.length !== 0)
+    {
+        XML = XML.concat(SUB2_BEGIN);
+
+        writeSubBlockToXML(currSubBrick, 0, false, 2);
+
+        XML = XML.concat(SUB_END);
+    }
+
+    if((currBrick.loopOrIfBrickList.length > index + 1) && subBlock === 1)
+    {
+        writeSubBlockToXML(currBrick, index + 1, true, 1);
+    }
+    if((currBrick.elseBrickList.length > index + 1) && subBlock === 2)
+    {
+        writeSubBlockToXML(currBrick, index + 1, true, 2);
+    }
+    XML = XML.concat("\n</block>");
+    if(nextBrick === true)
+    {
+        XML = XML.concat(NEXT_END);
+    }
+
 }

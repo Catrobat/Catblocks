@@ -14,15 +14,15 @@ Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Left", "Right"]
           ]
         },
         {
           "type": "field_number",
-          "name": "SPEED",
-          value: 100
+          "name": "ARG2",
+          "value": 100
         }
       ],
       "category": Blockly.Categories.phiro,
@@ -38,14 +38,14 @@ Blockly.Blocks['PhiroMotorMoveBackwardBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Left", "Right"]
           ]
         },
         {
           "type": "field_number",
-          "name": "SPEED",
+          "name": "ARG2",
           "value": 100
         }
       ],
@@ -62,7 +62,7 @@ Blockly.Blocks['PhiroMotorStopBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Left", "Right"]
           ]
@@ -81,15 +81,15 @@ Blockly.Blocks['PhiroPlayToneBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Do", "Re"]
           ]
         },
         {
           "type": "field_number",
-          "name": "DURATION",
-          value: 1
+          "name": "ARG2",
+          "value": 1
         }
       ],
       "category": Blockly.Categories.phiro,
@@ -105,24 +105,24 @@ Blockly.Blocks['PhiroRGBLightBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Left", "Right","Both"]
           ]
         },
         {
           "type": "field_number",
-          "name": "RED",
+          "name": "ARG2",
           "value": 0
         },
         {
           "type": "field_number",
-          "name": "GREEN",
+          "name": "ARG3",
           "value": 255
         },
         {
           "type": "field_number",
-          "name": "BLUE",
+          "name": "ARG4",
           "value": 255
         }
       ],
@@ -143,7 +143,7 @@ Blockly.Blocks['PhiroIfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Front Left Sensor", "Front Right Sensor","Side Left Sensor"]
           ]

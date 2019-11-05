@@ -13,14 +13,14 @@ Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
         },
         {
           "type": "field_number",
-          "name": "VARIABLE",
+          "name": "ARG2",
           "text": "180"
         }
       ],
@@ -37,14 +37,14 @@ Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
         },
         {
           "type": "field_number",
-          "name": "VARIABLE",
+          "name": "ARG2",
           "text": "100"
         }
       ],
@@ -61,7 +61,7 @@ Blockly.Blocks['LegoEv3MotorStopBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["A", "B"]
           ]
@@ -80,17 +80,17 @@ Blockly.Blocks['LegoEv3PlayToneBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "TIME",
+          "name": "ARG1",
           "value": 1
         },
         {
           "type": "field_number",
-          "name": "FREQUENCY",
+          "name": "ARG2",
           "value": 2
         },
         {
           "type": "field_number",
-          "name": "VOLUME",
+          "name": "ARG3",
           "value": 100
         }
       ],
@@ -107,7 +107,7 @@ Blockly.Blocks['LegoEv3SetLedBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DROPDOWN",
+          "name": "ARG1",
           "options": [
             ["Off", "Green"]
           ]
