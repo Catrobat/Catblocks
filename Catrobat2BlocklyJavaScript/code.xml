@@ -56,7 +56,7 @@
                                     <formulaList>
                                         <formula category="X_POSITION">
                                             <type>NUMBER</type>
-                                            <value>100</value>
+                                            <value>7000</value>
                                         </formula>
                                         <formula category="Y_POSITION">
                                             <type>NUMBER</type>
@@ -103,7 +103,7 @@
                                     </userVariable>
                                     <alignmentSelection>1</alignmentSelection>
                                 </brick>
-                                <brick type="IfThenLogicBeginBrick">
+                                <brick type="IfLogicBeginBrick">
                                     <commentedOut>false</commentedOut>
                                     <formulaList>
                                         <formula category="IF_CONDITION">

@@ -266,144 +266,74 @@ function concatFormula(formula, str){
 }
 
 function writeXML() {
-    console.log(sceneList);
-
     for(let i = 0; i < sceneList.length; i++){
-        //XML = XML.concat("\n<scene type=\"" + sceneList[i].name + "\">");
         let currObjectList = sceneList[i].objectList;
         for(let j = 0; j < currObjectList.length; j++){
-            if(currObjectList[j].lookList.length === 0)
-            {
-                //XML = XML.concat("\n<object type=\"" + currObjectList[j].name + "\" look=\"\">")
-            }
-            else
-            {
-               //XML = XML.concat("\n<object type=\"" + currObjectList[j].name + "\" look=\"" + currObjectList[j].lookList[0].name + "\">")
-            }
             let currScriptList = currObjectList[j].scriptList;
             for(let k = 0; k < currScriptList.length; k++){
-                //XML = XML.concat("\n<script type=\"" + currScriptList[k].name + "\">");
-
                 writeScriptsToXML(currScriptList[k]);
-
-                //XML = XML.concat("\n</script>");
             }
-            //XML = XML.concat("\n</object>");
         }
-        //XML = XML.concat("\n</scene>");
     }
-
     XML = XML.concat(XML_END);
     console.log(XML);
-
 }
 
 function writeScriptsToXML(currScript) {
     XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
-
     let i = 1;
     for(var value of currScript.formValues.values()){
         XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
         i = i+1;
     }
-    if(currScript.brickList.length !== 0)
-    {
-        writeBricksToXML(currScript, 0, true);
+    if(currScript.brickList.length !== 0){
+        writeBrickToXML(currScript, 0, true, 0);
     }
     XML = XML.concat("\n</block>");
 }
 
-function writeBricksToXML(currScript, index, nextBrick) {
-    if(nextBrick === true)
-    {
+
+function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
+    if(nextBrick === true){
         XML = XML.concat(NEXT_BEGIN);
     }
-    let currBrick = currScript.brickList[index];
-    //console.log(currBlock);
-    XML = XML.concat("\n<block type=\"" + currBrick.name + "\" id=\"\" x=\"\" y=\"\">");
-
-    let i = 1;
-    for(var value of currBrick.formValues.values()){
-        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
-        i = i+1;
+    let currSubBrick;
+    if(subBlock === 0){
+        currSubBrick = currBrick.brickList[index];
     }
-
-    if(currBrick.loopOrIfBrickList.length !== 0)
-    {
-        XML = XML.concat(SUB1_BEGIN);
-
-        writeSubBlockToXML(currBrick, 0, false, 1);
-
-        XML = XML.concat(SUB_END);
+    if(subBlock === 1){
+        currSubBrick = currBrick.loopOrIfBrickList[index];
     }
-    if(currBrick.elseBrickList.length !== 0)
-    {
-        XML = XML.concat(SUB2_BEGIN);
-
-        writeSubBlockToXML(currBrick, 0, false, 2);
-
-        XML = XML.concat(SUB_END);
-    }
-
-    if(currScript.brickList.length > index + 1)
-    {
-        writeBricksToXML(currScript, index + 1, true);
-    }
-    XML = XML.concat("\n</block>");
-    if(nextBrick === true)
-    {
-        XML = XML.concat(NEXT_END);
-    }
-}
-
-function writeSubBlockToXML(currBrick, index, nextBrick, subBlock) {
-    if(nextBrick === true)
-    {
-        XML = XML.concat(NEXT_BEGIN);
-    }
-    let currSubBrick = currBrick.loopOrIfBrickList[index];
-    if(subBlock === 2)
-    {
+    if(subBlock === 2){
         currSubBrick = currBrick.elseBrickList[index];
     }
-
     XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
-
     let i = 1;
     for(var value of currSubBrick.formValues.values()){
         XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
         i = i+1;
     }
-
-    if(currSubBrick.loopOrIfBrickList.length !== 0)
-    {
+    if(currSubBrick.loopOrIfBrickList.length !== 0){
         XML = XML.concat(SUB1_BEGIN);
-
-        writeSubBlockToXML(currSubBrick, 0, false, 1);
-
+        writeBrickToXML(currSubBrick, 0, false, 1);
         XML = XML.concat(SUB_END);
     }
-    if(currSubBrick.elseBrickList.length !== 0)
-    {
+    if(currSubBrick.elseBrickList.length !== 0){
         XML = XML.concat(SUB2_BEGIN);
-
-        writeSubBlockToXML(currSubBrick, 0, false, 2);
-
+        writeBrickToXML(currSubBrick, 0, false, 2);
         XML = XML.concat(SUB_END);
     }
-
-    if((currBrick.loopOrIfBrickList.length > index + 1) && subBlock === 1)
-    {
-        writeSubBlockToXML(currBrick, index + 1, true, 1);
+    if(subBlock === 0 && (currBrick.brickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 0);
     }
-    if((currBrick.elseBrickList.length > index + 1) && subBlock === 2)
-    {
-        writeSubBlockToXML(currBrick, index + 1, true, 2);
+    if(subBlock === 1 && (currBrick.loopOrIfBrickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 1);
+    }
+    if(subBlock === 2 && (currBrick.elseBrickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 2);
     }
     XML = XML.concat("\n</block>");
-    if(nextBrick === true)
-    {
+    if(nextBrick === true){
         XML = XML.concat(NEXT_END);
     }
-
 }
