@@ -71,7 +71,6 @@ const NEXT_END = "\n</next>";
 const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
-const FORMULA_DEFINITION = "\n<formula category=";
 
 let XML = XML_BEGIN;
 
@@ -81,7 +80,7 @@ function parseFile(xml) {
     {
         sceneList.push(parseScenes(scenes[i]));
     }
-    //console.log(sceneList);
+    console.log(sceneList);
     writeXML();
 }
 
