@@ -285,7 +285,7 @@ export class Application {
 	setLocale(locale) {
 		this.workspace.getFlyout().setRecyclingEnabled(false);
 		const xml = Blockly.Xml.workspaceToDom(this.workspace);
-		Blockly.ScratchMsgs.setLocale(locale);
+		Blockly.CatblocksMsgs.setLocale(locale);
 		Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
 		this.workspace.getFlyout().setRecyclingEnabled(true);
 	}
