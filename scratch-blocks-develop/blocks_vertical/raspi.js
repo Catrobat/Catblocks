@@ -14,14 +14,14 @@ Blockly.Blocks['WhenRaspiPinChangedBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["3", "5"]
           ]
         },
         {
           "type": "field_dropdown",
-          "name": "ARG2",
+          "name": "DROPDOWN2",
           "options": [
             ["high", "low"]
           ]
@@ -44,7 +44,7 @@ Blockly.Blocks['RaspiIfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "PIN",
           "value": 3
         }
       ],
@@ -73,12 +73,12 @@ Blockly.Blocks['RaspiSendDigitalValueBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "PIN1",
           "value": 3
         },
         {
           "type": "field_number",
-          "name": "ARG2",
+          "name": "PIN2",
           "value": 1
         }
       ],
@@ -95,17 +95,17 @@ Blockly.Blocks['RaspiPwmBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "PIN",
           "value": 3
         },
         {
           "type": "field_number",
-          "name": "ARG2",
+          "name": "PERCENT",
           "value": 50
         },
         {
           "type": "field_number",
-          "name": "ARG3",
+          "name": "HERTZ",
           "value": 100
         }
       ],

@@ -34,7 +34,7 @@ Blockly.Blocks['SetLookBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -53,7 +53,7 @@ Blockly.Blocks['SetLookByIndexBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "LOOK_INDEX",
           "value": 1
         }
       ],
@@ -90,7 +90,7 @@ Blockly.Blocks['SetSizeToBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "SIZE",
           "value": 60
         }
       ],
@@ -127,14 +127,14 @@ Blockly.Blocks['AskBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "ASK_QUESTION",
           "text": "What's your name?"
         },
         {
           "type": "field_dropdown",
-          "name": "ARG2",
+          "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],
@@ -151,7 +151,7 @@ Blockly.Blocks['SayBubbleBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "SAY_BRICK",
           "text": "Hello!"
         }
       ],
@@ -168,12 +168,12 @@ Blockly.Blocks['SayForBubbleBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "SAY_BRICK",
           "text": "Hello!"
         },
         {
           "type": "field_number",
-          "name": "ARG2",
+          "name": "DURATION_IN_SECONDS",
           "value": 1
         }
       ],
@@ -190,7 +190,7 @@ Blockly.Blocks['ThinkBubbleBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "THINK_BRICK",
           "text": "Hmmmm!"
         }
       ],
@@ -207,12 +207,12 @@ Blockly.Blocks['ThinkForBubbleBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "THINK_BRICK",
           "text": "Hmmmm!"
         },
         {
           "type": "field_number",
-          "name": "ARG2",
+          "name": "DURATION_IN_SECONDS",
           "value": 1
         }
       ],
@@ -229,7 +229,7 @@ Blockly.Blocks['SetTransparencyBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "TRANSPARENCY",
           "value": 50
         }
       ],
@@ -246,7 +246,7 @@ Blockly.Blocks['ChangeSizeByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "SIZE_CHANGE",
           "value": 10
         }
       ],
@@ -263,7 +263,7 @@ Blockly.Blocks['ChangeTransparencyByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "TRANSPARENCY_CHANGE",
           "value": 10
         }
       ],
@@ -280,7 +280,7 @@ Blockly.Blocks['SetBrightnessBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "BRIGHTNESS",
           "value": 20
         }
       ],
@@ -297,7 +297,7 @@ Blockly.Blocks['ChangeBrightnessByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "BRIGHTNESS_CHANGE",
           "value": 50
         }
       ],
@@ -314,7 +314,7 @@ Blockly.Blocks['SetColorBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "COLOR",
           "value": 0
         }
       ],
@@ -331,7 +331,7 @@ Blockly.Blocks['ChangeColorByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "COLOR_CHANGE",
           "value": 0
         }
       ],
@@ -358,7 +358,7 @@ Blockly.Blocks['SetBackgroundBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -377,7 +377,7 @@ Blockly.Blocks['SetBackgroundByIndexBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "LOOK_INDEX",
           "value": 1
         }
       ],
@@ -394,7 +394,7 @@ Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -413,7 +413,7 @@ Blockly.Blocks['SetBackgroundByIndexAndWaitBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "LOOK_INDEX",
           "value": 10
         }
       ],
@@ -430,7 +430,7 @@ Blockly.Blocks['CameraBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["on", "ON"]
           ]
@@ -449,7 +449,7 @@ Blockly.Blocks['ChooseCameraBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["front", "FRONT"]
           ]
@@ -468,7 +468,7 @@ Blockly.Blocks['FlashBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["on", "ON"]
           ]

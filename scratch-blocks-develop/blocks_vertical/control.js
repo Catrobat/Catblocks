@@ -64,7 +64,7 @@ Blockly.Blocks['WaitBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "TIME_TO_WAIT_IN_SECONDS",
           "value": 1
         }
       ],
@@ -82,7 +82,7 @@ Blockly.Blocks['NoteBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "NOTE",
           "text": "Add comment here..."
         }
       ],
@@ -95,7 +95,7 @@ Blockly.Blocks['NoteBrick'] = {
 Blockly.Blocks['IfLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
-      "type": "IfLogicBeginBrick",
+      "type": "IfThenLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1",
       "message2": Blockly.Msg.CONTROL_IFISTRUEELSEELSE,
@@ -103,7 +103,7 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "IF_CONDITION",
           "text": "1 < 2"
         }
       ],
@@ -128,13 +128,13 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
 Blockly.Blocks['IfThenLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
-      "type": "IfThenLogicBeginBrick",
+      "type": "IfLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1", // Statement
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "IF_CONDITION",
           "text": "1 < 2"
         }
       ],
@@ -157,7 +157,7 @@ Blockly.Blocks['WaitUntilBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "IF_CONDITION",
           "text": "1 < 2"
         }
       ],
@@ -178,7 +178,7 @@ Blockly.Blocks['RepeatBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "TIMES_TO_REPEAT",
           "text": "1 < 2"
         }
       ],
@@ -215,7 +215,7 @@ Blockly.Blocks['RepeatUntilBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "REPEAT_UNTIL_CONDITION",
           "text": "1 < 2"
         }
       ],
@@ -249,7 +249,7 @@ Blockly.Blocks['SceneTransitionBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -269,7 +269,7 @@ Blockly.Blocks['SceneStartBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -289,7 +289,7 @@ Blockly.Blocks['StopScriptBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -309,7 +309,7 @@ Blockly.Blocks['CloneBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]

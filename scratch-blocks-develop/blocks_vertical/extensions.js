@@ -70,7 +70,7 @@ Blockly.Blocks['extension_music_drum'] = {
         },
         {
           "type": "input_value",
-          "name": "ARG1"
+          "name": "NUMBER"
         }
       ],
       "category": Blockly.Categories.more,
@@ -176,7 +176,7 @@ Blockly.Blocks['extension_wedo_tilt_reporter'] = {
         },
         {
           "type": "input_value",
-          "name": "ARG1"
+          "name": "TILT"
         }
       ],
       "category": Blockly.Categories.more,
@@ -195,7 +195,7 @@ Blockly.Blocks['extension_wedo_tilt_menu'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "TILT",
           "options": [
             ['Any', 'Any'],
             ['Whirl', 'Whirl'],
@@ -252,7 +252,7 @@ Blockly.Blocks['extension_microbit_display'] = {
         },
         {
           "type": "input_value",
-          "name": "ARG1"
+          "name": "MATRIX"
         },
       ],
       "category": Blockly.Categories.pen,
@@ -280,11 +280,11 @@ Blockly.Blocks['extension_music_play_note'] = {
         },
         {
           "type": "input_value",
-          "name": "ARG1"
+          "name": "NOTE"
         },
         {
           "type": "input_value",
-          "name": "ARG2"
+          "name": "BEATS"
         }
       ],
       "category": Blockly.Categories.pen,

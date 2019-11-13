@@ -66,7 +66,7 @@ Blockly.Blocks['BroadcastScript'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -86,7 +86,7 @@ Blockly.Blocks['BroadcastBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -106,7 +106,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -127,7 +127,7 @@ Blockly.Blocks['WhenConditionScript'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "IF_CONDITION",
           "text": "1 < 2"
         }
       ],
@@ -144,7 +144,7 @@ Blockly.Blocks['WhenBounceOffScript'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["any edge, actor, or object", "EDGE"]
           ]
@@ -163,7 +163,7 @@ Blockly.Blocks['WhenBackgroundChangesScript'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]

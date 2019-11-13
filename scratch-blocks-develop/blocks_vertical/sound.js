@@ -34,7 +34,7 @@ Blockly.Blocks['PlaySoundBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -53,7 +53,7 @@ Blockly.Blocks['PlaySoundAndWaitBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["new...", "NEW"]
           ]
@@ -82,7 +82,7 @@ Blockly.Blocks['SetVolumeToBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "VOLUME",
           "value": 60
         }
       ],
@@ -99,7 +99,7 @@ Blockly.Blocks['ChangeVolumeByNBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "VOLUME_CHANGE",
           "value": -10
         }
       ],
@@ -116,7 +116,7 @@ Blockly.Blocks['SpeakBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "SPEAK",
           "text": "Hello!"
         }
       ],
@@ -133,7 +133,7 @@ Blockly.Blocks['SpeakAndWaitBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "SPEAK",
           "text": "Hello!"
         }
       ],
@@ -150,14 +150,14 @@ Blockly.Blocks['AskSpeechBrick'] = {
       "args0": [
         {
           "type": "field_input",
-          "name": "ARG1",
+          "name": "ASK_SPEECH_QUESTION",
           "text": "What's your name?"
         },
         {
           "type": "field_dropdown",
-          "name": "ARG2",
+          "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],

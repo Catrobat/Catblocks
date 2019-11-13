@@ -280,10 +280,8 @@ function writeXML() {
 
 function writeScriptsToXML(currScript) {
     XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
-    let i = 1;
-    for(var value of currScript.formValues.values()){
-        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
-        i = i+1;
+    for(var [key, value] of currScript.formValues){
+        XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
     }
     if(currScript.brickList.length !== 0){
         writeBrickToXML(currScript, 0, true, 0);
@@ -307,10 +305,9 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
         currSubBrick = currBrick.elseBrickList[index];
     }
     XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
-    let i = 1;
-    for(var value of currSubBrick.formValues.values()){
-        XML = XML.concat("\n<field name=\"ARG" + i + "\">" + value + "</field>");
-        i = i+1;
+
+    for(var [key, value] of currSubBrick.formValues){
+        XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
     }
     if(currSubBrick.loopOrIfBrickList.length !== 0){
         XML = XML.concat(SUB1_BEGIN);

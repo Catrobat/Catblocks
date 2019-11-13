@@ -13,11 +13,11 @@ Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1"
+          "name": "STEPS"
         },
         {
           "type": "field_number",
-          "name": "ARG2"
+          "name": "POWER"
         }
       ],
       "category": Blockly.Categories.jumpingSumo,
@@ -33,11 +33,11 @@ Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1"
+          "name": "STEPS"
         },
         {
           "type": "field_number",
-          "name": "ARG2"
+          "name": "POWER"
         }
       ],
       "category": Blockly.Categories.jumpingSumo,
@@ -53,7 +53,7 @@ Blockly.Blocks['JumpingSumoAnimationsBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["Spin", "Tab"]
           ]
@@ -73,14 +73,14 @@ Blockly.Blocks['JumpingSumoSoundBrick'] = {
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "ARG1",
+          "name": "DROPDOWN",
           "options": [
             ["Normal", "Robot"]
           ]
         },
         {
           "type": "field_number",
-          "name": "ARG2",
+          "name": "VARIABLE",
           "text": "50"
         }
       ],
@@ -128,7 +128,7 @@ Blockly.Blocks['JumpingSumoRotateLeftBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "ANGLE",
           "value": 90
         }
       ],
@@ -145,7 +145,7 @@ Blockly.Blocks['JumpingSumoRotateRightBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "ARG1",
+          "name": "ANGLE",
           "value": 90
         }
       ],
