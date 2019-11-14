@@ -8,1985 +8,249 @@
         <applicationVersion>0.9.64</applicationVersion>
         <catrobatLanguageVersion>0.99992</catrobatLanguageVersion>
         <dateTimeUpload/>
-        <description>new  game</description>
-        <deviceName>BQru-5035</deviceName>
+        <description/>
+        <deviceName>SM-G975F</deviceName>
         <isCastProject>false</isCastProject>
-        <landscapeMode>true</landscapeMode>
+        <landscapeMode>false</landscapeMode>
         <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
         <platform>Android</platform>
-        <platformVersion>24</platformVersion>
+        <platformVersion>28</platformVersion>
         <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-        <programName>Jollibee's Android Update 4</programName>
-        <remixOf>/pocketcode/program/104137</remixOf>
+        <programName>amazingtest</programName>
+        <remixOf></remixOf>
         <scenesEnabled>true</scenesEnabled>
-        <screenHeight>720</screenHeight>
+        <screenHeight>2173</screenHeight>
         <screenMode>STRETCH</screenMode>
-        <screenWidth>1280</screenWidth>
-        <tags/>
-        <url>/pocketcode/program/114660</url>
-        <userHandle>yatopkrutoy</userHandle>
+        <screenWidth>1080</screenWidth>
+        <tags>Experimental</tags>
+        <url>/pocketcode/program/113624</url>
+        <userHandle>LosJulios</userHandle>
     </header>
     <settings/>
     <scenes>
         <scene>
             <name>Scene 1</name>
             <objectList>
-                <object type="SingleSprite" name="Фон">
+                <object type="Sprite" name="Background">
                     <lookList/>
+                    <soundList/>
+                    <scriptList/>
+                    <nfcTagList/>
+                    <userVariables/>
+                    <userLists/>
+                </object>
+                <object type="Sprite" name="actor">
+                    <lookList>
+                        <look fileName="My actor or object.png" name="actor"/>
+                        <look fileName="actor.png" name="actor (1)"/>
+                    </lookList>
                     <soundList>
-                        <sound fileName="recording_#4" name="Jolly Good Horror "/>
+                        <sound fileName="recording" name="recording"/>
+                        <sound fileName="recording_#0" name="recording (1)"/>
                     </soundList>
                     <scriptList>
                         <script type="StartScript">
                             <brickList>
-                                <brick type="PlaySoundBrick">
+                                <brick type="IfLogicBeginBrick">
                                     <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="icon">
-                    <lookList>
-                        <look fileName="3b7c678d08d28d3b63b30a554d01db74_look.png" name="icon"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="static">
-                    <lookList>
-                        <look fileName="a3afa8e68dd174738835c71f6bbd8a89_main menu.png" name="Static "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="ForeverBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="SetSizeToBrick">
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>NUMBER</type>
+                                                <value>1</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>2</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>SMALLER_THAN</value>
+                                        </formula>
+                                    </formulaList>
+                                    <elseBranchBricks>
+                                        <brick type="ChangeYByNBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="SIZE">
+                                                <formula category="Y_POSITION_CHANGE">
                                                     <type>NUMBER</type>
-                                                    <value>70</value>
+                                                    <value>10</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="WaitBrick">
+                                        <brick type="IfThenLogicBeginBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                                <formula category="IF_CONDITION">
+                                                    <leftChild>
+                                                        <type>NUMBER</type>
+                                                        <value>1</value>
+                                                    </leftChild>
+                                                    <rightChild>
+                                                        <type>NUMBER</type>
+                                                        <value>2</value>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>SMALLER_THAN</value>
+                                                </formula>
+                                            </formulaList>
+                                            <ifBranchBricks>
+                                                <brick type="ShowTextColorSizeAlignmentBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="X_POSITION">
+                                                            <type>NUMBER</type>
+                                                            <value>100</value>
+                                                        </formula>
+                                                        <formula category="SIZE">
+                                                            <type>NUMBER</type>
+                                                            <value>120.0</value>
+                                                        </formula>
+                                                        <formula category="Y_POSITION">
+                                                            <type>NUMBER</type>
+                                                            <value>200</value>
+                                                        </formula>
+                                                        <formula category="COLOR">
+                                                            <type>STRING</type>
+                                                            <value>#FF0000</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                    <userVariable type="UserVariable" serialization="custom">
+                                                        <userVariable>
+                                                            <default>
+                                                                <deviceValueKey>4af96eb4-88a3-43c2-b997-16d9df3657a9</deviceValueKey>
+                                                                <name>xyz</name>
+                                                            </default>
+                                                        </userVariable>
+                                                    </userVariable>
+                                                    <alignmentSelection>1</alignmentSelection>
+                                                </brick>
+                                                <brick type="SpeakAndWaitBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="SPEAK">
+                                                            <type>STRING</type>
+                                                            <value>Hello!</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                </brick>
+                                            </ifBranchBricks>
+                                        </brick>
+                                        <brick type="RepeatBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="TIMES_TO_REPEAT">
                                                     <type>NUMBER</type>
-                                                    <value>0.3</value>
+                                                    <value>10</value>
+                                                </formula>
+                                            </formulaList>
+                                            <loopBricks>
+                                                <brick type="SpeakBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="SPEAK">
+                                                            <type>STRING</type>
+                                                            <value>Hello!</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                </brick>
+                                                <brick type="GoToBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <spinnerSelection>80</spinnerSelection>
+                                                </brick>
+                                            </loopBricks>
+                                        </brick>
+                                        <brick type="SetPenColorBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="PEN_COLOR_BLUE">
+                                                    <type>NUMBER</type>
+                                                    <value>255</value>
+                                                </formula>
+                                                <formula category="PEN_COLOR_RED">
+                                                    <type>NUMBER</type>
+                                                    <value>0</value>
+                                                </formula>
+                                                <formula category="PEN_COLOR_GREEN">
+                                                    <type>NUMBER</type>
+                                                    <value>0</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="SetSizeToBrick">
+                                    </elseBranchBricks>
+                                    <ifBranchBricks>
+                                        <brick type="AskBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="SIZE">
+                                                <formula category="ASK_QUESTION">
+                                                    <type>STRING</type>
+                                                    <value>What's your name?</value>
+                                                </formula>
+                                            </formulaList>
+                                            <userVariable reference="../../../elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+                                        </brick>
+                                        <brick type="SetVolumeToBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="VOLUME">
                                                     <type>NUMBER</type>
-                                                    <value>70</value>
+                                                    <value>60.0</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="WaitBrick">
+                                    </ifBranchBricks>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                        </script>
+                        <script type="WhenScript">
+                            <brickList>
+                                <brick type="IfOnEdgeBounceBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfThenLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>NUMBER</type>
+                                                <value>1</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>2</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>SMALLER_THAN</value>
+                                        </formula>
+                                    </formulaList>
+                                    <ifBranchBricks>
+                                        <brick type="AskBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.3</value>
+                                                <formula category="ASK_QUESTION">
+                                                    <type>STRING</type>
+                                                    <value>What's your name?</value>
+                                                </formula>
+                                            </formulaList>
+                                            <userVariable reference="../../../../../../script/brickList/brick/elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+                                        </brick>
+                                        <brick type="ChangeVolumeByNBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="VOLUME_CHANGE">
+                                                    <rightChild>
+                                                        <type>NUMBER</type>
+                                                        <value>10.0</value>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>MINUS</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="SetSizeToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>70</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.3</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="SetSizeToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>70</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.3</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="SetSizeToBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="SIZE">
-                                                    <type>NUMBER</type>
-                                                    <value>70</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                    </loopBricks>
+                                    </ifBranchBricks>
                                 </brick>
                             </brickList>
                             <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="new game">
-                    <lookList>
-                        <look fileName="e5a85f383d2f8927607316bf9f37296b_New game.png" name="New game"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="e744c5add52c003f700b350377d536a7_blank.aac" name="blank"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="SetSizeToBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="SIZE">
-                                            <type>NUMBER</type>
-                                            <value>70</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>date</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Port by">
-                    <lookList>
-                        <look fileName="My actor or object_#30.png" name="Port by"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="date">
-                    <lookList>
-                        <look fileName="3630e1217a41ad67592586f83d3fd828_look.png" name="news paper"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording" name="Live news"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>2</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>intro</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>date</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="intro">
-                    <lookList>
-                        <look fileName="My actor or object_#4.png" name="intro"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>intro</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="news">
-                    <lookList>
-                        <look fileName="b8f52d275da1cad14130690002d086da_look.png" name="roam"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>2</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 2</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 2">
-                    <lookList>
-                        <look fileName="My actor or object_#8.png" name="news 2"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>3</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 3</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 2</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 3">
-                    <lookList>
-                        <look fileName="My actor or object_#10.png" name="news 3"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 4</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 3</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 4">
-                    <lookList>
-                        <look fileName="My actor or object_#14.png" name="news 4"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 5</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 4</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 5">
-                    <lookList>
-                        <look fileName="My actor or object_#15.png" name="news 5"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>2</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 6</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 5</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 6">
-                    <lookList>
-                        <look fileName="My actor or object_#17.png" name="news 7"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 8</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 7</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 7">
-                    <lookList>
-                        <look fileName="My actor or object_#16.png" name="news 6"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 7</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 6</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 8">
-                    <lookList>
-                        <look fileName="My actor or object_#18.png" name="news 8"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news 9</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 8</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news 9">
-                    <lookList>
-                        <look fileName="My actor or object_#19.png" name="news 9"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>kitchen </broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news 9</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="kitchen ">
-                    <lookList>
-                        <look fileName="My actor or object_#20.png" name="kitchen "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>kitchen 2</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>kitchen </receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="kitchen 2">
-                    <lookList>
-                        <look fileName="My actor or object_#21.png" name="kitchen 2"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>1</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>kitchen 3</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>kitchen 2</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="kitchen 3">
-                    <lookList>
-                        <look fileName="My actor or object_#22.png" name="kitchen 3"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>3</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>news paper </broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>kitchen 3</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="news paper ">
-                    <lookList>
-                        <look fileName="My actor or object_#23.png" name="news paper "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>6</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>date 2</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>news paper </receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="date 2">
-                    <lookList>
-                        <look fileName="My actor or object_#24.png" name="date 2"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="StopAllSoundsBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>3</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>loading</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>date 2</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="loading ">
-                    <lookList>
-                        <look fileName="201aaec36ea4bce0b717abcf66ddc3e9_look.png" name="loading"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>9</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>office</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>loading</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="office">
-                    <lookList>
-                        <look fileName="7e2c914aebe996847632e17f1f3a6b2b_look.png" name="office"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#6" name="Office sound  EXTENDED "/>
-                        <sound fileName="recording_#5" name="Phone guy"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound[2]"/>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="Hide">
-                    <lookList>
-                        <look fileName="chica.png" name="Jollibee"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>2</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>lights off</receivedMessage>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ForeverBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>40</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="ShowBrick">
-                                            <commentedOut>false</commentedOut>
-                                        </brick>
-                                        <brick type="PlaySoundBrick">
-                                            <commentedOut>false</commentedOut>
-                                        </brick>
-                                    </loopBricks>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="camera button">
-                    <lookList>
-                        <look fileName="84dc4faeb4ca6350920d5ecae5a9d8eb_look.png" name="camera"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#2" name="sound"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>camera</broadcastMessage>
-                                </brick>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="camera">
-                    <lookList>
-                        <look fileName="camera.png" name="camera"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#3" name="Camera up"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>camera</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="change floor button ">
-                    <lookList>
-                        <look fileName="My actor or object_#26.png" name="change floor button "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>camera</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>change floor 2</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="change floor 2">
-                    <lookList>
-                        <look fileName="My actor or object_#27.png" name="change floor 2"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>change floor 2</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="shut vent button ">
-                    <lookList>
-                        <look fileName="My actor or object_#28.png" name="shut vent button "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>change floor 2</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="Light button ">
-                    <lookList>
-                        <look fileName="7515e584d2a7d09b0e4f3d8e29727bdf_look.png" name="mask button"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>lights off</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="lights off">
-                    <lookList>
-                        <look fileName="45c2afba00a25d8c838603b08a24971f_look.png" name="mask"/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#1" name="Power off"/>
-                        <sound fileName="recording_#0" name="Power on"/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>lights off</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound[2]"/>
-                                </brick>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="window button ">
-                    <lookList>
-                        <look fileName="My actor or object_#1.png" name="Parts and service button"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>window </broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="window">
-                    <lookList>
-                        <look fileName="My actor or object_#2.png" name="parts and service "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>window </receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Vent button ">
-                    <lookList>
-                        <look fileName="My actor or object_#3.png" name="Vent button "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>vent</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="vent ">
-                    <lookList>
-                        <look fileName="My actor or object_#11.png" name="vent 2"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>vent</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="night">
-                    <lookList>
-                        <look fileName="6ba799542fee628e4d7a9b212343b28c_look.png" name="My Object"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="time 12am">
-                    <lookList>
-                        <look fileName="28e347b7b2153b349ae7e1237fc537e7_look.png" name="time 12am"/>
-                        <look fileName="e5935111b553656444cdbba636744a43_look.png" name="look"/>
-                        <look fileName="a9bdaff91624956d7c0f2f19ddaf54f7_look.png" name="look"/>
-                        <look fileName="1a2af6a9bf0ce156d53cd1d3497a9268_look.png" name="look"/>
-                        <look fileName="9f1372331cea9c346847bf0171b816f2_look.png" name="look"/>
-                        <look fileName="dc55dd17e0fd137d8478de8ea4eeb147_look.png" name="look"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look[2]"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look[3]"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look[4]"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look[5]"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="SetLookBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <look reference="../../../../../lookList/look[6]"/>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>59</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>Roam 1</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>office</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="SingleSprite" name="Roam 1">
-                    <lookList>
-                        <look fileName="77e13d637c969dad927ca4056fec0373_look.png" name="6am"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="StopAllSoundsBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>6</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>Roam 2</broadcastMessage>
-                                </brick>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="ForeverBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <loopBricks>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.1</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.1</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.1</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                        <brick type="WaitBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                                    <type>NUMBER</type>
-                                                    <value>0.1</value>
-                                                </formula>
-                                            </formulaList>
-                                        </brick>
-                                        <brick type="SetLookBrick">
-                                            <commentedOut>false</commentedOut>
-                                            <look reference="../../../../../../../lookList/look"/>
-                                        </brick>
-                                    </loopBricks>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Roam 1</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Roam 2">
-                    <lookList>
-                        <look fileName="My actor or object.png" name="Roam"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>5</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>Yum Minigame </broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Roam 2</receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Yum Minigame ">
-                    <lookList>
-                        <look fileName="My actor or object_#0.png" name="Yum Minigame "/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#8" name="creppy music "/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Yum Minigame </receivedMessage>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="wire button">
-                    <lookList>
-                        <look fileName="My actor or object_#5.png" name="wires"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Yum Minigame </receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>Wires</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Light ">
-                    <lookList>
-                        <look fileName="My actor or object_#12.png" name="Light "/>
-                    </lookList>
-                    <soundList>
-                        <sound fileName="recording_#7" name="flashlight "/>
-                    </soundList>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Yum Minigame </receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="PlaySoundBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <sound reference="../../../../../soundList/sound"/>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>flash yum</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="flash yum">
-                    <lookList>
-                        <look fileName="My actor or object_#13.png" name="flash yum"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>flash yum</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Wires">
-                    <lookList>
-                        <look fileName="My actor or object_#6.png" name="Wires"/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Wires</receivedMessage>
-                        </script>
-                        <script type="WhenScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                    </scriptList>
-                    <nfcTagList/>
-                    <userVariables/>
-                    <userLists/>
-                </object>
-                <object type="Sprite" name="Shift Complete ">
-                    <lookList>
-                        <look fileName="My actor or object_#7.png" name="Shift Complete "/>
-                    </lookList>
-                    <soundList/>
-                    <scriptList>
-                        <script type="StartScript">
-                            <brickList>
-                                <brick type="HideBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                        </script>
-                        <script type="BroadcastScript">
-                            <brickList>
-                                <brick type="StopAllSoundsBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="ShowBrick">
-                                    <commentedOut>false</commentedOut>
-                                </brick>
-                                <brick type="WaitBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <formulaList>
-                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
-                                            <type>NUMBER</type>
-                                            <value>8</value>
-                                        </formula>
-                                    </formulaList>
-                                </brick>
-                                <brick type="BroadcastBrick">
-                                    <commentedOut>false</commentedOut>
-                                    <broadcastMessage>end</broadcastMessage>
-                                </brick>
-                            </brickList>
-                            <commentedOut>false</commentedOut>
-                            <receivedMessage>Shift Complete </receivedMessage>
                         </script>
                     </scriptList>
                     <nfcTagList/>
@@ -1996,6 +260,8 @@
             </objectList>
         </scene>
     </scenes>
-    <programVariableList/>
+    <programVariableList>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick/elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+    </programVariableList>
     <programListOfLists/>
 </program>

@@ -214,6 +214,105 @@ function checkUsage(list, location){
         let lookName = findLookName(list, lookNR);
         location.formValues.set("look", lookName);
     }
+    if(list.nodeName === "userVariable")
+    {
+        if(list.childNodes.length !== 0) {
+            findCurrentVariableName(list, location);
+        }
+        else{
+            let reference = list.getAttribute("reference");
+            findOtherVariableName(list, location, reference);
+
+        }
+
+    }
+}
+
+function findCurrentVariableName(list, location) {
+    for(let i = 0; i < list.childNodes.length; i++) {
+        if(list.childNodes[i].nodeName === "userVariable"){
+            let userVariable = list.childNodes[i];
+            for(let j = 0; j < userVariable.childNodes.length; j++){
+                if(userVariable.childNodes[j].nodeName === "default"){
+                    let defaultBlock = userVariable.childNodes[j];
+                    for(let k = 0; k < defaultBlock.childNodes.length; k++){
+                        if(defaultBlock.childNodes[k].nodeName === "name"){
+                            location.formValues.set("DROPDOWN", defaultBlock.childNodes[k].textContent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function findOtherVariableName(list, location, reference){
+    if(reference.startsWith("../"))
+    {
+        reference = reference.slice(3, );
+        findOtherVariableName(list.parentElement, location, reference);
+    }
+    else if(reference.startsWith("userVariable")){
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "userVariable")
+            {
+                findCurrentVariableName(list.childNodes[i], location);
+            }
+        }
+    }else if(reference.startsWith("ifBranchBricks")){
+        reference = reference.slice(20, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+            }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "ifBranchBricks"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }else if(reference.startsWith("elseBranchBricks")){
+        reference = reference.slice(22, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+            }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "elseBranchBricks"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }else if(reference.startsWith("script")){
+        reference = reference.slice(6, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+        }
+        reference = reference.slice(1, );
+        findOtherVariableName(list.childNodes[(position * 2) - 1], location, reference);
+
+
+    }else if(reference.startsWith("brickList")){
+        reference = reference.slice(15, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+        }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "brickList"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }
 }
 
 function findSoundName(currentNode, soundNR){
