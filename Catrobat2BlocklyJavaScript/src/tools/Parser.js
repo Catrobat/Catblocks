@@ -365,13 +365,19 @@ function concatFormula(formula, str){
 
 function writeXML() {
     for(let i = 0; i < sceneList.length; i++){
+        XML = XML.concat(`<scene type="${sceneList[i].name}">`);
         let currObjectList = sceneList[i].objectList;
         for(let j = 0; j < currObjectList.length; j++){
+            XML = XML.concat(`<object type="${currObjectList[j].name}">`);
             let currScriptList = currObjectList[j].scriptList;
             for(let k = 0; k < currScriptList.length; k++){
+                XML = XML.concat(`<script type="${currScriptList[k].name}">`);
                 writeScriptsToXML(currScriptList[k]);
+                XML = XML.concat(`</script>`);
             }
+            XML = XML.concat(`</object>`);
         }
+        XML = XML.concat(`</scene>`)
     }
     XML = XML.concat(XML_END);
     console.log(XML);

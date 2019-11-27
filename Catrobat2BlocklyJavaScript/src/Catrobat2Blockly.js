@@ -1,10 +1,11 @@
 function loadXMLDoc() {
-    let request = new XMLHttpRequest();
-
-    request.open("GET", "../code.xml", true);
-    request.send();
-
-    request.onload = function () {
-        parseFile(request.responseXML);
-    }
+    ['../code.xml'].forEach(remoteFile => {
+        fetch(remoteFile)
+            .then(res => res.text())
+            .then(str => (new DOMParser).parseFromString(str, 'text/xml'))
+            .then(xml => {
+                console.log(xml);
+                parseFile(xml);
+            });
+    });
 }
