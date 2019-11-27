@@ -63,6 +63,7 @@ class Formula{
 }
 
 let sceneList = [];
+let xmlDoc = undefined;
 
 const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
 const XML_END = "\n</xml>";
@@ -75,6 +76,7 @@ const SUB_END = "\n</statement>";
 let XML = XML_BEGIN;
 
 function parseFile(xml) {
+    xmlDoc = xml;
     let scenes = xml.getElementsByTagName('scenes')[0].children;
     for(let i = 0; i < scenes.length; i++)
     {
@@ -82,6 +84,14 @@ function parseFile(xml) {
     }
     console.log(sceneList);
     writeXML();
+}
+
+function flatReference(node, xml=xmlDoc) {
+    let refPath = node.getAttribute('reference');
+    if (refPath) {
+        return xmlDoc.evaluate(refPath, node, null, XPathResult.ANY_TYPE, null).iterateNext();
+    }
+    return node;
 }
 
 function parseScenes(scene) {
@@ -97,6 +107,8 @@ function parseScenes(scene) {
 }
 
 function parseObjects(object) {
+    object = flatReference(object);
+
     let name = object.getAttribute("name");
     if(name !== null){
         let currentObject = new Object(name);
