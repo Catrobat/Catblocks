@@ -102,7 +102,7 @@ export const injectNewDom = (container, tagName, attributes, textContent) => {
 	Object.keys(attributes).forEach(attrKey => {
 		subContainer.setAttribute(attrKey, attributes[attrKey]);
 	});
-	if (textContent) {
+	if (typeof textContent !== 'undefined') {
 		subContainer.textContent = textContent;
 	}
 	if (typeof container === 'string') {
@@ -141,5 +141,49 @@ export const wrapElement = (element, wrapTag, attributes) => {
 export const removeAllChildren = (node) => {
 	while (node.hasChildNodes()) {
 		node.removeChild(node.lastChild);
+	}
+};
+
+/**
+ * Retrieve dom from document by id or class name
+ * returns undefined in neither string or dom element
+ * @param {string|Element} idName 
+ * @param {Element?} ancestor to search from
+ * @return {Element} dom element for name
+ */
+export const getDomElement = (name, ancestor) => {
+	switch (typeof name) {
+	case 'object': {
+		return name;
+	}
+	case 'string': {
+		if (typeof ancestor !== 'undefined') {
+			return ancestor.getElementsByClassName(name)[0];
+		}
+		return document.getElementById(name) ||
+				document.querySelector(name)[0];
+	}
+	default: {
+		return undefined;
+	}
+	}
+};
+
+/**
+ * Check if dom has children
+ * @param {Element} element to check if has children
+ * @return {Boolean} if has children
+ */
+export const hasChildren = (element) => {
+	switch (element.toString()) {
+	case '[object HTMLDivElement]': {
+		return (element.children !== undefined && element.children.length > 0);
+	}
+	case '[object HTMLCollection]': {
+		return element.length;
+	}
+	default: {
+		return element.children.length || element.hasChildNodes() || element.firstChild;
+	}
 	}
 };

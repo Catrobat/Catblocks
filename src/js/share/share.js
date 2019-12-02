@@ -4,7 +4,7 @@
 
 import Blockly from 'scratch-blocks';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren } from './utils';
 
 export class Share {
 	constructor(options) {
@@ -16,6 +16,9 @@ export class Share {
 		this.cssNode = undefined;
 	}
 
+	/**
+	 * init share class instance
+	 */
 	init() {
 		this.cssNode = document.createElement('style');
 		document.head.insertBefore(this.cssNode, document.head.firstChild);
@@ -27,10 +30,6 @@ export class Share {
 
 	/**
    * Create new read only workspace and inject it into container Element
-   * @param {Element} container where to inject Blockly workspace
-   * @param {number} blockscale block scale for workspace
-   * @returns {workspace} created workspace object
-   * @private
    */
 	createReadonlyWorkspace() {
 		const hiddenContainer = injectNewDom(this.config.container, 'DIV', {
@@ -62,15 +61,13 @@ export class Share {
    */
 	updateObjectStats(oldStats, newStats) {
 		const updatedStats = Object.assign({}, oldStats);
-		const statNames = Object.keys(newStats);
-		for (let istat = 0; istat < statNames.length; istat++) {
-			const statName = statNames[istat];
-			if (oldStats[statName]) {
-				updatedStats[statName] += newStats[statName];
+		Object.keys(newStats).forEach(key => {
+			if (oldStats[key]) {
+				updatedStats[key] += newStats[key];
 			} else {
-				updatedStats[statName] = newStats[statName];
+				updatedStats[key] = newStats[key];
 			}
-		}
+		});
 
 		return updatedStats;
 	}
@@ -79,7 +76,6 @@ export class Share {
    * Get workspace stats and return it
    * @param {object} workspace to parse stats
    * @returns {object} stats from worspace
-   * @private
    */
 	getWorkspaceBlockStats() {
 		const workspaceStats = {
@@ -120,21 +116,23 @@ export class Share {
 		blockXml.firstElementChild.setAttribute('y', yOffset);
 
 		this.workspace.clear();
-		//try {
-		Blockly.Xml.domToWorkspace(blockXml, this.workspace);
-		const oriSvg = this.workspace.getParentSvg();
-		const oriBox = oriSvg.lastElementChild.getBBox();
+		let newSvg = undefined;
+		try {
+			Blockly.Xml.domToWorkspace(blockXml, this.workspace);
+			const oriSvg = this.workspace.getParentSvg();
+			const oriBox = oriSvg.lastElementChild.getBBox();
 
-		// remove rect around it
-		const newSvg = oriSvg.cloneNode(true);
-		newSvg.lastElementChild.removeChild(newSvg.lastElementChild.firstElementChild);
-		newSvg.setAttribute('width', oriBox.width + xOffset);
-		newSvg.setAttribute('height', oriBox.height + yOffset);
-		newSvg.setAttribute('class', 'catblocks-svg');
+			// remove rect around it
+			newSvg = oriSvg.cloneNode(true);
+			newSvg.lastElementChild.removeChild(newSvg.lastElementChild.firstElementChild);
+			newSvg.setAttribute('width', oriBox.width + xOffset);
+			newSvg.setAttribute('height', oriBox.height + yOffset);
+			newSvg.setAttribute('class', 'catblocks-svg');
 
-		//} catch (e) {
-		//	console.error('Failed to generate SVG from workspace');
-		//}
+		} catch (e) {
+			console.error('Failed to generate SVG from workspace');
+			return undefined;
+		}
 
 		return {
 			svg: newSvg,
@@ -156,6 +154,7 @@ export class Share {
 		removeAllChildren(labelList);
 		removeAllChildren(valueList);
 
+		console.log(stats);
 		injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Name:");
 		injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, stats['name']);
 		delete (stats['name']);
@@ -184,13 +183,13 @@ export class Share {
  */
 	addSceneContainer(container, sceneName, options) {
 		const sceneOptions = parseOptions(options, defaultOptions.createSceneContainer);
-		const sceneContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene', 'id': 'sceneName' });
+		const sceneContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene', 'id': `${sceneName}` });
 
 		let sceneHeader = null;
 		if (sceneOptions.writeHeader) {
-			sceneHeader = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-scene-header', 'id': sceneName + '-header' });
+			sceneHeader = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-scene-header', 'id': `${sceneName}-header` });
 			const sceneText = injectNewDom(sceneHeader, 'P', { 'class': 'catblocks-scene-text' });
-			sceneText.innerHTML = 'Scene: <span class="catblocks-scene-name">' + sceneName + '</span>';
+			sceneText.innerHTML = `Scene: <span class="catblocks-scene-name">${sceneName}</span>`;
 		}
 
 		injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
@@ -215,12 +214,10 @@ export class Share {
 		const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectName });
 
 		if (objectOptions.writeHeader) {
-			const objectHeader = injectNewDom(objectContainer, 'DIV', { 'class': objectName + ' - header', 'id': 'catblocks-object-header' });
+			const objectHeader = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-header', 'id': `${objectName}-header` });
 			const objectText = injectNewDom(objectHeader, 'P', { 'class': 'catblocks-object-text' });
-			objectText.innerHTML = 'Object: <span class="catblocks-object-name">' + objectName + '</span>';
+			objectText.innerHTML = `Object: <span class="catblocks-object-name">${objectName}</span>`;
 		}
-
-		const objectProps = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-props-container' });
 
 		// if (objectOptions.writeLook && goog.isString(objectOptions.lookImgPath)) {
 		//   var lookContainer = Blockly.Web.injectNewDom_(objectProps, 'DIV', 'catblocks-object-look-container');
@@ -233,6 +230,7 @@ export class Share {
 		//   });
 		// }
 		if (objectOptions.writeStats) {
+			const objectProps = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-props-container' });
 			const statsContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-stats-container' });
 			const labelContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-label-container' });
 			const valueContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-value-container' });
@@ -240,7 +238,7 @@ export class Share {
 			injectNewDom(valueContainer, 'UL', { 'class': 'catblocks-object-stats-value-list' });
 		}
 
-		injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-scripts-container' });
+		injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-script-container' });
 
 		// TODO: use something different than the name element
 		if (objectOptions.expandable) {
@@ -253,147 +251,157 @@ export class Share {
 	/**
  * Inject all catblocks scenes from xml into div
  * @param {Element} container dom to inject all loaded scenes
- * @param {string} xmlElement which includes all scenes to inject
+ * @param {Element} xmlElement which includes all scenes to iject as XMLDocument
  * @param {Object} options how we should inject all scenes
  */
 	injectAllScenes(container, xmlElement, options) {
-		if (typeof container === 'string') {
-			container = document.getElementById(container) ||
-				document.querySelector(container);
-		}
+		container = getDomElement(container);
 		const injectOptions = parseOptions(options, defaultOptions.injectAllScenes);
-		const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container', 'id': 'catblocks-scene-container' });
 
-		if (injectOptions.expandable) {
-			// TODO: define proper expand handling
+		const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
+		// if (injectOptions.expandable) {
+		// 	// TODO: define proper expand handling
+		// }
+
+		const scenes = xmlElement.getElementsByTagName('scene');
+		if (!hasChildren(scenes)) {
+			const emptyContainer = injectNewDom(scenesContainer, 'DIV', { 'class': 'catblocks-object-container catblocks-empty-container' });
+			injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty programm found, nothting to display.');
+			return;
 		}
-
-		const scenes = xmlElement.firstChild.children;
-		for (let iscene = 0; iscene < scenes.length; iscene++) {
-			const scene = scenes[iscene];
+		scenes.forEach(scene => {
 			const sceneName = scene.getAttribute('type');
 			const sceneContainer = this.addSceneContainer(scenesContainer, sceneName);
-			const sceneObjectContainer = sceneContainer.getElementsByClassName('catblocks-object-container')[0];
+			const sceneObjectContainer = getDomElement('catblocks-object-container', sceneContainer);
 
-			const objects = scene.children;
-			for (let iobject = 0; iobject < objects.length; iobject++) {
-				const object = objects[iobject];
+			const objects = scene.getElementsByTagName('object');
+			if (!hasChildren(objects)) {
+				const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-script-container catblocks-empty-container' });
+				injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty object found, nothting to display.');
+				return;
+			}
+			objects.forEach(object => {
 				const objectName = object.getAttribute('type');
-				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, {
-					lookImgPath: sceneName + '/images/' + object.getAttribute('look')
-				});
+				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName);
+				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
 				// object stats with init values
 				let objectStats = {
 					'name': objectName,
 					'scripts': 0
 				};
-				const objectScriptContainer = objectContainer.getElementsByClassName('catblocks-scripts-container')[0];
+				if (!hasChildren(object)) {
+					const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
+					injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
+					return;
+				}
+				while (object.childElementCount > 0) {
+					const script = object.firstElementChild;
+					const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+					object.removeChild(script);
 
-				if (object.childElementCount === 0) {
-					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-object-script-container catblocks-empty-script' });
-					injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-script-text' }, "No Script defined here");
-				} else {
-					while (object.childElementCount > 0) {
-						const script = object.firstElementChild;
-						const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
-						object.removeChild(script);
-
-						const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-object-script-container' });
-						const svgBlock = this.domToSvgWithStats(blockXml);
+					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
+					const svgBlock = this.domToSvgWithStats(blockXml);
+					if (svgBlock === undefined) {
+						scriptContainer.appendChild(
+							injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly")
+						);
+						objectStats = {};
+					} else {
 						scriptContainer.appendChild(svgBlock.svg);
 						objectStats = this.updateObjectStats(objectStats, svgBlock.stats);
 					}
 				}
 				this.writeObjectStats(objectContainer, objectStats);
-			}
-		}
+			});
+		});
 	}
 
 	/**
- * Array making up the CSS content for Blockly.
- */
+	 * Array making up the CSS content for Blockly.
+	 * @return {String} css node string
+	 */
 	getCssContent() {
-		return [
-			'.hidden {',
-			'    height: 0px;',
-			'    width: 0px;',
-			'}',
-			'.catblocks-scene,',
-			'.catblocks-object {',
-			'    padding: 5px 20px;',
-			'    border-radius: 20px;',
-			'    margin: 5px 0px;',
-			'}',
-			'',
-			'.catblocks-scene {',
-			'    border-style: solid;',
-			'    border-color: gainsboro;',
-			'}',
-			'',
-			'.catblocks-object {',
-			'    background-color: #17a5b8;',
-			'}',
-			'.catblocks-scene:hover {',
-			'   background-color: aliceblue;',
-			'}',
-			'.catblocks-object:hover {',
-			'   background-color: #17a5b880;',
-			'}',
-			'',
-			'.catblocks-scene-text, ',
-			'.catblocks-object-text {',
-			'}',
-			'',
-			'.catblocks-scene-name, ',
-			'.catblocks-object-name {',
-			'    font-size: 16px;',
-			'    font-weight: bold;',
-			'}',
-			'',
-			'.catblocks-object-stats-container {',
-			'    display: flex;',
-			'    min-width: 400px;',
-			'    max-width: 400px;',
-			'}',
-			'.catblocks-object-stats-label-container {',
-			'    font-weight: bold;',
-			'    min-width: 150px;',
-			'    max-width: 150px;',
-			'}',
-			'.catblocks-object-stats-value-container ul{',
-			'    list-style-type: none;',
-			'}',
-			'.catblocks-object-script-container {',
-			'    margin: 2px 0px;',
-			'    overflow-x: scroll;',
-			'    overflow-y: hidden;',
-			'    scrollbar-width: none;',
-			'    background: aliceblue;',
-			'    width: 100%;',
-			'    border-radius: 20px;',
-			'}',
-			'.catblocks-empty-script-text {',
-			'    text-align: center;',
-			'    vertical-align: middle;',
-			'    line-height: 50px;',
-			'    font-weight: bold;',
-			'}',
-			'.catblocks-object-props-container {',
-			'    display: flex;',
-			'    flex-wrap: wrap;',
-			'}',
-			'.catblocks-object-look-container {',
-			'    min-width: 100px;',
-			'    max-width: 100px;',
-			'}',
-			'.catblocks-object-look-item {',
-			'    min-width: 100px;',
-			'    max-width: 100px;',
-			'    border-radius: 20%;',
-			'}',
-			'.blocklyEditableLabel {',
-			'		 fill: white !important;',
-			'}'].join('\n');
+		return `
+		.hidden {
+				height: 0px;
+				width: 0px;
+		}
+		.catblocks-scene,
+		.catblocks-object {
+				padding: 5px 20px;
+				border-radius: 20px;
+				margin: 5px 0px;
+		}
+		
+		.catblocks-scene {
+				border-style: solid;
+				border-color: gainsboro;
+		}
+		
+		.catblocks-object {
+				background-color: #17a5b8;
+		}
+		.catblocks-scene:hover {
+			background-color: aliceblue;
+		}
+		.catblocks-object:hover {
+			background-color: #17a5b880;
+		}
+		
+		.catblocks-scene-text, 
+		.catblocks-object-text {
+		}
+		
+		.catblocks-scene-name, 
+		.catblocks-object-name {
+				font-size: 16px;
+				font-weight: bold;
+		}
+		
+		.catblocks-object-stats-container {
+				display: flex;
+				min-width: 400px;
+				max-width: 400px;
+		}
+		.catblocks-object-stats-label-container {
+				font-weight: bold;
+				min-width: 150px;
+				max-width: 150px;
+		}
+		.catblocks-object-stats-value-container ul{
+				list-style-type: none;
+		}
+		.catblocks-script {
+				margin: 2px 0px;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				scrollbar-width: none;
+				background: aliceblue;
+				width: 100%;
+				border-radius: 20px;
+		}
+		.catblocks-empty-text {
+				text-align: center;
+				vertical-align: middle;
+				line-height: 50px;
+				font-weight: bold;
+		}
+		.catblocks-object-props-container {
+				display: flex;
+				flex-wrap: wrap;
+		}
+		.catblocks-object-look-container {
+				min-width: 100px;
+				max-width: 100px;
+		}
+		.catblocks-object-look-item {
+				min-width: 100px;
+				max-width: 100px;
+				border-radius: 20%;
+		}
+		.blocklyEditableLabel {
+				fill: white !important;
+		}`;
 	}
 }

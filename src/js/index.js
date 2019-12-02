@@ -4,19 +4,22 @@ import { Share } from "./share/share";
 import $ from 'jquery';
 
 (() => {
-	if (process.env.TYPE === "playground") {
+	switch (process.env.TYPE) {
+	case 'playground': {
 		const app = new Playground();
 		window.Catblocks = app;
 		app.init();
-	} else if (process.env.TYPE === "share") {
+		break;
+	}
+	case 'share': {
 		const share = new Share(
 			{
 				'container': 'catblocks-code-container',
-				'renderSize': 0.75
+				'renderSize': 0.75,
+				'language': 'en_GB'
 			}
 		);
 		share.init();
-
 
 		// render my catblocks.xml file
 		$(document).ready(() => {
@@ -28,8 +31,12 @@ import $ from 'jquery';
 					share.injectAllScenes(div, xmlDom);
 				});
 		});
-
-	} else {
-		console.error('process.env.TYPE undefined');
+		break;
+			
+	}
+	default: {
+		// TODO: add more cases
+		console.warn(`Please define some code in index.js for type: ${process.env.TYPE}`);
+	}
 	}
 })();
