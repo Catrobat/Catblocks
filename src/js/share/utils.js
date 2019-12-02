@@ -3,13 +3,15 @@
  * @author andreas.karner@student.tugraz.at (Andreas Karner)
  */
 
+import $ from 'jquery';
+
 
 /**
  * Default options defined here
  * @enum {object}
  */
 export const defaultOptions = {
-	renderOptions: {
+	render: {
 		container: 'body',
 		language: 'en_GB',
 		renderSize: 0.75,
@@ -17,18 +19,15 @@ export const defaultOptions = {
 		shareimages: 'images/catblocks/',
 		noImageFound: 'No_Image_Available.jpg',
 	},
-	injectAllScenes: {
+	scene: {
+		writeHeader: true,
 		expandable: true
 	},
-	createSceneContainer: {
-		writeHeader: true,
-		expandable: false
-	},
-	createObjectContainer: {
+	object: {
 		writeHeader: true,
 		writeStats: true,
-		writeLook: true,
-		expandable: false
+		writeLook: false,
+		expandable: true
 	}
 };
 
@@ -186,4 +185,16 @@ export const hasChildren = (element) => {
 		return element.children.length || element.hasChildNodes() || element.firstChild;
 	}
 	}
+};
+
+/**
+ * Enable expandable
+ * @param {*} node node to expand on trigger click
+ * @param {*} trigger trigger to expand node
+ */
+export const enableExpandable = (node, trigger) => {
+	$(node).addClass('container-closed');
+	$(trigger).click((e) => {
+		$(node).toggleClass('container-open');
+	});
 };

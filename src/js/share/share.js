@@ -4,13 +4,13 @@
 
 import Blockly from 'scratch-blocks';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable } from './utils';
 
 export class Share {
 	constructor(options) {
 		this.blockly = Blockly;
 		this.parser = Parser;
-		this.config = parseOptions(options, defaultOptions.renderOptions);
+		this.config = parseOptions(options, defaultOptions.render);
 		this.workspaceDom = undefined;
 		this.workspace = undefined;
 		this.cssNode = undefined;
@@ -154,7 +154,6 @@ export class Share {
 		removeAllChildren(labelList);
 		removeAllChildren(valueList);
 
-		console.log(stats);
 		injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Name:");
 		injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, stats['name']);
 		delete (stats['name']);
@@ -182,7 +181,7 @@ export class Share {
  * @return {Element} new created scene container
  */
 	addSceneContainer(container, sceneName, options) {
-		const sceneOptions = parseOptions(options, defaultOptions.createSceneContainer);
+		const sceneOptions = parseOptions(options, defaultOptions.scene);
 		const sceneContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene', 'id': `${sceneName}` });
 
 		let sceneHeader = null;
@@ -192,11 +191,10 @@ export class Share {
 			sceneText.innerHTML = `Scene: <span class="catblocks-scene-name">${sceneName}</span>`;
 		}
 
-		injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
+		const sceneObjectContainer = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
 
-		// TODO: use something different than the name element
 		if (sceneOptions.expandable) {
-			// TODO: add proper expand support
+			enableExpandable(sceneObjectContainer, sceneHeader);
 		}
 
 		return sceneContainer;
@@ -210,11 +208,12 @@ export class Share {
  * @return {Element} new created object container
  */
 	addObjectContainer(container, objectName, options) {
-		const objectOptions = parseOptions(options, defaultOptions.createObjectContainer);
+		const objectOptions = parseOptions(options, defaultOptions.object);
 		const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectName });
 
+		let objectHeader = undefined;
 		if (objectOptions.writeHeader) {
-			const objectHeader = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-header', 'id': `${objectName}-header` });
+			objectHeader = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-header', 'id': `${objectName}-header` });
 			const objectText = injectNewDom(objectHeader, 'P', { 'class': 'catblocks-object-text' });
 			objectText.innerHTML = `Object: <span class="catblocks-object-name">${objectName}</span>`;
 		}
@@ -238,12 +237,8 @@ export class Share {
 			injectNewDom(valueContainer, 'UL', { 'class': 'catblocks-object-stats-value-list' });
 		}
 
-		injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-script-container' });
-
-		// TODO: use something different than the name element
-		if (objectOptions.expandable) {
-			// TODO: add proper expand support
-		}
+		const objectScriptContainer = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-script-container' });
+		if (objectOptions.expandable) enableExpandable(objectScriptContainer, objectHeader);
 
 		return objectContainer;
 	}
@@ -254,14 +249,9 @@ export class Share {
  * @param {Element} xmlElement which includes all scenes to iject as XMLDocument
  * @param {Object} options how we should inject all scenes
  */
-	injectAllScenes(container, xmlElement, options) {
+	injectAllScenes(container, xmlElement) {
 		container = getDomElement(container);
-		const injectOptions = parseOptions(options, defaultOptions.injectAllScenes);
-
 		const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
-		// if (injectOptions.expandable) {
-		// 	// TODO: define proper expand handling
-		// }
 
 		const scenes = xmlElement.getElementsByTagName('scene');
 		if (!hasChildren(scenes)) {
@@ -269,6 +259,7 @@ export class Share {
 			injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty programm found, nothting to display.');
 			return;
 		}
+
 		scenes.forEach(scene => {
 			const sceneName = scene.getAttribute('type');
 			const sceneContainer = this.addSceneContainer(scenesContainer, sceneName);
@@ -321,15 +312,12 @@ export class Share {
 	 */
 	getCssContent() {
 		return `
-		.hidden {
-				height: 0px;
-				width: 0px;
-		}
 		.catblocks-scene,
 		.catblocks-object {
 				padding: 5px 20px;
 				border-radius: 20px;
 				margin: 5px 0px;
+				overflow: hidden;
 		}
 		
 		.catblocks-scene {
@@ -400,6 +388,15 @@ export class Share {
 		}
 		.blocklyEditableLabel {
 				fill: white !important;
+		}
+		.container-closed {
+			max-height: 0;
+			transition: max-height 1s ease-out;
+			overflow: hidden;
+		}
+		.container-open {
+			max-height: 5000px;
+			transition: max-height 1s ease-in;
 		}`;
 	}
 }
