@@ -40,21 +40,7 @@ export const defaultOptions = {
  * @return {Object} either input or default value
  */
 export const parseOptions = (inputValues, defaultValues) => {
-	if (inputValues === undefined) {
-		return Object.assign({}, defaultValues);
-	} else {
-		const resultObject = Object.assign({});
-		const keys = Object.keys(inputValues).concat(Object.keys(defaultValues));
-		for (let ikey = 0; ikey < keys.length; ikey++) {
-			const key = keys[ikey];
-			if (inputValues[key]) {
-				resultObject[key] = inputValues[key];
-			} else {
-				resultObject[key] = defaultValues[key];
-			}
-		}
-		return resultObject;
-	}
+	return Object.assign({}, defaultValues, inputValues);
 };
 
 
@@ -194,7 +180,7 @@ export const hasChildren = (element) => {
  */
 export const enableExpandable = (node, trigger) => {
 	$(node).addClass('container-closed');
-	$(trigger).click((e) => {
+	$(trigger).click(() => {
 		$(node).toggleClass('container-open');
 	});
 };

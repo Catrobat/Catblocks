@@ -16,7 +16,7 @@ import $ from 'jquery';
 			{
 				'container': 'catblocks-code-container',
 				'renderSize': 0.75,
-				'language': 'en_GB'
+				'language': 'de_DE'
 			}
 		);
 		share.init();
