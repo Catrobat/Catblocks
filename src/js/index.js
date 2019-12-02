@@ -1,6 +1,7 @@
 import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
+import $ from 'jquery';
 
 (() => {
 	if (process.env.TYPE === "playground") {
@@ -12,19 +13,21 @@ import { Share } from "./share/share";
 			{
 				'container': 'catblocks-code-container',
 				'renderSize': 0.75
-			});
-
-		window.share = share;
+			}
+		);
 		share.init();
 
-		fetch('assets/xml/catblocks.xml')
-			.then(res => res.text())
-			.then(str => (new DOMParser().parseFromString(str, 'text/xml')))
-			.then(xmlDom => {
-				console.log(xmlDom);
-				const div = document.getElementById('catblocks-code-container');
-				share.injectAllScenes(div, xmlDom);
-			});
+
+		// render my catblocks.xml file
+		$(document).ready(() => {
+			fetch('assets/xml/catblocks.xml')
+				.then(res => res.text())
+				.then(str => (new DOMParser().parseFromString(str, 'text/xml')))
+				.then(xmlDom => {
+					const div = document.getElementById('catblocks-code-container');
+					share.injectAllScenes(div, xmlDom);
+				});
+		});
 
 	} else {
 		console.error('process.env.TYPE undefined');

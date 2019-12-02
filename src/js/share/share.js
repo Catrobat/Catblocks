@@ -193,7 +193,7 @@ export class Share {
 			sceneText.innerHTML = 'Scene: <span class="catblocks-scene-name">' + sceneName + '</span>';
 		}
 
-		const sceneObjectContainer = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
+		injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
 
 		// TODO: use something different than the name element
 		if (sceneOptions.expandable) {
@@ -240,7 +240,7 @@ export class Share {
 			injectNewDom(valueContainer, 'UL', { 'class': 'catblocks-object-stats-value-list' });
 		}
 
-		const objectScriptContainer = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-scripts-container' });
+		injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-scripts-container' });
 
 		// TODO: use something different than the name element
 		if (objectOptions.expandable) {
