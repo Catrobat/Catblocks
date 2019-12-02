@@ -6,12 +6,18 @@
   "author": "Catrobat",
   "license": "SEE LICENSE IN license",
   "scripts": {
-    "start": "yarn watch:server --print-label",
-    "watch:server": "NODE_ENV=development && webpack-dev-server",
-    "watch:build": "NODE_ENV=development && webpack --watch",
-    "build": "NODE_ENV=production && webpack",
-    "build:dev": "NODE_ENV=development && webpack",
-    "clean": "rimraf dist",
+    "start": "yarn playground:server --print-label",
+
+    "playground:server": "export NODE_ENV=development TYPE=playground && webpack-dev-server",
+    "playground:build": "export NODE_ENV=production TYPE=playground && webpack",
+    "playground:dev": "export NODE_ENV=development TYPE=playground && webpack",
+
+    "share:server": "export NODE_ENV=development TYPE=share && webpack-dev-server",
+    "share:build": "export NODE_ENV=production TYPE=share && webpack",
+    "share:dev": "export NODE_ENV=development TYPE=share && webpack",
+
+    "@useless...watch:build": "NODE_ENV=development && webpack --watch",
+    
     "translate": "node i18n/create_json.js && node i18n/create_msg.js"
   },
   "dependencies": {

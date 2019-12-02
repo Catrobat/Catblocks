@@ -1,8 +1,14 @@
 import "../css/style.css";
-import { Application } from "./application";
+import { Playground } from "./playground";
 
 (() => {
-	const app = new Application();
-	window.Catblocks = app;
-	app.init();
+	if (process.env.TYPE === "playground") {
+		const app = new Playground();
+		window.Catblocks = app;
+		app.init();
+	} else if (process.env.TYPE === "share") {
+		console.error('TODO');
+	} else {
+		console.error('process.env.TYPE undefined');
+	}
 })();

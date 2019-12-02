@@ -4,7 +4,7 @@ import "./toolbox/loader";
 
 import XStreamParser from "./parser/parser";
 
-export class Application {
+export class Playground {
 	constructor() {
 		// for debugging
 		this.Blockly = Blockly;
