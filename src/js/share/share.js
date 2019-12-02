@@ -148,8 +148,8 @@ export class Share {
  * @param {Object} stats stats to write into Elemnt
  */
 	writeObjectStats(objectContainer, stats) {
-		const labelList = objectContainer.getElementsByClassName('catblocks-object-stats-lable-list')[0];
-		const valueList = objectContainer.getElementsByClassName('catblocks-object-stats-value-list')[0];
+		const labelList = getDomElement('catblocks-object-stats-lable-list', objectContainer);
+		const valueList = getDomElement('catblocks-object-stats-value-list', objectContainer);
 
 		removeAllChildren(labelList);
 		removeAllChildren(valueList);
@@ -285,16 +285,16 @@ export class Share {
 				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName);
 				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
-				// object stats with init values
-				let objectStats = {
-					'name': objectName,
-					'scripts': 0
-				};
 				if (!hasChildren(object)) {
 					const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
 					injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
 					return;
 				}
+
+				let objectStats = {
+					'name': objectName,
+					'scripts': 0
+				};
 				while (object.childElementCount > 0) {
 					const script = object.firstElementChild;
 					const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
@@ -303,10 +303,8 @@ export class Share {
 					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
 					const svgBlock = this.domToSvgWithStats(blockXml);
 					if (svgBlock === undefined) {
-						scriptContainer.appendChild(
-							injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly")
-						);
-						objectStats = {};
+						scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
+						objectStats = this.updateObjectStats(objectStats, {});
 					} else {
 						scriptContainer.appendChild(svgBlock.svg);
 						objectStats = this.updateObjectStats(objectStats, svgBlock.stats);
