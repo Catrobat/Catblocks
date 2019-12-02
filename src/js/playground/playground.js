@@ -1,8 +1,8 @@
 import Blockly from "scratch-blocks";
-import "./catblocks_msgs";
+import "../catblocks_msgs";
 import "./toolbox/loader";
 
-import XStreamParser from "./parser/parser";
+import XStreamParser from "../parser/parser";
 
 export class Playground {
 	constructor() {

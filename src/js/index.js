@@ -1,5 +1,5 @@
 import "../css/style.css";
-import { Playground } from "./playground";
+import { Playground } from "./playground/playground";
 
 (() => {
 	if (process.env.TYPE === "playground") {
