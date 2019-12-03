@@ -16,7 +16,7 @@ import $ from 'jquery';
 			{
 				'container': 'catblocks-code-container',
 				'renderSize': 0.75,
-				'language': 'de_DE'
+				'language': 'en_GB'
 			}
 		);
 		share.init();
@@ -25,6 +25,7 @@ import $ from 'jquery';
 		$(document).ready(() => {
 			share.parser.parseFile('assets/xml/code.xml')
 				.then(xmlDoc => {
+					console.log(xmlDoc);
 					const div = document.getElementById('catblocks-code-container');
 					share.injectAllScenes(div, xmlDoc);
 				})

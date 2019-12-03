@@ -143,7 +143,7 @@ function parseScripts(script) {
 }
 
 function parseBrick(brick) {
-	const name = brick.getAttribute("type");
+	const name = (brick.getAttribute("type") || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
 	const currentBrick = new Brick(name);
 
 	for (let i = 0; i < brick.childNodes.length; i++) {

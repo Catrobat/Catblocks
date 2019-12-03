@@ -291,6 +291,8 @@ export class Share {
 				const scripts = object.getElementsByTagName('script');
 				scripts.forEach(script => {
 					const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+					console.log(blockXml);
+					
 					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
 					const svgBlock = this.domToSvgWithStats(blockXml);
 					if (svgBlock === undefined) {
