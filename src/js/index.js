@@ -21,18 +21,20 @@ import $ from 'jquery';
 		);
 		share.init();
 
-		// render my catblocks.xml file
+		// render my code.xml file
 		$(document).ready(() => {
-			fetch('assets/xml/catblocks.xml')
-				.then(res => res.text())
-				.then(str => (new DOMParser().parseFromString(str, 'text/xml')))
-				.then(xmlDom => {
+			share.parser.parseFile('assets/xml/code.xml')
+				.then(xmlDoc => {
 					const div = document.getElementById('catblocks-code-container');
-					share.injectAllScenes(div, xmlDom);
+					share.injectAllScenes(div, xmlDoc);
+				})
+				.catch(err => {
+					console.error(`Failed to parse catroid file.`);
+					console.error(err);
 				});
+
 		});
 		break;
-			
 	}
 	default: {
 		// TODO: add more cases

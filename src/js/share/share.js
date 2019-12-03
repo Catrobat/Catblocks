@@ -250,6 +250,7 @@ export class Share {
  * @param {Object} options how we should inject all scenes
  */
 	injectAllScenes(container, xmlElement) {
+		// const program = xmlElement.cloneNode(true);
 		container = getDomElement(container);
 		const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
@@ -259,6 +260,7 @@ export class Share {
 			injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty programm found, nothting to display.');
 			return;
 		}
+
 
 		scenes.forEach(scene => {
 			const sceneName = scene.getAttribute('type');
@@ -286,11 +288,9 @@ export class Share {
 					'name': objectName,
 					'scripts': 0
 				};
-				while (object.childElementCount > 0) {
-					const script = object.firstElementChild;
-					const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
-					object.removeChild(script);
-
+				const scripts = object.getElementsByTagName('script');
+				scripts.forEach(script => {
+					const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
 					const svgBlock = this.domToSvgWithStats(blockXml);
 					if (svgBlock === undefined) {
@@ -300,7 +300,7 @@ export class Share {
 						scriptContainer.appendChild(svgBlock.svg);
 						objectStats = this.updateObjectStats(objectStats, svgBlock.stats);
 					}
-				}
+				});
 				this.writeObjectStats(objectContainer, objectStats);
 			});
 		});
