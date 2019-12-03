@@ -64,6 +64,7 @@ class Formula {
 
 const sceneList = [];
 let xmlDoc = undefined;
+const supportedAppVersion = 0.994;
 
 const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
 const XML_END = "\n</xml>";
@@ -75,8 +76,35 @@ const SUB_END = "\n</statement>";
 
 let XML = XML_BEGIN;
 
+/**
+ * Check if current catroid code version is supported
+ * @param {XMLDocument} program to validate
+ * @return {boolean} if supported or not
+ */
+function isSupported(program = xmlDoc) {
+	const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
+	if (appVersion === undefined || appVersion.length < 1) {
+		console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+		return false;
+	}
+	if (appVersion[0].innerHTML < supportedAppVersion) {
+		console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+		return false;
+	}
+	return true;
+}
+
+/**
+ * Parse XMLDocument from catroid code to catblocks
+ * @param {XMLDocument} xml catroid program xml
+ * @return {XMLDocument} catblocks format
+ */
 function parseDocument(xml) {
 	xmlDoc = xml;
+
+	// TODO: add code if not supported
+	isSupported();
+	
 	const scenes = xml.getElementsByTagName('scenes')[0].children;
 	for (let i = 0; i < scenes.length; i++) {
 		sceneList.push(parseScenes(scenes[i]));
