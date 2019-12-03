@@ -4,7 +4,7 @@
 
 import Blockly from 'scratch-blocks';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
 
 export class Share {
 	constructor(options) {
@@ -69,6 +69,7 @@ export class Share {
 			}
 		});
 
+		console.log(updatedStats);
 		return updatedStats;
 	}
 
@@ -155,7 +156,7 @@ export class Share {
 		removeAllChildren(valueList);
 
 		injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Name:");
-		injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, stats['name']);
+		injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, trimString(stats['name']));
 		delete (stats['name']);
 
 		injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Scripts:");
@@ -263,7 +264,7 @@ export class Share {
 
 
 		scenes.forEach(scene => {
-			const sceneName = scene.getAttribute('type');
+			const sceneName = trimString(scene.getAttribute('type'));
 			const sceneContainer = this.addSceneContainer(scenesContainer, sceneName);
 			const sceneObjectContainer = getDomElement('catblocks-object-container', sceneContainer);
 
@@ -274,7 +275,7 @@ export class Share {
 				return;
 			}
 			objects.forEach(object => {
-				const objectName = object.getAttribute('type');
+				const objectName = trimString(object.getAttribute('type'));
 				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName);
 				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
@@ -292,7 +293,7 @@ export class Share {
 				scripts.forEach(script => {
 					const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 					console.log(blockXml);
-					
+
 					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
 					const svgBlock = this.domToSvgWithStats(blockXml);
 					if (svgBlock === undefined) {

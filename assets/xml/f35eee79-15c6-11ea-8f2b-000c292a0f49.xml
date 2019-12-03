@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationBuildType>signedRelease</applicationBuildType>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.66</applicationVersion>
+    <catrobatLanguageVersion>0.99994</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Не полны игра
+
+
+
+PS.  Поиграй в создай планету</description>
+    <deviceName>Redmi 5 Plus</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>true</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>27</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Создай дом</programName>
+    <remixOf/>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>1080</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>2030</screenWidth>
+    <tags>Experimental</tags>
+    <url>/pocketcode/project/f35eee79-15c6-11ea-8f2b-000c292a0f49</url>
+    <userHandle>FIVE Game</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Сцена 1</name>
+      <objectList>
+        <object type="Sprite" name="Фон">
+          <lookList>
+            <look fileName="Фон.png" name="Фон"/>
+            <look fileName="Фон_#0.png" name="Фон (1)"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="WaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>7</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="LOOK_INDEX">
+                      <type>NUMBER</type>
+                      <value>2</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="WaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>6</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SceneStartBrick">
+                  <commentedOut>false</commentedOut>
+                  <sceneToStart>Сцена 2</sceneToStart>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+      </objectList>
+    </scene>
+    <scene>
+      <name>Сцена 2</name>
+      <objectList>
+        <object type="Sprite" name="Фон">
+          <lookList>
+            <look fileName="Фон.png" name="Фон"/>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="Sprite" name="Мой актер или объект">
+          <lookList>
+            <look fileName="Мой актер или объект.png" name="Мой актер или объект"/>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+      </objectList>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+</program>

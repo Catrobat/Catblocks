@@ -184,3 +184,19 @@ export const enableExpandable = (node, trigger) => {
 		$(node).toggleClass('container-open');
 	});
 };
+
+/**
+ * Trim string is longer than length and add ...
+ * @param {*} str to trim
+ * @param {*} length if longer than
+ * @return {string} prepared string
+ */
+export const trimString = (str, length = 15) => {
+	if (typeof str === 'string') {
+		if (str.length > length) {
+			return `${str.slice(0, length)}...`;
+		}
+		return str;
+	}
+	return undefined;
+};
