@@ -122,9 +122,18 @@ function flatReference(node, xml = xmlDoc) {
 	return node;
 }
 
+/**
+ * Escape not allowed characters in names
+ * @param {string} name to escape
+ * @returns {string} proper value
+ */
+function escapeName(name) {
+	return (name || '').replace(/[&]/, '');
+}
+
 function parseScenes(scene) {
 
-	const name = (scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
+	const name = escapeName(scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
 	const currentScene = new Scene(name);
 	const objectList = scene.getElementsByTagName('objectList')[0].children;
 	for (let i = 0; i < objectList.length; i++) {
@@ -136,7 +145,7 @@ function parseScenes(scene) {
 function parseObjects(object) {
 	object = flatReference(object);
 
-	const name = object.getAttribute("name");
+	const name = escapeName(object.getAttribute("name"));
 	if (name !== null) {
 		const currentObject = new Object(name);
 		const lookList = object.getElementsByTagName('lookList')[0].children;
@@ -157,7 +166,7 @@ function parseObjects(object) {
 }
 
 function parseScripts(script) {
-	const name = script.getAttribute("type");
+	const name = escapeName(script.getAttribute("type"));
 	const currentScript = new Script(name);
 	const brickList = script.getElementsByTagName('brickList')[0].children;
 	for (let i = 0; i < script.childNodes.length; i++) {
@@ -489,7 +498,6 @@ export default class Parser {
 			.then(res => res.text())
 			.then(str => {
 				return Parser.parseXml(str);
-
 			})
 			.catch(err => {
 				console.error(`Failed to fetch uri: ${uri}`);
