@@ -262,11 +262,9 @@ Blockly.Blocks['StopScriptBrick'] = {
 			"message0": Blockly.Msg.CONTROL_STOPCAT,
 			"args0": [
 				{
-					"type": "field_dropdown",
-					"name": "DROPDOWN",
-					"options": [
-						["new...", "NEW"]
-					]
+					"type": "field_input",
+					"name": "spinnerSelection",
+					"text": "0"
 				}
 			],
 			"category": Blockly.Categories.control,

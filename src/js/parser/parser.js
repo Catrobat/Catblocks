@@ -104,13 +104,14 @@ function parseDocument(xml) {
 
 	// TODO: add code if not supported
 	isSupported();
-	
+
 	const scenes = xml.getElementsByTagName('scenes')[0].children;
 	for (let i = 0; i < scenes.length; i++) {
 		sceneList.push(parseScenes(scenes[i]));
 	}
-	console.log(sceneList);
+	// console.log(sceneList);
 	const xmlStream = writeXML();
+	// console.log(xmlStream);
 	return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
 }
 
@@ -399,7 +400,12 @@ function writeXML() {
 		XML = XML.concat(`<scene type="${sceneList[i].name}">`);
 		const currObjectList = sceneList[i].objectList;
 		for (let j = 0; j < currObjectList.length; j++) {
-			XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+			if (currObjectList[j].lookList.length > 0) {
+				const objectImage = currObjectList[j].lookList[0].fileName;
+				XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
+			} else {
+				XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+			}
 			const currScriptList = currObjectList[j].scriptList;
 			for (let k = 0; k < currScriptList.length; k++) {
 				XML = XML.concat(`<script type="${currScriptList[k].name}">`);

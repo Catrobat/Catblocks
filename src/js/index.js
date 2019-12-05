@@ -12,18 +12,20 @@ import $ from 'jquery';
 		break;
 	}
 	case 'share': {
-		const share = new Share(
-			{
-				'container': 'catblocks-code-container',
-				'renderSize': 0.75,
-				'language': 'en_GB'
-			}
-		);
-		share.init();
+		const share = new Share();
+		share.init({
+			'container': 'catblocks-code-container',
+			'renderSize': 0.75,
+			'language': 'en_GB',
+			'shareRoot': '/',
+			'code': 'asserts/extracted/',
+			'media': 'media/',
+			'noImageFound': 'No_Image_Available.jpg',
+		});
 
 		// render my code.xml file
 		$(document).ready(() => {
-			share.parser.parseFile('assets/xml/83136.xml')
+			share.parser.parseFile('assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/code.xml')
 				.then(xmlDoc => {
 					console.log(xmlDoc);
 					const div = document.getElementById('catblocks-code-container');

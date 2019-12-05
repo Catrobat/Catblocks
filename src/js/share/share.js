@@ -7,10 +7,10 @@ import Parser from '../parser/parser';
 import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
 
 export class Share {
-	constructor(options) {
+	constructor() {
 		this.blockly = Blockly;
 		this.parser = Parser;
-		this.config = parseOptions(options, defaultOptions.render);
+		this.config = {};
 		this.workspaceDom = undefined;
 		this.workspace = undefined;
 		this.cssNode = undefined;
@@ -18,8 +18,10 @@ export class Share {
 
 	/**
 	 * init share class instance
+	 * @param {Element} options for rendering process
 	 */
-	init() {
+	init(options) {
+		this.config = parseOptions(options, defaultOptions.render);
 		this.cssNode = document.createElement('style');
 		document.head.insertBefore(this.cssNode, document.head.firstChild);
 		const cssText = document.createTextNode(this.getCssContent());
@@ -39,7 +41,7 @@ export class Share {
 
 		this.workspace = this.blockly.inject(hiddenContainer, {
 			readOnly: true,
-			media: `${this.config.shareRoot}${this.catblocksImages}`,
+			media: `${this.config.shareRoot}${this.config.media}`,
 			zoom: {
 				controls: false,
 				wheel: false,
@@ -120,6 +122,7 @@ export class Share {
 		try {
 			Blockly.Xml.domToWorkspace(blockXml, this.workspace);
 			const oriSvg = this.workspace.getParentSvg();
+
 			const oriBox = oriSvg.lastElementChild.getBBox();
 
 			// remove rect around it
@@ -181,11 +184,10 @@ export class Share {
  * @return {Element} new created scene container
  */
 	addSceneContainer(container, sceneName, options) {
-		const sceneOptions = parseOptions(options, defaultOptions.scene);
 		const sceneContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene', 'id': `${sceneName}` });
 
 		let sceneHeader = null;
-		if (sceneOptions.writeHeader) {
+		if (options.writeHeader) {
 			sceneHeader = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-scene-header', 'id': `${sceneName}-header` });
 			const sceneText = injectNewDom(sceneHeader, 'P', { 'class': 'catblocks-scene-text' });
 			sceneText.innerHTML = `Scene: <span class="catblocks-scene-name">${sceneName}</span>`;
@@ -193,7 +195,7 @@ export class Share {
 
 		const sceneObjectContainer = injectNewDom(sceneContainer, 'DIV', { 'class': 'catblocks-object-container' });
 
-		if (sceneOptions.expandable) {
+		if (options.expandable) {
 			enableExpandable(sceneObjectContainer, sceneHeader);
 		}
 
@@ -208,37 +210,37 @@ export class Share {
  * @return {Element} new created object container
  */
 	addObjectContainer(container, objectName, options) {
-		const objectOptions = parseOptions(options, defaultOptions.object);
 		const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectName });
 
 		let objectHeader = undefined;
-		if (objectOptions.writeHeader) {
+		if (options.writeHeader) {
 			objectHeader = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-header', 'id': `${objectName}-header` });
 			const objectText = injectNewDom(objectHeader, 'P', { 'class': 'catblocks-object-text' });
 			objectText.innerHTML = `Object: <span class="catblocks-object-name">${objectName}</span>`;
 		}
 
-		// if (objectOptions.writeLook && goog.isString(objectOptions.lookImgPath)) {
-		//   var lookContainer = Blockly.Web.injectNewDom_(objectProps, 'DIV', 'catblocks-object-look-container');
-		//   Blockly.Web.injectNewDom_(lookContainer, goog.dom.TagName.IMG, {
-		//     'class': 'catblocks-object-look-item',
-		//     'src': Blockly.Web.shareRoot_ + options.lookImgPath.split('#').join('%23'),
-		//     'onerror': function(event) { event.target.src = Blockly.Web.noImageFound_; }
-		//     // 'title': 'Look-' + sceneName,
-		//     // 'alt': goog.isString(options.lookAlt) ? options.lookAlt : 'Look from current scene'
-		//   });
-		// }
-		if (objectOptions.writeStats) {
+		if (options.writeStats) {
 			const objectProps = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-object-props-container' });
 			const statsContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-stats-container' });
 			const labelContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-label-container' });
 			const valueContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-value-container' });
 			injectNewDom(labelContainer, 'UL', { 'class': 'catblocks-object-stats-lable-list' });
 			injectNewDom(valueContainer, 'UL', { 'class': 'catblocks-object-stats-value-list' });
+
+			if (options.writeLook && options.objectImage !== undefined) {
+				const lookContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-look-container' });
+				const lookImage = injectNewDom(lookContainer, 'IMG', {
+					'class': 'catblocks-object-look-item',
+					'src': `${this.config.shareRoot}${options.programRoot}${options.objectImage.split('#').join('%23')}`
+				});
+				lookImage.onerror = function(e) {
+					e.target.src = 'https://cdn2.iconfinder.com/data/icons/symbol-blue-set-3/100/Untitled-1-94-512.png';
+				};
+			}
 		}
 
 		const objectScriptContainer = injectNewDom(objectContainer, 'DIV', { 'class': 'catblocks-script-container' });
-		if (objectOptions.expandable) enableExpandable(objectScriptContainer, objectHeader);
+		if (options.expandable) enableExpandable(objectScriptContainer, objectHeader);
 
 		return objectContainer;
 	}
@@ -249,7 +251,7 @@ export class Share {
  * @param {Element} xmlElement which includes all scenes to iject as XMLDocument
  * @param {Object} options how we should inject all scenes
  */
-	injectAllScenes(container, xmlElement) {
+	injectAllScenes(container, xmlElement, options = {}) {
 		// const program = xmlElement.cloneNode(true);
 		container = getDomElement(container);
 		const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
@@ -264,7 +266,8 @@ export class Share {
 
 		scenes.forEach(scene => {
 			const sceneName = trimString(scene.getAttribute('type'));
-			const sceneContainer = this.addSceneContainer(scenesContainer, sceneName);
+			const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
+			const sceneContainer = this.addSceneContainer(scenesContainer, sceneName, sceneOptions);
 			const sceneObjectContainer = getDomElement('catblocks-object-container', sceneContainer);
 
 			const objects = scene.getElementsByTagName('object');
@@ -275,12 +278,21 @@ export class Share {
 			}
 			objects.forEach(object => {
 				const objectName = trimString(object.getAttribute('type'));
-				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName);
+				let objectOptions = parseOptions(options.object, defaultOptions.object);
+				if (object.getAttribute('look') !== undefined) {
+					objectOptions = parseOptions({
+						'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
+					}, objectOptions);
+				}
+				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, objectOptions);
 				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
 				if (!hasChildren(object)) {
 					const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
 					injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
+					if (objectOptions.writeStats) {
+						getDomElement('catblocks-object-props-container', objectContainer).remove();
+					}
 					return;
 				}
 
@@ -302,7 +314,9 @@ export class Share {
 						objectStats = this.updateObjectStats(objectStats, svgBlock.stats);
 					}
 				});
-				this.writeObjectStats(objectContainer, objectStats);
+				if (objectOptions.writeStats) {
+					this.writeObjectStats(objectContainer, objectStats);
+				}
 			});
 		});
 	}
@@ -377,10 +391,14 @@ export class Share {
 		.catblocks-object-props-container {
 				display: flex;
 				flex-wrap: wrap;
+				border-radius: 20px;
+				border: 2px solid #ffffff;
+				background: lightblue;
 		}
 		.catblocks-object-look-container {
 				min-width: 100px;
 				max-width: 100px;
+				margin: auto auto auto auto;
 		}
 		.catblocks-object-look-item {
 				min-width: 100px;

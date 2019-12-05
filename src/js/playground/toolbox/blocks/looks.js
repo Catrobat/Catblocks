@@ -6,11 +6,9 @@ Blockly.Blocks['SetLookBrick'] = {
 			"message0": Blockly.Msg.LOOKS_SWITCHTOLOOK,
 			"args0": [
 				{
-					"type": "field_dropdown",
-					"name": "DROPDOWN",
-					"options": [
-						["new...", "NEW"]
-					]
+					"type": "field_input",
+					"name": "look",
+					"text": "newLook"
 				}
 			],
 			"category": Blockly.Categories.looks,
@@ -141,7 +139,7 @@ Blockly.Blocks['SayForBubbleBrick'] = {
 			"args0": [
 				{
 					"type": "field_input",
-					"name": "SAY_BRICK",
+					"name": "STRING",
 					"text": "Hello!"
 				},
 				{

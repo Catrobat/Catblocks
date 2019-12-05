@@ -6,11 +6,9 @@ Blockly.Blocks['PlaySoundBrick'] = {
 			"message0": Blockly.Msg.SOUND_STARTSOUND,
 			"args0": [
 				{
-					"type": "field_dropdown",
-					"name": "DROPDOWN",
-					"options": [
-						["new...", "NEW"]
-					]
+					"type": "field_input",
+					"name": "sound",
+					"text": "sound"
 				}
 			],
 			"category": Blockly.Categories.sound,

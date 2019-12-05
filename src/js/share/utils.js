@@ -15,8 +15,8 @@ export const defaultOptions = {
 		container: 'body',
 		language: 'en_GB',
 		renderSize: 0.75,
-		shareRoot: '/public/',
-		shareimages: 'images/catblocks/',
+		shareRoot: '/',
+		media: 'media/',
 		noImageFound: 'No_Image_Available.jpg',
 	},
 	scene: {
@@ -26,8 +26,9 @@ export const defaultOptions = {
 	object: {
 		writeHeader: true,
 		writeStats: true,
-		writeLook: false,
-		expandable: true
+		writeLook: true,
+		expandable: true,
+		programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/'
 	}
 };
 
