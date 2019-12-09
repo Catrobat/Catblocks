@@ -2,12 +2,16 @@ import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
 import $ from 'jquery';
+import Blockly from "scratch-blocks";
 
 (() => {
+	if (process.env.NODE_ENV === 'development') {
+		window.Blockly = Blockly;
+	}
+	
 	switch (process.env.TYPE) {
 	case 'playground': {
 		const app = new Playground();
-		window.Catblocks = app;
 		app.init();
 		break;
 	}

@@ -8,9 +8,11 @@
   "scripts": {
     "start": "yarn playground:server --print-label",
     "playground:server": "export NODE_ENV=development TYPE=playground && webpack-dev-server",
+    "playground:prod": "export NODE_ENV=production TYPE=playground && webpack-dev-server",
     "playground:build": "export NODE_ENV=production TYPE=playground && webpack",
     "playground:dev": "export NODE_ENV=development TYPE=playground && webpack",
     "share:server": "export NODE_ENV=development TYPE=share && webpack-dev-server",
+    "share:prod": "export NODE_ENV=production TYPE=share && webpack-dev-server",
     "share:build": "export NODE_ENV=production TYPE=share && webpack",
     "share:dev": "export NODE_ENV=development TYPE=share && webpack",
     "@useless...watch:build": "NODE_ENV=development && webpack --watch",

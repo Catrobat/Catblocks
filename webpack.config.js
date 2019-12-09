@@ -77,7 +77,8 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     hot: true,
     compress: !devMode,
-    noInfo: true
+    noInfo: true,
+    writeToDisk: !devMode
   },
   target: 'web'
 };

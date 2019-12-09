@@ -3,6 +3,7 @@ import "../catblocks_msgs";
 import "./toolbox/loader";
 
 import XStreamParser from "../parser/parser";
+import $ from "jquery";
 
 export class Playground {
 	constructor() {
@@ -13,6 +14,9 @@ export class Playground {
 		this.workspace = null;
 	}
 	init() {
+
+		this.bindListeners();
+
 		this.equalsXml = [
 			'  <shadow type="operator_equals">',
 			'    <value name="OPERAND1">',
@@ -129,6 +133,44 @@ export class Playground {
 			this.logFlyoutEvents(Boolean(state));
 		}
 	}
+	bindListeners() {
+		$('#showWorkspace').click(e => { 
+			e.preventDefault();
+			this.workspace.setVisible(true); 
+		});
+		$('#hideWorkspace').click(e => {
+			e.preventDefault();
+			this.workspace.setVisible(false);
+		});
+
+		$('#exportToXML').click(() => this.toXml());
+		$('#importFromXML').click(() => this.fromXml());
+		$('#importFromParser').click(() => this.fromParser());
+
+		const self = this;
+		$('#logCheck').click(function() {
+			self.logEvents($(this).is(':checked'));
+		});
+		$('#logFlyoutCheck').click(function() {
+			self.logFlyoutEvents($(this).is(':checked'));
+		});
+		$('#soundsEnabled').click(function() {
+			self.setSoundsEnabled($(this).is(':checked'));
+		});
+
+		$('#sprinkles').click(() => this.sprinkles(100));
+		$('#spaghetti').click(() => this.spaghetti(3));
+
+		$('#glowBlock').click(() => this.glowBlock());
+		$('#unglowBlock').click(() => this.unglowBlock());
+		$('#glowStack').click(() => this.glowStack());
+		$('#unglowStack').click(() => this.unglowStack());
+
+		$('#undo').click(() => this.workspace.undo());
+		$('#redo').click(() => this.workspace.undo(true));
+
+		$('#reportDemo').click(() => this.reportDemo());
+	}
 	setSoundsEnabled(state) {
 		const checkbox = document.getElementById('soundsEnabled');
 		checkbox.checked = (state) ? 'checked' : '';
@@ -153,7 +195,7 @@ export class Playground {
 		} catch (e) {
 			valid = false;
 		}
-		document.getElementById('import').disabled = !valid;
+		document.getElementById('importFromXML').disabled = !valid;
 	}
 	logEvents(state) {
 		const checkbox = document.getElementById('logCheck');

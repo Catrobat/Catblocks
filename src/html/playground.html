@@ -13,8 +13,8 @@
     <!-- Sidebar -->
     <h1>Vertical Blocks</h1>
     <p>
-      <a href="javascript:void(Catblocks.workspace.setVisible(true))">Show</a>
-      - <a href="javascript:void(Catblocks.workspace.setVisible(false))">Hide</a>
+      <a href="#" id="showWorkspace">Show</a>
+      - <a href="#" id="hideWorkspace">Hide</a>
     </p>
 
     <form id="options">
@@ -37,11 +37,11 @@
       </form>
 
     <p>
-      <input type="button" value="Export to XML" onclick="Catblocks.toXml()">
+      <input type="button" id="exportToXML" value="Export to XML">
       &nbsp;
-      <input type="button" value="Import from XML" onclick="Catblocks.fromXml()" id="import">
+      <input type="button" id="importFromXML" value="Import from XML">
       &nbsp;
-      <input type="button" value="Import using Parser" onclick="Catblocks.fromParser()" id="parse">
+      <input type="button" id="importFromParser" value="Import using Parser">
       <br>
       <textarea id="importExport" style="width: 26%; height: 12em"
         onchange="Catblocks.taChange();" onkeyup="Catblocks.taChange()"></textarea>
@@ -51,42 +51,42 @@
 
     <p>
       Log events: &nbsp;
-      <input type="checkbox" onclick="Catblocks.logEvents(this.checked)" id="logCheck">
+      <input type="checkbox" id="logCheck">
     </p>
 
     <p>
       Stress test: &nbsp;
-      <input type="button" value="Sprinkles!" onclick="Catblocks.sprinkles(100)">
-      <input type="button" value="Spaghetti!" onclick="Catblocks.spaghetti(3)">
+      <input type="button" value="Sprinkles!" id="sprinkles">
+      <input type="button" value="Spaghetti!" id="spaghetti">
     </p>
 
     <p>
       Glows: &nbsp;
-      <input type="button" value="Glow last clicked block" onclick="Catblocks.glowBlock()" />
-      <input type="button" value="Unglow last clicked block" onclick="Catblocks.unglowBlock()" />
-      <input type="button" value="Stack glow last clicked block" onclick="Catblocks.glowStack()" />
-      <input type="button" value="Stack unglow last clicked block" onclick="Catblocks.unglowStack()" />
+      <input type="button" value="Glow last clicked block" id="glowBlock" />
+      <input type="button" value="Unglow last clicked block" id="unglowBlock" />
+      <input type="button" value="Stack glow last clicked block" id="glowStack" />
+      <input type="button" value="Stack unglow last clicked block" id="unglowStack" />
     </p>
 
     <p>
       Log flyout events: &nbsp;
-      <input type="checkbox" onclick="Catblocks.logFlyoutEvents(this.checked)" id="logFlyoutCheck">
+      <input type="checkbox" id="logFlyoutCheck">
     </p>
 
     <p>
       Enable sounds (after refresh): &nbsp;
-      <input type="checkbox" onclick="Catblocks.setSoundsEnabled(this.checked)" id="soundsEnabled">
+      <input type="checkbox" id="soundsEnabled">
     </p>
 
     <p>
-      <input type="button" value="Undo" onclick="Catblocks.workspace.undo()" />
-      <input type="button" value="Redo" onclick="Catblocks.workspace.undo(true)" />
+      <input type="button" value="Undo" id="undo"/>
+      <input type="button" value="Redo" id="redo"/>
     </p>
 
     <p>
       Report:
       <input id="reportValue" type="text" value="123" />
-      <input type="button" value="Report last clicked block" onclick="Catblocks.reportDemo()" />
+      <input type="button" value="Report last clicked block" id="reportDemo" />
     </p>
   </body>
 </html>
