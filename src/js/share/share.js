@@ -409,13 +409,13 @@ export class Share {
 				fill: white !important;
 		}
 		.container-closed {
-			max-height: 0;
+			/*max-height: 0;
 			transition: max-height 1s ease-out;
-			overflow: hidden;
+			overflow: hidden;*/
 		}
 		.container-open {
-			max-height: 5000px;
-			transition: max-height 1s ease-in;
+			/*max-height: 5000px;
+			transition: max-height 1s ease-in;*/
 		}`;
 	}
 }

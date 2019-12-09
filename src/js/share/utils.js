@@ -180,10 +180,23 @@ export const hasChildren = (element) => {
  * @param {*} trigger trigger to expand node
  */
 export const enableExpandable = (node, trigger) => {
+	// TODO: use jquery, need to fix displaying issues with max-heigth later
+	$(node).css('display', 'none');
 	$(node).addClass('container-closed');
+	
 	$(trigger).click(() => {
-		$(node).toggleClass('container-open');
+		if ($(node).hasClass('container-closed')) {
+			$(node).slideDown();
+			$(node).removeClass('container-closed');
+		} else {
+			$(node).slideUp();
+			$(node).addClass('container-closed');
+		}
 	});
+	// $(node).addClass('container-closed');
+	// $(trigger).click(() => {
+	// 	$(node).toggleClass('container-open');
+	// });
 };
 
 /**
