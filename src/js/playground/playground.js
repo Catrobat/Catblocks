@@ -196,7 +196,14 @@ export class Playground {
 	}
 	fromXml() {
 		const input = document.getElementById('importExport');
-		const convertedXML = XStreamParser.parseText(input.value);
+		const xml = Blockly.Xml.textToDom(input.value);
+		Blockly.Xml.domToWorkspace(xml, this.workspace);
+		// this.taChange();
+	}
+	fromParser() {
+		const input = document.getElementById('importExport');
+		console.log(input);
+		const convertedXML = XStreamParser.parseXml(input.value);
 
 		if (convertedXML === undefined || convertedXML === "") {
 			throw "no response from XStreamParser";
@@ -204,7 +211,6 @@ export class Playground {
 			const xml = Blockly.Xml.textToDom(convertedXML);
 			Blockly.Xml.domToWorkspace(xml, this.workspace);
 		}
-		// this.taChange();
 	}
 	glowBlock() {
 		if (Blockly.selected) {
