@@ -71,7 +71,35 @@ export class Share {
 			}
 		});
 
+		if (updatedStats['scripts']) {
+			updatedStats['scripts']++;
+		} else {
+			updatedStats['scripts'] = 1;
+		}
 		return updatedStats;
+	}
+
+	/**
+	 * Get script stats and return
+	 * @param {XMLDocument} script to parse starts
+	 * @returns {Element} starts value dictonary
+	 */
+	getScriptStats(script) {
+		const blocks = script.getElementsByTagName('block');
+
+		return Array.from(blocks).map(block => {
+			const name = block.getAttribute('type') || 'undefined';
+			const category = this.blockly.Blocks[name].init.toString().match(/Categories.[a-zA-Z]+/);
+			if (category.length > 0) return category[0].split('.')[1];
+			return 'undefined';
+		}).reduce((acc, val) => {
+			if (acc[val]) {
+				acc[val] = acc[val] + 1;
+			} else {
+				acc[val] = 1;
+			}
+			return acc;
+		}, {});
 	}
 
 	/**
@@ -105,7 +133,7 @@ export class Share {
    * @param {Element} blockXml blocks to render into svg
    * @returns {Object<Element, Object>} svg with block stats
    */
-	domToSvgWithStats(blockXml) {
+	domToSvg(blockXml) {
 		const xOffset = 50;
 		const yOffset = 50;
 
@@ -118,7 +146,7 @@ export class Share {
 		blockXml.firstElementChild.setAttribute('y', yOffset);
 
 		this.workspace.clear();
-		let newSvg = undefined;
+		let svg = undefined;
 		try {
 			Blockly.Xml.domToWorkspace(blockXml, this.workspace);
 			const oriSvg = this.workspace.getParentSvg();
@@ -126,21 +154,18 @@ export class Share {
 			const oriBox = oriSvg.lastElementChild.getBBox();
 
 			// remove rect around it
-			newSvg = oriSvg.cloneNode(true);
-			newSvg.lastElementChild.removeChild(newSvg.lastElementChild.firstElementChild);
-			newSvg.setAttribute('width', oriBox.width + xOffset);
-			newSvg.setAttribute('height', oriBox.height + yOffset);
-			newSvg.setAttribute('class', 'catblocks-svg');
+			svg = oriSvg.cloneNode(true);
+			svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
+			svg.setAttribute('width', oriBox.width + xOffset);
+			svg.setAttribute('height', oriBox.height + yOffset);
+			svg.setAttribute('class', 'catblocks-svg');
 
 		} catch (e) {
 			console.error('Failed to generate SVG from workspace');
 			return undefined;
 		}
 
-		return {
-			svg: newSvg,
-			stats: this.getWorkspaceBlockStats()
-		};
+		return svg;
 	}
 
 	/**
@@ -278,12 +303,17 @@ export class Share {
 			}
 			objects.forEach(object => {
 				const objectName = trimString(object.getAttribute('type'));
-				let objectOptions = parseOptions(options.object, defaultOptions.object);
-				if (object.getAttribute('look') !== undefined) {
-					objectOptions = parseOptions({
-						'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
-					}, objectOptions);
-				}
+				const objectOptions = (() => {
+					if (object.getAttribute('look') !== undefined) {
+						const lookOptions = Object.assign({}, options.object, {
+							'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
+						});
+						return parseOptions(lookOptions, defaultOptions.object);
+					} else {
+						return parseOptions(options.object, defaultOptions.object);
+					}
+				})();
+
 				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, objectOptions);
 				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
@@ -305,15 +335,16 @@ export class Share {
 					const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 
 					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
-					const svgBlock = this.domToSvgWithStats(blockXml);
-					if (svgBlock === undefined) {
-						scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
-						objectStats = this.updateObjectStats(objectStats, {});
-					} else {
-						scriptContainer.appendChild(svgBlock.svg);
-						objectStats = this.updateObjectStats(objectStats, svgBlock.stats);
-					}
+					const blockStats = this.getScriptStats(script);
+					objectStats = this.updateObjectStats(objectStats, blockStats);
+					// const blockSvg = this.domToSvg(blockXml);
+					// if (blockSvg === undefined) {
+					// 	scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
+					// } else {
+					// 	scriptContainer.appendChild(blockSvg);
+					// }
 				});
+				
 				if (objectOptions.writeStats) {
 					this.writeObjectStats(objectContainer, objectStats);
 				}
