@@ -317,34 +317,34 @@ export class Share {
 				const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, objectOptions);
 				const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
 
-				if (!hasChildren(object)) {
-					const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
-					injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
-					if (objectOptions.writeStats) {
-						getDomElement('catblocks-object-props-container', objectContainer).remove();
-					}
-					return;
-				}
-
 				let objectStats = {
 					'name': objectName,
 					'scripts': 0
 				};
-				const scripts = object.getElementsByTagName('script');
-				scripts.forEach(script => {
-					const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 
-					const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
-					const blockStats = this.getScriptStats(script);
-					objectStats = this.updateObjectStats(objectStats, blockStats);
-					// const blockSvg = this.domToSvg(blockXml);
-					// if (blockSvg === undefined) {
-					// 	scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
-					// } else {
-					// 	scriptContainer.appendChild(blockSvg);
-					// }
-				});
-				
+				if (!hasChildren(object)) {
+					const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
+					injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
+
+				} else {
+					const scripts = object.getElementsByTagName('script');
+					scripts.forEach(script => {
+						const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+
+						const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
+
+						const blockStats = this.getScriptStats(script);
+						objectStats = this.updateObjectStats(objectStats, blockStats);
+
+						const blockSvg = this.domToSvg(blockXml);
+						if (blockSvg === undefined) {
+							scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
+						} else {
+							scriptContainer.appendChild(blockSvg);
+						}
+					});
+				}
+
 				if (objectOptions.writeStats) {
 					this.writeObjectStats(objectContainer, objectStats);
 				}
