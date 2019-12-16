@@ -123,136 +123,139 @@ describe('Filesystem Block tests', () => {
 /**
  * Check if everything is rendered in Webview
  */
-// describe('WebView Block tests', () => {
+describe('WebView Block tests', () => {
 
-//   /**
-//    * Test if Scratch-Blocks got initialized properly
-//    */
-//   describe('Workspace initialization', () => {
-//     let workspaceBlocks = {};
+  /**
+   * Test if Scratch-Blocks got initialized properly
+   */
+  describe('Workspace initialization', () => {
+    let workspaceBlocks = {};
 
-//     beforeEach(async () => {
-//       await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
+    beforeEach(async () => {
+      console.log(`"http://localhost:8080/"${utils.WORKSPACE_URL}`);
+      console.log(page);
 
-//       workspaceBlocks = await page.evaluate(() => {
-//         let workspaces = {};
-//         Object.keys(Blockly.Workspace.WorkspaceDB_).forEach(id => {
-//           if (Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
-//             workspaces['userWorkspace'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-//           } else {
-//             workspaces['toolbox'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-//           }
+      await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
 
-//         });
-//         return workspaces;
-//       });
-//     });
+      workspaceBlocks = await page.evaluate(() => {
+        let workspaces = {};
+        Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_).forEach(id => {
+          if (Catblocks.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
+            workspaces['userWorkspace'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+          } else {
+            workspaces['toolbox'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+          }
 
-//     /**
-//      * Check if we have create two workspaces [toolbox, userWorkspace]
-//      */
-//     test('Empty workspace is loaded with toolbox', async () => {
-//       expect(Object.keys(workspaceBlocks).length).toBe(2);
-//     });
+        });
+        return workspaces;
+      });
+    });
 
-//     /**
-//      * Check if empty userWorkspace and nonEmpty toolbox workspace exists
-//      */
-//     test('Found empty userWorkspace and not empty Toolbox', async () => {
-//       expect(workspaceBlocks['userWorkspace'].length).toBe(0);
-//       expect(workspaceBlocks['toolbox'].length).toBeGreaterThan(0);
-//     });
+    /**
+     * Check if we have create two workspaces [toolbox, userWorkspace]
+     */
+    test('Empty workspace is loaded with toolbox', async () => {
+      expect(Object.keys(workspaceBlocks).length).toBe(2);
+    });
 
-//     /**
-//      * Check if all blocks are rendered in the toolbox
-//      */
-//     test('Toolbox includes all Blocks', () => {
-//       const renderedBlocks = workspaceBlocks['toolbox'];
-//       const toolboxBlocks = getAllBlocksFromToolbox();
+    //     /**
+    //      * Check if empty userWorkspace and nonEmpty toolbox workspace exists
+    //      */
+    //     test('Found empty userWorkspace and not empty Toolbox', async () => {
+    //       expect(workspaceBlocks['userWorkspace'].length).toBe(0);
+    //       expect(workspaceBlocks['toolbox'].length).toBeGreaterThan(0);
+    //     });
 
-//       toolboxBlocks.forEach(blockName => {
-//         expect(renderedBlocks.includes(blockName)).toBeTruthy();
-//       });
-//     });
+    //     /**
+    //      * Check if all blocks are rendered in the toolbox
+    //      */
+    //     test('Toolbox includes all Blocks', () => {
+    //       const renderedBlocks = workspaceBlocks['toolbox'];
+    //       const toolboxBlocks = getAllBlocksFromToolbox();
 
-//     /**
-//      * Check if categories from toolbox rendered properly
-//      */
-//     test('Toolbox includes all Categories', async () => {
-//       const renderedCategories = await page.evaluate(() => Object.keys(Blockly.Categories));
-//       BLOCK_CATEGORIES.forEach(category => {
-//         expect(renderedCategories.includes(category)).toBeTruthy();
-//       })
-//     });
+    //       toolboxBlocks.forEach(blockName => {
+    //         expect(renderedBlocks.includes(blockName)).toBeTruthy();
+    //       });
+    //     });
 
-//     /**
-//      * Check if all blocks are rendered properly
-//      */
-//     test('Toolbox rendered all Blocks properly', async () => {
-//       const failed = await page.evaluate(() => {
-//         let failedRender = false;
+    //     /**
+    //      * Check if categories from toolbox rendered properly
+    //      */
+    //     test('Toolbox includes all Categories', async () => {
+    //       const renderedCategories = await page.evaluate(() => Object.keys(Blockly.Categories));
+    //       BLOCK_CATEGORIES.forEach(category => {
+    //         expect(renderedCategories.includes(category)).toBeTruthy();
+    //       })
+  });
 
-//         // first lets get the value for a wrong rendered block
-//         const wrongBlockPath = (() => {
-//           let block = blocklyWS.newBlock('someInvalidID');
-//           block.initSvg();
-//           block.render(false);
-//           return block.svgPath_.outerHTML;
-//         })();
+  /**
+   * Check if all blocks are rendered properly
+   */
+  //   test('Toolbox rendered all Blocks properly', async () => {
+  //     const failed = await page.evaluate(() => {
+  //       let failedRender = false;
 
-//         // iterate over toolboxWS blocks
-//         toolboxWS.getAllBlocks().forEach(block => {
-//           if (block.svgPath_.outerHTML === wrongBlockPath) {
-//             failedRender = true;
-//             return failedRender;
-//           }
-//         });
+  //       // first lets get the value for a wrong rendered block
+  //       const wrongBlockPath = (() => {
+  //         let block = blocklyWS.newBlock('someInvalidID');
+  //         block.initSvg();
+  //         block.render(false);
+  //         return block.svgPath_.outerHTML;
+  //       })();
 
-//         return failedRender;
-//       });
+  //       // iterate over toolboxWS blocks
+  //       toolboxWS.getAllBlocks().forEach(block => {
+  //         if (block.svgPath_.outerHTML === wrongBlockPath) {
+  //           failedRender = true;
+  //           return failedRender;
+  //         }
+  //       });
 
-//       expect(failed).toBeFalsy();
-//     });
-//   });
+  //       return failedRender;
+  //     });
 
-//   /**
-//    * Test if Scratch-Blocks got initialized properly
-//    */
-//   describe('Workspace actions', () => {
+  //     expect(failed).toBeFalsy();
+  //   });
+  // });
 
-//     test('Add all Blockly from toolbox ones to workspace via JS', async () => {
-//       const failed = await page.evaluate(() => {
-//         let failedRender = false;
+  // /**
+  //  * Test if Scratch-Blocks got initialized properly
+  //  */
+  // describe('Workspace actions', () => {
 
-//         // first lets get the value for a wrong rendered block
-//         const wrongBlockPath = (() => {
-//           let block = blocklyWS.newBlock('someInvalidID');
-//           block.initSvg();
-//           block.render(false);
-//           return block.svgPath_.outerHTML;
-//         })();
+  //   test('Add all Blockly from toolbox ones to workspace via JS', async () => {
+  //     const failed = await page.evaluate(() => {
+  //       let failedRender = false;
 
-//         // get all blocks available in the toolbox
-//         const toolboxBlocks = blocklyWS.toolbox_.categoryMenu_.categories_
-//           .flatMap(cat => cat.contents_.map(block => block.getAttribute('type')));
+  //       // first lets get the value for a wrong rendered block
+  //       const wrongBlockPath = (() => {
+  //         let block = blocklyWS.newBlock('someInvalidID');
+  //         block.initSvg();
+  //         block.render(false);
+  //         return block.svgPath_.outerHTML;
+  //       })();
 
-//         // check if we can render each successfully
-//         toolboxBlocks.forEach(blockName => {
-//           blocklyWS.clear();
-//           let block = blocklyWS.newBlock(blockName);
-//           block.initSvg();
-//           block.render(false);
+  //       // get all blocks available in the toolbox
+  //       const toolboxBlocks = blocklyWS.toolbox_.categoryMenu_.categories_
+  //         .flatMap(cat => cat.contents_.map(block => block.getAttribute('type')));
 
-//           if (block.svgPath_.outerHTML === wrongBlockPath) {
-//             failedRender = true;
-//             return failedRender;
-//           }
-//         });
+  //       // check if we can render each successfully
+  //       toolboxBlocks.forEach(blockName => {
+  //         blocklyWS.clear();
+  //         let block = blocklyWS.newBlock(blockName);
+  //         block.initSvg();
+  //         block.render(false);
 
-//         return failedRender;
-//       });
+  //         if (block.svgPath_.outerHTML === wrongBlockPath) {
+  //           failedRender = true;
+  //           return failedRender;
+  //         }
+  //       });
 
-//       expect(failed).toBeFalsy();
-//     });
-//   });
-// });
+  //       return failedRender;
+  //     });
+
+  //     expect(failed).toBeFalsy();
+  //   });
+  // });
+});
