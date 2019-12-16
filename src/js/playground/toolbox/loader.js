@@ -6,7 +6,7 @@ import "./blocks/control";
 import "./blocks/data";
 import "./blocks/drone";
 import "./blocks/event";
-import "./blocks/jumping_sumo";
+import "./blocks/jumpingSumo";
 import "./blocks/legoEV3";
 import "./blocks/legoNXT";
 import "./blocks/looks";
