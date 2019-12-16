@@ -1,6 +1,6 @@
 import Blockly from "scratch-blocks";
 import "../catblocks_msgs";
-import "./toolbox/loader";
+import "./../blocks/loader";
 
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
@@ -29,7 +29,7 @@ export class Playground {
 			'    </value>',
 			'  </shadow>'
 		].join('\n');
-	
+  
 		this.spaghettiXml = [
 			'  <block type="control_if_else">',
 			'    <value name="CONDITION">',
@@ -63,7 +63,7 @@ export class Playground {
 		const toolbox = this.getToolboxElement();
 		document.forms.options.elements.toolbox.selectedIndex =
           toolbox ? 1: 0;
-		
+    
 		match = location.search.match(/side=([^&]+)/);
 
 		const side = match ? match[1] : 'start';
@@ -219,7 +219,7 @@ export class Playground {
 		if (sessionStorage) {
 			sessionStorage.setItem('logFlyoutEvents', state ? 'checked' : '');
 		}
-		
+    
 		const flyoutWorkspace = (this.workspace.flyout_) ? this.workspace.flyout_.workspace_ :
 			this.workspace.toolbox_.flyout_.workspace_;
 		if (state) {
