@@ -7,7 +7,8 @@
   "env": {
     "browser": true, /* allow console */
     "es6": true, /* allow Promise */
-    "node": true
+    "node": true,
+    "jest": true
   },
   "rules": {
     "no-unused-vars": ["warn"],

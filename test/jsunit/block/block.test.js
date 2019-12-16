@@ -62,21 +62,21 @@ describe('Filesystem Block tests', () => {
 
     Object.keys(BLOCKS).forEach(categoryName => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-        let block = BLOCKS[categoryName][blockName];
-        let blockMsgParts = block['message0'].split('.');
-        let blockMsgName = blockMsgParts[blockMsgParts.length - 1];
+        const block = BLOCKS[categoryName][blockName];
+        const blockMsgParts = block['message0'].split('.');
+        const blockMsgName = blockMsgParts[blockMsgParts.length - 1];
 
         // verify if it exists
         expect(BLOCK_MSG_MAPPINGS[blockMsgName]).not.toBeUndefined();
 
-        let defArgs = Object.keys(block).filter(key => {
+        const defArgs = Object.keys(block).filter(key => {
           if (key.indexOf('args') > -1) {
             if (block[key].length === 0) return false;
             return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
           }
           return false;
         });
-        let msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/\%\d+/) || [];
+        const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
         expect(defArgs.length).toBe(msgArgs.length);
       });
     });
@@ -88,18 +88,18 @@ describe('Filesystem Block tests', () => {
   test('Block argsCount match with i18n/strings_to_json_mapping.json', () => {
     Object.keys(BLOCKS).forEach(categoryName => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-        let block = BLOCKS[categoryName][blockName];
-        let blockMsgParts = block['message0'].split('.');
-        let blockMsgName = blockMsgParts[blockMsgParts.length - 1];
+        const block = BLOCKS[categoryName][blockName];
+        const blockMsgParts = block['message0'].split('.');
+        const blockMsgName = blockMsgParts[blockMsgParts.length - 1];
 
-        let defArgs = Object.keys(block).filter(key => {
+        const defArgs = Object.keys(block).filter(key => {
           if (key.indexOf('args') > -1) {
             if (block[key].length === 0) return false;
             return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
           }
           return false;
         });
-        let msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/\%\d+/) || [];
+        const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
         expect(defArgs.length).toBe(msgArgs.length);
       });
     });
@@ -113,7 +113,7 @@ describe('Filesystem Block tests', () => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
         expect(TOOLBOX[categoryName]).toBeDefined();
 
-        let catBlocks = TOOLBOX[categoryName].block.map(block => block.type);
+        const catBlocks = TOOLBOX[categoryName].block.map(block => block.type);
         expect(catBlocks.includes(blockName)).toBeTruthy();
       });
     });
