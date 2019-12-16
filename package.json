@@ -18,6 +18,7 @@
     "share:dev": "export NODE_ENV=development TYPE=share && webpack",
     "@useless...watch:build": "NODE_ENV=development && webpack --watch",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
+    "toolbox": "node create_toolbox.js",
     "clean": "rimraf dist"
   },
   "dependencies": {
