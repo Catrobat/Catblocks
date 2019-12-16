@@ -13,7 +13,7 @@ import Blockly from "scratch-blocks";
   case 'playground': {
     const app = new Playground();
     app.init();
-    window.app = app;
+    window.Catblocks = app;
     break;
   }
   case 'share': {
