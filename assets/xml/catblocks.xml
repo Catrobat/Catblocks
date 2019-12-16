@@ -1,0 +1,155 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <scene type="Сцена 1">
+    <object type="Фон"></object>
+    <object type="Монета">
+      <script type="StartScript">
+        <block type="StartScript" id="" x="" y="">
+          <next>
+            <block type="SetVariableBrick" id="" x="" y="">
+              <field name="VARIABLE">0 </field>
+              <field name="DROPDOWN">Монеты</field>
+              <next>
+                <block type="PlaceAtBrick" id="" x="" y="">
+                  <field name="X_POSITION">0 </field>
+                  <field name="Y_POSITION">MINUS 415 </field>
+                  <next>
+                    <block type="ShowTextBrick" id="" x="" y="">
+                      <field name="X_POSITION">0 </field>
+                      <field name="Y_POSITION">800 </field>
+                      <next>
+                        <block type="SetSizeToBrick" id="" x="" y="">
+                          <field name="SIZE">95 </field>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="WhenScript">
+        <block type="WhenScript" id="" x="" y="">
+          <next>
+            <block type="SetSizeToBrick" id="" x="" y="">
+              <field name="SIZE">100 </field>
+              <next>
+                <block type="WaitBrick" id="" x="" y="">
+                  <field name="TIME_TO_WAIT_IN_SECONDS">0.1 </field>
+                  <next>
+                    <block type="SetSizeToBrick" id="" x="" y="">
+                      <field name="SIZE">103 </field>
+                      <next>
+                        <block type="ChangeVariableBrick" id="" x="" y="">
+                          <field name="VARIABLE_CHANGE">1.0 </field>
+                          <field name="DROPDOWN">Монеты</field>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="BroadcastScript">
+        <block type="BroadcastScript" id="" x="" y="">
+          <field name="DROPDOWN">Магазин</field>
+          <next>
+            <block type="HideBrick" id="" x="" y="">
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="BroadcastScript">
+        <block type="BroadcastScript" id="" x="" y="">
+          <field name="DROPDOWN">Назад</field>
+          <next>
+            <block type="ShowBrick" id="" x="" y="">
+            </block>
+          </next>
+        </block>
+      </script>
+    </object>
+    <object type="Магазин">
+      <script type="StartScript">
+        <block type="StartScript" id="" x="" y="">
+          <next>
+            <block type="PlaceAtBrick" id="" x="" y="">
+              <field name="X_POSITION">283 </field>
+              <field name="Y_POSITION">432 </field>
+              <next>
+                <block type="SetSizeToBrick" id="" x="" y="">
+                  <field name="SIZE">85 </field>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="WhenScript">
+        <block type="WhenScript" id="" x="" y="">
+          <next>
+            <block type="HideBrick" id="" x="" y="">
+              <next>
+                <block type="BroadcastBrick" id="" x="" y="">
+                  <field name="DROPDOWN">Магазин</field>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="BroadcastScript">
+        <block type="BroadcastScript" id="" x="" y="">
+          <field name="DROPDOWN">Назад</field>
+          <next>
+            <block type="ShowBrick" id="" x="" y="">
+            </block>
+          </next>
+        </block>
+      </script>
+    </object>
+    <object type="Назад">
+      <script type="StartScript">
+        <block type="StartScript" id="" x="" y="">
+          <next>
+            <block type="PlaceAtBrick" id="" x="" y="">
+              <field name="X_POSITION">316 </field>
+              <field name="Y_POSITION">586 </field>
+              <next>
+                <block type="SetSizeToBrick" id="" x="" y="">
+                  <field name="SIZE">16 </field>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="WhenScript">
+        <block type="WhenScript" id="" x="" y="">
+          <next>
+            <block type="HideBrick" id="" x="" y="">
+              <next>
+                <block type="BroadcastBrick" id="" x="" y="">
+                  <field name="DROPDOWN">Назад</field>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </script>
+      <script type="BroadcastScript">
+        <block type="BroadcastScript" id="" x="" y="">
+          <field name="DROPDOWN">Магазин</field>
+          <next>
+            <block type="ShowBrick" id="" x="" y="">
+            </block>
+          </next>
+        </block>
+      </script>
+    </object>
+  </scene>
+</xml>
