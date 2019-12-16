@@ -63,14 +63,35 @@ class Formula{
 }
 
 let sceneList = [];
+let xmlDoc = undefined;
+
+const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
+const XML_END = "\n</xml>";
+const NEXT_BEGIN = "\n<next>";
+const NEXT_END = "\n</next>";
+const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
+const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
+const SUB_END = "\n</statement>";
+
+let XML = XML_BEGIN;
 
 function parseFile(xml) {
+    xmlDoc = xml;
     let scenes = xml.getElementsByTagName('scenes')[0].children;
     for(let i = 0; i < scenes.length; i++)
     {
         sceneList.push(parseScenes(scenes[i]));
     }
     console.log(sceneList);
+    writeXML();
+}
+
+function flatReference(node, xml=xmlDoc) {
+    let refPath = node.getAttribute('reference');
+    if (refPath) {
+        return xmlDoc.evaluate(refPath, node, null, XPathResult.ANY_TYPE, null).iterateNext();
+    }
+    return node;
 }
 
 function parseScenes(scene) {
@@ -86,6 +107,8 @@ function parseScenes(scene) {
 }
 
 function parseObjects(object) {
+    object = flatReference(object);
+
     let name = object.getAttribute("name");
     if(name !== null){
         let currentObject = new Object(name);
@@ -203,6 +226,105 @@ function checkUsage(list, location){
         let lookName = findLookName(list, lookNR);
         location.formValues.set("look", lookName);
     }
+    if(list.nodeName === "userVariable")
+    {
+        if(list.childNodes.length !== 0) {
+            findCurrentVariableName(list, location);
+        }
+        else{
+            let reference = list.getAttribute("reference");
+            findOtherVariableName(list, location, reference);
+
+        }
+
+    }
+}
+
+function findCurrentVariableName(list, location) {
+    for(let i = 0; i < list.childNodes.length; i++) {
+        if(list.childNodes[i].nodeName === "userVariable"){
+            let userVariable = list.childNodes[i];
+            for(let j = 0; j < userVariable.childNodes.length; j++){
+                if(userVariable.childNodes[j].nodeName === "default"){
+                    let defaultBlock = userVariable.childNodes[j];
+                    for(let k = 0; k < defaultBlock.childNodes.length; k++){
+                        if(defaultBlock.childNodes[k].nodeName === "name"){
+                            location.formValues.set("DROPDOWN", defaultBlock.childNodes[k].textContent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function findOtherVariableName(list, location, reference){
+    if(reference.startsWith("../"))
+    {
+        reference = reference.slice(3, );
+        findOtherVariableName(list.parentElement, location, reference);
+    }
+    else if(reference.startsWith("userVariable")){
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "userVariable")
+            {
+                findCurrentVariableName(list.childNodes[i], location);
+            }
+        }
+    }else if(reference.startsWith("ifBranchBricks")){
+        reference = reference.slice(20, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+            }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "ifBranchBricks"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }else if(reference.startsWith("elseBranchBricks")){
+        reference = reference.slice(22, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+            }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "elseBranchBricks"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }else if(reference.startsWith("script")){
+        reference = reference.slice(6, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+        }
+        reference = reference.slice(1, );
+        findOtherVariableName(list.childNodes[(position * 2) - 1], location, reference);
+
+
+    }else if(reference.startsWith("brickList")){
+        reference = reference.slice(15, );
+        let position = 1;
+        if(reference.startsWith("[")){
+            position = reference.charAt(1);
+            reference = reference.slice(3, );
+        }
+        reference = reference.slice(1, );
+        for(let i = 0; i < list.childNodes.length; i++){
+            if(list.childNodes[i].nodeName === "brickList"){
+                list = list.childNodes[i].childNodes[(position * 2) -1];
+                findOtherVariableName(list, location, reference);
+            }
+        }
+    }
 }
 
 function findSoundName(currentNode, soundNR){
@@ -251,4 +373,80 @@ function concatFormula(formula, str){
         str = concatFormula(formula.right, str);
     }
     return str;
+}
+
+function writeXML() {
+    for(let i = 0; i < sceneList.length; i++){
+        XML = XML.concat(`<scene type="${sceneList[i].name}">`);
+        let currObjectList = sceneList[i].objectList;
+        for(let j = 0; j < currObjectList.length; j++){
+            XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+            let currScriptList = currObjectList[j].scriptList;
+            for(let k = 0; k < currScriptList.length; k++){
+                XML = XML.concat(`<script type="${currScriptList[k].name}">`);
+                writeScriptsToXML(currScriptList[k]);
+                XML = XML.concat(`</script>`);
+            }
+            XML = XML.concat(`</object>`);
+        }
+        XML = XML.concat(`</scene>`)
+    }
+    XML = XML.concat(XML_END);
+    console.log(XML);
+}
+
+function writeScriptsToXML(currScript) {
+    XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
+    for(var [key, value] of currScript.formValues){
+        XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    }
+    if(currScript.brickList.length !== 0){
+        writeBrickToXML(currScript, 0, true, 0);
+    }
+    XML = XML.concat("\n</block>");
+}
+
+
+function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
+    if(nextBrick === true){
+        XML = XML.concat(NEXT_BEGIN);
+    }
+    let currSubBrick;
+    if(subBlock === 0){
+        currSubBrick = currBrick.brickList[index];
+    }
+    if(subBlock === 1){
+        currSubBrick = currBrick.loopOrIfBrickList[index];
+    }
+    if(subBlock === 2){
+        currSubBrick = currBrick.elseBrickList[index];
+    }
+    XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
+
+    for(var [key, value] of currSubBrick.formValues){
+        XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    }
+    if(currSubBrick.loopOrIfBrickList.length !== 0){
+        XML = XML.concat(SUB1_BEGIN);
+        writeBrickToXML(currSubBrick, 0, false, 1);
+        XML = XML.concat(SUB_END);
+    }
+    if(currSubBrick.elseBrickList.length !== 0){
+        XML = XML.concat(SUB2_BEGIN);
+        writeBrickToXML(currSubBrick, 0, false, 2);
+        XML = XML.concat(SUB_END);
+    }
+    if(subBlock === 0 && (currBrick.brickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 0);
+    }
+    if(subBlock === 1 && (currBrick.loopOrIfBrickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 1);
+    }
+    if(subBlock === 2 && (currBrick.elseBrickList.length > index + 1)){
+        writeBrickToXML(currBrick, index + 1, true, 2);
+    }
+    XML = XML.concat("\n</block>");
+    if(nextBrick === true){
+        XML = XML.concat(NEXT_END);
+    }
 }

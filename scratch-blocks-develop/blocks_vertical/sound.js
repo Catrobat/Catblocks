@@ -157,7 +157,7 @@ Blockly.Blocks['AskSpeechBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],

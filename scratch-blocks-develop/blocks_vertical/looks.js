@@ -134,7 +134,7 @@ Blockly.Blocks['AskBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],

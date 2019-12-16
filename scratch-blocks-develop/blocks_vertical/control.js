@@ -92,7 +92,7 @@ Blockly.Blocks['NoteBrick'] = {
   }
 };
 
-Blockly.Blocks['IfThenLogicBeginBrick'] = {
+Blockly.Blocks['IfLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
       "type": "IfThenLogicBeginBrick",
@@ -125,7 +125,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
   }
 };
 
-Blockly.Blocks['IfLogicBeginBrick'] = {
+Blockly.Blocks['IfThenLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
       "type": "IfLogicBeginBrick",

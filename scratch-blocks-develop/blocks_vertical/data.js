@@ -37,7 +37,7 @@ Blockly.Blocks['SetVariableBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         },
         {
@@ -61,7 +61,7 @@ Blockly.Blocks['ChangeVariableBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         },
         {
@@ -85,7 +85,7 @@ Blockly.Blocks['ShowTextBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         },
         {
@@ -115,7 +115,7 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         },
         {
@@ -142,7 +142,7 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN2",
           "options": [
-            ["new...", "NEW"]
+            ["centered"]
           ]
         }
       ],
@@ -273,7 +273,7 @@ Blockly.Blocks['HideTextBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],
@@ -296,7 +296,7 @@ Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],
@@ -319,7 +319,7 @@ Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["new...", "NEW"]
+            ["VARIABLE"]
           ]
         }
       ],
