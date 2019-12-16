@@ -1,0 +1,4 @@
+<block type="ArduinoSendPWMValueBrick" id="" x="" y="">
+    <field name="PWM_PIN">4</field>
+    <field name="PWM_PIN_VALUE">2</field>
+</block>

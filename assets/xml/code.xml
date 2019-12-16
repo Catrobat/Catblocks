@@ -8,23 +8,23 @@
         <applicationVersion>0.9.64</applicationVersion>
         <catrobatLanguageVersion>0.99992</catrobatLanguageVersion>
         <dateTimeUpload/>
-        <description>my bot</description>
-        <deviceName>ONEPLUS A5010</deviceName>
+        <description/>
+        <deviceName>SM-G975F</deviceName>
         <isCastProject>false</isCastProject>
         <landscapeMode>false</landscapeMode>
         <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
         <platform>Android</platform>
         <platformVersion>28</platformVersion>
         <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-        <programName>T100654</programName>
+        <programName>amazingtest</programName>
         <remixOf></remixOf>
         <scenesEnabled>true</scenesEnabled>
-        <screenHeight>2160</screenHeight>
+        <screenHeight>2173</screenHeight>
         <screenMode>STRETCH</screenMode>
         <screenWidth>1080</screenWidth>
         <tags>Experimental</tags>
-        <url>/pocketcode/program/108604</url>
-        <userHandle>Avocari</userHandle>
+        <url>/pocketcode/program/113624</url>
+        <userHandle>LosJulios</userHandle>
     </header>
     <settings/>
     <scenes>
@@ -39,17 +39,19 @@
                     <userVariables/>
                     <userLists/>
                 </object>
-                <object type="Sprite" name="My actor or object">
+                <object type="Sprite" name="actor">
                     <lookList>
-                        <look fileName="My actor or object.png" name="My actor or object"/>
+                        <look fileName="My actor or object.png" name="actor"/>
+                        <look fileName="actor.png" name="actor (1)"/>
                     </lookList>
                     <soundList>
-                        <sound fileName="applause.wav" name="applause"/>
+                        <sound fileName="recording" name="recording"/>
+                        <sound fileName="recording_#0" name="recording (1)"/>
                     </soundList>
                     <scriptList>
                         <script type="StartScript">
                             <brickList>
-                                <brick type="IfLogicBeginBrick1">
+                                <brick type="IfLogicBeginBrick">
                                     <commentedOut>false</commentedOut>
                                     <formulaList>
                                         <formula category="IF_CONDITION">
@@ -66,16 +68,16 @@
                                         </formula>
                                     </formulaList>
                                     <elseBranchBricks>
-                                        <brick type="WaitBrick5">
+                                        <brick type="ChangeYByNBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                                <formula category="Y_POSITION_CHANGE">
                                                     <type>NUMBER</type>
-                                                    <value>3</value>
+                                                    <value>10</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
-                                        <brick type="IfThenLogicBeginBrick6">
+                                        <brick type="IfThenLogicBeginBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
                                                 <formula category="IF_CONDITION">
@@ -92,25 +94,156 @@
                                                 </formula>
                                             </formulaList>
                                             <ifBranchBricks>
-                                                <brick type="WaitBrick7">
+                                                <brick type="ShowTextColorSizeAlignmentBrick">
                                                     <commentedOut>false</commentedOut>
                                                     <formulaList>
-                                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                                        <formula category="X_POSITION">
                                                             <type>NUMBER</type>
-                                                            <value>4</value>
+                                                            <value>100</value>
+                                                        </formula>
+                                                        <formula category="SIZE">
+                                                            <type>NUMBER</type>
+                                                            <value>120.0</value>
+                                                        </formula>
+                                                        <formula category="Y_POSITION">
+                                                            <type>NUMBER</type>
+                                                            <value>200</value>
+                                                        </formula>
+                                                        <formula category="COLOR">
+                                                            <type>STRING</type>
+                                                            <value>#FF0000</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                    <userVariable type="UserVariable" serialization="custom">
+                                                        <userVariable>
+                                                            <default>
+                                                                <deviceValueKey>4af96eb4-88a3-43c2-b997-16d9df3657a9</deviceValueKey>
+                                                                <name>xyz</name>
+                                                            </default>
+                                                        </userVariable>
+                                                    </userVariable>
+                                                    <alignmentSelection>1</alignmentSelection>
+                                                </brick>
+                                                <brick type="SpeakAndWaitBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="SPEAK">
+                                                            <type>STRING</type>
+                                                            <value>Hello!</value>
                                                         </formula>
                                                     </formulaList>
                                                 </brick>
                                             </ifBranchBricks>
                                         </brick>
-                                    </elseBranchBricks>
-                                    <ifBranchBricks>
-                                        <brick type="WaitBrick2">
+                                        <brick type="RepeatBrick">
                                             <commentedOut>false</commentedOut>
                                             <formulaList>
-                                                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                                <formula category="TIMES_TO_REPEAT">
                                                     <type>NUMBER</type>
-                                                    <value>1.0</value>
+                                                    <value>10</value>
+                                                </formula>
+                                            </formulaList>
+                                            <loopBricks>
+                                                <brick type="SpeakBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <formulaList>
+                                                        <formula category="SPEAK">
+                                                            <type>STRING</type>
+                                                            <value>Hello!</value>
+                                                        </formula>
+                                                    </formulaList>
+                                                </brick>
+                                                <brick type="GoToBrick">
+                                                    <commentedOut>false</commentedOut>
+                                                    <spinnerSelection>80</spinnerSelection>
+                                                </brick>
+                                            </loopBricks>
+                                        </brick>
+                                        <brick type="SetPenColorBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="PEN_COLOR_BLUE">
+                                                    <type>NUMBER</type>
+                                                    <value>255</value>
+                                                </formula>
+                                                <formula category="PEN_COLOR_RED">
+                                                    <type>NUMBER</type>
+                                                    <value>0</value>
+                                                </formula>
+                                                <formula category="PEN_COLOR_GREEN">
+                                                    <type>NUMBER</type>
+                                                    <value>0</value>
+                                                </formula>
+                                            </formulaList>
+                                        </brick>
+                                    </elseBranchBricks>
+                                    <ifBranchBricks>
+                                        <brick type="AskBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="ASK_QUESTION">
+                                                    <type>STRING</type>
+                                                    <value>What's your name?</value>
+                                                </formula>
+                                            </formulaList>
+                                            <userVariable reference="../../../elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+                                        </brick>
+                                        <brick type="SetVolumeToBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="VOLUME">
+                                                    <type>NUMBER</type>
+                                                    <value>60.0</value>
+                                                </formula>
+                                            </formulaList>
+                                        </brick>
+                                    </ifBranchBricks>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                        </script>
+                        <script type="WhenScript">
+                            <brickList>
+                                <brick type="IfOnEdgeBounceBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfThenLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>NUMBER</type>
+                                                <value>1</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>2</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>SMALLER_THAN</value>
+                                        </formula>
+                                    </formulaList>
+                                    <ifBranchBricks>
+                                        <brick type="AskBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="ASK_QUESTION">
+                                                    <type>STRING</type>
+                                                    <value>What's your name?</value>
+                                                </formula>
+                                            </formulaList>
+                                            <userVariable reference="../../../../../../script/brickList/brick/elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+                                        </brick>
+                                        <brick type="ChangeVolumeByNBrick">
+                                            <commentedOut>false</commentedOut>
+                                            <formulaList>
+                                                <formula category="VOLUME_CHANGE">
+                                                    <rightChild>
+                                                        <type>NUMBER</type>
+                                                        <value>10.0</value>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>MINUS</value>
                                                 </formula>
                                             </formulaList>
                                         </brick>
@@ -127,6 +260,8 @@
             </objectList>
         </scene>
     </scenes>
-    <programVariableList/>
+    <programVariableList>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick/elseBranchBricks/brick[2]/ifBranchBricks/brick/userVariable"/>
+    </programVariableList>
     <programListOfLists/>
 </program>

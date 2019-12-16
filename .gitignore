@@ -4,3 +4,4 @@ node_modules/
 *.log
 i18n/json
 \.vscode/
+./jenkins/testresults/*

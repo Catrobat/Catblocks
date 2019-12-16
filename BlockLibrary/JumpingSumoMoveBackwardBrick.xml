@@ -1,0 +1,4 @@
+<block type="JumpingSumoMoveBackwardBrick" id="" x="" y="">
+    <field name="STEPS">0</field>
+    <field name="POWER">0</field>
+</block>
