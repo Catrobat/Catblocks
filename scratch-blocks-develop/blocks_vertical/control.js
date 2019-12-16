@@ -31,8 +31,8 @@ Blockly.Blocks['ForeverBrick'] = {
     this.jsonInit({
       "id": "ForeverBrick",
       "message0": Blockly.Msg.CONTROL_FOREVER,
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args1": [
         {
@@ -130,7 +130,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
     this.jsonInit({
       "type": "IfLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
-      "message1": "%1", // Statement
+      "message1": "%1",
       "args0": [
         {
           "type": "field_input",
@@ -172,8 +172,8 @@ Blockly.Blocks['RepeatBrick'] = {
     this.jsonInit({
       "id": "RepeatBrick",
       "message0": Blockly.Msg.CONTROL_REPEATTIMES,
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args0": [
         {
@@ -209,8 +209,8 @@ Blockly.Blocks['RepeatUntilBrick'] = {
     this.jsonInit({
       "id": "RepeatUntilBrick",
       "message0": Blockly.Msg.CONTROL_REPEATUNTILISTRUE,
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args0": [
         {
