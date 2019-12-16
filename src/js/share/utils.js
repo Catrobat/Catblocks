@@ -11,25 +11,25 @@ import $ from 'jquery';
  * @enum {object}
  */
 export const defaultOptions = {
-	render: {
-		container: 'body',
-		language: 'en_GB',
-		renderSize: 0.75,
-		shareRoot: '/',
-		media: 'media/',
-		noImageFound: 'No_Image_Available.jpg',
-	},
-	scene: {
-		writeHeader: true,
-		expandable: true
-	},
-	object: {
-		writeHeader: true,
-		writeStats: true,
-		writeLook: true,
-		expandable: true,
-		programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/'
-	}
+  render: {
+    container: 'body',
+    language: 'en_GB',
+    renderSize: 0.75,
+    shareRoot: '/',
+    media: 'media/',
+    noImageFound: 'No_Image_Available.jpg',
+  },
+  scene: {
+    writeHeader: true,
+    expandable: true
+  },
+  object: {
+    writeHeader: true,
+    writeStats: true,
+    writeLook: true,
+    expandable: true,
+    programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/'
+  }
 };
 
 
@@ -41,7 +41,7 @@ export const defaultOptions = {
  * @return {Object} either input or default value
  */
 export const parseOptions = (inputValues, defaultValues) => {
-	return Object.assign({}, defaultValues, inputValues);
+  return Object.assign({}, defaultValues, inputValues);
 };
 
 
@@ -52,27 +52,27 @@ export const parseOptions = (inputValues, defaultValues) => {
  */
 export const transformXml = (xmlDom, tagActions) => {
 
-	const tagNames = Object.keys(tagActions);
-	for (let itag = 0; itag < tagNames.length; itag++) {
-		const tagName = tagNames[itag];
-		const nodes = xmlDom.getElementsByTagName(tagName);
-		for (let inodes = 0; inodes < nodes.length; inodes++) {
-			const actions = tagActions[tagName];
-			for (let iaction = 0; iaction < actions.length; iaction++) {
-				const actionType = actions[iaction].split('-')[0];
-				const actionValue = actions[iaction].split('-')[1];
-				switch (actionType) {
-				case 'remAttr': {
-					nodes[inodes].removeAttribute(actionValue);
-					break;
-				}
-				default: {
-					console.warn("Ignore undefined XML transformation.");
-				}
-				}
-			}
-		}
-	}
+  const tagNames = Object.keys(tagActions);
+  for (let itag = 0; itag < tagNames.length; itag++) {
+    const tagName = tagNames[itag];
+    const nodes = xmlDom.getElementsByTagName(tagName);
+    for (let inodes = 0; inodes < nodes.length; inodes++) {
+      const actions = tagActions[tagName];
+      for (let iaction = 0; iaction < actions.length; iaction++) {
+        const actionType = actions[iaction].split('-')[0];
+        const actionValue = actions[iaction].split('-')[1];
+        switch (actionType) {
+        case 'remAttr': {
+          nodes[inodes].removeAttribute(actionValue);
+          break;
+        }
+        default: {
+          console.warn("Ignore undefined XML transformation.");
+        }
+        }
+      }
+    }
+  }
 };
 
 /**
@@ -84,20 +84,20 @@ export const transformXml = (xmlDom, tagActions) => {
  * @return {Element} new created subcontainer
  */
 export const injectNewDom = (container, tagName, attributes, textContent) => {
-	const subContainer = document.createElement(tagName);
-	Object.keys(attributes).forEach(attrKey => {
-		subContainer.setAttribute(attrKey, attributes[attrKey]);
-	});
-	if (typeof textContent !== 'undefined') {
-		subContainer.textContent = textContent;
-	}
-	if (typeof container === 'string') {
-		document.getElementById(container).appendChild(subContainer);
-	}
-	else {
-		container.appendChild(subContainer);
-	}
-	return subContainer;
+  const subContainer = document.createElement(tagName);
+  Object.keys(attributes).forEach(attrKey => {
+    subContainer.setAttribute(attrKey, attributes[attrKey]);
+  });
+  if (typeof textContent !== 'undefined') {
+    subContainer.textContent = textContent;
+  }
+  if (typeof container === 'string') {
+    document.getElementById(container).appendChild(subContainer);
+  }
+  else {
+    container.appendChild(subContainer);
+  }
+  return subContainer;
 };
 
 /**
@@ -109,15 +109,15 @@ export const injectNewDom = (container, tagName, attributes, textContent) => {
  * @return {Element} wrapped element and mapped attributes
  */
 export const wrapElement = (element, wrapTag, attributes) => {
-	const parent = document.createElement(wrapTag);
-	if (attributes) {
-		Object.keys(attributes).forEach(attrKey => {
-			parent.setAttribute(attrKey, attributes[attrKey]);
-		});
-	}
-	parent.appendChild(element);
+  const parent = document.createElement(wrapTag);
+  if (attributes) {
+    Object.keys(attributes).forEach(attrKey => {
+      parent.setAttribute(attrKey, attributes[attrKey]);
+    });
+  }
+  parent.appendChild(element);
 
-	return parent;
+  return parent;
 };
 
 /**
@@ -125,9 +125,9 @@ export const wrapElement = (element, wrapTag, attributes) => {
  * @param {Element} node 
  */
 export const removeAllChildren = (node) => {
-	while (node.hasChildNodes()) {
-		node.removeChild(node.lastChild);
-	}
+  while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+  }
 };
 
 /**
@@ -138,21 +138,21 @@ export const removeAllChildren = (node) => {
  * @return {Element} dom element for name
  */
 export const getDomElement = (name, ancestor) => {
-	switch (typeof name) {
-	case 'object': {
-		return name;
-	}
-	case 'string': {
-		if (typeof ancestor !== 'undefined') {
-			return ancestor.getElementsByClassName(name)[0];
-		}
-		return document.getElementById(name) ||
+  switch (typeof name) {
+  case 'object': {
+    return name;
+  }
+  case 'string': {
+    if (typeof ancestor !== 'undefined') {
+      return ancestor.getElementsByClassName(name)[0];
+    }
+    return document.getElementById(name) ||
 				document.querySelector(name)[0];
-	}
-	default: {
-		return undefined;
-	}
-	}
+  }
+  default: {
+    return undefined;
+  }
+  }
 };
 
 /**
@@ -161,17 +161,17 @@ export const getDomElement = (name, ancestor) => {
  * @return {Boolean} if has children
  */
 export const hasChildren = (element) => {
-	switch (element.toString()) {
-	case '[object HTMLDivElement]': {
-		return (element.children !== undefined && element.children.length > 0);
-	}
-	case '[object HTMLCollection]': {
-		return element.length;
-	}
-	default: {
-		return element.children.length || element.hasChildNodes() || element.firstChild;
-	}
-	}
+  switch (element.toString()) {
+  case '[object HTMLDivElement]': {
+    return (element.children !== undefined && element.children.length > 0);
+  }
+  case '[object HTMLCollection]': {
+    return element.length;
+  }
+  default: {
+    return element.children.length || element.hasChildNodes() || element.firstChild;
+  }
+  }
 };
 
 /**
@@ -180,23 +180,23 @@ export const hasChildren = (element) => {
  * @param {*} trigger trigger to expand node
  */
 export const enableExpandable = (node, trigger) => {
-	// TODO: use jquery, need to fix displaying issues with max-heigth later
-	$(node).css('display', 'none');
-	$(node).addClass('container-closed');
+  // TODO: use jquery, need to fix displaying issues with max-heigth later
+  $(node).css('display', 'none');
+  $(node).addClass('container-closed');
 	
-	$(trigger).click(() => {
-		if ($(node).hasClass('container-closed')) {
-			$(node).slideDown();
-			$(node).removeClass('container-closed');
-		} else {
-			$(node).slideUp();
-			$(node).addClass('container-closed');
-		}
-	});
-	// $(node).addClass('container-closed');
-	// $(trigger).click(() => {
-	// 	$(node).toggleClass('container-open');
-	// });
+  $(trigger).click(() => {
+    if ($(node).hasClass('container-closed')) {
+      $(node).slideDown();
+      $(node).removeClass('container-closed');
+    } else {
+      $(node).slideUp();
+      $(node).addClass('container-closed');
+    }
+  });
+  // $(node).addClass('container-closed');
+  // $(trigger).click(() => {
+  // 	$(node).toggleClass('container-open');
+  // });
 };
 
 /**
@@ -206,11 +206,11 @@ export const enableExpandable = (node, trigger) => {
  * @return {string} prepared string
  */
 export const trimString = (str, length = 15) => {
-	if (typeof str === 'string') {
-		if (str.length > length) {
-			return `${str.slice(0, length)}...`;
-		}
-		return str;
-	}
-	return undefined;
+  if (typeof str === 'string') {
+    if (str.length > length) {
+      return `${str.slice(0, length)}...`;
+    }
+    return str;
+  }
+  return undefined;
 };

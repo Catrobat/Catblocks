@@ -26,7 +26,7 @@ const STRINGS_FILE = 'strings.xml';
 const JSON_DIR = path.join('i18n', 'json');
 // create dir if not exists
 if (!fs.existsSync(JSON_DIR)) {
-	fs.mkdirSync(JSON_DIR);
+  fs.mkdirSync(JSON_DIR);
 }
 
 /**
@@ -46,36 +46,36 @@ const escapeStringValue = (value) => value ? value.split('\n').join(' ') : '';
  * @param {*} jsonstream 
  */
 const parseStringFile = function (jsonstream) {
-	const values = {};
-	const data = JSON.parse(jsonstream).resources;
+  const values = {};
+  const data = JSON.parse(jsonstream).resources;
 
-	Object.keys(data).forEach(xmltag => {
-		switch (xmltag) {
-		case "string": {
-			data.string.forEach(stringpair => {
-				values[stringpair['name']] = escapeStringValue(stringpair['$t']);
-			});
-			break;
-		}
-		case "plurals": {
-			data.plurals.forEach(pluralpair => {
-				if (pluralpair.item instanceof Array) {
-					pluralpair.item.forEach(pluralitem => {
-						values[`${pluralpair['name']}.${pluralitem['quantity']}`] = escapeStringValue(pluralitem['$t']);
-					});
-				} else {
-					values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = escapeStringValue(pluralpair.item['$t']);
-				}
-			});
-			break;
-		}
-		default: {
-			console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
-			break;
-		}
-		}
-	});
-	return values;
+  Object.keys(data).forEach(xmltag => {
+    switch (xmltag) {
+    case "string": {
+      data.string.forEach(stringpair => {
+        values[stringpair['name']] = escapeStringValue(stringpair['$t']);
+      });
+      break;
+    }
+    case "plurals": {
+      data.plurals.forEach(pluralpair => {
+        if (pluralpair.item instanceof Array) {
+          pluralpair.item.forEach(pluralitem => {
+            values[`${pluralpair['name']}.${pluralitem['quantity']}`] = escapeStringValue(pluralitem['$t']);
+          });
+        } else {
+          values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = escapeStringValue(pluralpair.item['$t']);
+        }
+      });
+      break;
+    }
+    default: {
+      console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
+      break;
+    }
+    }
+  });
+  return values;
 };
 
 /**
@@ -84,39 +84,39 @@ const parseStringFile = function (jsonstream) {
  * @param {Object} data 
  */
 function substituteVariableData(variable, data) {
-	let result = variable;
-	variable.split('${').forEach(split => {
-		const len = split.indexOf('}');
-		if (len > -1) {
-			const var_name = split.substr(0, len);
-			result = result.replace(`$\{${var_name}}`, data[var_name]);
-		}
-	});
-	return result;
+  let result = variable;
+  variable.split('${').forEach(split => {
+    const len = split.indexOf('}');
+    if (len > -1) {
+      const var_name = split.substr(0, len);
+      result = result.replace(`$\{${var_name}}`, data[var_name]);
+    }
+  });
+  return result;
 }
 
 /**
  * main stuff
  */
 const mapping = JSON.parse(
-	fs.readFileSync(MAPPING_FILE, { encoding: 'utf-8' })
+  fs.readFileSync(MAPPING_FILE, { encoding: 'utf-8' })
 );
 const languages = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
 
 languages.forEach(language => {
-	const lang_file_path = path.join(STRINGS_DIR, language, STRINGS_FILE);
-	const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
-	const lang_values = parseStringFile(xml2json.toJson(lang_file));
-	const lang_name = prepareStringFolderName(language);
-	const json_file = path.join(JSON_DIR, lang_name + '.json');
+  const lang_file_path = path.join(STRINGS_DIR, language, STRINGS_FILE);
+  const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
+  const lang_values = parseStringFile(xml2json.toJson(lang_file));
+  const lang_name = prepareStringFolderName(language);
+  const json_file = path.join(JSON_DIR, lang_name + '.json');
 
-	const result = {};
+  const result = {};
 
-	Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
-		const value = substituteVariableData(mapping[rule], lang_values);
-		result[rule] = value.split('"').join('');
-	});
-	result["DROPDOWN_NAME"] = locales[lang_name] ? locales[lang_name] : lang_name;
+  Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
+    const value = substituteVariableData(mapping[rule], lang_values);
+    result[rule] = value.split('"').join('');
+  });
+  result["DROPDOWN_NAME"] = locales[lang_name] ? locales[lang_name] : lang_name;
 
-	fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
+  fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
 });

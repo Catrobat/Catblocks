@@ -38,21 +38,21 @@ Blockly.CatblocksMsgs.locales = {};
 Blockly.CatblocksMsgs.currentLocale_ = 'en_GB';
 
 Blockly.CatblocksMsgs.hasLocale = function(locale) {
-	return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);
+  return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);
 };
 
 Blockly.CatblocksMsgs.setLocale = function(locale) {
-	if (Blockly.CatblocksMsgs.hasLocale(locale)) {
-		Blockly.CatblocksMsgs.currentLocale_ = locale;
-		Blockly.Msg = Object.assign({}, Blockly.Msg, Blockly.CatblocksMsgs.locales[locale]);
-	} else {
-		// keep current locale
-		console.warn('Ignoring unrecognized locale: ' + locale);
-	}
+  if (Blockly.CatblocksMsgs.hasLocale(locale)) {
+    Blockly.CatblocksMsgs.currentLocale_ = locale;
+    Blockly.Msg = Object.assign({}, Blockly.Msg, Blockly.CatblocksMsgs.locales[locale]);
+  } else {
+    // keep current locale
+    console.warn('Ignoring unrecognized locale: ' + locale);
+  }
 };
 
 Blockly.CatblocksMsgs.reloadCurrentLocale = function() {
-	Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_);
+  Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_);
 };
 `;
 fs.writeSync(message_fd, CATBLOCK_MSGS);
@@ -60,18 +60,18 @@ fs.writeSync(message_fd, CATBLOCK_MSGS);
 // generate for each msg/*.json file a object in catblocks_msgs.js files
 const langfiles = fs.readdirSync(JSON_DIR, { encoding: 'utf-8' });
 langfiles.forEach(langfile => {
-	if (langfile.match(/.+\.json$/)) {
-		const lang_name = langfile.substr(0, langfile.indexOf('.'));
-		const json_path = path.join(JSON_DIR, langfile);
-		const json_object = JSON.parse(fs.readFileSync(json_path, { encoding: 'utf-8' }));
+  if (langfile.match(/.+\.json$/)) {
+    const lang_name = langfile.substr(0, langfile.indexOf('.'));
+    const json_path = path.join(JSON_DIR, langfile);
+    const json_object = JSON.parse(fs.readFileSync(json_path, { encoding: 'utf-8' }));
 
-		fs.writeSync(message_fd, `\n\nBlockly.CatblocksMsgs.locales["${lang_name}"] = {\n`);
-		Object.keys(json_object).forEach(key => {
-			fs.writeSync(message_fd, `\t"${key}": "${json_object[key]}",\n`);
-		});
+    fs.writeSync(message_fd, `\n\nBlockly.CatblocksMsgs.locales["${lang_name}"] = {\n`);
+    Object.keys(json_object).forEach(key => {
+      fs.writeSync(message_fd, `  "${key}": "${json_object[key]}",\n`);
+    });
 
-		fs.writeSync(message_fd, `};`);
-	}
+    fs.writeSync(message_fd, `};`);
+  }
 });
 
 fs.closeSync(message_fd);

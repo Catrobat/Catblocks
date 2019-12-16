@@ -12,7 +12,7 @@ const BLOCK_CATEGORIES = ['motion', 'looks', 'sound', 'event', 'control', 'pen',
  * Parse all defined blocks from BLOCK_CATEGORIES
  */
 const BLOCKS = (function() {
-  let result = {};
+  const result = {};
   BLOCK_CATEGORIES.forEach(category => {
     result[category] = utils.parseBlockCategoryFile(category);
   });
@@ -29,7 +29,7 @@ const TOOLBOX = (function() {
   const toolboxString = payload[1];
   const toolbox = JSON.parse(xmlParser.toJson(toolboxString)).xml.category;
 
-  let result = {};
+  const result = {};
   toolbox.forEach(category => {
     result[category['id']] = category;
   });

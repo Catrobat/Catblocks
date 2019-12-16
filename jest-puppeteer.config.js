@@ -18,10 +18,10 @@ module.exports = {
     ],
     executablePath: (() => {
       switch (process.env.DCONTAINER) {
-        case 'catblocks:v1':
-          return '/usr/bin/chromium-browser';
-        default:
-          return undefined
+      case 'catblocks:v1':
+        return '/usr/bin/chromium-browser';
+      default:
+        return undefined;
       }
     })()
   },
@@ -29,4 +29,4 @@ module.exports = {
     command: 'cd ./dist/ && http-server',
     port: 8080
   }
-}
+};

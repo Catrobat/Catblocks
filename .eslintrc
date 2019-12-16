@@ -6,15 +6,16 @@
   "extends": ["eslint:recommended"],
   "env": {
     "browser": true, /* allow console */
-    "es6": true /* allow Promise */
+    "es6": true, /* allow Promise */
+    "node": true
   },
   "rules": {
     "no-unused-vars": ["warn"],
     "semi": ["warn"],
     "prefer-const": ["warn"],
     "no-var": ["warn"],
-    "indent": ["warn", "tab"],
-    "no-mixed-spaces-and-tabs": ["warn"]
+    "indent": ["error", 2],
+    "no-mixed-spaces-and-tabs": ["error"]
   },
   "globals": {
     "process": false
