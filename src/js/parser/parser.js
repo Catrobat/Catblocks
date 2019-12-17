@@ -103,7 +103,9 @@ function parseDocument(xml) {
   xmlDoc = xml;
 
   // TODO: add code if not supported
-  isSupported();
+  if(!isSupported()){
+    return undefined;
+  }
 
   const scenes = xml.getElementsByTagName('scenes')[0].children;
   for (let i = 0; i < scenes.length; i++) {
