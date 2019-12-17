@@ -74,7 +74,8 @@ const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
 
-let XML = XML_BEGIN;
+let XML = "";// XML_BEGIN;
+let share = 0;
 
 /**
  * Check if current catroid code version is supported
@@ -398,15 +399,24 @@ function concatFormula(formula, str) {
 }
 
 function writeXML() {
+  if(share === 1){
+    XML = XML_BEGIN;
+  }
   for (let i = 0; i < sceneList.length; i++) {
-    XML = XML.concat(`<scene type="${sceneList[i].name}">`);
+    if(share === 1) {
+      XML = XML.concat(`<scene type="${sceneList[i].name}">`);
+    }
     const currObjectList = sceneList[i].objectList;
     for (let j = 0; j < currObjectList.length; j++) {
       if (currObjectList[j].lookList.length > 0) {
         const objectImage = currObjectList[j].lookList[0].fileName;
-        XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
+        if(share === 1){
+          XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
+        }
       } else {
-        XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+        if(share === 1){
+          XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+        }
       }
       const currScriptList = currObjectList[j].scriptList;
       for (let k = 0; k < currScriptList.length; k++) {
@@ -414,11 +424,17 @@ function writeXML() {
         writeScriptsToXML(currScriptList[k]);
         XML = XML.concat(`</script>`);
       }
-      XML = XML.concat(`</object>`);
+      if(share === 1){
+        XML = XML.concat(`</object>`);
+      }
     }
-    XML = XML.concat(`</scene>`);
+    if(share === 1) {
+      XML = XML.concat(`</scene>`);
+    }
   }
-  XML = XML.concat(XML_END);
+  if(share === 1){
+    XML = XML.concat(XML_END);
+  }
   return XML;
 }
 
@@ -502,6 +518,7 @@ export default class Parser {
 	 * @returns {Promise} catblock XMLDocument
 	 */
   static parseFile(uri) {
+    share = 1;
     return fetch(uri)
       .then(res => res.text())
       .then(str => {
