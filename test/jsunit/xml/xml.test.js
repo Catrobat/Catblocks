@@ -2,7 +2,7 @@
  * @description xml tests
  */
 
-const utils = require('./../commonUtils');
+const utils = require('../commonUtils');
 
 /**
  * Tests if import and export of Blocks to xml format works
@@ -10,7 +10,7 @@ const utils = require('./../commonUtils');
 describe('Export and Import XML files to workspace', () => {
 
   beforeEach(async () => {
-    await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
   });
 
   /**

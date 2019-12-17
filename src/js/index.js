@@ -14,6 +14,14 @@ import Blockly from "scratch-blocks";
     const app = new Playground();
     app.init();
     window.Catblocks = app;
+    window.blocklyWS = app.workspace;
+    window.toolboxWS = (() => {
+      for (const wsId in app.Blockly.Workspace.WorkspaceDB_) {
+        if (app.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+          return app.Blockly.Workspace.WorkspaceDB_[wsId];
+        }
+      }
+    })();
     break;
   }
   case 'share': {
