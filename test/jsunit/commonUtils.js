@@ -13,16 +13,11 @@ fs.gracefulify(realfs);
 const ROOT_PATH = './';
 
 /**
- * Workspace html file path for unit test
- */
-const WORKSPACE_URL = 'tests/jsunit/workspace.html';
-
-/**
  * constant paths from project for testing
  */
 const PATHS = {
-  BLOCKS: 'src/js/playground/toolbox/blocks/',
-  TOOLBOX: 'src/js/playground/toolbox/default_toolbox.js',
+  BLOCKS: 'src/js/blocks/categories/',
+  TOOLBOX: 'src/js/blocks/default_toolbox.js',
   MESSAGE_MAPPING: 'i18n/strings_to_json_mapping.json',
   CATROID_MSGS: 'i18n/catroid_strings/',
   CATBLOCKS_MSGS: 'i18n/json/',
@@ -102,7 +97,6 @@ const parseBlockCategoryFile = (category) => {
 
 module.exports = {
   ROOT_PATH,
-  WORKSPACE_URL,
   PATHS,
   isString,
   isNotEmptyString,

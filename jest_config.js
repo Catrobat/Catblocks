@@ -16,14 +16,14 @@ module.exports = {
   globals: {
     SERVER: "http://localhost:8080/"
   },
-  "reporters": [
-    "default",
-    ["jest-junit", {
-      "outputDirectory": "./",
-      "outputName": "jest-juint-result.xml"
-    }]
-  ],
+  // "reporters": [
+  //   "default",
+  //   ["jest-junit", {
+  //     "outputDirectory": "./",
+  //     "outputName": "jest-juint-result.xml"
+  //   }]
+  // ],
   testMatch: [
     "**/test/**/*.test.js"
   ]
-}
+};

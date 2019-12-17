@@ -12,21 +12,22 @@
 
 module.exports = {
   launch: {
+    headless: true,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
     ],
-    executablePath: (() => {
-      switch (process.env.DCONTAINER) {
-        case 'catblocks:v1':
-          return '/usr/bin/chromium-browser';
-        default:
-          return undefined
-      }
-    })()
+  //   executablePath: (() => {
+  //     switch (process.env.DCONTAINER) {
+  //     case 'catblocks:v1':
+  //       return '/usr/bin/chromium-browser';
+  //     default:
+  //       return undefined;
+  //     }
+  //   })()
   },
   server: {
     command: 'cd ./dist/ && http-server',
     port: 8080
   }
-}
+};

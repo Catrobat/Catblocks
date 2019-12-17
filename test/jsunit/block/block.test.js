@@ -7,14 +7,12 @@ const xmlParser = require('xml2json');
 
 const BLOCK_CATEGORIES = ['motion', 'looks', 'sound', 'event', 'control', 'pen', 'data',
   'drone', 'jumpingSumo', 'arduino', 'raspi', 'phiro', 'legoEV3', 'legoNXT'];
-const TOOLBOX_DEFINITION = 'Blockly.Blocks.defaultToolbox =';
-
 
 /**
  * Parse all defined blocks from BLOCK_CATEGORIES
  */
 const BLOCKS = (function() {
-  let result = {};
+  const result = {};
   BLOCK_CATEGORIES.forEach(category => {
     result[category] = utils.parseBlockCategoryFile(category);
   });
@@ -25,13 +23,13 @@ const BLOCKS = (function() {
  * Parse toolbox xml to json object
  */
 const TOOLBOX = (function() {
-  const payload = utils.readFileSync(utils.PATHS.TOOLBOX).toString().split(TOOLBOX_DEFINITION)[1];
+  const payload = utils.readFileSync(utils.PATHS.TOOLBOX).toString().split('`');
   if (payload.length === 0) return undefined;
 
-  eval(`var toolboxString = ${payload}`);
+  const toolboxString = payload[1];
   const toolbox = JSON.parse(xmlParser.toJson(toolboxString)).xml.category;
 
-  let result = {};
+  const result = {};
   toolbox.forEach(category => {
     result[category['id']] = category;
   });
@@ -60,30 +58,28 @@ describe('Filesystem Block tests', () => {
   /**
    * Check if each defined blocks has a message0 referenced to BLOCK_MSG_MAPPINGS
    */
-  test.only('Block Messages exists in i18n/strings_to_json_mapping.json', () => {
+  test('Block Messages exists in i18n/strings_to_json_mapping.json', () => {
 
-    expect(1).toBe(1);
+    Object.keys(BLOCKS).forEach(categoryName => {
+      Object.keys(BLOCKS[categoryName]).forEach(blockName => {
+        const block = BLOCKS[categoryName][blockName];
+        const blockMsgParts = block['message0'].split('.');
+        const blockMsgName = blockMsgParts[blockMsgParts.length - 1];
 
-    // Object.keys(BLOCKS).forEach(categoryName => {
-    //   Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-    //     let block = BLOCKS[categoryName][blockName];
-    //     let blockMsgParts = block['message0'].split('.');
-    //     let blockMsgName = blockMsgParts[blockMsgParts.length - 1];
+        // verify if it exists
+        expect(BLOCK_MSG_MAPPINGS[blockMsgName]).not.toBeUndefined();
 
-    //     // verify if it exists
-    //     expect(BLOCK_MSG_MAPPINGS[blockMsgName]).not.toBeUndefined();
-
-    //     let defArgs = Object.keys(block).filter(key => {
-    //       if (key.indexOf('args') > -1) {
-    //         if (block[key].length === 0) return false;
-    //         return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
-    //       }
-    //       return false;
-    //     });
-    //     let msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/\%\d+/) || [];
-    //     expect(defArgs.length).toBe(msgArgs.length);
-    //   });
-    // });
+        const defArgs = Object.keys(block).filter(key => {
+          if (key.indexOf('args') > -1) {
+            if (block[key].length === 0) return false;
+            return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
+          }
+          return false;
+        });
+        const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
+        expect(defArgs.length).toBe(msgArgs.length);
+      });
+    });
   });
 
   /**
@@ -92,18 +88,18 @@ describe('Filesystem Block tests', () => {
   test('Block argsCount match with i18n/strings_to_json_mapping.json', () => {
     Object.keys(BLOCKS).forEach(categoryName => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-        let block = BLOCKS[categoryName][blockName];
-        let blockMsgParts = block['message0'].split('.');
-        let blockMsgName = blockMsgParts[blockMsgParts.length - 1];
+        const block = BLOCKS[categoryName][blockName];
+        const blockMsgParts = block['message0'].split('.');
+        const blockMsgName = blockMsgParts[blockMsgParts.length - 1];
 
-        let defArgs = Object.keys(block).filter(key => {
+        const defArgs = Object.keys(block).filter(key => {
           if (key.indexOf('args') > -1) {
             if (block[key].length === 0) return false;
             return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
           }
           return false;
         });
-        let msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/\%\d+/) || [];
+        const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
         expect(defArgs.length).toBe(msgArgs.length);
       });
     });
@@ -117,7 +113,7 @@ describe('Filesystem Block tests', () => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
         expect(TOOLBOX[categoryName]).toBeDefined();
 
-        let catBlocks = TOOLBOX[categoryName].block.map(block => block.type);
+        const catBlocks = TOOLBOX[categoryName].block.map(block => block.type);
         expect(catBlocks.includes(blockName)).toBeTruthy();
       });
     });
@@ -136,20 +132,18 @@ describe('WebView Block tests', () => {
     let workspaceBlocks = {};
 
     beforeEach(async () => {
-      await page.goto(`${SERVER}${utils.WORKSPACE_URL}`, { waitUntil: 'domcontentloaded' });
-
+      await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
-        Object.keys(Blockly.Workspace.WorkspaceDB_).forEach(id => {
-          if (Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
-            workspaces['userWorkspace'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+        Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_).forEach(id => {
+          if (Catblocks.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
+            workspaces['userWorkspace'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
           } else {
-            workspaces['toolbox'] = Object.keys(Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+            workspaces['toolbox'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
           }
-
         });
         return workspaces;
-      });
+      }, 2000);
     });
 
     /**
@@ -182,12 +176,13 @@ describe('WebView Block tests', () => {
     /**
      * Check if categories from toolbox rendered properly
      */
-    test('Toolbox includes all Categories', async () => {
-      const renderedCategories = await page.evaluate(() => Object.keys(Blockly.Categories));
-      BLOCK_CATEGORIES.forEach(category => {
-        expect(renderedCategories.includes(category)).toBeTruthy();
-      })
-    });
+    // test('Toolbox includes all Categories', async () => {
+    //   const renderedCategories = await page.evaluate(() => Object.keys(Catblocks.Blockly.Categories));
+
+    //   BLOCK_CATEGORIES.forEach(category => {
+    //     expect(renderedCategories.includes(category)).toBeTruthy();
+    //   })
+    // });
 
     /**
      * Check if all blocks are rendered properly

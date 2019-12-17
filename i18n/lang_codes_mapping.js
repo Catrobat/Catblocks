@@ -6,14 +6,14 @@
 /**
  * export from webpage via Firefox console
  */
-const exportLocales = function () {
-  var locale = {};
-  var values = document.getElementsByTagName('TR');
-  Object.keys(values).forEach(key => {
-    var tr = values[key]
-    locale[tr.children[0].textContent] = tr.children[1].textContent
-  })
-}
+// const exportLocales = function () {
+//   var locale = {};
+//   var values = document.getElementsByTagName('TR');
+//   Object.keys(values).forEach(key => {
+//     var tr = values[key]
+//     locale[tr.children[0].textContent] = tr.children[1].textContent
+//   })
+// }
 
 const locales = {
   "af": "Afrikaans",
@@ -232,7 +232,7 @@ const locales = {
   "tt": "Tatar",
   "tt_RU": "Tatar (Russia)",
   "ts": "Tsonga",
-  "tw_TW" : "Twi",
+  "tw_TW": "Twi",
   "uk": "Ukrainian",
   "uk_UA": "Ukrainian (Ukraine)",
   "ur": "Urdu",
@@ -259,4 +259,4 @@ const locales = {
   "ps_AF": "Pushto"
 };
 
-module.exports = { locales }
+module.exports = { locales };
