@@ -281,6 +281,12 @@ export class Share {
     container = getDomElement(container);
     const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
+    if(xmlElement === undefined){
+      console.warn('Inject message to upgrade programm to newer version!');
+      injectNewDom(scenesContainer, 'P', {'class' : 'catblocks-empty-text'}, 'Unsupported program version! Please reupload your Programm using our app!');
+      return;
+    }
+
     const scenes = xmlElement.getElementsByTagName('scene');
     if (!hasChildren(scenes)) {
       const emptyContainer = injectNewDom(scenesContainer, 'DIV', { 'class': 'catblocks-object-container catblocks-empty-container' });
