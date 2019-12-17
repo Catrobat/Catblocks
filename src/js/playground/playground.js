@@ -250,8 +250,8 @@ export class Playground {
     if (convertedXML === undefined || convertedXML === "") {
       throw "no response from XStreamParser";
     } else { 
-      const xml = Blockly.Xml.textToDom(convertedXML);
-      Blockly.Xml.domToWorkspace(xml, this.workspace);
+      //const xml = Blockly.Xml.textToDom(convertedXML);
+      Blockly.Xml.domToWorkspace(convertedXML.firstChild, this.workspace);
     }
   }
   glowBlock() {
