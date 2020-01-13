@@ -4,6 +4,7 @@
 
 import Blockly from 'scratch-blocks';
 import Parser from '../parser/parser';
+import "../catblocks_msgs";
 import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
 
 export class Share {
@@ -26,12 +27,7 @@ export class Share {
     document.head.insertBefore(this.cssNode, document.head.firstChild);
     const cssText = document.createTextNode(this.getCssContent());
     this.cssNode.appendChild(cssText);
-    const language = (navigator.userLanguage || navigator.language).replace('-', '_');
-    fetch("server/"+language).then(res => res.json()).then(json => this.blockly.Msg = Object.assign({}, json));
-
-    console.log(navigator.language);
-    console.log(language);
-
+    
     this.createReadonlyWorkspace();
   }
 
@@ -53,7 +49,11 @@ export class Share {
         startScale: this.config.renderSize
       }
     });
-    Blockly.CatblocksMsgs.setLocale(this.config.language);
+    
+    Blockly.CatblocksMsgs.currentLocale_ = this.config.language;
+    const userLanguage = (navigator.userLanguage || navigator.language).replace('-', '_');
+    Blockly.CatblocksMsgs.setLocale(userLanguage);
+    this.config.language = Blockly.CatblocksMsgs.currentLocale_;
 
     this.workspaceDom = this.workspace.getInjectionDiv();
     this.workspaceDom.id = this.workspace.id;
