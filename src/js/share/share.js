@@ -26,6 +26,11 @@ export class Share {
     document.head.insertBefore(this.cssNode, document.head.firstChild);
     const cssText = document.createTextNode(this.getCssContent());
     this.cssNode.appendChild(cssText);
+    const language = (navigator.userLanguage || navigator.language).replace('-', '_');
+    fetch("server/"+language).then(res => res.json()).then(json => this.blockly.Msg = Object.assign({}, json));
+
+    console.log(navigator.language);
+    console.log(language);
 
     this.createReadonlyWorkspace();
   }
