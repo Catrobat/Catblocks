@@ -38,25 +38,25 @@ import Blockly from "scratch-blocks";
       'shareRoot': '/',
       'media': 'media/',
       'noImageFound': 'No_Image_Available.jpg',
-    });
-
-    // render my code.xml file
-    $(document).ready(() => {
-      share.parser.parseFile(`${progPath}code.xml`)
-        .then(xmlDoc => {
-          console.log(xmlDoc);
-          const div = document.getElementById('catblocks-code-container');
-          share.injectAllScenes(div, xmlDoc, {
-            object: {
-              programRoot: `${progPath}`
-            }
+    }).then(() => {
+      // render my code.xml file
+      $(document).ready(() => {
+        share.parser.parseFile(`${progPath}code.xml`)
+          .then(xmlDoc => {
+            console.log(xmlDoc);
+            const div = document.getElementById('catblocks-code-container');
+            share.injectAllScenes(div, xmlDoc, {
+              object: {
+                programRoot: `${progPath}`
+              }
+            });
+          })
+          .catch(err => {
+            console.error(`Failed to parse catroid file.`);
+            console.error(err);
           });
-        })
-        .catch(err => {
-          console.error(`Failed to parse catroid file.`);
-          console.error(err);
-        });
 
+      });
     });
     break;
   }

@@ -21,18 +21,20 @@ export class Share {
 	 * @param {Element} options for rendering process
 	 */
   init(options) {
-    this.config = parseOptions(options, defaultOptions.render);
-    this.cssNode = document.createElement('style');
-    document.head.insertBefore(this.cssNode, document.head.firstChild);
-    const cssText = document.createTextNode(this.getCssContent());
-    this.cssNode.appendChild(cssText);
-    const language = (navigator.userLanguage || navigator.language).replace('-', '_');
-    fetch("server/"+language).then(res => res.json()).then(json => this.blockly.Msg = Object.assign({}, json));
-
-    console.log(navigator.language);
-    console.log(language);
-
-    this.createReadonlyWorkspace();
+    return new Promise((res) => {
+      this.config = parseOptions(options, defaultOptions.render);
+      this.cssNode = document.createElement('style');
+      document.head.insertBefore(this.cssNode, document.head.firstChild);
+      const cssText = document.createTextNode(this.getCssContent());
+      this.cssNode.appendChild(cssText);
+      
+      const language = (navigator.userLanguage || navigator.language).replace('-', '_');
+      this.blockly.CatblocksMsgs.setLocale(language).then(() => {
+        this.config.language = language;
+        this.createReadonlyWorkspace();
+        res();
+      });    
+    });
   }
 
   /**
