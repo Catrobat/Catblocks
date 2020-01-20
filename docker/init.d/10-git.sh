@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ -z "$ROOT" ]
+if [ -z "$CATROOT" ]
 then
-  ROOT="/home/akarner/tulocal/catrobat/Catblocks/"
-  export ROOT
+  CATROOT="/home/catblocks/"
+  export CATROOT
 fi
 
-cd "$ROOT"
+cd "$CATROOT"
 git clone "https://github.com/Catrobat/Catblocks.git"

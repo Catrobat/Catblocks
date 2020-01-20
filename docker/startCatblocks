@@ -1,13 +1,29 @@
 #!/bin/sh
 INIT="./init.d/"
+MODE="$1"
 
+if [ -z "$MODE" ]
+then
+  MODE="development"
+  export MODE
+fi
+echo "Start catblocks with mode: ""$MODE"
+
+if [ -z "$CATROOT" ]
+then
+  CATROOT="/home/catblocks/repo"
+  export CATROOT
+fi
+echo "Set catroot to: ""$CATROOT"
+
+cd "$CATROOT"
 if [ -d "$INIT" ]
 then
   echo "Found init folder, fetching executeable files"
 
   for SCRIPT in $(ls "$INIT"*".sh")
   do
-    echo "Run: ""$SCRIPT"
+    echo "Start script: ""$SCRIPT"
     sh $SCRIPT
     echo "Finsihed script: ""$SCRIPT"
   done
