@@ -14,7 +14,8 @@ fi
 
 if [ "$MODE" = "development" ]
 then
-  yarn run share:server
+  yarn run share:build
+  python -m http.server 8080
 fi
 
 
