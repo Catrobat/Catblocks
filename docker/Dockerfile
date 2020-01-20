@@ -1,0 +1,40 @@
+FROM node:10-alpine
+
+MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
+
+# enable new repositories
+RUN \
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+# upgrade and install
+RUN \
+  apk --no-cache  update \
+  && apk --no-cache  upgrade \
+  && apk add --no-cache --virtual .build-deps \
+    gifsicle pngquant optipng libjpeg-turbo-utils \
+    udev ttf-opensans chromium git python3
+
+# remove cache
+RUN rm -rf /var/cache/apk/* /tmp/*
+
+# define environment
+ENV CHROME_BIN /usr/bin/chromium-browser
+ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
+
+# set container name and skip chromium download by jest
+ENV DCONTAINER catblocks:v1
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+
+# setup entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT docker-entrypoint.sh
+
+# add catblocks user
+RUN addgroup -S catrobat
+RUN adduser -S catblocks -G catrobat
+USER catblocks
+WORKDIR /home/catblocks
+
+CMD /bin/sh
