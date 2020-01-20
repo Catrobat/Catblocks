@@ -17,17 +17,17 @@ module.exports = {
       '--no-sandbox',
       '--disable-setuid-sandbox'
     ],
-  //   executablePath: (() => {
-  //     switch (process.env.DCONTAINER) {
-  //     case 'catblocks:v1':
-  //       return '/usr/bin/chromium-browser';
-  //     default:
-  //       return undefined;
-  //     }
-  //   })()
+    executablePath: (() => {
+      switch (process.env.DCONTAINER) {
+        case 'catblocks:v1':
+          return '/usr/bin/chromium-browser';
+        default:
+          return undefined;
+      }
+    })()
   },
   server: {
-    command: 'cd ./dist/ && http-server',
+    command: 'cd ./dist/ && python3 -m http.server 8080',
     port: 8080
   }
 };
