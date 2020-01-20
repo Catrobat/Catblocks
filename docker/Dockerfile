@@ -8,13 +8,16 @@ RUN \
   && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
   && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-# upgrade and install
+# update and upgrade
+RUN apk --no-cache  update \
+  && apk --no-cache  upgrade
+
+# install build dependencies
 RUN \
-  apk --no-cache  update \
-  && apk --no-cache  upgrade \
-  && apk add --no-cache --virtual .build-deps \
-    gifsicle pngquant optipng libjpeg-turbo-utils \
-    udev ttf-opensans chromium git python3
+  apk add --no-cache --virtual .build-deps python3 make g++
+
+RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
+    udev ttf-opensans chromium git
 
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
