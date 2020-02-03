@@ -13,3 +13,5 @@ fi
 
 cd "$CATROOT""/Catblocks"
 yarn install "--""$MODE"
+yarn translate
+yarn playground:test

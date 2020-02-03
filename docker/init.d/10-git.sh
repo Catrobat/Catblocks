@@ -8,3 +8,5 @@ fi
 
 cd "$CATROOT"
 git clone "https://github.com/Catrobat/Catblocks.git"
+cd "Catblocks"
+git checkout BLOCKS-053
