@@ -35,6 +35,7 @@ class Brick {
     this.loopOrIfBrickList = [];
     this.elseBrickList = [];
     this.formValues = new Map();
+    this.colorVariation = 0;
   }
 }
 
@@ -225,12 +226,26 @@ function checkUsage(list, location) {
     const loopOrIfBrickList = (list.children);
     for (let j = 0; j < loopOrIfBrickList.length; j++) {
       location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
+      if(location.name === loopOrIfBrickList[j].name){
+        if(loopOrIfBrickList[j].colorVariation === 0){
+          location.colorVariation = 1;
+        }else{
+          location.colorVariation = 0;
+        }
+      }
     }
   }
   if (list.nodeName === "elseBranchBricks") {
     const elseBrickList = (list.children);
     for (let j = 0; j < elseBrickList.length; j++) {
       location.elseBrickList.push(parseBrick(elseBrickList[j]));
+      if(location.name === elseBrickList[j].name){
+        if(elseBrickList[j].colorVariation === 0){
+          location.colorVariation = 1;
+        }else{
+          location.colorVariation = 0;
+        }
+      }
     }
   }
   if (list.nodeName === "sound") {
