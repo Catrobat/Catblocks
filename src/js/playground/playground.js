@@ -163,6 +163,7 @@ export class Playground {
 
     $('#glowBlock').click(() => this.glowBlock());
     $('#unglowBlock').click(() => this.unglowBlock());
+    $('#zebra').click(() => this.zebra());
     $('#glowStack').click(() => this.glowStack());
     $('#unglowStack').click(() => this.unglowStack());
 
@@ -253,6 +254,10 @@ export class Playground {
       //const xml = Blockly.Xml.textToDom(convertedXML);
       Blockly.Xml.domToWorkspace(convertedXML.firstChild, this.workspace);
     }
+  }
+  zebra() {
+    console.log(Blockly.selected.get);
+    //Blockly.selected.getBlockById(Blockly.selected.id)
   }
   glowBlock() {
     if (Blockly.selected) {
