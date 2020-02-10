@@ -1,0 +1,19 @@
+# action.yml
+name: 'Jest-Docker-Runer'
+description: 'Build docker container and execute jest tests'
+inputs:
+  docker-file:
+    description: 'Dockerfile for container build'
+    required: false
+    default: 'Dockerfile'
+
+  jest-config-file:
+    description: 'jest config file'
+    required: false
+    default: 'jest_config.js'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.jest-config-file }}
