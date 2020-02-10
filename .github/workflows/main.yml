@@ -12,5 +12,6 @@ jobs:
         uses: ./docker/ # Uses an action in the root directory
         id: jestTest
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           docker-file: './docker/Dockerfile'
           jest-config-file: 'jest_config.js'

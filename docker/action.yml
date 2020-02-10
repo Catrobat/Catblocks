@@ -2,6 +2,10 @@
 name: 'Jest-Docker-Runer'
 description: 'Build docker container and execute jest tests'
 inputs:
+  github-token:
+    description: 'Github token for report push, use ${{ secrets.GITHUB_TOKEN }}'
+    required: true
+    
   docker-file:
     description: 'Dockerfile for container build'
     required: false
@@ -16,4 +20,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.jest-config-file }}
+    - ${{ inputs.github-token }}
