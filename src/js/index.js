@@ -35,7 +35,7 @@ import Blockly from "scratch-blocks";
       'container': 'catblocks-code-container',
       'renderSize': 0.75,
       'language': progLang,
-      'shareRoot': '/',
+      'shareRoot': '',
       'media': 'media/',
       'noImageFound': 'No_Image_Available.jpg',
     });
