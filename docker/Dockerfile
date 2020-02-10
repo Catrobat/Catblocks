@@ -30,19 +30,8 @@ ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
 ENV DCONTAINER catblocks:v1
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
-# add catblocks user
-RUN addgroup -S catrobat
-RUN adduser -S catblocks -G catrobat
-USER catblocks
-WORKDIR /home/catblocks
-
-# init catblocks setup
-ENV CATROOT /home/catblocks/repo/
-RUN mkdir -p /home/catblocks/repo/
-COPY init.d/ /home/catblocks/repo/init.d/
-COPY startCatblocks /home/catblocks/repo/
-ENV PATH $PATH:/home/catblocks/repo/
+COPY entrypoint.sh /entrypoint.sh
 
 # cmd
 #CMD /bin/sh
-ENTRYPOINT ["startCatblocks"]
+ENTRYPOINT ["/entrypoint.sh"]
