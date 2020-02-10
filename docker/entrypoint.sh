@@ -24,11 +24,19 @@ mv ./jest_html_reporters.html $REPORT
 
 # push report
 TOKEN="$1"
+
+# do some black magic (please fix this code later)
+mv $REPORT ./../
+git reset --hard
+git clean -df
+git fetch gh-pages
+git checkout gh-pages
+mv ./../$REPORT ./reports/
+
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
-git add $REPORT
-git commit -m "Add test report" -a 
+git add ./reports/$REPORT
+git commit -m "Add test report"
 
-remote_repo="https://${GITHUB_ACTOR}:${TOKEN}@github.com/Catblocks.git"
-git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/Catblocks.git" "${GITHUB_SHA}:gh-pages"
+git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
 
