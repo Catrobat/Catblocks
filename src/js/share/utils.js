@@ -15,7 +15,7 @@ export const defaultOptions = {
     container: 'body',
     language: 'en_GB',
     renderSize: 0.75,
-    shareRoot: '/',
+    shareRoot: '',
     media: 'media/',
     noImageFound: 'No_Image_Available.jpg',
   },
