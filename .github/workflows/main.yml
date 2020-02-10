@@ -1,0 +1,16 @@
+on: [push]
+
+jobs:
+  jest_test_job:
+    runs-on: ubuntu-latest
+    name: Build catblocks container and run jest tests
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Jest, running test suites
+        uses: ./docker/ # Uses an action in the root directory
+        id: jestTest
+        with:
+          docker-file: './docker/Dockerfile'
+          jest-config-file: 'jest_config.js'
