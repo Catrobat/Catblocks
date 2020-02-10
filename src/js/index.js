@@ -39,8 +39,8 @@ import { renderAllPrograms } from './render/render';
     share.init({
       'container': 'catblocks-workspace-container',
       'renderSize': 0.75,
-      'language': 'en_GB',
-      'shareRoot': '/',
+      'language': progLang,
+      'shareRoot': '',
       'media': 'media/',
       'noImageFound': 'No_Image_Available.jpg',
     });
