@@ -10,7 +10,7 @@ module.exports = {
   entry: path.join(__dirname, 'src/js/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname)
   },
   resolve: {
     extensions: ['.js', '.json']
@@ -32,17 +32,15 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
+        test: /\.s[ac]ss$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: devMode,
-            }
-          },
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
           'css-loader',
-        ]
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       }
     ]
   },
@@ -51,20 +49,12 @@ module.exports = {
       template: path.join(__dirname, 'src/html/index.html'),
       filename: 'index.html',
       hash: true
-    }),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // all options are optional
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
-    }),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE'])
+    })
   ],
   // watch: true,
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname),
     hot: true,
     compress: !devMode,
     noInfo: true,
