@@ -5,52 +5,55 @@
 <head>
   <meta charset="UTF-8">
   <title>Catblocks test reports</title>
+
 </head>
 
 <body>
-  <div id="header">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Catblocks Test Reports</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/Catrobat/Catblocks">Repository</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <!-- <div id="last-test">
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Laetest test run</h1>
-      </div>
+  <div id="root">
+    <div id="header">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Catblocks Test Reports</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/Catrobat/Catblocks">Repository</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </div> -->
-
-  <hr>
-
-  <div id="other-test">
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">All test runns</h1>
+    <!-- <div id="content">
+      <div id="last-test">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Laetest test run</h1>
+          </div>
+        </div>
       </div>
+      <hr> -->
+      <div id="other-test">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">All test runns</h1>
+          </div>
+        </div>
+      </div>
+      <table class="table" id="test-run-table">
+        <thead class="thead-dark">
+        </thead>
+        <tbody>
+          <!-- this content get injected via js function -->
+        </tbody>
+      </table>
     </div>
   </div>
-  <table class="table" id="test-run-table">
-    <thead class="thead-dark">
-    </thead>
-    <tbody>
-      <!-- this content get injected via js function -->
-    </tbody>
-  </table>
 </body>
 
 </html>

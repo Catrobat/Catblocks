@@ -92,13 +92,20 @@ const newDOMRow = (colValues = {}, colType = 'td') => {
   const row = document.createElement('tr');
 
   for (const colValue of colValues) {
-    const col = document.createElement(colElement);
+    const col = document.createElement(colValue['type'] ? colValue['type'] : colElement);
     row.appendChild(col);
 
     Object.keys(colValue).forEach(key => {
       switch (key) {
         case 'value':
           col.innerText = colValue[key];
+          break;
+        case 'link':
+          const link = document.createElement('a');
+          link.innerText = colValue[key].split('/').slice(-1)[0] 
+          link.href = colValue[key];
+          link.setAttribute('class', 'btn btn-primary');
+          col.appendChild(link);
           break;
         default:
           col.setAttribute(key, colValue[key]);
@@ -146,8 +153,13 @@ const injectReportRows = async (reports) => {
 
   // write test rows
   for (const value of reportValues) {
-    const colValue = Object.keys(value).map(colName => Object.assign({}, { 'value': value[colName] }));
-    console.log(colValue);
+    const colValue = Object.keys(value).map(colName => {
+      switch (colName) {
+        case 'id': return { 'type': 'th', 'scope': 'row', 'value': value[colName] };
+        case 'report': return { 'link': value[colName] };
+        default: return { 'value': value[colName] }
+      }
+    });
     tbody.appendChild(newDOMRow(colValue));
   }
 };
@@ -163,6 +175,7 @@ const injectReportRows = async (reports) => {
     console.error('Valid to validiate all components of the page, please contact some developer.');
     return;
   }
+  console.log(prepareGithubApi());
 
   const requestUrl = prepareGithubApi();
   var reports = fetchReports(requestUrl);
