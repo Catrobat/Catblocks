@@ -21,9 +21,10 @@ git clone "https://github.com/Catrobat/Catblocks.git"
 cd Catblocks/ 
 
 # fetch some information from git
+GITTOKEN="$1"
 COMMIT="$GITHUB_SHA"
-BRANCH=$(git name-rev "$COMMIT" | cut -d' ' -f2)
-AUTHOR=$(git show -s --format=%an "$COMMIT")
+BRANCH=${GITHUB_REF##*/}
+AUTHOR="$GITHUB_ACTOR"
 TIMESTAMP=$(git show -s --format=%cd --date=format:%Y%m%d-%H%M%S "$COMMIT")
 
 git fetch origin "$COMMIT"
@@ -37,21 +38,21 @@ yarn run test
 REPORT="rep_${BRANCH}_${COMMIT}_${AUTHOR}_${TIMESTAMP}.html"
 mv ./jest_html_reporters.html $REPORT
 
-# push report
-TOKEN="$1"
 
 # do some black magic (please fix this code later)
 mv $REPORT ./../
 git reset --hard
 git clean -df
-git fetch gh-pages
+git fetch origin gh-pages
 git checkout gh-pages
 mv ./../$REPORT ./reports/
 
+# push report to gh-pages branch
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 git add ./reports/$REPORT
 git commit -m "Add test report"
 
-git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
+git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
 
+exit 0
