@@ -1,7 +1,6 @@
 import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
-import $ from 'jquery';
 import Blockly from "scratch-blocks";
 import { renderAllPrograms } from './render/render';
 
@@ -26,39 +25,9 @@ import { renderAllPrograms } from './render/render';
     break;
   }
   case 'share': {
-
-    // {{path}}
-    const progPath = 'assets/testprog/';
-    const progLang = 'en_GB';
-
+    // export share instance to 'share' php side
     const share = new Share();
-    share.init({
-      'container': 'catblocks-code-container',
-      'renderSize': 0.75,
-      'language': progLang,
-      'shareRoot': '/',
-      'media': 'media/',
-      'noImageFound': 'No_Image_Available.jpg',
-    });
-
-    // render my code.xml file
-    $(document).ready(() => {
-      share.parser.parseFile(`${progPath}code.xml`)
-        .then(xmlDoc => {
-          console.log(xmlDoc);
-          const div = document.getElementById('catblocks-code-container');
-          share.injectAllScenes(div, xmlDoc, {
-            object: {
-              programRoot: `${progPath}`
-            }
-          });
-        })
-        .catch(err => {
-          console.error(`Failed to parse catroid file.`);
-          console.error(err);
-        });
-
-    });
+    window.share = share;
     break;
   }
   case 'render': {
@@ -75,7 +44,7 @@ import { renderAllPrograms } from './render/render';
       'media': 'media/',
       'noImageFound': 'No_Image_Available.jpg',
     });
-      
+
     renderAllPrograms(share);
 
     break;
