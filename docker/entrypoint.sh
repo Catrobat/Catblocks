@@ -21,18 +21,21 @@ Repo and branch are set in env variables
 # change into repository home
 cd $REPOHOME
 
-# check if remote is newer
-git fetch origin $BRANCH
-CHANGES=$(git diff origin/$BRANCH | wc -l)
-if [ $CHANGES -gt 0 ]
+if [ "$SKIP_REPO_CHECK" != "1" ]
 then
-  echo "###########################################################"
-  echo "### Remote got updated, please rebuild docker container ###"
-  echo "###########################################################"
+  # check if remote is newer
+  git fetch origin $BRANCH
+  CHANGES=$(git diff origin/$BRANCH | wc -l)
+  if [ $CHANGES -gt 0 ]
+  then
+    echo "###########################################################"
+    echo "### Remote got updated, please rebuild docker container ###"
+    echo "###########################################################"
 
-  # update local and rebuild stuff
-  git pull origin $BRANCH
-  yarn install
+    # update local and rebuild stuff
+    git pull origin $BRANCH
+    yarn install
+  fi
 fi
 
 # build your render project
@@ -44,6 +47,6 @@ cp -r "$TESTDIR" "${REPOHOME}/dist/assets/programs/"
 
 # start http server
 cd "${REPOHOME}/dist/"
-python -m http.server 8080
+python3 -m http.server 8080
 
 exit 0
