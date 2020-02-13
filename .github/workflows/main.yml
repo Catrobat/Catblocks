@@ -11,9 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Jest, running test suites
-        uses: ./jest-testing-action-/ # Uses an action in the root directory
+        uses: ./jest-testing-action/ # Uses an action in the root directory
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          docker-file: './docker/Dockerfile'
-          jest-config: './test/jest_config.js'
