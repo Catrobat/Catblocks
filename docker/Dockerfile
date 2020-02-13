@@ -5,6 +5,7 @@ ARG REPO="https://github.com/Catrobat/Catblocks.git"
 ARG BRANCH="BLOCKS-53"
 ARG WORKHOME="/"
 ARG RELREPOHOME="Catblocks"
+ARG TESTDIR="/test/programs/"
 
 # enable new repositories
 RUN \
@@ -35,6 +36,7 @@ ENV REPO $REPO
 ENV BRANCH $BRANCH
 ENV WORKHOME $WORKHOME
 ENV REPOHOME $WORKHOME$RELREPOHOME
+ENV TESTDIR $TESTDIR
 
 # build init Catblocks project
 WORKDIR $WORKHOME

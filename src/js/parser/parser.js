@@ -101,10 +101,12 @@ function isSupported(program = xmlDoc) {
  * @return {XMLDocument} catblocks format
  */
 function parseDocument(xml) {
+  // clear result array
+  sceneList.length = 0;
   xmlDoc = xml;
 
   // TODO: add code if not supported
-  if(!isSupported()){
+  if (!isSupported()) {
     return undefined;
   }
 
@@ -399,22 +401,22 @@ function concatFormula(formula, str) {
 }
 
 function writeXML() {
-  if(share === 1){
+  if (share === 1) {
     XML = XML_BEGIN;
   }
   for (let i = 0; i < sceneList.length; i++) {
-    if(share === 1) {
+    if (share === 1) {
       XML = XML.concat(`<scene type="${sceneList[i].name}">`);
     }
     const currObjectList = sceneList[i].objectList;
     for (let j = 0; j < currObjectList.length; j++) {
       if (currObjectList[j].lookList.length > 0) {
         const objectImage = currObjectList[j].lookList[0].fileName;
-        if(share === 1){
+        if (share === 1) {
           XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
         }
       } else {
-        if(share === 1){
+        if (share === 1) {
           XML = XML.concat(`<object type="${currObjectList[j].name}">`);
         }
       }
@@ -424,15 +426,15 @@ function writeXML() {
         writeScriptsToXML(currScriptList[k]);
         XML = XML.concat(`</script>`);
       }
-      if(share === 1){
+      if (share === 1) {
         XML = XML.concat(`</object>`);
       }
     }
-    if(share === 1) {
+    if (share === 1) {
       XML = XML.concat(`</scene>`);
     }
   }
-  if(share === 1){
+  if (share === 1) {
     XML = XML.concat(XML_END);
   }
   return XML;

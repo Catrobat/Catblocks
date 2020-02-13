@@ -3,6 +3,7 @@ import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
 import $ from 'jquery';
 import Blockly from "scratch-blocks";
+import { renderAllPrograms } from './render/render';
 
 (() => {
   if (process.env.NODE_ENV === 'development') {
@@ -61,10 +62,21 @@ import Blockly from "scratch-blocks";
     break;
   }
   case 'render': {
-    console.log('Render every program which is located in tests/program/ directory');
-    
-    const container = document.getElementById('catblocks-render-container');
-    console.log(container);
+    console.log('Render every program which is located in assets/programs/ directory');
+    console.log('If this page was loaded by your catblocks docker image, we copy first /test/programs/ to assert/programs/');
+
+    // init share rendering workspace
+    const share = new Share();
+    share.init({
+      'container': 'catblocks-workspace-container',
+      'renderSize': 0.75,
+      'language': 'en_GB',
+      'shareRoot': '/',
+      'media': 'media/',
+      'noImageFound': 'No_Image_Available.jpg',
+    });
+      
+    renderAllPrograms(share);
 
     break;
   }

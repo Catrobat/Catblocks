@@ -81,7 +81,7 @@ module.exports = {
     writeToDisk: !devMode,
     host: '0.0.0.0',
     port: 8080,
-    disableHostCheck: true
+    serveIndex: true
   },
   target: 'web'
 };

@@ -2,6 +2,8 @@
 
 : '
 Catblocks docker image entrypoint
+@author andreas.karner@student.tugraz.at
+
 
 In the Dockerfile, we have defined the
   workingdir to be /home/catblocks
@@ -33,6 +35,15 @@ then
   yarn install
 fi
 
-env 
+# build your render project
+yarn run render:build
+
+# run all programs from /test/programs/
+rm -rf "${REPOHOME}/dist/assets/programs/"
+cp -r "$TESTDIR" "${REPOHOME}/dist/assets/programs/"
+
+# start http server
+cd "${REPOHOME}/dist/"
+python -m http.server 8080
 
 exit 0
