@@ -14,11 +14,9 @@ git checkout "$GITHUB_SHA"
 
 # install everything properly
 yarn install
-yarn run toolbox
-yarn run translate
 
 # run test
-yarn run playground:test
+yarn run test
 REPORT="report_$(date +%Y%m%d-%H%M%S).html"
 mv ./jest_html_reporters.html $REPORT
 
