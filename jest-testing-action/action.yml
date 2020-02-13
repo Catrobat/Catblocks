@@ -5,16 +5,6 @@ inputs:
   github-token:
     description: 'Github token for report push'
     required: true
-    
-  docker-file:
-    description: 'Dockerfile for container build'
-    required: false
-    default: 'Dockerfile'
-
-  jest-config-file:
-    description: 'jest config file'
-    required: false
-    default: 'jest_config.js'
 
 runs:
   using: 'docker'
