@@ -67,15 +67,16 @@ const fetchReports = async (url) => {
 
   const res = await fetch(url);
   const json = await res.json();
-  var idCounter = 1;
-  return json.map(file => Object.assign({}, {
-    'id': idCounter++,
-    'branch': '#dbd',
-    'commithash': file['sha'],
-    'datetime': '#dbd',
-    'name': file['name'],
-    'report': file['path'],
-  }));
+  return json.map(file => {
+    const props = file['name'].split('.')[0].split('_');
+    return Object.assign({}, {
+      'commit': file['sha'],
+      'branch': props[1],
+      'datetime': props[4],
+      'author': props[3],
+      'report': file['path'],
+    })
+  });
 };
 
 
@@ -102,8 +103,8 @@ const newDOMRow = (colValues = {}, colType = 'td') => {
           break;
         case 'link':
           const link = document.createElement('a');
-          link.innerText = colValue[key].split('/').slice(-1)[0] 
-          link.href = colValue[key];
+          link.innerText = colValue[key]['value'];
+          link.href = colValue[key]['href'];
           link.setAttribute('class', 'btn btn-primary');
           col.appendChild(link);
           break;
@@ -156,7 +157,7 @@ const injectReportRows = async (reports) => {
     const colValue = Object.keys(value).map(colName => {
       switch (colName) {
         case 'id': return { 'type': 'th', 'scope': 'row', 'value': value[colName] };
-        case 'report': return { 'link': value[colName] };
+        case 'report': return { 'link': { 'href': value[colName], 'value': 'Open Report' } };
         default: return { 'value': value[colName] }
       }
     });
