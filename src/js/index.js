@@ -27,7 +27,7 @@ import Blockly from "scratch-blocks";
   case 'share': {
 
     // {{path}}
-    const progPath = 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/';
+    const progPath = 'assets/testprog/';
     const progLang = 'en_GB';
 
     const share = new Share();
@@ -58,6 +58,14 @@ import Blockly from "scratch-blocks";
         });
 
     });
+    break;
+  }
+  case 'render': {
+    console.log('Render every program which is located in tests/program/ directory');
+    
+    const container = document.getElementById('catblocks-render-container');
+    console.log(container);
+
     break;
   }
   default: {
