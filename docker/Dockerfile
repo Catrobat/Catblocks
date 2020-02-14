@@ -2,7 +2,7 @@ FROM node:10-alpine
 
 MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
 ARG REPO="https://github.com/Catrobat/Catblocks.git"
-ARG BRANCH="BLOCKS-53"
+ARG BRANCH="develop"
 ARG WORKHOME="/"
 ARG RELREPOHOME="Catblocks"
 ARG TESTDIR="/test/programs/"

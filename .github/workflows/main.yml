@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Jest, running test suites
-        uses: ./jest-testing-action/ # Uses an action in the root directory
+        uses: ./jest-testing-action/ # Use local repository action
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

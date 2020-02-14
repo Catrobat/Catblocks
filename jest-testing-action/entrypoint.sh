@@ -2,6 +2,7 @@
 
 : '
 Catblocks jest testing github action entrypoint
+@author andreas.karner@student.tugraz.at
 
 This file is reponsible to run all steps for testing your code
 It gets copied during the container build and executed on start
