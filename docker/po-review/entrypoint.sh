@@ -14,16 +14,12 @@ This script is mainly used as template
 # define some global script variables
 REPOROOT="/"
 REPONAME="Catblocks"
+POROOT="${REPOROOT}${REPONAME}/test/po-review/"
+POHTML="${REPOROOT}${REPONAME}/html/po-review.html"
 
 REPOURL="https://github.com/Catrobat/Catblocks.git"
-COMMIT="{{COMMIT}}"
-
-# just for safety, check if we the github action has
-#   replaced the COMMIT sha properly
-if [ -z "$COMMIT" ]
-then
-  COMMIT="develop"
-fi
+REPOCOMMIT="{{COMMIT}}"
+REPOBRANCH="{{BRANCH}}"
 
 # clone repository and checkout po-review commit
 git clone "$REPOURL" "$REPONAME"
@@ -35,7 +31,15 @@ git checkout "$COMMIT"
 # install everything properly
 yarn install
 
+# before we spin up the po-review server, we need to fix the program path
+if [ -d "${POROOT}${REPOBRANCH}" ]
+then
+  sed -i "s/{{po-folder}}/${REPOBRANCH}/g" "$POHTML"
+else
+  sed -i "s/{{po-folder}}/default/g" "$POHTML"
+fi
+
 # run share production build
-yarn run share:prod
+yarn run share:po-review
 
 exit 0

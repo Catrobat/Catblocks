@@ -12,6 +12,7 @@
     "playground:build": "export NODE_ENV=production TYPE=playground && webpack",
     "playground:dev": "export NODE_ENV=development TYPE=playground && webpack",
     "playground:test": "yarn playground:build && jest -c jest_config.js",
+    "share:po-review": "export NODE_ENV=production && export TYPE=po-review && yarn prepare && webpack-dev-server",
     "share:prod": "export NODE_ENV=production && export TYPE=share && yarn prepare && webpack-dev-server",
     "share:dev": "export NODE_ENV=development && export TYPE=share && yarn prepare && webpack-dev-server",
     "share:build": "export NODE_ENV=production && export TYPE=share && yarn prepare && webpack",
