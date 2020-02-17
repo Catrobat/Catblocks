@@ -3,19 +3,19 @@ name: Catblocks Test Runner
 on: [push]
 
 jobs:
-  # testing:
-  # runs-on: ubuntu-latest
-  # name: Build catblocks container and run jest tests
-  # steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #   - name: Jest, running test suites
-  #     uses: ./jest-testing-action/ # Use local repository action
-  #     id: jestTest
-  #     with:
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
+  testing:
+    runs-on: ubuntu-latest
+    name: Build catblocks container and run jest tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Jest, running test suites
+        uses: ./jest-testing-action/ 
+        id: jestTest
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
   public:
-    #     needs: [testing]
+    needs: [testing]
     runs-on: ubuntu-latest
     name: Create new artifact for PO review
     steps:
@@ -26,5 +26,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: DockerContainer
+          name: DockerCatblocks
           path: ./docker/po-review/

@@ -25,8 +25,8 @@ REPOBRANCH="{{BRANCH}}"
 git clone "$REPOURL" "$REPONAME"
 cd "$REPONAME"
 
-git fetch origin "$COMMIT"
-git checkout "$COMMIT"
+git fetch origin "$REPOCOMMIT"
+git checkout "$REPOCOMMIT"
 
 # install everything properly
 yarn install
