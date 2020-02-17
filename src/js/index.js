@@ -35,6 +35,8 @@ import { renderAllPrograms } from './render/render';
     console.log('If this page was loaded by your catblocks docker image, we copy first /test/programs/ to assert/programs/');
 
     // init share rendering workspace
+    const progLang = 'en_GB';
+
     const share = new Share();
     share.init({
       'container': 'catblocks-workspace-container',

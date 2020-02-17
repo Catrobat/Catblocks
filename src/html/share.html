@@ -12,29 +12,26 @@
     <div id='catblocks-code-container'>
 </body>
 <script>
-    // we get those values from the share
-    const progPath = 'assets/testprog/';
-    const progLang = 'en_GB';
-
     // share get exported by the bundle
     share.init({
         'container': 'catblocks-code-container',
         'renderSize': 0.75,
-        'language': progLang,
+        'language': 'en_GB',
         'shareRoot': '/',
         'media': 'media/',
         'noImageFound': 'No_Image_Available.jpg',
     });
 
+
     // render my code.xml file
     window.onload = function() {
-        share.parser.parseFile(`assets/testprog/code.xml`)
+        share.parser.parseFile(`assets/po-review/default/code.xml`)
             .then(xmlDoc => {
                 console.log(xmlDoc);
                 const div = document.getElementById('catblocks-code-container');
                 share.injectAllScenes(div, xmlDoc, {
                     object: {
-                        programRoot: `assets/testprog/`
+                        programRoot: 'assets/po-review/default/'
                     }
                 });
             })
@@ -42,8 +39,8 @@
                 console.error(`Failed to parse catroid file.`);
                 console.error(err);
             });
-
     };
+
 </script>
 
 </html>
