@@ -32,10 +32,12 @@ git checkout "$COMMIT"
 yarn install
 
 # before we spin up the po-review server, we need to fix the program path
-if [ -d "${POROOT}${REPOBRANCH}" ]
+if [ -d "${POROOT}${REPOBRANCH}/" ]
 then
+  echo "Use po-review program from branch folder"
   sed -i "s/{{po-folder}}/${REPOBRANCH}/g" "$POHTML"
 else
+  echo "Use po-review program from default folder"
   sed -i "s/{{po-folder}}/default/g" "$POHTML"
 fi
 

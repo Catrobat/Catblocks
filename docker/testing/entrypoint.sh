@@ -35,18 +35,19 @@ then
     # update local and rebuild stuff
     git pull origin $BRANCH
     yarn install
+
+    # build your render project
+    echo "Build render target of repository"
+    yarn run render:build
   fi
 fi
-
-# build your render project
-echo "Build render target of repository"
-yarn run render:build
 
 # run all programs from /test/programs/
 echo "Clean existing programs from webpage target"
 rm -rf "${REPOHOME}/dist/assets/programs/"
 
 echo "Copy all test programs into testing folder"
+mkdir -p "${REPOHOME}/dist/assets/"
 cp -r "$TESTDIR" "${REPOHOME}/dist/assets/programs/"
 
 # extract all program archives

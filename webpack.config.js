@@ -67,7 +67,8 @@ module.exports = {
     new CopyPlugin([
       { from: 'assets', to: 'assets' },
       { from: 'node_modules/scratch-blocks/media', to: 'media' },
-      { from: 'i18n/json', to: 'i18n' }
+      { from: 'i18n/json', to: 'i18n' },
+      { from: 'test/po-review', to: 'assets/po-review' }
     ]),
     new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE'])
   ],

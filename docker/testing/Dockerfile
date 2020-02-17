@@ -2,7 +2,7 @@ FROM node:10-alpine
 
 MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
 ARG REPO="https://github.com/Catrobat/Catblocks.git"
-ARG BRANCH="develop"
+ARG BRANCH="BLOCKS-55"
 ARG WORKHOME="/"
 ARG RELREPOHOME="Catblocks"
 ARG TESTDIR="/test/programs/"
@@ -42,7 +42,8 @@ ENV TESTDIR $TESTDIR
 WORKDIR $WORKHOME
 RUN git clone -b $BRANCH $REPO $RELREPOHOME\
   && cd $RELREPOHOME \
-  && yarn install 
+  && yarn install \
+  && yarn run render:build
 
 # copy entrypoint
 COPY entrypoint.sh /entrypoint.sh

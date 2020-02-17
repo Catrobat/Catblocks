@@ -3,11 +3,10 @@ name: Catblocks Test Runner
 on: [push]
 
 jobs:
-  jest_test_job:
+  testing:
     runs-on: ubuntu-latest
     name: Build catblocks container and run jest tests
     steps:
-      # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
       - name: Jest, running test suites
@@ -15,3 +14,19 @@ jobs:
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+  # po_public:
+  #   needs: [testing]
+  #   runs-on: ubuntu-latest
+  #   name: Create new artifact for po-review
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: Prepare entrypoint.sh
+  #       run: cd ./docker/po-review && 
+  #     - name: Compress artifact
+  #       run: tar -czvf Docker.tar.gz docker/po-review/
+  #     - name: Create Dockerfile
+  #       uses: actions/upload-artifact@v1
+  #       with: 
+  #         name: Docker
+  #         path: Docker.tar.gz
