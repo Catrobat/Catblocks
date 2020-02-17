@@ -8,10 +8,10 @@ Further please expose port 8080 for reporting purpose.
 ```
   # build
   cd Catblocks/docker/
-  docker build -t catblocks .
+  docker build -t catblocks:testing .
 
   # run
-  docker run --rm -it -v localDir:/test/programs/ -p 8080:8080 catblocks
+  docker run --rm -it -v localDir:/test/programs/ -p 8080:8080 catblocks:testing
 ```
 
 The entrypoint script validates if the local repository inside the container is on the same state as the remote one.
