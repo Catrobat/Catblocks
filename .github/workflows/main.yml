@@ -1,6 +1,6 @@
-name: Catblocks Test Runner
+name: Catblocks Pull Request Action
 
-on: [push]
+on: [pull_request]
 
 jobs:
   testing:
