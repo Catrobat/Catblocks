@@ -44,7 +44,8 @@ const initShare = (container, lang) => {
     })();
     break;
   }
-  case 'share', 'po-review': {
+  case 'share':
+  case 'po-review': {
     window.share = new Share();
     break;
   }
