@@ -15,7 +15,7 @@ This script is mainly used as template
 REPOROOT="/"
 REPONAME="Catblocks"
 POROOT="${REPOROOT}${REPONAME}/test/po-review/"
-POHTML="${REPOROOT}${REPONAME}/html/po-review.html"
+POHTML="${REPOROOT}${REPONAME}/src/html/po-review.html"
 
 REPOURL="https://github.com/Catrobat/Catblocks.git"
 REPOCOMMIT="{{COMMIT}}"
