@@ -3,30 +3,28 @@ name: Catblocks Test Runner
 on: [push]
 
 jobs:
-  testing:
+  # testing:
+  # runs-on: ubuntu-latest
+  # name: Build catblocks container and run jest tests
+  # steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #   - name: Jest, running test suites
+  #     uses: ./jest-testing-action/ # Use local repository action
+  #     id: jestTest
+  #     with:
+  #       github-token: ${{ secrets.GITHUB_TOKEN }}
+  public:
+    #     needs: [testing]
     runs-on: ubuntu-latest
-    name: Build catblocks container and run jest tests
+    name: Create new artifact for PO review
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Jest, running test suites
-        uses: ./jest-testing-action/ # Use local repository action
-        id: jestTest
+      - name: Prepare artifact entrypoint.sh file
+        run: env && cd ./docker/po-review && sed -i "s/{{COMMIT}}/${GITHUB_SHA}/g" entrypoint.sh && sed -i "s/{{BRANCH}}/${GITHUB_REF##*/}/g" entrypoint.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-  # po_public:
-  #   needs: [testing]
-  #   runs-on: ubuntu-latest
-  #   name: Create new artifact for po-review
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Prepare entrypoint.sh
-  #       run: cd ./docker/po-review && 
-  #     - name: Compress artifact
-  #       run: tar -czvf Docker.tar.gz docker/po-review/
-  #     - name: Create Dockerfile
-  #       uses: actions/upload-artifact@v1
-  #       with: 
-  #         name: Docker
-  #         path: Docker.tar.gz
+          name: DockerContainer
+          path: ./docker/po-review/
