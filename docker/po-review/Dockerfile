@@ -22,12 +22,8 @@ RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
 
-# define environment
-ENV CHROME_BIN /usr/bin/chromium-browser
-ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
-
-# set container name and skip chromium download by jest
-ENV DCONTAINER catblocks:v1
+# define chromium env variables
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
 COPY entrypoint.sh /entrypoint.sh
