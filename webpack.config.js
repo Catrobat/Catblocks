@@ -70,7 +70,7 @@ module.exports = {
       { from: 'i18n/json', to: 'i18n' },
       { from: 'test/po-review', to: 'assets/po-review' }
     ]),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE'])
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE', 'PO_FOLDER'])
   ],
   // watch: true,
   devtool: 'source-map',
