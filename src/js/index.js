@@ -52,6 +52,7 @@ const initShare = (container, lang) => {
     const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
     const catblocksWs = 'catblocks-workspace-container';
     const progContainer = document.getElementById('catblocks-programs-container');
+    
     console.log(`Render every program which is located in ${progPath} directory`);
     console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
 

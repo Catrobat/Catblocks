@@ -25,13 +25,13 @@
 
     // render my code.xml file
     window.onload = function() {
-        share.parser.parseFile(`assets/po-review/default/code.xml`)
+        share.parser.parseFile(`assets/share/code.xml`)
             .then(xmlDoc => {
                 console.log(xmlDoc);
                 const div = document.getElementById('catblocks-code-container');
                 share.injectAllScenes(div, xmlDoc, {
                     object: {
-                        programRoot: 'assets/po-review/default/'
+                        programRoot: 'assets/share/'
                     }
                 });
             })

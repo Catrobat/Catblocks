@@ -1,8 +1,6 @@
 name: Catblocks Pull Request Action
 
-on:
-  pull_request:
-    types: [opened, reopened]
+on: [push]
 
 jobs:
   testing:
@@ -24,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Prepare artifact entrypoint.sh file
-        run: env && cd ./docker/po-review && sed -i "s/{{COMMIT}}/${GITHUB_SHA}/g" entrypoint.sh && sed -i "s/{{BRANCH}}/${GITHUB_REF##*/}/g" entrypoint.sh
+        run: cd ./docker/po-review && sed -i "s/{{COMMIT}}/${GITHUB_SHA}/g" entrypoint.sh && sed -i "s/{{BRANCH}}/${GITHUB_REF##*/}/g" entrypoint.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:

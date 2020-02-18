@@ -1,6 +1,8 @@
 # PO-Review Dockerimage
 
 Please use this Dockerfile and entrypoint.sh file for the po review.
+During the github action, we will replace the string {{COMMIT}} and {{BRANCH}} with the values from the action.
+
 
 ```
   # extract
