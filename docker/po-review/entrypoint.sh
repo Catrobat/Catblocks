@@ -35,13 +35,17 @@ yarn install
 if [ -d "${POROOT}${REPOBRANCH}/" ]
 then
   echo "Use po-review program from branch folder"
-  sed -i "s/{{po-folder}}/${REPOBRANCH}/g" "$POHTML"
+  export PO_FOLDER="assets/po-review/${REPOBRANCH}/"
 else
   echo "Use po-review program from default folder"
-  sed -i "s/{{po-folder}}/default/g" "$POHTML"
+  export PO_FOLDER="assets/po-review/default/"
 fi
 
 # run share production build
-yarn run share:po-review
+yarn run render:build
+
+# spin up web server
+cd dist/
+python -m http.server 8080
 
 exit 0

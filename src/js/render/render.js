@@ -11,11 +11,11 @@
  * Render all programs into page
  * @param {*} share 
  */
-export const renderAllPrograms = (share) => {
+export const renderAllPrograms = (share, container, path) => {
 
-  // inject very program
-  const container = document.getElementById('catblocks-programs-container');
-  fetch('/assets/programs/')
+  // inject very program from ${path} into ${container} dom
+
+  fetch(path)
     .then(res => res.text())
     .then(text => {
       const page = (new DOMParser()).parseFromString(text, 'text/html');
@@ -51,13 +51,13 @@ export const renderAllPrograms = (share) => {
         container.appendChild(programContainer);
 
         // inject code
-        share.parser.parseFile(`/assets/programs/${name}/code.xml`)
+        share.parser.parseFile(`${path}${name}/code.xml`)
           .then(xmlDoc => {
             console.log(xmlDoc);
             const div = document.getElementById(containerId);
             share.injectAllScenes(div, xmlDoc, {
               object: {
-                programRoot: `assets/programs/${name}/`
+                programRoot: `${path}${name}/`
               }
             });
           })

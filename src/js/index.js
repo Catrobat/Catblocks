@@ -44,17 +44,19 @@ const initShare = (container, lang) => {
     })();
     break;
   }
-  case 'share':
-  case 'po-review': {
+  case 'share': {
     window.share = new Share();
     break;
   }
   case 'render': {
-    console.log('Render every program which is located in assets/programs/ directory');
-    console.log('If this page was loaded by your catblocks docker image, we copy first /test/programs/ to assert/programs/');
+    const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
+    const catblocksWs = 'catblocks-workspace-container';
+    const progContainer = document.getElementById('catblocks-programs-container');
+    console.log(`Render every program which is located in ${progPath} directory`);
+    console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
 
-    const share = initShare('catblocks-workspace-container', 'en_GB');
-    renderAllPrograms(share);
+    const share = initShare(catblocksWs, 'en_GB');
+    renderAllPrograms(share, progContainer, progPath);
     break;
   }
   default: {
