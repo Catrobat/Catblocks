@@ -46,7 +46,7 @@ describe('Export and Import XML files to workspace', () => {
           return failed;
         }
       });
-      
+
       return failed;
     });
 
