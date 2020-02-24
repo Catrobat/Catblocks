@@ -1,39 +1,39 @@
 name: Catblocks Pull Request Action
 
-on:
-  pull_request:
-    types: [opened, reopened]
+on: [push]
 
 jobs:
   testing:
     runs-on: ubuntu-latest
-    name: Build catblocks container and run jest tests
+    name: Run tests
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Jest, running test suites
+        with:
+          repository: Catrobat/Catblocks
+          ref: BLOCKS-57
+      - name: Run jest in docker
         uses: ./jest-testing-action/
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-  uploadReport:
-    needs: [testing]
-    runs-on: ubuntu-latest
-    name: Public test report as github action artifact
-    steps:
-      - name: Checkout
+      - name: Checkout gh-pages
+        if: always()
         uses: actions/checkout@v2
         with:
-          ref: "gh-pages"
-      - name: Fetch report
+          repository: Catrobat/Catblocks
+          ref: gh-pages
+      - name: Prepare report
+        if: always()
         run: mkdir -p ./testReport/ && cp ./reports/rep_*${GITHUB_SHA}*.html testReport/
-      - name: Upload report
+      - name: Upload test report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: ReportCatblocks
           path: ./testReport/
+      
   uploadDocker:
-    needs: [testing]
     runs-on: ubuntu-latest
     name: Create new artifact for PO review
     steps:
