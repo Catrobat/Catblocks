@@ -310,7 +310,7 @@ export class Share {
       objects.forEach(object => {
         const objectName = trimString(object.getAttribute('type'));
         const objectOptions = (() => {
-          if (object.getAttribute('look') !== undefined) {
+          if (object.getAttribute('look') !==  undefined && object.getAttribute('look') !== null) {
             const lookOptions = Object.assign({}, options.object, {
               'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
             });

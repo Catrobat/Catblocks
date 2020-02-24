@@ -78,7 +78,7 @@ let XML = "";// XML_BEGIN;
 let share = 0;
 
 // global log enable switch
-const DEBUG = true;
+const DEBUG = false;
 
 /**
  * Catblocks debug function
