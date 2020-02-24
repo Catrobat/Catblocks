@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-        with:
-          repository: Catrobat/Catblocks
-          ref: BLOCKS-57
       - name: Run jest in docker
         uses: ./jest-testing-action/
         id: jestTest
@@ -23,7 +20,6 @@ jobs:
         if: always()
         uses: actions/checkout@v2
         with:
-          repository: Catrobat/Catblocks
           ref: gh-pages
           path: gh-pages-branch
       - name: Prepare test report
