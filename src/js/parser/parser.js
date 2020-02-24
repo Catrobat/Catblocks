@@ -97,15 +97,19 @@ const catLog = (msg, debug = DEBUG) => {
  * @param {*} unsafe 
  */
 const escapeXml = (unsafe) => {
-  return unsafe.replace(/[<>&'"]/g, function(c) {
-    switch (c) {
-    case '<': return '&lt;';
-    case '>': return '&gt;';
-    case '&': return '&amp;';
-    case '\'': return '&apos;';
-    case '"': return '&quot;';
-    }
-  });
+  if (unsafe === undefined || unsafe === null || unsafe.length === 0) {
+    return unsafe;
+  } else {
+    return unsafe.replace(/[<>&'"]/g, function(c) {
+      switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      }
+    });
+  }
 };
 
 /**
