@@ -77,6 +77,20 @@ const SUB_END = "\n</statement>";
 let XML = "";// XML_BEGIN;
 let share = 0;
 
+// global log enable switch
+const DEBUG = true;
+
+/**
+ * Catblocks debug function
+ * @param {*} msg 
+ * @param {*} debug 
+ */
+const catLog = (msg, debug = DEBUG) => {
+  if (debug) {
+    console.log(msg);
+  }
+};
+
 /**
  * Check if current catroid code version is supported
  * @param {XMLDocument} program to validate
@@ -138,6 +152,7 @@ function escapeName(name) {
 }
 
 function parseScenes(scene) {
+  catLog(scene);
 
   const name = escapeName(scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
   const currentScene = new Scene(name);
@@ -150,6 +165,7 @@ function parseScenes(scene) {
 
 function parseObjects(object) {
   object = flatReference(object);
+  catLog(object);
 
   const name = escapeName(object.getAttribute("name"));
   if (name !== null) {
@@ -172,6 +188,8 @@ function parseObjects(object) {
 }
 
 function parseScripts(script) {
+  catLog(script);
+
   const name = escapeName(script.getAttribute("type"));
   const currentScript = new Script(name);
   const brickList = script.getElementsByTagName('brickList')[0].children;
@@ -186,6 +204,8 @@ function parseScripts(script) {
 }
 
 function parseBrick(brick) {
+  catLog(brick);
+
   const name = (brick.getAttribute("type") || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
   const currentBrick = new Brick(name);
 
@@ -195,24 +215,32 @@ function parseBrick(brick) {
   return currentBrick;
 }
 
+const getNodeValueOrDefault = (node, def = "---") => {
+  if (node === undefined || node.nodeValue === undefined) {
+    return def;
+  }
+  return node.nodeValue;
+};
+
 function checkUsage(list, location) {
   if (list.nodeName === "broadcastMessage" || list.nodeName === "spriteToBounceOffName" || list.nodeName === "receivedMessage" || list.nodeName === "sceneToStart" || list.nodeName === "sceneForTransition") {
-    location.formValues.set("DROPDOWN", list.childNodes[0].nodeValue);
+    // BLOCKS-54 -> sceneForTransition can exist without node child
+    location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "spinnerSelection") {
-    location.formValues.set("spinnerSelection", list.childNodes[0].nodeValue);
+    location.formValues.set("spinnerSelection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "selection") {
-    location.formValues.set("selection", list.childNodes[0].nodeValue);
+    location.formValues.set("selection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "type") {
-    location.formValues.set("type", list.childNodes[0].nodeValue);
+    location.formValues.set("type", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "alignmentSelection") {
-    location.formValues.set("alignmentSelection", list.childNodes[0].nodeValue);
+    location.formValues.set("alignmentSelection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "spinnerSelectionID") {
-    location.formValues.set("spinnerSelectionID", list.childNodes[0].nodeValue);
+    location.formValues.set("spinnerSelectionID", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "formulaMap" || list.nodeName === "formulaList") {
     const formulaList = list.children;
