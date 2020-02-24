@@ -13,6 +13,9 @@ For example, we use the GITHUB_SHA hash to checkout the commit,
 
 '
 
+# fail on error
+set -e 
+
 # Prepare everything for repository checkout
 mkdir -p /home/jest/
 cd /home/jest/
