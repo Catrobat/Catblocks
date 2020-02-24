@@ -51,4 +51,8 @@ git commit -m "Add test report"
 
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
 
+# clean repository folder
+cd ..
+rm -rf ./Catblocks/
+
 exit $RETVALUE
