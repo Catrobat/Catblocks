@@ -48,7 +48,7 @@ export class Share {
         startScale: this.config.renderSize
       }
     });
-    Blockly.CatblocksMsgs.setLocale(this.config.language);
+    this.blockly.CatblocksMsgs.setLocale(this.config.language);
 
     this.workspaceDom = this.workspace.getInjectionDiv();
     this.workspaceDom.id = this.workspace.id;
@@ -148,7 +148,7 @@ export class Share {
     this.workspace.clear();
     let svg = undefined;
     try {
-      Blockly.Xml.domToWorkspace(blockXml, this.workspace);
+      this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
       const oriSvg = this.workspace.getParentSvg();
 
       const oriBox = oriSvg.lastElementChild.getBBox();
