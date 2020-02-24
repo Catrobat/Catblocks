@@ -1,11 +1,6 @@
 FROM node:10-alpine
 
 MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
-ARG REPO="https://github.com/Catrobat/Catblocks.git"
-ARG BRANCH="develop"
-ARG WORKHOME="/"
-ARG RELREPOHOME="Catblocks"
-ARG TESTDIR="/test/programs/"
 
 # enable new repositories
 RUN \
@@ -27,23 +22,12 @@ RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
 
-# define environment
-ENV CHROME_BIN /usr/bin/chromium-browser
-ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
-ENV DCONTAINER catblocks:v1
+# define chromium env variables
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-ENV REPO $REPO
-ENV BRANCH $BRANCH
-ENV WORKHOME $WORKHOME
-ENV REPOHOME $WORKHOME$RELREPOHOME
-ENV TESTDIR $TESTDIR
 
-# build init Catblocks project
-WORKDIR $WORKHOME
-RUN git clone -b $BRANCH $REPO $RELREPOHOME\
-  && cd $RELREPOHOME \
-  && yarn install 
-
-# copy entrypoint
 COPY entrypoint.sh /entrypoint.sh
+
+# cmd
+#CMD /bin/sh
 ENTRYPOINT ["/entrypoint.sh"]

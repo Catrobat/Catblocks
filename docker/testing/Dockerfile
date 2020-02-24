@@ -1,6 +1,11 @@
 FROM node:10-alpine
 
 MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
+ARG REPO="https://github.com/Catrobat/Catblocks.git"
+ARG BRANCH="develop"
+ARG WORKHOME="/"
+ARG RELREPOHOME="Catblocks"
+ARG TESTDIR="/test/programs/"
 
 # enable new repositories
 RUN \
@@ -26,8 +31,20 @@ RUN rm -rf /var/cache/apk/* /tmp/*
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 
-COPY entrypoint.sh /entrypoint.sh
+# define repository env variables
+ENV REPO $REPO
+ENV BRANCH $BRANCH
+ENV WORKHOME $WORKHOME
+ENV REPOHOME $WORKHOME$RELREPOHOME
+ENV TESTDIR $TESTDIR
 
-# cmd
-#CMD /bin/sh
+# build init Catblocks project
+WORKDIR $WORKHOME
+RUN git clone -b $BRANCH $REPO $RELREPOHOME\
+  && cd $RELREPOHOME \
+  && yarn install \
+  && yarn run render:build
+
+# copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

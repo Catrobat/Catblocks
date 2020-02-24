@@ -1,17 +1,32 @@
-name: Catblocks Test Runner
+name: Catblocks Pull Request Action
 
-on: [push]
+on: 
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
-  jest_test_job:
+  testing:
     runs-on: ubuntu-latest
     name: Build catblocks container and run jest tests
     steps:
-      # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
       - name: Jest, running test suites
-        uses: ./jest-testing-action/ # Use local repository action
+        uses: ./jest-testing-action/ 
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+  public:
+    needs: [testing]
+    runs-on: ubuntu-latest
+    name: Create new artifact for PO review
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prepare artifact entrypoint.sh file
+        run: cd ./docker/po-review && sed -i "s/{{COMMIT}}/${GITHUB_SHA}/g" entrypoint.sh && sed -i "s/{{BRANCH}}/${GITHUB_REF##*/}/g" entrypoint.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: DockerCatblocks
+          path: ./docker/po-review/

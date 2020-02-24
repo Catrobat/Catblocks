@@ -4,6 +4,26 @@ import { Share } from "./share/share";
 import Blockly from "scratch-blocks";
 import { renderAllPrograms } from './render/render';
 
+
+/**
+ * Initiate share for rendering programs
+ * @param {string} container 
+ * @param {string} lang 
+ * @returns {Object} share
+ */
+const initShare = (container, lang) => {
+  const share = new Share();
+  share.init({
+    'container': container,
+    'renderSize': 0.75,
+    'language': lang,
+    'shareRoot': '',
+    'media': 'media/',
+    'noImageFound': 'No_Image_Available.jpg',
+  });
+  return share;
+};
+
 (() => {
   if (process.env.NODE_ENV === 'development') {
     window.Blockly = Blockly;
@@ -25,28 +45,19 @@ import { renderAllPrograms } from './render/render';
     break;
   }
   case 'share': {
-    // export share instance to 'share' php side
-    const share = new Share();
-    window.share = share;
+    window.share = new Share();
     break;
   }
   case 'render': {
-    console.log('Render every program which is located in assets/programs/ directory');
-    console.log('If this page was loaded by your catblocks docker image, we copy first /test/programs/ to assert/programs/');
+    const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
+    const catblocksWs = 'catblocks-workspace-container';
+    const progContainer = document.getElementById('catblocks-programs-container');
+    
+    console.log(`Render every program which is located in ${progPath} directory`);
+    console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
 
-    // init share rendering workspace
-    const share = new Share();
-    share.init({
-      'container': 'catblocks-workspace-container',
-      'renderSize': 0.75,
-      'language': 'en_GB',
-      'shareRoot': '/',
-      'media': 'media/',
-      'noImageFound': 'No_Image_Available.jpg',
-    });
-
-    renderAllPrograms(share);
-
+    const share = initShare(catblocksWs, 'en_GB');
+    renderAllPrograms(share, progContainer, progPath);
     break;
   }
   default: {

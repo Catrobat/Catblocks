@@ -7,13 +7,14 @@
  *                add all categories from the src/blocks/categories folder and map each block to the corresponding category
  *  
  * @changelog 2019-12-16: [AK] initial version, fork from existing updateToolbox.py file
+ *            2019-02-18: [AK] moved file into tools folder, use path.join instead of plain string
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const CATEGORYDIR = './src/js/blocks/categories/';
-const TOOLBOXFILE = './src/js/blocks/default_toolbox.js';
+const CATEGORYDIR = path.join('src', 'js', 'blocks', 'categories');
+const TOOLBOXFILE = path.join('src', 'js', 'blocks', 'default_toolbox.js');
 
 const CONSTSTRING = {
   'xmlheader': '`<xml id="toolbox-categories" style="display: none">\n',
