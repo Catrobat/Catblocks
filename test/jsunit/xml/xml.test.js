@@ -52,8 +52,4 @@ describe('Export and Import XML files to workspace', () => {
 
     expect(failed).toBeFalsy();
   });
-
-  test('Should fail', async() => {
-    expect(9).toBe(10);
-  })
 });
