@@ -17,14 +17,14 @@ jobs:
         id: jestTest
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout gh-pages
+      - name: Checkout test report branch
         if: always()
         uses: actions/checkout@v2
         with:
           repository: Catrobat/Catblocks
           ref: gh-pages
           path: gh-pages-branch
-      - name: Prepare report
+      - name: Prepare test report
         if: always()
         run: cd ./gh-pages-branch/ && mkdir -p ./testReport/ && cp ./reports/rep_*${GITHUB_SHA}*.html testReport/
       - name: Upload test report
@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ReportCatblocks
-          path: ./testReport/
+          path: ./gh-pages-branch/testReport/
       
   uploadDocker:
     runs-on: ubuntu-latest
