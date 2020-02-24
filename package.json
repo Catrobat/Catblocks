@@ -9,7 +9,7 @@
     "start": "yarn playground:server --print-label",
     "playground:server": "export NODE_ENV=development TYPE=playground && yarn initiate &&  webpack-dev-server",
     "playground:prod": "export NODE_ENV=production TYPE=playground && yarn initiate && webpack-dev-server",
-    "playground:build": "export NODE_ENV=production TYPE=playground && webpack",
+    "playground:build": "export NODE_ENV=production TYPE=playground && yarn initiate && webpack",
     "playground:dev": "export NODE_ENV=development TYPE=playground && yarn initiate && webpack",
     "playground:test": "yarn playground:build && jest -c jest_config.js",
     "share:prod": "export NODE_ENV=production && export TYPE=share && yarn initiate && webpack-dev-server",
