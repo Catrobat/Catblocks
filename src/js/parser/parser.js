@@ -236,23 +236,13 @@ function checkUsage(list, location) {
     }
   }
   if (list.nodeName === "sound") {
-    let sound = list.getAttribute('reference');
-    sound = sound.split("/soundList/sound").pop();
-    let soundNR = 1;
-    if (sound.length) {
-      soundNR = sound.slice(1, -1);
-    }
-    const soundName = findSoundName(list, soundNR);
+    const sound = flatReference(list);
+    const soundName = sound.getAttribute('name');
     location.formValues.set("sound", soundName);
   }
   if (list.nodeName === "look") {
-    let look = list.getAttribute('reference');
-    look = look.split("/lookList/look").pop();
-    let lookNR = 1;
-    if (look.length) {
-      lookNR = look.slice(1, -1);
-    }
-    const lookName = findLookName(list, lookNR);
+    const look = flatReference(list);
+    const lookName = look.getAttribute('name');
     location.formValues.set("look", lookName);
   }
   if (list.nodeName === "userVariable") {
@@ -353,22 +343,6 @@ function findOtherVariableName(list, location, reference) {
   }
 }
 
-function findSoundName(currentNode, soundNR) {
-  if (currentNode.nodeName === "object") {
-    const soundList = currentNode.getElementsByTagName("soundList")[0].children;
-    return soundList[soundNR - 1].getAttribute("name");
-  }
-  return findSoundName(currentNode.parentElement, soundNR);
-}
-
-function findLookName(currentNode, lookNR) {
-  if (currentNode.nodeName === "object") {
-    const lookList = currentNode.getElementsByTagName("lookList")[0].children;
-    return lookList[lookNR - 1].getAttribute("name");
-  }
-  return findLookName(currentNode.parentElement, lookNR);
-}
-
 function workFormula(formula, input) {
   for (let i = 0; i < input.childNodes.length; i++) {
     if (input.childNodes[i].nodeName === "leftChild") {
@@ -382,7 +356,7 @@ function workFormula(formula, input) {
       workFormula(newFormula, input.childNodes[i]);
     }
     if (input.childNodes[i].nodeName === "value") {
-      formula.value = input.childNodes[i].childNodes[0].nodeValue;
+      formula.value = (input.childNodes[i].childNodes[0]) ? input.childNodes[i].childNodes[0].nodeValue : 'not-set';
     }
   }
 }
