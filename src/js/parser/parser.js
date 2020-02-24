@@ -405,7 +405,7 @@ function workFormula(formula, input) {
       workFormula(newFormula, input.childNodes[i]);
     }
     if (input.childNodes[i].nodeName === "value") {
-      formula.value = (input.childNodes[i].childNodes[0]) ? input.childNodes[i].childNodes[0].nodeValue : 'not-set';
+      formula.value = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
     }
   }
 }

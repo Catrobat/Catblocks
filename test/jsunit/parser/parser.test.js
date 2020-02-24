@@ -65,9 +65,9 @@ describe('Catroid to Catblocks parser tests', () => {
   });
 
   /** 
- * Test if parser is able to follow references which are outside of the object
- * Test for soundlist
- */
+   * Test if parser is able to follow references which are outside of the object
+   * Test for soundlist
+   */
   test('SountList reference not within the same object', async () => {
     const res = await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList></lookList><soundList><sound fileName="testSound.png" name="testSound"/></soundList><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSoundBrick"><commentedOut>false</commentedOut><sound reference="../../../../../../object[1]/soundList/sound[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -81,6 +81,30 @@ describe('Catroid to Catblocks parser tests', () => {
           return false;
         }
         return testValue.innerHTML.includes('testSound');
+      } catch (e) {
+        return false;
+      }
+    });
+
+    expect(res).toBeTruthy();
+  });
+
+  /** 
+   * Test if default value "---" is used if no nodeValue exists in script
+   */
+  test('Test if default value "---" is used if no nodeValue is given', async () => {
+    const res = await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
+      try {
+        const catXml = Catblocks.Parser.parseXml(xmlString);
+        if (catXml.getElementsByTagName('parsererror').length > 0) {
+          return false;
+        }
+        const testValue = catXml.evaluate(`//field[@name='testFormular']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        if (testValue === undefined) {
+          return false;
+        }
+        return testValue.innerHTML.includes('37 --- 58');
       } catch (e) {
         return false;
       }
