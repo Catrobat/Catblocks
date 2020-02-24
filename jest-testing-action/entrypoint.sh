@@ -10,35 +10,29 @@ It gets copied during the container build and executed on start
 Github action pushes all the neccessary information into the system variables
 For example, we use the GITHUB_SHA hash to checkout the commit,
   which has triggered the action.
+In addition, github action mounts the checkout@v2 repository to /github/workspace/
 
 '
 
 # fail on error
 set -e 
 
-# Prepare everything for repository checkout
-mkdir -p /home/jest/
-cd /home/jest/
-
-# clone repository
-git clone "https://github.com/Catrobat/Catblocks.git"
-cd Catblocks/ 
-
-# fetch some information from git
-GITTOKEN="$1"
-COMMIT="$GITHUB_SHA"
-BRANCH=${GITHUB_REF##*/}
-AUTHOR="$GITHUB_ACTOR"
-TIMESTAMP=$(git show -s --format=%cd --date=format:%Y%m%d-%H%M%S "$COMMIT")
-
-git fetch origin "$COMMIT"
-git checkout "$COMMIT"
+# change directory
+cd /github/workspace/
 
 # install everything properly
 yarn install
 
 # run test
 yarn run test
+
+# prepare report
+GITTOKEN="$1"
+COMMIT="$GITHUB_SHA"
+BRANCH=${GITHUB_REF##*/}
+AUTHOR="$GITHUB_ACTOR"
+TIMESTAMP=$(git show -s --format=%cd --date=format:%Y%m%d-%H%M%S "$COMMIT")
+
 REPORT="rep_${BRANCH}_${COMMIT}_${AUTHOR}_${TIMESTAMP}.html"
 mv ./jest_html_reporters.html $REPORT
 
