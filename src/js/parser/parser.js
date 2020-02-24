@@ -91,6 +91,23 @@ const catLog = (msg, debug = DEBUG) => {
   }
 };
 
+
+/**
+ * Escape script values in case unsafe characters are included
+ * @param {*} unsafe 
+ */
+const escapeXml = (unsafe) => {
+  return unsafe.replace(/[<>&'"]/g, function(c) {
+    switch (c) {
+    case '<': return '&lt;';
+    case '>': return '&gt;';
+    case '&': return '&amp;';
+    case '\'': return '&apos;';
+    case '"': return '&quot;';
+    }
+  });
+};
+
 /**
  * Check if current catroid code version is supported
  * @param {XMLDocument} program to validate
@@ -408,23 +425,23 @@ function writeXML() {
   }
   for (let i = 0; i < sceneList.length; i++) {
     if (share === 1) {
-      XML = XML.concat(`<scene type="${sceneList[i].name}">`);
+      XML = XML.concat(`<scene type="${escapeXml(sceneList[i].name)}">`);
     }
     const currObjectList = sceneList[i].objectList;
     for (let j = 0; j < currObjectList.length; j++) {
       if (currObjectList[j].lookList.length > 0) {
         const objectImage = currObjectList[j].lookList[0].fileName;
         if (share === 1) {
-          XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
+          XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}" look="${escapeXml(objectImage)}">`);
         }
       } else {
         if (share === 1) {
-          XML = XML.concat(`<object type="${currObjectList[j].name}">`);
+          XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}">`);
         }
       }
       const currScriptList = currObjectList[j].scriptList;
       for (let k = 0; k < currScriptList.length; k++) {
-        XML = XML.concat(`<script type="${currScriptList[k].name}">`);
+        XML = XML.concat(`<script type="${escapeXml(currScriptList[k].name)}">`);
         writeScriptsToXML(currScriptList[k]);
         XML = XML.concat(`</script>`);
       }
@@ -443,9 +460,9 @@ function writeXML() {
 }
 
 function writeScriptsToXML(currScript) {
-  XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
+  XML = XML.concat("\n<block type=\"" + escapeXml(currScript.name) + "\">");
   for (const [key, value] of currScript.formValues) {
-    XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
   }
   if (currScript.brickList.length !== 0) {
     writeBrickToXML(currScript, 0, true, 0);
@@ -468,10 +485,10 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
   if (subBlock === 2) {
     currSubBrick = currBrick.elseBrickList[index];
   }
-  XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
+  XML = XML.concat("\n<block type=\"" + escapeXml(currSubBrick.name) + "\">");
 
   for (const [key, value] of currSubBrick.formValues) {
-    XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
   }
   if (currSubBrick.loopOrIfBrickList.length !== 0) {
     XML = XML.concat(SUB1_BEGIN);
