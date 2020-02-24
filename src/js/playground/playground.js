@@ -256,9 +256,24 @@ export class Playground {
     }
   }
   zebra() {
-    console.log(Blockly.selected.get);
-    //Blockly.selected.getBlockById(Blockly.selected.id)
+    const blocks = this.workspace.topBlocks_;
+
+    console.log(blocks[0].childBlocks_[0].colour_);
+    console.log(blocks[0].childBlocks_[0].colourSecondary_);
+    console.log(blocks[0].childBlocks_[0].childBlocks_[0].colourTertiary_);
+    console.log(blocks.length);
+    console.log(blocks[0].childBlocks_.length);
+
+    for(let i = 0; i < blocks.length; i++) {
+      for(let j = 0; j < blocks[i].childBlocks_.length; j++) {
+        if(blocks[i].category_ === blocks[i].childBlocks_[j].category_) {
+          blocks[i].childBlocks_[j].colour_ = blocks[i].childBlocks_[j].colourTertiary_;
+          blocks[i].childBlocks_[j].initSvg();
+        }
+      }
+    }
   }
+
   glowBlock() {
     if (Blockly.selected) {
       this.workspace.glowBlock(Blockly.selected.id, true);
@@ -343,4 +358,6 @@ export class Playground {
     Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
     this.workspace.getFlyout().setRecyclingEnabled(true);
   }
+
+
 }
