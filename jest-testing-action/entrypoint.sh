@@ -14,9 +14,6 @@ In addition, github action mounts the checkout@v2 repository to /github/workspac
 
 '
 
-# fail on error
-set -e 
-
 # change directory
 cd /github/workspace/
 
@@ -25,6 +22,7 @@ yarn install
 
 # run test
 yarn run test
+RETVALUE=$?
 
 # prepare report
 GITTOKEN="$1"
@@ -53,4 +51,4 @@ git commit -m "Add test report"
 
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
 
-exit 0
+exit $RETVALUE
