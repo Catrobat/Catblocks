@@ -53,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/html/'+process.env.TYPE+'.html'),
+      template: path.join(__dirname, 'src/html/' + process.env.TYPE + '.html'),
       filename: 'index.html',
       hash: true
     }),
@@ -78,7 +78,10 @@ module.exports = {
     hot: true,
     compress: !devMode,
     noInfo: true,
-    writeToDisk: !devMode
+    writeToDisk: !devMode,
+    host: '0.0.0.0',
+    port: 8080,
+    serveIndex: true
   },
   target: 'web'
 };
