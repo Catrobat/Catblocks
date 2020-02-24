@@ -23,9 +23,10 @@ jobs:
         with:
           repository: Catrobat/Catblocks
           ref: gh-pages
+          path: gh-pages-branch
       - name: Prepare report
         if: always()
-        run: mkdir -p ./testReport/ && cp ./reports/rep_*${GITHUB_SHA}*.html testReport/
+        run: cd ./gh-pages-branch/ && mkdir -p ./testReport/ && cp ./reports/rep_*${GITHUB_SHA}*.html testReport/
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v1
