@@ -265,17 +265,19 @@ export class Playground {
     console.log(blocks[0].childBlocks_.length);
     const counter = 0;
 
+    //vergleicht obersten mit nächsten block
     for(let i = 0; i < blocks.length; i++) {
       for(let j = 0; j < blocks[i].childBlocks_.length; j++) {
         if(blocks[i].category_ === blocks[i].childBlocks_[j].category_) {
           blocks[i].childBlocks_[j].colour_ = blocks[i].childBlocks_[j].colourTertiary_;
           blocks[i].childBlocks_[j].initSvg();
-        }
-        if(blocks[i].childBlocks_[j].childBlocks_ !== 0) {
-          for(let k = 0; k < blocks[i].childBlocks_[j].childBlocks_[k].length; k++) {
-            if(blocks[i].childBlocks_[j].childBlocks_[k].category_ === blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].category_)
-              blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colour_ = blocks[i].childBlocks_[j].childBlocks_[k].colourTertiary_;
-            blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].initSvg();
+          //vergleicht nach den ersten 2 blöcken nun auf die nächsten 2 blöcke -- statisch!
+          if(blocks[i].childBlocks_[j].childBlocks_ !== 0) {
+            for(let k = 0; k < blocks[i].childBlocks_[j].childBlocks_[k].length; k++) {
+              if(blocks[i].childBlocks_[j].childBlocks_[k].category_ === blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].category_)
+                blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colour_ = blocks[i].childBlocks_[j].childBlocks_[k].colourTertiary_;
+              blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].initSvg();
+            }
           }
         }
       }
