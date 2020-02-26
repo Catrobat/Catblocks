@@ -263,20 +263,36 @@ export class Playground {
     console.log(blocks[0].childBlocks_[0].childBlocks_[0].colourTertiary_);
     console.log(blocks.length);
     console.log(blocks[0].childBlocks_.length);
-    const counter = 0;
 
-    //vergleicht obersten mit nächsten block
-    for(let i = 0; i < blocks.length; i++) {
-      for(let j = 0; j < blocks[i].childBlocks_.length; j++) {
-        if(blocks[i].category_ === blocks[i].childBlocks_[j].category_) {
+    //compares topblock with the following one
+    for (let i = 0; i < blocks.length; i++) {
+      for (let j = 0; j < blocks[i].childBlocks_.length; j++) {
+        if (blocks[i].category_ === blocks[i].childBlocks_[j].category_) {
           blocks[i].childBlocks_[j].colour_ = blocks[i].childBlocks_[j].colourTertiary_;
           blocks[i].childBlocks_[j].initSvg();
-          //vergleicht nach den ersten 2 blöcken nun auf die nächsten 2 blöcke -- statisch!
-          if(blocks[i].childBlocks_[j].childBlocks_ !== 0) {
-            for(let k = 0; k < blocks[i].childBlocks_[j].childBlocks_[k].length; k++) {
-              if(blocks[i].childBlocks_[j].childBlocks_[k].category_ === blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].category_)
-                blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colour_ = blocks[i].childBlocks_[j].childBlocks_[k].colourTertiary_;
-              blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].initSvg();
+          console.log(blocks[i].childBlocks_[j].childBlocks_);
+
+
+          //compares the following blocks after the first 2 -- now 2nd with 3rd and then 3rd with 4th
+          if (blocks[i].childBlocks_[j].childBlocks_.length !== 0) {
+            for (let k = 0; k < blocks[i].childBlocks_[j].childBlocks_.length; k++) {
+
+              if (blocks[i].childBlocks_[j].category === blocks[i].childBlocks_[j].childBlocks_[k].category_ &&
+                  blocks[i].childBlocks_[j].colour_ === blocks[i].childBlocks_[j].childBlocks_[k].colour_)
+              {
+                blocks[i].childBlocks_[j].childBlocks_[k].colour_ = blocks[i].childBlocks_[j].childBlocks_[k].colourTertiary_;
+                blocks[i].childBlocks_[j].childBlocks_[k].initSvg();
+              }
+
+              if(blocks[i].childBlocks_[j].childBlocks_[k].length !== 0)                                                //comparison 3rd with 4th block
+              {
+                if (blocks[i].childBlocks_[j].childBlocks_[k].category === blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].category &&
+                    blocks[i].childBlocks_[j].childBlocks_[k].colour_ === blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colour_)
+                {
+                  blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colour_ = blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].colourTertiary_;
+                  blocks[i].childBlocks_[j].childBlocks_[k].childBlocks_[0].initSvg();
+                }
+              }
             }
           }
         }
