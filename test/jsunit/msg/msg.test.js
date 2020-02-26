@@ -64,45 +64,43 @@ describe('Filesystem msg tests', () => {
       expect(langs.includes(lang.split('.')[0])).toBeTruthy();
     });
   });
-});
 
+  describe('Webview test', () => {
+    beforeEach(async () => {
+      await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    });
 
-/*
-describe('Webview test', () => {
-  beforeEach(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
-  });
+    test('en_GB Messages assigned to Blockly', async () => {
+      const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}en_GB.json`));
 
-  test('en_GB Messages assigned to Blockly', async () => {
-    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}en_GB.json`));
+      const failed = await page.evaluate((msgDef) => {
+        let failedLoading = false;
 
-    const failed = await page.evaluate((msgDef) => {
-      let failedLoading = false;
+        toolboxWS.getAllBlocks().forEach(block => {
+          console.log(block);
+          const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*Msg.[a-zA-Z_1-9]+(?=,)/g);
 
-      toolboxWS.getAllBlocks().forEach(block => {
-        const msgKeys = block.init.toString().match(/message\d\d?\:Blockly.Msg.[a-zA-Z_1-9]+(?=,)/g);
-      
-        const msgDefParts = msgKeys.flatMap(key => {
-          let msgKey = key.split(':')[1].trim().replace('Blockly.Msg.', '');
-          return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+          const msgDefParts = msgKeys.flatMap(key => {
+            let msgKey = key.split(':')[1].trim().split('.').pop();
+            return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+          });
+
+          const msgBlockParts = Array.prototype.slice.call(block.svgGroup_.getElementsByClassName('blocklyText'))
+            .filter(v => v.classList.length === 1);
+
+          for (let idx = 0; idx < msgBlockParts.length; idx++) {
+            let msgBlockPart = msgBlockParts[idx];
+            if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
+              failedLoading = true;
+              // return failedLoading;
+            }
+          }
         });
 
-        const msgBlockParts = Array.prototype.slice.call(block.svgGroup_.getElementsByClassName('blocklyText'))
-          .filter(v => v.classList.length === 1);
+        return failedLoading;
+      }, msgDef);
 
-        for (let idx = 0; idx < msgBlockParts.length; idx++) {
-          let msgBlockPart = msgBlockParts[idx];
-          if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
-            failedLoading = true;
-            return failedLoading;
-          }
-        }
-      });
-
-      return failedLoading;
-    }, msgDef);
-    
-    expect(failed).toBeFalsy();
+      expect(failed).toBeFalsy();
+    });
   });
 });
-*/
