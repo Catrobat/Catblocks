@@ -15,3 +15,4 @@ import "./categories/pen";
 import "./categories/phiro";
 import "./categories/raspi";
 import "./categories/sound";
+import "./categories/stitch";

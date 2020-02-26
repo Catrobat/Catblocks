@@ -6,7 +6,7 @@ const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
 
 const BLOCK_CATEGORIES = ['motion', 'looks', 'sound', 'event', 'control', 'pen', 'data',
-  'drone', 'jumpingSumo', 'arduino', 'raspi', 'phiro', 'legoEV3', 'legoNXT'];
+  'drone', 'jumpingSumo', 'arduino', 'raspi', 'phiro', 'legoEV3', 'legoNXT', 'stitch'];
 
 /**
  * Parse all defined blocks from BLOCK_CATEGORIES

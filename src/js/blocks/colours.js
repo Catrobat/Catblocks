@@ -11,7 +11,8 @@ Blockly.Colours.overrideColours({
   operators: { primary: "#CF63CF", secondary: "#C94FC9", tertiary: "#BD42BD" },
   pen: { primary: "#0fBD8C", secondary: "#0DA57A", tertiary: "#0B8E69" },
   sensing: { primary: "#5CB1D6", secondary: "#47A8D1", tertiary: "#2E8EB8" },
-  sounds: { primary: "#9966FF", secondary: "#855CD6", tertiary: "#774DCB" }
+  sounds: { primary: "#9966FF", secondary: "#855CD6", tertiary: "#774DCB" },
+  stitch: { primary: "#BC4793", secondary: "#bb3a8d", tertiary: "#b72a86" }
 });
 
 Blockly.Colours["arduino"] = { primary: "#34c8a5", secondary: "#31bc9c", tertiary: "#238770" };
@@ -22,3 +23,6 @@ Blockly.Extensions.register("colours_lego", Blockly.ScratchBlocks.VerticalExtens
 
 Blockly.Colours["drone"] = { primary: "#91d149", secondary: "#7bb13e", tertiary: "#669334" };
 Blockly.Extensions.register("colours_drone", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("drone"));
+
+Blockly.Colours["stitch"] = { primary: "#BC4793", secondary: "#bb3a8d", tertiary: "#b72a86" };
+Blockly.Extensions.register("colours_stitch", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("stitch"));

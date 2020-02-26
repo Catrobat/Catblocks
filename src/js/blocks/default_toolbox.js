@@ -174,4 +174,11 @@ Blockly.Blocks.defaultToolbox = `<xml id="toolbox-categories" style="display: no
   <block type="SpeakAndWaitBrick"></block >
   <block type="AskSpeechBrick"></block >
 </category>
+<category name="%{BKY_CATEGORY_EMBROIDERY}" id="stitch" colour="#bc4793" secondaryColour="#bb3a8d">
+  <block type="StitchBrick"></block >
+  <block type="RunningStitchBrick"></block >
+  <block type="ZigZagStitchBrick"></block >
+  <block type="TripleStitchBrick"></block >
+  <block type="StopRunningStitchBrick"></block >
+</category>
 </xml>`;
