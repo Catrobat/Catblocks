@@ -135,11 +135,11 @@ describe('WebView Block tests', () => {
       await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
-        Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_).forEach(id => {
-          if (Catblocks.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
-            workspaces['userWorkspace'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+        Object.keys(playground.Blockly.Workspace.WorkspaceDB_).forEach(id => {
+          if (playground.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
+            workspaces['userWorkspace'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
           } else {
-            workspaces['toolbox'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+            workspaces['toolbox'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
           }
         });
         return workspaces;
@@ -177,7 +177,7 @@ describe('WebView Block tests', () => {
      * Check if categories from toolbox rendered properly
      */
     test('Toolbox includes all Categories', async () => {
-      const renderedCategories = await page.evaluate(() => Object.keys(Catblocks.Blockly.Categories));
+      const renderedCategories = await page.evaluate(() => Object.keys(playground.Blockly.Categories));
 
       BLOCK_CATEGORIES.forEach(category => {
         expect(renderedCategories.includes(category)).toBeTruthy();

@@ -17,7 +17,7 @@ describe('Parser basic tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         return (catXml === undefined);
       } catch (e) {
         return false;
@@ -32,7 +32,7 @@ describe('Parser basic tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         return (catXml instanceof XMLDocument);
       } catch (e) {
         return false;
@@ -55,7 +55,7 @@ describe('Catroid to Catblocks parser tests', () => {
       // verify if <value>60&amp;.0</value> get parsed properly into a catblocks xml
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="цель"><lookList><look fileName="Space-Panda.png" name="цель"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSizeToBrick" id="testBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value id="testValue">60&amp;.0</value></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         if (catXml.getElementsByTagName('parsererror').length > 0) {
           return false;
         }
@@ -80,7 +80,7 @@ describe('Catroid to Catblocks parser tests', () => {
     const res = await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestLookListObject"><lookList><look fileName="testLook.png" name="testLook"/></lookList><soundList/><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetLookBrick"><commentedOut>false</commentedOut><look reference="../../../../../../object[1]/lookList/look[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         if (catXml.getElementsByTagName('parsererror').length > 0) {
           return false;
         }
@@ -105,7 +105,7 @@ describe('Catroid to Catblocks parser tests', () => {
     const res = await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList></lookList><soundList><sound fileName="testSound.png" name="testSound"/></soundList><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSoundBrick"><commentedOut>false</commentedOut><sound reference="../../../../../../object[1]/soundList/sound[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         if (catXml.getElementsByTagName('parsererror').length > 0) {
           return false;
         }
@@ -129,7 +129,7 @@ describe('Catroid to Catblocks parser tests', () => {
     const res = await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
-        const catXml = Catblocks.Parser.parseXml(xmlString);
+        const catXml = playground.Parser.parseXml(xmlString);
         if (catXml.getElementsByTagName('parsererror').length > 0) {
           return false;
         }
@@ -145,17 +145,4 @@ describe('Catroid to Catblocks parser tests', () => {
 
     expect(res).toBeTruthy();
   });
-
-  // test('Converted scenes exists in catblocks xml', async () => {
-  //   expect(await page.evaluate(() => {
-  //     const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
-  //     try {
-  //       const catXml = Catblocks.Parser.parseXml(xmlString);
-  //       return (catXml === undefined);
-  //     } catch (e) {
-  //       return false;
-  //     } 
-  //   })).toBeTruthy();
-  // });
-
 });
