@@ -36,7 +36,8 @@ const CATEGORYHEADER = {
   'raspi': `name="%{BKY_CATEGORY_RASPI}" id="raspi" colour="#34c8a5" secondaryColour="#31bc9c"`,
   'phiro': `name="%{BKY_CATEGORY_PHIRO}" id="phiro" colour="#34c8a5" secondaryColour="#31bc9c"`,
   'legoEV3': `name="%{BKY_CATEGORY_LEGO_EV3}" id="legoEV3" colour="#cbca3e" secondaryColour="#d2d140"`,
-  'legoNXT': `name="%{BKY_CATEGORY_LEGO_NXT}" id="legoNXT" colour="#cbca3e" secondaryColour="#d2d140"`
+  'legoNXT': `name="%{BKY_CATEGORY_LEGO_NXT}" id="legoNXT" colour="#cbca3e" secondaryColour="#d2d140"`,
+  'stitch': `name="%{BKY_CATEGORY_EMBROIDERY}" id="stitch" colour="#bc4793" secondaryColour="#bb3a8d"`
 };
 
 console.log(`Started to create default toolbox file, destination path: ${TOOLBOXFILE}`);

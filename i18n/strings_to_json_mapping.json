@@ -319,5 +319,11 @@
   "SUMO_ROTATELEFT": "${brick_jumping_sumo_rotate_left} %1 ${brick_jumping_sumo_rotate_text}",
   "SUMO_ROTATERIGHT": "${brick_jumping_sumo_rotate_right} %1 ${brick_jumping_sumo_rotate_text}",
   "SUMO_TURN": "${brick_jumping_sumo_turn}",
-  "SUMO_TAKINGPICTURE": "${brick_jumping_sumo_taking_picture}"
+  "SUMO_TAKINGPICTURE": "${brick_jumping_sumo_taking_picture}",
+  "@stitch": "stitch",
+  "STITCH": "${brick_stitch}",
+  "STITCH_RUNNING": "${brick_running_stitch} %1",
+  "STITCH_ZIGZAG": "${brick_zigzag_stitch} %1 ${brick_zigzag_stitch_width} %2",
+  "STITCH_TRIPLE": "${brick_triple_stitch} %1",
+  "STITCH_STOP": "${brick_stop_stitch}"
 }

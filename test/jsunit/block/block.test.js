@@ -5,8 +5,8 @@
 const utils = require('../commonUtils');
 const xmlParser = require('xml2json');
 
-const BLOCK_CATEGORIES = ['motion', 'looks', 'sound', 'event', 'control', 'pen', 'data',
-  'drone', 'jumpingSumo', 'arduino', 'raspi', 'phiro', 'legoEV3', 'legoNXT'];
+const BLOCK_CATEGORIES = ["arduino", "control", "data", "drone", "event", "jumpingSumo",
+  "legoEV3", "legoNXT", "looks", "motion", "pen", "phiro", "raspi", "sound", "stitch"];
 
 /**
  * Parse all defined blocks from BLOCK_CATEGORIES
@@ -176,13 +176,13 @@ describe('WebView Block tests', () => {
     /**
      * Check if categories from toolbox rendered properly
      */
-    // test('Toolbox includes all Categories', async () => {
-    //   const renderedCategories = await page.evaluate(() => Object.keys(Catblocks.Blockly.Categories));
+    test('Toolbox includes all Categories', async () => {
+      const renderedCategories = await page.evaluate(() => Object.keys(Catblocks.Blockly.Categories));
 
-    //   BLOCK_CATEGORIES.forEach(category => {
-    //     expect(renderedCategories.includes(category)).toBeTruthy();
-    //   })
-    // });
+      BLOCK_CATEGORIES.forEach(category => {
+        expect(renderedCategories.includes(category)).toBeTruthy();
+      })
+    });
 
     /**
      * Check if all blocks are rendered properly
