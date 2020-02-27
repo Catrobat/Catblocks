@@ -161,7 +161,7 @@ export class Share {
       svg.setAttribute('class', 'catblocks-svg');
 
     } catch (e) {
-      console.error('Failed to generate SVG from workspace');
+      console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
     }
 
@@ -281,9 +281,9 @@ export class Share {
     container = getDomElement(container);
     const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
-    if(xmlElement === undefined){
+    if (xmlElement === undefined) {
       console.warn('Inject message to upgrade programm to newer version!');
-      injectNewDom(scenesContainer, 'P', {'class' : 'catblocks-empty-text'}, 'Unsupported program version! Please reupload your Programm using our app!');
+      injectNewDom(scenesContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Unsupported program version! Please reupload your Programm using our app!');
       return;
     }
 
@@ -310,7 +310,7 @@ export class Share {
       objects.forEach(object => {
         const objectName = trimString(object.getAttribute('type'));
         const objectOptions = (() => {
-          if (object.getAttribute('look') !== undefined) {
+          if (object.getAttribute('look') !==  undefined && object.getAttribute('look') !== null) {
             const lookOptions = Object.assign({}, options.object, {
               'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
             });
@@ -339,13 +339,12 @@ export class Share {
 
             const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
 
-            const blockStats = this.getScriptStats(script);
-            objectStats = this.updateObjectStats(objectStats, blockStats);
-
             const blockSvg = this.domToSvg(blockXml);
             if (blockSvg === undefined) {
               scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
             } else {
+              const blockStats = this.getScriptStats(script);
+              objectStats = this.updateObjectStats(objectStats, blockStats);
               scriptContainer.appendChild(blockSvg);
             }
           });

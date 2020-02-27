@@ -63,6 +63,7 @@ export const renderAllPrograms = (share, container, path) => {
           })
           .catch(err => {
             console.error(`Failed to parse catroid file.`);
+            console.error(`${path}${name}/code.xml failed`);
             console.error(err);
           });
       }
