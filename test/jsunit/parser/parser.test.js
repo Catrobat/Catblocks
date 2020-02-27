@@ -4,11 +4,44 @@
 
 'use strict'
 
+describe('Parser basic tests', () => {
 
+  beforeEach(async () => {
+    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+  });
+
+  /**
+   * Test if parser recognize if the verison is not supported and return undefined
+   */
+  test('Parser recognizes not supported version', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
+      try {
+        const catXml = Catblocks.Parser.parseXml(xmlString);
+        return (catXml === undefined);
+      } catch (e) {
+        return false;
+      }
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser recognize if the verison is supported and return a XMLDocument object
+   */
+  test('Parser recognizes not supported version', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
+      try {
+        const catXml = Catblocks.Parser.parseXml(xmlString);
+        return (catXml instanceof XMLDocument);
+      } catch (e) {
+        return false;
+      }
+    })).toBeTruthy();
+  });
+});
 
 describe('Catroid to Catblocks parser tests', () => {
-
-
 
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
@@ -112,5 +145,17 @@ describe('Catroid to Catblocks parser tests', () => {
 
     expect(res).toBeTruthy();
   });
+
+  // test('Converted scenes exists in catblocks xml', async () => {
+  //   expect(await page.evaluate(() => {
+  //     const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
+  //     try {
+  //       const catXml = Catblocks.Parser.parseXml(xmlString);
+  //       return (catXml === undefined);
+  //     } catch (e) {
+  //       return false;
+  //     } 
+  //   })).toBeTruthy();
+  // });
 
 });

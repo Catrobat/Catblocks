@@ -253,5 +253,19 @@ describe('WebView Block tests', () => {
 
       expect(failed).toBeFalsy();
     });
+
+    test('All icons available and rendered', async () => {
+      expect(await page.evaluate(() => {
+        const imgHref = new Set(Array.from(document.querySelectorAll('svg.blocklyFlyout image')).map(node => node.href.baseVal));
+        const codes = [];
+        imgHref.forEach(href => {
+          codes.push(fetch(href).then(res => res.status));
+        });
+
+        return Promise.all(codes).then(res => {
+          return res.includes(404);
+        });
+      })).toBeFalsy();
+    });
   });
 });
