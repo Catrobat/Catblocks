@@ -5,42 +5,149 @@
 
 'use strict'
 
-describe('Parser basic tests', () => {
+describe('Parser catroid program tests', () => {
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
   });
 
   /**
-   * Test if parser recognize if the verison is not supported and return undefined
+   * Test if parsing a not support version works properly
    */
-  test('Parser recognizes not supported version', async () => {
+  test('Recognizes not supported program version', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        return (catXml === undefined);
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml === undefined);
     })).toBeTruthy();
   });
 
   /**
-   * Test if parser recognize if the verison is supported and return a XMLDocument object
-   */
-  test('Parser recognizes supported version', async () => {
+  * Test if rendering a support version works properly
+  */
+  test('Recognizes supported program version', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        return (catXml instanceof XMLDocument);
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse an empty catroid program properly
+   */
+  test('Handle empty program properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.firstChild.childElementCount === 0);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse a single empty scene program properly
+   */
+  test('Handle empty single scene properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>tscene</name><objectList></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.getElementsByTagName('scene').length === 1
+        && catXml.getElementsByTagName('scene')[0].getAttribute('type') === 'tscene');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse multiple empty scenes from a program properly
+   */
+  test('Handle multiple empty scenes properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>tscene1</name><objectList></objectList></scene><scene><name>tscene2</name><objectList></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.getElementsByTagName('scene').length === 2
+        && catXml.getElementsByTagName('scene')[0].getAttribute('type') === 'tscene1'
+        && catXml.getElementsByTagName('scene')[1].getAttribute('type') === 'tscene2');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse single empty object properly
+   */
+  test('Hanlde single empty object properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList/></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.getElementsByTagName('object').length === 1
+        && catXml.getElementsByTagName('object')[0].getAttribute('type') === 'tobject');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse multiple empty objects properly
+   */
+  test('Hanlde single empty object in same scene properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject1"><lookList/><soundList/><scriptList/></object><object type="Sprite" name="tobject2"><lookList/><soundList/><scriptList/></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.getElementsByTagName('scene').length === 1
+        && catXml.getElementsByTagName('scene')[0].childElementCount === 2
+        && catXml.getElementsByTagName('object').length === 2
+        && catXml.getElementsByTagName('object')[0].getAttribute('type') === 'tobject1'
+        && catXml.getElementsByTagName('object')[1].getAttribute('type') === 'tobject2');
+    })).toBeTruthy();
+  });
+
+  /**
+    * Test if parser is able to parse multiple empty scence with one object properly
+  */
+  test('Hanlde single empty object in multiple scenes properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene1</name><objectList><object type="Sprite" name="tobject1"><lookList/><soundList/><scriptList/></object></objectList></scene><scene><name>tscene2</name><objectList><object type="Sprite" name="tobject2"><lookList/><soundList/><scriptList/></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return (catXml instanceof XMLDocument
+        && catXml.firstChild.tagName === 'xml'
+        && catXml.getElementsByTagName('scene').length === 2
+        && catXml.getElementsByTagName('scene')[0].getAttribute('type') === 'tscene1'
+        && catXml.getElementsByTagName('scene')[1].getAttribute('type') === 'tscene2'
+        && catXml.getElementsByTagName('scene')[0].childElementCount === 1
+        && catXml.getElementsByTagName('scene')[0].firstChild.getAttribute('type') === 'tobject1'
+        && catXml.getElementsByTagName('scene')[0].firstChild.childElementCount === 0
+        && catXml.getElementsByTagName('scene')[1].childElementCount === 1
+        && catXml.getElementsByTagName('scene')[1].firstChild.getAttribute('type') === 'tobject2'
+        && catXml.getElementsByTagName('scene')[1].firstChild.childElementCount === 0);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser is able to parse single empty script from object properly
+   */
+  test('Handle single empty script properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList/></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertCatroidString(xmlString);
+
+      return catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
     })).toBeTruthy();
   });
 });
+
 
 describe('Catroid to Catblocks parser tests', () => {
 
@@ -55,19 +162,11 @@ describe('Catroid to Catblocks parser tests', () => {
     expect(await page.evaluate(() => {
       // verify if <value>60&amp;.0</value> get parsed properly into a catblocks xml
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="цель"><lookList><look fileName="Space-Panda.png" name="цель"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSizeToBrick" id="testBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value id="testValue">60&amp;.0</value></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        if (catXml.getElementsByTagName('parsererror').length > 0) {
-          return false;
-        }
-        const testValue = catXml.evaluate(`//field[@name='SIZE']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
-        if (testValue === undefined) {
-          return false;
-        }
-        return testValue.innerHTML.includes('60&amp;.0');
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+      const testValue = catXml.evaluate(`//field[@name='SIZE']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+      return (testValue !== undefined && testValue.innerHTML.includes('60&amp;.0'));
     })).toBeTruthy();
   });
 
@@ -78,19 +177,11 @@ describe('Catroid to Catblocks parser tests', () => {
   test('LookList reference not within the same object', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestLookListObject"><lookList><look fileName="testLook.png" name="testLook"/></lookList><soundList/><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetLookBrick"><commentedOut>false</commentedOut><look reference="../../../../../../object[1]/lookList/look[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        if (catXml.getElementsByTagName('parsererror').length > 0) {
-          return false;
-        }
-        const testValue = catXml.evaluate(`//field[@name='look']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
-        if (testValue === undefined) {
-          return false;
-        }
-        return testValue.innerHTML.includes('testLook');
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+      const testValue = catXml.evaluate(`//field[@name='look']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+      return (testValue !== undefined && testValue.innerHTML.includes('testLook'));
     })).toBeTruthy();
   });
 
@@ -101,19 +192,11 @@ describe('Catroid to Catblocks parser tests', () => {
   test('SountList reference not within the same object', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList></lookList><soundList><sound fileName="testSound.png" name="testSound"/></soundList><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSoundBrick"><commentedOut>false</commentedOut><sound reference="../../../../../../object[1]/soundList/sound[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        if (catXml.getElementsByTagName('parsererror').length > 0) {
-          return false;
-        }
-        const testValue = catXml.evaluate(`//field[@name='sound']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
-        if (testValue === undefined) {
-          return false;
-        }
-        return testValue.innerHTML.includes('testSound');
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+      const testValue = catXml.evaluate(`//field[@name='sound']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+      return (testValue !== undefined && testValue.innerHTML.includes('testSound'));
     })).toBeTruthy();
   });
 
@@ -123,19 +206,11 @@ describe('Catroid to Catblocks parser tests', () => {
   test('Test if default value "---" is used if no nodeValue is given', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
-      try {
-        const catXml = playground.Parser.parseXml(xmlString);
-        if (catXml.getElementsByTagName('parsererror').length > 0) {
-          return false;
-        }
-        const testValue = catXml.evaluate(`//field[@name='testFormular']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
-        if (testValue === undefined) {
-          return false;
-        }
-        return testValue.innerHTML.includes('37 --- 58');
-      } catch (e) {
-        return false;
-      }
+      const catXml = parser.convertCatroidString(xmlString);
+
+      if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+      const testValue = catXml.evaluate(`//field[@name='testFormular']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+      return (testValue !== undefined && testValue.innerHTML.includes('37 --- 58'));
     })).toBeTruthy();
   });
 });

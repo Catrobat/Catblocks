@@ -40,6 +40,7 @@
 
     // set global workspace variables which are used by the tests
     // currenlty your tests just use {shareWS, playgroundWS, toolboxWS}
+    parser = share.parser;
     shareWS = share.workspace;
     playgroundWS = playground.workspace;
     toolboxWS = Blockly.Workspace.getById(Object.keys(Blockly.Workspace.WorkspaceDB_).filter(key => ![shareWS.id, playgroundWS.id].includes(key)));

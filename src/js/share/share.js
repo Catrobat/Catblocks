@@ -303,8 +303,8 @@ export class Share {
 
       const objects = scene.getElementsByTagName('object');
       if (!hasChildren(objects)) {
-        const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-script-container catblocks-empty-container' });
-        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty object found, nothting to display.');
+        const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
+        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
         return;
       }
       objects.forEach(object => {
@@ -330,7 +330,7 @@ export class Share {
 
         if (!hasChildren(object)) {
           const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
-          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
+          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "Empty object found, nothting to display.");
 
         } else {
           const scripts = object.getElementsByTagName('script');
