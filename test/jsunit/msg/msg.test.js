@@ -73,18 +73,6 @@ describe('Webview test', () => {
    */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
-
-    // prepare global browser variables
-    await page.evaluate(() => {
-      window.blocklyWS = playground.Blockly.getMainWorkspace();
-      window.toolboxWS = (() => {
-        for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
-          if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-            return playground.Blockly.Workspace.WorkspaceDB_[wsId];
-          }
-        }
-      })();
-    });
   });
 
   /**
@@ -93,18 +81,22 @@ describe('Webview test', () => {
   beforeEach(async () => {
     // clean workspace before each test
     await page.evaluate(() => {
-      blocklyWS.clear();
+      playgroundWS.clear();
     });
   });
 
+  /**
+   * Test if each block is rendered 
+   */
   test('en_GB Messages assigned to Blockly', async () => {
-    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}en_GB.json`));
+    const langToTest = 'en_GB';
+    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
 
-    const failed = await page.evaluate((msgDef) => {
+    expect(await page.evaluate((msgDef, lang) => {
       let failedLoading = false;
 
+      playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
-        console.log(block);
         const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*Msg.[a-zA-Z_1-9]+(?=,)/g);
 
         const msgDefParts = msgKeys.flatMap(key => {
@@ -119,14 +111,47 @@ describe('Webview test', () => {
           let msgBlockPart = msgBlockParts[idx];
           if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
             failedLoading = true;
-            // return failedLoading;
+            return failedLoading;
           }
         }
       });
-
       return failedLoading;
-    }, msgDef);
+    }, msgDef, langToTest)).toBeFalsy();
+  });
 
-    expect(failed).toBeFalsy();
+  /**
+   * Check if language switch/change works proplery and all blocks are rendered
+   *  with the new language, tested via toolbox blocks
+   */
+  test('Change lang from >en_GB< to >de< works properly', async () => {
+    const langToTest = 'de';
+    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
+
+    expect(await page.evaluate((msgDef, lang) => {
+      let failedLoading = false;
+
+      playground.setLocale('en_GB');
+      playground.setLocale(lang);
+      toolboxWS.getAllBlocks().forEach(block => {
+        const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*Msg.[a-zA-Z_1-9]+(?=,)/g);
+
+        const msgDefParts = msgKeys.flatMap(key => {
+          let msgKey = key.split(':')[1].trim().split('.').pop();
+          return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+        });
+
+        const msgBlockParts = Array.prototype.slice.call(block.svgGroup_.getElementsByClassName('blocklyText'))
+          .filter(v => v.classList.length === 1);
+
+        for (let idx = 0; idx < msgBlockParts.length; idx++) {
+          let msgBlockPart = msgBlockParts[idx];
+          if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
+            failedLoading = true;
+            return failedLoading;
+          }
+        }
+      });
+      return failedLoading;
+    }, msgDef, langToTest)).toBeFalsy();
   });
 });

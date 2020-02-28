@@ -1,5 +1,6 @@
 /**
  * @description Parser test
+ *  for the parser we always need the webview
  */
 
 'use strict'
@@ -28,7 +29,7 @@ describe('Parser basic tests', () => {
   /**
    * Test if parser recognize if the verison is supported and return a XMLDocument object
    */
-  test('Parser recognizes not supported version', async () => {
+  test('Parser recognizes supported version', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
       try {
@@ -51,7 +52,7 @@ describe('Catroid to Catblocks parser tests', () => {
    * Test if xml character like &amp; get properly handeled by catblocks parser
    */
   test('Xml Character escaping test', async () => {
-    const res = await page.evaluate(() => {
+    expect(await page.evaluate(() => {
       // verify if <value>60&amp;.0</value> get parsed properly into a catblocks xml
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="цель"><lookList><look fileName="Space-Panda.png" name="цель"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSizeToBrick" id="testBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value id="testValue">60&amp;.0</value></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
@@ -67,9 +68,7 @@ describe('Catroid to Catblocks parser tests', () => {
       } catch (e) {
         return false;
       }
-    });
-
-    expect(res).toBeTruthy();
+    })).toBeTruthy();
   });
 
   /** 
@@ -77,7 +76,7 @@ describe('Catroid to Catblocks parser tests', () => {
    * Test for looklist
    */
   test('LookList reference not within the same object', async () => {
-    const res = await page.evaluate(() => {
+    expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestLookListObject"><lookList><look fileName="testLook.png" name="testLook"/></lookList><soundList/><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetLookBrick"><commentedOut>false</commentedOut><look reference="../../../../../../object[1]/lookList/look[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
         const catXml = playground.Parser.parseXml(xmlString);
@@ -92,9 +91,7 @@ describe('Catroid to Catblocks parser tests', () => {
       } catch (e) {
         return false;
       }
-    });
-
-    expect(res).toBeTruthy();
+    })).toBeTruthy();
   });
 
   /** 
@@ -102,7 +99,7 @@ describe('Catroid to Catblocks parser tests', () => {
    * Test for soundlist
    */
   test('SountList reference not within the same object', async () => {
-    const res = await page.evaluate(() => {
+    expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList></lookList><soundList><sound fileName="testSound.png" name="testSound"/></soundList><scriptList/></object><object type="Sprite" name="цель"><lookList></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetSoundBrick"><commentedOut>false</commentedOut><sound reference="../../../../../../object[1]/soundList/sound[1]"/></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
         const catXml = playground.Parser.parseXml(xmlString);
@@ -117,16 +114,14 @@ describe('Catroid to Catblocks parser tests', () => {
       } catch (e) {
         return false;
       }
-    });
-
-    expect(res).toBeTruthy();
+    })).toBeTruthy();
   });
 
   /** 
    * Test if default value "---" is used if no nodeValue exists in script
    */
   test('Test if default value "---" is used if no nodeValue is given', async () => {
-    const res = await page.evaluate(() => {
+    expect(await page.evaluate(() => {
       const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
       try {
         const catXml = playground.Parser.parseXml(xmlString);
@@ -141,8 +136,6 @@ describe('Catroid to Catblocks parser tests', () => {
       } catch (e) {
         return false;
       }
-    });
-
-    expect(res).toBeTruthy();
+    })).toBeTruthy();
   });
 });

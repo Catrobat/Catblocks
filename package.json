@@ -19,6 +19,7 @@
     "render:build": "export NODE_ENV=production && export TYPE=render && yarn initiate && webpack",
     "test": "yarn test:build && jest -c ./test/jest_config.js",
     "test:build": "export NODE_ENV=development TYPE=testing && yarn initiate && webpack",
+    "test:dev": "export NODE_ENV=development TYPE=testing && yarn initiate && webpack-dev-server",
     "initiate": "yarn toolbox && yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
     "toolbox": "node tools/create_toolbox.js",
