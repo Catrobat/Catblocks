@@ -258,12 +258,6 @@ export class Playground {
   zebra() {
     const blocks = this.workspace.topBlocks_;
 
-    console.log(blocks[0].childBlocks_[0].colour_);
-    console.log(blocks[0].childBlocks_[0].colourSecondary_);
-    console.log(blocks[0].childBlocks_[0].childBlocks_[0].colourTertiary_);
-    console.log(blocks.length);
-    console.log(blocks[0].childBlocks_.length);
-
     //compares topblock with the following one
     for (let i = 0; i < blocks.length; i++) {
       for (let j = 0; j < blocks[i].childBlocks_.length; j++) {
