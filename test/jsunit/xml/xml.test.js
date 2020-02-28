@@ -9,9 +9,13 @@ const utils = require('../commonUtils');
  */
 describe('Export and Import XML files to workspace', () => {
 
-  beforeEach(async () => {
+  /**
+   * Execute ones in this scope
+   */
+  beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
 
+    // prepare global browser variables
     await page.evaluate(() => {
       window.blocklyWS = playground.Blockly.getMainWorkspace();
       window.toolboxWS = (() => {
@@ -21,6 +25,16 @@ describe('Export and Import XML files to workspace', () => {
           }
         }
       })();
+    });
+  });
+
+  /**
+   * Run before each test in this scope
+  */
+  beforeEach(async () => {
+    // clean workspace before each test
+    await page.evaluate(() => {
+      blocklyWS.clear();
     });
   });
 

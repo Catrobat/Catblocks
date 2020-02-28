@@ -67,9 +67,14 @@ describe('Filesystem msg tests', () => {
 });
 
 describe('Webview test', () => {
-  beforeEach(async () => {
+
+  /**
+   * Execute ones in this scope
+   */
+  beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
 
+    // prepare global browser variables
     await page.evaluate(() => {
       window.blocklyWS = playground.Blockly.getMainWorkspace();
       window.toolboxWS = (() => {
@@ -79,6 +84,16 @@ describe('Webview test', () => {
           }
         }
       })();
+    });
+  });
+
+  /**
+   * Run before each test in this scope
+  */
+  beforeEach(async () => {
+    // clean workspace before each test
+    await page.evaluate(() => {
+      blocklyWS.clear();
     });
   });
 

@@ -125,44 +125,53 @@ describe('Filesystem Block tests', () => {
  */
 describe('WebView Block tests', () => {
 
-  // /**
-  //  * Execute ones in this scope
-  //  */
-  // beforeAll(async () => {
-  //   await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
-  // });
+  let workspaceBlocks = {};
+
+  /**
+   * Execute ones in this scope
+   */
+  beforeAll(async () => {
+    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+
+    // prepare global browser variables
+    await page.evaluate(() => {
+      window.blocklyWS = playground.Blockly.getMainWorkspace();
+      window.toolboxWS = (() => {
+        for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
+          if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+            return playground.Blockly.Workspace.WorkspaceDB_[wsId];
+          }
+        }
+      })();
+    });
+
+    // parse init setup of testing page
+    workspaceBlocks = await page.evaluate(() => {
+      let workspaces = {};
+      Object.keys(playground.Blockly.Workspace.WorkspaceDB_).forEach(id => {
+        if (playground.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
+          workspaces['userWorkspace'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+        } else {
+          workspaces['toolbox'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
+        }
+      });
+      return workspaces;
+    }, 2000);
+  });
 
   /**
    * Test if Scratch-Blocks got initialized properly
    */
   describe('Workspace initialization', () => {
-    let workspaceBlocks = {};
 
+    /**
+     * Run before each test in this scope
+     */
     beforeEach(async () => {
-      await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
-
+      // clean workspace before each test
       await page.evaluate(() => {
-        window.blocklyWS = playground.Blockly.getMainWorkspace();
-        window.toolboxWS = (() => {
-          for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
-            if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-              return playground.Blockly.Workspace.WorkspaceDB_[wsId];
-            }
-          }
-        })();
+        blocklyWS.clear();
       });
-
-      workspaceBlocks = await page.evaluate(() => {
-        let workspaces = {};
-        Object.keys(playground.Blockly.Workspace.WorkspaceDB_).forEach(id => {
-          if (playground.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
-            workspaces['userWorkspace'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-          } else {
-            workspaces['toolbox'] = Object.keys(playground.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-          }
-        });
-        return workspaces;
-      }, 2000);
     });
 
     /**
