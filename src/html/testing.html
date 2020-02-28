@@ -8,34 +8,34 @@
 </head>
 
 <body>
-  <div id="collaborators"></div>
-  <div id="blocklyDiv"></div>
+  <main id="root">
+    <div id="playground">
+      <h2>Playground testing</h2>
+      <div id="workspace" style="height: 500px; width: 100%"></div>
+    </div>
+    <div id="share">
+      <h2>Share testing</h2>
+      <div id="shareprogs">
+
+      </div>
+    </div>
+  </main>
 </body>
 <script>
-  // inject new blockly playground
-  const blocklyWS = playground.Blockly.inject('blocklyDiv', {
-    media: '../media/',
-    zoom: {
-      startScale: 0.75,
-    }
-  });
-
-  // set default locale to en_GB for testing
-  blocklyWS.getFlyout().setRecyclingEnabled(false);
-  const xml = playground.Blockly.Xml.workspaceToDom(blocklyWS);
-  playground.Blockly.CatblocksMsgs.setLocale('en_GB');
-  playground.Blockly.updateToolbox(playground.Blockly.Blocks.defaultToolbox);
-  playground.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, blocklyWS);
-  blocklyWS.getFlyout().setRecyclingEnabled(true);
-
-  // parse some stuff which is used later in the testing scripts
-  toolboxWS = (() => {
-    for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
-      if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-        return playground.Blockly.Workspace.WorkspaceDB_[wsId];
+  // initialize all your componets
+  (() => {
+    const mokeWorkspace = playground.Blockly.inject('workspace', {
+      media: '../media/',
+      zoom: {
+        startScale: 0.75,
       }
-    }
+    });
+    // moke playground
+    playground.workspace = mokeWorkspace;
+    playground.setLocale('en_GB');
+
   })();
+
 </script>
 
 </html>

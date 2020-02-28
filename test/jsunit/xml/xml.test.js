@@ -11,6 +11,17 @@ describe('Export and Import XML files to workspace', () => {
 
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+
+    await page.evaluate(() => {
+      window.blocklyWS = playground.Blockly.getMainWorkspace();
+      window.toolboxWS = (() => {
+        for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
+          if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+            return playground.Blockly.Workspace.WorkspaceDB_[wsId];
+          }
+        }
+      })();
+    });
   });
 
   /**

@@ -125,6 +125,13 @@ describe('Filesystem Block tests', () => {
  */
 describe('WebView Block tests', () => {
 
+  // /**
+  //  * Execute ones in this scope
+  //  */
+  // beforeAll(async () => {
+  //   await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+  // });
+
   /**
    * Test if Scratch-Blocks got initialized properly
    */
@@ -133,6 +140,18 @@ describe('WebView Block tests', () => {
 
     beforeEach(async () => {
       await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+
+      await page.evaluate(() => {
+        window.blocklyWS = playground.Blockly.getMainWorkspace();
+        window.toolboxWS = (() => {
+          for (const wsId in playground.Blockly.Workspace.WorkspaceDB_) {
+            if (playground.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
+              return playground.Blockly.Workspace.WorkspaceDB_[wsId];
+            }
+          }
+        })();
+      });
+
       workspaceBlocks = await page.evaluate(() => {
         let workspaces = {};
         Object.keys(playground.Blockly.Workspace.WorkspaceDB_).forEach(id => {

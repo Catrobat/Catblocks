@@ -52,6 +52,9 @@ const initShare = (container, lang) => {
     break;
   }
   case 'testing': {
+    // we need to test all your components
+    // therefore we define them, but do not initialize all of them
+    // Because Blockly uses global scope, the influence them
     window.playground = new Playground();
     window.share = new Share();
     break;
