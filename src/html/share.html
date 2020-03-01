@@ -25,7 +25,7 @@
 
     // render my code.xml file
     window.onload = function() {
-        share.parser.convertCatroidUri(`assets/share/code.xml`)
+        share.parser.convertProgramUri(`assets/share/code.xml`)
             .then(xmlDoc => {
                 console.log(xmlDoc);
                 const div = document.getElementById('catblocks-code-container');

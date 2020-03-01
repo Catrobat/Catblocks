@@ -46,7 +46,7 @@
                   <loopBricks>
                     <brick type="PlaySoundAndWaitBrick">
                       <commentedOut>false</commentedOut>
-                      <sound reference="../../../../../../../soundList/sound"/>
+                      <sound name="soundTest"/>
                     </brick>
                   </loopBricks>
                 </brick>
