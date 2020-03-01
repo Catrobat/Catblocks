@@ -298,9 +298,9 @@ export class Share {
 
 
     scenes.forEach(scene => {
-      const sceneName = trimString(scene.getAttribute('type'));
+      const sceneName = scene.getAttribute('type');
       const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
-      const sceneContainer = this.addSceneContainer(scenesContainer, sceneName, sceneOptions);
+      const sceneContainer = this.addSceneContainer(scenesContainer, trimString(sceneName), sceneOptions);
       const sceneObjectContainer = getDomElement('.catblocks-object-container', sceneContainer);
 
       const objects = scene.getElementsByTagName('object');
@@ -310,7 +310,7 @@ export class Share {
         return;
       }
       objects.forEach(object => {
-        const objectName = trimString(object.getAttribute('type'));
+        const objectName = object.getAttribute('type');
         const objectOptions = (() => {
           if (object.getAttribute('look') !== undefined && object.getAttribute('look') !== null) {
             const lookOptions = Object.assign({}, options.object, {
@@ -322,7 +322,7 @@ export class Share {
           }
         })();
 
-        const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, objectOptions);
+        const objectContainer = this.addObjectContainer(sceneObjectContainer, trimString(objectName), objectOptions);
         const objectScriptContainer = getDomElement('.catblocks-script-container', objectContainer);
 
         let objectStats = {
