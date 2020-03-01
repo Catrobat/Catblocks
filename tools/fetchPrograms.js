@@ -18,7 +18,7 @@ const path = require('path');
 // Please change as needed
 const OUTPUT_DIR = path.join(__dirname, 'fetchedPrograms');
 const SHARE_URL = 'https://share.catrob.at/app/';
-const PROG_COUNT = 20;
+const PROG_COUNT = 200;
 
 /**
  * Fetch programs via puppeteer

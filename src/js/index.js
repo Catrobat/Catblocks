@@ -1,6 +1,7 @@
 import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
+import * as shareUtils from './share/utils';
 import Blockly from "scratch-blocks";
 import { renderAllPrograms } from './render/render';
 
@@ -55,6 +56,7 @@ const initShare = (container, lang) => {
     window.Blockly = Blockly;
     window.playground = new Playground();
     window.share = new Share();
+    window.shareUtils = shareUtils;
     break;
   }
   default: {
