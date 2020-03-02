@@ -1,9 +1,9 @@
 import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
+import * as shareUtils from './share/utils';
 import Blockly from "scratch-blocks";
 import { renderAllPrograms } from './render/render';
-
 
 /**
  * Initiate share for rendering programs
@@ -34,14 +34,6 @@ const initShare = (container, lang) => {
     const app = new Playground();
     app.init();
     window.Catblocks = app;
-    window.blocklyWS = app.workspace;
-    window.toolboxWS = (() => {
-      for (const wsId in app.Blockly.Workspace.WorkspaceDB_) {
-        if (app.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-          return app.Blockly.Workspace.WorkspaceDB_[wsId];
-        }
-      }
-    })();
     break;
   }
   case 'share': {
@@ -52,12 +44,19 @@ const initShare = (container, lang) => {
     const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
     const catblocksWs = 'catblocks-workspace-container';
     const progContainer = document.getElementById('catblocks-programs-container');
-    
+
     console.log(`Render every program which is located in ${progPath} directory`);
     console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
 
     const share = initShare(catblocksWs, 'en_GB');
     renderAllPrograms(share, progContainer, progPath);
+    break;
+  }
+  case 'testing': {
+    window.Blockly = Blockly;
+    window.playground = new Playground();
+    window.share = new Share();
+    window.shareUtils = shareUtils;
     break;
   }
   default: {

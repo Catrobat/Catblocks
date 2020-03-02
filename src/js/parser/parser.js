@@ -66,7 +66,7 @@ const sceneList = [];
 let xmlDoc = undefined;
 const supportedAppVersion = 0.994;
 
-const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
+const XML_BEGIN = "<xml>";
 const XML_END = "\n</xml>";
 const NEXT_BEGIN = "\n<next>";
 const NEXT_END = "\n</next>";
@@ -74,8 +74,7 @@ const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
 
-let XML = "";// XML_BEGIN;
-let share = 0;
+let XML = "";
 
 // global log enable switch
 const DEBUG = false;
@@ -117,7 +116,7 @@ const escapeXml = (unsafe) => {
  * @param {XMLDocument} program to validate
  * @return {boolean} if supported or not
  */
-function isSupported(program = xmlDoc) {
+function isSupported(program) {
   const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
   if (appVersion === undefined || appVersion.length < 1) {
     console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
@@ -131,30 +130,43 @@ function isSupported(program = xmlDoc) {
 }
 
 /**
- * Parse XMLDocument from catroid code to catblocks
+ * Initialize parser for new conversion
+ *  Clean old parsed values and define xmlDoc for xPath
+ * @param {XMLDocument} xml 
+ */
+function initParser(xml) {
+  xmlDoc = xml;
+  sceneList.length = 0;
+  XML = '';
+}
+
+/**
+ * Parse catroid Program into catblocks program
  * @param {XMLDocument} xml catroid program xml
  * @return {XMLDocument} catblocks format
  */
-function parseDocument(xml) {
-  // clear result array
-  sceneList.length = 0;
-  xmlDoc = xml;
-
-  // TODO: add code if not supported
-  if (!isSupported()) {
-    return undefined;
-  }
-
+function parseCatroidProgram(xml) {
   const scenes = xml.getElementsByTagName('scenes')[0].children;
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
   // console.log(sceneList);
-  const xmlStream = writeXML();
+  const xmlStream = generateShareXml();
   // console.log(xmlStream);
-  return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
+  try {
+    return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
+  } catch (e) {
+    console.error(`Failed to parse generated catblocks string into a XMLDocument, please verify you input`);
+    return undefined;
+  }
+
 }
 
+/**
+ * Flat/dereference xml nodes
+ * @param {*} node node
+ * @param {*} xml XMLDocument
+ */
 function flatReference(node, xml = xmlDoc) {
   const refPath = node.getAttribute('reference');
   if (refPath) {
@@ -423,25 +435,17 @@ function concatFormula(formula, str) {
   return str;
 }
 
-function writeXML() {
-  if (share === 1) {
-    XML = XML_BEGIN;
-  }
+function generateShareXml() {
+  XML = XML_BEGIN;
   for (let i = 0; i < sceneList.length; i++) {
-    if (share === 1) {
-      XML = XML.concat(`<scene type="${escapeXml(sceneList[i].name)}">`);
-    }
+    XML = XML.concat(`<scene type="${escapeXml(sceneList[i].name)}">`);
     const currObjectList = sceneList[i].objectList;
     for (let j = 0; j < currObjectList.length; j++) {
       if (currObjectList[j].lookList.length > 0) {
         const objectImage = currObjectList[j].lookList[0].fileName;
-        if (share === 1) {
-          XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}" look="${escapeXml(objectImage)}">`);
-        }
+        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}" look="${escapeXml(objectImage)}">`);
       } else {
-        if (share === 1) {
-          XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}">`);
-        }
+        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}">`);
       }
       const currScriptList = currObjectList[j].scriptList;
       for (let k = 0; k < currScriptList.length; k++) {
@@ -449,17 +453,11 @@ function writeXML() {
         writeScriptsToXML(currScriptList[k]);
         XML = XML.concat(`</script>`);
       }
-      if (share === 1) {
-        XML = XML.concat(`</object>`);
-      }
+      XML = XML.concat(`</object>`);
     }
-    if (share === 1) {
-      XML = XML.concat(`</scene>`);
-    }
+    XML = XML.concat(`</scene>`);
   }
-  if (share === 1) {
-    XML = XML.concat(XML_END);
-  }
+  XML = XML.concat(XML_END);
   return XML;
 }
 
@@ -526,15 +524,60 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
 export default class Parser {
 
   /**
+   * Parse catroid script into catblocks 
+   * @param {XMLDocument} scriptDoc to parse
+   * @returns {XMLDocument} catblocks script
+   */
+  static convertScript(scriptDoc) {
+    // scriptDoc = (new DOMParser()).parseFromString(document.getElementById('importExport').value, 'text/xml');
+    initParser(scriptDoc);
+    const catScript = parseScripts(scriptDoc.firstChild);
+    writeScriptsToXML(catScript);
+    try {
+      return (new DOMParser()).parseFromString(XML, 'text/xml');
+    } catch (e) {
+      console.error('Failed to convert catblocks script into XMLDocument, verify input');
+      return;
+    }
+  }
+
+  /**
+   * Parse catroid script into catblocks
+   * @param {string} scriptString to parse
+   * @returns {XMLDocument} catblocks script
+   */
+  static convertScriptString(scriptString) {
+    if (typeof scriptString === 'string') {
+      try {
+        const xml = (new window.DOMParser()).parseFromString(scriptString, 'text/xml');
+        return Parser.convertScript(xml);
+      } catch (e) {
+        console.error(`Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
+    }
+    return Parser.convertScript(scriptString);
+  }
+
+  /**
 	 * Parse xmlString from catroid to catblocks format
 	 * @param {string|Element} xmlString catroid string or XMLDocument 
 	 * @returns {XMLDocument} catblock XMLDocument
 	 */
-  static parseXml(xmlString) {
+  static convertProgramString(xmlString) {
     if (typeof xmlString === 'string') {
-      return parseDocument((new window.DOMParser()).parseFromString(xmlString, 'text/xml'));
+      try {
+        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) return undefined;
+
+        initParser(xml);
+        return parseCatroidProgram(xml);
+      } catch (e) {
+        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
     }
-    return parseDocument(xmlString);
+    return parseCatroidProgram(xmlString);
   }
 
   /**
@@ -542,12 +585,11 @@ export default class Parser {
 	 * @param {*} xmlFile uri to catroid file
 	 * @returns {Promise} catblock XMLDocument
 	 */
-  static parseFile(uri) {
-    share = 1;
+  static convertProgramUri(uri) {
     return fetch(uri)
       .then(res => res.text())
       .then(str => {
-        return Parser.parseXml(str);
+        return Parser.convertProgramString(str);
       })
       .catch(err => {
         console.error(`Failed to fetch uri: ${uri}`);

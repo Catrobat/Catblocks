@@ -51,7 +51,7 @@ export const renderAllPrograms = (share, container, path) => {
         container.appendChild(programContainer);
 
         // inject code
-        share.parser.parseFile(`${path}${name}/code.xml`)
+        share.parser.convertProgramUri(`${path}${name}/code.xml`)
           .then(xmlDoc => {
             console.log(xmlDoc);
             const div = document.getElementById(containerId);

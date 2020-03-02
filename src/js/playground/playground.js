@@ -1,6 +1,7 @@
 import Blockly from "scratch-blocks";
 import "../catblocks_msgs";
 import "./../blocks/loader";
+import { wrapElement } from './../share/utils';
 
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
@@ -73,10 +74,10 @@ export class Playground {
     // Setup locale
     const select = document.getElementsByName("locale")[0];
     let hasDefault = false;
-    Object.keys(Blockly.CatblocksMsgs.locales).forEach(locale => {
+    Object.keys(this.Blockly.CatblocksMsgs.locales).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
-      lcoale_opt.innerHTML = Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
+      lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
       // TODO: set default to SHARE LANGUAGE
       if (locale === 'en_GB') hasDefault = true;
@@ -84,11 +85,11 @@ export class Playground {
 
     match = location.search.match(/locale=([^&]+)/);
     const locale = match ? match[1] : (hasDefault ? 'en_GB' : select.options[0].value);
-    Blockly.CatblocksMsgs.setLocale(locale);
+    this.Blockly.CatblocksMsgs.setLocale(locale);
     document.forms.options.elements.locale.value = locale;
 
     // Create main workspace.
-    this.workspace = Blockly.inject('blocklyDiv', {
+    this.workspace = this.Blockly.inject('blocklyDiv', {
       comments: true,
       disable: false,
       collapse: false,
@@ -191,7 +192,7 @@ export class Playground {
     }
     let valid = true;
     try {
-      Blockly.Xml.textToDom(textarea.value);
+      this.Blockly.Xml.textToDom(textarea.value);
     } catch (e) {
       valid = false;
     }
@@ -230,48 +231,46 @@ export class Playground {
   }
   toXml() {
     const output = document.getElementById('importExport');
-    const xml = Blockly.Xml.workspaceToDom(this.workspace);
-    output.value = Blockly.Xml.domToPrettyText(xml);
+    const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
+    output.value = this.Blockly.Xml.domToPrettyText(xml);
     output.focus();
     output.select();
     // this.taChange();
   }
   fromXml() {
     const input = document.getElementById('importExport');
-    const xml = Blockly.Xml.textToDom(input.value);
-    Blockly.Xml.domToWorkspace(xml, this.workspace);
+    const xml = this.Blockly.Xml.textToDom(input.value);
+    this.Blockly.Xml.domToWorkspace(xml, this.workspace);
     // this.taChange();
   }
   fromParser() {
     const input = document.getElementById('importExport');
-    console.log(input);
-    const convertedXML = XStreamParser.parseXml(input.value);
-
-    if (convertedXML === undefined || convertedXML === "") {
+    const blocksXml = this.Parser.convertScriptString(input.value);
+    
+    if (blocksXml === undefined || blocksXml === "") {
       throw "no response from XStreamParser";
     } else { 
-      //const xml = Blockly.Xml.textToDom(convertedXML);
-      Blockly.Xml.domToWorkspace(convertedXML.firstChild, this.workspace);
+      this.Blockly.Xml.domToWorkspace(wrapElement(blocksXml.firstChild, 'xml'), this.workspace);
     }
   }
   glowBlock() {
-    if (Blockly.selected) {
-      this.workspace.glowBlock(Blockly.selected.id, true);
+    if (this.Blockly.selected) {
+      this.workspace.glowBlock(this.Blockly.selected.id, true);
     }
   }
   unglowBlock() {
-    if (Blockly.selected) {
-      this.workspace.glowBlock(Blockly.selected.id, false);
+    if (this.Blockly.selected) {
+      this.workspace.glowBlock(this.Blockly.selected.id, false);
     }
   }
   glowStack() {
-    if (Blockly.selected) {
-      this.workspace.glowStack(Blockly.selected.id, true);
+    if (this.Blockly.selected) {
+      this.workspace.glowStack(this.Blockly.selected.id, true);
     }
   }
   unglowStack() {
-    if (Blockly.selected) {
-      this.workspace.glowStack(Blockly.selected.id, false);
+    if (this.Blockly.selected) {
+      this.workspace.glowStack(this.Blockly.selected.id, false);
     }
   }
   sprinkles(n) {
@@ -283,7 +282,7 @@ export class Playground {
     const blocks = toolbox.getElementsByTagName('block');
     for (let i = 0; i < n; i++) {
       const blockXML = blocks[Math.floor(Math.random() * blocks.length)];
-      const block = Blockly.Xml.domToBlock(blockXML, this.workspace);
+      const block = this.Blockly.Xml.domToBlock(blockXML, this.workspace);
       block.initSvg();
       block.moveBy(
         Math.round(Math.random() * 450 + 40),
@@ -317,25 +316,25 @@ export class Playground {
       equalsBlock);
 
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' + xml + '</xml>';
-    const dom = Blockly.Xml.textToDom(xml);
+    const dom = this.Blockly.Xml.textToDom(xml);
     console.time('Spaghetti domToWorkspace');
-    Blockly.Xml.domToWorkspace(dom, this.workspace);
+    this.Blockly.Xml.domToWorkspace(dom, this.workspace);
     console.timeEnd('Spaghetti domToWorkspace');
   }
   reportDemo() {
-    if (Blockly.selected) {
+    if (this.Blockly.selected) {
       this.workspace.reportValue(
-        Blockly.selected.id,
+        this.Blockly.selected.id,
         document.getElementById('reportValue').value
       );
     }
   }
   setLocale(locale) {
     this.workspace.getFlyout().setRecyclingEnabled(false);
-    const xml = Blockly.Xml.workspaceToDom(this.workspace);
-    Blockly.CatblocksMsgs.setLocale(locale);
-    Blockly.updateToolbox(Blockly.Blocks.defaultToolbox);
-    Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
+    const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
+    this.Blockly.CatblocksMsgs.setLocale(locale);
+    this.workspace.updateToolbox(this.Blockly.Blocks.defaultToolbox);
+    this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
     this.workspace.getFlyout().setRecyclingEnabled(true);
   }
 }

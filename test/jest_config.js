@@ -15,6 +15,7 @@ process.env.JEST_PUPPETEER_CONFIG = './test/jest-puppeteer.config.js';
 
 module.exports = {
   preset: "jest-puppeteer",
+  verbose: true,
   globals: {
     SERVER: "http://localhost:8080/"
   },

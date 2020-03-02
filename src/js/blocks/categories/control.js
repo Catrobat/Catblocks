@@ -25,7 +25,7 @@ Blockly.Blocks['ForeverBrick'] = {
         }
       ],
       "category": Blockly.Categories.control,
-      "extensions": ["colours_control", "shape_end"]
+      "extensions": ["colours_control", "shape_statement"]
     });
   }
 };

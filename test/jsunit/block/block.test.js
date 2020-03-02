@@ -22,7 +22,7 @@ const BLOCKS = (function() {
 /**
  * Parse toolbox xml to json object
  */
-const TOOLBOX = (function() {
+const TOOLBOX = (() => {
   const payload = utils.readFileSync(utils.PATHS.TOOLBOX).toString().split('`');
   if (payload.length === 0) return undefined;
 
@@ -126,46 +126,73 @@ describe('Filesystem Block tests', () => {
 describe('WebView Block tests', () => {
 
   /**
+   * Execute ones in this scope
+   */
+  beforeAll(async () => {
+    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+  });
+
+  /**
    * Test if Scratch-Blocks got initialized properly
    */
   describe('Workspace initialization', () => {
-    let workspaceBlocks = {};
 
+    /**
+     * Run before each test in this scope
+     */
     beforeEach(async () => {
-      await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
-      workspaceBlocks = await page.evaluate(() => {
-        let workspaces = {};
-        Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_).forEach(id => {
-          if (Catblocks.Blockly.Workspace.WorkspaceDB_[id].toolbox_) {
-            workspaces['userWorkspace'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-          } else {
-            workspaces['toolbox'] = Object.keys(Catblocks.Blockly.Workspace.WorkspaceDB_[id].blockDB_)
-          }
-        });
-        return workspaces;
-      }, 2000);
+      // clean workspace before each test
+      await page.evaluate(() => {
+        playgroundWS.clear();
+      });
     });
 
     /**
-     * Check if we have create two workspaces [toolbox, userWorkspace]
+     * Test if we playground workspace is loaded
      */
-    test('Empty workspace is loaded with toolbox', async () => {
-      expect(Object.keys(workspaceBlocks).length).toBe(2);
+    test('Playground workspace is loaded', async () => {
+      expect(await page.evaluate(() => {
+        return (playgroundWS !== undefined && playgroundWS !== null && playgroundWS instanceof Object);
+      })).toBeTruthy();
     });
 
     /**
-     * Check if empty userWorkspace and nonEmpty toolbox workspace exists
+     * Test if playground blockDB is empty
      */
-    test('Found empty userWorkspace and not empty Toolbox', async () => {
-      expect(workspaceBlocks['userWorkspace'].length).toBe(0);
-      expect(workspaceBlocks['toolbox'].length).toBeGreaterThan(0);
+    test('Playground blockDB is empty', async () => {
+      expect(await page.evaluate(() => {
+        if (!playgroundWS) return false;
+        return (Object.keys(playgroundWS.blockDB_).length === 0);
+      })).toBeTruthy();
     });
 
     /**
-     * Check if all blocks are rendered in the toolbox
+     * Test if playground toolbox workspace is loaded
      */
-    test('Toolbox includes all Blocks', () => {
-      const renderedBlocks = workspaceBlocks['toolbox'];
+    test('Playground toolbox workspace is loaded', async () => {
+      expect(await page.evaluate(() => {
+        return (toolboxWS !== undefined && toolboxWS !== null && toolboxWS instanceof Object);
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if playground blockDB is empty
+     */
+    test('Playground toolbox blockDB is not empty', async () => {
+      expect(await page.evaluate(() => {
+        if (!toolboxWS) return false;
+        return (Object.keys(toolboxWS.blockDB_).length !== 0);
+      })).toBeTruthy();
+    });
+
+
+    /**
+     * Test if all blocks defined in file are loaded/rendered in toolbox
+     */
+    test('Toolbox includes all defined blocks', async () => {
+      const renderedBlocks = await page.evaluate(() => {
+        return Object.keys(toolboxWS.blockDB_);
+      })
       const toolboxBlocks = getAllBlocksFromToolbox();
 
       toolboxBlocks.forEach(blockName => {
@@ -174,26 +201,35 @@ describe('WebView Block tests', () => {
     });
 
     /**
-     * Check if categories from toolbox rendered properly
+     * Test if all categories are defined
      */
-    test('Toolbox includes all Categories', async () => {
-      const renderedCategories = await page.evaluate(() => Object.keys(Catblocks.Blockly.Categories));
+    test('Toolbox includes all defined categories', async () => {
+      const renderedCategories = await page.evaluate(() => Object.keys(playground.Blockly.Categories));
 
       BLOCK_CATEGORIES.forEach(category => {
         expect(renderedCategories.includes(category)).toBeTruthy();
       })
     });
+  });
+
+  /**
+   * Test if Scratch-Blocks got initialized properly
+   */
+  describe('Workspace actions', () => {
 
     /**
-     * Check if all blocks are rendered properly
-     */
-    test('Toolbox rendered all Blocks properly', async () => {
+      * Test if all blocks are rendered properly
+      * If we render an invalid block, Blockly will generate an
+      *  generic block svg, we just compare each result with this one
+      *  to validate if the block was rendered properly
+      */
+    test('Add each toolbox block to playground and validate rendering', async () => {
       const failed = await page.evaluate(() => {
         let failedRender = false;
 
         // first lets get the value for a wrong rendered block
         const wrongBlockPath = (() => {
-          let block = blocklyWS.newBlock('someInvalidID');
+          let block = playgroundWS.newBlock('someInvalidID');
           block.initSvg();
           block.render(false);
           return block.svgPath_.outerHTML;
@@ -212,46 +248,22 @@ describe('WebView Block tests', () => {
 
       expect(failed).toBeFalsy();
     });
-  });
 
-  /**
-   * Test if Scratch-Blocks got initialized properly
-   */
-  describe('Workspace actions', () => {
-
-    test('Add all Blockly from toolbox ones to workspace via JS', async () => {
-      const failed = await page.evaluate(() => {
-        let failedRender = false;
-
-        // first lets get the value for a wrong rendered block
-        const wrongBlockPath = (() => {
-          let block = blocklyWS.newBlock('someInvalidID');
-          block.initSvg();
-          block.render(false);
-          return block.svgPath_.outerHTML;
-        })();
-
-        // get all blocks available in the toolbox
-        const toolboxBlocks = blocklyWS.toolbox_.categoryMenu_.categories_
-          .flatMap(cat => cat.contents_.map(block => block.getAttribute('type')));
-
-        // check if we can render each successfully
-        toolboxBlocks.forEach(blockName => {
-          blocklyWS.clear();
-          let block = blocklyWS.newBlock(blockName);
-          block.initSvg();
-          block.render(false);
-
-          if (block.svgPath_.outerHTML === wrongBlockPath) {
-            failedRender = true;
-            return failedRender;
-          }
+    /**
+     * Test if all icons/media files from the blocks are accessible
+     */
+    test('All icons available and rendered', async () => {
+      expect(await page.evaluate(() => {
+        const imgHref = new Set(Array.from(document.querySelectorAll('svg.blocklyFlyout image')).map(node => node.href.baseVal));
+        const codes = [];
+        imgHref.forEach(href => {
+          codes.push(fetch(href).then(res => res.status));
         });
 
-        return failedRender;
-      });
-
-      expect(failed).toBeFalsy();
+        return Promise.all(codes).then(res => {
+          return res.includes(404);
+        });
+      })).toBeFalsy();
     });
   });
 });
