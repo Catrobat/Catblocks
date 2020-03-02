@@ -212,3 +212,18 @@ export const trimString = (str, length = 15) => {
   }
   return undefined;
 };
+
+export const checkNextBlock = (array) => {
+
+  for(let i = 0; i < array.length; i++) {
+    if(array[i].childBlocks_.length > 0) {
+      for(let j = 0; j < array[i].childBlocks_.length; j++) {
+        if(array[i].colour_ === array[i].childBlocks_[j].colour_) {
+          array[i].childBlocks_[j].colour_ = array[i].childBlocks_[j].colourTertiary_;
+          array[i].childBlocks_[j].initSvg();
+        }
+        checkNextBlock(array[i].childBlocks_);
+      }
+    }
+  }
+};
