@@ -11,5 +11,36 @@
 <body>
     <div id='catblocks-code-container'>
 </body>
+<script>
+    // share get exported by the bundle
+    share.init({
+        'container': 'catblocks-code-container',
+        'renderSize': 0.75,
+        'language': 'en_GB',
+        'shareRoot': '/',
+        'media': 'media/',
+        'noImageFound': 'No_Image_Available.jpg',
+    });
+
+
+    // render my code.xml file
+    window.onload = function() {
+        share.parser.convertProgramUri(`assets/share/code.xml`)
+            .then(xmlDoc => {
+                console.log(xmlDoc);
+                const div = document.getElementById('catblocks-code-container');
+                share.injectAllScenes(div, xmlDoc, {
+                    object: {
+                        programRoot: 'assets/share/'
+                    }
+                });
+            })
+            .catch(err => {
+                console.error(`Failed to parse catroid file.`);
+                console.error(err);
+            });
+    };
+
+</script>
 
 </html>

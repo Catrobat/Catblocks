@@ -9,7 +9,7 @@ module.exports = {
   mode: devMode ? 'development' : 'production',
   entry: path.join(__dirname, 'src/js/index.js'),
   output: {
-    filename: 'bundle.js',
+    filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -53,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/html/'+process.env.TYPE+'.html'),
+      template: path.join(__dirname, 'src/html/' + process.env.TYPE + '.html'),
       filename: 'index.html',
       hash: true
     }),
@@ -67,9 +67,11 @@ module.exports = {
     new CopyPlugin([
       { from: 'assets', to: 'assets' },
       { from: 'node_modules/scratch-blocks/media', to: 'media' },
-      { from: 'i18n/json', to: 'i18n' }
+      { from: 'i18n/json', to: 'i18n' },
+      { from: 'test/po-review', to: 'assets/po-review' },
+      { from: 'test/share', to: 'assets/share' }
     ]),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE'])
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE', 'PO_FOLDER'])
   ],
   // watch: true,
   devtool: 'source-map',
@@ -78,7 +80,10 @@ module.exports = {
     hot: true,
     compress: !devMode,
     noInfo: true,
-    writeToDisk: !devMode
+    writeToDisk: !devMode,
+    host: '0.0.0.0',
+    port: 8080,
+    serveIndex: true
   },
   target: 'web'
 };

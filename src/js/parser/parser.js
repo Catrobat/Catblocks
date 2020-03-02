@@ -67,7 +67,7 @@ const sceneList = [];
 let xmlDoc = undefined;
 const supportedAppVersion = 0.994;
 
-const XML_BEGIN = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">";
+const XML_BEGIN = "<xml>";
 const XML_END = "\n</xml>";
 const NEXT_BEGIN = "\n<next>";
 const NEXT_END = "\n</next>";
@@ -75,15 +75,49 @@ const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
 
-let XML = "";// XML_BEGIN;
-let share = 0;
+let XML = "";
+
+// global log enable switch
+const DEBUG = false;
+
+/**
+ * Catblocks debug function
+ * @param {*} msg 
+ * @param {*} debug 
+ */
+const catLog = (msg, debug = DEBUG) => {
+  if (debug) {
+    console.log(msg);
+  }
+};
+
+
+/**
+ * Escape script values in case unsafe characters are included
+ * @param {*} unsafe 
+ */
+const escapeXml = (unsafe) => {
+  if (unsafe === undefined || unsafe === null || unsafe.length === 0) {
+    return unsafe;
+  } else {
+    return unsafe.replace(/[<>&'"]/g, function(c) {
+      switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      }
+    });
+  }
+};
 
 /**
  * Check if current catroid code version is supported
  * @param {XMLDocument} program to validate
  * @return {boolean} if supported or not
  */
-function isSupported(program = xmlDoc) {
+function isSupported(program) {
   const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
   if (appVersion === undefined || appVersion.length < 1) {
     console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
@@ -97,28 +131,43 @@ function isSupported(program = xmlDoc) {
 }
 
 /**
- * Parse XMLDocument from catroid code to catblocks
+ * Initialize parser for new conversion
+ *  Clean old parsed values and define xmlDoc for xPath
+ * @param {XMLDocument} xml 
+ */
+function initParser(xml) {
+  xmlDoc = xml;
+  sceneList.length = 0;
+  XML = '';
+}
+
+/**
+ * Parse catroid Program into catblocks program
  * @param {XMLDocument} xml catroid program xml
  * @return {XMLDocument} catblocks format
  */
-function parseDocument(xml) {
-  xmlDoc = xml;
-
-  // TODO: add code if not supported
-  if(!isSupported()){
-    return undefined;
-  }
-
+function parseCatroidProgram(xml) {
   const scenes = xml.getElementsByTagName('scenes')[0].children;
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
   // console.log(sceneList);
-  const xmlStream = writeXML();
+  const xmlStream = generateShareXml();
   // console.log(xmlStream);
-  return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
+  try {
+    return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
+  } catch (e) {
+    console.error(`Failed to parse generated catblocks string into a XMLDocument, please verify you input`);
+    return undefined;
+  }
+
 }
 
+/**
+ * Flat/dereference xml nodes
+ * @param {*} node node
+ * @param {*} xml XMLDocument
+ */
 function flatReference(node, xml = xmlDoc) {
   const refPath = node.getAttribute('reference');
   if (refPath) {
@@ -137,6 +186,7 @@ function escapeName(name) {
 }
 
 function parseScenes(scene) {
+  catLog(scene);
 
   const name = escapeName(scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
   const currentScene = new Scene(name);
@@ -149,6 +199,7 @@ function parseScenes(scene) {
 
 function parseObjects(object) {
   object = flatReference(object);
+  catLog(object);
 
   const name = escapeName(object.getAttribute("name"));
   if (name !== null) {
@@ -171,6 +222,8 @@ function parseObjects(object) {
 }
 
 function parseScripts(script) {
+  catLog(script);
+
   const name = escapeName(script.getAttribute("type"));
   const currentScript = new Script(name);
   const brickList = script.getElementsByTagName('brickList')[0].children;
@@ -185,6 +238,8 @@ function parseScripts(script) {
 }
 
 function parseBrick(brick) {
+  catLog(brick);
+
   const name = (brick.getAttribute("type") || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
   const currentBrick = new Brick(name);
 
@@ -194,24 +249,32 @@ function parseBrick(brick) {
   return currentBrick;
 }
 
+const getNodeValueOrDefault = (node, def = "---") => {
+  if (node === undefined || node.nodeValue === undefined) {
+    return def;
+  }
+  return node.nodeValue;
+};
+
 function checkUsage(list, location) {
   if (list.nodeName === "broadcastMessage" || list.nodeName === "spriteToBounceOffName" || list.nodeName === "receivedMessage" || list.nodeName === "sceneToStart" || list.nodeName === "sceneForTransition") {
-    location.formValues.set("DROPDOWN", list.childNodes[0].nodeValue);
+    // BLOCKS-54 -> sceneForTransition can exist without node child
+    location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "spinnerSelection") {
-    location.formValues.set("spinnerSelection", list.childNodes[0].nodeValue);
+    location.formValues.set("spinnerSelection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "selection") {
-    location.formValues.set("selection", list.childNodes[0].nodeValue);
+    location.formValues.set("selection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "type") {
-    location.formValues.set("type", list.childNodes[0].nodeValue);
+    location.formValues.set("type", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "alignmentSelection") {
-    location.formValues.set("alignmentSelection", list.childNodes[0].nodeValue);
+    location.formValues.set("alignmentSelection", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "spinnerSelectionID") {
-    location.formValues.set("spinnerSelectionID", list.childNodes[0].nodeValue);
+    location.formValues.set("spinnerSelectionID", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "formulaMap" || list.nodeName === "formulaList") {
     const formulaList = list.children;
@@ -249,23 +312,13 @@ function checkUsage(list, location) {
     }
   }
   if (list.nodeName === "sound") {
-    let sound = list.getAttribute('reference');
-    sound = sound.split("/soundList/sound").pop();
-    let soundNR = 1;
-    if (sound.length) {
-      soundNR = sound.slice(1, -1);
-    }
-    const soundName = findSoundName(list, soundNR);
+    const sound = flatReference(list);
+    const soundName = sound.getAttribute('name');
     location.formValues.set("sound", soundName);
   }
   if (list.nodeName === "look") {
-    let look = list.getAttribute('reference');
-    look = look.split("/lookList/look").pop();
-    let lookNR = 1;
-    if (look.length) {
-      lookNR = look.slice(1, -1);
-    }
-    const lookName = findLookName(list, lookNR);
+    const look = flatReference(list);
+    const lookName = look.getAttribute('name');
     location.formValues.set("look", lookName);
   }
   if (list.nodeName === "userVariable") {
@@ -366,22 +419,6 @@ function findOtherVariableName(list, location, reference) {
   }
 }
 
-function findSoundName(currentNode, soundNR) {
-  if (currentNode.nodeName === "object") {
-    const soundList = currentNode.getElementsByTagName("soundList")[0].children;
-    return soundList[soundNR - 1].getAttribute("name");
-  }
-  return findSoundName(currentNode.parentElement, soundNR);
-}
-
-function findLookName(currentNode, lookNR) {
-  if (currentNode.nodeName === "object") {
-    const lookList = currentNode.getElementsByTagName("lookList")[0].children;
-    return lookList[lookNR - 1].getAttribute("name");
-  }
-  return findLookName(currentNode.parentElement, lookNR);
-}
-
 function workFormula(formula, input) {
   for (let i = 0; i < input.childNodes.length; i++) {
     if (input.childNodes[i].nodeName === "leftChild") {
@@ -395,7 +432,7 @@ function workFormula(formula, input) {
       workFormula(newFormula, input.childNodes[i]);
     }
     if (input.childNodes[i].nodeName === "value") {
-      formula.value = input.childNodes[i].childNodes[0].nodeValue;
+      formula.value = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
     }
   }
 }
@@ -413,50 +450,36 @@ function concatFormula(formula, str) {
   return str;
 }
 
-function writeXML() {
-  if(share === 1){
-    XML = XML_BEGIN;
-  }
+function generateShareXml() {
+  XML = XML_BEGIN;
   for (let i = 0; i < sceneList.length; i++) {
-    if(share === 1) {
-      XML = XML.concat(`<scene type="${sceneList[i].name}">`);
-    }
+    XML = XML.concat(`<scene type="${escapeXml(sceneList[i].name)}">`);
     const currObjectList = sceneList[i].objectList;
     for (let j = 0; j < currObjectList.length; j++) {
       if (currObjectList[j].lookList.length > 0) {
         const objectImage = currObjectList[j].lookList[0].fileName;
-        if(share === 1){
-          XML = XML.concat(`<object type="${currObjectList[j].name}" look="${objectImage}">`);
-        }
+        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}" look="${escapeXml(objectImage)}">`);
       } else {
-        if(share === 1){
-          XML = XML.concat(`<object type="${currObjectList[j].name}">`);
-        }
+        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}">`);
       }
       const currScriptList = currObjectList[j].scriptList;
       for (let k = 0; k < currScriptList.length; k++) {
-        XML = XML.concat(`<script type="${currScriptList[k].name}">`);
+        XML = XML.concat(`<script type="${escapeXml(currScriptList[k].name)}">`);
         writeScriptsToXML(currScriptList[k]);
         XML = XML.concat(`</script>`);
       }
-      if(share === 1){
-        XML = XML.concat(`</object>`);
-      }
+      XML = XML.concat(`</object>`);
     }
-    if(share === 1) {
-      XML = XML.concat(`</scene>`);
-    }
+    XML = XML.concat(`</scene>`);
   }
-  if(share === 1){
-    XML = XML.concat(XML_END);
-  }
+  XML = XML.concat(XML_END);
   return XML;
 }
 
 function writeScriptsToXML(currScript) {
-  XML = XML.concat("\n<block type=\"" + currScript.name + "\" id=\"\" x=\"\" y=\"\">");
+  XML = XML.concat("\n<block type=\"" + escapeXml(currScript.name) + "\">");
   for (const [key, value] of currScript.formValues) {
-    XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
   }
   if (currScript.brickList.length !== 0) {
     writeBrickToXML(currScript, 0, true, 0);
@@ -479,10 +502,10 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
   if (subBlock === 2) {
     currSubBrick = currBrick.elseBrickList[index];
   }
-  XML = XML.concat("\n<block type=\"" + currSubBrick.name + "\" id=\"\" x=\"\" y=\"\">");
+  XML = XML.concat("\n<block type=\"" + escapeXml(currSubBrick.name) + "\">");
 
   for (const [key, value] of currSubBrick.formValues) {
-    XML = XML.concat("\n<field name=\"" + key + "\">" + value + "</field>");
+    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
   }
   if (currSubBrick.loopOrIfBrickList.length !== 0) {
     XML = XML.concat(SUB1_BEGIN);
@@ -516,15 +539,60 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
 export default class Parser {
 
   /**
+   * Parse catroid script into catblocks 
+   * @param {XMLDocument} scriptDoc to parse
+   * @returns {XMLDocument} catblocks script
+   */
+  static convertScript(scriptDoc) {
+    // scriptDoc = (new DOMParser()).parseFromString(document.getElementById('importExport').value, 'text/xml');
+    initParser(scriptDoc);
+    const catScript = parseScripts(scriptDoc.firstChild);
+    writeScriptsToXML(catScript);
+    try {
+      return (new DOMParser()).parseFromString(XML, 'text/xml');
+    } catch (e) {
+      console.error('Failed to convert catblocks script into XMLDocument, verify input');
+      return;
+    }
+  }
+
+  /**
+   * Parse catroid script into catblocks
+   * @param {string} scriptString to parse
+   * @returns {XMLDocument} catblocks script
+   */
+  static convertScriptString(scriptString) {
+    if (typeof scriptString === 'string') {
+      try {
+        const xml = (new window.DOMParser()).parseFromString(scriptString, 'text/xml');
+        return Parser.convertScript(xml);
+      } catch (e) {
+        console.error(`Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
+    }
+    return Parser.convertScript(scriptString);
+  }
+
+  /**
 	 * Parse xmlString from catroid to catblocks format
 	 * @param {string|Element} xmlString catroid string or XMLDocument 
 	 * @returns {XMLDocument} catblock XMLDocument
 	 */
-  static parseXml(xmlString) {
+  static convertProgramString(xmlString) {
     if (typeof xmlString === 'string') {
-      return parseDocument((new window.DOMParser()).parseFromString(xmlString, 'text/xml'));
+      try {
+        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) return undefined;
+
+        initParser(xml);
+        return parseCatroidProgram(xml);
+      } catch (e) {
+        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
     }
-    return parseDocument(xmlString);
+    return parseCatroidProgram(xmlString);
   }
 
   /**
@@ -532,12 +600,11 @@ export default class Parser {
 	 * @param {*} xmlFile uri to catroid file
 	 * @returns {Promise} catblock XMLDocument
 	 */
-  static parseFile(uri) {
-    share = 1;
+  static convertProgramUri(uri) {
     return fetch(uri)
       .then(res => res.text())
       .then(str => {
-        return Parser.parseXml(str);
+        return Parser.convertProgramString(str);
       })
       .catch(err => {
         console.error(`Failed to fetch uri: ${uri}`);

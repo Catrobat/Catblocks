@@ -9,47 +9,69 @@ const utils = require('../commonUtils');
  */
 describe('Export and Import XML files to workspace', () => {
 
-  beforeEach(async () => {
+  /**
+   * Execute ones in this scope
+   */
+  beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
   });
 
   /**
-   * Export and import Block xml
-   */
-  test('Blocks export/import Xml', async () => {
-    let failed = false;
+   * Run before each test in this scope
+  */
+  beforeEach(async () => {
+    // clean workspace before each test
+    await page.evaluate(() => {
+      playgroundWS.clear();
+    });
+  });
 
-    failed = await page.evaluate(() => {
-      let failed = false;
+  /**
+   * Test if exported xml file from block matches with regex expresseion
+   */
+  test('Export xml for each block from toolbox', async () => {
+    expect(await page.evaluate(() => {
+      Object.keys(toolboxWS.blockDB_).forEach(blockName => {
+        playgroundWS.newBlock(blockName);
+        const xml = (Blockly.Xml.workspaceToDom(playgroundWS, true)).outerHTML;
+        if (xml.match(/<xml>.*<block.*>.*<\/block><\/xml>/) === null) {
+          return false;
+        }
+      });
+      return true;
+    })).toBeTruthy();
+  });
+
+  /**
+   * Export/Import combination test for all blocks from toolbox
+   */
+  test('Export/Import combi test for each block from toolbox', async () => {
+    expect(await page.evaluate(() => {
       let xmlStrings = {};
 
       // first get all xml strings for each block
       Object.keys(toolboxWS.blockDB_).forEach(blockName => {
-        blocklyWS.newBlock(blockName);
-        xmlStrings[blockName] = (Blockly.Xml.workspaceToDom(blocklyWS, true)).outerHTML;
-        blocklyWS.clear();
+        playgroundWS.newBlock(blockName);
+        xmlStrings[blockName] = (Blockly.Xml.workspaceToDom(playgroundWS, true)).outerHTML;
+        playgroundWS.clear();
 
         // check if they fitt your requiremets
         if (xmlStrings[blockName].match(/<xml>.*<block.*>.*<\/block><\/xml>/) === null) {
-          failed = true;
-          return failed;
+          return false;
         }
       });
 
       // Reimport them and check again
       Object.keys(xmlStrings).forEach(blockName => {
-        blocklyWS.clear();
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlStrings[blockName]), blocklyWS);
+        playgroundWS.clear();
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlStrings[blockName]), playgroundWS);
 
-        if (Object.keys(blocklyWS.blockDB_).length !== 1) {
-          failed = true;
-          return failed;
+        if (Object.keys(playgroundWS.blockDB_).length !== 1) {
+         return false;
         }
       });
-      
-      return failed;
-    });
 
-    expect(failed).toBeFalsy();
+      return true;
+    })).toBeTruthy();
   });
 });

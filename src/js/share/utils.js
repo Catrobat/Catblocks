@@ -15,7 +15,7 @@ export const defaultOptions = {
     container: 'body',
     language: 'en_GB',
     renderSize: 0.75,
-    shareRoot: '/',
+    shareRoot: '',
     media: 'media/',
     noImageFound: 'No_Image_Available.jpg',
   },
@@ -47,32 +47,35 @@ export const parseOptions = (inputValues, defaultValues) => {
 
 /**
  * Transform dom xml, execute actions define in options
- * @param {Element} xml to transform
+ *  example value for tagActions parameter
+ *  {
+ *    'block': ['remAttr-id', 'remAttr-x', 'remAttr-y'],
+ *    'shadow': ['remAttr-id', 'remAttr-x', 'remAttr-y']
+ *   }
+ *  this will remove the attributes [id, x, y] from all block and shadow nodes
+ * @param {XMLDocument} xmlDom to transform
  * @param {object} tagActions to map against tag elements
  */
 export const transformXml = (xmlDom, tagActions) => {
+  Object.keys(tagActions).forEach(tagName => {
+    xmlDom.getElementsByTagName(tagName).forEach(node => {
+      tagActions[tagName].forEach(action => {
+        const actionType = action.split('-')[0];
+        const actionValue = action.split('-')[1];
 
-  const tagNames = Object.keys(tagActions);
-  for (let itag = 0; itag < tagNames.length; itag++) {
-    const tagName = tagNames[itag];
-    const nodes = xmlDom.getElementsByTagName(tagName);
-    for (let inodes = 0; inodes < nodes.length; inodes++) {
-      const actions = tagActions[tagName];
-      for (let iaction = 0; iaction < actions.length; iaction++) {
-        const actionType = actions[iaction].split('-')[0];
-        const actionValue = actions[iaction].split('-')[1];
+        // INFO: please add new features as needed
         switch (actionType) {
         case 'remAttr': {
-          nodes[inodes].removeAttribute(actionValue);
+          node.removeAttribute(actionValue);
           break;
         }
         default: {
           console.warn("Ignore undefined XML transformation.");
         }
         }
-      }
-    }
-  }
+      });
+    });
+  });
 };
 
 /**
@@ -91,12 +94,8 @@ export const injectNewDom = (container, tagName, attributes, textContent) => {
   if (typeof textContent !== 'undefined') {
     subContainer.textContent = textContent;
   }
-  if (typeof container === 'string') {
-    document.getElementById(container).appendChild(subContainer);
-  }
-  else {
-    container.appendChild(subContainer);
-  }
+  getDomElement(container).appendChild(subContainer);
+
   return subContainer;
 };
 
@@ -115,7 +114,7 @@ export const wrapElement = (element, wrapTag, attributes) => {
       parent.setAttribute(attrKey, attributes[attrKey]);
     });
   }
-  parent.appendChild(element);
+  parent.appendChild(element.cloneNode(true));
 
   return parent;
 };
@@ -144,10 +143,10 @@ export const getDomElement = (name, ancestor) => {
   }
   case 'string': {
     if (typeof ancestor !== 'undefined') {
-      return ancestor.getElementsByClassName(name)[0];
+      return ancestor.querySelector(name);
     }
     return document.getElementById(name) ||
-				document.querySelector(name)[0];
+        document.querySelector(name);
   }
   default: {
     return undefined;
@@ -168,6 +167,9 @@ export const hasChildren = (element) => {
   case '[object HTMLCollection]': {
     return element.length;
   }
+  case '[object XMLDocument]': {
+    return element.childElementCount;
+  }
   default: {
     return element.children.length || element.hasChildNodes() || element.firstChild;
   }
@@ -183,7 +185,7 @@ export const enableExpandable = (node, trigger) => {
   // TODO: use jquery, need to fix displaying issues with max-heigth later
   $(node).css('display', 'none');
   $(node).addClass('container-closed');
-	
+
   $(trigger).click(() => {
     if ($(node).hasClass('container-closed')) {
       $(node).slideDown();
@@ -193,10 +195,6 @@ export const enableExpandable = (node, trigger) => {
       $(node).addClass('container-closed');
     }
   });
-  // $(node).addClass('container-closed');
-  // $(trigger).click(() => {
-  // 	$(node).toggleClass('container-open');
-  // });
 };
 
 /**

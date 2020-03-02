@@ -1,8 +1,28 @@
 import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
-import $ from 'jquery';
+import * as shareUtils from './share/utils';
 import Blockly from "scratch-blocks";
+import { renderAllPrograms } from './render/render';
+
+/**
+ * Initiate share for rendering programs
+ * @param {string} container 
+ * @param {string} lang 
+ * @returns {Object} share
+ */
+const initShare = (container, lang) => {
+  const share = new Share();
+  share.init({
+    'container': container,
+    'renderSize': 0.75,
+    'language': lang,
+    'shareRoot': '',
+    'media': 'media/',
+    'noImageFound': 'No_Image_Available.jpg',
+  });
+  return share;
+};
 
 (() => {
   if (process.env.NODE_ENV === 'development') {
@@ -14,50 +34,29 @@ import Blockly from "scratch-blocks";
     const app = new Playground();
     app.init();
     window.Catblocks = app;
-    window.blocklyWS = app.workspace;
-    window.toolboxWS = (() => {
-      for (const wsId in app.Blockly.Workspace.WorkspaceDB_) {
-        if (app.Blockly.Workspace.WorkspaceDB_[wsId].toolbox_ === undefined) {
-          return app.Blockly.Workspace.WorkspaceDB_[wsId];
-        }
-      }
-    })();
     break;
   }
   case 'share': {
+    window.share = new Share();
+    break;
+  }
+  case 'render': {
+    const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
+    const catblocksWs = 'catblocks-workspace-container';
+    const progContainer = document.getElementById('catblocks-programs-container');
 
-    // {{path}}
-    const progPath = 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/';
-    const progLang = 'en_GB';
+    console.log(`Render every program which is located in ${progPath} directory`);
+    console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
 
-    const share = new Share();
-    share.init({
-      'container': 'catblocks-code-container',
-      'renderSize': 0.75,
-      'language': progLang,
-      'shareRoot': '/',
-      'media': 'media/',
-      'noImageFound': 'No_Image_Available.jpg',
-    });
-
-    // render my code.xml file
-    $(document).ready(() => {
-      share.parser.parseFile(`${progPath}code.xml`)
-        .then(xmlDoc => {
-          console.log(xmlDoc);
-          const div = document.getElementById('catblocks-code-container');
-          share.injectAllScenes(div, xmlDoc, {
-            object: {
-              programRoot: `${progPath}`
-            }
-          });
-        })
-        .catch(err => {
-          console.error(`Failed to parse catroid file.`);
-          console.error(err);
-        });
-
-    });
+    const share = initShare(catblocksWs, 'en_GB');
+    renderAllPrograms(share, progContainer, progPath);
+    break;
+  }
+  case 'testing': {
+    window.Blockly = Blockly;
+    window.playground = new Playground();
+    window.share = new Share();
+    window.shareUtils = shareUtils;
     break;
   }
   default: {

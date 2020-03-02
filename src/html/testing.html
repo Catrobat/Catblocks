@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Testing Page</title>
+</head>
+
+<body>
+  <main id="root">
+    <div id="playground">
+      <h2>Playground testing</h2>
+      <div id="playworkspace" style="height: 500px; width: 100%"></div>
+    </div>
+    <div id="share">
+      <h2>Share testing</h2>
+      <div id="shareprogs"></div>
+    </div>
+  </main>
+</body>
+<script>
+  // initialize all your componets
+  (() => {
+    // moke playground
+    playground.workspace = Blockly.inject('playworkspace', {
+      media: '../media/', zoom: { startScale: 0.75 }
+    });
+    playground.setLocale('en_GB');
+
+    // moke share
+    share.init({
+      'container': 'share',
+      'renderSize': 0.75,
+      'language': 'en_GB',
+      'shareRoot': '',
+      'media': 'media/',
+      'noImageFound': 'No_Image_Available.jpg',
+    });
+
+    // set global workspace variables which are used by the tests
+    // currenlty your tests just use {shareWS, playgroundWS, toolboxWS}
+    parser = share.parser;
+    shareWS = share.workspace;
+    playgroundWS = playground.workspace;
+    toolboxWS = Blockly.Workspace.getById(Object.keys(Blockly.Workspace.WorkspaceDB_).filter(key => ![shareWS.id, playgroundWS.id].includes(key)));
+  })();
+</script>
+
+</html>

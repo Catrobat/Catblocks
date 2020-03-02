@@ -48,7 +48,7 @@ export class Share {
         startScale: this.config.renderSize
       }
     });
-    Blockly.CatblocksMsgs.setLocale(this.config.language);
+    this.blockly.CatblocksMsgs.setLocale(this.config.language);
 
     this.workspaceDom = this.workspace.getInjectionDiv();
     this.workspaceDom.id = this.workspace.id;
@@ -63,18 +63,16 @@ export class Share {
    */
   updateObjectStats(oldStats, newStats) {
     const updatedStats = Object.assign({}, oldStats);
-    Object.keys(newStats).forEach(key => {
-      if (oldStats[key]) {
-        updatedStats[key] += newStats[key];
-      } else {
-        updatedStats[key] = newStats[key];
-      }
-    });
-
-    if (updatedStats['scripts']) {
-      updatedStats['scripts']++;
-    } else {
-      updatedStats['scripts'] = 1;
+    if (newStats) {
+      Object.keys(newStats).forEach(key => {
+        if (oldStats[key]) {
+          updatedStats[key] += newStats[key];
+        } else {
+          updatedStats[key] = newStats[key];
+        }
+      });
+      updatedStats['scripts'] = (updatedStats['scripts'])
+        ? updatedStats['scripts'] + 1 : 1;
     }
     return updatedStats;
   }
@@ -85,13 +83,18 @@ export class Share {
 	 * @returns {Element} starts value dictonary
 	 */
   getScriptStats(script) {
-    const blocks = script.getElementsByTagName('block');
+    if (!script) return {};
 
+    const blocks = script.getElementsByTagName('block');
     return Array.from(blocks).map(block => {
       const name = block.getAttribute('type') || 'undefined';
-      const category = this.blockly.Blocks[name].init.toString().match(/Categories.[a-zA-Z]+/);
-      if (category.length > 0) return category[0].split('.')[1];
-      return 'undefined';
+      if (this.blockly.Blocks[name]) {
+        const category = this.blockly.Blocks[name].init.toString().match(/Categories.[a-zA-Z]+/);
+        if (category.length > 0) return category[0].split('.')[1];
+        return 'unknown';
+      } else {
+        return 'unknown';
+      }
     }).reduce((acc, val) => {
       if (acc[val]) {
         acc[val] = acc[val] + 1;
@@ -148,7 +151,7 @@ export class Share {
     this.workspace.clear();
     let svg = undefined;
     try {
-      Blockly.Xml.domToWorkspace(blockXml, this.workspace);
+      this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
       checkNextBlock(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
@@ -164,7 +167,7 @@ export class Share {
 
 
     } catch (e) {
-      console.error('Failed to generate SVG from workspace');
+      console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
     }
 
@@ -174,33 +177,32 @@ export class Share {
   /**
  * Write objects stats to object stats elements
  * Remove the old stats first before we write the new one
- * Please use updateObjectStats_ to get the sum or multiple substats
+ * Please use updateObjectStats to get the sum or multiple substats
  * @param {Element} objectContainer to update the stats
  * @param {Object} stats stats to write into Elemnt
  */
   writeObjectStats(objectContainer, stats) {
-    const labelList = getDomElement('catblocks-object-stats-lable-list', objectContainer);
-    const valueList = getDomElement('catblocks-object-stats-value-list', objectContainer);
+    const statsToWrite = Object.assign({}, stats);
+    const labelList = getDomElement('.catblocks-object-stats-label-list', objectContainer);
+    const valueList = getDomElement('.catblocks-object-stats-value-list', objectContainer);
 
     removeAllChildren(labelList);
     removeAllChildren(valueList);
 
-    injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Name:");
-    injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, trimString(stats['name']));
-    delete (stats['name']);
+    injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-label-item catblocks-category-name' }, "Name:");
+    injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item catblocks-category-name' }, trimString(stats['name']));
+    delete (statsToWrite['name']);
 
-    injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' }, "Scripts:");
-    injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' }, stats['scripts']);
-    delete (stats['scripts']);
+    injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-label-item catblocks-category-scripts' }, "Scripts:");
+    injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item catblocks-category-scripts' }, stats['scripts']);
+    delete (statsToWrite['scripts']);
 
-    const categories = Object.keys(stats).sort();
-    for (let icat = 0; icat < categories.length; icat++) {
-      const category = categories[icat];
-      const label = injectNewDom(labelList, 'LI', { 'class': 'catblocks-object-stats-lable-item' });
-      const value = injectNewDom(valueList, 'LI', { 'class': 'catblocks-object-stats-value-item' });
-      label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-      value.textContent = stats[category];
-    }
+    Object.keys(statsToWrite).sort().forEach(cat => {
+      const label = injectNewDom(labelList, 'LI', { 'class': `catblocks-object-stats-label-item catblocks-category-${cat}` });
+      const value = injectNewDom(valueList, 'LI', { 'class': `catblocks-object-stats-value-item catblocks-category-${cat}` });
+      label.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+      value.textContent = statsToWrite[cat];
+    });
   }
 
 
@@ -211,7 +213,7 @@ export class Share {
  * @param {!object<string, object>} options how we should build up the scene container
  * @return {Element} new created scene container
  */
-  addSceneContainer(container, sceneName, options) {
+  addSceneContainer(container, sceneName, options = defaultOptions.scene) {
     const sceneContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene', 'id': `${sceneName}` });
 
     let sceneHeader = null;
@@ -237,7 +239,7 @@ export class Share {
  * @param {!object<string, object>} options how we should build up the scene container
  * @return {Element} new created object container
  */
-  addObjectContainer(container, objectName, options) {
+  addObjectContainer(container, objectName, options = defaultOptions.object) {
     const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectName });
 
     let objectHeader = undefined;
@@ -252,7 +254,7 @@ export class Share {
       const statsContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-stats-container' });
       const labelContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-label-container' });
       const valueContainer = injectNewDom(statsContainer, 'DIV', { 'class': 'catblocks-object-stats-value-container' });
-      injectNewDom(labelContainer, 'UL', { 'class': 'catblocks-object-stats-lable-list' });
+      injectNewDom(labelContainer, 'UL', { 'class': 'catblocks-object-stats-label-list' });
       injectNewDom(valueContainer, 'UL', { 'class': 'catblocks-object-stats-value-list' });
 
       if (options.writeLook && options.objectImage !== undefined) {
@@ -284,9 +286,9 @@ export class Share {
     container = getDomElement(container);
     const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
-    if(xmlElement === undefined){
+    if (xmlElement === undefined) {
       console.warn('Inject message to upgrade programm to newer version!');
-      injectNewDom(scenesContainer, 'P', {'class' : 'catblocks-empty-text'}, 'Unsupported program version! Please reupload your Programm using our app!');
+      injectNewDom(scenesContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Unsupported program version! Please reupload your Programm using our app!');
       return;
     }
 
@@ -299,21 +301,21 @@ export class Share {
 
 
     scenes.forEach(scene => {
-      const sceneName = trimString(scene.getAttribute('type'));
+      const sceneName = scene.getAttribute('type');
       const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
-      const sceneContainer = this.addSceneContainer(scenesContainer, sceneName, sceneOptions);
-      const sceneObjectContainer = getDomElement('catblocks-object-container', sceneContainer);
+      const sceneContainer = this.addSceneContainer(scenesContainer, trimString(sceneName), sceneOptions);
+      const sceneObjectContainer = getDomElement('.catblocks-object-container', sceneContainer);
 
       const objects = scene.getElementsByTagName('object');
       if (!hasChildren(objects)) {
-        const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-script-container catblocks-empty-container' });
-        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty object found, nothting to display.');
+        const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
+        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
         return;
       }
       objects.forEach(object => {
-        const objectName = trimString(object.getAttribute('type'));
+        const objectName = object.getAttribute('type');
         const objectOptions = (() => {
-          if (object.getAttribute('look') !== undefined) {
+          if (object.getAttribute('look') !== undefined && object.getAttribute('look') !== null) {
             const lookOptions = Object.assign({}, options.object, {
               'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
             });
@@ -323,8 +325,8 @@ export class Share {
           }
         })();
 
-        const objectContainer = this.addObjectContainer(sceneObjectContainer, objectName, objectOptions);
-        const objectScriptContainer = getDomElement('catblocks-script-container', objectContainer);
+        const objectContainer = this.addObjectContainer(sceneObjectContainer, trimString(objectName), objectOptions);
+        const objectScriptContainer = getDomElement('.catblocks-script-container', objectContainer);
 
         let objectStats = {
           'name': objectName,
@@ -333,22 +335,21 @@ export class Share {
 
         if (!hasChildren(object)) {
           const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
-          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "No Script defined here");
+          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "Empty object found, nothting to display.");
 
         } else {
           const scripts = object.getElementsByTagName('script');
           scripts.forEach(script => {
-            const blockXml = wrapElement(script.firstElementChild.cloneNode(true), 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+            const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 
             const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
-
-            const blockStats = this.getScriptStats(script);
-            objectStats = this.updateObjectStats(objectStats, blockStats);
 
             const blockSvg = this.domToSvg(blockXml);
             if (blockSvg === undefined) {
               scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
             } else {
+              const blockStats = this.getScriptStats(script);
+              objectStats = this.updateObjectStats(objectStats, blockStats);
               scriptContainer.appendChild(blockSvg);
             }
           });
