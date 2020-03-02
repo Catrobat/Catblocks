@@ -4,7 +4,7 @@
 
 import Blockly from 'scratch-blocks';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
 
 export class Share {
   constructor() {
@@ -149,8 +149,8 @@ export class Share {
     let svg = undefined;
     try {
       Blockly.Xml.domToWorkspace(blockXml, this.workspace);
+      checkNextBlock(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
-
       const oriBox = oriSvg.lastElementChild.getBBox();
 
       // remove rect around it
@@ -159,6 +159,9 @@ export class Share {
       svg.setAttribute('width', oriBox.width + xOffset);
       svg.setAttribute('height', oriBox.height + yOffset);
       svg.setAttribute('class', 'catblocks-svg');
+
+      console.log("hello world!");
+
 
     } catch (e) {
       console.error('Failed to generate SVG from workspace');

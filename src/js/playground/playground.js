@@ -1,6 +1,7 @@
 import Blockly from "scratch-blocks";
 import "../catblocks_msgs";
 import "./../blocks/loader";
+import {checkNextBlock } from '../share/utils';
 
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
@@ -257,23 +258,9 @@ export class Playground {
   }
   zebra() {
     const blocks = this.workspace.topBlocks_;
-
-    //iterative call of function
-    this.checkNextBlock(blocks);
+    checkNextBlock(blocks);
   }
 
-  checkNextBlock(array){
-
-    for(let i = 0; i < array.length; i++) {
-      if(array[i].childBlocks_.length > 0) {
-        if(array[i].colour_ === array[i].childBlocks_[0].colour_) {
-          array[i].childBlocks_[0].colour_ = array[i].childBlocks_[0].colourTertiary_;
-          array[i].childBlocks_[0].initSvg();
-        }
-        this.checkNextBlock(array[i].childBlocks_);
-      }
-    }
-  }
 
   glowBlock() {
     if (Blockly.selected) {
