@@ -31,18 +31,18 @@ RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
 
-# define chromium env variables
+# set environment variables
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 ENV REPO $REPO
 ENV SHAREROOT $SHAREROOT
 ENV WORKHOME $WORKHOME
 ENV REPONAME $REPONAME
-ENV REPOHOME $WORKHOME$REPONAME
+ENV REPOHOME $REPOHOME
 ENV TESTDIR $TESTDIR
 ENV SERVERPORT $SERVERPORT
 
+# copy and set entrypoint
 COPY entrypoint.sh /entrypoint.sh
-
-# cmd
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

@@ -1,19 +1,19 @@
 #!/bin/sh
 
 : '
-Catblocks po-review container entrypoint.sh template file
+@file Entrypoint file for po-review docker container
 @author andreas.karner@student.tugraz.at
-
-This script is mainly used as template
-  during the github action, we will set the
-  COMMIT variable with the sha from the pull request
-  So please do not remove {{COMMIT}} without changing the cation as well
-
+@description This file will clone the catblocks repository
+  and checkout the pr commit for po-review. This is done
+  via replacing the {{COMMIT}} string with associated pr commit hash.
+  
+  It will render all programs which are passed via:
+    * args -> program url, either https://... or just the program hash
+    * docker folder mounting -> mount local program folder to /test/programs/
 '
 
 # define some global script variables
-POCOMMIT="a66c5144d7845050bb109b563f34769a6052f4c0"
-#"{{COMMIT}}"
+POCOMMIT="{{COMMIT}}"
 # define root folder for programs to render
 PROGROOT="${REPOHOME}/dist/assets/programs/"
 
