@@ -12,40 +12,57 @@ This script is mainly used as template
 '
 
 # define some global script variables
-REPOROOT="/"
-REPONAME="Catblocks"
-POROOT="${REPOROOT}${REPONAME}/test/po-review/"
-POHTML="${REPOROOT}${REPONAME}/src/html/po-review.html"
-
-REPOURL="https://github.com/Catrobat/Catblocks.git"
-REPOCOMMIT="{{COMMIT}}"
-REPOBRANCH="{{BRANCH}}"
+POCOMMIT="a66c5144d7845050bb109b563f34769a6052f4c0"
+#"{{COMMIT}}"
+# define root folder for programs to render
+PROGROOT="${REPOHOME}/dist/assets/programs/"
 
 # clone repository and checkout po-review commit
-git clone "$REPOURL" "$REPONAME"
-cd "$REPONAME"
-
-git fetch origin "$REPOCOMMIT"
-git checkout "$REPOCOMMIT"
+cd "${WORKHOME}"
+git clone "$REPO" "$REPONAME"
+cd "${REPOHOME}"
+git fetch origin "$POCOMMIT"
+git checkout "$POCOMMIT"
 
 # install everything properly
 yarn install
-
-# before we spin up the po-review server, we need to fix the program path
-if [ -d "${POROOT}${REPOBRANCH}/" ]
-then
-  echo "Use po-review program from branch folder"
-  export PO_FOLDER="assets/po-review/${REPOBRANCH}/"
-else
-  echo "Use po-review program from default folder"
-  export PO_FOLDER="assets/po-review/default/"
-fi
-
-# run share production build
 yarn run render:build
 
+
+# prepare po-review program directory
+echo "Prepare folder structure for po-review programs"
+rm -rf "${PROGROOT}"
+mkdir -p "${PROGROOT}"
+
+# copy test programs if mounted
+if [ -d "$TESTDIR" ]
+then
+  echo "Copy all programs to test into po-review folder"
+  cp -vr "${TESTDIR}"* "${PROGROOT}"
+fi
+
+# download program from share if defined in args
+if [ ! -z "${1+x}" ]
+then
+  echo "Received program to download from share in argument: ${1}"
+  PROGHASH="${1##*/}"
+  echo "Fetch program hash ${PROGHASH}"
+  wget "${SHAREROOT}${PROGHASH}.catrobat" -O "${PROGROOT}${PROGHASH}.zip"  
+fi
+
+echo "Extract all program archives"
+cd "${PROGROOT}"
+for FILE in $(ls * | grep -E '\.zip|\.catrobat')
+do
+  echo "Proces ${FILE} started"
+  mkdir -p "${FILE%.*}/"
+  unzip "$FILE" -d  "${FILE%.*}/"
+  rm "$FILE"
+  echo "Process ${FILE} done"
+done
+
 # spin up web server
-cd dist/
-python3 -m http.server 8080
+cd "${REPOHOME}/dist"
+python3 -m http.server $SERVERPORT
 
 exit 0
