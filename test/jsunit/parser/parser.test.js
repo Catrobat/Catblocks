@@ -170,7 +170,7 @@ describe('Catroid to Catblocks parser tests', () => {
     })).toBeTruthy();
   });
 
-  /** 
+  /**
    * Test if parser is able to follow references which are outside of the object
    * Test for looklist
    */
@@ -185,7 +185,7 @@ describe('Catroid to Catblocks parser tests', () => {
     })).toBeTruthy();
   });
 
-  /** 
+  /**
    * Test if parser is able to follow references which are outside of the object
    * Test for soundlist
    */
@@ -200,7 +200,7 @@ describe('Catroid to Catblocks parser tests', () => {
     })).toBeTruthy();
   });
 
-  /** 
+  /**
    * Test if default value "---" is used if no nodeValue exists in script
    */
   test('Test if default value "---" is used if no nodeValue is given', async () => {
@@ -226,6 +226,99 @@ describe('Catroid to Catblocks parser tests', () => {
         && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
         && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
         && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'PlaySoundAndWaitBrick')
+    })).toBeTruthy();
+  });
+});
+
+describe('Parser catroid program tests', () => {
+
+  beforeEach(async () => {
+    await page.goto(`${SERVER}`, {waitUntil: 'domcontentloaded'});
+  });
+
+  /**
+   * Test if parser properly converts script string with empty formula into XMLDocument
+   */
+  test('test if parser converts empty formula without any child in script properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<script type="BroadcastScript"><brickList><brick type="ForeverBrick"><commentedOut>false</commentedOut><loopBricks><brick type="ChangeBrightnessByNBrick"><commentedOut>false</commentedOut><formulaList><formula category="BRIGHTNESS_CHANGE"></formula></formulaList></brick></loopBricks></brick></brickList><commentedOut>false</commentedOut><receivedMessage></receivedMessage></script>`;
+      const catXml = parser.convertScriptString(scriptString);
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 3
+        && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
+        && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'ChangeBrightnessByNBrick'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].getAttribute('name') === 'BRIGHTNESS_CHANGE'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].textContent.trim() === '')
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser properly converts script string with non-empty formula into XMLDocument
+   */
+  test('test if parser converts non-empty formula without any child in script properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<script type="BroadcastScript"><brickList><brick type="ForeverBrick"><commentedOut>false</commentedOut><loopBricks><brick type="ChangeBrightnessByNBrick"><commentedOut>false</commentedOut><formulaList><formula category="BRIGHTNESS_CHANGE"><type>NUMBER</type><value>100</value></formula></formulaList></brick></loopBricks></brick></brickList><commentedOut>false</commentedOut><receivedMessage></receivedMessage></script>`;
+      const catXml = parser.convertScriptString(scriptString);
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 3
+        && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
+        && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'ChangeBrightnessByNBrick'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].getAttribute('name') === 'BRIGHTNESS_CHANGE'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].textContent.trim() === '100')
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser properly converts script string with invalid formula into XMLDocument
+   */
+  test('test if parser converts invalid formula in script properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<script type="BroadcastScript"><brickList><brick type="ForeverBrick"><commentedOut>false</commentedOut><loopBricks><brick type="ChangeBrightnessByNBrick"><commentedOut>false</commentedOut><formulaList><formula category="unknown_category"><type>NUMBER</type><value>100</value></formula></formulaList></brick></loopBricks></brick></brickList><commentedOut>false</commentedOut><receivedMessage></receivedMessage></script>`;
+      const catXml = parser.convertScriptString(scriptString);
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 3
+        && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
+        && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'ChangeBrightnessByNBrick'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].getAttribute('name') === 'unknown_category'
+        //ToDo: rendering sets value to 50 when formula category is invalid!?
+        && catXml.getElementsByTagName('block')[2].childNodes[1].textContent.trim() === '100')
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser properly converts script string with valid formula (value and right child) into XMLDocument
+   */
+  test('test if parser converts valid formula (value and right child) in script properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<script type="BroadcastScript"><brickList><brick type="ForeverBrick"><loopBricks><brick type="ChangeBrightnessByNBrick"><formulaList><formula category="BRIGHTNESS_CHANGE"><rightChild><type>NUMBER</type><value>1</value></rightChild><type>OPERATOR</type><value>MINUS</value></formula></formulaList></brick></loopBricks></brick></brickList></script>`;
+      const catXml = parser.convertScriptString(scriptString);
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 3
+        && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
+        && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'ChangeBrightnessByNBrick'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].getAttribute('name') === 'BRIGHTNESS_CHANGE'
+        && catXml.getElementsByTagName('block')[2].childNodes[1].textContent.trim() === 'MINUS 1')
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser properly converts script string with valid formula (left child, value and right child) into XMLDocument
+   */
+  test('test if parser converts valid formula (left child, value and right child) in script properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<script type="BroadcastScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value>RAND</value></formula></formulaList></brick></brickList></script>`;
+      const catXml = parser.convertScriptString(scriptString);
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 2
+        && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
+        && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'WaitBrick'
+        && catXml.getElementsByTagName('block')[1].childNodes[1].getAttribute('name') === 'TIME_TO_WAIT_IN_SECONDS'
+        //ToDo: determine if numbers are actually Numbers?
+        && catXml.getElementsByTagName('block')[1].childNodes[1].textContent.trim() === '37 RAND 58')
     })).toBeTruthy();
   });
 });
