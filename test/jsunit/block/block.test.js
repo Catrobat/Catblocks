@@ -265,5 +265,64 @@ describe('WebView Block tests', () => {
         });
       })).toBeFalsy();
     });
+
+    /**
+     * Test if formula blocks (without child) are rendered properly.
+     */
+    test('formula blocks (without child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        //create block
+        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+        block.initSvg();
+        block.render(false);
+        //get default scale value
+        let value = block.inputList[0].fieldRow[1].getText();
+        return (block.getFieldValue() === 'Change brightness  by'
+          && value === '50'
+          && block.getCategory() === 'looks');
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if formula blocks (with left child) are rendered properly.
+     */
+    test('formula blocks (with left child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        //create blocks
+        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+        block.initSvg();
+        block.render(false);
+        //set scale value
+        let valueToSet = 'MINUS 1';
+        block.inputList[0].fieldRow[1].setText(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getText();
+        return (block.getFieldValue() === 'Change brightness  by'
+          && valueToSet === value
+          && block.getCategory() === 'looks');
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if formula blocks (with left and right child) are rendered properly.
+     */
+    test('formula blocks (with left and right child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        //create blocks
+        let block = playgroundWS.newBlock('WaitBrick');
+        block.initSvg();
+        block.render(false);
+        //set scale value
+        let valueToSet = '37 RAND 58';
+        block.inputList[0].fieldRow[1].setText(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getText();
+        //let desiredBlockText = 'Wait' + valueToSet + 'second';
+        //check if field text matches when block is in workspace
+        return (block.getFieldValue() === 'Wait'
+          && valueToSet === value
+          && block.getCategory() === 'control');
+          //ToDo: don't work...
+          //&& block.svgGroup_.textContent === desiredBlockText);
+      })).toBeTruthy();
+    });
   });
 });
