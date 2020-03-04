@@ -1,13 +1,18 @@
-# Catblocks po-review container
+# Catblocks PO-Review Container
 
-Catrobat [Catblocks](https://github.com/Catrobat/Catblocks) po-review docker conatiner. The container will clone and build the project during start time. On the first look this seems to be silly, but the main idea of your team was, that we can reuse the same Dockerimage for all upcomming po-reviews. Just the entrypoint.sh file will get updated. This file also includes the `COMMITHASH` to fetch. 
+[CATBLOCKS](https://github.com/Catrobat/Catblocks) PO-Review docker container
 
-Please verify that you bind the `SERVERPORT -p 8080:8080` properly, otherwise the host will not be able to access the webserver inside the container.
+The container clones and builds the project during startup. This allows docker image-reusevfor all upcoming PO-Reviews.
+Only the entrypoint.sh file needs to be updated. This file also includes the `COMMITHASH` to fetch. 
+
+When not able to access the webserver: verify that you bind the `SERVERPORT -p 8080:8080` properly, otherwise the host 
+will not be able to.
 
 # Build
-To build the container, please follow the standard docker procedure. Please find all the build options in the offical docker webpage accessable [here](https://docs.docker.com/engine/reference/commandline/build/). 
+The container buildes, using standard docker procedure. All build options are available
+[here](https://docs.docker.com/engine/reference/commandline/build/). 
 
-Catblocks team recommends to flag the container as `po-review`, this is with the `-t` options. It is not mandatory, but within this document we will always refer to it.
+We recommend the use of a `po-review` flag, using the `-t` option, to not conflict with existing ones.
 
 ```bash
   # change into github action artifact extraction
@@ -18,15 +23,18 @@ Catblocks team recommends to flag the container as `po-review`, this is with the
 ```
 
 # Run
-The current version only supports the catblocks share format.
-We can either pass programs via params or by mounting a host folder at start time. Alsot he combination is supported, but not separated listed below. 
+The current version only supports the CATBLOCKS Share format.
+Programs can be passed via parameter or by mounting a host folder at startup. 
+A combination of both is supported as well, but not separatly listed below. 
 
-In case you have already build the `catblocks:po-review` container and you would like to reuse it. You can overwrite the entrypoint.sh file with the `-v /absolute/path/to/entrypoint.sh:/entrypoint.sh` option. Please validate first that the entrypoint.sh file is executable. 
+In case you have already built the `catblocks:po-review` container and you would like to reuse it. You can overwrite the
+ entrypoint.sh file using the `-v /absolute/path/to/entrypoint.sh:/entrypoint.sh` option. Please validate that the 
+ entrypoint.sh file is executable. 
 
 ## Single program testing
-For single program testing, we recommend the params method. 
-Here you just pass either the program url or program hash as params to the container.
-Both values can be found by browsing the [share](https://share.catrob.at/app/).
+For single program testing use the paramater method. 
+Here you just pass, either the program URL or the program hash, as paramaters to the container.
+Both values can be found on the [share](https://share.catrob.at/app/).
 
 ```bash
   # use program url
@@ -36,12 +44,13 @@ Both values can be found by browsing the [share](https://share.catrob.at/app/).
   docker run --rm -it -p 8080:8080 catblocks:po-review "4a20f223-5cbf-11ea-a2ae-000c292a0f49"
 ```
 
-It will download the program before bringing up the webserver.
+This will download the program before launching the webserver.
 
 ## Bulk program testing
-If you would like to perform a bulk test, we recommend to download the program first locally and mount the directory at start time. We support the extracted as also the compressed version of programs.
+To perform a bulk test download the programs locally and mount the directory at startup. We support the 
+extracted as well as the compressed versions of programs.
 
-An example directory listing is shown here:
+An example directory listing:
 
 ```bash
 catBulkTest/                                              # containing directory
@@ -52,7 +61,8 @@ catBulkTest/51fd7ff4-4631-4257-8d3c-795321614fd3/code.xml # extracted program fo
 catBulkTest/51fd7ff4-4631-4257-8d3c-795321614fd3/Scena 1  # extracted program format
 ```
 
-To test all containing program, we need to mount the `catBulkTest` folder to the `/test/programs/` ones from the container. This can be done via the `-v` option.
+To test all containing programs, mount the `catBulkTest` folder to the `/test/programs/` one from the container. This
+can be done using the `-v` option.
 
 ```bash
  # mount folder and run bulk test
