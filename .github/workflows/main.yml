@@ -11,26 +11,17 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Run jest in docker
-        uses: ./jest-testing-action/
-        id: jestTest
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout test report branch
-        if: always()
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          path: gh-pages-branch
+      - name: Run jest test action
+        uses: ./jest-testing-action/       
       - name: Prepare test report
         if: always()
-        run: cd ./gh-pages-branch/ && mkdir -p ./testReport/ && cp ./reports/rep_*${GITHUB_SHA}*.html testReport/
+        run: cd /home/runner/work/Catblocks/Catblocks && mkdir -p ./catblocksTestReport/ && cp ./jest_html_reporters.html ./catblocksTestReport/rep_${GITHUB_SHA}.html
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v1
         with:
-          name: ReportCatblocks
-          path: ./gh-pages-branch/testReport/
+          name: CatblocksTestReport
+          path: /home/runner/work/Catblocks/Catblocks/catblocksTestReport/
       
   uploadDocker:
     runs-on: ubuntu-latest

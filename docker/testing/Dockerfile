@@ -1,11 +1,15 @@
 FROM node:10-alpine
 
 MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
+
 ARG REPO="https://github.com/Catrobat/Catblocks.git"
+ARG SHAREROOT="https://share.catrob.at/app/download/"
 ARG BRANCH="develop"
 ARG WORKHOME="/"
-ARG RELREPOHOME="Catblocks"
+ARG REPONAME="Catblocks"
+ARG REPOHOME="${WORKHOME}${REPONAME}/"
 ARG TESTDIR="/test/programs/"
+ARG SERVERPORT=8080
 
 # enable new repositories
 RUN \
@@ -22,7 +26,7 @@ RUN \
   apk add --no-cache --virtual .build-deps python3 make g++
 
 RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
-    udev ttf-opensans chromium git
+    udev ttf-opensans chromium git wget
 
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
@@ -30,21 +34,27 @@ RUN rm -rf /var/cache/apk/* /tmp/*
 # define chromium env variables
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-
-# define repository env variables
 ENV REPO $REPO
+ENV SHAREROOT $SHAREROOT
 ENV BRANCH $BRANCH
 ENV WORKHOME $WORKHOME
-ENV REPOHOME $WORKHOME$RELREPOHOME
+ENV REPONAME $REPONAME
+ENV REPOHOME $REPOHOME
 ENV TESTDIR $TESTDIR
+ENV SERVERPORT $SERVERPORT
 
-# build init Catblocks project
+# clone and build catblocks project
 WORKDIR $WORKHOME
-RUN git clone -b $BRANCH $REPO $RELREPOHOME\
-  && cd $RELREPOHOME \
+RUN git clone -b $BRANCH $REPO $REPONAME\
+  && cd $REPONAME \
   && yarn install \
   && yarn run render:build
 
-# copy entrypoint
+# Skip repository version control
+#   please active if needed
+#ENV SKIP_REPO_CHECK 1
+
+# copy and set entrypoint
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

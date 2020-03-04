@@ -68,7 +68,6 @@ module.exports = {
       { from: 'assets', to: 'assets' },
       { from: 'node_modules/scratch-blocks/media', to: 'media' },
       { from: 'i18n/json', to: 'i18n' },
-      { from: 'test/po-review', to: 'assets/po-review' },
       { from: 'test/share', to: 'assets/share' }
     ]),
     new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE', 'PO_FOLDER'])

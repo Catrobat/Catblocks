@@ -1,29 +1,26 @@
 #!/bin/sh
 
 : '
-Catblocks docker image entrypoint
+@file Entrypoint file for testing docker container
 @author andreas.karner@student.tugraz.at
+@description First we verfiy the local repository against the remote for updates.
+  In case that the local repo is older, it will pull the remote BRANCH fresh.
+  
+  It will render all programs which are passed via:
+    * args -> program url, either https://... or just the program hash
+    * docker folder mounting -> mount local program folder to /test/programs/
 
-
-In the Dockerfile, we have defined the
-  workingdir to be /home/catblocks
-Further the repository is cloned to 
-  /home/catblocks/Catblocks/
-Repo and branch are set in env variables
-  REPO -> "https://github.com/Catrobat/Catblocks.git"
-  BRANCH -> "develop"
-  WORKHOME -> "/home/catblocks/"
-  RELREPOHOME -> "Catblocks"
-  REPOHOME -> $WORKHOME$RELREPOHOME
-
+  This entrypoint file uses various environment variables set by the Dockerfile
+    {REPO, BRANCH, WORKHOME, REPONAME, REPOHOME, TESTDIR, SERVERPORT}
 '
 
-# change into repository home
-cd $REPOHOME
+# define root folder for programs to render
+PROGROOT="${REPOHOME}/dist/assets/programs/"
 
+# check if remote repository is newer then local one
+cd $REPOHOME
 if [ "$SKIP_REPO_CHECK" != "1" ]
 then
-  # check if remote is newer
   git fetch origin $BRANCH
   CHANGES=$(git diff origin/$BRANCH | wc -l)
   if [ $CHANGES -gt 0 ]
@@ -34,25 +31,36 @@ then
 
     # update local and rebuild stuff
     git pull origin $BRANCH
-    yarn install
 
-    # build your render project
-    echo "Build render target of repository"
+    echo "Rebuild fresh pulled repository"
+    yarn install
     yarn run render:build
   fi
 fi
 
-# run all programs from /test/programs/
-echo "Clean existing programs from webpage target"
-rm -rf "${REPOHOME}/dist/assets/programs/"
+# prepare po-review program directory
+echo "Prepare folder structure for po-review programs"
+rm -rf "${PROGROOT}"
+mkdir -p "${PROGROOT}"
 
-echo "Copy all test programs into testing folder"
-mkdir -p "${REPOHOME}/dist/assets/"
-cp -r "$TESTDIR" "${REPOHOME}/dist/assets/programs/"
+# copy test programs if mounted
+if [ -d "$TESTDIR" ]
+then
+  echo "Copy all programs to test into po-review folder"
+  cp -vr "${TESTDIR}"* "${PROGROOT}"
+fi
 
-# extract all program archives
+# download program from share if defined in args
+if [ ! -z "${1+x}" ]
+then
+  echo "Received program to download from share in argument: ${1}"
+  PROGHASH="${1##*/}"
+  echo "Fetch program hash ${PROGHASH}"
+  wget "${SHAREROOT}${PROGHASH}.catrobat" -O "${PROGROOT}${PROGHASH}.zip"  
+fi
+
 echo "Extract all program archives"
-cd "${REPOHOME}/dist/assets/programs/"
+cd "${PROGROOT}"
 for FILE in $(ls * | grep -E '\.zip|\.catrobat')
 do
   echo "Proces ${FILE} started"
@@ -62,11 +70,8 @@ do
   echo "Process ${FILE} done"
 done
 
-
-
-# start http server
-echo "Spinn you web server"
-cd "${REPOHOME}/dist/"
-python3 -m http.server 8080
+# spin up web server
+cd "${REPOHOME}/dist"
+python3 -m http.server $SERVERPORT
 
 exit 0
