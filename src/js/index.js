@@ -41,7 +41,7 @@ const initShare = (container, lang) => {
     break;
   }
   case 'render': {
-    const progPath = (process.env.PO_FOLDER) ? process.env.PO_FOLDER : 'assets/programs/';
+    const progPath = 'assets/programs/';
     const catblocksWs = 'catblocks-workspace-container';
     const progContainer = document.getElementById('catblocks-programs-container');
 
