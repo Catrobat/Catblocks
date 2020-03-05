@@ -163,9 +163,6 @@ export class Share {
       svg.setAttribute('height', oriBox.height + yOffset);
       svg.setAttribute('class', 'catblocks-svg');
 
-      console.log("hello world!");
-
-
     } catch (e) {
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
