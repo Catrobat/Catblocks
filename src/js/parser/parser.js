@@ -78,7 +78,7 @@ const SUB_END = "\n</statement>";
 let XML = "";
 
 // global log enable switch
-const DEBUG = true;
+const DEBUG = false;
 
 /**
  * Catblocks debug function
@@ -151,9 +151,9 @@ function parseCatroidProgram(xml) {
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
-  console.log(sceneList);
+  catLog(sceneList);
   const xmlStream = generateShareXml();
-  // console.log(xmlStream);
+  catLog(xmlStream);
   try {
     return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
   } catch (e) {
