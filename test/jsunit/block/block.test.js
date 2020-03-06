@@ -320,9 +320,58 @@ describe('WebView Block tests', () => {
         return (block.getFieldValue() === 'Wait'
           && valueToSet === value
           && block.getCategory() === 'control');
-          //ToDo: don't work...
-          //&& block.svgGroup_.textContent === desiredBlockText);
+        //ToDo: don't work...
+        //&& block.svgGroup_.textContent === desiredBlockText);
       })).toBeTruthy();
+    });
+
+    /**
+     * Check if each defined blocks arguments are rendered properly
+     */
+    test('Block arguments are rendered properly', async () => {
+      console.log("START");
+      Object.keys(BLOCKS).forEach(categoryName => {
+        Object.keys(BLOCKS[categoryName]).forEach(blockName => {
+          const block = BLOCKS[categoryName][blockName];
+          if (block['args0'] !== undefined) {
+            let output = '';
+            let i = 0;
+            while(block['args0'][i] !== undefined) {
+              if (block['args0'][i]['value'] !== undefined)
+                output += block['args0'][i]['value'];
+              if (block['args0'][i]['text'] !== undefined)
+                output += block['args0'][i]['text'];
+              if (block['args0'][i]['options'] !== undefined)
+                output += block['args0'][i]['options'][0][0];
+              i++;
+            }
+            if (output.length > 0)
+              console.log(output + '  -  ' + block['message0']);
+          }
+        });
+      });
+      console.log("END");
+      expect(await page.evaluate((BLOCKS) => {
+        const renderedBlocks = toolboxWS.getAllBlocks();
+        let index = 0;
+        Object.keys(BLOCKS).forEach(categoryName => {
+          Object.keys(BLOCKS[categoryName]).forEach(blockName => {
+            const block = BLOCKS[categoryName][blockName];
+            //loop each node with 'editable text'
+            const blockToCompare = renderedBlocks[index].svgGroup_.querySelectorAll('g.blocklyEditableText');
+            blockToCompare.forEach(argToCompare => {
+              Object.keys(block).filter(key => {
+                if (key.indexOf('args') > -1) {
+                  console.log(block[key]['value']);
+                  if (block[key]['value'] !== argToCompare.textContent)
+                    return false;
+                }
+              });
+            });
+          });
+        });
+        return true;
+      }, BLOCKS)).toBeTruthy();
     });
   });
 });
