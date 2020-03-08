@@ -70,6 +70,7 @@ const fetchProgIds = async (count, shareurl) => {
   await page.waitForSelector('div#newest div.programs div.program');
 
   const progIds = await page.evaluate(async (progCount) => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const maxTry = 1000;
     let curtry = 0;

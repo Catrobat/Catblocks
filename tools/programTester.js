@@ -37,7 +37,7 @@ const parseArgs = () => {
   });
   parser.addArgument(['-c', '--count'], { help: 'Import count', defaultValue: DEF_PROGCOUNT, type: Number, dest: 'count' });
   parser.addArgument(['-o', '--output'], { help: 'Output file', defaultValue: DEF_OUTPUT, type: String, dest: 'outputfile' });
-  parser.addArgument(['-d', '--daemon'], { help: 'Run as daemon', defaultValue: false, type: Boolean, dest: 'daemon' });
+  parser.addArgument(['-d', '--daemon'], { help: 'Run as daemon', defaultValue: false, type: Boolean, dest: 'daemon', action: 'storeTrue' });
   parser.addArgument(['-r', '--render-dir'], { help: 'Share dist direcotry', defaultValue: DEF_RENDERDIR, type: String, dest: 'renderdist' });
   parser.addArgument(['-s', '--share-url'], { help: 'Share rooturl', defaultValue: DEF_SHAREURL, type: String, dest: 'shareurl' });
   return parser.parseArgs();;
@@ -158,7 +158,7 @@ const progWorker = (task, callback) => {
 const startShareWatcher = async (args, queue, outputFd) => {
   let lastProgId = 'undefined';
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
@@ -194,7 +194,7 @@ const startShareWatcher = async (args, queue, outputFd) => {
   const args = parseArgs();
   console.info(`Started to render share programs automatically`);
 
-  //await buildProject(args);
+  await buildProject(args);
   const server = spawnWebServer();
   const outputFd = fs.openSync(args['outputfile'], 'a');
 
