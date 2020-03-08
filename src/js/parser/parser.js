@@ -231,18 +231,21 @@ function parseScripts(script) {
     checkUsage(script.childNodes[i], currentScript);
   }
 
-  console.log(currentScript);
-  console.log(brickList);
-  console.log(script.childNodes);
-  console.log(brickList[0].attributes[0].value);
-
-  console.log(currentScript.brickList);
+  //todo: need to cover edge cases - basic geht
   for (let i = 0; i < brickList.length; i++) {
     if(brickList[i].attributes[0].value === "RepeatBrick") {
-      const loopOrIfBrickList = (brickList[i].children);
-      currentScript.brickList[i].loopOrIfBrickList.push(parseBrick(brickList[i+1]));
+      currentScript.brickList.push(parseBrick(brickList[i]));
+      const position = i;
+      while(brickList[i].attributes[0].value !== "LoopEndBrick") {
+        i++;
+        currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
+      }
+
+      console.log(currentScript.brickList[position].loopOrIfBrickList);
     }
-    currentScript.brickList.push(parseBrick(brickList[i]));
+    else {
+      currentScript.brickList.push(parseBrick(brickList[i]));
+    }
   }
   console.log(currentScript.brickList);
   return currentScript;
