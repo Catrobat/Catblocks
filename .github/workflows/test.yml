@@ -13,5 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: yarn clean
-    - run: yarn run render:build --if-present
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install # will run `yarn install` command
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: clean # will run `yarn clean` command
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: render:build # will run `yarn render:build` command
