@@ -1,87 +1,64 @@
 /**
- * Fetch random test programs from catrobat share
+ * Download n freshest programs from share
  * 
  * @author andreas.karner@student.tugraz.at
- * @description this script will download some random test
- *  programms from catrobat share and store them locally
- *  It uses chromium headless interface [puppeteer](https://github.com/puppeteer/puppeteer/)
- * 
+ * @description download n freshest programs from share
  */
 
+'use strict';
 
-
-const puppeteer = require('puppeteer');
-const https = require('https');
-const fs = require('fs');
 const path = require('path');
+const async = require('async');
+const catUtils = require('./catTools');
+const ArgumentParser = require('argparse').ArgumentParser;
 
-// Please change as needed
-const OUTPUT_DIR = path.join(__dirname, 'fetchedPrograms');
-const SHARE_URL = 'https://share.catrob.at/app/';
-const PROG_COUNT = 200;
+const DEF_PROGCOUNT = 200;
+const DEF_WORKERCOUNT = 5;
+const DEF_SHAREURL = 'https://share.catrob.at/app/';
+const DEF_OUTPUTDIR = path.join(__dirname, 'fetchedPrograms');
 
 /**
- * Fetch programs via puppeteer
- * @return {Object} progIds
+ * Init arguments for script
+ * @returns {Object} parsed arguments
  */
-const fetchProgIds = async () => {
-  // please change headless to false, this will make the browser visible
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+const parseArgs = () => {
+  var parser = new ArgumentParser({
+    version: '0.0.1',
+    addHelp: true,
+    description: 'Fetching share programs'
   });
-
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1200, height: 800 });
-  await page.goto(SHARE_URL);
-
-  // get all available programs
-  const progIds = await page.evaluate(async (progCount) => {
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
-    const maxTry = 100;
-    let curtry = 0;
-
-    const progContainer = document.querySelector('#newest .programs');
-    const loadMore = document.querySelector('#newest .button-show-more');
-    while (curtry <= maxTry) {
-      if (progContainer.childElementCount >= progCount) {
-        console.log('Found enought programs, parse and return them');
-        return Array.from(progContainer.children).map(prog => prog.id.replace('program-', '')).slice(0, progCount);
-      }
-
-      console.log('Fetch more programs and wait 5 seconds for page');
-      loadMore.children[0].click();
-      await delay(10000);
-
-      // avoid infinity loooping
-      curtry++;
-    }
-  }, PROG_COUNT);
-  await browser.close();
-
-  return progIds;
+  parser.addArgument(['-c', '--count'], { help: 'Programs count', defaultValue: DEF_PROGCOUNT, type: Number, required: true, dest: 'count' });
+  parser.addArgument(['-o', '--output-dir'], { help: 'Output directory', defaultValue: DEF_OUTPUTDIR, type: String, dest: 'outputdir' });
+  parser.addArgument(['-s', '--share-url'], { help: 'Share rooturl', defaultValue: DEF_SHAREURL, type: String, dest: 'shareurl' });
+  parser.addArgument(['-w', '--worker'], { help: 'Worker count for downloading', defaultValue: DEF_WORKERCOUNT, type: Number, dest: 'workercount' });
+  return parser.parseArgs();;
 };
 
-
 /**
- * Download all programms locally into OUTPUT_DIR
+ * Main function
  */
 (() => {
-  fetchProgIds().then(progIds => {
-    for (const progId of progIds) {
-      const progName = `${progId}.catrobat`;
-      console.log(`Download started for: ${progName}`);
+  const args = parseArgs();
+  console.info(`Started to downoad ${args['count']} programs from ${args['shareurl']} into ${args['outputdir']}`);
+  catUtils.createDirectory(args['outputdir']);
 
-      const progFile = fs.createWriteStream(path.join(OUTPUT_DIR, progName));
-      https.get(`${SHARE_URL}download/${progName}`, res => {
-        res.pipe(progFile);
-        progFile.on('finish', () => {
-          progFile.close(((progName) => {
-            console.log(`Download complete for: ${progName}`);
-          })(progName));
+  catUtils.fetchProgIds(args['count'], args['shareurl'])
+    .then(progIds => {
+      async.eachLimit(progIds, args['workercount'], (item, callback) => {
+        const progName = `${item}.catrobat`;
+        const shareUrl = `${args['shareurl']}download/${progName}`;
+        const destFile = path.join(args['outputdir'], progName);
+        catUtils.downloadFile(shareUrl, destFile).then(destFile => {
+          console.log(`Finished downloding ${destFile}`);
+          callback();
         });
+      }, (err) => {
+        if (err) {
+          console.error('Failed to download all programs properly');
+          console.error(err);
+          process.exit(-1);
+        }
+        console.log('Downloaded all programs properly');
       });
-    }
-  });
+    });
 })();
