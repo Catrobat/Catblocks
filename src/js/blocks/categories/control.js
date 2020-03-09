@@ -69,7 +69,7 @@ Blockly.Blocks['NoteBrick'] = {
 Blockly.Blocks['IfLogicBeginBrick'] = {
   init: function () {
     this.jsonInit({
-      "type": "IfThenLogicBeginBrick",
+      "id": "IfLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
       "message1": "%1",
       "message2": Blockly.Msg.CONTROL_IFISTRUEELSEELSE,
@@ -102,9 +102,9 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
 Blockly.Blocks['IfThenLogicBeginBrick'] = {
   init: function () {
     this.jsonInit({
-      "type": "IfLogicBeginBrick",
+      "id": "IfThenLogicBeginBrick",
       "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
-      "message1": "%1", // Statement
+      "message1": "%1",
       "args0": [
         {
           "type": "field_input",
@@ -127,6 +127,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
 Blockly.Blocks['WaitUntilBrick'] = {
   init: function () {
     this.jsonInit({
+      "id": "WaitUntilBrick",
       "message0": Blockly.Msg.CONTROL_WAITUNTILTRUE,
       "args0": [
         {

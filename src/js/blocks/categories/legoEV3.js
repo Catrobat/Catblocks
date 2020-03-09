@@ -15,7 +15,7 @@ Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
         {
           "type": "field_number",
           "name": "VARIABLE",
-          "text": "180"
+          "value": 180
         }
       ],
       "category": Blockly.Categories.legoEV3,
@@ -39,7 +39,7 @@ Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
         {
           "type": "field_number",
           "name": "VARIABLE",
-          "text": "100"
+          "value": 180
         }
       ],
       "category": Blockly.Categories.legoEV3,

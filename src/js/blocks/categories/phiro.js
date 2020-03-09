@@ -15,7 +15,7 @@ Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
         {
           "type": "field_number",
           "name": "SPEED",
-          value: 100
+          "value": 100
         }
       ],
       "category": Blockly.Categories.phiro,
@@ -82,7 +82,7 @@ Blockly.Blocks['PhiroPlayToneBrick'] = {
         {
           "type": "field_number",
           "name": "DURATION",
-          value: 1
+          "value": 1
         }
       ],
       "category": Blockly.Categories.phiro,

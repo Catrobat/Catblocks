@@ -7,11 +7,13 @@ Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "STEPS"
+          "name": "STEPS",
+          "value": 10
         },
         {
           "type": "field_number",
-          "name": "POWER"
+          "name": "POWER",
+          "value": 50
         }
       ],
       "category": Blockly.Categories.jumpingSumo,
@@ -27,11 +29,13 @@ Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
       "args0": [
         {
           "type": "field_number",
-          "name": "STEPS"
+          "name": "STEPS",
+          "value": 10
         },
         {
           "type": "field_number",
-          "name": "POWER"
+          "name": "POWER",
+          "value": 50
         }
       ],
       "category": Blockly.Categories.jumpingSumo,
@@ -75,7 +79,7 @@ Blockly.Blocks['JumpingSumoSoundBrick'] = {
         {
           "type": "field_number",
           "name": "VARIABLE",
-          "text": "50"
+          "value": 50
         }
       ],
       "category": Blockly.Categories.jumpingSumo,

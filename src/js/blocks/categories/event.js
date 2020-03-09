@@ -118,7 +118,9 @@ Blockly.Blocks['WhenBounceOffScript'] = {
           "type": "field_dropdown",
           "name": "DROPDOWN",
           "options": [
-            ["any edge, actor, or object", "EDGE"]
+            ["edge", "EDGE"],
+            ["actor", "ACTOR"],
+            ["object", "OBJECT"]
           ]
         }
       ],

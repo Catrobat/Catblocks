@@ -15,7 +15,7 @@ Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
         {
           "type": "field_number",
           "name": "VARIABLE",
-          "text": "180"
+          "value": 180
         }
       ],
       "category": Blockly.Categories.legoNXT,
@@ -60,7 +60,7 @@ Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
         {
           "type": "field_number",
           "name": "VARIABLE",
-          "text": "100"
+          "value": 100
         }
       ],
       "category": Blockly.Categories.legoNXT,
