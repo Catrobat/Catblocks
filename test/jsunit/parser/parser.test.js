@@ -228,4 +228,90 @@ describe('Catroid to Catblocks parser tests', () => {
         && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'PlaySoundAndWaitBrick')
     })).toBeTruthy();
   });
+
+  describe('UserVariable parsing', () => {
+    /** 
+     * Test if parser handles local uservariables properly
+     */
+    test('Test of local uservariable parsing', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name>tUserVariable</name></default></userVariable></userVariable></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.includes('tUserVariable'));
+      })).toBeTruthy();
+    });
+
+    /** 
+     * Test if parser handles local uservariable with empty name tag
+     */
+    test('Test of local empty name uservariable parsing', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name></name></default></userVariable></userVariable></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.length === 0);
+      })).toBeTruthy();
+    });
+
+    /** 
+     * Test if parser handles local uservariable without name tag
+     */
+    test('Test of local uservariable parsing without name tag', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name/></default></userVariable></userVariable></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.length === 0);
+      })).toBeTruthy();
+    });
+
+    /** 
+    * Test if parser handles local uservariable without name tag
+    */
+    test('Test of remote uservariable parsing', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name>tUserVariable</name></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.includes('tUserVariable'));
+      })).toBeTruthy();
+    });
+
+    /** 
+     * Test if parser handles local uservariable with empty name tag
+     */
+    test('Test of remote empty name uservariable parsing', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name></name></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.length === 0);
+      })).toBeTruthy();
+    });
+
+    /** 
+     * Test if parser handles local uservariable without name tag
+     */
+    test('Test of remote uservariable parsing without name tag', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name/></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        return (testValue !== undefined && testValue.innerHTML.length === 0);
+      })).toBeTruthy();
+    });
+  });
 });

@@ -1,7 +1,7 @@
 import Blockly from "scratch-blocks";
 import "../catblocks_msgs";
 import "./../blocks/loader";
-import { wrapElement } from './../share/utils';
+import {checkNextBlock, wrapElement } from '../share/utils';
 
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
@@ -164,6 +164,7 @@ export class Playground {
 
     $('#glowBlock').click(() => this.glowBlock());
     $('#unglowBlock').click(() => this.unglowBlock());
+    $('#zebra').click(() => this.zebra());
     $('#glowStack').click(() => this.glowStack());
     $('#unglowStack').click(() => this.unglowStack());
 
@@ -253,6 +254,12 @@ export class Playground {
       this.Blockly.Xml.domToWorkspace(wrapElement(blocksXml.firstChild, 'xml'), this.workspace);
     }
   }
+  zebra() {
+    const blocks = this.workspace.topBlocks_;
+    checkNextBlock(blocks);
+  }
+
+
   glowBlock() {
     if (this.Blockly.selected) {
       this.workspace.glowBlock(this.Blockly.selected.id, true);
@@ -337,4 +344,6 @@ export class Playground {
     this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
     this.workspace.getFlyout().setRecyclingEnabled(true);
   }
+
+
 }
