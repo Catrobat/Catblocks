@@ -13,5 +13,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run jest test action
+    - name: Build Project
       uses: ./gh-pages-deploy-action/
