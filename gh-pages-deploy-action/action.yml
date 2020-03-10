@@ -1,0 +1,7 @@
+# action.yml
+name: 'GH-Pages-Deploy'
+description: 'Build docker container and build package'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
