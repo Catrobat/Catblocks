@@ -283,7 +283,7 @@ describe('Parser catroid program tests', () => {
         && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
         && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'ChangeBrightnessByNBrick'
         && catXml.getElementsByTagName('block')[2].childNodes[1].getAttribute('name') === 'unknown_category'
-        //ToDo: rendering sets value to 50 when formula category is invalid!?
+        //rendering sets value to 50 when formula category is invalid (default value defined in looks.js)
         && catXml.getElementsByTagName('block')[2].childNodes[1].textContent.trim() === '100')
     })).toBeTruthy();
   });
@@ -317,7 +317,6 @@ describe('Parser catroid program tests', () => {
         && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
         && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'WaitBrick'
         && catXml.getElementsByTagName('block')[1].childNodes[1].getAttribute('name') === 'TIME_TO_WAIT_IN_SECONDS'
-        //ToDo: determine if numbers are actually Numbers?
         && catXml.getElementsByTagName('block')[1].childNodes[1].textContent.trim() === '37 RAND 58')
     })).toBeTruthy();
   });

@@ -130,6 +130,7 @@ describe('WebView Block tests', () => {
    */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    page.on('console', message => console.log(message.text()));
   });
 
   /**
@@ -271,7 +272,6 @@ describe('WebView Block tests', () => {
      */
     test('formula blocks (without child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
-        //create block
         let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
         block.initSvg();
         block.render(false);
@@ -288,7 +288,6 @@ describe('WebView Block tests', () => {
      */
     test('formula blocks (with left child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
-        //create blocks
         let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
         block.initSvg();
         block.render(false);
@@ -307,7 +306,6 @@ describe('WebView Block tests', () => {
      */
     test('formula blocks (with left and right child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
-        //create blocks
         let block = playgroundWS.newBlock('WaitBrick');
         block.initSvg();
         block.render(false);
@@ -315,13 +313,13 @@ describe('WebView Block tests', () => {
         let valueToSet = '37 RAND 58';
         block.inputList[0].fieldRow[1].setText(valueToSet);
         let value = block.inputList[0].fieldRow[1].getText();
-        //let desiredBlockText = 'Wait' + valueToSet + 'second';
+        let desiredBlockText = 'Wait' + valueToSet + 'second';
+        desiredBlockText = desiredBlockText.replace(/\s/g, '');
         //check if field text matches when block is in workspace
         return (block.getFieldValue() === 'Wait'
           && valueToSet === value
-          && block.getCategory() === 'control');
-        //ToDo: don't work...
-        //&& block.svgGroup_.textContent === desiredBlockText);
+          && block.getCategory() === 'control'
+          && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText);
       })).toBeTruthy();
     });
 
@@ -329,48 +327,43 @@ describe('WebView Block tests', () => {
      * Check if each defined blocks arguments are rendered properly
      */
     test('Block arguments are rendered properly', async () => {
-      console.log("START");
-      Object.keys(BLOCKS).forEach(categoryName => {
-        Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-          const block = BLOCKS[categoryName][blockName];
-          if (block['args0'] !== undefined) {
-            let output = '';
-            let i = 0;
-            while(block['args0'][i] !== undefined) {
-              if (block['args0'][i]['value'] !== undefined)
-                output += block['args0'][i]['value'];
-              if (block['args0'][i]['text'] !== undefined)
-                output += block['args0'][i]['text'];
-              if (block['args0'][i]['options'] !== undefined)
-                output += block['args0'][i]['options'][0][0];
-              i++;
-            }
-            if (output.length > 0)
-              console.log(output + '  -  ' + block['message0']);
-          }
-        });
-      });
-      console.log("END");
       expect(await page.evaluate((BLOCKS) => {
-        const renderedBlocks = toolboxWS.getAllBlocks();
-        let index = 0;
+        const allRenderedBlocks = toolboxWS.getAllBlocks();
+        let indexOfBlock = 0;
+        let returnStatus = true;
         Object.keys(BLOCKS).forEach(categoryName => {
           Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-            const block = BLOCKS[categoryName][blockName];
-            //loop each node with 'editable text'
-            const blockToCompare = renderedBlocks[index].svgGroup_.querySelectorAll('g.blocklyEditableText');
-            blockToCompare.forEach(argToCompare => {
-              Object.keys(block).filter(key => {
-                if (key.indexOf('args') > -1) {
-                  console.log(block[key]['value']);
-                  if (block[key]['value'] !== argToCompare.textContent)
-                    return false;
-                }
-              });
-            });
+            const jsBlock = BLOCKS[categoryName][blockName];
+            const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll('g.blocklyEditableText');
+            //get args from js-files (in blocks/categories directory)
+            let allJsArguments = [];
+            if (jsBlock['args0'] !== undefined) {
+              let jsBlockIndex = 0;
+              while(jsBlock['args0'][jsBlockIndex] !== undefined) {
+                if (jsBlock['args0'][jsBlockIndex]['value'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
+                if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
+                if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);
+                jsBlockIndex++;
+              }
+            }
+            if (allJsArguments.length !== renderedBlock.length)
+              returnStatus = false;
+            //check if rendered arguments and js arguments are equal
+            for (let argIndex = 0; argIndex < renderedBlock.length; argIndex++) {
+              let jsArgument = allJsArguments[argIndex].trim().replace(/\s/g, '');
+              let renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, '');
+              if (jsArgument !== renderedArgument) {
+                returnStatus = false;
+                console.log(jsArgument + ' ' + renderedArgument);
+              }
+            }
+            indexOfBlock++;
           });
         });
-        return true;
+        return returnStatus;
       }, BLOCKS)).toBeTruthy();
     });
   });
