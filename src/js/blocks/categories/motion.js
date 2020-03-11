@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['PlaceAtBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_PLACEATXY,
+      "message0": "%{BKY_MOTION_PLACEATXY}",
       "args0": [
         {
           "type": "field_number",
@@ -26,7 +26,7 @@ Blockly.Blocks['PlaceAtBrick'] = {
 Blockly.Blocks['SetXBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETXTO,
+      "message0": "%{BKY_MOTION_SETXTO}",
       "args0": [
         {
           "type": "field_number",
@@ -43,7 +43,7 @@ Blockly.Blocks['SetXBrick'] = {
 Blockly.Blocks['SetYBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETYTO,
+      "message0": "%{BKY_MOTION_SETYTO}",
       "args0": [
         {
           "type": "field_number",
@@ -60,7 +60,7 @@ Blockly.Blocks['SetYBrick'] = {
 Blockly.Blocks['ChangeXByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_CHANGEXBY,
+      "message0": "%{BKY_MOTION_CHANGEXBY}",
       "args0": [
         {
           "type": "field_number",
@@ -77,7 +77,7 @@ Blockly.Blocks['ChangeXByNBrick'] = {
 Blockly.Blocks['ChangeYByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_CHANGEYBY,
+      "message0": "%{BKY_MOTION_CHANGEYBY}",
       "args0": [
         {
           "type": "field_number",
@@ -94,7 +94,7 @@ Blockly.Blocks['ChangeYByNBrick'] = {
 Blockly.Blocks['GoToBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GOTO,
+      "message0": "%{BKY_MOTION_GOTO}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -113,7 +113,7 @@ Blockly.Blocks['GoToBrick'] = {
 Blockly.Blocks['IfOnEdgeBounceBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_IFONEDGEBOUNCE,
+      "message0": "%{BKY_MOTION_IFONEDGEBOUNCE}",
       "category": Blockly.Categories.motion,
       "extensions": ["colours_motion", "shape_statement"]
     });
@@ -123,7 +123,7 @@ Blockly.Blocks['IfOnEdgeBounceBrick'] = {
 Blockly.Blocks['MoveNStepsBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_MOVESTEPS,
+      "message0": "%{BKY_MOTION_MOVESTEPS}",
       "args0": [
         {
           "type": "field_number",
@@ -140,7 +140,7 @@ Blockly.Blocks['MoveNStepsBrick'] = {
 Blockly.Blocks['TurnRightBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_TURNRIGHTDEGREES,
+      "message0": "%{BKY_MOTION_TURNRIGHTDEGREES}",
       "args0": [
         {
           "type": "field_number",
@@ -157,7 +157,7 @@ Blockly.Blocks['TurnRightBrick'] = {
 Blockly.Blocks['TurnLeftBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_TURNLEFTDEGREES,
+      "message0": "%{BKY_MOTION_TURNLEFTDEGREES}",
       "args0": [
         {
           "type": "field_number",
@@ -175,7 +175,7 @@ Blockly.Blocks['TurnLeftBrick'] = {
 Blockly.Blocks['PointInDirectionBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_POINTINDIRECTIONDEGREES,
+      "message0": "%{BKY_MOTION_POINTINDIRECTIONDEGREES}",
       "args0": [
         {
           "type": "field_number",
@@ -192,7 +192,7 @@ Blockly.Blocks['PointInDirectionBrick'] = {
 Blockly.Blocks['PointToBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_POINTTOWARDS,
+      "message0": "%{BKY_MOTION_POINTTOWARDS}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -211,7 +211,7 @@ Blockly.Blocks['PointToBrick'] = {
 Blockly.Blocks['SetRotationStyleBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETROTATIONSTYLE,
+      "message0": "%{BKY_MOTION_SETROTATIONSTYLE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -231,7 +231,7 @@ Blockly.Blocks['SetRotationStyleBrick'] = {
 Blockly.Blocks['GlideToBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GLIDESECONDTOXY,
+      "message0": "%{BKY_MOTION_GLIDESECONDTOXY}",
       "args0": [
         {
           "type": "field_number",
@@ -259,7 +259,7 @@ Blockly.Blocks['GlideToBrick'] = {
 Blockly.Blocks['GoNStepsBackBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GOBACKLAYER,
+      "message0": "%{BKY_MOTION_GOBACKLAYER}",
       "args0": [
         {
           "type": "field_number",
@@ -277,7 +277,7 @@ Blockly.Blocks['GoNStepsBackBrick'] = {
 Blockly.Blocks['ComeToFrontBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_GOTOFRONT,
+      "message0": "%{BKY_MOTION_GOTOFRONT}",
       "category": Blockly.Categories.motion,
       "extensions": ["colours_motion", "shape_statement"]
     });
@@ -287,7 +287,7 @@ Blockly.Blocks['ComeToFrontBrick'] = {
 Blockly.Blocks['VibrationBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_VIBRATEFORSECOND,
+      "message0": "%{BKY_MOTION_VIBRATEFORSECOND}",
       "args0": [
         {
           "type": "field_number",
@@ -304,7 +304,7 @@ Blockly.Blocks['VibrationBrick'] = {
 Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETYOURMOTIONTYPETO,
+      "message0": "%{BKY_MOTION_SETYOURMOTIONTYPETO}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -325,7 +325,7 @@ Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
 Blockly.Blocks['SetVelocityBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETVELOCITYTO,
+      "message0": "%{BKY_MOTION_SETVELOCITYTO}",
       "args0": [
         {
           "type": "field_number",
@@ -347,7 +347,7 @@ Blockly.Blocks['SetVelocityBrick'] = {
 Blockly.Blocks['TurnLeftSpeedBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SPINLEFTDEGREESSECOND,
+      "message0": "%{BKY_MOTION_SPINLEFTDEGREESSECOND}",
       "args0": [
         {
           "type": "field_number",
@@ -364,7 +364,7 @@ Blockly.Blocks['TurnLeftSpeedBrick'] = {
 Blockly.Blocks['TurnRightSpeedBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SPINRIGHTDEGREESSECOND,
+      "message0": "%{BKY_MOTION_SPINRIGHTDEGREESSECOND}",
       "args0": [
         {
           "type": "field_number",
@@ -382,7 +382,7 @@ Blockly.Blocks['TurnRightSpeedBrick'] = {
 Blockly.Blocks['SetGravityBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO,
+      "message0": "%{BKY_MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO}",
       "args0": [
         {
           "type": "field_number",
@@ -405,7 +405,7 @@ Blockly.Blocks['SetGravityBrick'] = {
 Blockly.Blocks['SetMassBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETMASSTOKILOGRAM,
+      "message0": "%{BKY_MOTION_SETMASSTOKILOGRAM}",
       "args0": [
         {
           "type": "field_number",
@@ -422,7 +422,7 @@ Blockly.Blocks['SetMassBrick'] = {
 Blockly.Blocks['SetBounceBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETBOUNCEFACTORTO,
+      "message0": "%{BKY_MOTION_SETBOUNCEFACTORTO}",
       "args0": [
         {
           "type": "field_number",
@@ -439,7 +439,7 @@ Blockly.Blocks['SetBounceBrick'] = {
 Blockly.Blocks['SetFrictionBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.MOTION_SETFRICTIONTO,
+      "message0": "%{BKY_MOTION_SETFRICTIONTO}",
       "args0": [
         {
           "type": "field_number",

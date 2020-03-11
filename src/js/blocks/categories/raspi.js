@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['WhenRaspiPinChangedBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.RASPI_WHENPINCHANGED,
+      "message0": "%{BKY_RASPI_WHENPINCHANGED}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -30,9 +30,9 @@ Blockly.Blocks['RaspiIfLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
       "type": "IfThenLogicBeginBrick",
-      "message0": Blockly.Msg.RASPI_IFLOGICBEGINIF,
+      "message0": "%{BKY_RASPI_IFLOGICBEGINIF}",
       "message1": "%1",
-      "message2": Blockly.Msg.RASPI_IFLOGICBEGINELSE,
+      "message2": "%{BKY_RASPI_IFLOGICBEGINELSE}",
       "message3": "%1",
       "args0": [
         {
@@ -62,7 +62,7 @@ Blockly.Blocks['RaspiIfLogicBeginBrick'] = {
 Blockly.Blocks['RaspiSendDigitalValueBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.RASPI_SENDDIGITALVALUE,
+      "message0": "%{BKY_RASPI_SENDDIGITALVALUE}",
       "args0": [
         {
           "type": "field_number",
@@ -84,7 +84,7 @@ Blockly.Blocks['RaspiSendDigitalValueBrick'] = {
 Blockly.Blocks['RaspiPwmBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.RASPI_PWM,
+      "message0": "%{BKY_RASPI_PWM}",
       "args0": [
         {
           "type": "field_number",

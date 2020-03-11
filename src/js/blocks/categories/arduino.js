@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['ArduinoSendDigitalValueBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.ARDUINO_SENDDIGITALVALUE,
+      "message0": "%{BKY_ARDUINO_SENDDIGITALVALUE}",
       "args0": [
         {
           "type": "field_number",
@@ -25,7 +25,7 @@ Blockly.Blocks['ArduinoSendDigitalValueBrick'] = {
 Blockly.Blocks['ArduinoSendPWMValueBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.ARDUINO_SENDPWMALVALUE,
+      "message0": "%{BKY_ARDUINO_SENDPWMALVALUE}",
       "args0": [
         {
           "type": "field_number",

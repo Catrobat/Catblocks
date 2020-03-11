@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['StartScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
+      "message0": "%{BKY_EVENT_WHENSCENESTARTS}",
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "shape_hat"]
     });
@@ -13,7 +13,7 @@ Blockly.Blocks['StartScript'] = {
 Blockly.Blocks['WhenScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENTAPPED,
+      "message0": "%{BKY_EVENT_WHENTAPPED}",
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "shape_hat"],
       "args0": []
@@ -24,7 +24,7 @@ Blockly.Blocks['WhenScript'] = {
 Blockly.Blocks['WhenTouchDownScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENSTAGEISTAPPED,
+      "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}",
       "category": Blockly.Categories.event,
       "extensions": ["colours_event", "shape_hat"]
     });
@@ -34,7 +34,7 @@ Blockly.Blocks['WhenTouchDownScript'] = {
 Blockly.Blocks['BroadcastScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
+      "message0": "%{BKY_EVENT_WHENYOURECEIVE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -54,7 +54,7 @@ Blockly.Blocks['BroadcastScript'] = {
 Blockly.Blocks['BroadcastBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_BROADCAST_CB,
+      "message0": "%{BKY_EVENT_BROADCAST_CB}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -74,7 +74,7 @@ Blockly.Blocks['BroadcastBrick'] = {
 Blockly.Blocks['BroadcastWaitBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_BROADCASTANDWAIT_CB,
+      "message0": "%{BKY_EVENT_BROADCASTANDWAIT_CB}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -95,7 +95,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
 Blockly.Blocks['WhenConditionScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
+      "message0": "%{BKY_EVENT_WHENBECOMESTRUE}",
       "args0": [
         {
           "type": "field_input",
@@ -112,7 +112,7 @@ Blockly.Blocks['WhenConditionScript'] = {
 Blockly.Blocks['WhenBounceOffScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
+      "message0": "%{BKY_EVENT_WHENYOUBOUNCEOFF}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -131,7 +131,7 @@ Blockly.Blocks['WhenBounceOffScript'] = {
 Blockly.Blocks['WhenBackgroundChangesScript'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,
+      "message0": "%{BKY_EVENT_WHENBACKGROUNDCHANGES}",
       "args0": [
         {
           "type": "field_dropdown",

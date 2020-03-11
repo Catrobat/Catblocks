@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['SetVariableBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_SETVARIABLETOCAT,
+      "message0": "%{BKY_DATA_SETVARIABLETOCAT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -27,7 +27,7 @@ Blockly.Blocks['SetVariableBrick'] = {
 Blockly.Blocks['ChangeVariableBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_CHANGEVARIABLEBY,
+      "message0": "%{BKY_DATA_CHANGEVARIABLEBY}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -51,7 +51,7 @@ Blockly.Blocks['ChangeVariableBrick'] = {
 Blockly.Blocks['ShowTextBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_SHOWVARIABLEAT,
+      "message0": "%{BKY_DATA_SHOWVARIABLEAT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -81,7 +81,7 @@ Blockly.Blocks['ShowTextBrick'] = {
 Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_SHOWVARIABLEATSIZECOLORALIGNED,
+      "message0": "%{BKY_DATA_SHOWVARIABLEATSIZECOLORALIGNED}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -128,7 +128,7 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
 Blockly.Blocks['DeleteItemOfUserListBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_DELETEITEMFROMLIST,
+      "message0": "%{BKY_DATA_DELETEITEMFROMLIST}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -153,7 +153,7 @@ Blockly.Blocks['DeleteItemOfUserListBrick'] = {
 Blockly.Blocks['AddItemToUserListBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_ADDTOLIST,
+      "message0": "%{BKY_DATA_ADDTOLIST}",
       "args0": [
         {
           "type": "field_input",
@@ -177,7 +177,7 @@ Blockly.Blocks['AddItemToUserListBrick'] = {
 Blockly.Blocks['InsertItemIntoUserListBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_INSERTINTOLIST,
+      "message0": "%{BKY_DATA_INSERTINTOLIST}",
       "args0": [
         {
           "type": "field_input",
@@ -206,7 +206,7 @@ Blockly.Blocks['InsertItemIntoUserListBrick'] = {
 Blockly.Blocks['ReplaceItemInUserListBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_REPLACEITEMINLIST,
+      "message0": "%{BKY_DATA_REPLACEITEMINLIST}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -239,7 +239,7 @@ Blockly.Blocks['HideTextBrick'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_HIDEVARIABLE,
+      "message0": "%{BKY_DATA_HIDEVARIABLE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -262,7 +262,7 @@ Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_READVARIABLE,
+      "message0": "%{BKY_DATA_READVARIABLE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -285,7 +285,7 @@ Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.DATA_WRITEVARIABLE,
+      "message0": "%{BKY_DATA_WRITEVARIABLE}",
       "args0": [
         {
           "type": "field_dropdown",

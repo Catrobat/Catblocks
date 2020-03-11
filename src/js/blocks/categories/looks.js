@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['SetLookBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SWITCHTOLOOK,
+      "message0": "%{BKY_LOOKS_SWITCHTOLOOK}",
       "args0": [
         {
           "type": "field_input",
@@ -20,7 +20,7 @@ Blockly.Blocks['SetLookBrick'] = {
 Blockly.Blocks['SetLookByIndexBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SWITCHTOLOOKWITHNUMBER,
+      "message0": "%{BKY_LOOKS_SWITCHTOLOOKWITHNUMBER}",
       "args0": [
         {
           "type": "field_number",
@@ -37,7 +37,7 @@ Blockly.Blocks['SetLookByIndexBrick'] = {
 Blockly.Blocks['NextLookBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_NEXTLOOK,
+      "message0": "%{BKY_LOOKS_NEXTLOOK}",
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -47,7 +47,7 @@ Blockly.Blocks['NextLookBrick'] = {
 Blockly.Blocks['PreviousLookBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_PREVIOUSLOOK,
+      "message0": "%{BKY_LOOKS_PREVIOUSLOOK}",
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -57,7 +57,7 @@ Blockly.Blocks['PreviousLookBrick'] = {
 Blockly.Blocks['SetSizeToBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETSIZETO,
+      "message0": "%{BKY_LOOKS_SETSIZETO}",
       "args0": [
         {
           "type": "field_number",
@@ -74,7 +74,7 @@ Blockly.Blocks['SetSizeToBrick'] = {
 Blockly.Blocks['HideBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_HIDE,
+      "message0": "%{BKY_LOOKS_HIDE}",
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -84,7 +84,7 @@ Blockly.Blocks['HideBrick'] = {
 Blockly.Blocks['ShowBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SHOW,
+      "message0": "%{BKY_LOOKS_SHOW}",
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -94,7 +94,7 @@ Blockly.Blocks['ShowBrick'] = {
 Blockly.Blocks['AskBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_ASKANDSTOREWRITTENANSWERIN,
+      "message0": "%{BKY_LOOKS_ASKANDSTOREWRITTENANSWERIN}",
       "args0": [
         {
           "type": "field_input",
@@ -118,7 +118,7 @@ Blockly.Blocks['AskBrick'] = {
 Blockly.Blocks['SayBubbleBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SAY_CAT,
+      "message0": "%{BKY_LOOKS_SAY_CAT}",
       "args0": [
         {
           "type": "field_input",
@@ -135,7 +135,7 @@ Blockly.Blocks['SayBubbleBrick'] = {
 Blockly.Blocks['SayForBubbleBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SAYFORSECOND,
+      "message0": "%{BKY_LOOKS_SAYFORSECOND}",
       "args0": [
         {
           "type": "field_input",
@@ -157,7 +157,7 @@ Blockly.Blocks['SayForBubbleBrick'] = {
 Blockly.Blocks['ThinkBubbleBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_THINK_CAT,
+      "message0": "%{BKY_LOOKS_THINK_CAT}",
       "args0": [
         {
           "type": "field_input",
@@ -174,7 +174,7 @@ Blockly.Blocks['ThinkBubbleBrick'] = {
 Blockly.Blocks['ThinkForBubbleBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_THINKFORSECONDS,
+      "message0": "%{BKY_LOOKS_THINKFORSECONDS}",
       "args0": [
         {
           "type": "field_input",
@@ -196,7 +196,7 @@ Blockly.Blocks['ThinkForBubbleBrick'] = {
 Blockly.Blocks['SetTransparencyBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETTRANSPARENCYTO,
+      "message0": "%{BKY_LOOKS_SETTRANSPARENCYTO}",
       "args0": [
         {
           "type": "field_number",
@@ -213,7 +213,7 @@ Blockly.Blocks['SetTransparencyBrick'] = {
 Blockly.Blocks['ChangeSizeByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_CHANGESIZEBY,
+      "message0": "%{BKY_LOOKS_CHANGESIZEBY}",
       "args0": [
         {
           "type": "field_number",
@@ -230,7 +230,7 @@ Blockly.Blocks['ChangeSizeByNBrick'] = {
 Blockly.Blocks['ChangeTransparencyByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_CHANGETRANSPARENCYBY,
+      "message0": "%{BKY_LOOKS_CHANGETRANSPARENCYBY}",
       "args0": [
         {
           "type": "field_number",
@@ -247,7 +247,7 @@ Blockly.Blocks['ChangeTransparencyByNBrick'] = {
 Blockly.Blocks['SetBrightnessBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETBRIGHTHNESSTO,
+      "message0": "%{BKY_LOOKS_SETBRIGHTHNESSTO}",
       "args0": [
         {
           "type": "field_number",
@@ -264,7 +264,7 @@ Blockly.Blocks['SetBrightnessBrick'] = {
 Blockly.Blocks['ChangeBrightnessByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_CHANGEBRIGHTHNESSBY,
+      "message0": "%{BKY_LOOKS_CHANGEBRIGHTHNESSBY}",
       "args0": [
         {
           "type": "field_number",
@@ -281,7 +281,7 @@ Blockly.Blocks['ChangeBrightnessByNBrick'] = {
 Blockly.Blocks['SetColorBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETCOLORTO,
+      "message0": "%{BKY_LOOKS_SETCOLORTO}",
       "args0": [
         {
           "type": "field_number",
@@ -298,7 +298,7 @@ Blockly.Blocks['SetColorBrick'] = {
 Blockly.Blocks['ChangeColorByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_CHANGECOLORBY,
+      "message0": "%{BKY_LOOKS_CHANGECOLORBY}",
       "args0": [
         {
           "type": "field_number",
@@ -315,7 +315,7 @@ Blockly.Blocks['ChangeColorByNBrick'] = {
 Blockly.Blocks['ClearGraphicEffectBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_CLEARGRAPHICEFFECTS_CAT,
+      "message0": "%{BKY_LOOKS_CLEARGRAPHICEFFECTS_CAT}",
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -325,7 +325,7 @@ Blockly.Blocks['ClearGraphicEffectBrick'] = {
 Blockly.Blocks['SetBackgroundBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETBACKGROUND,
+      "message0": "%{BKY_LOOKS_SETBACKGROUND}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -344,7 +344,7 @@ Blockly.Blocks['SetBackgroundBrick'] = {
 Blockly.Blocks['SetBackgroundByIndexBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETBACKGROUNDTONUMBER,
+      "message0": "%{BKY_LOOKS_SETBACKGROUNDTONUMBER}",
       "args0": [
         {
           "type": "field_number",
@@ -361,7 +361,7 @@ Blockly.Blocks['SetBackgroundByIndexBrick'] = {
 Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETBACKGROUNDANDWAIT,
+      "message0": "%{BKY_LOOKS_SETBACKGROUNDANDWAIT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -380,7 +380,7 @@ Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
 Blockly.Blocks['SetBackgroundByIndexAndWaitBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_SETBACKGROUNDTONUMBERANDWAIT,
+      "message0": "%{BKY_LOOKS_SETBACKGROUNDTONUMBERANDWAIT}",
       "args0": [
         {
           "type": "field_number",
@@ -397,7 +397,7 @@ Blockly.Blocks['SetBackgroundByIndexAndWaitBrick'] = {
 Blockly.Blocks['CameraBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_TURNCAMERA,
+      "message0": "%{BKY_LOOKS_TURNCAMERA}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -416,7 +416,7 @@ Blockly.Blocks['CameraBrick'] = {
 Blockly.Blocks['ChooseCameraBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_USECAMERA,
+      "message0": "%{BKY_LOOKS_USECAMERA}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -435,7 +435,7 @@ Blockly.Blocks['ChooseCameraBrick'] = {
 Blockly.Blocks['FlashBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.LOOKS_TURNFLASHLIGHT,
+      "message0": "%{BKY_LOOKS_TURNFLASHLIGHT}",
       "args0": [
         {
           "type": "field_dropdown",

@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['PenDownBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_PENDOWN,
+      "message0": "%{BKY_PEN_PENDOWN}",
       "category": Blockly.Categories.operators,
       "extensions": ["colours_pen", "shape_statement"]
     });
@@ -14,7 +14,7 @@ Blockly.Blocks['PenDownBrick'] = {
 Blockly.Blocks['PenUpBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_PENUP,
+      "message0": "%{BKY_PEN_PENUP}",
       "category": Blockly.Categories.operators,
       "extensions": ["colours_pen", "shape_statement"]
     });
@@ -24,7 +24,7 @@ Blockly.Blocks['PenUpBrick'] = {
 Blockly.Blocks['SetPenSizeBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_SETPENSIZETO,
+      "message0": "%{BKY_PEN_SETPENSIZETO}",
       "args0": [
         {
           "type": "field_number",
@@ -41,7 +41,7 @@ Blockly.Blocks['SetPenSizeBrick'] = {
 Blockly.Blocks['SetPenColorBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_SETPENCOLORTO,
+      "message0": "%{BKY_PEN_SETPENCOLORTO}",
       "args0": [
         {
           "type": "field_number",
@@ -68,7 +68,7 @@ Blockly.Blocks['SetPenColorBrick'] = {
 Blockly.Blocks['StampBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_STAMP,
+      "message0": "%{BKY_PEN_STAMP}",
       "category": Blockly.Categories.operators,
       "extensions": ["colours_pen", "shape_statement"]
     });
@@ -78,7 +78,7 @@ Blockly.Blocks['StampBrick'] = {
 Blockly.Blocks['ClearBackgroundBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.PEN_CLEAR,
+      "message0": "%{BKY_PEN_CLEAR}",
       "category": Blockly.Categories.operators,
       "extensions": ["colours_pen", "shape_statement"]
     });

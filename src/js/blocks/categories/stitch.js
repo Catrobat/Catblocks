@@ -6,7 +6,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['StitchBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.STITCH,
+      "message0": "%{BKY_STITCH}",
       "category": Blockly.Categories.stitch,
       "extensions": ["colours_stitch", "shape_statement"]
     });
@@ -16,7 +16,7 @@ Blockly.Blocks['StitchBrick'] = {
 Blockly.Blocks['RunningStitchBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.STITCH_RUNNING,
+      "message0": "%{BKY_STITCH_RUNNING}",
       "args0": [
         {
           "type": "field_number",
@@ -34,7 +34,7 @@ Blockly.Blocks['RunningStitchBrick'] = {
 Blockly.Blocks['ZigZagStitchBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.STITCH_ZIGZAG,
+      "message0": "%{BKY_STITCH_ZIGZAG}",
       "args0": [
         {
           "type": "field_number",
@@ -57,7 +57,7 @@ Blockly.Blocks['ZigZagStitchBrick'] = {
 Blockly.Blocks['TripleStitchBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.STITCH_TRIPLE,
+      "message0": "%{BKY_STITCH_TRIPLE}",
       "args0": [
         {
           "type": "field_number",
@@ -75,7 +75,7 @@ Blockly.Blocks['TripleStitchBrick'] = {
 Blockly.Blocks['StopRunningStitchBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.STITCH_STOP,
+      "message0": "%{BKY_STITCH_STOP}",
       "category": Blockly.Categories.stitch,
       "extensions": ["colours_stitch", "shape_statement"]
     });

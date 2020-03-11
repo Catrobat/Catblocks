@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGOEV3_MOTORTURNANGLE,
+      "message0": "%{BKY_LEGOEV3_MOTORTURNANGLE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -27,7 +27,7 @@ Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
 Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGOEV3_MOTORMOVE,
+      "message0": "%{BKY_LEGOEV3_MOTORMOVE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -51,7 +51,7 @@ Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
 Blockly.Blocks['LegoEv3MotorStopBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGOEV3_MOTORSTOP,
+      "message0": "%{BKY_LEGOEV3_MOTORSTOP}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -70,7 +70,7 @@ Blockly.Blocks['LegoEv3MotorStopBrick'] = {
 Blockly.Blocks['LegoEv3PlayToneBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGOEV3_PLAYTONE,
+      "message0": "%{BKY_LEGOEV3_PLAYTONE}",
       "args0": [
         {
           "type": "field_number",
@@ -97,7 +97,7 @@ Blockly.Blocks['LegoEv3PlayToneBrick'] = {
 Blockly.Blocks['LegoEv3SetLedBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGOEV3_SETLED,
+      "message0": "%{BKY_LEGOEV3_SETLED}",
       "args0": [
         {
           "type": "field_dropdown",

@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.PHIRO_MOTORMOVEFORWARD,
+      "message0": "%{BKY_PHIRO_MOTORMOVEFORWARD}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -27,7 +27,7 @@ Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
 Blockly.Blocks['PhiroMotorMoveBackwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.PHIRO_MOTORMOVEBACKWARD,
+      "message0": "%{BKY_PHIRO_MOTORMOVEBACKWARD}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -51,7 +51,7 @@ Blockly.Blocks['PhiroMotorMoveBackwardBrick'] = {
 Blockly.Blocks['PhiroMotorStopBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.PHIRO_MOTORSTOP,
+      "message0": "%{BKY_PHIRO_MOTORSTOP}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -70,7 +70,7 @@ Blockly.Blocks['PhiroMotorStopBrick'] = {
 Blockly.Blocks['PhiroPlayToneBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.PHIRO_PLAYTONE,
+      "message0": "%{BKY_PHIRO_PLAYTONE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -94,7 +94,7 @@ Blockly.Blocks['PhiroPlayToneBrick'] = {
 Blockly.Blocks['PhiroRGBLightBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.PHIRO_RGBLIGHT,
+      "message0": "%{BKY_PHIRO_RGBLIGHT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -129,9 +129,9 @@ Blockly.Blocks['PhiroIfLogicBeginBrick'] = {
   init: function() {
     this.jsonInit({
       "type": "IfThenLogicBeginBrick",
-      "message0": Blockly.Msg.PHIRO_IFLOGICBEGINIF,
+      "message0": "%{BKY_PHIRO_IFLOGICBEGINIF}",
       "message1": "%1",
-      "message2": Blockly.Msg.PHIRO_IFLOGICBEGINELSE,
+      "message2": "%{BKY_PHIRO_IFLOGICBEGINELSE}",
       "message3": "%1",
       "args0": [
         {

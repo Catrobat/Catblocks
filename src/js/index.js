@@ -60,8 +60,7 @@ const initShare = (container, lang) => {
     break;
   }
   default: {
-    // TODO: add more cases
-    console.warn(`Please define some code in index.js for type: ${process.env.TYPE}`);
+    console.warn(`Please set process.env.TYPE properly in package.json, current value: ${process.env.TYPE}`);
   }
   }
 })();

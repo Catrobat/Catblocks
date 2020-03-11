@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['DroneTakeOffLandBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_TAKEOFFLAND,
+      "message0": "%{BKY_DRONE_TAKEOFFLAND}",
       "category": Blockly.Categories.drone,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -13,7 +13,7 @@ Blockly.Blocks['DroneTakeOffLandBrick'] = {
 Blockly.Blocks['DroneEmergencyBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_EMERGENCY,
+      "message0": "%{BKY_DRONE_EMERGENCY}",
       "category": Blockly.Categories.drone,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -23,7 +23,7 @@ Blockly.Blocks['DroneEmergencyBrick'] = {
 Blockly.Blocks['DroneMoveUpBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVEUP,
+      "message0": "%{BKY_DRONE_MOVEUP}",
       "args0": [
         {
           "type": "field_number",
@@ -44,7 +44,7 @@ Blockly.Blocks['DroneMoveUpBrick'] = {
 Blockly.Blocks['DroneMoveDownBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVEDOWN,
+      "message0": "%{BKY_DRONE_MOVEDOWN}",
       "args0": [
         {
           "type": "field_number",
@@ -64,7 +64,7 @@ Blockly.Blocks['DroneMoveDownBrick'] = {
 Blockly.Blocks['DroneMoveLeftBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVELEFT,
+      "message0": "%{BKY_DRONE_MOVELEFT}",
       "args0": [
         {
           "type": "field_number",
@@ -84,7 +84,7 @@ Blockly.Blocks['DroneMoveLeftBrick'] = {
 Blockly.Blocks['DroneMoveRightBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVERIGHT,
+      "message0": "%{BKY_DRONE_MOVERIGHT}",
       "args0": [
         {
           "type": "field_number",
@@ -104,7 +104,7 @@ Blockly.Blocks['DroneMoveRightBrick'] = {
 Blockly.Blocks['DroneMoveForwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVEFORWARD,
+      "message0": "%{BKY_DRONE_MOVEFORWARD}",
       "args0": [
         {
           "type": "field_number",
@@ -124,7 +124,7 @@ Blockly.Blocks['DroneMoveForwardBrick'] = {
 Blockly.Blocks['DroneMoveBackwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_MOVEBACKWARD,
+      "message0": "%{BKY_DRONE_MOVEBACKWARD}",
       "args0": [
         {
           "type": "field_number",
@@ -144,7 +144,7 @@ Blockly.Blocks['DroneMoveBackwardBrick'] = {
 Blockly.Blocks['DroneTurnLeftBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_TURNLEFT,
+      "message0": "%{BKY_DRONE_TURNLEFT}",
       "args0": [
         {
           "type": "field_number",
@@ -164,7 +164,7 @@ Blockly.Blocks['DroneTurnLeftBrick'] = {
 Blockly.Blocks['DroneTurnRightBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_TURNRIGHT,
+      "message0": "%{BKY_DRONE_TURNRIGHT}",
       "args0": [
         {
           "type": "field_number",
@@ -184,7 +184,7 @@ Blockly.Blocks['DroneTurnRightBrick'] = {
 Blockly.Blocks['DroneFlipBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_FLIP,
+      "message0": "%{BKY_DRONE_FLIP}",
       "category": Blockly.Categories.drone,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -195,7 +195,7 @@ Blockly.Blocks['DroneFlipBrick'] = {
 Blockly.Blocks['DronePlayLedAnimationBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_PLAYLEDANIMATION,
+      "message0": "%{BKY_DRONE_PLAYLEDANIMATION}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -214,7 +214,7 @@ Blockly.Blocks['DronePlayLedAnimationBrick'] = {
 Blockly.Blocks['DroneSwitchCameraBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.DRONE_SWITCHCAMERA,
+      "message0": "%{BKY_DRONE_SWITCHCAMERA}",
       "category": Blockly.Categories.drone,
       "extensions": ["colours_drone", "shape_statement"]
     });

@@ -4,7 +4,7 @@ Blockly.Blocks['ForeverBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "ForeverBrick",
-      "message0": Blockly.Msg.CONTROL_FOREVER,
+      "message0": "%{BKY_CONTROL_FOREVER}",
       "message1": "%1", // Statement
       "message2": "%1", // Icon
       "lastDummyAlign2": "RIGHT",
@@ -34,7 +34,7 @@ Blockly.Blocks['WaitBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "WaitBrick",
-      "message0": Blockly.Msg.CONTROL_WAIT,
+      "message0": "%{BKY_CONTROL_WAIT}",
       "args0": [
         {
           "type": "field_number",
@@ -52,7 +52,7 @@ Blockly.Blocks['NoteBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "NoteBrick",
-      "message0": Blockly.Msg.CONTROL_NOTE,
+      "message0": "%{BKY_CONTROL_NOTE}",
       "args0": [
         {
           "type": "field_input",
@@ -70,9 +70,9 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
   init: function () {
     this.jsonInit({
       "type": "IfThenLogicBeginBrick",
-      "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
+      "message0": "%{BKY_CONTROL_IFISTRUEELSEIF}",
       "message1": "%1",
-      "message2": Blockly.Msg.CONTROL_IFISTRUEELSEELSE,
+      "message2": "%{BKY_CONTROL_IFISTRUEELSEELSE}",
       "message3": "%1",
       "args0": [
         {
@@ -103,7 +103,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
   init: function () {
     this.jsonInit({
       "type": "IfLogicBeginBrick",
-      "message0": Blockly.Msg.CONTROL_IFISTRUEELSEIF,
+      "message0": "%{BKY_CONTROL_IFISTRUEELSEIF}",
       "message1": "%1", // Statement
       "args0": [
         {
@@ -127,7 +127,7 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
 Blockly.Blocks['WaitUntilBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.CONTROL_WAITUNTILTRUE,
+      "message0": "%{BKY_CONTROL_WAITUNTILTRUE}",
       "args0": [
         {
           "type": "field_input",
@@ -145,7 +145,7 @@ Blockly.Blocks['RepeatBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "RepeatBrick",
-      "message0": Blockly.Msg.CONTROL_REPEATTIMES,
+      "message0": "%{BKY_CONTROL_REPEATTIMES}",
       "message1": "%1", // Statement
       "message2": "%1", // Icon
       "lastDummyAlign2": "RIGHT",
@@ -182,7 +182,7 @@ Blockly.Blocks['RepeatUntilBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "RepeatUntilBrick",
-      "message0": Blockly.Msg.CONTROL_REPEATUNTILISTRUE,
+      "message0": "%{BKY_CONTROL_REPEATUNTILISTRUE}",
       "message1": "%1", // Statement
       "message2": "%1", // Icon
       "lastDummyAlign2": "RIGHT",
@@ -219,7 +219,7 @@ Blockly.Blocks['SceneTransitionBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "SceneTransitionBrick",
-      "message0": Blockly.Msg.CONTROL_CONTINUESCENE,
+      "message0": "%{BKY_CONTROL_CONTINUESCENE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -239,7 +239,7 @@ Blockly.Blocks['SceneStartBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "SceneStartBrick",
-      "message0": Blockly.Msg.CONTROL_STARTSCENE,
+      "message0": "%{BKY_CONTROL_STARTSCENE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -259,7 +259,7 @@ Blockly.Blocks['StopScriptBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "StopScriptBrick",
-      "message0": Blockly.Msg.CONTROL_STOPCAT,
+      "message0": "%{BKY_CONTROL_STOPCAT}",
       "args0": [
         {
           "type": "field_input",
@@ -277,7 +277,7 @@ Blockly.Blocks['CloneBrick'] = {
   init: function () {
     this.jsonInit({
       "id": "CloneBrick",
-      "message0": Blockly.Msg.CONTROL_CREATECLONEOFCAT,
+      "message0": "%{BKY_CONTROL_CREATECLONEOFCAT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -296,7 +296,7 @@ Blockly.Blocks['CloneBrick'] = {
 Blockly.Blocks['DeleteThisCloneBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.CONTROL_DELETETHISCLONE,
+      "message0": "%{BKY_CONTROL_DELETETHISCLONE}",
       "args0": [
       ],
       "category": Blockly.Categories.control,
@@ -309,7 +309,7 @@ Blockly.Blocks['WhenClonedScript'] = {
   init: function () {
     this.jsonInit({
       "id": "WhenClonedScript",
-      "message0": Blockly.Msg.CONTROL_WHENYOUSTARTASACLONE,
+      "message0": "%{BKY_CONTROL_WHENYOUSTARTASACLONE}",
       "args0": [
       ],
       "category": Blockly.Categories.control,

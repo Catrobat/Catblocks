@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGONXT_MOTORTURNANGLE,
+      "message0": "%{BKY_LEGONXT_MOTORTURNANGLE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -28,7 +28,7 @@ Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
 Blockly.Blocks['LegoNxtMotorStopBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGONXT_MOTORSTOP,
+      "message0": "%{BKY_LEGONXT_MOTORSTOP}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -48,7 +48,7 @@ Blockly.Blocks['LegoNxtMotorStopBrick'] = {
 Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGONXT_MOTORMOVE,
+      "message0": "%{BKY_LEGONXT_MOTORMOVE}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -72,7 +72,7 @@ Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
 Blockly.Blocks['LegoNxtPlayToneBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.LEGONXT_PLAYTONE,
+      "message0": "%{BKY_LEGONXT_PLAYTONE}",
       "args0": [
         {
           "type": "field_number",

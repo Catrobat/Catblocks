@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['PlaySoundBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_STARTSOUND,
+      "message0": "%{BKY_SOUND_STARTSOUND}",
       "args0": [
         {
           "type": "field_input",
@@ -20,7 +20,7 @@ Blockly.Blocks['PlaySoundBrick'] = {
 Blockly.Blocks['PlaySoundAndWaitBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_STARTSOUNDANDWAIT,
+      "message0": "%{BKY_SOUND_STARTSOUNDANDWAIT}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -39,7 +39,7 @@ Blockly.Blocks['PlaySoundAndWaitBrick'] = {
 Blockly.Blocks['StopAllSoundsBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_STOPALLSOUNDS,
+      "message0": "%{BKY_SOUND_STOPALLSOUNDS}",
       "category": Blockly.Categories.sound,
       "extensions": ["colours_sounds", "shape_statement"]
     });
@@ -49,7 +49,7 @@ Blockly.Blocks['StopAllSoundsBrick'] = {
 Blockly.Blocks['SetVolumeToBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_SETVOLUMETO,
+      "message0": "%{BKY_SOUND_SETVOLUMETO}",
       "args0": [
         {
           "type": "field_number",
@@ -66,7 +66,7 @@ Blockly.Blocks['SetVolumeToBrick'] = {
 Blockly.Blocks['ChangeVolumeByNBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_CHANGEVOLUMEBY,
+      "message0": "%{BKY_SOUND_CHANGEVOLUMEBY}",
       "args0": [
         {
           "type": "field_number",
@@ -83,7 +83,7 @@ Blockly.Blocks['ChangeVolumeByNBrick'] = {
 Blockly.Blocks['SpeakBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_SPEAK,
+      "message0": "%{BKY_SOUND_SPEAK}",
       "args0": [
         {
           "type": "field_input",
@@ -100,7 +100,7 @@ Blockly.Blocks['SpeakBrick'] = {
 Blockly.Blocks['SpeakAndWaitBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_SPEAKANDWAIT,
+      "message0": "%{BKY_SOUND_SPEAKANDWAIT}",
       "args0": [
         {
           "type": "field_input",
@@ -117,7 +117,7 @@ Blockly.Blocks['SpeakAndWaitBrick'] = {
 Blockly.Blocks['AskSpeechBrick'] = {
   init: function () {
     this.jsonInit({
-      "message0": Blockly.Msg.SOUND_ASKANDSTORESPOKENANSWERIN,
+      "message0": "%{BKY_SOUND_ASKANDSTORESPOKENANSWERIN}",
       "args0": [
         {
           "type": "field_input",

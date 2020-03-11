@@ -3,7 +3,7 @@ import Blockly from "scratch-blocks";
 Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_MOVEFORWARD,
+      "message0": "%{BKY_SUMO_MOVEFORWARD}",
       "args0": [
         {
           "type": "field_number",
@@ -23,7 +23,7 @@ Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
 Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_MOVEBACKWARD,
+      "message0": "%{BKY_SUMO_MOVEBACKWARD}",
       "args0": [
         {
           "type": "field_number",
@@ -43,7 +43,7 @@ Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
 Blockly.Blocks['JumpingSumoAnimationsBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_ANIMATION,
+      "message0": "%{BKY_SUMO_ANIMATION}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -63,7 +63,7 @@ Blockly.Blocks['JumpingSumoAnimationsBrick'] = {
 Blockly.Blocks['JumpingSumoSoundBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_SOUND,
+      "message0": "%{BKY_SUMO_SOUND}",
       "args0": [
         {
           "type": "field_dropdown",
@@ -87,7 +87,7 @@ Blockly.Blocks['JumpingSumoSoundBrick'] = {
 Blockly.Blocks['JumpingSumoNoSoundBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_NOSOUND,
+      "message0": "%{BKY_SUMO_NOSOUND}",
       "category": Blockly.Categories.jumpingSumo,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -97,7 +97,7 @@ Blockly.Blocks['JumpingSumoNoSoundBrick'] = {
 Blockly.Blocks['JumpingSumoJumpLongBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_JUMPLONG,
+      "message0": "%{BKY_SUMO_JUMPLONG}",
       "category": Blockly.Categories.jumpingSumo,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -108,7 +108,7 @@ Blockly.Blocks['JumpingSumoJumpLongBrick'] = {
 Blockly.Blocks['JumpingSumoJumpHighBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_JUMPHIGH,
+      "message0": "%{BKY_SUMO_JUMPHIGH}",
       "category": Blockly.Categories.jumpingSumo,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -118,7 +118,7 @@ Blockly.Blocks['JumpingSumoJumpHighBrick'] = {
 Blockly.Blocks['JumpingSumoRotateLeftBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_ROTATELEFT,
+      "message0": "%{BKY_SUMO_ROTATELEFT}",
       "args0": [
         {
           "type": "field_number",
@@ -135,7 +135,7 @@ Blockly.Blocks['JumpingSumoRotateLeftBrick'] = {
 Blockly.Blocks['JumpingSumoRotateRightBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_ROTATERIGHT,
+      "message0": "%{BKY_SUMO_ROTATERIGHT}",
       "args0": [
         {
           "type": "field_number",
@@ -152,7 +152,7 @@ Blockly.Blocks['JumpingSumoRotateRightBrick'] = {
 Blockly.Blocks['JumpingSumoTurnBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_TURN,
+      "message0": "%{BKY_SUMO_TURN}",
       "category": Blockly.Categories.jumpingSumo,
       "extensions": ["colours_drone", "shape_statement"]
     });
@@ -162,7 +162,7 @@ Blockly.Blocks['JumpingSumoTurnBrick'] = {
 Blockly.Blocks['JumpingSumoTakingPictureBrick'] = {
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.SUMO_TAKINGPICTURE,
+      "message0": "%{BKY_SUMO_TAKINGPICTURE}",
       "category": Blockly.Categories.jumpingSumo,
       "extensions": ["colours_drone", "shape_statement"]
     });
