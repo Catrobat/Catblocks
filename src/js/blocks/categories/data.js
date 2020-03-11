@@ -18,7 +18,7 @@ Blockly.Blocks['SetVariableBrick'] = {
           "text": "Some Value"
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -42,7 +42,7 @@ Blockly.Blocks['ChangeVariableBrick'] = {
           "text": "Some new Value"
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -71,7 +71,7 @@ Blockly.Blocks['ShowTextBrick'] = {
           "value": 50
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -118,7 +118,7 @@ Blockly.Blocks['ShowTextColorSizeAlignmentBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -143,7 +143,7 @@ Blockly.Blocks['DeleteItemOfUserListBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -168,7 +168,7 @@ Blockly.Blocks['AddItemToUserListBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -197,7 +197,7 @@ Blockly.Blocks['InsertItemIntoUserListBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
@@ -226,17 +226,13 @@ Blockly.Blocks['ReplaceItemInUserListBrick'] = {
           "text": "new Value"
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['HideTextBrick'] = {
-  /**
-   * Block to read a variable from device
-   * @this Blockly.Block
-   */
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_DATA_HIDEVARIABLE}",
@@ -249,17 +245,13 @@ Blockly.Blocks['HideTextBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
-  /**
-   * Block to hide a variable
-   * @this Blockly.Block
-   */
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_DATA_READVARIABLE}",
@@ -272,17 +264,13 @@ Blockly.Blocks['ReadVariableFromDeviceBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
-  /**
-   * Block to hide a variable
-   * @this Blockly.Block
-   */
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_DATA_WRITEVARIABLE}",
@@ -295,7 +283,7 @@ Blockly.Blocks['WriteVariableOnDeviceBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_data", "shape_statement"]
     });
   }

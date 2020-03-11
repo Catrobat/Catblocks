@@ -15,10 +15,10 @@ Blockly.Blocks['PhiroMotorMoveForwardBrick'] = {
         {
           "type": "field_number",
           "name": "SPEED",
-          value: 100
+          "value": 100
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -42,7 +42,7 @@ Blockly.Blocks['PhiroMotorMoveBackwardBrick'] = {
           "value": 100
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -61,7 +61,7 @@ Blockly.Blocks['PhiroMotorStopBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -82,10 +82,10 @@ Blockly.Blocks['PhiroPlayToneBrick'] = {
         {
           "type": "field_number",
           "name": "DURATION",
-          value: 1
+          "value": 1
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -119,7 +119,7 @@ Blockly.Blocks['PhiroRGBLightBrick'] = {
           "value": 255
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -154,7 +154,7 @@ Blockly.Blocks['PhiroIfLogicBeginBrick'] = {
           "name": "SUBSTACK2"
         }
       ],
-      "category": Blockly.Categories.phiro,
+      "category": "phiro",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }

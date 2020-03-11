@@ -4,7 +4,7 @@ Blockly.Blocks['DroneTakeOffLandBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_DRONE_TAKEOFFLAND}",
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -14,7 +14,7 @@ Blockly.Blocks['DroneEmergencyBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_DRONE_EMERGENCY}",
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -34,7 +34,7 @@ Blockly.Blocks['DroneMoveUpBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -55,7 +55,7 @@ Blockly.Blocks['DroneMoveDownBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -75,7 +75,7 @@ Blockly.Blocks['DroneMoveLeftBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -95,7 +95,7 @@ Blockly.Blocks['DroneMoveRightBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -115,7 +115,7 @@ Blockly.Blocks['DroneMoveForwardBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -135,7 +135,7 @@ Blockly.Blocks['DroneMoveBackwardBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -155,7 +155,7 @@ Blockly.Blocks['DroneTurnLeftBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -175,7 +175,7 @@ Blockly.Blocks['DroneTurnRightBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -185,7 +185,7 @@ Blockly.Blocks['DroneFlipBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_DRONE_FLIP}",
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -205,7 +205,7 @@ Blockly.Blocks['DronePlayLedAnimationBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -215,7 +215,7 @@ Blockly.Blocks['DroneSwitchCameraBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_DRONE_SWITCHCAMERA}",
-      "category": Blockly.Categories.drone,
+      "category": "drone",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }

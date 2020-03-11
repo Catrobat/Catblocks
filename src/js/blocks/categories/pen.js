@@ -4,7 +4,7 @@ Blockly.Blocks['PenDownBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_PEN_PENDOWN}",
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }
@@ -15,7 +15,7 @@ Blockly.Blocks['PenUpBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_PEN_PENUP}",
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }
@@ -32,7 +32,7 @@ Blockly.Blocks['SetPenSizeBrick'] = {
           "value": 3.15
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }
@@ -59,7 +59,7 @@ Blockly.Blocks['SetPenColorBrick'] = {
           "value": 255
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }
@@ -69,7 +69,7 @@ Blockly.Blocks['StampBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_PEN_STAMP}",
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }
@@ -79,7 +79,7 @@ Blockly.Blocks['ClearBackgroundBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_PEN_CLEAR}",
-      "category": Blockly.Categories.operators,
+      "category": "operators",
       "extensions": ["colours_pen", "shape_statement"]
     });
   }

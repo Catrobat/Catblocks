@@ -7,7 +7,7 @@ Blockly.Blocks['StitchBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_STITCH}",
-      "category": Blockly.Categories.stitch,
+      "category": "stitch",
       "extensions": ["colours_stitch", "shape_statement"]
     });
   }
@@ -24,7 +24,7 @@ Blockly.Blocks['RunningStitchBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.stitch,
+      "category": "stitch",
       "extensions": ["colours_stitch", "shape_statement"]
     });
   }
@@ -47,7 +47,7 @@ Blockly.Blocks['ZigZagStitchBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.stitch,
+      "category": "stitch",
       "extensions": ["colours_stitch", "shape_statement"]
     });
   }
@@ -65,7 +65,7 @@ Blockly.Blocks['TripleStitchBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.stitch,
+      "category": "stitch",
       "extensions": ["colours_stitch", "shape_statement"]
     });
   }
@@ -76,7 +76,7 @@ Blockly.Blocks['StopRunningStitchBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_STITCH_STOP}",
-      "category": Blockly.Categories.stitch,
+      "category": "stitch",
       "extensions": ["colours_stitch", "shape_statement"]
     });
   }

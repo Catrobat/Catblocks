@@ -4,7 +4,7 @@ Blockly.Blocks['StartScript'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_EVENT_WHENSCENESTARTS}",
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }
@@ -14,7 +14,7 @@ Blockly.Blocks['WhenScript'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_EVENT_WHENTAPPED}",
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"],
       "args0": []
     });
@@ -25,7 +25,7 @@ Blockly.Blocks['WhenTouchDownScript'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}",
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }
@@ -44,7 +44,7 @@ Blockly.Blocks['BroadcastScript'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }
@@ -64,7 +64,7 @@ Blockly.Blocks['BroadcastBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_statement"]
     });
   }
@@ -84,7 +84,7 @@ Blockly.Blocks['BroadcastWaitBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_statement"]
     });
   }
@@ -103,7 +103,7 @@ Blockly.Blocks['WhenConditionScript'] = {
           "text": "1 < 2"
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }
@@ -122,7 +122,7 @@ Blockly.Blocks['WhenBounceOffScript'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }
@@ -141,7 +141,7 @@ Blockly.Blocks['WhenBackgroundChangesScript'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.event,
+      "category": "event",
       "extensions": ["colours_event", "shape_hat"]
     });
   }

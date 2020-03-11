@@ -1,12 +1,12 @@
 import Blockly from "scratch-blocks";
 
 Blockly.Blocks['ForeverBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "ForeverBrick",
       "message0": "%{BKY_CONTROL_FOREVER}",
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args1": [
         {
@@ -17,21 +17,21 @@ Blockly.Blocks['ForeverBrick'] = {
       "args2": [
         {
           "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "repeat.svg",
+          "src": "../media/repeat.svg",
           "width": 24,
           "height": 24,
           "alt": "*",
           "flip_rtl": true
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['WaitBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "WaitBrick",
       "message0": "%{BKY_CONTROL_WAIT}",
@@ -42,14 +42,14 @@ Blockly.Blocks['WaitBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['NoteBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "NoteBrick",
       "message0": "%{BKY_CONTROL_NOTE}",
@@ -60,14 +60,14 @@ Blockly.Blocks['NoteBrick'] = {
           "text": "Add comment here..."
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['IfLogicBeginBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "type": "IfThenLogicBeginBrick",
       "message0": "%{BKY_CONTROL_IFISTRUEELSEIF}",
@@ -93,18 +93,18 @@ Blockly.Blocks['IfLogicBeginBrick'] = {
           "name": "SUBSTACK2"
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['IfThenLogicBeginBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "type": "IfLogicBeginBrick",
       "message0": "%{BKY_CONTROL_IFISTRUEELSEIF}",
-      "message1": "%1", // Statement
+      "message1": "%1",
       "args0": [
         {
           "type": "field_input",
@@ -118,14 +118,14 @@ Blockly.Blocks['IfThenLogicBeginBrick'] = {
           "name": "SUBSTACK"
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['WaitUntilBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "message0": "%{BKY_CONTROL_WAITUNTILTRUE}",
       "args0": [
@@ -135,19 +135,19 @@ Blockly.Blocks['WaitUntilBrick'] = {
           "text": "1 < 2"
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['RepeatBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "RepeatBrick",
       "message0": "%{BKY_CONTROL_REPEATTIMES}",
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args0": [
         {
@@ -165,26 +165,26 @@ Blockly.Blocks['RepeatBrick'] = {
       "args2": [
         {
           "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "repeat.svg",
+          "src": "../media/repeat.svg",
           "width": 24,
           "height": 24,
           "alt": "*",
           "flip_rtl": true
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['RepeatUntilBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "RepeatUntilBrick",
       "message0": "%{BKY_CONTROL_REPEATUNTILISTRUE}",
-      "message1": "%1", // Statement
-      "message2": "%1", // Icon
+      "message1": "%1",
+      "message2": "%1",
       "lastDummyAlign2": "RIGHT",
       "args0": [
         {
@@ -202,21 +202,21 @@ Blockly.Blocks['RepeatUntilBrick'] = {
       "args2": [
         {
           "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "repeat.svg",
+          "src": "../media/repeat.svg",
           "width": 24,
           "height": 24,
           "alt": "*",
           "flip_rtl": true
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['SceneTransitionBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "SceneTransitionBrick",
       "message0": "%{BKY_CONTROL_CONTINUESCENE}",
@@ -229,14 +229,14 @@ Blockly.Blocks['SceneTransitionBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['SceneStartBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "SceneStartBrick",
       "message0": "%{BKY_CONTROL_STARTSCENE}",
@@ -249,14 +249,14 @@ Blockly.Blocks['SceneStartBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['StopScriptBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "StopScriptBrick",
       "message0": "%{BKY_CONTROL_STOPCAT}",
@@ -267,14 +267,14 @@ Blockly.Blocks['StopScriptBrick'] = {
           "text": "0"
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['CloneBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "CloneBrick",
       "message0": "%{BKY_CONTROL_CREATECLONEOFCAT}",
@@ -287,32 +287,32 @@ Blockly.Blocks['CloneBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_statement"]
     });
   }
 };
 
 Blockly.Blocks['DeleteThisCloneBrick'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "message0": "%{BKY_CONTROL_DELETETHISCLONE}",
       "args0": [
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_end"]
     });
   }
 };
 
 Blockly.Blocks['WhenClonedScript'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "WhenClonedScript",
       "message0": "%{BKY_CONTROL_WHENYOUSTARTASACLONE}",
       "args0": [
       ],
-      "category": Blockly.Categories.control,
+      "category": "control",
       "extensions": ["colours_control", "shape_hat"]
     });
   }

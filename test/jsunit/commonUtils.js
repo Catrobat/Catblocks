@@ -10,6 +10,7 @@ fs.gracefulify(realfs);
 /**
  * root path from catblocks directory
  */
+// #INFO: for local testing use ./../../../
 const ROOT_PATH = './';
 
 /**
@@ -58,21 +59,6 @@ const readFileSync = (relPath) => {
 };
 
 /**
-* Input is a json serialized as string
-* This funciton will excape all keys and values from the string with a double quoate
-* @param {*} jsonString 
-*/
-const escapeJsonValues = (jsonString) => {
-  return jsonString
-    // remove all spaces where no char is lookahead/behind
-    .replace(/(?<!\w) +(?!\w)/g, '')
-    .replace(/ true /g, 'true')
-    .replace(/ false /g, 'false')
-    .split('\"').join('')
-    .replace(/([^:\{\}\[\]\,]+ ?)+/g, '"$&"')
-};
-
-/**
  * Parse the local stored file 
  * @param {*} category 
  */
@@ -88,7 +74,6 @@ const parseBlockCategoryFile = (category) => {
     if (blockBody.length === 0) return null;
 
     blockBody = blockBody[0].substr('this.jsonInit('.length).slice(0, -1);
-    blockBody = escapeJsonValues(blockBody);
     parsedBlocks[blockName] = JSON.parse(blockBody);
   }
 
@@ -102,6 +87,5 @@ module.exports = {
   isNotEmptyString,
   listDirectorySync,
   readFileSync,
-  escapeJsonValues,
   parseBlockCategoryFile
 };

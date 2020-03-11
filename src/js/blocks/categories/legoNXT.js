@@ -18,7 +18,7 @@ Blockly.Blocks['LegoNxtMotorTurnAngleBrick'] = {
           "text": "180"
         }
       ],
-      "category": Blockly.Categories.legoNXT,
+      "category": "legoNXT",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -38,7 +38,7 @@ Blockly.Blocks['LegoNxtMotorStopBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.legoNXT,
+      "category": "legoNXT",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -63,7 +63,7 @@ Blockly.Blocks['LegoNxtMotorMoveBrick'] = {
           "text": "100"
         }
       ],
-      "category": Blockly.Categories.legoNXT,
+      "category": "legoNXT",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -85,7 +85,7 @@ Blockly.Blocks['LegoNxtPlayToneBrick'] = {
           "value": 2
         }
       ],
-      "category": Blockly.Categories.legoNXT,
+      "category": "legoNXT",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }

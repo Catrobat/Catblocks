@@ -97,10 +97,10 @@ describe('Webview test', () => {
 
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
-        const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*Msg.[a-zA-Z_1-9]+(?=,)/g);
-
+        const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*%{BKY_[a-zA-Z_1-9]+}"(?=,)/g);
+        
         const msgDefParts = msgKeys.flatMap(key => {
-          let msgKey = key.split(':')[1].trim().split('.').pop();
+          const msgKey = key.split(':')[1].split('%{BKY_').pop().split('}')[0];
           return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
         });
 
@@ -133,12 +133,12 @@ describe('Webview test', () => {
       playground.setLocale('en_GB');
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
-        const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*Msg.[a-zA-Z_1-9]+(?=,)/g);
+        const msgKeys = block.init.toString().match(/message\d\d?"?:[^,]*%{BKY_[a-zA-Z_1-9]+}"(?=,)/g);
 
         const msgDefParts = msgKeys.flatMap(key => {
-          let msgKey = key.split(':')[1].trim().split('.').pop();
+          let msgKey = key.split(':')[1].split('%{BKY_').pop().split('}')[0];
           return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
-        });
+        }); 
 
         const msgBlockParts = Array.prototype.slice.call(block.svgGroup_.getElementsByClassName('blocklyText'))
           .filter(v => v.classList.length === 1);

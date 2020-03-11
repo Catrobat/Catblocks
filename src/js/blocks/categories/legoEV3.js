@@ -18,7 +18,7 @@ Blockly.Blocks['LegoEv3MotorTurnAngleBrick'] = {
           "text": "180"
         }
       ],
-      "category": Blockly.Categories.legoEV3,
+      "category": "legoEV3",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -42,7 +42,7 @@ Blockly.Blocks['LegoEv3MotorMoveBrick'] = {
           "text": "100"
         }
       ],
-      "category": Blockly.Categories.legoEV3,
+      "category": "legoEV3",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -61,7 +61,7 @@ Blockly.Blocks['LegoEv3MotorStopBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.legoEV3,
+      "category": "legoEV3",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -88,7 +88,7 @@ Blockly.Blocks['LegoEv3PlayToneBrick'] = {
           "value": 100
         }
       ],
-      "category": Blockly.Categories.legoEV3,
+      "category": "legoEV3",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }
@@ -107,7 +107,7 @@ Blockly.Blocks['LegoEv3SetLedBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.legoEV3,
+      "category": "legoEV3",
       "extensions": ["colours_lego", "shape_statement"]
     });
   }

@@ -11,7 +11,7 @@ Blockly.Blocks['PlaySoundBrick'] = {
           "text": "sound"
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -30,7 +30,7 @@ Blockly.Blocks['PlaySoundAndWaitBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -40,7 +40,7 @@ Blockly.Blocks['StopAllSoundsBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_SOUND_STOPALLSOUNDS}",
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -57,7 +57,7 @@ Blockly.Blocks['SetVolumeToBrick'] = {
           "value": 60
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -74,7 +74,7 @@ Blockly.Blocks['ChangeVolumeByNBrick'] = {
           "value": -10
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -91,7 +91,7 @@ Blockly.Blocks['SpeakBrick'] = {
           "text": "Hello!"
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -108,7 +108,7 @@ Blockly.Blocks['SpeakAndWaitBrick'] = {
           "text": "Hello!"
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }
@@ -132,7 +132,7 @@ Blockly.Blocks['AskSpeechBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.sound,
+      "category": "sound",
       "extensions": ["colours_sounds", "shape_statement"]
     });
   }

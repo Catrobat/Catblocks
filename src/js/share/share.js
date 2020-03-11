@@ -89,8 +89,8 @@ export class Share {
     return Array.from(blocks).map(block => {
       const name = block.getAttribute('type') || 'undefined';
       if (this.blockly.Blocks[name]) {
-        const category = this.blockly.Blocks[name].init.toString().match(/Categories.[a-zA-Z]+/);
-        if (category.length > 0) return category[0].split('.')[1];
+        const category = this.blockly.Blocks[name].init.toString().match(/category"?: ?[a-zA-Z"]+/);
+        if (category.length > 0) return category[0].split(':')[1].split('"').join('').trim();
         return 'unknown';
       } else {
         return 'unknown';

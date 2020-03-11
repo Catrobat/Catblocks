@@ -16,7 +16,7 @@ Blockly.Blocks['ArduinoSendDigitalValueBrick'] = {
           "value": 2
         }
       ],
-      "category": Blockly.Categories.arduino,
+      "category": "arduino",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -38,7 +38,7 @@ Blockly.Blocks['ArduinoSendPWMValueBrick'] = {
           "value": 2
         }
       ],
-      "category": Blockly.Categories.arduino,
+      "category": "arduino",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }

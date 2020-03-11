@@ -11,7 +11,7 @@ Blockly.Blocks['SetLookBrick'] = {
           "text": "newLook"
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -28,7 +28,7 @@ Blockly.Blocks['SetLookByIndexBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -38,7 +38,7 @@ Blockly.Blocks['NextLookBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_LOOKS_NEXTLOOK}",
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -48,7 +48,7 @@ Blockly.Blocks['PreviousLookBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_LOOKS_PREVIOUSLOOK}",
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -65,7 +65,7 @@ Blockly.Blocks['SetSizeToBrick'] = {
           "value": 60
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -75,7 +75,7 @@ Blockly.Blocks['HideBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_LOOKS_HIDE}",
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -85,7 +85,7 @@ Blockly.Blocks['ShowBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_LOOKS_SHOW}",
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -109,7 +109,7 @@ Blockly.Blocks['AskBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -126,7 +126,7 @@ Blockly.Blocks['SayBubbleBrick'] = {
           "text": "Hello!"
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -148,7 +148,7 @@ Blockly.Blocks['SayForBubbleBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -165,7 +165,7 @@ Blockly.Blocks['ThinkBubbleBrick'] = {
           "text": "Hmmmm!"
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -187,7 +187,7 @@ Blockly.Blocks['ThinkForBubbleBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -204,7 +204,7 @@ Blockly.Blocks['SetTransparencyBrick'] = {
           "value": 50
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -221,7 +221,7 @@ Blockly.Blocks['ChangeSizeByNBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -238,7 +238,7 @@ Blockly.Blocks['ChangeTransparencyByNBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -255,7 +255,7 @@ Blockly.Blocks['SetBrightnessBrick'] = {
           "value": 20
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -272,7 +272,7 @@ Blockly.Blocks['ChangeBrightnessByNBrick'] = {
           "value": 50
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -289,7 +289,7 @@ Blockly.Blocks['SetColorBrick'] = {
           "value": 0
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -306,7 +306,7 @@ Blockly.Blocks['ChangeColorByNBrick'] = {
           "value": 0
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -316,7 +316,7 @@ Blockly.Blocks['ClearGraphicEffectBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_LOOKS_CLEARGRAPHICEFFECTS_CAT}",
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -335,7 +335,7 @@ Blockly.Blocks['SetBackgroundBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -352,7 +352,7 @@ Blockly.Blocks['SetBackgroundByIndexBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -371,7 +371,7 @@ Blockly.Blocks['SetBackgroundAndWaitBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -388,7 +388,7 @@ Blockly.Blocks['SetBackgroundByIndexAndWaitBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -407,7 +407,7 @@ Blockly.Blocks['CameraBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -426,7 +426,7 @@ Blockly.Blocks['ChooseCameraBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }
@@ -445,7 +445,7 @@ Blockly.Blocks['FlashBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.looks,
+      "category": "looks",
       "extensions": ["colours_looks", "shape_statement"]
     });
   }

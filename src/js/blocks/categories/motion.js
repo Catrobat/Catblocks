@@ -16,7 +16,7 @@ Blockly.Blocks['PlaceAtBrick'] = {
           "value": 200
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -34,7 +34,7 @@ Blockly.Blocks['SetXBrick'] = {
           "value": 100
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -51,7 +51,7 @@ Blockly.Blocks['SetYBrick'] = {
           "value": 200
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -68,7 +68,7 @@ Blockly.Blocks['ChangeXByNBrick'] = {
           "value": 100
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -85,7 +85,7 @@ Blockly.Blocks['ChangeYByNBrick'] = {
           "value": 200
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -104,7 +104,7 @@ Blockly.Blocks['GoToBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -114,7 +114,7 @@ Blockly.Blocks['IfOnEdgeBounceBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_MOTION_IFONEDGEBOUNCE}",
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -131,7 +131,7 @@ Blockly.Blocks['MoveNStepsBrick'] = {
           "value": 10
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -148,7 +148,7 @@ Blockly.Blocks['TurnRightBrick'] = {
           "value": 15
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -165,7 +165,7 @@ Blockly.Blocks['TurnLeftBrick'] = {
           "value": 15
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -183,7 +183,7 @@ Blockly.Blocks['PointInDirectionBrick'] = {
           "value": 0
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -202,7 +202,7 @@ Blockly.Blocks['PointToBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -221,7 +221,7 @@ Blockly.Blocks['SetRotationStyleBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -249,7 +249,7 @@ Blockly.Blocks['GlideToBrick'] = {
           "value": 200
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -267,7 +267,7 @@ Blockly.Blocks['GoNStepsBackBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -278,7 +278,7 @@ Blockly.Blocks['ComeToFrontBrick'] = {
   init: function () {
     this.jsonInit({
       "message0": "%{BKY_MOTION_GOTOFRONT}",
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -295,7 +295,7 @@ Blockly.Blocks['VibrationBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -314,7 +314,7 @@ Blockly.Blocks['SetPhysicsObjectTypeBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -338,7 +338,7 @@ Blockly.Blocks['SetVelocityBrick'] = {
           "value": 0
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -355,7 +355,7 @@ Blockly.Blocks['TurnLeftSpeedBrick'] = {
           "value": 15
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -372,7 +372,7 @@ Blockly.Blocks['TurnRightSpeedBrick'] = {
           "value": 15
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -395,7 +395,7 @@ Blockly.Blocks['SetGravityBrick'] = {
           "value": 0
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -413,7 +413,7 @@ Blockly.Blocks['SetMassBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -430,7 +430,7 @@ Blockly.Blocks['SetBounceBrick'] = {
           "value": 80
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }
@@ -447,7 +447,7 @@ Blockly.Blocks['SetFrictionBrick'] = {
           "value": 80
         }
       ],
-      "category": Blockly.Categories.motion,
+      "category": "motion",
       "extensions": ["colours_motion", "shape_statement"]
     });
   }

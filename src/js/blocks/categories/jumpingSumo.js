@@ -14,7 +14,7 @@ Blockly.Blocks['JumpingSumoMoveForwardBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -34,7 +34,7 @@ Blockly.Blocks['JumpingSumoMoveBackwardBrick'] = {
           "name": "POWER"
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -53,7 +53,7 @@ Blockly.Blocks['JumpingSumoAnimationsBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -78,7 +78,7 @@ Blockly.Blocks['JumpingSumoSoundBrick'] = {
           "text": "50"
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -88,7 +88,7 @@ Blockly.Blocks['JumpingSumoNoSoundBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_SUMO_NOSOUND}",
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -98,7 +98,7 @@ Blockly.Blocks['JumpingSumoJumpLongBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_SUMO_JUMPLONG}",
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -109,7 +109,7 @@ Blockly.Blocks['JumpingSumoJumpHighBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_SUMO_JUMPHIGH}",
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -126,7 +126,7 @@ Blockly.Blocks['JumpingSumoRotateLeftBrick'] = {
           "value": 90
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -143,7 +143,7 @@ Blockly.Blocks['JumpingSumoRotateRightBrick'] = {
           "value": 90
         }
       ],
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -153,7 +153,7 @@ Blockly.Blocks['JumpingSumoTurnBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_SUMO_TURN}",
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }
@@ -163,7 +163,7 @@ Blockly.Blocks['JumpingSumoTakingPictureBrick'] = {
   init: function() {
     this.jsonInit({
       "message0": "%{BKY_SUMO_TAKINGPICTURE}",
-      "category": Blockly.Categories.jumpingSumo,
+      "category": "jumpingSumo",
       "extensions": ["colours_drone", "shape_statement"]
     });
   }

@@ -20,7 +20,7 @@ Blockly.Blocks['WhenRaspiPinChangedBrick'] = {
           ]
         }
       ],
-      "category": Blockly.Categories.raspi,
+      "category": "raspi",
       "extensions": ["colours_arduino", "shape_hat"]
     });
   }
@@ -53,7 +53,7 @@ Blockly.Blocks['RaspiIfLogicBeginBrick'] = {
           "name": "SUBSTACK2"
         }
       ],
-      "category": Blockly.Categories.raspi,
+      "category": "raspi",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -75,7 +75,7 @@ Blockly.Blocks['RaspiSendDigitalValueBrick'] = {
           "value": 1
         }
       ],
-      "category": Blockly.Categories.raspi,
+      "category": "raspi",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
@@ -102,7 +102,7 @@ Blockly.Blocks['RaspiPwmBrick'] = {
           "value": 100
         }
       ],
-      "category": Blockly.Categories.raspi,
+      "category": "raspi",
       "extensions": ["colours_arduino", "shape_statement"]
     });
   }
