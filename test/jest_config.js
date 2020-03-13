@@ -24,6 +24,6 @@ module.exports = {
     "jest-html-reporters"
   ],
   testMatch: [
-    "**/test/**/*.test.js"
+    "**/test/**/block.test.js"
   ]
 };
