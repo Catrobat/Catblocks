@@ -2,8 +2,8 @@ import Blockly from "scratch-blocks";
 
 Blockly.Blocks.defaultToolbox = `<xml id="toolbox-categories" style="display: none">
 <category name="%{BKY_CATEGORY_ARDUINO}" id="arduino" colour="#34c8a5" secondaryColour="#31bc9c">
-  <block type="ArduinoSendDigitalValueBrick"></block >
-  <block type="ArduinoSendPWMValueBrick"></block >
+  <block type="ArduinoSendDigitalValueBrick"></block>
+  <block type="ArduinoSendPWMValueBrick"></block>
 </category>
 <category name="%{BKY_CATEGORY_CONTROL}" id="control" colour="#FFAB19" secondaryColour="#CF8B17">
   <block type="ForeverBrick"></block >
@@ -59,6 +59,8 @@ Blockly.Blocks.defaultToolbox = `<xml id="toolbox-categories" style="display: no
   <block type="WhenConditionScript"></block >
   <block type="WhenBounceOffScript"></block >
   <block type="WhenBackgroundChangesScript"></block >
+</category>
+<category undefined>
 </category>
 <category name="%{BKY_CATEGORY_JUMPING_SUMO}" id="jumpingSumo" colour="#91d149" secondaryColour="#7bb13e">
   <block type="JumpingSumoMoveForwardBrick"></block >
