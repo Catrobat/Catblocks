@@ -23,10 +23,10 @@
   // initialize all your componets
   (() => {
     // moke playground
+    playground.Blockly.CatblocksMsgs.setLocale('en_GB');
     playground.workspace = Blockly.inject('playworkspace', {
-      media: '../media/', zoom: { startScale: 0.75 }
+      media: '../media/', zoom: { startScale: 0.75 }, toolbox: playground.getToolbox()
     });
-    playground.setLocale('en_GB');
 
     // moke share
     share.init({

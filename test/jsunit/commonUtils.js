@@ -10,6 +10,7 @@ fs.gracefulify(realfs);
 /**
  * root path from catblocks directory
  */
+// #INFO: for local testing use ./../../../
 const ROOT_PATH = './';
 
 /**
@@ -58,19 +59,14 @@ const readFileSync = (relPath) => {
 };
 
 /**
-* Input is a json serialized as string
-* This funciton will excape all keys and values from the string with a double quoate
-* @param {*} jsonString 
-*/
-const escapeJsonValues = (jsonString) => {
-  return jsonString
-    // remove all spaces where no char is lookahead/behind
-    .replace(/(?<!\w) +(?!\w)/g, '')
-    .replace(/ true /g, 'true')
-    .replace(/ false /g, 'false')
-    .split('\"').join('')
-    .replace(/([^:\{\}\[\]\,]+ ?)+/g, '"$&"')
-};
+ * Read brick categories from file system
+ */
+const getCategoryList = () => {
+  const files = listDirectorySync(path.join(ROOT_PATH, PATHS.BLOCKS));
+  return files
+    .map(file => file.split('.')[0])
+    .filter(name => !['index'].includes(name));
+}
 
 /**
  * Parse the local stored file 
@@ -78,21 +74,13 @@ const escapeJsonValues = (jsonString) => {
  */
 const parseBlockCategoryFile = (category) => {
   const payload = readFileSync(path.join(PATHS.BLOCKS, `${category}.js`));
-  const blocks = payload.toString().split('Blockly.Blocks[\'').slice(1)
-
-  const parsedBlocks = {};
-  for (let block of blocks) {
-    let blockName = block.substr(0, block.indexOf('\''));
-
-    let blockBody = block.split('\n').join(' ').match(/this.jsonInit\(\{.*\}\)/);
-    if (blockBody.length === 0) return null;
-
-    blockBody = blockBody[0].substr('this.jsonInit('.length).slice(0, -1);
-    blockBody = escapeJsonValues(blockBody);
-    parsedBlocks[blockName] = JSON.parse(blockBody);
+  const parts = payload.toString().split('export default');
+  if (parts.length !== 2) {
+    return undefined;
   }
 
-  return parsedBlocks;
+  const body = parts[1].split(';').join('');
+  return JSON.parse(body);
 }
 
 module.exports = {
@@ -102,6 +90,6 @@ module.exports = {
   isNotEmptyString,
   listDirectorySync,
   readFileSync,
-  escapeJsonValues,
-  parseBlockCategoryFile
+  parseBlockCategoryFile,
+  getCategoryList
 };
