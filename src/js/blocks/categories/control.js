@@ -1,5 +1,5 @@
 /**
- * @description arduino Catblocks bricks
+ * @description control Catblocks bricks
  */
 
 'use strict';

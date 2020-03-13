@@ -3,20 +3,35 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended"],
+  "extends": [
+    "eslint:recommended"
+  ],
   "env": {
-    "browser": true, /* allow console */
-    "es6": true, /* allow Promise */
+    "browser": true,
+    "es6": true,
     "node": true,
     "jest": true
   },
   "rules": {
-    "no-unused-vars": ["warn"],
-    "semi": ["warn"],
-    "prefer-const": ["warn"],
-    "no-var": ["warn"],
-    "indent": ["error", 2],
-    "no-mixed-spaces-and-tabs": ["error"]
+    "no-unused-vars": [
+      "warn"
+    ],
+    "semi": [
+      "warn"
+    ],
+    "prefer-const": [
+      "warn"
+    ],
+    "no-var": [
+      "warn"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "no-mixed-spaces-and-tabs": [
+      "error"
+    ]
   },
   "globals": {
     "process": false

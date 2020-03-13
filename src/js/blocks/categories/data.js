@@ -1,8 +1,8 @@
 /**
- * @description arduino Catblocks bricks
+ * @description data Catblocks bricks
  */
 
-'use sttrict';
+'use strict';
 
 export default {
   "SetVariableBrick": {
