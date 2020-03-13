@@ -351,7 +351,7 @@ export class Playground {
     this.workspace.getFlyout().setRecyclingEnabled(false);
     const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     this.Blockly.CatblocksMsgs.setLocale(locale);
-    this.workspace.updateToolbox(this.Blockly.Blocks.defaultToolbox);
+    this.workspace.updateToolbox(this.getToolbox());
     this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
     this.workspace.getFlyout().setRecyclingEnabled(true);
   }

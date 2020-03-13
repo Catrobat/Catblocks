@@ -202,7 +202,7 @@ describe('WebView Block tests', () => {
   /**
    * Test if Scratch-Blocks got initialized properly
    */
-  describe('Workspace actions', () => {
+  describe('Workspace actions',  () => {
 
     /**
       * Test if all blocks are rendered properly
