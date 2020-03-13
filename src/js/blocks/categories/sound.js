@@ -2,7 +2,7 @@
  * @description sound Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "PlaySoundBrick": {

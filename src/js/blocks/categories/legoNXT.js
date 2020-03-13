@@ -2,7 +2,7 @@
  * @description legoNXT Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "LegoNxtMotorTurnAngleBrick": {

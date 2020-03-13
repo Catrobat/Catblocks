@@ -2,7 +2,7 @@
  * @description pen Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "PenDownBrick": {

@@ -2,7 +2,7 @@
  * @description legoEV3 Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "LegoEv3MotorTurnAngleBrick": {

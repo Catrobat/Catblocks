@@ -2,7 +2,7 @@
  * @description motion Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "PlaceAtBrick": {
