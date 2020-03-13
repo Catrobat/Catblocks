@@ -44,7 +44,6 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
       };
     }
   }
-  console.log(blockly);
 };
 
 /**

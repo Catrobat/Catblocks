@@ -193,7 +193,6 @@ export class Playground {
       this.toolbox = xml;
     }
 
-    console.log(this.toolbox);
     return this.toolbox;
   }
   // Disable the "Import from XML" button if the XML is invalid.
