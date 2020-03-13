@@ -176,10 +176,24 @@ export class Playground {
   }
   getToolbox() {
     if (!this.toolbox) {
-      console.log(this.Blockly.Categories);
-      this.toolbox = document.createElement('xml');
+      const xml = document.createElement('xml');
+      for (const catName in this.Blockly.Categories) {
+        const category = document.createElement('category');
+        category.setAttribute('name', `%{BKY_CATEGORY_${catName.toUpperCase()}}`);
+        category.setAttribute('id', catName);
+        category.setAttribute('colour', this.Blockly.Colours[catName]['primary']);
+        category.setAttribute('secondaryColour', this.Blockly.Colours[catName]['secondary']);
+        for (const brickName of this.Blockly.Categories[catName]) {
+          const brick = document.createElement('block');
+          brick.setAttribute('type', brickName);
+          category.append(brick);
+        }
+        xml.append(category);
+      }
+      this.toolbox = xml;
     }
 
+    console.log(this.toolbox);
     return this.toolbox;
   }
   // Disable the "Import from XML" button if the XML is invalid.

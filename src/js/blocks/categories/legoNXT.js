@@ -22,7 +22,7 @@ export default {
       }
     ],
     "category": "legoNXT",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoNXT", "shape_statement"]
   },
   "LegoNxtMotorStopBrick": {
     "message0": "%{BKY_LEGONXT_MOTORSTOP}",
@@ -36,7 +36,7 @@ export default {
       }
     ],
     "category": "legoNXT",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoNXT", "shape_statement"]
   },
   "LegoNxtMotorMoveBrick": {
     "message0": "%{BKY_LEGONXT_MOTORMOVE}",
@@ -55,7 +55,7 @@ export default {
       }
     ],
     "category": "legoNXT",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoNXT", "shape_statement"]
   },
   "LegoNxtPlayToneBrick": {
     "message0": "%{BKY_LEGONXT_PLAYTONE}",
@@ -72,6 +72,6 @@ export default {
       }
     ],
     "category": "legoNXT",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoNXT", "shape_statement"]
   }
 };

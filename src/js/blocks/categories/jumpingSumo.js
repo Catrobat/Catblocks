@@ -18,7 +18,7 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoMoveBackwardBrick": {
     "message0": "%{BKY_SUMO_MOVEBACKWARD}",
@@ -33,7 +33,7 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoAnimationsBrick": {
     "message0": "%{BKY_SUMO_ANIMATION}",
@@ -47,7 +47,7 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoSoundBrick": {
     "message0": "%{BKY_SUMO_SOUND}",
@@ -66,22 +66,22 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoNoSoundBrick": {
     "message0": "%{BKY_SUMO_NOSOUND}",
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoJumpLongBrick": {
     "message0": "%{BKY_SUMO_JUMPLONG}",
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoJumpHighBrick": {
     "message0": "%{BKY_SUMO_JUMPHIGH}",
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoRotateLeftBrick": {
     "message0": "%{BKY_SUMO_ROTATELEFT}",
@@ -93,7 +93,7 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoRotateRightBrick": {
     "message0": "%{BKY_SUMO_ROTATERIGHT}",
@@ -105,16 +105,16 @@ export default {
       }
     ],
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoTurnBrick": {
     "message0": "%{BKY_SUMO_TURN}",
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   },
   "JumpingSumoTakingPictureBrick": {
     "message0": "%{BKY_SUMO_TAKINGPICTURE}",
     "category": "jumpingSumo",
-    "extensions": ["colours_drone", "shape_statement"]
+    "extensions": ["colours_jumpingSumo", "shape_statement"]
   }
 };

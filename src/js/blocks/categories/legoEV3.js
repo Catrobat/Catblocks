@@ -22,7 +22,7 @@ export default {
       }
     ],
     "category": "legoEV3",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoEV3", "shape_statement"]
   },
   "LegoEv3MotorMoveBrick": {
     "message0": "%{BKY_LEGOEV3_MOTORMOVE}",
@@ -41,7 +41,7 @@ export default {
       }
     ],
     "category": "legoEV3",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoEV3", "shape_statement"]
   },
   "LegoEv3MotorStopBrick": {
     "message0": "%{BKY_LEGOEV3_MOTORSTOP}",
@@ -55,7 +55,7 @@ export default {
       }
     ],
     "category": "legoEV3",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoEV3", "shape_statement"]
   },
   "LegoEv3PlayToneBrick": {
     "message0": "%{BKY_LEGOEV3_PLAYTONE}",
@@ -77,7 +77,7 @@ export default {
       }
     ],
     "category": "legoEV3",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoEV3", "shape_statement"]
   },
   "LegoEv3SetLedBrick": {
     "message0": "%{BKY_LEGOEV3_SETLED}",
@@ -91,6 +91,6 @@ export default {
       }
     ],
     "category": "legoEV3",
-    "extensions": ["colours_lego", "shape_statement"]
+    "extensions": ["colours_legoEV3", "shape_statement"]
   }
 };

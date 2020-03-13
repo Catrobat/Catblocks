@@ -24,7 +24,7 @@ export default {
       }
     ],
     "category": "raspi",
-    "extensions": ["colours_arduino", "shape_hat"]
+    "extensions": ["colours_raspi", "shape_hat"]
   },
   "RaspiIfLogicBeginBrick": {
     "type": "IfThenLogicBeginBrick",
@@ -52,7 +52,7 @@ export default {
       }
     ],
     "category": "raspi",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_raspi", "shape_statement"]
   },
   "RaspiSendDigitalValueBrick": {
     "message0": "%{BKY_RASPI_SENDDIGITALVALUE}",
@@ -69,7 +69,7 @@ export default {
       }
     ],
     "category": "raspi",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_raspi", "shape_statement"]
   },
   "RaspiPwmBrick": {
     "message0": "%{BKY_RASPI_PWM}",
@@ -91,6 +91,6 @@ export default {
       }
     ],
     "category": "raspi",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_raspi", "shape_statement"]
   }
 };

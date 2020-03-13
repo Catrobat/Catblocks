@@ -22,7 +22,7 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   },
   "PhiroMotorMoveBackwardBrick": {
     "message0": "%{BKY_PHIRO_MOTORMOVEBACKWARD}",
@@ -41,7 +41,7 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   },
   "PhiroMotorStopBrick": {
     "message0": "%{BKY_PHIRO_MOTORSTOP}",
@@ -55,7 +55,7 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   },
   "PhiroPlayToneBrick": {
     "message0": "%{BKY_PHIRO_PLAYTONE}",
@@ -74,7 +74,7 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   },
   "PhiroRGBLightBrick": {
     "message0": "%{BKY_PHIRO_RGBLIGHT}",
@@ -103,7 +103,7 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   },
   "PhiroIfLogicBeginBrick": {
     "type": "IfThenLogicBeginBrick",
@@ -133,6 +133,6 @@ export default {
       }
     ],
     "category": "phiro",
-    "extensions": ["colours_arduino", "shape_statement"]
+    "extensions": ["colours_phiro", "shape_statement"]
   }
 };
