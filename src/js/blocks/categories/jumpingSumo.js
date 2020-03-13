@@ -2,7 +2,7 @@
  * @description jumpoingSumo Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "JumpingSumoMoveForwardBrick": {

@@ -2,7 +2,7 @@
  * @description arduino Catblocks bricks
  */
 
-"use strict";
+'use strict';
 
 export default {
   "StartScript": {
