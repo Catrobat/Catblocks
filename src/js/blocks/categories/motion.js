@@ -18,9 +18,7 @@ export default {
         "name": "Y_POSITION",
         "value": 200
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetXBrick": {
     "message0": "%{BKY_MOTION_SETXTO}",
@@ -30,9 +28,7 @@ export default {
         "name": "X_POSITION",
         "value": 100
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetYBrick": {
     "message0": "%{BKY_MOTION_SETYTO}",
@@ -42,9 +38,7 @@ export default {
         "name": "Y_POSITION",
         "value": 200
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "ChangeXByNBrick": {
     "message0": "%{BKY_MOTION_CHANGEXBY}",
@@ -54,9 +48,7 @@ export default {
         "name": "X_POSITION_CHANGE",
         "value": 100
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "ChangeYByNBrick": {
     "message0": "%{BKY_MOTION_CHANGEYBY}",
@@ -66,28 +58,20 @@ export default {
         "name": "Y_POSITION_CHANGE",
         "value": 200
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "GoToBrick": {
     "message0": "%{BKY_MOTION_GOTO}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["touch position", "TOUCH"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "IfOnEdgeBounceBrick": {
-    "message0": "%{BKY_MOTION_IFONEDGEBOUNCE}",
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    "message0": "%{BKY_MOTION_IFONEDGEBOUNCE}"
   },
   "MoveNStepsBrick": {
     "message0": "%{BKY_MOTION_MOVESTEPS}",
@@ -97,9 +81,7 @@ export default {
         "name": "STEPS",
         "value": 10
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "TurnRightBrick": {
     "message0": "%{BKY_MOTION_TURNRIGHTDEGREES}",
@@ -109,9 +91,7 @@ export default {
         "name": "TURN_RIGHT_DEGREES",
         "value": 15
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "TurnLeftBrick": {
     "message0": "%{BKY_MOTION_TURNLEFTDEGREES}",
@@ -121,9 +101,7 @@ export default {
         "name": "TURN_LEFT_DEGREES",
         "value": 15
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "PointInDirectionBrick": {
     "message0": "%{BKY_MOTION_POINTINDIRECTIONDEGREES}",
@@ -133,37 +111,27 @@ export default {
         "name": "DEGREES",
         "value": 0
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "PointToBrick": {
     "message0": "%{BKY_MOTION_POINTTOWARDS}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetRotationStyleBrick": {
     "message0": "%{BKY_MOTION_SETROTATIONSTYLE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["left-right only", "RIGHTLEFT"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "GlideToBrick": {
     "message0": "%{BKY_MOTION_GLIDESECONDTOXY}",
@@ -183,9 +151,7 @@ export default {
         "name": "Y_DESTINATION",
         "value": 200
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "GoNStepsBackBrick": {
     "message0": "%{BKY_MOTION_GOBACKLAYER}",
@@ -195,14 +161,10 @@ export default {
         "name": "STEPS",
         "value": 1
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "ComeToFrontBrick": {
-    "message0": "%{BKY_MOTION_GOTOFRONT}",
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    "message0": "%{BKY_MOTION_GOTOFRONT}"
   },
   "VibrationBrick": {
     "message0": "%{BKY_MOTION_VIBRATEFORSECOND}",
@@ -212,23 +174,17 @@ export default {
         "name": "VIBRATE_DURATION_IN_SECONDS",
         "value": 1
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetPhysicsObjectTypeBrick": {
     "message0": "%{BKY_MOTION_SETYOURMOTIONTYPETO}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["moving and bounce", "TOIT"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetVelocityBrick": {
     "message0": "%{BKY_MOTION_SETVELOCITYTO}",
@@ -243,9 +199,7 @@ export default {
         "name": "PHYSICS_VELOCITY_Y",
         "value": 0
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "TurnLeftSpeedBrick": {
     "message0": "%{BKY_MOTION_SPINLEFTDEGREESSECOND}",
@@ -255,9 +209,7 @@ export default {
         "name": "PHYSICS_TURN_LEFT_SPEED",
         "value": 15
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "TurnRightSpeedBrick": {
     "message0": "%{BKY_MOTION_SPINRIGHTDEGREESSECOND}",
@@ -267,9 +219,7 @@ export default {
         "name": "PHYSICS_TURN_RIGHT_SPEED",
         "value": 15
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetGravityBrick": {
     "message0": "%{BKY_MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO}",
@@ -284,9 +234,7 @@ export default {
         "name": "PHYSICS_GRAVITY_Y",
         "value": 0
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetMassBrick": {
     "message0": "%{BKY_MOTION_SETMASSTOKILOGRAM}",
@@ -296,9 +244,7 @@ export default {
         "name": "PHYSICS_MASS",
         "value": 1
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetBounceBrick": {
     "message0": "%{BKY_MOTION_SETBOUNCEFACTORTO}",
@@ -308,9 +254,7 @@ export default {
         "name": "PHYSICS_BOUNCE_FACTOR",
         "value": 80
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   },
   "SetFrictionBrick": {
     "message0": "%{BKY_MOTION_SETFRICTIONTO}",
@@ -320,8 +264,6 @@ export default {
         "name": "PHYSICS_FRICTION",
         "value": 80
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_motion", "shape_statement"]
+    ]
   }
 };

@@ -1,93 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Vertical Playground</title>
-  </head>
 
-  <body>
-    <div id="collaborators"></div>
-    <div id="blocklyDiv"></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Vertical Playground</title>
+</head>
 
-    <!-- Sidebar -->
-    <h1>Vertical Blocks</h1>
-    <p>
-      <a href="#" id="showWorkspace">Show</a>
-      - <a href="#" id="hideWorkspace">Hide</a>
-    </p>
+<body>
+  <div id="collaborators"></div>
+  <div id="blocklyDiv"></div>
 
-    <form id="options">
-        <select name="dir" onchange="document.forms.options.submit()">
-          <option value="ltr">LTR</option>
-          <option value="rtl">RTL</option>
-        </select>
-        <select name="toolbox" onchange="document.forms.options.submit()">
-          <option value="categories">Categories</option>
-          <option value="simple">Simple</option>
-        </select>
-        <select name="side" onchange="document.forms.options.submit()">
-          <option value="start">Start</option>
-          <option value="end">End</option>
-          <option value="top">Top</option>
-          <option value="bottom">Bottom</option>
-        </select>
-        <select name="locale" onchange="Catblocks.setLocale(this.value)">
-        </select> <!-- gets filled by JS -->
-      </form>
+  <!-- Sidebar -->
+  <h1>Vertical Blocks</h1>
+  <p>
+    <a href="#" id="showWorkspace">Show</a>
+    - <a href="#" id="hideWorkspace">Hide</a>
+  </p>
 
-    <p>
-      <input type="button" id="exportToXML" value="Export to XML">
-      &nbsp;
-      <input type="button" id="importFromXML" value="Import from XML">
-      &nbsp;
-      <input type="button" id="importFromParser" value="Import using Parser">
-      <br>
-      <textarea id="importExport" style="width: 26%; height: 12em"
-        onchange="Catblocks.taChange();" onkeyup="Catblocks.taChange()"></textarea>
-    </p>
+  <form id="options">
+    <select name="dir" onchange="document.forms.options.submit()">
+      <option value="ltr">LTR</option>
+      <option value="rtl">RTL</option>
+    </select>
+    <select name="toolbox" onchange="document.forms.options.submit()">
+      <option value="categories">Categories</option>
+      <option value="simple">Simple</option>
+    </select>
+    <select name="side" onchange="document.forms.options.submit()">
+      <option value="start">Start</option>
+      <option value="end">End</option>
+      <option value="top">Top</option>
+      <option value="bottom">Bottom</option>
+    </select>
+    <select name="locale" onchange="Catblocks.setLocale(this.value)">
+    </select> <!-- gets filled by JS -->
+  </form>
 
-    <hr>
+  <p>
+    <input type="button" id="exportToXML" value="Export to XML">
+    &nbsp;
+    <input type="button" id="importFromXML" value="Import from XML">
+    &nbsp;
+    <input type="button" id="importFromParser" value="Import using Parser">
+    <br>
+    <textarea id="importExport" style="width: 26%; height: 12em" onchange="Catblocks.taChange();"
+      onkeyup="Catblocks.taChange()"></textarea>
+  </p>
 
-    <p>
-      Log events: &nbsp;
-      <input type="checkbox" id="logCheck">
-    </p>
+  <hr>
 
-    <p>
-      Stress test: &nbsp;
-      <input type="button" value="Sprinkles!" id="sprinkles">
-      <input type="button" value="Spaghetti!" id="spaghetti">
-    </p>
+  <p>
+    Log events: &nbsp;
+    <input type="checkbox" id="logCheck">
+  </p>
 
-    <p>
-      Glows: &nbsp;
-      <input type="button" value="Glow last clicked block" id="glowBlock" />
-      <input type="button" value="Activate Zebra" id="zebra" />
-      <input type="button" value="Unglow last clicked block" id="unglowBlock" />
-      <input type="button" value="Stack glow last clicked block" id="glowStack" />
-      <input type="button" value="Stack unglow last clicked block" id="unglowStack" />
-    </p>
+  <p>
+    Stress test: &nbsp;
+    <input type="button" value="Sprinkles!" id="sprinkles">
+    <input type="button" value="Spaghetti!" id="spaghetti">
+  </p>
 
-    <p>
-      Log flyout events: &nbsp;
-      <input type="checkbox" id="logFlyoutCheck">
-    </p>
+  <p>
+    Glows: &nbsp;
+    <input type="button" value="Glow last clicked block" id="glowBlock" />
+    <input type="button" value="Activate Zebra" id="zebra" />
+    <input type="button" value="Unglow last clicked block" id="unglowBlock" />
+    <input type="button" value="Stack glow last clicked block" id="glowStack" />
+    <input type="button" value="Stack unglow last clicked block" id="unglowStack" />
+  </p>
 
-    <p>
-      Enable sounds (after refresh): &nbsp;
-      <input type="checkbox" id="soundsEnabled">
-    </p>
+  <p>
+    Log flyout events: &nbsp;
+    <input type="checkbox" id="logFlyoutCheck">
+  </p>
 
-    <p>
-      <input type="button" value="Undo" id="undo"/>
-      <input type="button" value="Redo" id="redo"/>
-    </p>
+  <p>
+    Enable sounds (after refresh): &nbsp;
+    <input type="checkbox" id="soundsEnabled">
+  </p>
 
-    <p>
-      Report:
-      <input id="reportValue" type="text" value="123" />
-      <input type="button" value="Report last clicked block" id="reportDemo" />
-    </p>
-  </body>
+  <p>
+    <input type="button" value="Undo" id="undo" />
+    <input type="button" value="Redo" id="redo" />
+  </p>
+
+  <p>
+    Report:
+    <input id="reportValue" type="text" value="123" />
+    <input type="button" value="Report last clicked block" id="reportDemo" />
+  </p>
+</body>
+
 </html>

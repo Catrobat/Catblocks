@@ -6,14 +6,10 @@
 
 export default {
   "PenDownBrick": {
-    "message0": "%{BKY_PEN_PENDOWN}",
-    "category": "operators",
-    "extensions": ["colours_pen", "shape_statement"]
+    "message0": "%{BKY_PEN_PENDOWN}"
   },
   "PenUpBrick": {
-    "message0": "%{BKY_PEN_PENUP}",
-    "category": "operators",
-    "extensions": ["colours_pen", "shape_statement"]
+    "message0": "%{BKY_PEN_PENUP}"
   },
   "SetPenSizeBrick": {
     "message0": "%{BKY_PEN_SETPENSIZETO}",
@@ -23,9 +19,7 @@ export default {
         "name": "PEN_SIZE",
         "value": 3.15
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_pen", "shape_statement"]
+    ]
   },
   "SetPenColorBrick": {
     "message0": "%{BKY_PEN_SETPENCOLORTO}",
@@ -45,18 +39,12 @@ export default {
         "name": "PEN_COLOR_BLUE",
         "value": 255
       }
-    ],
-    "category": "motion",
-    "extensions": ["colours_pen", "shape_statement"]
+    ]
   },
   "StampBrick": {
-    "message0": "%{BKY_PEN_STAMP}",
-    "category": "operators",
-    "extensions": ["colours_pen", "shape_statement"]
+    "message0": "%{BKY_PEN_STAMP}"
   },
   "ClearBackgroundBrick": {
-    "message0": "%{BKY_PEN_CLEAR}",
-    "category": "operators",
-    "extensions": ["colours_pen", "shape_statement"]
+    "message0": "%{BKY_PEN_CLEAR}"
   }
 };

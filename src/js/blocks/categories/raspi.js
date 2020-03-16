@@ -9,22 +9,16 @@ export default {
     "message0": "%{BKY_RASPI_WHENPINCHANGED}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["3", "5"]
-        ]
+        "text": "new"
       },
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN2",
-        "options": [
-          ["high", "low"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "raspi",
-    "extensions": ["colours_raspi", "shape_hat"]
+    ]
   },
   "RaspiIfLogicBeginBrick": {
     "type": "IfThenLogicBeginBrick",
@@ -50,9 +44,7 @@ export default {
         "type": "input_statement",
         "name": "SUBSTACK2"
       }
-    ],
-    "category": "raspi",
-    "extensions": ["colours_raspi", "shape_statement"]
+    ]
   },
   "RaspiSendDigitalValueBrick": {
     "message0": "%{BKY_RASPI_SENDDIGITALVALUE}",
@@ -67,9 +59,7 @@ export default {
         "name": "PIN2",
         "value": 1
       }
-    ],
-    "category": "raspi",
-    "extensions": ["colours_raspi", "shape_statement"]
+    ]
   },
   "RaspiPwmBrick": {
     "message0": "%{BKY_RASPI_PWM}",
@@ -89,8 +79,6 @@ export default {
         "name": "HERTZ",
         "value": 100
       }
-    ],
-    "category": "raspi",
-    "extensions": ["colours_raspi", "shape_statement"]
+    ]
   }
 };

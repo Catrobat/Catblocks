@@ -2,11 +2,13 @@
  * @description Share test
  */
 
+'use strict';
+
 beforeEach(async () => {
   await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => {
     shareTestContainer = document.getElementById('shareprogs');
-  })
+  });
 });
 
 describe('Share basic tests', () => {
@@ -23,7 +25,7 @@ describe('Share basic tests', () => {
         && container.getAttribute('class') === 'catblocks-scene'
         && container.querySelector('#tscene-header') !== undefined
         && container.querySelector('#tscene-header').innerText === 'Scene: tscene'
-        && container.querySelector('.catblocks-object-container') !== undefined)
+        && container.querySelector('.catblocks-object-container') !== undefined);
     })).toBeTruthy();
   });
 
@@ -41,7 +43,7 @@ describe('Share basic tests', () => {
         && container.querySelector('#tobject-header').innerText === 'Object: tobject'
         && container.querySelector('.catblocks-script-container') !== undefined
         && container.querySelector('.catblocks-object-props-container .catblocks-object-stats-container .catblocks-object-stats-label-container') !== undefined
-        && container.querySelector('.catblocks-object-props-container .catblocks-object-stats-container .catblocks-object-stats-value-container') !== undefined)
+        && container.querySelector('.catblocks-object-props-container .catblocks-object-stats-container .catblocks-object-stats-value-container') !== undefined);
     })).toBeTruthy();
   });
 });
@@ -195,7 +197,7 @@ describe('Share catroid program rendering tests', () => {
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
 
-      return shareTestContainer.querySelector('#tscene #tobject .catblocks-script svg.catblocks-svg')
+      return shareTestContainer.querySelector('#tscene #tobject .catblocks-script svg.catblocks-svg');
     })).toBeTruthy();
   });
 });
@@ -208,7 +210,7 @@ describe('Share statistic tests', () => {
      */
     test('Check update status function against undefined and null', async () => {
       expect(await page.evaluate(() => {
-        let objectStats = {
+        const objectStats = {
           'name': 'tobject',
           'scripts': 0
         };
@@ -225,7 +227,7 @@ describe('Share statistic tests', () => {
      */
     test('Add empty script to existing object statistic', async () => {
       expect(await page.evaluate(() => {
-        let objectStats = {
+        const objectStats = {
           'name': 'tobject',
           'scripts': 1,
           'look': 1
@@ -245,7 +247,7 @@ describe('Share statistic tests', () => {
      */
     test('Add script to existing object statistic', async () => {
       expect(await page.evaluate(() => {
-        let objectStats = {
+        const objectStats = {
           'name': 'tobject',
           'scripts': 1,
           'sound': 1,
@@ -347,7 +349,7 @@ describe('Share statistic tests', () => {
               const catName = catClassName[0].split('-')[2];
               return (typeof stats[catName] === 'string')
                 ? stats[catName] === value.innerHTML
-                : stats[catName] === parseInt(value.innerHTML, 10)
+                : stats[catName] === parseInt(value.innerHTML, 10);
             } else {
               return false;
             }

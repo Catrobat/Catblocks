@@ -2,7 +2,8 @@
  * @description Block tests
  */
 
-const path = require('path');
+'use strict';
+
 const utils = require('../commonUtils');
 
 const BLOCK_CATEGORIES = utils.getCategoryList();
@@ -192,7 +193,7 @@ describe('WebView Block tests', () => {
 
       expect(await page.evaluate((allBlocks) => {
         for (const blockName of allBlocks) {
-          if (!toolboxWS.blockDB_[blockName]) return false;
+          if (toolboxWS.getBlocksByType(blockName).length === 0) return false;
         }
         return true;
       }, allBlocks)).toBeTruthy();
@@ -202,39 +203,7 @@ describe('WebView Block tests', () => {
   /**
    * Test if Scratch-Blocks got initialized properly
    */
-  describe('Workspace actions',  () => {
-
-    /**
-      * Test if all blocks are rendered properly
-      * If we render an invalid block, Blockly will generate an
-      *  generic block svg, we just compare each result with this one
-      *  to validate if the block was rendered properly
-      */
-    test('Add each toolbox block to playground and validate rendering', async () => {
-      const failed = await page.evaluate(() => {
-        let failedRender = false;
-
-        // first lets get the value for a wrong rendered block
-        const wrongBlockPath = (() => {
-          let block = playgroundWS.newBlock('someInvalidID');
-          block.initSvg();
-          block.render(false);
-          return block.svgPath_.outerHTML;
-        })();
-
-        // iterate over toolboxWS blocks
-        toolboxWS.getAllBlocks().forEach(block => {
-          if (block.svgPath_.outerHTML === wrongBlockPath) {
-            failedRender = true;
-            return failedRender;
-          }
-        });
-
-        return failedRender;
-      });
-
-      expect(failed).toBeFalsy();
-    });
+  describe('Workspace actions', () => {
 
     /**
      * Test if all icons/media files from the blocks are accessible

@@ -9,49 +9,39 @@ export default {
     "message0": "%{BKY_DATA_SETVARIABLETOCAT}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_input",
         "name": "VARIABLE",
         "text": "Some Value"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "ChangeVariableBrick": {
     "message0": "%{BKY_DATA_CHANGEVARIABLEBY}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_input",
         "name": "VARIABLE_CHANGE",
         "text": "Some new Value"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "ShowTextBrick": {
     "message0": "%{BKY_DATA_SHOWVARIABLEAT}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
@@ -63,19 +53,15 @@ export default {
         "name": "Y_POSITION",
         "value": 50
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "ShowTextColorSizeAlignmentBrick": {
     "message0": "%{BKY_DATA_SHOWVARIABLEATSIZECOLORALIGNED}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
@@ -98,34 +84,26 @@ export default {
         "value": 240
       },
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN2",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "DeleteItemOfUserListBrick": {
     "message0": "%{BKY_DATA_DELETEITEMFROMLIST}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "LIST_DELETE_ITEM",
         "value": 1
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "AddItemToUserListBrick": {
     "message0": "%{BKY_DATA_ADDTOLIST}",
@@ -136,15 +114,11 @@ export default {
         "text": "name"
       },
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "InsertItemIntoUserListBrick": {
     "message0": "%{BKY_DATA_INSERTINTOLIST}",
@@ -155,30 +129,24 @@ export default {
         "text": "name"
       },
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
         "value": 1
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "ReplaceItemInUserListBrick": {
     "message0": "%{BKY_DATA_REPLACEITEMINLIST}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
@@ -190,50 +158,36 @@ export default {
         "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
         "text": "new Value"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "HideTextBrick": {
     "message0": "%{BKY_DATA_HIDEVARIABLE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "ReadVariableFromDeviceBrick": {
     "message0": "%{BKY_DATA_READVARIABLE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   },
   "WriteVariableOnDeviceBrick": {
     "message0": "%{BKY_DATA_WRITEVARIABLE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "operators",
-    "extensions": ["colours_data", "shape_statement"]
+    ]
   }
 };

@@ -9,82 +9,64 @@ export default {
     "message0": "%{BKY_PHIRO_MOTORMOVEFORWARD}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Left", "Right"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "SPEED",
         "value": 100
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   },
   "PhiroMotorMoveBackwardBrick": {
     "message0": "%{BKY_PHIRO_MOTORMOVEBACKWARD}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Left", "Right"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "SPEED",
         "value": 100
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   },
   "PhiroMotorStopBrick": {
     "message0": "%{BKY_PHIRO_MOTORSTOP}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Left", "Right"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   },
   "PhiroPlayToneBrick": {
     "message0": "%{BKY_PHIRO_PLAYTONE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Do", "Re"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "DURATION",
         "value": 1
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   },
   "PhiroRGBLightBrick": {
     "message0": "%{BKY_PHIRO_RGBLIGHT}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Left", "Right", "Both"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
@@ -101,9 +83,7 @@ export default {
         "name": "BLUE",
         "value": 255
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   },
   "PhiroIfLogicBeginBrick": {
     "type": "IfThenLogicBeginBrick",
@@ -113,11 +93,9 @@ export default {
     "message3": "%1",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Front Left Sensor", "Front Right Sensor", "Side Left Sensor"]
-        ]
+        "text": "new"
       }
     ],
     "args1": [
@@ -131,8 +109,6 @@ export default {
         "type": "input_statement",
         "name": "SUBSTACK2"
       }
-    ],
-    "category": "phiro",
-    "extensions": ["colours_phiro", "shape_statement"]
+    ]
   }
 };
