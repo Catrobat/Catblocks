@@ -68,9 +68,13 @@ module.exports = {
       { from: 'assets', to: 'assets' },
       { from: 'node_modules/scratch-blocks/media', to: 'media' },
       { from: 'i18n/json', to: 'i18n' },
-      { from: 'test/share', to: 'assets/share' }
+      { from: 'test/share', to: 'assets/share' },
+      { from: 'favicon.ico', to: 'favicon.ico' }
     ]),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'TYPE', 'PO_FOLDER'])
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      TYPE: 'catblocks'
+    })
   ],
   // watch: true,
   devtool: 'source-map',
