@@ -2,9 +2,9 @@
  * @description Msg tests
  */
 
-const path = require('path');
+'use strict';
+
 const utils = require('../commonUtils');
-const xmlParser = require('xml2json');
 
 /**
  * Load block messages mapping
@@ -97,7 +97,7 @@ describe('Webview test', () => {
 
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
-        const blockName = block.id;
+        const blockName = block.type;
         const msgKeys = Object.keys(Blockly.Bricks[blockName])
           .filter(key => key.indexOf('message') > -1)
           .map(key => Blockly.Bricks[blockName][key])
@@ -105,13 +105,15 @@ describe('Webview test', () => {
 
         const msgDefParts = msgKeys.flatMap(key => {
           const msgKey = key.split('%{BKY_').pop().split('}')[0];
-          return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+          return msgDef[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
         });
 
-        const msgBlockParts = block.svgGroup_.querySelectorAll('text:not(.blocklyEditableLabel):not(.blocklyDropdownText).blocklyText');
+        const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
         for (let idx = 0; idx < msgBlockParts.length; idx++) {
-          let msgBlockPart = msgBlockParts[idx];
-          if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
+          const msgBlockPart = msgBlockParts[idx];
+          const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
+          const refString = msgDefParts[idx].replace(/ /g, '');
+          if (!refString.startsWith(testString)) {
             failedLoading = true;
             return failedLoading;
           }
@@ -135,7 +137,7 @@ describe('Webview test', () => {
       playground.setLocale('en_GB');
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
-        const blockName = block.id;
+        const blockName = block.type;
         const msgKeys = Object.keys(Blockly.Bricks[blockName])
           .filter(key => key.indexOf('message') > -1)
           .map(key => Blockly.Bricks[blockName][key])
@@ -143,13 +145,15 @@ describe('Webview test', () => {
 
         const msgDefParts = msgKeys.flatMap(key => {
           const msgKey = key.split('%{BKY_').pop().split('}')[0];
-          return msgDef[msgKey].split(/\%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+          return msgDef[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
         });
 
-        const msgBlockParts = block.svgGroup_.querySelectorAll('text:not(.blocklyEditableLabel):not(.blocklyDropdownText).blocklyText');
+        const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
         for (let idx = 0; idx < msgBlockParts.length; idx++) {
-          let msgBlockPart = msgBlockParts[idx];
-          if (msgBlockPart.innerHTML.replace(/\&nbsp\;/g, '') !== msgDefParts[idx].replace(/ /g, '')) {
+          const msgBlockPart = msgBlockParts[idx];
+          const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
+          const refString = msgDefParts[idx].replace(/ /g, '');
+          if (!refString.startsWith(testString)) {
             failedLoading = true;
             return failedLoading;
           }

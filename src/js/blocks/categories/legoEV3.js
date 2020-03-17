@@ -9,53 +9,41 @@ export default {
     "message0": "%{BKY_LEGOEV3_MOTORTURNANGLE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["A", "B"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "VARIABLE",
-        "text": "180"
+        "value": 180
       }
-    ],
-    "category": "legoEV3",
-    "extensions": ["colours_legoEV3", "shape_statement"]
+    ]
   },
   "LegoEv3MotorMoveBrick": {
     "message0": "%{BKY_LEGOEV3_MOTORMOVE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["A", "B"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "VARIABLE",
-        "text": "100"
+        "value": 100
       }
-    ],
-    "category": "legoEV3",
-    "extensions": ["colours_legoEV3", "shape_statement"]
+    ]
   },
   "LegoEv3MotorStopBrick": {
     "message0": "%{BKY_LEGOEV3_MOTORSTOP}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["A", "B"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "legoEV3",
-    "extensions": ["colours_legoEV3", "shape_statement"]
+    ]
   },
   "LegoEv3PlayToneBrick": {
     "message0": "%{BKY_LEGOEV3_PLAYTONE}",
@@ -75,22 +63,16 @@ export default {
         "name": "VOLUME",
         "value": 100
       }
-    ],
-    "category": "legoEV3",
-    "extensions": ["colours_legoEV3", "shape_statement"]
+    ]
   },
   "LegoEv3SetLedBrick": {
     "message0": "%{BKY_LEGOEV3_SETLED}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Off", "Green"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "legoEV3",
-    "extensions": ["colours_legoEV3", "shape_statement"]
+    ]
   }
 };

@@ -37,7 +37,7 @@ const isString = (variable) => {
  * @param {*} variable 
  */
 const isNotEmptyString = (variable) => {
-  return isString(variable) && variable.length > 0 && variable != ""
+  return isString(variable) && variable.length > 0 && variable != "";
 };
 
 /**
@@ -46,7 +46,7 @@ const isNotEmptyString = (variable) => {
  */
 const listDirectorySync = (relPath) => {
   if (!isNotEmptyString(relPath)) return undefined;
-  return fs.readdirSync(path.join(ROOT_PATH, relPath))
+  return fs.readdirSync(path.join(ROOT_PATH, relPath));
 };
 
 /**
@@ -66,7 +66,7 @@ const getCategoryList = () => {
   return files
     .map(file => file.split('.')[0])
     .filter(name => !['index'].includes(name));
-}
+};
 
 /**
  * Parse the local stored file 
@@ -78,10 +78,9 @@ const parseBlockCategoryFile = (category) => {
   if (parts.length !== 2) {
     return undefined;
   }
-
   const body = parts[1].split(';').join('');
   return JSON.parse(body);
-}
+};
 
 module.exports = {
   ROOT_PATH,

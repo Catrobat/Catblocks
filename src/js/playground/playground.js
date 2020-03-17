@@ -1,4 +1,4 @@
-import Blockly from "scratch-blocks";
+import Blockly from "blockly";
 import "../catblocks_msgs";
 import "./../blocks";
 import { checkNextBlock, wrapElement } from '../share/utils';
@@ -84,29 +84,7 @@ export class Playground {
 
     // Create main workspace.
     this.workspace = this.Blockly.inject('blocklyDiv', {
-      comments: true,
-      disable: false,
-      collapse: false,
-      media: '../media/',
-      readOnly: false,
-      rtl: rtl,
-      scrollbars: true,
-      toolbox: this.getToolbox(),
-      toolboxPosition: side == 'top' || side == 'start' ? 'start' : 'end',
-      horizontalLayout: side == 'top' || side == 'bottom',
-      sounds: soundsEnabled,
-      zoom: {
-        controls: true,
-        wheel: true,
-        startScale: 0.75,
-        maxScale: 4,
-        minScale: 0.25,
-        scaleSpeed: 1.1
-      },
-      colours: {
-        fieldShadow: 'rgba(255, 255, 255, 0.3)',
-        dragShadowOpacity: 0.6
-      }
+      media: '../media/', zoom: { startScale: 0.75 }, toolbox: this.getToolbox(), renderer: 'zelos'
     });
 
     if (sessionStorage) {
@@ -174,21 +152,25 @@ export class Playground {
       sessionStorage.setItem('soundsEnabled', state);
     }
   }
-  getToolbox() {
+  getToolbox(simple = false) {
     if (!this.toolbox) {
       const xml = document.createElement('xml');
       for (const catName in this.Blockly.Categories) {
-        const category = document.createElement('category');
-        category.setAttribute('name', `%{BKY_CATEGORY_${catName.toUpperCase()}}`);
-        category.setAttribute('id', catName);
-        category.setAttribute('colour', this.Blockly.Colours[catName]['primary']);
-        category.setAttribute('secondaryColour', this.Blockly.Colours[catName]['secondary']);
+        let parentNode = xml;
+        if (!simple) {
+          const category = document.createElement('category');
+          category.setAttribute('name', `%{BKY_CATEGORY_${catName.toUpperCase()}}`);
+          category.setAttribute('id', catName);
+          category.setAttribute('colour', this.Blockly.Colours[catName]['colourPrimary']);
+          category.setAttribute('secondaryColour', this.Blockly.Colours[catName]['colourSecondary']);
+          parentNode = category;
+        }
         for (const brickName of this.Blockly.Categories[catName]) {
           const brick = document.createElement('block');
           brick.setAttribute('type', brickName);
-          category.append(brick);
+          parentNode.append(brick);
         }
-        xml.append(category);
+        if (!simple) xml.append(parentNode);
       }
       this.toolbox = xml;
     }
@@ -258,6 +240,7 @@ export class Playground {
   fromParser() {
     const input = document.getElementById('importExport');
     const blocksXml = this.Parser.convertScriptString(input.value);
+    console.log(blocksXml);
 
     if (blocksXml === undefined || blocksXml === "") {
       throw "no response from XStreamParser";
@@ -267,6 +250,7 @@ export class Playground {
   }
   zebra() {
     const blocks = this.workspace.topBlocks_;
+    console.log(blocks);
     checkNextBlock(blocks);
   }
 
@@ -348,13 +332,9 @@ export class Playground {
     }
   }
   setLocale(locale) {
-    this.workspace.getFlyout().setRecyclingEnabled(false);
-    const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     this.Blockly.CatblocksMsgs.setLocale(locale);
     this.workspace.updateToolbox(this.getToolbox());
+    const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
-    this.workspace.getFlyout().setRecyclingEnabled(true);
   }
-
-
 }

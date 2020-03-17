@@ -2,7 +2,7 @@
  * @description xml tests
  */
 
-const utils = require('../commonUtils');
+'use strict';
 
 /**
  * Tests if import and export of Blocks to xml format works
@@ -31,7 +31,8 @@ describe('Export and Import XML files to workspace', () => {
    */
   test('Export xml for each block from toolbox', async () => {
     expect(await page.evaluate(() => {
-      Object.keys(toolboxWS.blockDB_).forEach(blockName => {
+      toolboxWS.getAllBlocks().forEach(block => {
+        const blockName = block.type;
         playgroundWS.newBlock(blockName);
         const xml = (Blockly.Xml.workspaceToDom(playgroundWS, true)).outerHTML;
         if (xml.match(/<xml>.*<block.*>.*<\/block><\/xml>/) === null) {
@@ -47,10 +48,11 @@ describe('Export and Import XML files to workspace', () => {
    */
   test('Export/Import combi test for each block from toolbox', async () => {
     expect(await page.evaluate(() => {
-      let xmlStrings = {};
+      const xmlStrings = {};
 
       // first get all xml strings for each block
-      Object.keys(toolboxWS.blockDB_).forEach(blockName => {
+      toolboxWS.getAllBlocks().forEach(block => {
+        const blockName = block.type;
         playgroundWS.newBlock(blockName);
         xmlStrings[blockName] = (Blockly.Xml.workspaceToDom(playgroundWS, true)).outerHTML;
         playgroundWS.clear();
@@ -67,7 +69,7 @@ describe('Export and Import XML files to workspace', () => {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlStrings[blockName]), playgroundWS);
 
         if (Object.keys(playgroundWS.blockDB_).length !== 1) {
-         return false;
+          return false;
         }
       });
 

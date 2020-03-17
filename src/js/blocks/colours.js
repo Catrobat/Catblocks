@@ -2,27 +2,27 @@
  * @description Catblocks color codes
  */
 
-import Blockly from 'scratch-blocks';
+import Blockly from 'blockly';
 
 'use strict';
 
 const colourCodes = {
-  'arduino': { primary: '#34c8a5', secondary: '#299377', tertiary: '#238770' },
-  'control': { primary: '#FFAB19', secondary: '#e39613', tertiary: '#CF8B17' },
-  'data': { primary: '#FF6680', secondary: '#ce4562', tertiary: '#FF3355' },
-  'drone': { primary: '#91d149', secondary: '#6d9c36', tertiary: '#669334' },
-  'event': { primary: '#FF661A', secondary: '#d44c00', tertiary: '#E64D00' },
-  'jumpingSumo': { primary: '#91d149', secondary: '#6d9c36', tertiary: '#669334' },
-  'legoEV3': { primary: '#cbca3e', secondary: '#aead38', tertiary: '#acab34' },
-  'legoNXT': { primary: '#cbca3e', secondary: '#aead38', tertiary: '#acab34' },
-  'looks': { primary: '#59C059', secondary: '#3c943c', tertiary: '#389438' },
-  'motion': { primary: '#4C97FF', secondary: '#386bb8', tertiary: '#3373CC' },
-  'pen': { primary: '#0fBD8C', secondary: '#0b8965', tertiary: '#0B8E69' },
-  'phiro': { primary: '#34c8a5', secondary: '#299377', tertiary: '#238770' },
-  'raspi': { primary: '#34c8a5', secondary: '#299377', tertiary: '#238770' },
-  'sound': { primary: '#9966FF', secondary: '#6c51b4', tertiary: '#774DCB' },
-  'stitch': { primary: '#BC4793', secondary: '#bb3a8d', tertiary: '#b72a86' },
-  'default': { primary: '#34c8a5', secondary: '#299377', tertiary: '#238770' }
+  'arduino': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'control': { colourPrimary: '#FFAB19', colourSecondary: '#e39613', colourTertiary: '#CF8B17' },
+  'data': { colourPrimary: '#FF6680', colourSecondary: '#ce4562', colourTertiary: '#FF3355' },
+  'drone': { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
+  'event': { colourPrimary: '#FF661A', colourSecondary: '#d44c00', colourTertiary: '#E64D00' },
+  'jumpingSumo': { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
+  'legoEV3': { colourPrimary: '#cbca3e', colourSecondary: '#aead38', colourTertiary: '#acab34' },
+  'legoNXT': { colourPrimary: '#cbca3e', colourSecondary: '#aead38', colourTertiary: '#acab34' },
+  'looks': { colourPrimary: '#59C059', colourSecondary: '#3c943c', colourTertiary: '#389438' },
+  'motion': { colourPrimary: '#4C97FF', colourSecondary: '#386bb8', colourTertiary: '#3373CC' },
+  'pen': { colourPrimary: '#0fBD8C', colourSecondary: '#0b8965', colourTertiary: '#0B8E69' },
+  'phiro': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'raspi': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'sound': { colourPrimary: '#9966FF', colourSecondary: '#6c51b4', colourTertiary: '#774DCB' },
+  'stitch': { colourPrimary: '#BC4793', colourSecondary: '#bb3a8d', colourTertiary: '#b72a86' },
+  'default': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' }
 };
 
 /**
@@ -33,14 +33,16 @@ const colourCodes = {
  */
 const initCatblocksColours = (colours = colourCodes, blockly = Blockly) => {
   if (colours) {
+    blockly.Colours = {};
     if (Object.keys(blockly.Categories).length > 0) {
       for (const catName in blockly.Categories) {
-        console.debug(`Init colour for category: ${catName}`);
         const colourName = colours[catName] ? catName : 'default';
         blockly.Colours[catName] = colours[colourName];
-        // INFO: only due to old scratch-block version
-        if (!blockly.Extensions.ALL_[`colours_${catName}`]) {
-          blockly.Extensions.register(`colours_${catName}`, blockly.ScratchBlocks.VerticalExtensions.colourHelper(colourName));
+        
+        for (const brickName of blockly.Categories[catName]) {
+          blockly.Bricks[brickName]['colour'] = colours[colourName]['colourPrimary'];
+          blockly.Bricks[brickName]['colourSecondary'] = colours[colourName]['colourSecondary'];
+          blockly.Bricks[brickName]['colourTertiary'] = colours[colourName]['colourTertiary'];
         }
       }
     } else {

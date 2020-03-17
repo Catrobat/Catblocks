@@ -6,9 +6,7 @@
 
 export default {
   "StitchBrick": {
-    "message0": "%{BKY_STITCH}",
-    "category": "stitch",
-    "extensions": ["colours_stitch", "shape_statement"]
+    "message0": "%{BKY_STITCH}"
   },
   "RunningStitchBrick": {
     "message0": "%{BKY_STITCH_RUNNING}",
@@ -18,9 +16,7 @@ export default {
         "name": "EMBROIDERY_LENGTH",
         "value": 10
       }
-    ],
-    "category": "stitch",
-    "extensions": ["colours_stitch", "shape_statement"]
+    ]
   },
   "ZigZagStitchBrick": {
     "message0": "%{BKY_STITCH_ZIGZAG}",
@@ -35,9 +31,7 @@ export default {
         "name": "ZIGZAG_EMBROIDERY_WIDTH",
         "value": 10
       }
-    ],
-    "category": "stitch",
-    "extensions": ["colours_stitch", "shape_statement"]
+    ]
   },
   "TripleStitchBrick": {
     "message0": "%{BKY_STITCH_TRIPLE}",
@@ -47,13 +41,9 @@ export default {
         "name": "EMBROIDERY_LENGTH",
         "value": 10
       }
-    ],
-    "category": "stitch",
-    "extensions": ["colours_stitch", "shape_statement"]
+    ]
   },
   "StopRunningStitchBrick": {
-    "message0": "%{BKY_STITCH_STOP}",
-    "category": "stitch",
-    "extensions": ["colours_stitch", "shape_statement"]
+    "message0": "%{BKY_STITCH_STOP}"
   }
 };
