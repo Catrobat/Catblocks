@@ -68,6 +68,16 @@ h1 {
   max-width: 680px;
   text-align: center;
   margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+#catblocks-file-dropper .small {
+  font-size: 0.8em;
+  margin-top: 10px;
 }
 
 #catblocks-file-dropper .icon {

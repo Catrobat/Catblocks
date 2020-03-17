@@ -22,14 +22,14 @@ export const renderAllPrograms = (share, container, path) => {
     .then(text => {
       const page = (new DOMParser()).parseFromString(text, 'text/html');
       if (page === undefined) {
-        const fd = new FileDropper(share, container, renderProgram);
+        const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
         fd.enableDragAndDrop();
         return;
       }
 
       const files = page.getElementsByTagName('ul')[0] || undefined;
       if (files === undefined) {
-        const fd = new FileDropper(share, container, renderProgram);
+        const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
         fd.enableDragAndDrop();
         return;
       }
@@ -76,4 +76,27 @@ const renderProgram = (share, container, path, name, counter) => {
       console.error(`${path}${name}/code.xml failed`);
       console.error(err);
     });
+};
+
+const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
+  // prepare container for program injection
+  const containerId = `catblocks-program-${name}-${counter++}`;
+  console.log(`Render program: ${name} with id: ${containerId}`);
+  const programContainer = document.createElement('div');
+  programContainer.id = containerId;
+  const programHeader = document.createElement('h1');
+  programHeader.innerText = `Program: ${name} -> RenderId: ${counter}`;
+  programHeader.setAttribute('style', 'background-color: lawngreen;');
+  programContainer.appendChild(programHeader);
+  container.appendChild(programContainer);
+
+  // inject code
+  const xmlDoc = share.parser.convertProgramString(codeXML);
+  console.log(xmlDoc);
+  const div = document.getElementById(containerId);
+  share.injectAllScenes(div, xmlDoc, {
+    object: {
+      fileMap: fileMap
+    } 
+  });
 };

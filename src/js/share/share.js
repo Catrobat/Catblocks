@@ -163,9 +163,6 @@ export class Share {
       svg.setAttribute('height', oriBox.height + yOffset);
       svg.setAttribute('class', 'catblocks-svg');
 
-      console.log("hello world!");
-
-
     } catch (e) {
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
@@ -259,11 +256,17 @@ export class Share {
 
       if (options.writeLook && options.objectImage !== undefined) {
         const lookContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-look-container' });
+        
+        if (options.fileMap != null && options.fileMap[options.objectImage]) {
+          var src = options.fileMap[options.objectImage];
+        }
+        console.log(options.fileMap, options.objectImage);
         const lookImage = injectNewDom(lookContainer, 'IMG', {
           'class': 'catblocks-object-look-item',
-          'src': `${this.config.shareRoot}${options.programRoot}${options.objectImage.split('#').join('%23')}`
+          'src': (src != null) ? src : `${this.config.shareRoot}${options.programRoot}${options.objectImage.split('#').join('%23')}`
         });
         lookImage.onerror = function(e) {
+          console.log('Error: ', e);
           e.target.src = 'https://cdn2.iconfinder.com/data/icons/symbol-blue-set-3/100/Untitled-1-94-512.png';
         };
       }
