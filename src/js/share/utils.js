@@ -28,8 +28,7 @@ export const defaultOptions = {
     writeStats: true,
     writeLook: true,
     expandable: true,
-    programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/',
-    fileMap: undefined
+    programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/'
   }
 };
 
