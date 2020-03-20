@@ -2,7 +2,7 @@ import "../css/style.css";
 import { Playground } from "./playground/playground";
 import { Share } from "./share/share";
 import * as shareUtils from './share/utils';
-import Blockly from "scratch-blocks";
+import Blockly from "blockly";
 import { renderAllPrograms } from './render/render';
 
 (() => {

@@ -3,7 +3,7 @@
  *  for the parser we always need the webview
  */
 
-'use strict'
+'use strict';
 
 describe('Parser catroid program tests', () => {
 
@@ -225,7 +225,7 @@ describe('Catroid to Catblocks parser tests', () => {
         && catXml.getElementsByTagName('block').length === 3
         && catXml.getElementsByTagName('block')[0].getAttribute('type') === 'BroadcastScript'
         && catXml.getElementsByTagName('block')[1].getAttribute('type') === 'ForeverBrick'
-        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'PlaySoundAndWaitBrick')
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'PlaySoundAndWaitBrick');
     })).toBeTruthy();
   });
 

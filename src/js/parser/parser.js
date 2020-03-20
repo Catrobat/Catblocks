@@ -102,11 +102,11 @@ const escapeXml = (unsafe) => {
   } else {
     return unsafe.replace(/[<>&'"]/g, function(c) {
       switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
+        case '<': return '&lt;';
+        case '>': return '&gt;';
+        case '&': return '&amp;';
+        case '\'': return '&apos;';
+        case '"': return '&quot;';
       }
     });
   }
@@ -120,11 +120,11 @@ const escapeXml = (unsafe) => {
 function isSupported(program) {
   const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
   if (appVersion === undefined || appVersion.length < 1) {
-    console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
     return false;
   }
   if (appVersion[0].innerHTML < supportedAppVersion) {
-    console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
     return false;
   }
   return true;

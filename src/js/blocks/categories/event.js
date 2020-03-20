@@ -6,62 +6,43 @@
 
 export default {
   "StartScript": {
-    "message0": "%{BKY_EVENT_WHENSCENESTARTS}",
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    "message0": "%{BKY_EVENT_WHENSCENESTARTS}"
   },
   "WhenScript": {
-    "message0": "%{BKY_EVENT_WHENTAPPED}",
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"],
-    "args0": []
+    "message0": "%{BKY_EVENT_WHENTAPPED}"
   },
   "WhenTouchDownScript": {
-    "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}",
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}"
   },
   "BroadcastScript": {
     "message0": "%{BKY_EVENT_WHENYOURECEIVE}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    ]
   },
   "BroadcastBrick": {
     "message0": "%{BKY_EVENT_BROADCAST_CB}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_statement"]
+    ]
   },
   "BroadcastWaitBrick": {
     "message0": "%{BKY_EVENT_BROADCASTANDWAIT_CB}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_statement"]
+    ]
   },
   "WhenConditionScript": {
     "message0": "%{BKY_EVENT_WHENBECOMESTRUE}",
@@ -71,36 +52,26 @@ export default {
         "name": "IF_CONDITION",
         "text": "1 < 2"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    ]
   },
   "WhenBounceOffScript": {
     "message0": "%{BKY_EVENT_WHENYOUBOUNCEOFF}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["any edge, actor, or object", "EDGE"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    ]
   },
   "WhenBackgroundChangesScript": {
     "message0": "%{BKY_EVENT_WHENBACKGROUNDCHANGES}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["new...", "NEW"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "event",
-    "extensions": ["colours_event", "shape_hat"]
+    ]
   }
 };

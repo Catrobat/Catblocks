@@ -6,157 +6,145 @@
 
 export default {
   "DroneTakeOffLandBrick": {
-    "message0": "%{BKY_DRONE_TAKEOFFLAND}",
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    "message0": "%{BKY_DRONE_TAKEOFFLAND}"
   },
   "DroneEmergencyBrick": {
-    "message0": "%{BKY_DRONE_EMERGENCY}",
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    "message0": "%{BKY_DRONE_EMERGENCY}"
   },
   "DroneMoveUpBrick": {
     "message0": "%{BKY_DRONE_MOVEUP}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneMoveDownBrick": {
     "message0": "%{BKY_DRONE_MOVEDOWN}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneMoveLeftBrick": {
     "message0": "%{BKY_DRONE_MOVELEFT}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneMoveRightBrick": {
     "message0": "%{BKY_DRONE_MOVERIGHT}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneMoveForwardBrick": {
     "message0": "%{BKY_DRONE_MOVEFORWARD}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneMoveBackwardBrick": {
     "message0": "%{BKY_DRONE_MOVEBACKWARD}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneTurnLeftBrick": {
     "message0": "%{BKY_DRONE_TURNLEFT}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneTurnRightBrick": {
     "message0": "%{BKY_DRONE_TURNRIGHT}",
     "args0": [
       {
         "type": "field_number",
-        "name": "SECONDS"
+        "name": "SECONDS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneFlipBrick": {
-    "message0": "%{BKY_DRONE_FLIP}",
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    "message0": "%{BKY_DRONE_FLIP}"
   },
   "DronePlayLedAnimationBrick": {
     "message0": "%{BKY_DRONE_PLAYLEDANIMATION}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Blink green red", "Blink green"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    ]
   },
   "DroneSwitchCameraBrick": {
-    "message0": "%{BKY_DRONE_SWITCHCAMERA}",
-    "category": "drone",
-    "extensions": ["colours_drone", "shape_statement"]
+    "message0": "%{BKY_DRONE_SWITCHCAMERA}"
   }
 };

@@ -10,78 +10,64 @@ export default {
     "args0": [
       {
         "type": "field_number",
-        "name": "STEPS"
+        "name": "STEPS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoMoveBackwardBrick": {
     "message0": "%{BKY_SUMO_MOVEBACKWARD}",
     "args0": [
       {
         "type": "field_number",
-        "name": "STEPS"
+        "name": "STEPS",
+        "value": 1
       },
       {
         "type": "field_number",
-        "name": "POWER"
+        "name": "POWER",
+        "value": 1
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoAnimationsBrick": {
     "message0": "%{BKY_SUMO_ANIMATION}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Spin", "Tab"]
-        ]
+        "text": "new"
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoSoundBrick": {
     "message0": "%{BKY_SUMO_SOUND}",
     "args0": [
       {
-        "type": "field_dropdown",
+        "type": "field_input",
         "name": "DROPDOWN",
-        "options": [
-          ["Normal", "Robot"]
-        ]
+        "text": "new"
       },
       {
         "type": "field_number",
         "name": "VARIABLE",
-        "text": "50"
+        "value": 50
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoNoSoundBrick": {
-    "message0": "%{BKY_SUMO_NOSOUND}",
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    "message0": "%{BKY_SUMO_NOSOUND}"
   },
   "JumpingSumoJumpLongBrick": {
-    "message0": "%{BKY_SUMO_JUMPLONG}",
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    "message0": "%{BKY_SUMO_JUMPLONG}"
   },
   "JumpingSumoJumpHighBrick": {
-    "message0": "%{BKY_SUMO_JUMPHIGH}",
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    "message0": "%{BKY_SUMO_JUMPHIGH}"
   },
   "JumpingSumoRotateLeftBrick": {
     "message0": "%{BKY_SUMO_ROTATELEFT}",
@@ -91,9 +77,7 @@ export default {
         "name": "ANGLE",
         "value": 90
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoRotateRightBrick": {
     "message0": "%{BKY_SUMO_ROTATERIGHT}",
@@ -103,18 +87,12 @@ export default {
         "name": "ANGLE",
         "value": 90
       }
-    ],
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    ]
   },
   "JumpingSumoTurnBrick": {
-    "message0": "%{BKY_SUMO_TURN}",
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    "message0": "%{BKY_SUMO_TURN}"
   },
   "JumpingSumoTakingPictureBrick": {
-    "message0": "%{BKY_SUMO_TAKINGPICTURE}",
-    "category": "jumpingSumo",
-    "extensions": ["colours_jumpingSumo", "shape_statement"]
+    "message0": "%{BKY_SUMO_TAKINGPICTURE}"
   }
 };

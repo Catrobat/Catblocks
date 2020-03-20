@@ -18,12 +18,9 @@ export default {
         "name": "DIGITAL_PIN_VALUE",
         "value": 2
       }
-    ],
-    "category": "arduino",
-    "extensions": ["colours_arduino", "shape_statement"]
+    ]
   },
-  "ArduinoSendPWMValueBrick":
-  {
+  "ArduinoSendPWMValueBrick": {
     "message0": "%{BKY_ARDUINO_SENDPWMALVALUE}",
     "args0": [
       {
@@ -36,8 +33,6 @@ export default {
         "name": "PWM_PIN_VALUE",
         "value": 2
       }
-    ],
-    "category": "arduino",
-    "extensions": ["colours_arduino", "shape_statement"]
+    ]
   }
 };

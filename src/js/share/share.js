@@ -2,7 +2,7 @@
  * This file will be used in catroweb to render everything properly
  */
 
-import Blockly from 'scratch-blocks';
+import Blockly from 'blockly';
 import Parser from '../parser/parser';
 import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
 
@@ -46,7 +46,8 @@ export class Share {
         controls: false,
         wheel: false,
         startScale: this.config.renderSize
-      }
+      },
+      renderer: 'zelos'
     });
     this.blockly.CatblocksMsgs.setLocale(this.config.language);
 
@@ -451,6 +452,25 @@ export class Share {
 		.container-open {
 			/*max-height: 5000px;
 			transition: max-height 1s ease-in;*/
-		}`;
+    }
+    .blocklyText {
+      fill: #fff;
+      font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+      font-size: 12pt;
+      font-weight: bold;
+    }
+    .blocklyNonEditableText>rect:not(.blocklyDropdownRect),
+    .blocklyEditableText>rect:not(.blocklyDropdownRect) {
+      fill: #fff;
+    }
+    .blocklyNonEditableText>text, 
+    .blocklyEditableText>text, 
+    .blocklyNonEditableText>g>text, 
+    .blocklyEditableText>g>text {
+      fill: #575E75;
+    }
+    .blocklyDropdownText {
+      fill: #fff !important;
+    }`;
   }
 }
