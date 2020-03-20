@@ -1,8 +1,7 @@
 import Blockly from "scratch-blocks";
 import "../catblocks_msgs";
-import "./../blocks/loader";
-import {checkNextBlock, wrapElement } from '../share/utils';
-
+import "./../blocks";
+import { checkNextBlock, wrapElement } from '../share/utils';
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
 
@@ -12,7 +11,8 @@ export class Playground {
     this.Blockly = Blockly;
     this.Parser = XStreamParser;
 
-    this.workspace = null;
+    this.toolbox = undefined;
+    this.workspace = undefined;
   }
   init() {
 
@@ -30,7 +30,7 @@ export class Playground {
       '    </value>',
       '  </shadow>'
     ].join('\n');
-  
+
     this.spaghettiXml = [
       '  <block type="control_if_else">',
       '    <value name="CONDITION">',
@@ -61,14 +61,8 @@ export class Playground {
     let match = location.search.match(/dir=([^&]+)/);
     const rtl = match && match[1] == 'rtl';
     document.forms.options.elements.dir.selectedIndex = Number(rtl);
-    const toolbox = this.getToolboxElement();
-    document.forms.options.elements.toolbox.selectedIndex =
-          toolbox ? 1: 0;
-    
     match = location.search.match(/side=([^&]+)/);
-
     const side = match ? match[1] : 'start';
-
     document.forms.options.elements.side.value = side;
 
     // Setup locale
@@ -97,7 +91,7 @@ export class Playground {
       readOnly: false,
       rtl: rtl,
       scrollbars: true,
-      toolbox: toolbox,
+      toolbox: this.getToolbox(),
       toolboxPosition: side == 'top' || side == 'start' ? 'start' : 'end',
       horizontalLayout: side == 'top' || side == 'bottom',
       sounds: soundsEnabled,
@@ -135,9 +129,9 @@ export class Playground {
     }
   }
   bindListeners() {
-    $('#showWorkspace').click(e => { 
+    $('#showWorkspace').click(e => {
       e.preventDefault();
-      this.workspace.setVisible(true); 
+      this.workspace.setVisible(true);
     });
     $('#hideWorkspace').click(e => {
       e.preventDefault();
@@ -180,9 +174,26 @@ export class Playground {
       sessionStorage.setItem('soundsEnabled', state);
     }
   }
-  getToolboxElement() {
-    const match = location.search.match(/toolbox=([^&]+)/);
-    return document.getElementById('toolbox-' + (match ? match[1] : 'categories'));
+  getToolbox() {
+    if (!this.toolbox) {
+      const xml = document.createElement('xml');
+      for (const catName in this.Blockly.Categories) {
+        const category = document.createElement('category');
+        category.setAttribute('name', `%{BKY_CATEGORY_${catName.toUpperCase()}}`);
+        category.setAttribute('id', catName);
+        category.setAttribute('colour', this.Blockly.Colours[catName]['primary']);
+        category.setAttribute('secondaryColour', this.Blockly.Colours[catName]['secondary']);
+        for (const brickName of this.Blockly.Categories[catName]) {
+          const brick = document.createElement('block');
+          brick.setAttribute('type', brickName);
+          category.append(brick);
+        }
+        xml.append(category);
+      }
+      this.toolbox = xml;
+    }
+
+    return this.toolbox;
   }
   // Disable the "Import from XML" button if the XML is invalid.
   // Preserve text between page reloads.
@@ -221,7 +232,7 @@ export class Playground {
     if (sessionStorage) {
       sessionStorage.setItem('logFlyoutEvents', state ? 'checked' : '');
     }
-    
+
     const flyoutWorkspace = (this.workspace.flyout_) ? this.workspace.flyout_.workspace_ :
       this.workspace.toolbox_.flyout_.workspace_;
     if (state) {
@@ -247,10 +258,10 @@ export class Playground {
   fromParser() {
     const input = document.getElementById('importExport');
     const blocksXml = this.Parser.convertScriptString(input.value);
-    
+
     if (blocksXml === undefined || blocksXml === "") {
       throw "no response from XStreamParser";
-    } else { 
+    } else {
       this.Blockly.Xml.domToWorkspace(wrapElement(blocksXml.firstChild, 'xml'), this.workspace);
     }
   }
@@ -301,12 +312,12 @@ export class Playground {
     console.log("Starting spaghetti.  This may take some time...");
     let xml = this.spaghettiXml;
     // Nest if/else statements deeply.
-    for(let i = 0; i < 2 * n; i++) {
+    for (let i = 0; i < 2 * n; i++) {
       xml = xml.replace(/(<statement name="SUBSTACK2?"?>)<\//g,
         '$1' + this.spaghettiXml + '</');
     }
     // Stack a bit.
-    for(let i = 0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
       xml = xml.replace(/(<next>)<\//g,
         '$1' + this.spaghettiXml + '</');
     }
@@ -340,7 +351,7 @@ export class Playground {
     this.workspace.getFlyout().setRecyclingEnabled(false);
     const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     this.Blockly.CatblocksMsgs.setLocale(locale);
-    this.workspace.updateToolbox(this.Blockly.Blocks.defaultToolbox);
+    this.workspace.updateToolbox(this.getToolbox());
     this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
     this.workspace.getFlyout().setRecyclingEnabled(true);
   }
