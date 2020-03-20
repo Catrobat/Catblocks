@@ -29,6 +29,6 @@ git config user.name "GitHub Action"
 git add ./develop
 git commit -m "deploy current testing page"
 
-git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
+git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/MichaelFlucher/Catblocks.git" "gh-pages"
 
 exit $RETVALUE
