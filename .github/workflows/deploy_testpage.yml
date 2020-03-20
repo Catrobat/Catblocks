@@ -1,16 +1,12 @@
-name: Test
+name: Deploy develop page to gh-pages
 
 on:
   push:
     branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build Project
