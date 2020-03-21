@@ -35,6 +35,7 @@ class Brick {
     this.loopOrIfBrickList = [];
     this.elseBrickList = [];
     this.formValues = new Map();
+    this.colorVariation = 0;
   }
 }
 
@@ -101,11 +102,11 @@ const escapeXml = (unsafe) => {
   } else {
     return unsafe.replace(/[<>&'"]/g, function(c) {
       switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
+        case '<': return '&lt;';
+        case '>': return '&gt;';
+        case '&': return '&amp;';
+        case '\'': return '&apos;';
+        case '"': return '&quot;';
       }
     });
   }
@@ -119,11 +120,11 @@ const escapeXml = (unsafe) => {
 function isSupported(program) {
   const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
   if (appVersion === undefined || appVersion.length < 1) {
-    console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
     return false;
   }
   if (appVersion[0].innerHTML < supportedAppVersion) {
-    console.warn('Catblocks tries to render unsupported application version, some issues could occur.');
+    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
     return false;
   }
   return true;
@@ -150,9 +151,9 @@ function parseCatroidProgram(xml) {
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
-  // console.log(sceneList);
+  catLog(sceneList);
   const xmlStream = generateShareXml();
-  // console.log(xmlStream);
+  catLog(xmlStream);
   try {
     return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
   } catch (e) {
@@ -257,7 +258,6 @@ const getNodeValueOrDefault = (node, def = "---") => {
 
 function checkUsage(list, location) {
   if (list.nodeName === "broadcastMessage" || list.nodeName === "spriteToBounceOffName" || list.nodeName === "receivedMessage" || list.nodeName === "sceneToStart" || list.nodeName === "sceneForTransition") {
-    // BLOCKS-54 -> sceneForTransition can exist without node child
     location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
   }
   if (list.nodeName === "spinnerSelection") {
@@ -288,12 +288,26 @@ function checkUsage(list, location) {
     const loopOrIfBrickList = (list.children);
     for (let j = 0; j < loopOrIfBrickList.length; j++) {
       location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
+      if (location.name === loopOrIfBrickList[j].name) {
+        if (loopOrIfBrickList[j].colorVariation === 0) {
+          location.colorVariation = 1;
+        } else {
+          location.colorVariation = 0;
+        }
+      }
     }
   }
   if (list.nodeName === "elseBranchBricks") {
     const elseBrickList = (list.children);
     for (let j = 0; j < elseBrickList.length; j++) {
       location.elseBrickList.push(parseBrick(elseBrickList[j]));
+      if (location.name === elseBrickList[j].name) {
+        if (elseBrickList[j].colorVariation === 0) {
+          location.colorVariation = 1;
+        } else {
+          location.colorVariation = 0;
+        }
+      }
     }
   }
   if (list.nodeName === "sound") {
@@ -307,100 +321,10 @@ function checkUsage(list, location) {
     location.formValues.set("look", lookName);
   }
   if (list.nodeName === "userVariable") {
-    if (list.childNodes.length !== 0) {
-      findCurrentVariableName(list, location);
-    }
-    else {
-      const reference = list.getAttribute("reference");
-      findOtherVariableName(list, location, reference);
-
-    }
-
-  }
-}
-
-function findCurrentVariableName(list, location) {
-  for (let i = 0; i < list.childNodes.length; i++) {
-    if (list.childNodes[i].nodeName === "userVariable") {
-      const userVariable = list.childNodes[i];
-      for (let j = 0; j < userVariable.childNodes.length; j++) {
-        if (userVariable.childNodes[j].nodeName === "default") {
-          const defaultBlock = userVariable.childNodes[j];
-          for (let k = 0; k < defaultBlock.childNodes.length; k++) {
-            if (defaultBlock.childNodes[k].nodeName === "name") {
-              location.formValues.set("DROPDOWN", defaultBlock.childNodes[k].textContent);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-function findOtherVariableName(list, location, reference) {
-  if (reference.startsWith("../")) {
-    reference = reference.slice(3);
-    findOtherVariableName(list.parentElement, location, reference);
-  }
-  else if (reference.startsWith("userVariable")) {
-    for (let i = 0; i < list.childNodes.length; i++) {
-      if (list.childNodes[i].nodeName === "userVariable") {
-        findCurrentVariableName(list.childNodes[i], location);
-      }
-    }
-  } else if (reference.startsWith("ifBranchBricks")) {
-    reference = reference.slice(20);
-    let position = 1;
-    if (reference.startsWith("[")) {
-      position = reference.charAt(1);
-      reference = reference.slice(3);
-    }
-    reference = reference.slice(1);
-    for (let i = 0; i < list.childNodes.length; i++) {
-      if (list.childNodes[i].nodeName === "ifBranchBricks") {
-        list = list.childNodes[i].childNodes[(position * 2) - 1];
-        findOtherVariableName(list, location, reference);
-      }
-    }
-  } else if (reference.startsWith("elseBranchBricks")) {
-    reference = reference.slice(22);
-    let position = 1;
-    if (reference.startsWith("[")) {
-      position = reference.charAt(1);
-      reference = reference.slice(3);
-    }
-    reference = reference.slice(1);
-    for (let i = 0; i < list.childNodes.length; i++) {
-      if (list.childNodes[i].nodeName === "elseBranchBricks") {
-        list = list.childNodes[i].childNodes[(position * 2) - 1];
-        findOtherVariableName(list, location, reference);
-      }
-    }
-  } else if (reference.startsWith("script")) {
-    reference = reference.slice(6);
-    let position = 1;
-    if (reference.startsWith("[")) {
-      position = reference.charAt(1);
-      reference = reference.slice(3);
-    }
-    reference = reference.slice(1);
-    findOtherVariableName(list.childNodes[(position * 2) - 1], location, reference);
-
-
-  } else if (reference.startsWith("brickList")) {
-    reference = reference.slice(15);
-    let position = 1;
-    if (reference.startsWith("[")) {
-      position = reference.charAt(1);
-      reference = reference.slice(3);
-    }
-    reference = reference.slice(1);
-    for (let i = 0; i < list.childNodes.length; i++) {
-      if (list.childNodes[i].nodeName === "brickList") {
-        list = list.childNodes[i].childNodes[(position * 2) - 1];
-        findOtherVariableName(list, location, reference);
-      }
-    }
+    const variable = flatReference(list);
+    const variableName = (variable.querySelector('userVariable default name')) ?
+      variable.querySelector('userVariable default name').textContent : 'userVariable';
+    location.formValues.set('DROPDOWN', variableName);
   }
 }
 
@@ -536,6 +460,7 @@ export default class Parser {
     try {
       return (new DOMParser()).parseFromString(XML, 'text/xml');
     } catch (e) {
+      catLog(e);
       console.error('Failed to convert catblocks script into XMLDocument, verify input');
       return;
     }
@@ -552,6 +477,7 @@ export default class Parser {
         const xml = (new window.DOMParser()).parseFromString(scriptString, 'text/xml');
         return Parser.convertScript(xml);
       } catch (e) {
+        catLog(e);
         console.error(`Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`);
         return undefined;
       }
@@ -573,6 +499,7 @@ export default class Parser {
         initParser(xml);
         return parseCatroidProgram(xml);
       } catch (e) {
+        catLog(e);
         console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
         return undefined;
       }
@@ -593,7 +520,7 @@ export default class Parser {
       })
       .catch(err => {
         console.error(`Failed to fetch uri: ${uri}`);
-        console.error(err);
+        catLog(err);
         return undefined;
       });
   }

@@ -2,9 +2,9 @@
  * This file will be used in catroweb to render everything properly
  */
 
-import Blockly from 'scratch-blocks';
+import Blockly from 'blockly';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
 
 export class Share {
   constructor() {
@@ -46,7 +46,8 @@ export class Share {
         controls: false,
         wheel: false,
         startScale: this.config.renderSize
-      }
+      },
+      renderer: 'zelos'
     });
     this.blockly.CatblocksMsgs.setLocale(this.config.language);
 
@@ -88,13 +89,7 @@ export class Share {
     const blocks = script.getElementsByTagName('block');
     return Array.from(blocks).map(block => {
       const name = block.getAttribute('type') || 'undefined';
-      if (this.blockly.Blocks[name]) {
-        const category = this.blockly.Blocks[name].init.toString().match(/Categories.[a-zA-Z]+/);
-        if (category.length > 0) return category[0].split('.')[1];
-        return 'unknown';
-      } else {
-        return 'unknown';
-      }
+      return (this.blockly.Bricks[name]) ? this.blockly.Bricks[name].category : 'unknown';
     }).reduce((acc, val) => {
       if (acc[val]) {
         acc[val] = acc[val] + 1;
@@ -152,8 +147,8 @@ export class Share {
     let svg = undefined;
     try {
       this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
+      checkNextBlock(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
-
       const oriBox = oriSvg.lastElementChild.getBBox();
 
       // remove rect around it
@@ -256,11 +251,17 @@ export class Share {
 
       if (options.writeLook && options.objectImage !== undefined) {
         const lookContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-look-container' });
+        
+        if (options.fileMap != null && options.fileMap[options.objectImage]) {
+          var src = options.fileMap[options.objectImage];
+        }
+        console.log(options.fileMap, options.objectImage);
         const lookImage = injectNewDom(lookContainer, 'IMG', {
           'class': 'catblocks-object-look-item',
-          'src': `${this.config.shareRoot}${options.programRoot}${options.objectImage.split('#').join('%23')}`
+          'src': (src != null) ? src : `${this.config.shareRoot}${options.programRoot}${options.objectImage.split('#').join('%23')}`
         });
         lookImage.onerror = function(e) {
+          console.log('Error: ', e);
           e.target.src = 'https://cdn2.iconfinder.com/data/icons/symbol-blue-set-3/100/Untitled-1-94-512.png';
         };
       }
@@ -454,6 +455,25 @@ export class Share {
 		.container-open {
 			/*max-height: 5000px;
 			transition: max-height 1s ease-in;*/
-		}`;
+    }
+    .blocklyText {
+      fill: #fff;
+      font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+      font-size: 12pt;
+      font-weight: bold;
+    }
+    .blocklyNonEditableText>rect:not(.blocklyDropdownRect),
+    .blocklyEditableText>rect:not(.blocklyDropdownRect) {
+      fill: #fff;
+    }
+    .blocklyNonEditableText>text, 
+    .blocklyEditableText>text, 
+    .blocklyNonEditableText>g>text, 
+    .blocklyEditableText>g>text {
+      fill: #575E75;
+    }
+    .blocklyDropdownText {
+      fill: #fff !important;
+    }`;
   }
 }

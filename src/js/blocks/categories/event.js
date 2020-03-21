@@ -1,150 +1,77 @@
-import Blockly from "scratch-blocks";
+/**
+ * @description arduino Catblocks bricks
+ */
 
-Blockly.Blocks['StartScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENSCENESTARTS,
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
+'use strict';
 
-Blockly.Blocks['WhenScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENTAPPED,
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"],
-      "args0": []
-    });
-  }
-};
-
-Blockly.Blocks['WhenTouchDownScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENSTAGEISTAPPED,
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
-
-Blockly.Blocks['BroadcastScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENYOURECEIVE,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "DROPDOWN",
-          "options": [
-            ["new...", "NEW"]
-          ]
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
-
-
-Blockly.Blocks['BroadcastBrick'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_BROADCAST_CB,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "DROPDOWN",
-          "options": [
-            ["new...", "NEW"]
-          ]
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_statement"]
-    });
-  }
-};
-
-
-Blockly.Blocks['BroadcastWaitBrick'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_BROADCASTANDWAIT_CB,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "DROPDOWN",
-          "options": [
-            ["new...", "NEW"]
-          ]
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_statement"]
-    });
-  }
-};
-
-
-
-Blockly.Blocks['WhenConditionScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENBECOMESTRUE,
-      "args0": [
-        {
-          "type": "field_input",
-          "name": "IF_CONDITION",
-          "text": "1 < 2"
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
-
-Blockly.Blocks['WhenBounceOffScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENYOUBOUNCEOFF,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "DROPDOWN",
-          "options": [
-            ["edge", "EDGE"],
-            ["actor", "ACTOR"],
-            ["object", "OBJECT"]
-          ]
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
-
-Blockly.Blocks['WhenBackgroundChangesScript'] = {
-  init: function () {
-    this.jsonInit({
-      "message0": Blockly.Msg.EVENT_WHENBACKGROUNDCHANGES,
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "DROPDOWN",
-          "options": [
-            ["new...", "NEW"]
-          ]
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
+export default {
+  "StartScript": {
+    "message0": "%{BKY_EVENT_WHENSCENESTARTS}"
+  },
+  "WhenScript": {
+    "message0": "%{BKY_EVENT_WHENTAPPED}"
+  },
+  "WhenTouchDownScript": {
+    "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}"
+  },
+  "BroadcastScript": {
+    "message0": "%{BKY_EVENT_WHENYOURECEIVE}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "DROPDOWN",
+        "text": "new"
+      }
+    ]
+  },
+  "BroadcastBrick": {
+    "message0": "%{BKY_EVENT_BROADCAST_CB}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "DROPDOWN",
+        "text": "new"
+      }
+    ]
+  },
+  "BroadcastWaitBrick": {
+    "message0": "%{BKY_EVENT_BROADCASTANDWAIT_CB}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "DROPDOWN",
+        "text": "new"
+      }
+    ]
+  },
+  "WhenConditionScript": {
+    "message0": "%{BKY_EVENT_WHENBECOMESTRUE}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "IF_CONDITION",
+        "text": "1 < 2"
+      }
+    ]
+  },
+  "WhenBounceOffScript": {
+    "message0": "%{BKY_EVENT_WHENYOUBOUNCEOFF}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "DROPDOWN",
+        "text": "new"
+      }
+    ]
+  },
+  "WhenBackgroundChangesScript": {
+    "message0": "%{BKY_EVENT_WHENBACKGROUNDCHANGES}",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "DROPDOWN",
+        "text": "new"
+      }
+    ]
   }
 };

@@ -3,6 +3,8 @@
  * @description Share utils tests
  */
 
+'use strict';
+
 /**
  * BeforeAll open the browser and load testing page
  */
@@ -23,7 +25,7 @@ describe('Share utilities testing', () => {
         'c': {
           'c.a': 'ccaa'
         }
-      }
+      };
       const o2 = {
         'b': 'bbb',
         'c': {
@@ -36,7 +38,7 @@ describe('Share utilities testing', () => {
         }
       };
 
-      return JSON.stringify(shareUtils.parseOptions(o1, o2)) === JSON.stringify({ 'b': 'bb', 'c': { 'c.a': 'ccaa' }, 'd': 'd', 'e': { 'e.a': 'eeaa' }, 'a': 1 })
+      return JSON.stringify(shareUtils.parseOptions(o1, o2)) === JSON.stringify({ 'b': 'bb', 'c': { 'c.a': 'ccaa' }, 'd': 'd', 'e': { 'e.a': 'eeaa' }, 'a': 1 });
     })).toBeTruthy();
   });
 
@@ -67,7 +69,7 @@ describe('Share utilities testing', () => {
         && newDom.id === 'tid'
         && newDom.className === 'tclass1 tclass2'
         && newDom.innerText === 'tinnerText'
-        && newDom.parentNode === shareTestContainer)
+        && newDom.parentNode === shareTestContainer);
     })).toBeTruthy();
   });
 
@@ -92,7 +94,7 @@ describe('Share utilities testing', () => {
   test('Remove all children performs properly', async () => {
     expect(await page.evaluate(() => {
       const xmlDoc = (new DOMParser()).parseFromString('<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>', 'text/xml');
-      shareUtils.removeAllChildren(xmlDoc)
+      shareUtils.removeAllChildren(xmlDoc);
 
       return xmlDoc.childElementCount === 0;
     })).toBeTruthy();
@@ -117,7 +119,7 @@ describe('Share utilities testing', () => {
 
       return (shareUtils.hasChildren(xmlDoc)
         && shareUtils.hasChildren(xmlDoc.firstChild)
-        && shareUtils.hasChildren(xmlDoc.firstChild.firstChild))
+        && shareUtils.hasChildren(xmlDoc.firstChild.firstChild));
     })).toBeTruthy();
   });
 

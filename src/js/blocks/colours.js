@@ -1,28 +1,59 @@
-import Blockly from "scratch-blocks";
+/**
+ * @description Catblocks color codes
+ */
 
-Blockly.Colours.overrideColours({
-  control: { primary: "#FFAB19", secondary: "#EC9C13", tertiary: "#CF8B17" },
-  data: { primary: "#FF6680", secondary: "#FF4D6A", tertiary: "#FF3355" },
-  data_lists: { primary: "#FFBF00", secondary: "#E6AC00", tertiary: "#CC9900" },
-  event: { primary: "#FF661A", secondary: "#FF5500", tertiary: "#E64D00" },
-  looks: { primary: "#59C059", secondary: "#46B946", tertiary: "#389438" },
-  more: { primary: "#FF8C1A", secondary: "#FF8000", tertiary: "#DB6E00" },
-  motion: { primary: "#4C97FF", secondary: "#4280D7", tertiary: "#3373CC" },
-  operators: { primary: "#CF63CF", secondary: "#C94FC9", tertiary: "#BD42BD" },
-  pen: { primary: "#0fBD8C", secondary: "#0DA57A", tertiary: "#0B8E69" },
-  sensing: { primary: "#5CB1D6", secondary: "#47A8D1", tertiary: "#2E8EB8" },
-  sounds: { primary: "#9966FF", secondary: "#855CD6", tertiary: "#774DCB" },
-  stitch: { primary: "#BC4793", secondary: "#bb3a8d", tertiary: "#b72a86" }
-});
+import Blockly from 'blockly';
 
-Blockly.Colours["arduino"] = { primary: "#34c8a5", secondary: "#31bc9c", tertiary: "#238770" };
-Blockly.Extensions.register("colours_arduino", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("arduino"));
+'use strict';
 
-Blockly.Colours["lego"] = { primary: "#cbca3e", secondary: "#d2d140", tertiary: "#acab34" };
-Blockly.Extensions.register("colours_lego", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("lego"));
+const colourCodes = {
+  'arduino': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'control': { colourPrimary: '#FFAB19', colourSecondary: '#e39613', colourTertiary: '#CF8B17' },
+  'data': { colourPrimary: '#FF6680', colourSecondary: '#ce4562', colourTertiary: '#FF3355' },
+  'drone': { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
+  'event': { colourPrimary: '#FF661A', colourSecondary: '#d44c00', colourTertiary: '#E64D00' },
+  'jumpingSumo': { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
+  'legoEV3': { colourPrimary: '#cbca3e', colourSecondary: '#aead38', colourTertiary: '#acab34' },
+  'legoNXT': { colourPrimary: '#cbca3e', colourSecondary: '#aead38', colourTertiary: '#acab34' },
+  'looks': { colourPrimary: '#59C059', colourSecondary: '#3c943c', colourTertiary: '#389438' },
+  'motion': { colourPrimary: '#4C97FF', colourSecondary: '#386bb8', colourTertiary: '#3373CC' },
+  'pen': { colourPrimary: '#0fBD8C', colourSecondary: '#0b8965', colourTertiary: '#0B8E69' },
+  'phiro': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'raspi': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  'sound': { colourPrimary: '#9966FF', colourSecondary: '#6c51b4', colourTertiary: '#774DCB' },
+  'stitch': { colourPrimary: '#BC4793', colourSecondary: '#bb3a8d', colourTertiary: '#b72a86' },
+  'default': { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' }
+};
 
-Blockly.Colours["drone"] = { primary: "#91d149", secondary: "#7bb13e", tertiary: "#669334" };
-Blockly.Extensions.register("colours_drone", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("drone"));
+/**
+ * Initiate colour codes for catblocks bricks
+ *  if no colour code is defined yet, we use the default one
+ * @param {*} colours
+ * @param {*} blockly 
+ */
+const initCatblocksColours = (colours = colourCodes, blockly = Blockly) => {
+  if (colours) {
+    blockly.Colours = {};
+    if (Object.keys(blockly.Categories).length > 0) {
+      for (const catName in blockly.Categories) {
+        const colourName = colours[catName] ? catName : 'default';
+        blockly.Colours[catName] = colours[colourName];
+        
+        for (const brickName of blockly.Categories[catName]) {
+          blockly.Bricks[brickName]['colour'] = colours[colourName]['colourPrimary'];
+          blockly.Bricks[brickName]['colourSecondary'] = colours[colourName]['colourSecondary'];
+          blockly.Bricks[brickName]['colourTertiary'] = colours[colourName]['colourTertiary'];
+        }
+      }
+    } else {
+      console.warn('No categories registerd, maybe you have missed to load some bricks');
+    }
+  } else {
+    console.error('Failed to initiate colours, because undefined or null options passed in params');
+  }
+};
 
-Blockly.Colours["stitch"] = { primary: "#BC4793", secondary: "#bb3a8d", tertiary: "#b72a86" };
-Blockly.Extensions.register("colours_stitch", Blockly.ScratchBlocks.VerticalExtensions.colourHelper("stitch"));
+
+(() => {
+  initCatblocksColours(colourCodes, Blockly);
+})();

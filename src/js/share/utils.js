@@ -28,7 +28,8 @@ export const defaultOptions = {
     writeStats: true,
     writeLook: true,
     expandable: true,
-    programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/'
+    programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/',
+    fileMap: undefined
   }
 };
 
@@ -211,4 +212,23 @@ export const trimString = (str, length = 15) => {
     return str;
   }
   return undefined;
+};
+
+/**
+ * zebra effect -> color next block from same group slightly differently
+ * @param {*} array 
+ */
+export const checkNextBlock = (array) => {
+
+  for(let i = 0; i < array.length; i++) {
+    if(array[i].childBlocks_.length > 0) {
+      for(let j = 0; j < array[i].childBlocks_.length; j++) {
+        if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
+          array[i].childBlocks_[j].style.colourPrimary = array[i].childBlocks_[j].style.colourTertiary;
+          array[i].childBlocks_[j].initSvg();
+        }
+        checkNextBlock(array[i].childBlocks_);
+      }
+    }
+  }
 };
