@@ -234,8 +234,7 @@ describe('WebView Block tests', () => {
         //get default scale value
         let value = block.inputList[0].fieldRow[1].getText();
         return (block.getFieldValue() === 'Change brightness  by'
-          && value === '50'
-          && block.getCategory() === 'looks');
+          && value === '50');
       })).toBeTruthy();
     });
 
@@ -248,12 +247,11 @@ describe('WebView Block tests', () => {
         block.initSvg();
         block.render(false);
         //set scale value
-        let valueToSet = 'MINUS 1';
-        block.inputList[0].fieldRow[1].setText(valueToSet);
-        let value = block.inputList[0].fieldRow[1].getText();
+        let valueToSet = '-1';
+        block.inputList[0].fieldRow[1].setValue(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getValue().toString();
         return (block.getFieldValue() === 'Change brightness  by'
-          && valueToSet === value
-          && block.getCategory() === 'looks');
+          && valueToSet === value);
       })).toBeTruthy();
     });
 
@@ -266,15 +264,14 @@ describe('WebView Block tests', () => {
         block.initSvg();
         block.render(false);
         //set scale value
-        let valueToSet = '37 RAND 58';
-        block.inputList[0].fieldRow[1].setText(valueToSet);
-        let value = block.inputList[0].fieldRow[1].getText();
+        let valueToSet = '37';
+        block.inputList[0].fieldRow[1].setValue(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getValue().toString();
         let desiredBlockText = 'Wait' + valueToSet + 'second';
         desiredBlockText = desiredBlockText.replace(/\s/g, '');
         //check if field text matches when block is in workspace
         return (block.getFieldValue() === 'Wait'
           && valueToSet === value
-          && block.getCategory() === 'control'
           && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText);
       })).toBeTruthy();
     });
@@ -292,7 +289,7 @@ describe('WebView Block tests', () => {
             const jsBlock = BLOCKS[categoryName][blockName];
             const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll('g.blocklyEditableText');
             //get args from js-files (in blocks/categories directory)
-            let allJsArguments = [];
+            const allJsArguments = [];
             if (jsBlock['args0'] !== undefined) {
               let jsBlockIndex = 0;
               while(jsBlock['args0'][jsBlockIndex] !== undefined) {
@@ -309,11 +306,10 @@ describe('WebView Block tests', () => {
               returnStatus = false;
             //check if rendered arguments and js arguments are equal
             for (let argIndex = 0; argIndex < renderedBlock.length; argIndex++) {
-              let jsArgument = allJsArguments[argIndex].trim().replace(/\s/g, '');
-              let renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, '');
+              const jsArgument = allJsArguments[argIndex].toString().trim().replace(/\s/g, ' ');
+              const renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, ' ');
               if (jsArgument !== renderedArgument) {
                 returnStatus = false;
-                console.log(jsArgument + ' ' + renderedArgument);
               }
             }
             indexOfBlock++;
