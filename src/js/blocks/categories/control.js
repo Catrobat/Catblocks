@@ -19,7 +19,7 @@ export default {
     "args2": [
       {
         "type": "field_image",
-        "src": "../media/repeat.svg",
+        "src": `${document.location.pathname}media/repeat.svg`,
         "height": 24,
         "width": 24,
         "alt": "*",
@@ -122,7 +122,7 @@ export default {
     "args2": [
       {
         "type": "field_image",
-        "src": "../media/repeat.svg",
+        "src": `${document.location.pathname}media/repeat.svg`,
         "height": 24,
         "width": 24,
         "alt": "*",
@@ -151,7 +151,7 @@ export default {
     "args2": [
       {
         "type": "field_image",
-        "src": "../media/repeat.svg",
+        "src": `${document.location.pathname}media/repeat.svg`,
         "height": 24,
         "width": 24,
         "alt": "*",
