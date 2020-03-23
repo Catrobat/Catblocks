@@ -61,19 +61,19 @@ export class FileDropper {
 
   _updateView(event) {
     switch (event) {
-      case "onStart": {
-        $('#catblocks-file-dropper > .dropper-inner').hide();
-        $('#catblocks-file-dropper > #dropper-loader').show();
-        break;
-      }
-      case "onDone": {
-        $('#catblocks-file-dropper').hide();
-        $('#catblocks-file-dropper > #dropper-loader').hide();
-        break;
-      }
-      default: {
-        console.warn(`Ignore file dropper event: ${event}`);
-      }
+    case "onStart": {
+      $('#catblocks-file-dropper > .dropper-inner').hide();
+      $('#catblocks-file-dropper > #dropper-loader').show();
+      break;
+    }
+    case "onDone": {
+      $('#catblocks-file-dropper').hide();
+      $('#catblocks-file-dropper > #dropper-loader').hide();
+      break;
+    }
+    default: {
+      console.warn(`Ignore file dropper event: ${event}`);
+    }
     }
   }
 
@@ -125,29 +125,29 @@ export class FileDropper {
 
                   switch (fileEnding) {
 
-                    case 'png':
-                      fileMap[file.name] = 'data:image/png;charset=utf-8;base64,' + base64;
-                      break;
-                    case 'jpg':
-                      fileMap[file.name] = 'data:image/jpg;charset=utf-8;base64,' + base64;
-                      break;
-                    case 'jpeg':
-                      fileMap[file.name] = 'data:image/jpeg;charset=utf-8;base64,' + base64;
-                      break;
+                  case 'png':
+                    fileMap[file.name] = 'data:image/png;charset=utf-8;base64,' + base64;
+                    break;
+                  case 'jpg':
+                    fileMap[file.name] = 'data:image/jpg;charset=utf-8;base64,' + base64;
+                    break;
+                  case 'jpeg':
+                    fileMap[file.name] = 'data:image/jpeg;charset=utf-8;base64,' + base64;
+                    break;
 
-                    case 'wav':
-                      fileMap[file.name] = 'data:audio/wav;charset=utf-8;base64,' + base64;
-                      break;
-                    case 'mp3':
-                      fileMap[file.name] = 'data:audio/mp3;charset=utf-8;base64,' + base64;
-                      break;
+                  case 'wav':
+                    fileMap[file.name] = 'data:audio/wav;charset=utf-8;base64,' + base64;
+                    break;
+                  case 'mp3':
+                    fileMap[file.name] = 'data:audio/mp3;charset=utf-8;base64,' + base64;
+                    break;
 
-                    case 'mp4':
-                      fileMap[file.name] = 'data:video/mp4;charset=utf-8;base64,' + base64;
-                      break;
+                  case 'mp4':
+                    fileMap[file.name] = 'data:video/mp4;charset=utf-8;base64,' + base64;
+                    break;
 
-                    default:
-                      throw new Error('Unsupported File: ' + file.name);
+                  default:
+                    fileMap[file.name] = 'ignoreMePlease_fixMeLater';
                   }
                 });
               }

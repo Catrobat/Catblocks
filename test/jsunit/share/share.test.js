@@ -188,6 +188,21 @@ describe('Share catroid program rendering tests', () => {
   });
 
   /**
+   * Test if all rendered script heights are properly, not 50 or so
+   */
+  test('Share render svg script bbox properly', async () => {
+    expect(await page.evaluate(() => {
+      const scriptString = `<block type="PreviousLookBrick"></block>`;
+      const scriptXml = (new DOMParser).parseFromString(scriptString, 'text/xml');
+      const svg = share.domToSvg(scriptXml);
+
+      return (svg !== undefined
+        && svg.getAttribute('width').replace('px', '') > 50
+        && svg.getAttribute('height').replace('px', '') > 50);
+    })).toBeTruthy();
+  });
+
+  /**
    * Test if rendering of single empty scriptlist works properly
    */
   test('Share render single empty scriptlist properly', async () => {
