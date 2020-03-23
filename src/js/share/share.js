@@ -35,8 +35,7 @@ export class Share {
    */
   createReadonlyWorkspace() {
     const hiddenContainer = injectNewDom(this.config.container, 'DIV', {
-      id: 'hidden-workspace',
-      class: 'hidden'
+      id: 'hidden-workspace'
     });
 
     this.workspace = this.blockly.inject(hiddenContainer, {
@@ -154,8 +153,8 @@ export class Share {
       // remove rect around it
       svg = oriSvg.cloneNode(true);
       svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
-      svg.setAttribute('width', oriBox.width + xOffset);
-      svg.setAttribute('height', oriBox.height + yOffset);
+      svg.setAttribute('width', `${oriBox.width + xOffset}px`);
+      svg.setAttribute('height', `${oriBox.height + yOffset}px`);
       svg.setAttribute('class', 'catblocks-svg');
 
     } catch (e) {
@@ -251,7 +250,7 @@ export class Share {
 
       if (options.writeLook && options.objectImage !== undefined) {
         const lookContainer = injectNewDom(objectProps, 'DIV', { 'class': 'catblocks-object-look-container' });
-        
+
         let src = null;
         if (options.fileMap != null && options.fileMap[options.objectImage]) {
           src = options.fileMap[options.objectImage];
