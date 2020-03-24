@@ -1,5 +1,6 @@
 import $ from "jquery";
 import JSZip from "jszip";
+import { MessageBox } from "./message_box";
 
 /** 
  * Initialize Drag & Drop Field and handle Files.
@@ -61,19 +62,16 @@ export class FileDropper {
 
   _updateView(event) {
     switch (event) {
-    case "onStart": {
-      $('#catblocks-file-dropper > .dropper-inner').hide();
-      $('#catblocks-file-dropper > #dropper-loader').show();
+    case 'onStart': 
+      $('#loading-overlay').show();
       break;
-    }
-    case "onDone": {
-      $('#catblocks-file-dropper').hide();
-      $('#catblocks-file-dropper > #dropper-loader').hide();
+    
+    case 'onDone': 
+      $('#loading-overlay').hide();
       break;
-    }
-    default: {
+    
+    default: 
       console.warn(`Ignore file dropper event: ${event}`);
-    }
     }
   }
 
@@ -123,73 +121,101 @@ export class FileDropper {
     return "";
   }
 
+
+  /**
+   * Load .catrobat / .zip file
+   * @param {file} containerfile
+   * @param {number} containerCounter
+   * @returns {Promise}
+   * @memberof FileDropper
+   */
+  _loadArchive(containerfile, containerCounter) {
+    return new Promise((resolveFinished) => {
+      // open ZIP
+      const zip = new JSZip();
+      zip.loadAsync(containerfile, {
+        createFolders: true
+      }).then(element => {
+
+        if (element.files['code.xml'] == null) {
+          throw new Error('Code.xml not found');
+        }
+
+        const fileMap = {};
+        let codeXML = "";
+
+        const zipFileKeys = Object.keys(element.files);
+        const filePromises = [];
+
+        for (const key of zipFileKeys) {
+          const file = element.files[key];
+
+          if (!file.dir) {
+
+            if (file.name.toLowerCase() === 'code.xml') {
+              const promise = zip.file(file.name).async('string');
+              filePromises.push(promise);
+
+              promise.then(str => {
+                codeXML = str;
+              });
+
+            } else {
+              const promise = zip.file(file.name).async('base64');
+              filePromises.push(promise);
+
+              promise.then(base64 => {
+                let fileEnding = file.name.split('.');
+
+                if (fileEnding.length > 1) {
+                  fileEnding = fileEnding[fileEnding.length - 1];
+                  fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
+                } else {
+                  fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
+                }
+                
+              });
+            }
+          }
+        }
+
+        Promise.all(filePromises).then(response => {
+          if (response.length !== Object.keys(fileMap).length + 1) {
+            console.error('Number of Files in ZIP do not match number of read files');
+          }
+          this._updateView('onDone');
+          const fd = FileDropper.getInstance();
+          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
+          resolveFinished();
+        });
+      });
+    });
+  }
+
   computeFiles(inputFiles) {
     this._updateView('onStart');
     let containerCounter = 0;
+    const renderPromises = [];
 
     for (const containerfile of inputFiles) {
       const fileArray = containerfile.name.split('.');
       const ext = fileArray[fileArray.length - 1];
 
       if (ext === 'zip' || ext === 'catrobat') {
-        // open ZIP
-        const zip = new JSZip();
-        zip.loadAsync(containerfile, {
-          createFolders: true
-        }).then(element => {
-
-          if (element.files['code.xml'] == null) {
-            throw new Error('Code.xml not found');
-          }
-
-          const fileMap = {};
-          let codeXML = "";
-
-          const zipFileKeys = Object.keys(element.files);
-          const filePromises = [];
-
-          for (const key of zipFileKeys) {
-            const file = element.files[key];
-
-            if (!file.dir) {
-
-              if (file.name.toLowerCase() === 'code.xml') {
-                const promise = zip.file(file.name).async('string');
-                filePromises.push(promise);
-
-                promise.then(str => {
-                  codeXML = str;
-                });
-
-              } else {
-                const promise = zip.file(file.name).async('base64');
-                filePromises.push(promise);
-
-                promise.then(base64 => {
-                  let fileEnding = file.name.split('.');
-
-                  if (fileEnding.length > 1) {
-                    fileEnding = fileEnding[fileEnding.length - 1];
-                    fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
-                  } else {
-                    fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
-                  }
-                  
-                });
-              }
-            }
-          }
-
-          Promise.all(filePromises).then(response => {
-            if (response.length !== Object.keys(fileMap).length + 1) {
-              console.error('Number of Files in ZIP do not match number of read files');
-            }
-            this._updateView('onDone');
-            const fd = FileDropper.getInstance();
-            fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter++, fileMap);
-          });
-        });
+        renderPromises.push(this._loadArchive(containerfile, containerCounter++));
+      } else {
+        MessageBox.show(`File "${containerfile.name}" is not of type .catrobat/.zip`);
       }
     }
+
+    if (renderPromises.length > 0) {
+      $('#catblocks-file-dropper').hide();
+      Promise.all(renderPromises).then(() => {
+        this._updateView('onDone');
+      });
+    } else {
+      this._updateView('onDone');
+    }
+    
   }
 }
