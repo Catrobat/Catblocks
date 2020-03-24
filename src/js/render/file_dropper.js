@@ -77,6 +77,52 @@ export class FileDropper {
     }
   }
 
+
+  /**
+   * Returns the Base64 Src String for HTML.
+   * @param {string} fileName relative Path to File
+   * @param {string} fileExt contains either exact file ending or a string which should contain the file ending
+   * @param {string} base64 encoded file
+   * @memberof FileDropper
+   */
+  _generateBase64Src(fileName, fileExt, base64) {
+    
+    if (fileExt.toLowerCase() === 'png' || fileExt.toLowerCase().includes('png')) {
+      return 'data:image/png;charset=utf-8;base64,' + base64;
+    } 
+    if (fileExt.toLowerCase() === 'jpg' || fileExt.toLowerCase().includes('jpg')) {
+      return 'data:image/jpg;charset=utf-8;base64,' + base64;
+    }
+    if (fileExt.toLowerCase() === 'jpeg' || fileExt.toLowerCase().includes('jpeg')) {
+      return 'data:image/jpeg;charset=utf-8;base64,' + base64;
+    }
+
+    if (fileExt.toLowerCase() === 'wav' || fileExt.toLowerCase().includes('wav')) {
+      return 'data:audio/wav;charset=utf-8;base64,' + base64;
+    }
+    if (fileExt.toLowerCase() === 'mp3' || fileExt.toLowerCase().includes('mp3')) {
+      return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+    }
+
+    if (fileExt.toLowerCase() === 'mp4' || fileExt.toLowerCase().includes('mp4')) {
+      return 'data:video/mp4;charset=utf-8;base64,' + base64;
+    }
+
+    // last try
+    if (fileName.includes('/images/')) {
+      console.warn('FileDropper: guessing Image type for ' + fileName);
+      return 'data:image/png;charset=utf-8;base64,' + base64;
+    }
+    if (fileName.includes('/sounds/')) {
+      console.warn('FileDropper: guessing Sound type for ' + fileName);
+      return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+    }
+
+    // ignore the rest
+    console.warn('FileDropper: Ignoring File ' + fileName);
+    return "";
+  }
+
   computeFiles(inputFiles) {
     this._updateView('onStart');
     let containerCounter = 0;
@@ -107,7 +153,7 @@ export class FileDropper {
 
             if (!file.dir) {
 
-              if (file.name === 'code.xml') {
+              if (file.name.toLowerCase() === 'code.xml') {
                 const promise = zip.file(file.name).async('string');
                 filePromises.push(promise);
 
@@ -121,34 +167,14 @@ export class FileDropper {
 
                 promise.then(base64 => {
                   let fileEnding = file.name.split('.');
-                  fileEnding = fileEnding[fileEnding.length - 1];
 
-                  switch (fileEnding) {
-
-                  case 'png':
-                    fileMap[file.name] = 'data:image/png;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'jpg':
-                    fileMap[file.name] = 'data:image/jpg;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'jpeg':
-                    fileMap[file.name] = 'data:image/jpeg;charset=utf-8;base64,' + base64;
-                    break;
-
-                  case 'wav':
-                    fileMap[file.name] = 'data:audio/wav;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'mp3':
-                    fileMap[file.name] = 'data:audio/mp3;charset=utf-8;base64,' + base64;
-                    break;
-
-                  case 'mp4':
-                    fileMap[file.name] = 'data:video/mp4;charset=utf-8;base64,' + base64;
-                    break;
-
-                  default:
-                    fileMap[file.name] = 'ignoreMePlease_fixMeLater';
+                  if (fileEnding.length > 1) {
+                    fileEnding = fileEnding[fileEnding.length - 1];
+                    fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
+                  } else {
+                    fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
                   }
+                  
                 });
               }
             }
@@ -156,7 +182,7 @@ export class FileDropper {
 
           Promise.all(filePromises).then(response => {
             if (response.length !== Object.keys(fileMap).length + 1) {
-              throw new Error('Some Async stuff went wrong?');
+              console.error('Number of Files in ZIP do not match number of read files');
             }
             this._updateView('onDone');
             const fd = FileDropper.getInstance();
