@@ -59,7 +59,26 @@ export class FileDropper {
     }
   }
 
+  _updateView(event) {
+    switch (event) {
+    case "onStart": {
+      $('#catblocks-file-dropper > .dropper-inner').hide();
+      $('#catblocks-file-dropper > #dropper-loader').show();
+      break;
+    }
+    case "onDone": {
+      $('#catblocks-file-dropper').hide();
+      $('#catblocks-file-dropper > #dropper-loader').hide();
+      break;
+    }
+    default: {
+      console.warn(`Ignore file dropper event: ${event}`);
+    }
+    }
+  }
+
   computeFiles(inputFiles) {
+    this._updateView('onStart');
     let containerCounter = 0;
 
     for (const containerfile of inputFiles) {
@@ -122,13 +141,13 @@ export class FileDropper {
                   case 'mp3':
                     fileMap[file.name] = 'data:audio/mp3;charset=utf-8;base64,' + base64;
                     break;
-                  
+
                   case 'mp4':
                     fileMap[file.name] = 'data:video/mp4;charset=utf-8;base64,' + base64;
                     break;
 
                   default:
-                    throw new Error('Unsupported File: ' + file.name);
+                    fileMap[file.name] = 'ignoreMePlease_fixMeLater';
                   }
                 });
               }
@@ -139,7 +158,7 @@ export class FileDropper {
             if (response.length !== Object.keys(fileMap).length + 1) {
               throw new Error('Some Async stuff went wrong?');
             }
-            $('#catblocks-file-dropper').hide();
+            this._updateView('onDone');
             const fd = FileDropper.getInstance();
             fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter++, fileMap);
           });
