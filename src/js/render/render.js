@@ -79,24 +79,29 @@ const renderProgram = (share, container, path, name, counter) => {
 };
 
 const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
-  // prepare container for program injection
-  const containerId = `catblocks-program-${name}-${counter++}`;
-  console.log(`Render program: ${name} with id: ${containerId}`);
-  const programContainer = document.createElement('div');
-  programContainer.id = containerId;
-  const programHeader = document.createElement('h1');
-  programHeader.innerText = `Program: ${name} -> RenderId: ${counter}`;
-  programHeader.setAttribute('style', 'background-color: lawngreen;');
-  programContainer.appendChild(programHeader);
-  container.appendChild(programContainer);
+  try {
+    // inject code
+    const xmlDoc = share.parser.convertProgramString(codeXML);
+    console.log(xmlDoc);
 
-  // inject code
-  const xmlDoc = share.parser.convertProgramString(codeXML);
-  console.log(xmlDoc);
-  const div = document.getElementById(containerId);
-  share.injectAllScenes(div, xmlDoc, {
-    object: {
-      fileMap: fileMap
-    } 
-  });
+    // prepare container for program injection
+    const containerId = `catblocks-program-${name}-${counter++}`;
+    console.log(`Render program: ${name} with id: ${containerId}`);
+    const programContainer = document.createElement('div');
+    programContainer.id = containerId;
+    const programHeader = document.createElement('h1');
+    programHeader.innerText = `Program: ${name} -> RenderId: ${counter}`;
+    programHeader.setAttribute('style', 'background-color: lawngreen;');
+    programContainer.appendChild(programHeader);
+    container.appendChild(programContainer);
+    const div = document.getElementById(containerId);
+
+    return share.injectAllScenes(div, xmlDoc, {
+      object: {
+        fileMap: fileMap
+      } 
+    });
+  } catch (error) {
+    return Promise.reject(error);
+  }
 };

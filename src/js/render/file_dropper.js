@@ -181,12 +181,18 @@ export class FileDropper {
 
         Promise.all(filePromises).then(response => {
           if (response.length !== Object.keys(fileMap).length + 1) {
+            MessageBox.show('<b>' + containerfile.name + ':</b> Number of Files in Archive do not match number of read files.');
             console.error('Number of Files in ZIP do not match number of read files');
           }
-          this._updateView('onDone');
+          
           const fd = FileDropper.getInstance();
-          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
-          resolveFinished();
+          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap).then(() => {
+            console.info('Rendered ' + containerfile.name);
+            resolveFinished();
+          }).catch(error => {
+            MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
+            resolveFinished();
+          });
         });
       });
     });
@@ -195,6 +201,7 @@ export class FileDropper {
   computeFiles(inputFiles) {
     this._updateView('onStart');
     let containerCounter = 0;
+    let finished = 0;
     const renderPromises = [];
 
     for (const containerfile of inputFiles) {
@@ -202,7 +209,11 @@ export class FileDropper {
       const ext = fileArray[fileArray.length - 1];
 
       if (ext === 'zip' || ext === 'catrobat') {
-        renderPromises.push(this._loadArchive(containerfile, containerCounter++));
+        const promise = this._loadArchive(containerfile, containerCounter++);
+        renderPromises.push(promise);
+        promise.then(() => {
+          MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
+        });
       } else {
         MessageBox.show(`File "${containerfile.name}" is not of type .catrobat/.zip`);
       }

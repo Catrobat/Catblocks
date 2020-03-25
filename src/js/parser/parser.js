@@ -119,13 +119,9 @@ const escapeXml = (unsafe) => {
  */
 function isSupported(program) {
   const appVersion = program.getElementsByTagName('catrobatLanguageVersion');
-  if (appVersion === undefined || appVersion.length < 1) {
-    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
-    return false;
-  }
-  if (appVersion[0].innerHTML < supportedAppVersion) {
-    console.warn('Unsupported program version found, please upgrade programm to newer version via reupload.');
-    return false;
+  if (appVersion === undefined || appVersion.length < 1 || appVersion[0].innerHTML < supportedAppVersion) {
+    console.warn(`Unsupported program version: got ${appVersion[0].innerHTML}, need ${supportedAppVersion}`);
+    throw new Error(`Unsupported program version: got ${appVersion[0].innerHTML}, need ${supportedAppVersion}`);
   }
   return true;
 }
@@ -492,16 +488,18 @@ export default class Parser {
 	 */
   static convertProgramString(xmlString) {
     if (typeof xmlString === 'string') {
+      let xml;
       try {
-        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
-        if (!isSupported(xml)) return undefined;
-
-        initParser(xml);
-        return parseCatroidProgram(xml);
+        xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
       } catch (e) {
         catLog(e);
         console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
         return undefined;
+      }
+
+      if (isSupported(xml)) {
+        initParser(xml);
+        return parseCatroidProgram(xml);
       }
     }
     return parseCatroidProgram(xmlString);
