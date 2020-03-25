@@ -87,6 +87,7 @@ describe('WebView Block tests', () => {
    */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    page.on('console', message => console.log(message.text()));
   });
 
   /**
@@ -220,6 +221,102 @@ describe('WebView Block tests', () => {
           return res.includes(404);
         });
       })).toBeFalsy();
+    });
+
+    /**
+     * Test if formula blocks (without child) are rendered properly.
+     */
+    test('formula blocks (without child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+        block.initSvg();
+        block.render(false);
+        //get default scale value
+        let value = block.inputList[0].fieldRow[1].getText();
+        return (block.getFieldValue() === 'Change brightness  by'
+          && value === '50');
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if formula blocks (with left child) are rendered properly.
+     */
+    test('formula blocks (with left child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+        block.initSvg();
+        block.render(false);
+        //set scale value
+        let valueToSet = '-1';
+        block.inputList[0].fieldRow[1].setValue(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getValue().toString();
+        return (block.getFieldValue() === 'Change brightness  by'
+          && valueToSet === value);
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if formula blocks (with left and right child) are rendered properly.
+     */
+    test('formula blocks (with left and right child) are rendered properly', async () => {
+      expect(await page.evaluate(() => {
+        let block = playgroundWS.newBlock('WaitBrick');
+        block.initSvg();
+        block.render(false);
+        //set scale value
+        let valueToSet = '37';
+        block.inputList[0].fieldRow[1].setValue(valueToSet);
+        let value = block.inputList[0].fieldRow[1].getValue().toString();
+        let desiredBlockText = 'Wait' + valueToSet + 'second';
+        desiredBlockText = desiredBlockText.replace(/\s/g, '');
+        //check if field text matches when block is in workspace
+        return (block.getFieldValue() === 'Wait'
+          && valueToSet === value
+          && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText);
+      })).toBeTruthy();
+    });
+
+    /**
+     * Check if each defined blocks arguments are rendered properly
+     */
+    test('Block arguments are rendered properly', async () => {
+      expect(await page.evaluate((BLOCKS) => {
+        const allRenderedBlocks = toolboxWS.getAllBlocks();
+        let indexOfBlock = 0;
+        let returnStatus = true;
+        Object.keys(BLOCKS).forEach(categoryName => {
+          Object.keys(BLOCKS[categoryName]).forEach(blockName => {
+            const jsBlock = BLOCKS[categoryName][blockName];
+            const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll('g.blocklyEditableText');
+            //get args from js-files (in blocks/categories directory)
+            const allJsArguments = [];
+            if (jsBlock['args0'] !== undefined) {
+              let jsBlockIndex = 0;
+              while(jsBlock['args0'][jsBlockIndex] !== undefined) {
+                if (jsBlock['args0'][jsBlockIndex]['value'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
+                if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
+                if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined)
+                  allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);
+                jsBlockIndex++;
+              }
+            }
+            if (allJsArguments.length !== renderedBlock.length)
+              returnStatus = false;
+            //check if rendered arguments and js arguments are equal
+            for (let argIndex = 0; argIndex < renderedBlock.length; argIndex++) {
+              const jsArgument = allJsArguments[argIndex].toString().trim().replace(/\s/g, ' ');
+              const renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, ' ');
+              if (jsArgument !== renderedArgument) {
+                returnStatus = false;
+              }
+            }
+            indexOfBlock++;
+          });
+        });
+        return returnStatus;
+      }, BLOCKS)).toBeTruthy();
     });
   });
 });
