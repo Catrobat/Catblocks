@@ -1,5 +1,6 @@
 import $ from "jquery";
 import JSZip from "jszip";
+import { MessageBox } from "./message_box";
 
 /** 
  * Initialize Drag & Drop Field and handle Files.
@@ -61,109 +62,160 @@ export class FileDropper {
 
   _updateView(event) {
     switch (event) {
-    case "onStart": {
-      $('#catblocks-file-dropper > .dropper-inner').hide();
-      $('#catblocks-file-dropper > #dropper-loader').show();
+    case 'onStart': 
+      $('#loading-overlay').show();
       break;
-    }
-    case "onDone": {
-      $('#catblocks-file-dropper').hide();
-      $('#catblocks-file-dropper > #dropper-loader').hide();
+    
+    case 'onDone': 
+      $('#loading-overlay').hide();
       break;
-    }
-    default: {
+    
+    default: 
       console.warn(`Ignore file dropper event: ${event}`);
     }
+  }
+
+
+  /**
+   * Returns the Base64 Src String for HTML.
+   * @param {string} fileName relative Path to File
+   * @param {string} fileExt contains either exact file ending or a string which should contain the file ending
+   * @param {string} base64 encoded file
+   * @memberof FileDropper
+   */
+  _generateBase64Src(fileName, fileExt, base64) {
+    
+    if (fileExt.toLowerCase() === 'png' || fileExt.toLowerCase().includes('png')) {
+      return 'data:image/png;charset=utf-8;base64,' + base64;
+    } 
+    if (fileExt.toLowerCase() === 'jpg' || fileExt.toLowerCase().includes('jpg')) {
+      return 'data:image/jpg;charset=utf-8;base64,' + base64;
     }
+    if (fileExt.toLowerCase() === 'jpeg' || fileExt.toLowerCase().includes('jpeg')) {
+      return 'data:image/jpeg;charset=utf-8;base64,' + base64;
+    }
+
+    if (fileExt.toLowerCase() === 'wav' || fileExt.toLowerCase().includes('wav')) {
+      return 'data:audio/wav;charset=utf-8;base64,' + base64;
+    }
+    if (fileExt.toLowerCase() === 'mp3' || fileExt.toLowerCase().includes('mp3')) {
+      return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+    }
+
+    if (fileExt.toLowerCase() === 'mp4' || fileExt.toLowerCase().includes('mp4')) {
+      return 'data:video/mp4;charset=utf-8;base64,' + base64;
+    }
+
+    // last try
+    if (fileName.includes('/images/')) {
+      console.warn('FileDropper: guessing Image type for ' + fileName);
+      return 'data:image/png;charset=utf-8;base64,' + base64;
+    }
+    if (fileName.includes('/sounds/')) {
+      console.warn('FileDropper: guessing Sound type for ' + fileName);
+      return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+    }
+
+    // ignore the rest
+    console.warn('FileDropper: Ignoring File ' + fileName);
+    return "";
+  }
+
+
+  /**
+   * Load .catrobat / .zip file
+   * @param {file} containerfile
+   * @param {number} containerCounter
+   * @returns {Promise}
+   * @memberof FileDropper
+   */
+  _loadArchive(containerfile, containerCounter) {
+    return new Promise((resolveFinished) => {
+      // open ZIP
+      const zip = new JSZip();
+      zip.loadAsync(containerfile, {
+        createFolders: true
+      }).then(element => {
+
+        if (element.files['code.xml'] == null) {
+          throw new Error('Code.xml not found');
+        }
+
+        const fileMap = {};
+        let codeXML = "";
+
+        const zipFileKeys = Object.keys(element.files);
+        const filePromises = [];
+
+        for (const key of zipFileKeys) {
+          const file = element.files[key];
+
+          if (!file.dir) {
+
+            if (file.name.toLowerCase() === 'code.xml') {
+              const promise = zip.file(file.name).async('string');
+              filePromises.push(promise);
+
+              promise.then(str => {
+                codeXML = str;
+              });
+
+            } else {
+              const promise = zip.file(file.name).async('base64');
+              filePromises.push(promise);
+
+              promise.then(base64 => {
+                let fileEnding = file.name.split('.');
+
+                if (fileEnding.length > 1) {
+                  fileEnding = fileEnding[fileEnding.length - 1];
+                  fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
+                } else {
+                  fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
+                }
+                
+              });
+            }
+          }
+        }
+
+        Promise.all(filePromises).then(response => {
+          if (response.length !== Object.keys(fileMap).length + 1) {
+            console.error('Number of Files in ZIP do not match number of read files');
+          }
+          this._updateView('onDone');
+          const fd = FileDropper.getInstance();
+          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
+          resolveFinished();
+        });
+      });
+    });
   }
 
   computeFiles(inputFiles) {
     this._updateView('onStart');
     let containerCounter = 0;
+    const renderPromises = [];
 
     for (const containerfile of inputFiles) {
       const fileArray = containerfile.name.split('.');
       const ext = fileArray[fileArray.length - 1];
 
       if (ext === 'zip' || ext === 'catrobat') {
-        // open ZIP
-        const zip = new JSZip();
-        zip.loadAsync(containerfile, {
-          createFolders: true
-        }).then(element => {
-
-          if (element.files['code.xml'] == null) {
-            throw new Error('Code.xml not found');
-          }
-
-          const fileMap = {};
-          let codeXML = "";
-
-          const zipFileKeys = Object.keys(element.files);
-          const filePromises = [];
-
-          for (const key of zipFileKeys) {
-            const file = element.files[key];
-
-            if (!file.dir) {
-
-              if (file.name === 'code.xml') {
-                const promise = zip.file(file.name).async('string');
-                filePromises.push(promise);
-
-                promise.then(str => {
-                  codeXML = str;
-                });
-
-              } else {
-                const promise = zip.file(file.name).async('base64');
-                filePromises.push(promise);
-
-                promise.then(base64 => {
-                  let fileEnding = file.name.split('.');
-                  fileEnding = fileEnding[fileEnding.length - 1];
-
-                  switch (fileEnding) {
-
-                  case 'png':
-                    fileMap[file.name] = 'data:image/png;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'jpg':
-                    fileMap[file.name] = 'data:image/jpg;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'jpeg':
-                    fileMap[file.name] = 'data:image/jpeg;charset=utf-8;base64,' + base64;
-                    break;
-
-                  case 'wav':
-                    fileMap[file.name] = 'data:audio/wav;charset=utf-8;base64,' + base64;
-                    break;
-                  case 'mp3':
-                    fileMap[file.name] = 'data:audio/mp3;charset=utf-8;base64,' + base64;
-                    break;
-
-                  case 'mp4':
-                    fileMap[file.name] = 'data:video/mp4;charset=utf-8;base64,' + base64;
-                    break;
-
-                  default:
-                    fileMap[file.name] = 'ignoreMePlease_fixMeLater';
-                  }
-                });
-              }
-            }
-          }
-
-          Promise.all(filePromises).then(response => {
-            if (response.length !== Object.keys(fileMap).length + 1) {
-              throw new Error('Some Async stuff went wrong?');
-            }
-            this._updateView('onDone');
-            const fd = FileDropper.getInstance();
-            fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter++, fileMap);
-          });
-        });
+        renderPromises.push(this._loadArchive(containerfile, containerCounter++));
+      } else {
+        MessageBox.show(`File "${containerfile.name}" is not of type .catrobat/.zip`);
       }
     }
+
+    if (renderPromises.length > 0) {
+      $('#catblocks-file-dropper').hide();
+      Promise.all(renderPromises).then(() => {
+        this._updateView('onDone');
+      });
+    } else {
+      this._updateView('onDone');
+    }
+    
   }
 }
