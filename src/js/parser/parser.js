@@ -491,10 +491,33 @@ export default class Parser {
       let xml;
       try {
         xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+        if (isSupported(xml)) {
+          initParser(xml);
+          return parseCatroidProgram(xml);
+        }
       } catch (e) {
         catLog(e);
         console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
         return undefined;
+      }
+    }
+    return parseCatroidProgram(xmlString);
+  }
+
+  /**
+	 * Parse xmlString from catroid to catblocks format and return every error
+	 * @param {string|Element} xmlString catroid string or XMLDocument 
+	 * @returns {XMLDocument} catblock XMLDocument
+	 */
+  static convertProgramStringDebug(xmlString) {
+    if (typeof xmlString === 'string') {
+      let xml;
+      try {
+        xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+      } catch (e) {
+        catLog(e);
+        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        throw e;
       }
 
       if (isSupported(xml)) {

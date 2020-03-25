@@ -81,7 +81,7 @@ const renderProgram = (share, container, path, name, counter) => {
 const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
   try {
     // inject code
-    const xmlDoc = share.parser.convertProgramString(codeXML);
+    const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
     console.log(xmlDoc);
 
     // prepare container for program injection
