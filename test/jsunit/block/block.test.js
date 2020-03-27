@@ -1,7 +1,8 @@
 /**
  * @description Block tests
  */
-
+/* global page, SERVER, playgroundWS, toolboxWS, Blockly */
+/* eslint no-global-assign:0 */
 'use strict';
 
 const utils = require('../commonUtils');

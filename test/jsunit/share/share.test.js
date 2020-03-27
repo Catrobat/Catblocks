@@ -1,7 +1,8 @@
 /**
  * @description Share test
  */
-
+/* global page, SERVER, share, shareTestContainer */
+/* eslint no-global-assign:0 */
 'use strict';
 
 beforeEach(async () => {
@@ -314,7 +315,7 @@ describe('Share statistic tests', () => {
     /**
      * Check if share fetches properly stats from script
      */
-    test('Share fetches properly stats from empty script', async () => {
+    test('Share fetches properly stats from script with one block', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="tscript"><block type="PreviousLookBrick"></block></script>`;
         const scriptXml = (new DOMParser).parseFromString(scriptString, 'text/xml');
