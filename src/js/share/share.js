@@ -278,7 +278,11 @@ export class Share {
    * @param {Object} options how we should inject all scenes
    */
   injectAllScenes(container, xmlElement, options = {}) {
-    this.injectAllScenesPromise(container, xmlElement, options);
+    return this.injectAllScenesPromise(container, xmlElement, options).then(result => {
+      return result;
+    }).catch(() => {
+      return;
+    });
   }
 
   
