@@ -508,6 +508,31 @@ export default class Parser {
   }
 
   /**
+	 * Parse xmlString from catroid to catblocks format and return every error
+	 * @param {string|Element} xmlString catroid string or XMLDocument 
+	 * @returns {XMLDocument} catblock XMLDocument
+	 */
+  static convertProgramStringDebug(xmlString) {
+    const retVal = Parser.convertProgramString(xmlString);
+
+    if (retVal === undefined) {
+      const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+
+      const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
+      if (appVersion === undefined || appVersion.length < 1) {
+        throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
+      } else if (appVersion[0].innerHTML < supportedAppVersion) {
+        throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
+      }
+      
+      initParser(xml);
+      return parseCatroidProgram(xml);
+    }
+
+    return retVal;
+  }
+
+  /**
 	 * Fetch and parse xml file defined via uri
 	 * @param {*} xmlFile uri to catroid file
 	 * @returns {Promise} catblock XMLDocument
