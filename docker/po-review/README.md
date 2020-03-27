@@ -2,7 +2,7 @@
 
 [CATBLOCKS](https://github.com/Catrobat/Catblocks) PO-Review docker container
 
-The container clones and builds the project during startup. This allows docker image-reusevfor all upcoming PO-Reviews.
+The container clones and builds the project during startup. This allows docker image-reuse for all upcoming PO-Reviews.
 Only the entrypoint.sh file needs to be updated. This file also includes the `COMMITHASH` to fetch. 
 
 When not able to access the webserver: verify that you bind the `SERVERPORT -p 8080:8080` properly, otherwise the host 

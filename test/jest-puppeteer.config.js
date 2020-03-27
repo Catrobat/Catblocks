@@ -3,10 +3,6 @@
  * @author andreas.karner@student.tugraz.at
  * 
  * @description jest-puppeteer configuration file
- *  as server we use the http-server from npm package manager
- *  executable is defined for docker image catblocks:v1
- *    otherwise we use the default -> undefined
- * 
  *  pass args sandbox params so we can start chome even as root
  */
 
