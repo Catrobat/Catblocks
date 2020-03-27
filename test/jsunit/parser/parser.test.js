@@ -2,7 +2,8 @@
  * @description Parser test
  *  for the parser we always need the webview
  */
-
+/* global page, SERVER, parser */
+/* eslint no-global-assign:0 */
 'use strict';
 
 describe('Parser catroid program tests', () => {
