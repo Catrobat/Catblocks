@@ -2,7 +2,8 @@
 /**
  * @description Share utils tests
  */
-
+/* global page, SERVER, shareUtils, shareWS */
+/* eslint no-global-assign:0 */
 'use strict';
 
 /**

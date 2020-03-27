@@ -1,7 +1,8 @@
 /**
  * @description xml tests
  */
-
+/* global page, SERVER, playgroundWS, toolboxWS, Blockly */
+/* eslint no-global-assign:0 */
 'use strict';
 
 /**
