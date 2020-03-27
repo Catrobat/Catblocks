@@ -272,89 +272,110 @@ export class Share {
   }
 
   /**
- * Inject all catblocks scenes from xml into div
- * @param {Element} container dom to inject all loaded scenes
- * @param {Element} xmlElement which includes all scenes to iject as XMLDocument
- * @param {Object} options how we should inject all scenes
- */
+   * Inject all catblocks scenes from xml into div
+   * @param {Element} container dom to inject all loaded scenes
+   * @param {Element} xmlElement which includes all scenes to iject as XMLDocument
+   * @param {Object} options how we should inject all scenes
+   */
   injectAllScenes(container, xmlElement, options = {}) {
-    // const program = xmlElement.cloneNode(true);
-    container = getDomElement(container);
-    const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
-
-    if (xmlElement === undefined) {
-      console.warn('Inject message to upgrade programm to newer version!');
-      injectNewDom(scenesContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Unsupported program version! Please reupload your Programm using our app!');
+    return this.injectAllScenesPromise(container, xmlElement, options).then(result => {
+      return result;
+    }).catch(() => {
       return;
-    }
+    });
+  }
 
-    const scenes = xmlElement.getElementsByTagName('scene');
-    if (!hasChildren(scenes)) {
-      const emptyContainer = injectNewDom(scenesContainer, 'DIV', { 'class': 'catblocks-object-container catblocks-empty-container' });
-      injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty programm found, nothting to display.');
-      return;
-    }
+  
+  /**
+   * Inject all catblocks scenes from xml into div and returns a Promise.
+   * @param {Element} container
+   * @param {Element} xmlElement
+   * @param {Object} [options={}]
+   * @returns {Promise}
+   * @memberof Share
+   */
+  injectAllScenesPromise(container, xmlElement, options = {}) {
+    return new Promise((resolve, reject) => {
+      // const program = xmlElement.cloneNode(true);
+      container = getDomElement(container);
+      const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
-
-    scenes.forEach(scene => {
-      const sceneName = scene.getAttribute('type');
-      const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
-      const sceneContainer = this.addSceneContainer(scenesContainer, trimString(sceneName), sceneOptions);
-      const sceneObjectContainer = getDomElement('.catblocks-object-container', sceneContainer);
-
-      const objects = scene.getElementsByTagName('object');
-      if (!hasChildren(objects)) {
-        const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
-        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
-        return;
+      if (xmlElement === undefined) {
+        console.warn('Inject message to upgrade programm to newer version!');
+        injectNewDom(scenesContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Unsupported program version! Please reupload your Programm using our app!');
+        return reject(new Error('Unsupported program version!'));
       }
-      objects.forEach(object => {
-        const objectName = object.getAttribute('type');
-        const objectOptions = (() => {
-          if (object.getAttribute('look') !== undefined && object.getAttribute('look') !== null) {
-            const lookOptions = Object.assign({}, options.object, {
-              'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
-            });
-            return parseOptions(lookOptions, defaultOptions.object);
-          } else {
-            return parseOptions(options.object, defaultOptions.object);
-          }
-        })();
 
-        const objectContainer = this.addObjectContainer(sceneObjectContainer, trimString(objectName), objectOptions);
-        const objectScriptContainer = getDomElement('.catblocks-script-container', objectContainer);
+      const scenes = xmlElement.getElementsByTagName('scene');
+      if (!hasChildren(scenes)) {
+        const emptyContainer = injectNewDom(scenesContainer, 'DIV', { 'class': 'catblocks-object-container catblocks-empty-container' });
+        injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty programm found, nothting to display.');
+        return reject(new Error('Empty programm found'));
+      }
 
-        let objectStats = {
-          'name': objectName,
-          'scripts': 0
-        };
 
-        if (!hasChildren(object)) {
-          const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
-          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "Empty object found, nothting to display.");
+      scenes.forEach(scene => {
+        const sceneName = scene.getAttribute('type');
+        const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
+        const sceneContainer = this.addSceneContainer(scenesContainer, trimString(sceneName), sceneOptions);
+        const sceneObjectContainer = getDomElement('.catblocks-object-container', sceneContainer);
 
-        } else {
-          const scripts = object.getElementsByTagName('script');
-          scripts.forEach(script => {
-            const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
-
-            const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
-
-            const blockSvg = this.domToSvg(blockXml);
-            if (blockSvg === undefined) {
-              scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
+        const objects = scene.getElementsByTagName('object');
+        if (!hasChildren(objects)) {
+          const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
+          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
+          return reject(new Error('Empty scene found'));
+        }
+        objects.forEach(object => {
+          const objectName = object.getAttribute('type');
+          const objectOptions = (() => {
+            if (object.getAttribute('look') !== undefined && object.getAttribute('look') !== null) {
+              const lookOptions = Object.assign({}, options.object, {
+                'objectImage': `${sceneName}/images/${object.getAttribute('look')}`
+              });
+              return parseOptions(lookOptions, defaultOptions.object);
             } else {
-              const blockStats = this.getScriptStats(script);
-              objectStats = this.updateObjectStats(objectStats, blockStats);
-              scriptContainer.appendChild(blockSvg);
+              return parseOptions(options.object, defaultOptions.object);
             }
-          });
-        }
+          })();
 
-        if (objectOptions.writeStats) {
-          this.writeObjectStats(objectContainer, objectStats);
-        }
+          const objectContainer = this.addObjectContainer(sceneObjectContainer, trimString(objectName), objectOptions);
+          const objectScriptContainer = getDomElement('.catblocks-script-container', objectContainer);
+
+          let objectStats = {
+            'name': objectName,
+            'scripts': 0
+          };
+
+          if (!hasChildren(object)) {
+            const emptyContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script catblocks-empty-container' });
+            injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, "Empty object found, nothting to display.");
+
+          } else {
+            const scripts = object.getElementsByTagName('script');
+            scripts.forEach(script => {
+              const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+
+              const scriptContainer = injectNewDom(objectScriptContainer, 'DIV', { 'class': 'catblocks-script' });
+
+              const blockSvg = this.domToSvg(blockXml);
+              if (blockSvg === undefined) {
+                scriptContainer.appendChild(injectNewDom(scriptContainer, 'P', { 'class': 'catblocks-empty-text' }, "Failed to parse script properly."));
+              } else {
+                const blockStats = this.getScriptStats(script);
+                objectStats = this.updateObjectStats(objectStats, blockStats);
+                scriptContainer.appendChild(blockSvg);
+              }
+            });
+          }
+
+          if (objectOptions.writeStats) {
+            this.writeObjectStats(objectContainer, objectStats);
+          }
+        });
       });
+
+      resolve();
     });
   }
 

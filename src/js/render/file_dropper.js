@@ -17,6 +17,16 @@ export class FileDropper {
     this.renderProgram = renderProgram;
   }
 
+
+  /**
+   * Creates or returns Singleton instance.
+   * @static
+   * @param {*} share
+   * @param {*} container
+   * @param {*} renderProgram
+   * @returns {FileDropper}
+   * @memberof FileDropper
+   */
   static createInstance(share, container, renderProgram) {
     if (instance != null) {
       return instance;
@@ -25,10 +35,22 @@ export class FileDropper {
     return instance;
   }
 
+
+  /**
+   * Returns Singleton instance.
+   * @static
+   * @returns {FileDropper}
+   * @memberof FileDropper
+   */
   static getInstance() {
     return instance;
   }
 
+
+  /**
+   * Register all Events for drag&drop area.
+   * @memberof FileDropper
+   */
   enableDragAndDrop() {
     const $ele = $('#catblocks-file-dropper');
 
@@ -46,6 +68,13 @@ export class FileDropper {
     $ele.css('display', 'flex');
   }
 
+
+  /**
+   * EventHandler for drop area.
+   * @private
+   * @param {Event} e
+   * @memberof FileDropper
+   */
   _handleFileDrop(e) {
     const files = e.originalEvent.dataTransfer.files;
     if (files && files.length > 0) {
@@ -53,6 +82,12 @@ export class FileDropper {
     }
   }
 
+  /**
+   * EventHandler for <input type="file">
+   * @private
+   * @param {Event} e
+   * @memberof FileDropper
+   */
   _handleInputChange(e) {
     const files = e.originalEvent.target.files;
     if (files && files.length > 0) {
@@ -60,6 +95,13 @@ export class FileDropper {
     }
   }
 
+
+  /**
+   * Show or Hide loading overlay.
+   * @private
+   * @param {string} event - onDone / onStart
+   * @memberof FileDropper
+   */
   _updateView(event) {
     switch (event) {
     case 'onStart': 
@@ -78,6 +120,7 @@ export class FileDropper {
 
   /**
    * Returns the Base64 Src String for HTML.
+   * @private
    * @param {string} fileName relative Path to File
    * @param {string} fileExt contains either exact file ending or a string which should contain the file ending
    * @param {string} base64 encoded file
@@ -85,6 +128,7 @@ export class FileDropper {
    */
   _generateBase64Src(fileName, fileExt, base64) {
     
+    // images
     if (fileExt.toLowerCase() === 'png' || fileExt.toLowerCase().includes('png')) {
       return 'data:image/png;charset=utf-8;base64,' + base64;
     } 
@@ -95,6 +139,7 @@ export class FileDropper {
       return 'data:image/jpeg;charset=utf-8;base64,' + base64;
     }
 
+    // sound
     if (fileExt.toLowerCase() === 'wav' || fileExt.toLowerCase().includes('wav')) {
       return 'data:audio/wav;charset=utf-8;base64,' + base64;
     }
@@ -102,6 +147,7 @@ export class FileDropper {
       return 'data:audio/mp3;charset=utf-8;base64,' + base64;
     }
 
+    // video
     if (fileExt.toLowerCase() === 'mp4' || fileExt.toLowerCase().includes('mp4')) {
       return 'data:video/mp4;charset=utf-8;base64,' + base64;
     }
@@ -124,13 +170,14 @@ export class FileDropper {
 
   /**
    * Load .catrobat / .zip file
+   * @private
    * @param {file} containerfile
    * @param {number} containerCounter
    * @returns {Promise}
    * @memberof FileDropper
    */
   _loadArchive(containerfile, containerCounter) {
-    return new Promise((resolveFinished) => {
+    return new Promise((resolve) => {
       // open ZIP
       const zip = new JSZip();
       zip.loadAsync(containerfile, {
@@ -181,20 +228,33 @@ export class FileDropper {
 
         Promise.all(filePromises).then(response => {
           if (response.length !== Object.keys(fileMap).length + 1) {
+            MessageBox.show('<b>' + containerfile.name + ':</b> Number of Files in Archive do not match number of read files.');
             console.error('Number of Files in ZIP do not match number of read files');
           }
-          this._updateView('onDone');
+          
           const fd = FileDropper.getInstance();
-          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
-          resolveFinished();
+          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap).then(result => {
+            console.info('Rendered ' + containerfile.name);
+            resolve(true);
+          }).catch(error => {
+            MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
+            resolve(false);
+          });
         });
       });
     });
   }
 
+
+  /**
+   * Unpack Archive and start rendering of code.xml
+   * @param {File} inputFiles
+   * @memberof FileDropper
+   */
   computeFiles(inputFiles) {
     this._updateView('onStart');
     let containerCounter = 0;
+    let finished = 0;
     const renderPromises = [];
 
     for (const containerfile of inputFiles) {
@@ -202,15 +262,25 @@ export class FileDropper {
       const ext = fileArray[fileArray.length - 1];
 
       if (ext === 'zip' || ext === 'catrobat') {
-        renderPromises.push(this._loadArchive(containerfile, containerCounter++));
+        const promise = this._loadArchive(containerfile, containerCounter++);
+        renderPromises.push(promise);
+        promise.then(() => {
+          MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
+        });
       } else {
         MessageBox.show(`File "${containerfile.name}" is not of type .catrobat/.zip`);
       }
     }
 
     if (renderPromises.length > 0) {
-      $('#catblocks-file-dropper').hide();
-      Promise.all(renderPromises).then(() => {
+      Promise.all(renderPromises).then(result => {
+        for (const res of result) {
+          if (res !== undefined && res) {
+            $('#catblocks-file-dropper').hide();
+            break;
+          }
+        }
+
         this._updateView('onDone');
       });
     } else {
