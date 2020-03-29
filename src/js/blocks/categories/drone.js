@@ -15,14 +15,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVEUP}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -30,14 +30,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVEDOWN}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -45,14 +45,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVELEFT}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -60,14 +60,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVERIGHT}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -75,14 +75,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVEFORWARD}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -90,14 +90,14 @@ export default {
     "message0": "%{BKY_DRONE_MOVEBACKWARD}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -105,14 +105,14 @@ export default {
     "message0": "%{BKY_DRONE_TURNLEFT}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -120,14 +120,14 @@ export default {
     "message0": "%{BKY_DRONE_TURNRIGHT}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "POWER",
-        "value": 1
+        "type": "field_input",
+        "name": "DRONE_POWER_IN_PERCENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -139,8 +139,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "ADRONEANIMATION",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },

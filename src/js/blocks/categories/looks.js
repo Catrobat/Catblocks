@@ -11,7 +11,7 @@ export default {
       {
         "type": "field_input",
         "name": "look",
-        "text": "newLook"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -19,9 +19,9 @@ export default {
     "message0": "%{BKY_LOOKS_SWITCHTOLOOKWITHNUMBER}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "LOOK_INDEX",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -35,9 +35,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETSIZETO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "SIZE",
-        "value": 60
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -53,12 +53,12 @@ export default {
       {
         "type": "field_input",
         "name": "ASK_QUESTION",
-        "text": "What\"s your name?"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -67,8 +67,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "SAY_BRICK",
-        "text": "Hello!"
+        "name": "STRING",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -78,12 +78,12 @@ export default {
       {
         "type": "field_input",
         "name": "STRING",
-        "text": "Hello!"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -92,8 +92,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "THINK_BRICK",
-        "text": "Hmmmm!"
+        "name": "STRING",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -102,13 +102,13 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "THINK_BRICK",
-        "text": "Hmmmm!"
+        "name": "STRING",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -116,9 +116,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETTRANSPARENCYTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "TRANSPARENCY",
-        "value": 50
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -126,9 +126,9 @@ export default {
     "message0": "%{BKY_LOOKS_CHANGESIZEBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "SIZE_CHANGE",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -136,9 +136,9 @@ export default {
     "message0": "%{BKY_LOOKS_CHANGETRANSPARENCYBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "TRANSPARENCY_CHANGE",
-        "value": 10
+        "value": "DEFAULT_VALUE"
       }
     ]
   },
@@ -146,9 +146,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETBRIGHTHNESSTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "BRIGHTNESS",
-        "value": 20
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -156,9 +156,9 @@ export default {
     "message0": "%{BKY_LOOKS_CHANGEBRIGHTHNESSBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "BRIGHTNESS_CHANGE",
-        "value": 50
+        "value": "DEFAULT_VALUE"
       }
     ]
   },
@@ -166,9 +166,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETCOLORTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "COLOR",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -176,9 +176,9 @@ export default {
     "message0": "%{BKY_LOOKS_CHANGECOLORBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "COLOR_CHANGE",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -190,8 +190,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "look",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -199,9 +199,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETBACKGROUNDTONUMBER}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "LOOK_INDEX",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -210,8 +210,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "look",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -219,9 +219,9 @@ export default {
     "message0": "%{BKY_LOOKS_SETBACKGROUNDTONUMBERANDWAIT}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "LOOK_INDEX",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -230,8 +230,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -240,8 +240,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -250,8 +250,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

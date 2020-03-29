@@ -1,8 +1,21 @@
-dist/
+# ide files                                                                                                                                                                                                                                                                    
 \.idea/
-node_modules/
-*.log
-i18n/json
 \.vscode/
-./jenkins/testresults/*
+
+# node modules
+node_modules/
+
+# generated files
+i18n/json
+src/js/catblocks_msgs.js
+dist/
+
+# jest report
 jest_html_reporters.html
+
+# share test program
+test/share/
+
+# default output from test dir
+tools/output.log
+tools/fetchedPrograms/

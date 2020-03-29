@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN2",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -28,9 +28,9 @@ export default {
     "message3": "%1",
     "args0": [
       {
-        "type": "field_number",
-        "name": "PIN",
-        "value": 3
+        "type": "field_input",
+        "name": "IF_CONDITION",
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [
@@ -50,14 +50,14 @@ export default {
     "message0": "%{BKY_RASPI_SENDDIGITALVALUE}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "PIN1",
-        "value": 3
+        "type": "field_input",
+        "name": "RASPI_DIGITAL_PIN_NUMBER",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "PIN2",
-        "value": 1
+        "type": "field_input",
+        "name": "RASPI_DIGITAL_PIN_VALUE",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -65,19 +65,19 @@ export default {
     "message0": "%{BKY_RASPI_PWM}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "PIN",
-        "value": 3
+        "type": "field_input",
+        "name": "RASPI_DIGITAL_PIN_NUMBER",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "PERCENT",
-        "value": 50
+        "type": "field_input",
+        "name": "RASPI_PWM_PERCENTAGE",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "HERTZ",
-        "value": 100
+        "type": "field_input",
+        "name": "RASPI_PWM_FREQUENCY",
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

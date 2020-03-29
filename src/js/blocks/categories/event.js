@@ -20,7 +20,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -30,7 +30,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -40,7 +40,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -50,7 +50,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -60,7 +60,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -69,8 +69,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "look",
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

@@ -13,7 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const xml2json = require('xml2json');
+const xml2json = require('xml2js');
 const { locales } = require('./lang_codes_mapping');
 
 // please define here the configuration if needed
@@ -45,34 +45,30 @@ const escapeStringValue = (value) => value ? value.split('\n').join(' ').split('
  * parse json string stream from catroid string files and return object for value substitution 
  * @param {*} jsonstream 
  */
-const parseStringFile = function (jsonstream) {
+const parseStringFile = function(jsonstream) {
   const values = {};
-  const data = JSON.parse(jsonstream).resources;
+  const data = jsonstream.resources;
 
   Object.keys(data).forEach(xmltag => {
     switch (xmltag) {
-    case "string": {
-      data.string.forEach(stringpair => {
-        values[stringpair['name']] = escapeStringValue(stringpair['$t']);
-      });
-      break;
-    }
-    case "plurals": {
-      data.plurals.forEach(pluralpair => {
-        if (pluralpair.item instanceof Array) {
+      case "string": {
+        data.string.forEach(stringpair => {
+          values[stringpair.$.name] = escapeStringValue(stringpair._);
+        });
+        break;
+      }
+      case "plurals": {
+        data.plurals.forEach(pluralpair => {
           pluralpair.item.forEach(pluralitem => {
-            values[`${pluralpair['name']}.${pluralitem['quantity']}`] = escapeStringValue(pluralitem['$t']);
+            values[`${pluralpair.$.name}.${pluralitem.quantity}`] = escapeStringValue(pluralitem._);
           });
-        } else {
-          values[`${pluralpair['name']}.${pluralpair.item['quantity']}`] = escapeStringValue(pluralpair.item['$t']);
-        }
-      });
-      break;
-    }
-    default: {
-      console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
-      break;
-    }
+        });
+        break;
+      }
+      default: {
+        console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
+        break;
+      }
     }
   });
   return values;
@@ -106,17 +102,19 @@ const languages = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
 languages.forEach(language => {
   const lang_file_path = path.join(STRINGS_DIR, language, STRINGS_FILE);
   const lang_file = fs.readFileSync(lang_file_path, { encoding: 'utf-8' });
-  const lang_values = parseStringFile(xml2json.toJson(lang_file));
-  const lang_name = prepareStringFolderName(language);
-  const json_file = path.join(JSON_DIR, lang_name + '.json');
+  xml2json.parseStringPromise(lang_file).then(data => {
+    const lang_values = parseStringFile(data);
+    const lang_name = prepareStringFolderName(language);
+    const json_file = path.join(JSON_DIR, lang_name + '.json');
 
-  const result = {};
+    const result = {};
 
-  Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
-    const value = substituteVariableData(mapping[rule], lang_values);
-    result[rule] = value.split('"').join('');
+    Object.keys(mapping).filter(key => !key.startsWith(MAPPING_COMMENT)).forEach(rule => {
+      const value = substituteVariableData(mapping[rule], lang_values);
+      result[rule] = value.split('"').join('');
+    });
+    result["DROPDOWN_NAME"] = locales[lang_name] ? locales[lang_name] : lang_name;
+
+    fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
   });
-  result["DROPDOWN_NAME"] = locales[lang_name] ? locales[lang_name] : lang_name;
-
-  fs.writeFileSync(json_file, JSON.stringify(result), { encoding: 'utf-8' });
 });

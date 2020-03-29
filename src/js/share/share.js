@@ -4,7 +4,7 @@
 
 import Blockly from 'blockly';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
+import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString } from './utils';
 
 export class Share {
   constructor() {
@@ -146,7 +146,7 @@ export class Share {
     let svg = undefined;
     try {
       this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
-      checkNextBlock(this.workspace.topBlocks_);
+      // checkNextBlock(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
 
@@ -439,7 +439,8 @@ export class Share {
 		}
 		.catblocks-object-look-item {
 				min-width: 100px;
-				max-width: 100px;
+        max-width: 100px;
+        max-height: 200px;
 				border-radius: 20%;
 		}
 		.blocklyEditableLabel {

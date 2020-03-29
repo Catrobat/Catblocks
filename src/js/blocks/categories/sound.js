@@ -11,7 +11,7 @@ export default {
       {
         "type": "field_input",
         "name": "sound",
-        "text": "sound"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -21,7 +21,7 @@ export default {
       {
         "type": "field_input",
         "name": "sound",
-        "text": "sound"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -32,9 +32,9 @@ export default {
     "message0": "%{BKY_SOUND_SETVOLUMETO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "VOLUME",
-        "value": 60
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -42,9 +42,9 @@ export default {
     "message0": "%{BKY_SOUND_CHANGEVOLUMEBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "VOLUME_CHANGE",
-        "value": -10
+        "value": "DEFAULT_VALUE"
       }
     ]
   },
@@ -54,7 +54,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPEAK",
-        "text": "Hello!"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -64,7 +64,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPEAK",
-        "text": "Hello!"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -74,12 +74,12 @@ export default {
       {
         "type": "field_input",
         "name": "ASK_SPEECH_QUESTION",
-        "text": "What\"s your name?"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

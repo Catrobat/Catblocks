@@ -5,6 +5,8 @@
 
 'use strict';
 
+const Blockly = require("blockly");
+
 describe('Parser catroid program tests', () => {
 
   beforeAll(async () => {
@@ -144,6 +146,97 @@ describe('Parser catroid program tests', () => {
       const catXml = parser.convertProgramString(xmlString);
 
       return catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser supports alignment CENTERED
+   */
+  test('Handle alignment CENTERED properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="ShowTextColorSizeAlignmentBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value>120.0</value></formula><formula category="X_POSITION"><type>NUMBER</type><value>0</value></formula><formula category="Y_POSITION"><type>NUMBER</type><value>270</value></formula><formula category="COLOR"><type>STRING</type><value>#000000</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>443ce87f-2129-43c2-8f4b-7ccffb5e5986</deviceValueKey><name>Best</name></default></userVariable></userVariable><alignmentSelection>1</alignmentSelection></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='ShowTextColorSizeAlignmentBrick']/field[@name='ALIGNMENT']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === Blockly.CatblocksMsgs.getCurrentLocaleValues()['ALIGNMENTS_1']);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser supports alignment RIGHT
+   */
+  test('Handle alignment RIGHT properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="ShowTextColorSizeAlignmentBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value>120.0</value></formula><formula category="X_POSITION"><type>NUMBER</type><value>0</value></formula><formula category="Y_POSITION"><type>NUMBER</type><value>270</value></formula><formula category="COLOR"><type>STRING</type><value>#000000</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>443ce87f-2129-43c2-8f4b-7ccffb5e5986</deviceValueKey><name>Best</name></default></userVariable></userVariable><alignmentSelection>2</alignmentSelection></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='ShowTextColorSizeAlignmentBrick']/field[@name='ALIGNMENT']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === Blockly.CatblocksMsgs.getCurrentLocaleValues()['ALIGNMENTS_2']);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser supports alignment LEFT
+   */
+  test('Handle alignment LEFT properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="ShowTextColorSizeAlignmentBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value>120.0</value></formula><formula category="X_POSITION"><type>NUMBER</type><value>0</value></formula><formula category="Y_POSITION"><type>NUMBER</type><value>270</value></formula><formula category="COLOR"><type>STRING</type><value>#000000</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>443ce87f-2129-43c2-8f4b-7ccffb5e5986</deviceValueKey><name>Best</name></default></userVariable></userVariable><alignmentSelection>0</alignmentSelection></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='ShowTextColorSizeAlignmentBrick']/field[@name='ALIGNMENT']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === Blockly.CatblocksMsgs.getCurrentLocaleValues()['ALIGNMENTS_0']);
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser supports wrong alignment VALUE
+   */
+  test('Handle wrong alignment VALUE properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="ShowTextColorSizeAlignmentBrick"><commentedOut>false</commentedOut><formulaList><formula category="SIZE"><type>NUMBER</type><value>120.0</value></formula><formula category="X_POSITION"><type>NUMBER</type><value>0</value></formula><formula category="Y_POSITION"><type>NUMBER</type><value>270</value></formula><formula category="COLOR"><type>STRING</type><value>#000000</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>443ce87f-2129-43c2-8f4b-7ccffb5e5986</deviceValueKey><name>Best</name></default></userVariable></userVariable><alignmentSelection>99a</alignmentSelection></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='ShowTextColorSizeAlignmentBrick']/field[@name='ALIGNMENT']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === '99a');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser handels correct spinner value properly
+   */
+  test('Handle correct spinner value', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut><ledAnimationName>ARDRONE_LED_ANIMATION_BLINK_GREEN_RED</ledAnimationName></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']/field[@name='ADRONEANIMATION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === 'Blink green red');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser handels invalide spinner value properly
+   */
+  test('Handle invalid spinner value', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut><ledAnimationName>SOME_VALUE_I_DO_NOT_CARE</ledAnimationName></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']/field[@name='ADRONEANIMATION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.innerHTML === 'SOME_VALUE_I_DO_NOT_CARE');
+    })).toBeTruthy();
+  });
+
+  /**
+   * Test if parser handels non-existing spinner value properly
+   */
+  test('Handle non-exiting spinner value', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+      const catXml = parser.convertProgramString(xmlString);
+      const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+      return (blockValue !== undefined && blockValue.childElementCount === 0);
     })).toBeTruthy();
   });
 });

@@ -104,6 +104,13 @@ const getRenderLog = async (progPath) => {
           console.error(err);
         });
     });
+
+  await page.evaluate(() => {
+    const wrongAssigned = Array.from(document.querySelectorAll('.blocklyText')).filter(txt => txt.innerHTML === 'DEFAULT_VALUE');
+    if (wrongAssigned.length > 0) {
+      console.error('Some values assigned wrong');
+    }
+  });
   await page.close();
   await browser.close();
   console.info(`Finished rendering program ${progPath}`);

@@ -7,18 +7,18 @@
   "license": "SEE LICENSE IN license",
   "scripts": {
     "start": "yarn playground:server --print-label",
-    "playground:server": "export NODE_ENV=development TYPE=playground && yarn initiate &&  webpack-dev-server",
-    "playground:prod": "export NODE_ENV=production TYPE=playground && yarn initiate && webpack-dev-server",
-    "playground:dev": "export NODE_ENV=development TYPE=playground && yarn initiate && webpack-dev-server",
-    "playground:build": "export NODE_ENV=production TYPE=playground && yarn initiate && webpack",
-    "share:prod": "export NODE_ENV=production && export TYPE=share && yarn initiate && webpack-dev-server",
-    "share:dev": "export NODE_ENV=development && export TYPE=share && yarn initiate && webpack-dev-server",
-    "share:build": "export NODE_ENV=production && export TYPE=share && yarn initiate && webpack",
-    "render:dev": "export NODE_ENV=development && export TYPE=render && yarn initiate && webpack-dev-server",
-    "render:build": "export NODE_ENV=production && export TYPE=render && yarn initiate && webpack",
+    "playground:server": "cross-env-shell NODE_ENV=development TYPE=playground \"yarn initiate && webpack-dev-server\"",
+    "playground:prod": "cross-env-shell NODE_ENV=production TYPE=playground \"yarn initiate && webpack-dev-server\"",
+    "playground:dev": "cross-env-shell NODE_ENV=development TYPE=playground \"yarn initiate && webpack-dev-server\"",
+    "playground:build": "cross-env-shell NODE_ENV=production TYPE=playground \"yarn initiate && webpack\"",
+    "share:prod": "cross-env-shell NODE_ENV=production TYPE=share \"yarn initiate && webpack-dev-server\"",
+    "share:dev": "cross-env-shell NODE_ENV=development TYPE=share \"yarn initiate && webpack-dev-server\"",
+    "share:build": "cross-env-shell NODE_ENV=production TYPE=share \"yarn initiate && webpack\"",
+    "render:dev": "cross-env-shell NODE_ENV=development TYPE=render \"yarn initiate && webpack-dev-server\"",
+    "render:build": "cross-env-shell NODE_ENV=production TYPE=render \"yarn initiate && webpack\"",
     "test": "yarn test:build && jest -c ./test/jest_config.js",
-    "test:build": "export NODE_ENV=production TYPE=testing && yarn initiate && webpack",
-    "test:dev": "export NODE_ENV=development TYPE=testing && yarn initiate && webpack-dev-server",
+    "test:build": "cross-env-shell NODE_ENV=production TYPE=testing \"yarn initiate && webpack\"",
+    "test:dev": "cross-env-shell NODE_ENV=development TYPE=testing \"yarn initiate && webpack-dev-server\"",
     "initiate": "yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
     "clean": "rimraf dist"
@@ -31,6 +31,7 @@
     "blockly": "^3.20200123.1",
     "copy-webpack-plugin": "^5.0.4",
     "core-js": "^3.3.4",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.2.0",
     "eslint": "^6.6.0",
     "eslint-loader": "^3.0.2",
@@ -44,14 +45,14 @@
     "regenerator-runtime": "^0.13.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "jest": "^24.9.0",
     "jest-environment-node": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
     "puppeteer": "^2.0.0",
-    "rimraf": "^3.0.0",
-    "xml2json": "^0.11.2"
+    "rimraf": "^3.0.0"
   }
 }
