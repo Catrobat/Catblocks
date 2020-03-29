@@ -235,12 +235,11 @@ function parseScripts(script) {
     if(brickList[i].attributes[0].value === "RepeatBrick") {
       currentScript.brickList.push(parseBrick(brickList[i]));
       const position = i;
+      i++;
       while(brickList[i].attributes[0].value !== "LoopEndBrick") {
-        i++;
         currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
+        i++;
       }
-
-      console.log(currentScript.brickList[position].loopOrIfBrickList);
     }
     else {
       currentScript.brickList.push(parseBrick(brickList[i]));
