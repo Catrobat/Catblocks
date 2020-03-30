@@ -233,9 +233,10 @@ describe('WebView Block tests', () => {
         block.initSvg();
         block.render(false);
         //get default scale value
+        const refValue = Blockly.Bricks['ChangeBrightnessByNBrick'].args0[0].text;
         let value = block.inputList[0].fieldRow[1].getText();
         return (block.getFieldValue() === 'Change brightness  by'
-          && value === '50');
+          && value === refValue);
       })).toBeTruthy();
     });
 

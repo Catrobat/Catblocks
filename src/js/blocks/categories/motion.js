@@ -9,14 +9,14 @@ export default {
     "message0": "%{BKY_MOTION_PLACEATXY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "X_POSITION",
-        "value": 100
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "Y_POSITION",
-        "value": 200
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -24,9 +24,9 @@ export default {
     "message0": "%{BKY_MOTION_SETXTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "X_POSITION",
-        "value": 100
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -34,9 +34,9 @@ export default {
     "message0": "%{BKY_MOTION_SETYTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "Y_POSITION",
-        "value": 200
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -44,9 +44,9 @@ export default {
     "message0": "%{BKY_MOTION_CHANGEXBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "X_POSITION_CHANGE",
-        "value": 100
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -54,9 +54,9 @@ export default {
     "message0": "%{BKY_MOTION_CHANGEYBY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "Y_POSITION_CHANGE",
-        "value": 200
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -65,8 +65,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -77,9 +77,9 @@ export default {
     "message0": "%{BKY_MOTION_MOVESTEPS}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "STEPS",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -87,9 +87,9 @@ export default {
     "message0": "%{BKY_MOTION_TURNRIGHTDEGREES}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "TURN_RIGHT_DEGREES",
-        "value": 15
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -97,9 +97,9 @@ export default {
     "message0": "%{BKY_MOTION_TURNLEFTDEGREES}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "TURN_LEFT_DEGREES",
-        "value": 15
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -107,9 +107,9 @@ export default {
     "message0": "%{BKY_MOTION_POINTINDIRECTIONDEGREES}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "DEGREES",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -119,7 +119,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -128,8 +128,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "new"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -137,19 +137,19 @@ export default {
     "message0": "%{BKY_MOTION_GLIDESECONDTOXY}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "X_DESTINATION",
-        "value": 100
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "Y_DESTINATION",
-        "value": 200
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -157,9 +157,9 @@ export default {
     "message0": "%{BKY_MOTION_GOBACKLAYER}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "STEPS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -170,9 +170,9 @@ export default {
     "message0": "%{BKY_MOTION_VIBRATEFORSECOND}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "VIBRATE_DURATION_IN_SECONDS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -182,7 +182,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -190,14 +190,14 @@ export default {
     "message0": "%{BKY_MOTION_SETVELOCITYTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_VELOCITY_X",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_VELOCITY_Y",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -205,9 +205,9 @@ export default {
     "message0": "%{BKY_MOTION_SPINLEFTDEGREESSECOND}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_TURN_LEFT_SPEED",
-        "value": 15
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -215,9 +215,9 @@ export default {
     "message0": "%{BKY_MOTION_SPINRIGHTDEGREESSECOND}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_TURN_RIGHT_SPEED",
-        "value": 15
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -225,14 +225,14 @@ export default {
     "message0": "%{BKY_MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_GRAVITY_X",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_GRAVITY_Y",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -240,9 +240,9 @@ export default {
     "message0": "%{BKY_MOTION_SETMASSTOKILOGRAM}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_MASS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -250,9 +250,9 @@ export default {
     "message0": "%{BKY_MOTION_SETBOUNCEFACTORTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_BOUNCE_FACTOR",
-        "value": 80
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -260,9 +260,9 @@ export default {
     "message0": "%{BKY_MOTION_SETFRICTIONTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PHYSICS_FRICTION",
-        "value": 80
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

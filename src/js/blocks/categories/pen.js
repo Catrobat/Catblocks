@@ -15,9 +15,9 @@ export default {
     "message0": "%{BKY_PEN_SETPENSIZETO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PEN_SIZE",
-        "value": 3.15
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -25,19 +25,19 @@ export default {
     "message0": "%{BKY_PEN_SETPENCOLORTO}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PEN_COLOR_RED",
-        "value": 255
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PEN_COLOR_GREEN",
-        "value": 255
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "PEN_COLOR_BLUE",
-        "value": 255
+        "text": "DEFAULT_VALUE"
       }
     ]
   },

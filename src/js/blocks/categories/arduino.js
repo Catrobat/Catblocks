@@ -9,14 +9,14 @@ export default {
     "message0": "%{BKY_ARDUINO_SENDDIGITALVALUE}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "DIGITAL_PIN",
-        "value": 4
+        "type": "field_input",
+        "name": "ARDUINO_DIGITAL_PIN_NUMBER",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "DIGITAL_PIN_VALUE",
-        "value": 2
+        "type": "field_input",
+        "name": "ARDUINO_DIGITAL_PIN_VALUE",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -24,14 +24,14 @@ export default {
     "message0": "%{BKY_ARDUINO_SENDPWMALVALUE}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "PWM_PIN",
-        "value": 4
+        "type": "field_input",
+        "name": "ARDUINO_ANALOG_PIN_NUMBER",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "PWM_PIN_VALUE",
-        "value": 2
+        "type": "field_input",
+        "name": "ARDUINO_ANALOG_PIN_VALUE",
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

@@ -12,9 +12,9 @@ export default {
     "message0": "%{BKY_STITCH_RUNNING}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "EMBROIDERY_LENGTH",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -22,14 +22,14 @@ export default {
     "message0": "%{BKY_STITCH_ZIGZAG}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "ZIGZAG_EMBROIDERY_LENGTH",
-        "value": 2
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "ZIGZAG_EMBROIDERY_WIDTH",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -37,9 +37,9 @@ export default {
     "message0": "%{BKY_STITCH_TRIPLE}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "EMBROIDERY_LENGTH",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
