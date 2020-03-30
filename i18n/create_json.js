@@ -61,7 +61,7 @@ const parseStringFile = function (jsonstream) {
       case "plurals": {
         data.plurals.forEach(pluralpair => {
           pluralpair.item.forEach(pluralitem => {
-            values[`${pluralpair.$.name}.${pluralitem.quantity}`] = escapeStringValue(pluralitem._);
+            values[`${pluralpair.$.name}.${pluralitem.$.quantity}`] = escapeStringValue(pluralitem._);
           });
         });
         break;
