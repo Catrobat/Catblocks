@@ -331,5 +331,20 @@ describe('Catroid to Catblocks parser tests', () => {
         return (testValue !== undefined && testValue.innerHTML.length === 0);
       })).toBeTruthy();
     });
+
+    /** 
+     * Test if parser handles formular operator properly
+     */
+    test('Test if parser handels formular operator properly', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="Y_POSITION"><leftChild><type>NUMBER</type><value>70</value></leftChild><rightChild><type>NUMBER</type><value>90</value></rightChild><type>OPERATOR</type><value>EQUAL</value></formula></formulaList></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='Y_POSITION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        const refOperator = '=';
+        return (testValue !== undefined && testValue.innerHTML.trim() === `70 ${refOperator} 90`);
+      })).toBeTruthy();
+    });
   });
 });

@@ -1,3 +1,5 @@
+import Blockly from 'blockly';
+
 class Scene {
   constructor(name) {
     this.name = name;
@@ -75,6 +77,7 @@ const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
 
+let MESSAGES = {};
 let XML = "";
 
 // global log enable switch
@@ -139,6 +142,7 @@ function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
   XML = '';
+  MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**
@@ -232,11 +236,11 @@ function parseScripts(script) {
   }
 
   for (let i = 0; i < brickList.length; i++) {
-    if(brickList[i].attributes[0].value === "RepeatBrick") {
+    if (brickList[i].attributes[0].value === "RepeatBrick") {
       currentScript.brickList.push(parseBrick(brickList[i]));
       const position = i;
       i++;
-      while(brickList[i].attributes[0].value !== "LoopEndBrick") {
+      while (brickList[i].attributes[0].value !== "LoopEndBrick") {
         currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
         i++;
       }
@@ -260,6 +264,22 @@ function parseBrick(brick) {
   return currentBrick;
 }
 
+/**
+ * Return crowding value or default
+ * @param {*} key 
+ * @param {*} def 
+ */
+const getMsgValueOrDefault = (key, def = "---") => {
+  if (key === undefined) return def;
+  const msgValue = MESSAGES[key];
+  return msgValue ? msgValue : def;
+};
+
+/**
+ * Return node value or default
+ * @param {*} node 
+ * @param {*} def 
+ */
 const getNodeValueOrDefault = (node, def = "---") => {
   if (node === undefined || node.nodeValue === undefined) {
     return def;
@@ -352,7 +372,8 @@ function workFormula(formula, input) {
       workFormula(newFormula, input.childNodes[i]);
     }
     if (input.childNodes[i].nodeName === "value") {
-      formula.value = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
+      const operatorKey = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
+      formula.value = getMsgValueOrDefault(operatorKey, operatorKey);
     }
   }
 }

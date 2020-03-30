@@ -325,5 +325,20 @@
   "STITCH_RUNNING": "${brick_running_stitch} %1",
   "STITCH_ZIGZAG": "${brick_zigzag_stitch} %1 ${brick_zigzag_stitch_width} %2",
   "STITCH_TRIPLE": "${brick_triple_stitch} %1",
-  "STITCH_STOP": "${brick_stop_stitch}"
+  "STITCH_STOP": "${brick_stop_stitch}",
+  "@FormularOperators": "FormularOperators",
+  "NOTEQUAL": "${formula_editor_logic_notequal}",
+  "LESSERTHAN": "${formula_editor_logic_lesserthan}",
+  "GREATERTHAN": "${formula_editor_logic_greaterthan}",
+  "AND": "${formula_editor_logic_and}",
+  "OR": "${formula_editor_logic_or}",
+  "NOT": "${formula_editor_logic_not}",
+  "GREATEREQUAL": "${formula_editor_logic_greaterequal}",
+  "LESEREQUAL": "${formula_editor_logic_leserequal}",
+  "EQUAL": "${formula_editor_logic_equal}",
+  "MULT": "${formula_editor_operator_mult}",
+  "PLUS": "${formula_editor_operator_plus}",
+  "MINUS": "${formula_editor_operator_minus}",
+  "DIVIDE": "${formula_editor_operator_divide}",
+  "POWER": "${formula_editor_operator_power}"
 }
