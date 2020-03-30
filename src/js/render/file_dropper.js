@@ -233,7 +233,7 @@ export class FileDropper {
           }
           
           const fd = FileDropper.getInstance();
-          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap).then(result => {
+          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap).then(() => {
             console.info('Rendered ' + containerfile.name);
             resolve(true);
           }).catch(error => {

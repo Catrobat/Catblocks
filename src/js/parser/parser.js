@@ -400,19 +400,12 @@ function checkUsage(list, location) {
     break;
   }
 
+  case 'userVariable':
   case 'userList': {
-    const variable = flatReference(list);
-    const variableName = (variable.querySelector('userList name')) ?
-      variable.querySelector('userList name').textContent : 'userVariable';
-    location.formValues.set('DROPDOWN', variableName);
-    break;
-  }
-
-  case 'userVariable': {
-    const variable = flatReference(list);
-    const variableName = (variable.querySelector('userVariable default name')) ?
-      variable.querySelector('userVariable default name').textContent : 'userVariable';
-    location.formValues.set('DROPDOWN', variableName);
+    const node = flatReference(list);
+    const nodeName = (node.querySelector(`${list.nodeName} name`)) ?
+      node.querySelector(`${list.nodeName} name`).textContent : 'node';
+    location.formValues.set('DROPDOWN', nodeName);
     break;
   }
 
