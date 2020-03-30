@@ -232,7 +232,18 @@ function parseScripts(script) {
   }
 
   for (let i = 0; i < brickList.length; i++) {
-    currentScript.brickList.push(parseBrick(brickList[i]));
+    if(brickList[i].attributes[0].value === "RepeatBrick") {
+      currentScript.brickList.push(parseBrick(brickList[i]));
+      const position = i;
+      i++;
+      while(brickList[i].attributes[0].value !== "LoopEndBrick") {
+        currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
+        i++;
+      }
+    }
+    else {
+      currentScript.brickList.push(parseBrick(brickList[i]));
+    }
   }
   return currentScript;
 }
@@ -509,7 +520,7 @@ export default class Parser {
 
   /**
 	 * Parse xmlString from catroid to catblocks format and return every error
-	 * @param {string|Element} xmlString catroid string or XMLDocument 
+	 * @param {string|Element} xmlString catroid string or XMLDocument
 	 * @returns {XMLDocument} catblock XMLDocument
 	 */
   static convertProgramStringDebug(xmlString) {
@@ -524,7 +535,7 @@ export default class Parser {
       } else if (appVersion[0].innerHTML < supportedAppVersion) {
         throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
       }
-      
+
       initParser(xml);
       return parseCatroidProgram(xml);
     }

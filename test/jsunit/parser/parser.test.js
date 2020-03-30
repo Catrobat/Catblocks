@@ -230,6 +230,23 @@ describe('Catroid to Catblocks parser tests', () => {
     })).toBeTruthy();
   });
 
+  /**
+   * Tests if parser adds the content of the repeat block, properly into the repeat block and not after the repeat block
+   */
+  test('Test to check, if the content in the repeat block is right', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<script type="StartScript"><brickList><brick type="PlaySoundBrick"><commentedOut>false</commentedOut></brick><brick type="RepeatBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIMES_TO_REPEAT"><type>NUMBER</type><value>1000000000</value></formula></formulaList></brick><brick type="SetBackgroundBrick"></brick><brick type="WaitBrick"></brick><brick type="LoopEndBrick"><commentedOut>false</commentedOut></brick></brickList><commentedOut>false</commentedOut><isUserScript>false</isUserScript></script>`;
+      const catXml = parser.convertScriptString(xmlString);
+      if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+      return (catXml instanceof XMLDocument
+        && catXml.getElementsByTagName('block').length === 5
+        && catXml.getElementsByTagName('block')[2].getAttribute('type') === 'RepeatBrick'
+        && catXml.getElementsByTagName('block')[2].lastElementChild.children[0].getAttribute('type') === 'SetBackgroundBrick'
+        && catXml.getElementsByTagName('block')[2].lastElementChild.children[0].firstElementChild.children[0].getAttribute('type') === 'WaitBrick');
+    })).toBeTruthy();
+  });
+
+
   describe('UserVariable parsing', () => {
     /** 
      * Test if parser handles local uservariables properly
