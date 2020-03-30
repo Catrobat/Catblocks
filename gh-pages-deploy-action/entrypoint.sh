@@ -21,7 +21,7 @@ git reset --hard
 git clean -df
 git fetch origin gh-pages
 git checkout gh-pages
-rm ./develop -r ||:
+rm ./develop -rf ||:
 mv ./../dist ./develop
 
 git config user.email "action@github.com"
