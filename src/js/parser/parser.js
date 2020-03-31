@@ -1,4 +1,5 @@
 import Blockly from 'blockly';
+import Formula from './formula';
 
 class Scene {
   constructor(name) {
@@ -38,30 +39,6 @@ class Brick {
     this.elseBrickList = [];
     this.formValues = new Map();
     this.colorVariation = 0;
-  }
-}
-
-class Formula {
-  constructor() {
-    this.value = "";
-    this.left = null;
-    this.right = null;
-  }
-  setLeft(leftBlock) {
-    if (this.left === null) {
-      this.left = leftBlock;
-    }
-    else {
-      this.left.setLeft(leftBlock);
-    }
-  }
-  setRight(rightBlock) {
-    if (this.right === null) {
-      this.right = rightBlock;
-    }
-    else {
-      this.right.setRight(rightBlock);
-    }
   }
 }
 
@@ -164,7 +141,6 @@ function parseCatroidProgram(xml) {
     console.error(`Failed to parse generated catblocks string into a XMLDocument, please verify you input`);
     return undefined;
   }
-
 }
 
 /**
@@ -265,7 +241,7 @@ function parseBrick(brick) {
 }
 
 /**
- * Return crowding value or default
+ * Return crowdin value or default
  * @param {*} key 
  * @param {*} def 
  */
@@ -356,7 +332,7 @@ function checkUsage(list, location) {
       const formula = new Formula();
       workFormula(formula, formulaList[j]);
       const attribute = formulaList[j].getAttribute("category");
-      location.formValues.set(attribute, concatFormula(formula, ""));
+      location.formValues.set(attribute, Formula.stringify(formula));
     }
     break;
   }
@@ -425,24 +401,17 @@ function workFormula(formula, input) {
       formula.setRight(newFormula);
       workFormula(newFormula, input.childNodes[i]);
     }
+
+    if (input.childNodes[i].nodeName === 'type') {
+      const typeValue = input.childNodes[i].innerHTML;
+      if (typeValue === 'BRACKET' || typeValue === 'USER_LIST') formula.operator = typeValue;
+    }
     if (input.childNodes[i].nodeName === "value") {
       const operatorKey = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
+      if (formula.operator !== 'USER_LIST') formula.operator = operatorKey;
       formula.value = getMsgValueOrDefault(operatorKey, operatorKey);
     }
   }
-}
-
-function concatFormula(formula, str) {
-  if (formula.left !== null) {
-    str = concatFormula(formula.left, str);
-  }
-  //Manage Operators & language strings
-  str += formula.value;
-  str += " ";
-  if (formula.right !== null) {
-    str = concatFormula(formula.right, str);
-  }
-  return str;
 }
 
 function generateShareXml() {
