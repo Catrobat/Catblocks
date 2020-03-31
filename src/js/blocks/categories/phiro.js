@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "SPEED",
-        "value": 100
+        "type": "field_input",
+        "name": "PHIRO_SPEED",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "SPEED",
-        "value": 100
+        "type": "field_input",
+        "name": "PHIRO_SPEED",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -41,7 +41,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -51,12 +51,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "DURATION",
-        "value": 1
+        "type": "field_input",
+        "name": "PHIRO_DURATION_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -66,22 +66,22 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "RED",
-        "value": 0
+        "type": "field_input",
+        "name": "PHIRO_LIGHT_RED",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "GREEN",
-        "value": 255
+        "type": "field_input",
+        "name": "PHIRO_LIGHT_GREEN",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "BLUE",
-        "value": 255
+        "type": "field_input",
+        "name": "PHIRO_LIGHT_BLUE",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -95,7 +95,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [

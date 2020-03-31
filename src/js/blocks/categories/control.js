@@ -31,9 +31,9 @@ export default {
     "message0": "%{BKY_CONTROL_WAIT}",
     "args0": [
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "TIME_TO_WAIT_IN_SECONDS",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -43,7 +43,7 @@ export default {
       {
         "type": "field_input",
         "name": "NOTE",
-        "text": "Add comment here..."
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -57,7 +57,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [
@@ -81,7 +81,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [
@@ -97,7 +97,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -110,7 +110,7 @@ export default {
       {
         "type": "field_input",
         "name": "TIMES_TO_REPEAT",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [
@@ -139,7 +139,7 @@ export default {
       {
         "type": "field_input",
         "name": "REPEAT_UNTIL_CONDITION",
-        "text": "1 < 2"
+        "text": "DEFAULT_VALUE"
       }
     ],
     "args1": [
@@ -165,7 +165,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -175,7 +175,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -184,8 +184,8 @@ export default {
     "args0": [
       {
         "type": "field_input",
-        "name": "spinnerSelection",
-        "text": "0"
+        "name": "SPINNER",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -195,7 +195,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },

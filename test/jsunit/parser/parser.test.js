@@ -247,6 +247,47 @@ describe('Catroid to Catblocks parser tests', () => {
   });
 
 
+  describe('Spinner parsing test', () => {
+    /**
+      * Test if parser handels correct spinner value properly
+      */
+    test('Handle correct spinner value', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut><ledAnimationName>ARDRONE_LED_ANIMATION_BLINK_GREEN_RED</ledAnimationName></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+        const catXml = parser.convertProgramString(xmlString);
+        const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']/field[@name='ADRONEANIMATION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+        return (blockValue !== undefined && blockValue.innerHTML === 'Blink green red');
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if parser handels invalide spinner value properly
+     */
+    test('Handle invalid spinner value', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut><ledAnimationName>SOME_VALUE_I_DO_NOT_CARE</ledAnimationName></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+        const catXml = parser.convertProgramString(xmlString);
+        const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']/field[@name='ADRONEANIMATION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+        return (blockValue !== undefined && blockValue.innerHTML === 'SOME_VALUE_I_DO_NOT_CARE');
+      })).toBeTruthy();
+    });
+
+    /**
+     * Test if parser handels non-existing spinner value properly
+     */
+    test('Handle non-exiting spinner value', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.99995</catrobatLanguageVersion></header><settings/><scenes><scene><name>tscene</name><objectList><object type="Sprite" name="tobject"><lookList/><soundList/><scriptList><script type="tscript"><brickList><brick type="DronePlayLedAnimationBrick"><commentedOut>false</commentedOut></brick></brickList></script></scriptList></object></objectList></scene></scenes></program>`;
+        const catXml = parser.convertProgramString(xmlString);
+        const blockValue = catXml.evaluate(`//scene[@type='tscene']/object[@type='tobject']/script[@type='tscript']//block[@type='DronePlayLedAnimationBrick']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+
+        return (blockValue !== undefined && blockValue.childElementCount === 0);
+      })).toBeTruthy();
+    });
+  });
+
   describe('UserVariable parsing', () => {
     /** 
      * Test if parser handles local uservariables properly
@@ -329,6 +370,21 @@ describe('Catroid to Catblocks parser tests', () => {
         if (catXml.getElementsByTagName('parsererror').length > 0) return false;
         const testValue = catXml.evaluate(`//field[@name='DROPDOWN']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
         return (testValue !== undefined && testValue.innerHTML.length === 0);
+      })).toBeTruthy();
+    });
+
+    /** 
+     * Test if parser handles formular operator properly
+     */
+    test('Test if parser handels formular operator properly', async () => {
+      expect(await page.evaluate(() => {
+        const xmlString = `<script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="Y_POSITION"><leftChild><type>NUMBER</type><value>70</value></leftChild><rightChild><type>NUMBER</type><value>90</value></rightChild><type>OPERATOR</type><value>EQUAL</value></formula></formulaList></brick></script>`;
+        const catXml = parser.convertScriptString(xmlString);
+
+        if (catXml.getElementsByTagName('parsererror').length > 0) return false;
+        const testValue = catXml.evaluate(`//field[@name='Y_POSITION']`, catXml, null, XPathResult.ANY_TYPE, null).iterateNext();
+        const refOperator = '=';
+        return (testValue !== undefined && testValue.innerHTML.trim() === `70 ${refOperator} 90`);
       })).toBeTruthy();
     });
   });

@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "VARIABLE",
-        "value": 180
+        "type": "field_input",
+        "name": "LEGO_EV3_DEGREES",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "VARIABLE",
-        "value": 100
+        "type": "field_input",
+        "name": "LEGO_NXT_SPEED",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -41,7 +41,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -49,19 +49,19 @@ export default {
     "message0": "%{BKY_LEGOEV3_PLAYTONE}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "TIME",
-        "value": 1
+        "type": "field_input",
+        "name": "LEGO_EV3_DURATION_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "FREQUENCY",
-        "value": 2
+        "type": "field_input",
+        "name": "LEGO_EV3_FREQUENCY",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "VOLUME",
-        "value": 100
+        "type": "field_input",
+        "name": "LEGO_EV3_VOLUME",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -71,7 +71,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

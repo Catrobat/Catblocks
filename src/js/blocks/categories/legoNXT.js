@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "VARIABLE",
-        "value": 180
+        "type": "field_input",
+        "name": "LEGO_NXT_DEGREES",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -26,7 +26,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -36,12 +36,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "VARIABLE",
-        "value": 100
+        "type": "field_input",
+        "name": "LEGO_NXT_SPEED",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -49,14 +49,14 @@ export default {
     "message0": "%{BKY_LEGONXT_PLAYTONE}",
     "args0": [
       {
-        "type": "field_number",
-        "name": "SECONDS",
-        "value": 1
+        "type": "field_input",
+        "name": "LEGO_NXT_DURATION_IN_SECONDS",
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
-        "name": "FREQUENCY",
-        "value": 2
+        "type": "field_input",
+        "name": "LEGO_NXT_FREQUENCY",
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

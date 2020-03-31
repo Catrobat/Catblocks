@@ -1,3 +1,5 @@
+import Blockly from 'blockly';
+
 class Scene {
   constructor(name) {
     this.name = name;
@@ -75,6 +77,7 @@ const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
 const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
 const SUB_END = "\n</statement>";
 
+let MESSAGES = {};
 let XML = "";
 
 // global log enable switch
@@ -139,6 +142,7 @@ function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
   XML = '';
+  MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**
@@ -232,11 +236,11 @@ function parseScripts(script) {
   }
 
   for (let i = 0; i < brickList.length; i++) {
-    if(brickList[i].attributes[0].value === "RepeatBrick") {
+    if (brickList[i].attributes[0].value === "RepeatBrick") {
       currentScript.brickList.push(parseBrick(brickList[i]));
       const position = i;
       i++;
-      while(brickList[i].attributes[0].value !== "LoopEndBrick") {
+      while (brickList[i].attributes[0].value !== "LoopEndBrick") {
         currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
         i++;
       }
@@ -260,6 +264,22 @@ function parseBrick(brick) {
   return currentBrick;
 }
 
+/**
+ * Return crowding value or default
+ * @param {*} key 
+ * @param {*} def 
+ */
+const getMsgValueOrDefault = (key, def = "---") => {
+  if (key === undefined) return def;
+  const msgValue = MESSAGES[key];
+  return msgValue ? msgValue : def;
+};
+
+/**
+ * Return node value or default
+ * @param {*} node 
+ * @param {*} def 
+ */
 const getNodeValueOrDefault = (node, def = "---") => {
   if (node === undefined || node.nodeValue === undefined) {
     return def;
@@ -268,25 +288,69 @@ const getNodeValueOrDefault = (node, def = "---") => {
 };
 
 function checkUsage(list, location) {
-  if (list.nodeName === "broadcastMessage" || list.nodeName === "spriteToBounceOffName" || list.nodeName === "receivedMessage" || list.nodeName === "sceneToStart" || list.nodeName === "sceneForTransition") {
+  switch (list.nodeName) {
+  case 'broadcastMessage':
+  case 'spriteToBounceOffName':
+  case 'receivedMessage':
+  case 'sceneToStart':
+  case 'objectToClone':
+  case 'soundName':
+  case 'motor':
+  case 'tone':
+  case 'eye':
+  case 'pointedObject':
+  case 'ledStatus':
+  case 'type':
+  case 'sceneForTransition': {
     location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
+    break;
   }
-  if (list.nodeName === "spinnerSelection") {
-    location.formValues.set("spinnerSelection", getNodeValueOrDefault(list.childNodes[0]));
+
+  case 'spinnerSelectionID': {
+    const brickName = list.parentElement.getAttribute('type');
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    if (brickName === 'CameraBrick') {
+      location.formValues.set("SPINNER", getMsgValueOrDefault(`CAMSPINNER_${key}`, key));
+    } else if (brickName === 'ChooseCameraBrick') {
+      location.formValues.set("SPINNER", getMsgValueOrDefault(`CAMCHOOSESPINNER_${key}`, key));
+    } else {
+      location.formValues.set("SPINNER", getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
+    }
+    break;
   }
-  if (list.nodeName === "selection") {
-    location.formValues.set("selection", getNodeValueOrDefault(list.childNodes[0]));
+
+  case 'spinnerSelection': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("SPINNER", getMsgValueOrDefault(`SPINNER_${key}`, key));
+    break;
   }
-  if (list.nodeName === "type") {
-    location.formValues.set("type", getNodeValueOrDefault(list.childNodes[0]));
+
+  case 'alignmentSelection': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("ALIGNMENT", getMsgValueOrDefault(`ALIGNMENTS_${key}`, key));
+    break;
   }
-  if (list.nodeName === "alignmentSelection") {
-    location.formValues.set("alignmentSelection", getNodeValueOrDefault(list.childNodes[0]));
+
+  case 'ledAnimationName': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("ADRONEANIMATION", getMsgValueOrDefault(key, key));
+    break;
   }
-  if (list.nodeName === "spinnerSelectionID") {
-    location.formValues.set("spinnerSelectionID", getNodeValueOrDefault(list.childNodes[0]));
+
+  case 'animationName': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("ANIMATION", getMsgValueOrDefault(`ANIMATION_${key}`, key));
+    break;
   }
-  if (list.nodeName === "formulaMap" || list.nodeName === "formulaList") {
+
+  case 'selection': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("SPINNER", getMsgValueOrDefault(`POINTTO_${key}`, key));
+    break;
+  }
+
+  case 'formulaMap':
+  case 'formulaList': {
     const formulaList = list.children;
     for (let j = 0; j < formulaList.length; j++) {
       const formula = new Formula();
@@ -294,8 +358,11 @@ function checkUsage(list, location) {
       const attribute = formulaList[j].getAttribute("category");
       location.formValues.set(attribute, concatFormula(formula, ""));
     }
+    break;
   }
-  if (list.nodeName === "ifBranchBricks" || list.nodeName === "loopBricks") {
+
+  case 'ifBranchBricks':
+  case 'loopBricks': {
     const loopOrIfBrickList = (list.children);
     for (let j = 0; j < loopOrIfBrickList.length; j++) {
       location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
@@ -307,8 +374,10 @@ function checkUsage(list, location) {
         }
       }
     }
+    break;
   }
-  if (list.nodeName === "elseBranchBricks") {
+
+  case 'elseBranchBricks': {
     const elseBrickList = (list.children);
     for (let j = 0; j < elseBrickList.length; j++) {
       location.elseBrickList.push(parseBrick(elseBrickList[j]));
@@ -320,22 +389,27 @@ function checkUsage(list, location) {
         }
       }
     }
+    break;
   }
-  if (list.nodeName === "sound") {
-    const sound = flatReference(list);
-    const soundName = sound.getAttribute('name');
-    location.formValues.set("sound", soundName);
+
+  case 'sound':
+  case 'look': {
+    const node = flatReference(list);
+    const name = node.getAttribute('name');
+    location.formValues.set(list.nodeName, name);
+    break;
   }
-  if (list.nodeName === "look") {
-    const look = flatReference(list);
-    const lookName = look.getAttribute('name');
-    location.formValues.set("look", lookName);
+
+  case 'userVariable':
+  case 'userList': {
+    const node = flatReference(list);
+    const nodeName = (node.querySelector(`${list.nodeName} name`)) ?
+      node.querySelector(`${list.nodeName} name`).textContent : 'node';
+    location.formValues.set('DROPDOWN', nodeName);
+    break;
   }
-  if (list.nodeName === "userVariable") {
-    const variable = flatReference(list);
-    const variableName = (variable.querySelector('userVariable default name')) ?
-      variable.querySelector('userVariable default name').textContent : 'userVariable';
-    location.formValues.set('DROPDOWN', variableName);
+
+  default:
   }
 }
 
@@ -352,7 +426,8 @@ function workFormula(formula, input) {
       workFormula(newFormula, input.childNodes[i]);
     }
     if (input.childNodes[i].nodeName === "value") {
-      formula.value = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
+      const operatorKey = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
+      formula.value = getMsgValueOrDefault(operatorKey, operatorKey);
     }
   }
 }

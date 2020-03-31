@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "VARIABLE",
-        "text": "Some Value"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "VARIABLE_CHANGE",
-        "text": "Some new Value"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -41,17 +41,17 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "X_POSITION",
-        "value": 10
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "Y_POSITION",
-        "value": 50
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -61,32 +61,32 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
-      },
-      {
-        "type": "field_number",
-        "name": "X_POSITION",
-        "value": 20
-      },
-      {
-        "type": "field_number",
-        "name": "Y_POSITION",
-        "value": 20
-      },
-      {
-        "type": "field_number",
-        "name": "SIZE",
-        "value": 100
-      },
-      {
-        "type": "field_number",
-        "name": "COLOR",
-        "value": 240
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
-        "name": "DROPDOWN2",
-        "text": "new"
+        "name": "X_POSITION",
+        "text": "DEFAULT_VALUE"
+      },
+      {
+        "type": "field_input",
+        "name": "Y_POSITION",
+        "text": "DEFAULT_VALUE"
+      },
+      {
+        "type": "field_input",
+        "name": "SIZE",
+        "text": "DEFAULT_VALUE"
+      },
+      {
+        "type": "field_input",
+        "name": "COLOR",
+        "text": "DEFAULT_VALUE"
+      },
+      {
+        "type": "field_input",
+        "name": "ALIGNMENT",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -96,12 +96,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "LIST_DELETE_ITEM",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -111,12 +111,12 @@ export default {
       {
         "type": "field_input",
         "name": "LIST_ADD_ITEM",
-        "text": "name"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -126,17 +126,17 @@ export default {
       {
         "type": "field_input",
         "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
-        "text": "name"
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       },
       {
-        "type": "field_number",
+        "type": "field_input",
         "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
-        "value": 1
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -146,17 +146,17 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
-      },
-      {
-        "type": "field_number",
-        "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
-        "value": 0
+        "text": "DEFAULT_VALUE"
       },
       {
         "type": "field_input",
-        "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
-        "text": "new Value"
+        "name": "REPLACE_ITEM_IN_USERLIST_INDEX",
+        "text": "DEFAULT_VALUE"
+      },
+      {
+        "type": "field_input",
+        "name": "REPLACE_ITEM_IN_USERLIST_VALUE",
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -166,7 +166,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -176,7 +176,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   },
@@ -186,7 +186,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "new"
+        "text": "DEFAULT_VALUE"
       }
     ]
   }

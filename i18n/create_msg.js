@@ -54,6 +54,15 @@ Blockly.CatblocksMsgs.setLocale = function(locale) {
 Blockly.CatblocksMsgs.reloadCurrentLocale = function() {
   Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_);
 };
+
+Blockly.CatblocksMsgs.getCurrentLocale = function() {
+  return Blockly.CatblocksMsgs.currentLocale_;
+};
+
+Blockly.CatblocksMsgs.getCurrentLocaleValues = function() {
+  return Blockly.CatblocksMsgs.locales[Blockly.CatblocksMsgs.getCurrentLocale()];
+};
+
 `;
 fs.writeSync(message_fd, CATBLOCK_MSGS);
 
