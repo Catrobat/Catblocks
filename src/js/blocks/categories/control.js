@@ -33,7 +33,7 @@ export default {
       {
         "type": "field_input",
         "name": "TIME_TO_WAIT_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -43,7 +43,7 @@ export default {
       {
         "type": "field_input",
         "name": "NOTE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -57,7 +57,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [
@@ -81,7 +81,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [
@@ -97,7 +97,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -110,7 +110,7 @@ export default {
       {
         "type": "field_input",
         "name": "TIMES_TO_REPEAT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [
@@ -139,7 +139,7 @@ export default {
       {
         "type": "field_input",
         "name": "REPEAT_UNTIL_CONDITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [
@@ -165,7 +165,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -175,7 +175,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -185,7 +185,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -195,7 +195,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },

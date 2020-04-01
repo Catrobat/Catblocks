@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "X_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "Y_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -26,7 +26,7 @@ export default {
       {
         "type": "field_input",
         "name": "X_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -36,7 +36,7 @@ export default {
       {
         "type": "field_input",
         "name": "Y_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -46,7 +46,7 @@ export default {
       {
         "type": "field_input",
         "name": "X_POSITION_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -56,7 +56,7 @@ export default {
       {
         "type": "field_input",
         "name": "Y_POSITION_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -66,7 +66,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -79,7 +79,7 @@ export default {
       {
         "type": "field_input",
         "name": "STEPS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -89,7 +89,7 @@ export default {
       {
         "type": "field_input",
         "name": "TURN_RIGHT_DEGREES",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -99,7 +99,7 @@ export default {
       {
         "type": "field_input",
         "name": "TURN_LEFT_DEGREES",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -109,7 +109,7 @@ export default {
       {
         "type": "field_input",
         "name": "DEGREES",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -119,7 +119,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -129,7 +129,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -139,17 +139,17 @@ export default {
       {
         "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "X_DESTINATION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "Y_DESTINATION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -159,7 +159,7 @@ export default {
       {
         "type": "field_input",
         "name": "STEPS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -172,7 +172,7 @@ export default {
       {
         "type": "field_input",
         "name": "VIBRATE_DURATION_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -182,7 +182,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -192,12 +192,12 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_VELOCITY_X",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHYSICS_VELOCITY_Y",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -207,7 +207,7 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_TURN_LEFT_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -217,7 +217,7 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_TURN_RIGHT_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -227,12 +227,12 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_GRAVITY_X",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHYSICS_GRAVITY_Y",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -242,7 +242,7 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_MASS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -252,7 +252,7 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_BOUNCE_FACTOR",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -262,7 +262,7 @@ export default {
       {
         "type": "field_input",
         "name": "PHYSICS_FRICTION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

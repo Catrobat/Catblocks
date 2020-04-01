@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "ARDUINO_DIGITAL_PIN_NUMBER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "ARDUINO_DIGITAL_PIN_VALUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "ARDUINO_ANALOG_PIN_NUMBER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "ARDUINO_ANALOG_PIN_VALUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

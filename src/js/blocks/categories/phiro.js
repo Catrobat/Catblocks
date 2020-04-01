@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -41,7 +41,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -51,12 +51,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_DURATION_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -66,22 +66,22 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_LIGHT_RED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_LIGHT_GREEN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PHIRO_LIGHT_BLUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -95,7 +95,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [

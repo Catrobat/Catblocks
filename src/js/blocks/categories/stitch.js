@@ -14,7 +14,7 @@ export default {
       {
         "type": "field_input",
         "name": "EMBROIDERY_LENGTH",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -24,12 +24,12 @@ export default {
       {
         "type": "field_input",
         "name": "ZIGZAG_EMBROIDERY_LENGTH",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "ZIGZAG_EMBROIDERY_WIDTH",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -39,7 +39,7 @@ export default {
       {
         "type": "field_input",
         "name": "EMBROIDERY_LENGTH",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },

@@ -417,6 +417,9 @@ Blockly.CatblocksMsgs.locales["af"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ar"] = {
@@ -800,6 +803,9 @@ Blockly.CatblocksMsgs.locales["ar"] = {
   "POINTTO_0": "من اليسار-اليمين فقط",
   "POINTTO_1": "متعدد الجوانب",
   "POINTTO_2": "لا تدور",
+  "GRAVITY_DYNAMIC": "الارتداد مع الجاذبية",
+  "GRAVITY_FIXED": "بقية الكائنات تتناثر",
+  "GRAVITY_NONE": "لا يوجد ارتداد",
 };
 
 Blockly.CatblocksMsgs.locales["az"] = {
@@ -1183,6 +1189,9 @@ Blockly.CatblocksMsgs.locales["az"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["bg"] = {
@@ -1566,6 +1575,9 @@ Blockly.CatblocksMsgs.locales["bg"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["bn"] = {
@@ -1949,6 +1961,9 @@ Blockly.CatblocksMsgs.locales["bn"] = {
   "POINTTO_0": "শুধুমাত্র বাম-ডান",
   "POINTTO_1": "চারদিকে",
   "POINTTO_2": "ঘোরাবেন না",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "মহাকর্ষের অধীনে চলে না, তবে অন্যরা আপনাকে মহাকর্ষের অধীনে ছুঁড়ে ফেলে",
+  "GRAVITY_NONE": "মাধ্যাকর্ষণ অধীনে চলন্ত বা স্থির না (ডিফল্ট)",
 };
 
 Blockly.CatblocksMsgs.locales["bs"] = {
@@ -2332,6 +2347,9 @@ Blockly.CatblocksMsgs.locales["bs"] = {
   "POINTTO_0": "lijevo-desno samo",
   "POINTTO_1": "all-around",
   "POINTTO_2": "ne rotiraj",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ca"] = {
@@ -2715,6 +2733,9 @@ Blockly.CatblocksMsgs.locales["ca"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["cs"] = {
@@ -3098,6 +3119,9 @@ Blockly.CatblocksMsgs.locales["cs"] = {
   "POINTTO_0": "zleva doprava",
   "POINTTO_1": "Všichni kolem",
   "POINTTO_2": "Neotáčet",
+  "GRAVITY_DYNAMIC": "odrážení s gravitací",
+  "GRAVITY_FIXED": "ostatní se od toho odrazí",
+  "GRAVITY_NONE": "žádné odrážení",
 };
 
 Blockly.CatblocksMsgs.locales["da"] = {
@@ -3481,6 +3505,9 @@ Blockly.CatblocksMsgs.locales["da"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["de"] = {
@@ -3864,6 +3891,9 @@ Blockly.CatblocksMsgs.locales["de"] = {
   "POINTTO_0": "links-rechts",
   "POINTTO_1": "rundherum",
   "POINTTO_2": "nicht drehen",
+  "GRAVITY_DYNAMIC": "Aufprallen mit Gravitation",
+  "GRAVITY_FIXED": "Keine Bewegung unter Gravitation. Andere prallen unter Gravitation davon ab",
+  "GRAVITY_NONE": "Keine Bewegung oder Aufprallen unter Gravitation (Standard)",
 };
 
 Blockly.CatblocksMsgs.locales["el"] = {
@@ -4247,6 +4277,9 @@ Blockly.CatblocksMsgs.locales["el"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["en_AU"] = {
@@ -4630,6 +4663,9 @@ Blockly.CatblocksMsgs.locales["en_AU"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["en_CA"] = {
@@ -5013,6 +5049,9 @@ Blockly.CatblocksMsgs.locales["en_CA"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["en_GB"] = {
@@ -5396,6 +5435,9 @@ Blockly.CatblocksMsgs.locales["en_GB"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["es"] = {
@@ -5779,6 +5821,9 @@ Blockly.CatblocksMsgs.locales["es"] = {
   "POINTTO_0": "de izquierda a derecha solamente",
   "POINTTO_1": "todo alrededor",
   "POINTTO_2": "no girar",
+  "GRAVITY_DYNAMIC": "rebote con gravedad",
+  "GRAVITY_FIXED": "otros rebotan sobre el",
+  "GRAVITY_NONE": "no rebota",
 };
 
 Blockly.CatblocksMsgs.locales["fa"] = {
@@ -6162,6 +6207,9 @@ Blockly.CatblocksMsgs.locales["fa"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["fi"] = {
@@ -6545,6 +6593,9 @@ Blockly.CatblocksMsgs.locales["fi"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["fr"] = {
@@ -6928,6 +6979,9 @@ Blockly.CatblocksMsgs.locales["fr"] = {
   "POINTTO_0": "gauche-droite seulement",
   "POINTTO_1": "tout autour",
   "POINTTO_2": "ne pas tourner",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "aucun rebondissement",
 };
 
 Blockly.CatblocksMsgs.locales["gl"] = {
@@ -7311,6 +7365,9 @@ Blockly.CatblocksMsgs.locales["gl"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["gu"] = {
@@ -7694,6 +7751,9 @@ Blockly.CatblocksMsgs.locales["gu"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ha"] = {
@@ -8077,6 +8137,9 @@ Blockly.CatblocksMsgs.locales["ha"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["hi"] = {
@@ -8460,6 +8523,9 @@ Blockly.CatblocksMsgs.locales["hi"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["hr"] = {
@@ -8843,6 +8909,9 @@ Blockly.CatblocksMsgs.locales["hr"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "ne rotiraj",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["hu"] = {
@@ -9226,6 +9295,9 @@ Blockly.CatblocksMsgs.locales["hu"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ig"] = {
@@ -9609,6 +9681,9 @@ Blockly.CatblocksMsgs.locales["ig"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["in"] = {
@@ -9992,6 +10067,9 @@ Blockly.CatblocksMsgs.locales["in"] = {
   "POINTTO_0": "kiri kanan saja",
   "POINTTO_1": "semuanya",
   "POINTTO_2": "jangan memutar",
+  "GRAVITY_DYNAMIC": "terpental dengan gravitasi",
+  "GRAVITY_FIXED": "yang lain memantulinya",
+  "GRAVITY_NONE": "tidak terpental",
 };
 
 Blockly.CatblocksMsgs.locales["it"] = {
@@ -10375,6 +10453,9 @@ Blockly.CatblocksMsgs.locales["it"] = {
   "POINTTO_0": "solo sinistra/destra",
   "POINTTO_1": "tutto intorno",
   "POINTTO_2": "non ruotare",
+  "GRAVITY_DYNAMIC": "rimbalza con gravità",
+  "GRAVITY_FIXED": "gli altri vi rimbalzano contro",
+  "GRAVITY_NONE": "nessun rimbalzo",
 };
 
 Blockly.CatblocksMsgs.locales["iw"] = {
@@ -10758,6 +10839,9 @@ Blockly.CatblocksMsgs.locales["iw"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ja"] = {
@@ -11141,6 +11225,9 @@ Blockly.CatblocksMsgs.locales["ja"] = {
   "POINTTO_0": "左右のみ",
   "POINTTO_1": "万能",
   "POINTTO_2": "回転しない",
+  "GRAVITY_DYNAMIC": "重力で跳ね返り",
+  "GRAVITY_FIXED": "その他の跳ね返り",
+  "GRAVITY_NONE": "跳ね返りなし",
 };
 
 Blockly.CatblocksMsgs.locales["kk"] = {
@@ -11524,6 +11611,9 @@ Blockly.CatblocksMsgs.locales["kk"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["kn"] = {
@@ -11907,6 +11997,9 @@ Blockly.CatblocksMsgs.locales["kn"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ko"] = {
@@ -12290,6 +12383,9 @@ Blockly.CatblocksMsgs.locales["ko"] = {
   "POINTTO_0": "왼쪽-오른쪽만",
   "POINTTO_1": "모두",
   "POINTTO_2": "회전 정지",
+  "GRAVITY_DYNAMIC": "중력에 따라 튕기기",
+  "GRAVITY_FIXED": "다른 오브젝트 튕기기",
+  "GRAVITY_NONE": "튕기기 없음",
 };
 
 Blockly.CatblocksMsgs.locales["lt"] = {
@@ -12673,6 +12769,9 @@ Blockly.CatblocksMsgs.locales["lt"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["mk"] = {
@@ -13056,6 +13155,9 @@ Blockly.CatblocksMsgs.locales["mk"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ml"] = {
@@ -13439,6 +13541,9 @@ Blockly.CatblocksMsgs.locales["ml"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ms"] = {
@@ -13822,6 +13927,9 @@ Blockly.CatblocksMsgs.locales["ms"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["nl"] = {
@@ -14205,6 +14313,9 @@ Blockly.CatblocksMsgs.locales["nl"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["no"] = {
@@ -14588,6 +14699,9 @@ Blockly.CatblocksMsgs.locales["no"] = {
   "POINTTO_0": "kun venstre-høyre",
   "POINTTO_1": "rundt hele",
   "POINTTO_2": "ikke roter",
+  "GRAVITY_DYNAMIC": "sprett med tyngdekraften",
+  "GRAVITY_FIXED": "andre spretter fra",
+  "GRAVITY_NONE": "ingen sprett",
 };
 
 Blockly.CatblocksMsgs.locales["pl"] = {
@@ -14971,6 +15085,9 @@ Blockly.CatblocksMsgs.locales["pl"] = {
   "POINTTO_0": "tylko lewo-prawo",
   "POINTTO_1": "dookoła",
   "POINTTO_2": "nie obracaj",
+  "GRAVITY_DYNAMIC": "odbicia z grawitacją",
+  "GRAVITY_FIXED": "inni odbijają się od niego",
+  "GRAVITY_NONE": "bez odbijania",
 };
 
 Blockly.CatblocksMsgs.locales["ps"] = {
@@ -15354,6 +15471,9 @@ Blockly.CatblocksMsgs.locales["ps"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["pt"] = {
@@ -15737,6 +15857,9 @@ Blockly.CatblocksMsgs.locales["pt"] = {
   "POINTTO_0": "só esquerda-direita",
   "POINTTO_1": "tudo em volta",
   "POINTTO_2": "não girar",
+  "GRAVITY_DYNAMIC": "saltando com gravidade",
+  "GRAVITY_FIXED": "outros ressaltam-",
+  "GRAVITY_NONE": "não saltando",
 };
 
 Blockly.CatblocksMsgs.locales["pt_BR"] = {
@@ -16120,6 +16243,9 @@ Blockly.CatblocksMsgs.locales["pt_BR"] = {
   "POINTTO_0": "só esquerda-direita",
   "POINTTO_1": "tudo em volta",
   "POINTTO_2": "não girar",
+  "GRAVITY_DYNAMIC": "saltando com gravidade",
+  "GRAVITY_FIXED": "outros ressaltam-",
+  "GRAVITY_NONE": "não saltando",
 };
 
 Blockly.CatblocksMsgs.locales["ro"] = {
@@ -16503,6 +16629,9 @@ Blockly.CatblocksMsgs.locales["ro"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ru"] = {
@@ -16886,6 +17015,9 @@ Blockly.CatblocksMsgs.locales["ru"] = {
   "POINTTO_0": "только влево-вправо",
   "POINTTO_1": "вокруг",
   "POINTTO_2": "не вращать",
+  "GRAVITY_DYNAMIC": "передвигаться и отскакивать под гравитацией",
+  "GRAVITY_FIXED": "не двигаться под гравитацией, но другие отскакивают от тебя под гравитацией",
+  "GRAVITY_NONE": "без отталкивания и прыжков под гравитацией (по умолчанию)",
 };
 
 Blockly.CatblocksMsgs.locales["sd"] = {
@@ -17269,6 +17401,9 @@ Blockly.CatblocksMsgs.locales["sd"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["si"] = {
@@ -17652,6 +17787,9 @@ Blockly.CatblocksMsgs.locales["si"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sk"] = {
@@ -18035,6 +18173,9 @@ Blockly.CatblocksMsgs.locales["sk"] = {
   "POINTTO_0": "zľava doprava",
   "POINTTO_1": "dookola",
   "POINTTO_2": "neotáčať",
+  "GRAVITY_DYNAMIC": "odrážanie sa s gravitáciou",
+  "GRAVITY_FIXED": "ostatní sa od tohto odrážajú",
+  "GRAVITY_NONE": "žiadne odrážanie",
 };
 
 Blockly.CatblocksMsgs.locales["sl"] = {
@@ -18418,6 +18559,9 @@ Blockly.CatblocksMsgs.locales["sl"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sq"] = {
@@ -18801,6 +18945,9 @@ Blockly.CatblocksMsgs.locales["sq"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sr"] = {
@@ -19184,6 +19331,9 @@ Blockly.CatblocksMsgs.locales["sr"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sr_CS"] = {
@@ -19567,6 +19717,9 @@ Blockly.CatblocksMsgs.locales["sr_CS"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sr_SP"] = {
@@ -19950,6 +20103,9 @@ Blockly.CatblocksMsgs.locales["sr_SP"] = {
   "POINTTO_0": "само лево-десно",
   "POINTTO_1": "у круг",
   "POINTTO_2": "не окрећи",
+  "GRAVITY_DYNAMIC": "крећући се и скачући под гравитацијом",
+  "GRAVITY_FIXED": "не креће се под гравитацијом, али други вас одбијају под гравитацијом",
+  "GRAVITY_NONE": "не помера се или не скаче под гравитацијом (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sv"] = {
@@ -20333,6 +20489,9 @@ Blockly.CatblocksMsgs.locales["sv"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "rotera inte",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["sw"] = {
@@ -20716,6 +20875,9 @@ Blockly.CatblocksMsgs.locales["sw"] = {
   "POINTTO_0": "kushoto-kulia tu",
   "POINTTO_1": "wote-mzunguko",
   "POINTTO_2": "usizungushe",
+  "GRAVITY_DYNAMIC": "Dunda na mvuto ",
+  "GRAVITY_FIXED": "Nyingine zinadunda mbali na ",
+  "GRAVITY_NONE": "hakuna kudunda",
 };
 
 Blockly.CatblocksMsgs.locales["ta"] = {
@@ -21099,6 +21261,9 @@ Blockly.CatblocksMsgs.locales["ta"] = {
   "POINTTO_0": "இடது-வலது மட்டும்",
   "POINTTO_1": "அனைத்தையும் சுற்றி",
   "POINTTO_2": "சுழற்ற வேண்டாம்",
+  "GRAVITY_DYNAMIC": "ஈர்ப்பு கீழ் நகரும் மற்றும் துள்ளல்",
+  "GRAVITY_FIXED": "ஈர்ப்பு விசையின் கீழ் நகரவில்லை, ஆனால் மற்றவர்கள் ஈர்ப்பு விசையின் கீழ் உங்களைத் துரத்துகிறார்கள்",
+  "GRAVITY_NONE": "ஈர்ப்பு (இயல்புநிலை) கீழ் நகரவோ அல்லது எதிர்க்கவோ இல்லை",
 };
 
 Blockly.CatblocksMsgs.locales["te"] = {
@@ -21482,6 +21647,9 @@ Blockly.CatblocksMsgs.locales["te"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["th"] = {
@@ -21865,6 +22033,9 @@ Blockly.CatblocksMsgs.locales["th"] = {
   "POINTTO_0": "ซ้าย - ขวาเท่านั้น",
   "POINTTO_1": "รอบ ๆ",
   "POINTTO_2": "อย่าหมุน",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["tr"] = {
@@ -22248,6 +22419,9 @@ Blockly.CatblocksMsgs.locales["tr"] = {
   "POINTTO_0": "sadece sağdan sola",
   "POINTTO_1": "çepçevre",
   "POINTTO_2": "Döndürme",
+  "GRAVITY_DYNAMIC": "yerçekimi ile zıplama",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["tw"] = {
@@ -22631,6 +22805,9 @@ Blockly.CatblocksMsgs.locales["tw"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["uk"] = {
@@ -23014,6 +23191,9 @@ Blockly.CatblocksMsgs.locales["uk"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["ur"] = {
@@ -23397,6 +23577,9 @@ Blockly.CatblocksMsgs.locales["ur"] = {
   "POINTTO_0": "بایاں-دایاں صرف",
   "POINTTO_1": "چاروں طرف",
   "POINTTO_2": "گھومنا مت کرو",
+  "GRAVITY_DYNAMIC": "کشش ثقل کے تحت منتقل اور شیخی",
+  "GRAVITY_FIXED": "کشش ثقل کے تحت نہیں بڑھتی ہے، لیکن دوسروں کو کشش ثقل کے تحت آپ کو اچھالنا پڑتا ہے",
+  "GRAVITY_NONE": "کشش ثقل کے تحت منتقل یا شیخی نہیں (پہلے سے طے شدہ)",
 };
 
 Blockly.CatblocksMsgs.locales["vi"] = {
@@ -23780,6 +23963,9 @@ Blockly.CatblocksMsgs.locales["vi"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };
 
 Blockly.CatblocksMsgs.locales["zh_CN"] = {
@@ -24163,6 +24349,9 @@ Blockly.CatblocksMsgs.locales["zh_CN"] = {
   "POINTTO_0": "水平翻转",
   "POINTTO_1": "正常旋转",
   "POINTTO_2": "不要旋转",
+  "GRAVITY_DYNAMIC": "根据重力弹跳",
+  "GRAVITY_FIXED": "其他对象碰到后弹开",
+  "GRAVITY_NONE": "没有弹跳",
 };
 
 Blockly.CatblocksMsgs.locales["zh_TW"] = {
@@ -24546,4 +24735,7 @@ Blockly.CatblocksMsgs.locales["zh_TW"] = {
   "POINTTO_0": "left-right only",
   "POINTTO_1": "all-around",
   "POINTTO_2": "don\'t rotate",
+  "GRAVITY_DYNAMIC": "moving and bouncing under gravity",
+  "GRAVITY_FIXED": "not moving under gravity, but others bounce off you under gravity",
+  "GRAVITY_NONE": "not moving or bouncing under gravity (default)",
 };

@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "VARIABLE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -26,12 +26,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "VARIABLE_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -41,17 +41,17 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "X_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "Y_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -61,32 +61,32 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "X_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "Y_POSITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "SIZE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "COLOR",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "ALIGNMENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -96,12 +96,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "LIST_DELETE_ITEM",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -111,12 +111,12 @@ export default {
       {
         "type": "field_input",
         "name": "LIST_ADD_ITEM",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -126,17 +126,17 @@ export default {
       {
         "type": "field_input",
         "name": "INSERT_ITEM_INTO_USERLIST_VALUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "INSERT_ITEM_INTO_USERLIST_INDEX",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -146,17 +146,17 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "REPLACE_ITEM_IN_USERLIST_INDEX",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "REPLACE_ITEM_IN_USERLIST_VALUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -166,7 +166,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -176,7 +176,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -186,7 +186,7 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

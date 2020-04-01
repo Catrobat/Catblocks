@@ -11,7 +11,7 @@ export default {
       {
         "type": "field_input",
         "name": "sound",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -21,7 +21,7 @@ export default {
       {
         "type": "field_input",
         "name": "sound",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -34,7 +34,7 @@ export default {
       {
         "type": "field_input",
         "name": "VOLUME",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -44,7 +44,7 @@ export default {
       {
         "type": "field_input",
         "name": "VOLUME_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -54,7 +54,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPEAK",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -64,7 +64,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPEAK",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -74,12 +74,12 @@ export default {
       {
         "type": "field_input",
         "name": "ASK_SPEECH_QUESTION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

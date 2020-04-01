@@ -17,7 +17,7 @@ export default {
       {
         "type": "field_input",
         "name": "PEN_SIZE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -27,17 +27,17 @@ export default {
       {
         "type": "field_input",
         "name": "PEN_COLOR_RED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PEN_COLOR_GREEN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "PEN_COLOR_BLUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },

@@ -475,30 +475,16 @@
                   <commentedOut>false</commentedOut>
                   <formulaList>
                     <formula category="NOTE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
                       <rightChild>
-                        <leftChild>
-                          <type>NUMBER</type>
-                          <value>9</value>
-                        </leftChild>
-                        <rightChild>
-                          <rightChild>
-                            <leftChild>
-                              <type>NUMBER</type>
-                              <value>8</value>
-                            </leftChild>
-                            <rightChild>
-                              <type>NUMBER</type>
-                              <value>6</value>
-                            </rightChild>
-                            <type>OPERATOR</type>
-                            <value>SMALLER_THAN</value>
-                          </rightChild>
-                          <type>BRACKET</type>
-                        </rightChild>
-                        <type>OPERATOR</type>
-                        <value>EQUAL</value>
+                        <type>NUMBER</type>
+                        <value>78</value>
                       </rightChild>
-                      <type>BRACKET</type>
+                      <type>FUNCTION</type>
+                      <value>LIST_ITEM</value>
                     </formula>
                   </formulaList>
                 </brick>
