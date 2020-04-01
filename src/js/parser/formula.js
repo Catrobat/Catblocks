@@ -1,3 +1,7 @@
+/**
+ * @author andreas.karner@student.tugraz.at
+ * @description Catblocks formular class for parsing catroid programs
+ */
 
 export default class Formula {
   constructor() {
@@ -21,6 +25,8 @@ export default class Formula {
     return {
       'BRACKET': '(%l%r)',
       'USER_LIST': '*%v*',
+      'STRING': '\'%v\'',
+      'USER_VARIABLE': '"%v"',
       'SIN': '%v(%l)',
       'COS': '%v(%l)',
       'TAN': '%v(%l)',
@@ -50,6 +56,7 @@ export default class Formula {
       'REGEX': '%v(%l, %r)',
       'CONTAINS': '%v(%l, %r)',
       'NUMBER_OF_ITEMS': '%v(%l)',
+      'LIST_ITEM': '%v(%l, %r)',
       'DEFAULT': '%l %v %r'
     };
   }
@@ -92,8 +99,8 @@ export default class Formula {
       return '';
     })();
 
+    console.log(f);
     const nodeValue = Formula.packLayout(f.operator, f.value, left, right);
-    console.log(nodeValue);
     return nodeValue;
   }
 }

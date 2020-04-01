@@ -11,6 +11,7 @@
  *            2019-11-05: [MF] updated to new structure 
  *            2020-03-30: [AK] updated to use xml2js module
  *            2020-03-31: [AK] updated code to use default value for missing in current language
+ *            2020-04-01: [AK] updated default language to 'values-en-rAU'
  */
 
 const fs = require('fs');
@@ -25,7 +26,7 @@ const MAPPING = JSON.parse(fs.readFileSync(MAPPING_FILE, { encoding: 'utf-8' }))
 
 const STRINGS_DIR = path.join('i18n', 'catroid_strings');
 const STRINGS_FILE = 'strings.xml';
-const DEF_LANG = 'values-en-rGB';
+const DEF_LANG = 'values-en-rAU';
 const DEF_LANG_FILE = path.join(STRINGS_DIR, DEF_LANG, STRINGS_FILE);
 
 const JSON_DIR = path.join('i18n', 'json');

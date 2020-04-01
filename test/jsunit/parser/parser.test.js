@@ -348,33 +348,33 @@ describe('Catroid to Catblocks parser tests', () => {
 
   describe('Formula function tests', () => {
 
-    test('Single value like sqrt functions', async () => {
+    test('Single value like sqrt function with arithmetic', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>89</value></leftChild><type>FUNCTION</type><value>SQRT</value></leftChild><rightChild><type>NUMBER</type><value>5</value></rightChild><type>OPERATOR</type><value>MULT</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
-        const refString = 'sqrt(89) × 5 '.trim();
+        const refString = 'square root(89) × 5'.trim();
 
         return (scriptXml instanceof XMLDocument
           && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
       })).toBeTruthy();
     });
 
-    test('Single value like sin functions', async () => {
+    test('Single value like sin function with logic', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>98</value></leftChild><type>FUNCTION</type><value>SIN</value></leftChild><rightChild><type>NUMBER</type><value>32</value></rightChild><type>OPERATOR</type><value>GREATER_THAN</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
-        const refString = 'sin(98) &gt; 32'.trim();
+        const refString = 'sine(98) &gt; 32'.trim();
 
         return (scriptXml instanceof XMLDocument
           && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
       })).toBeTruthy();
     });
 
-    test('Two single values like sin + cos', async () => {
+    test('Two single values like sin plus cos', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>360</value></leftChild><type>FUNCTION</type><value>COS</value></leftChild><rightChild><leftChild><type>NUMBER</type><value>90</value></leftChild><type>FUNCTION</type><value>SIN</value></rightChild><type>OPERATOR</type><value>PLUS</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
-        const refString = 'cos(360) + sin(90)'.trim();
+        const refString = 'cosine(360) + sine(90)'.trim();
 
         return (scriptXml instanceof XMLDocument
           && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
@@ -396,7 +396,18 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><type>SENSOR</type><value>COLLIDES_WITH_FINGER</value></leftChild><rightChild><type>FUNCTION</type><value>TRUE</value></rightChild><type>OPERATOR</type><value>PLUS</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
-        const refString = 'touches finger + TRUE'.trim();
+        const refString = 'touches finger + true'.trim();
+
+        return (scriptXml instanceof XMLDocument
+          && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
+      })).toBeTruthy();
+    });
+
+    test('UserList in formular', async () => {
+      expect(await page.evaluate(() => {
+        const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><type>USER_LIST</type><value>tvariable</value></formula></formulaList></brick></brickList></script>`;
+        const scriptXml = parser.convertScriptString(scriptString);
+        const refString = '*tvariable*'.trim();
 
         return (scriptXml instanceof XMLDocument
           && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
@@ -405,9 +416,20 @@ describe('Catroid to Catblocks parser tests', () => {
 
     test('UserVariable in formular', async () => {
       expect(await page.evaluate(() => {
-        const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><type>USER_LIST</type><value>tvariable</value></formula></formulaList></brick></brickList></script>`;
+        const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><type>USER_VARIABLE</type><value>tvariable</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
-        const refString = '*tvariable*'.trim();
+        const refString = '"tvariable"'.trim();
+
+        return (scriptXml instanceof XMLDocument
+          && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);
+      })).toBeTruthy();
+    });
+
+    test('String in formular', async () => {
+      expect(await page.evaluate(() => {
+        const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><type>STRING</type><value>hello</value></leftChild><rightChild><type>STRING</type><value> world</value></rightChild><type>FUNCTION</type><value>JOIN</value></formula></formulaList></brick></brickList></script>`;
+        const scriptXml = parser.convertScriptString(scriptString);
+        const refString = 'join(\'hello\', \'world\')'.trim();
 
         return (scriptXml instanceof XMLDocument
           && scriptXml.querySelector(`field[name='TIME_TO_WAIT_IN_SECONDS']`).innerHTML.trim() === refString);

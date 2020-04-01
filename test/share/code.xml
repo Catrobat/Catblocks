@@ -52,15 +52,19 @@
                   <formulaList>
                     <formula category="X_POSITION">
                       <leftChild>
-                        <type>NUMBER</type>
-                        <value>3</value>
+                        <type>SENSOR</type>
+                        <value>X_INCLINATION</value>
                       </leftChild>
                       <rightChild>
-                        <type>NUMBER</type>
-                        <value>1</value>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>10</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MINUS</value>
                       </rightChild>
-                      <type>FUNCTION</type>
-                      <value>CONTAINS</value>
+                      <type>OPERATOR</type>
+                      <value>MULT</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -91,6 +95,15 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>PLUS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="WaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                      <type>USER_VARIABLE</type>
+                      <value>myVar</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -475,30 +488,16 @@
                   <commentedOut>false</commentedOut>
                   <formulaList>
                     <formula category="NOTE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
                       <rightChild>
-                        <leftChild>
-                          <type>NUMBER</type>
-                          <value>9</value>
-                        </leftChild>
-                        <rightChild>
-                          <rightChild>
-                            <leftChild>
-                              <type>NUMBER</type>
-                              <value>8</value>
-                            </leftChild>
-                            <rightChild>
-                              <type>NUMBER</type>
-                              <value>6</value>
-                            </rightChild>
-                            <type>OPERATOR</type>
-                            <value>SMALLER_THAN</value>
-                          </rightChild>
-                          <type>BRACKET</type>
-                        </rightChild>
-                        <type>OPERATOR</type>
-                        <value>EQUAL</value>
+                        <type>NUMBER</type>
+                        <value>78</value>
                       </rightChild>
-                      <type>BRACKET</type>
+                      <type>FUNCTION</type>
+                      <value>LIST_ITEM</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -589,7 +588,16 @@
       </objectList>
     </scene>
   </scenes>
-  <programVariableList/>
+  <programVariableList>
+    <userVariable type="UserVariable" serialization="custom">
+      <userVariable>
+        <default>
+          <deviceValueKey>625ae723-6717-4410-b570-4bcb70be5251</deviceValueKey>
+          <name>myVar</name>
+        </default>
+      </userVariable>
+    </userVariable>
+  </programVariableList>
   <programListOfLists>
     <userList>
       <deviceListKey>7f8b2fd6-e5eb-40ab-a305-4ab77ea8ee61</deviceListKey>

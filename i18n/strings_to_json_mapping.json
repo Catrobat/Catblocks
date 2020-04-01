@@ -502,5 +502,9 @@
   "@RotationBrick": "RotationBrick",
   "POINTTO_0": "${brick_set_rotation_style_lr}",
   "POINTTO_1": "${brick_set_rotation_style_normal}",
-  "POINTTO_2": "${brick_set_rotation_style_no}"
+  "POINTTO_2": "${brick_set_rotation_style_no}",
+  "@GravityType": "GravityType",
+  "GRAVITY_DYNAMIC": "${brick_set_physics_object_type_dynamic}",
+  "GRAVITY_FIXED": "${brick_set_physics_object_type_fixed}",
+  "GRAVITY_NONE": "${brick_set_physics_object_type_no}"
 }

@@ -276,7 +276,6 @@ function checkUsage(list, location) {
   case 'eye':
   case 'pointedObject':
   case 'ledStatus':
-  case 'type':
   case 'sceneForTransition': {
     location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
     break;
@@ -292,6 +291,12 @@ function checkUsage(list, location) {
     } else {
       location.formValues.set("SPINNER", getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
     }
+    break;
+  }
+
+  case 'type': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("DROPDOWN", getMsgValueOrDefault(`GRAVITY_${key}`, key));
     break;
   }
 
@@ -404,11 +409,11 @@ function workFormula(formula, input) {
 
     if (input.childNodes[i].nodeName === 'type') {
       const typeValue = input.childNodes[i].innerHTML;
-      if (typeValue === 'BRACKET' || typeValue === 'USER_LIST') formula.operator = typeValue;
+      if (typeValue === 'BRACKET' || typeValue === 'USER_LIST' || typeValue === 'STRING' || typeValue === 'NUMBER' || typeValue === 'USER_VARIABLE') formula.operator = typeValue;
     }
     if (input.childNodes[i].nodeName === "value") {
       const operatorKey = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
-      if (formula.operator !== 'USER_LIST') formula.operator = operatorKey;
+      if (formula.operator !== 'USER_LIST' && formula.operator !== 'STRING' && formula.operator !== 'NUMBER' && formula.operator !== 'USER_VARIABLE') formula.operator = operatorKey;
       formula.value = getMsgValueOrDefault(operatorKey, operatorKey);
     }
   }

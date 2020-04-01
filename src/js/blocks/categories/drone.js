@@ -17,12 +17,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -32,12 +32,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -47,12 +47,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -62,12 +62,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -77,12 +77,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -92,12 +92,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -107,12 +107,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -122,12 +122,12 @@ export default {
       {
         "type": "field_input",
         "name": "DRONE_TIME_TO_FLY_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DRONE_POWER_IN_PERCENT",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -140,7 +140,7 @@ export default {
       {
         "type": "field_input",
         "name": "ADRONEANIMATION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
