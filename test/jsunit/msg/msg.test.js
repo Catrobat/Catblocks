@@ -71,8 +71,8 @@ describe('Webview test', () => {
     });
   });
 
-  test('en_GB Messages assigned to Blockly', async () => {
-    const langToTest = 'en_GB';
+  test('en_AU Messages assigned to Blockly', async () => {
+    const langToTest = 'en_AU';
     const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
 
     expect(await page.evaluate((msgDef, lang) => {
@@ -113,7 +113,7 @@ describe('Webview test', () => {
     expect(await page.evaluate((msgDef, lang) => {
       let failedLoading = false;
 
-      playground.setLocale('en_GB');
+      playground.setLocale('en_AU');
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
         const blockName = block.type;

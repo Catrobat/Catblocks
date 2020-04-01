@@ -6,7 +6,7 @@ import Blockly from "blockly";
 Blockly.CatblocksMsgs = {};
 Blockly.CatblocksMsgs.locales = {};
 
-Blockly.CatblocksMsgs.currentLocale_ = 'en_GB';
+Blockly.CatblocksMsgs.currentLocale_ = 'en_AU';
 
 Blockly.CatblocksMsgs.hasLocale = function(locale) {
   return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);

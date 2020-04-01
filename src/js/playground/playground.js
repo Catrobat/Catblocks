@@ -74,11 +74,11 @@ export class Playground {
       lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
       // TODO: set default to SHARE LANGUAGE
-      if (locale === 'en_GB') hasDefault = true;
+      if (locale === 'en_AU') hasDefault = true;
     });
 
     match = location.search.match(/locale=([^&]+)/);
-    const locale = match ? match[1] : (hasDefault ? 'en_GB' : select.options[0].value);
+    const locale = match ? match[1] : (hasDefault ? 'en_AU' : select.options[0].value);
     this.Blockly.CatblocksMsgs.setLocale(locale);
     document.forms.options.elements.locale.value = locale;
 

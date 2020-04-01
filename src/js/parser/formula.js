@@ -99,7 +99,6 @@ export default class Formula {
       return '';
     })();
 
-    console.log(f);
     const nodeValue = Formula.packLayout(f.operator, f.value, left, right);
     return nodeValue;
   }
