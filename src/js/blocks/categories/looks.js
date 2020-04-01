@@ -11,7 +11,7 @@ export default {
       {
         "type": "field_input",
         "name": "look",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -21,7 +21,7 @@ export default {
       {
         "type": "field_input",
         "name": "LOOK_INDEX",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -37,7 +37,7 @@ export default {
       {
         "type": "field_input",
         "name": "SIZE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -53,12 +53,12 @@ export default {
       {
         "type": "field_input",
         "name": "ASK_QUESTION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -68,7 +68,7 @@ export default {
       {
         "type": "field_input",
         "name": "STRING",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -78,12 +78,12 @@ export default {
       {
         "type": "field_input",
         "name": "STRING",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -93,7 +93,7 @@ export default {
       {
         "type": "field_input",
         "name": "STRING",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -103,12 +103,12 @@ export default {
       {
         "type": "field_input",
         "name": "STRING",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DURATION_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -118,7 +118,7 @@ export default {
       {
         "type": "field_input",
         "name": "TRANSPARENCY",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -128,7 +128,7 @@ export default {
       {
         "type": "field_input",
         "name": "SIZE_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -138,7 +138,7 @@ export default {
       {
         "type": "field_input",
         "name": "TRANSPARENCY_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -148,7 +148,7 @@ export default {
       {
         "type": "field_input",
         "name": "BRIGHTNESS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -158,7 +158,7 @@ export default {
       {
         "type": "field_input",
         "name": "BRIGHTNESS_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -168,7 +168,7 @@ export default {
       {
         "type": "field_input",
         "name": "COLOR",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -178,7 +178,7 @@ export default {
       {
         "type": "field_input",
         "name": "COLOR_CHANGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -191,7 +191,7 @@ export default {
       {
         "type": "field_input",
         "name": "look",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -201,7 +201,7 @@ export default {
       {
         "type": "field_input",
         "name": "LOOK_INDEX",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -211,7 +211,7 @@ export default {
       {
         "type": "field_input",
         "name": "look",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -221,7 +221,7 @@ export default {
       {
         "type": "field_input",
         "name": "LOOK_INDEX",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -231,7 +231,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -241,7 +241,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -251,7 +251,7 @@ export default {
       {
         "type": "field_input",
         "name": "SPINNER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

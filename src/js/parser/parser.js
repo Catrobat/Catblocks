@@ -276,7 +276,6 @@ function checkUsage(list, location) {
   case 'eye':
   case 'pointedObject':
   case 'ledStatus':
-  case 'type':
   case 'sceneForTransition': {
     location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
     break;
@@ -292,6 +291,12 @@ function checkUsage(list, location) {
     } else {
       location.formValues.set("SPINNER", getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
     }
+    break;
+  }
+
+  case 'type': {
+    const key = getNodeValueOrDefault(list.childNodes[0]);
+    location.formValues.set("DROPDOWN", getMsgValueOrDefault(`GRAVITY_${key}`, key));
     break;
   }
 

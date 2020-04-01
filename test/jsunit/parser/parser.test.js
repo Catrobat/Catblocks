@@ -348,7 +348,7 @@ describe('Catroid to Catblocks parser tests', () => {
 
   describe('Formula function tests', () => {
 
-    test('Single value like sqrt functions', async () => {
+    test('Single value like sqrt function with arithmetic', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>89</value></leftChild><type>FUNCTION</type><value>SQRT</value></leftChild><rightChild><type>NUMBER</type><value>5</value></rightChild><type>OPERATOR</type><value>MULT</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
@@ -359,7 +359,7 @@ describe('Catroid to Catblocks parser tests', () => {
       })).toBeTruthy();
     });
 
-    test('Single value like sin functions', async () => {
+    test('Single value like sin function with logic', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>98</value></leftChild><type>FUNCTION</type><value>SIN</value></leftChild><rightChild><type>NUMBER</type><value>32</value></rightChild><type>OPERATOR</type><value>GREATER_THAN</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
@@ -370,7 +370,7 @@ describe('Catroid to Catblocks parser tests', () => {
       })).toBeTruthy();
     });
 
-    test('Two single values like sin + cos', async () => {
+    test('Two single values like sin plus cos', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIME_TO_WAIT_IN_SECONDS"><leftChild><leftChild><type>NUMBER</type><value>360</value></leftChild><type>FUNCTION</type><value>COS</value></leftChild><rightChild><leftChild><type>NUMBER</type><value>90</value></leftChild><type>FUNCTION</type><value>SIN</value></rightChild><type>OPERATOR</type><value>PLUS</value></formula></formulaList></brick></brickList></script>`;
         const scriptXml = parser.convertScriptString(scriptString);
