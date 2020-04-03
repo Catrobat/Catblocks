@@ -14,12 +14,8 @@ beforeEach(async () => {
 
 describe('Share basic tests', () => {
 
-  /**
-   * Share creates scene container properly
-   */
   test('Share renders scene container properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const container = share.addSceneContainer(shareTestContainer, 'tscene');
 
       return (container.id === 'tscene'
@@ -30,12 +26,8 @@ describe('Share basic tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Share creates object container properly
-   */
   test('Share renders object container properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const container = share.addObjectContainer(shareTestContainer, 'tobject');
 
       return (container.id === 'tobject'
@@ -51,12 +43,8 @@ describe('Share basic tests', () => {
 
 describe('Share catroid program rendering tests', () => {
 
-  /**
-   * Test if rendering a not support version works properly
-   */
   test('Share render unsupported version properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const catXml = undefined;
       share.injectAllScenes(shareTestContainer, catXml);
 
@@ -64,12 +52,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering a support version works properly
-   */
   test('Share render supported version properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -78,12 +62,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of an empty program works properly
-   */
   test('Share render an empty program properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -92,12 +72,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of an empty scene works properly
-   */
   test('Share render a single empty scene properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene"></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -107,12 +83,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of multiple empty scenes works properly
-   */
   test('Share render multiple empty scenes properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene1"></scene><scene type="tscene2"></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -124,12 +96,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of a single empty object works properly
-   */
   test('Share render a single empty object properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -139,12 +107,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of multiple empty objects in same scene works properly
-   */
   test('Share render multiple empty objects in same scene', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object><object type="tobject2"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -156,12 +120,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of multiple empty objects in different scenes works properly
-   */
   test('Share render empty objects in different scenes', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene1"><object type="tobject1"></object></scene><scene type="tscene2"><object type="tobject2"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -173,9 +133,6 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if share renders svg from script properly
-   */
   test('Share render script svg', async () => {
     expect(await page.evaluate(() => {
       const scriptString = `<block type="PreviousLookBrick"></block>`;
@@ -188,9 +145,6 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if all rendered script heights are properly, not 50 or so
-   */
   test('Share render svg script bbox properly', async () => {
     expect(await page.evaluate(() => {
       const scriptString = `<block type="PreviousLookBrick"></block>`;
@@ -203,12 +157,8 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if rendering of single empty scriptlist works properly
-   */
   test('Share render single empty scriptlist properly', async () => {
     expect(await page.evaluate(() => {
-      // shareTestContainer = document.getElementById('shareprogs');
       const xmlString = `<xml><scene type="tscene"><object type="tobject"><script type="tscript"><block type="PreviousLookBrick"></block></script></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
       share.injectAllScenes(shareTestContainer, catXml);
@@ -221,9 +171,6 @@ describe('Share catroid program rendering tests', () => {
 describe('Share statistic tests', () => {
 
   describe('Update objects statistic tests', () => {
-    /**
-     * Test if share failed if we pass undefined/null to update object stats funciton
-     */
     test('Check update status function against undefined and null', async () => {
       expect(await page.evaluate(() => {
         const objectStats = {
@@ -238,9 +185,6 @@ describe('Share statistic tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Test if share addes empty script to object statistic properly
-     */
     test('Add empty script to existing object statistic', async () => {
       expect(await page.evaluate(() => {
         const objectStats = {
@@ -258,9 +202,6 @@ describe('Share statistic tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Test if share addes script to object statistic properly
-     */
     test('Add script to existing object statistic', async () => {
       expect(await page.evaluate(() => {
         const objectStats = {
@@ -286,9 +227,6 @@ describe('Share statistic tests', () => {
 
   describe('Fetch script statistic tests', () => {
 
-    /**
-     * Check if share function for fetching script stats is resistend against null und undefined
-     */
     test('Check get script stats function against undefined and null', async () => {
       expect(await page.evaluate(() => {
         const nullScriptStats = share.getScriptStats(null);
@@ -299,9 +237,6 @@ describe('Share statistic tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-    * Check if share fetches properly stats of empty script
-    */
     test('Share fetches properly stats from empty script', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="tscript"></script>`;
@@ -312,9 +247,6 @@ describe('Share statistic tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Check if share fetches properly stats from script
-     */
     test('Share fetches properly stats from script with one block', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="tscript"><block type="PreviousLookBrick"></block></script>`;
@@ -325,9 +257,6 @@ describe('Share statistic tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Check if share fetches properly stats from unknown script
-     */
     test('Share fetches properly stats from unknown script', async () => {
       expect(await page.evaluate(() => {
         const scriptString = `<script type="tscript"><block type="unknownBrick"></block></script>`;
@@ -341,12 +270,8 @@ describe('Share statistic tests', () => {
 
   describe('Share statistic rendering tests', () => {
 
-    /**
-     * Test if share renders object statistices properly
-     */
     test('Share render object status properly', async () => {
       expect(await page.evaluate(() => {
-        // shareTestContainer = document.getElementById('shareprogs');
         const stats = {
           'name': 'tobject',
           'scripts': 1,

@@ -11,7 +11,7 @@ export default {
       {
         "type": "field_input",
         "name": "ANIMATION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -27,12 +27,12 @@ export default {
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -42,12 +42,12 @@ export default {
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_SPEED",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -57,12 +57,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_VOLUME",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -75,7 +75,7 @@ export default {
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_ROTATE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -85,7 +85,7 @@ export default {
       {
         "type": "field_input",
         "name": "JUMPING_SUMO_ROTATE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },

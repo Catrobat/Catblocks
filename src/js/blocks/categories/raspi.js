@@ -11,12 +11,12 @@ export default {
       {
         "type": "field_input",
         "name": "DROPDOWN",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "DROPDOWN2",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -30,7 +30,7 @@ export default {
       {
         "type": "field_input",
         "name": "IF_CONDITION",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ],
     "args1": [
@@ -52,12 +52,12 @@ export default {
       {
         "type": "field_input",
         "name": "RASPI_DIGITAL_PIN_NUMBER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "RASPI_DIGITAL_PIN_VALUE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   },
@@ -67,17 +67,17 @@ export default {
       {
         "type": "field_input",
         "name": "RASPI_DIGITAL_PIN_NUMBER",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "RASPI_PWM_PERCENTAGE",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       },
       {
         "type": "field_input",
         "name": "RASPI_PWM_FREQUENCY",
-        "text": "DEFAULT_VALUE"
+        "text": "unset"
       }
     ]
   }

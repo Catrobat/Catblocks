@@ -29,9 +29,6 @@ const CATBLOCKS_PAYLOAD = utils.readFileSync(utils.PATHS.CATBLOCKS_MSG).toString
  */
 describe('Filesystem msg tests', () => {
 
-  /**
-   * Each catroid string file generated a catblocks json file
-   */
   test('JSON exists for catroid_strings xml file', () => {
     CATROID_MSGS.forEach(catMsg => {
       const langName = catMsg.replace('values-', '').replace('-', '_').replace('/', '').replace('_r', '_');
@@ -39,9 +36,6 @@ describe('Filesystem msg tests', () => {
     });
   });
 
-  /**
-   * Each JSON needs to inculde all keys from the i18n mapping definition
-   */
   test('JSON includes all i18n definitions', () => {
     CATBLOCKS_MSGS.forEach(lang => {
       const langKeys = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${lang}`));
@@ -53,9 +47,6 @@ describe('Filesystem msg tests', () => {
     });
   });
 
-  /**
-   * Each JSON file needs to be linked to your catblocks js file so we can load it dynamically
-   */
   test('Lang JSON file linked in CatblocksMsg.js', () => {
     const langs = CATBLOCKS_PAYLOAD.split('\n')
       .filter(line => line.indexOf(`Blockly.CatblocksMsgs.locales["`) > -1)
@@ -69,16 +60,10 @@ describe('Filesystem msg tests', () => {
 
 describe('Webview test', () => {
 
-  /**
-   * Execute ones in this scope
-   */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
   });
 
-  /**
-   * Run before each test in this scope
-  */
   beforeEach(async () => {
     // clean workspace before each test
     await page.evaluate(() => {
@@ -86,11 +71,8 @@ describe('Webview test', () => {
     });
   });
 
-  /**
-   * Test if each block is rendered 
-   */
-  test('en_GB Messages assigned to Blockly', async () => {
-    const langToTest = 'en_GB';
+  test('en_AU Messages assigned to Blockly', async () => {
+    const langToTest = 'en_AU';
     const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
 
     expect(await page.evaluate((msgDef, lang) => {
@@ -124,10 +106,6 @@ describe('Webview test', () => {
     }, msgDef, langToTest)).toBeFalsy();
   });
 
-  /**
-   * Check if language switch/change works proplery and all blocks are rendered
-   *  with the new language, tested via toolbox blocks
-   */
   test('Change lang from >en_GB< to >de< works properly', async () => {
     const langToTest = 'de';
     const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
@@ -135,7 +113,7 @@ describe('Webview test', () => {
     expect(await page.evaluate((msgDef, lang) => {
       let failedLoading = false;
 
-      playground.setLocale('en_GB');
+      playground.setLocale('en_AU');
       playground.setLocale(lang);
       toolboxWS.getAllBlocks().forEach(block => {
         const blockName = block.type;

@@ -13,7 +13,7 @@ import $ from 'jquery';
 export const defaultOptions = {
   render: {
     container: 'body',
-    language: 'en_GB',
+    language: 'en_AU',
     renderSize: 0.75,
     shareRoot: '',
     media: 'media/',

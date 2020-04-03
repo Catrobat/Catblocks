@@ -29,9 +29,6 @@ const BLOCK_MSG_MAPPINGS = JSON.parse(utils.readFileSync(utils.PATHS.MESSAGE_MAP
  * Check if everything exists on filesystem level
  */
 describe('Filesystem Block tests', () => {
-  /**
-   * Check if each defined blocks has a message0 referenced to BLOCK_MSG_MAPPINGS
-   */
   test('Block Messages exists in i18n/strings_to_json_mapping.json', () => {
     Object.keys(BLOCKS).forEach(categoryName => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
@@ -54,9 +51,6 @@ describe('Filesystem Block tests', () => {
     });
   });
 
-  /**
-   * Check args count in json definition and BLOCK_MSG_MAPPINGS match up
-   */
   test('Block argsCount match with i18n/strings_to_json_mapping.json', () => {
     Object.keys(BLOCKS).forEach(categoryName => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
@@ -78,27 +72,15 @@ describe('Filesystem Block tests', () => {
   });
 });
 
-/**
- * Check if everything is rendered in Webview
- */
 describe('WebView Block tests', () => {
 
-  /**
-   * Execute ones in this scope
-   */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
     page.on('console', message => console.log(message.text()));
   });
 
-  /**
-   * Test if Scratch-Blocks got initialized properly
-   */
   describe('Workspace initialization', () => {
 
-    /**
-     * Run before each test in this scope
-     */
     beforeEach(async () => {
       // clean workspace before each test
       await page.evaluate(() => {
@@ -107,18 +89,12 @@ describe('WebView Block tests', () => {
       page.on('console', (message) => console.log(message.text()));
     });
 
-    /**
-     * Test if we playground workspace is loaded
-     */
     test('Playground workspace is loaded', async () => {
       expect(await page.evaluate(() => {
         return (playgroundWS !== undefined && playgroundWS !== null && playgroundWS instanceof Object);
       })).toBeTruthy();
     });
 
-    /**
-     * Test if playground blockDB is empty
-     */
     test('Playground blockDB is empty', async () => {
       expect(await page.evaluate(() => {
         if (!playgroundWS) return false;
@@ -126,18 +102,12 @@ describe('WebView Block tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Test if playground toolbox workspace is loaded
-     */
     test('Playground toolbox workspace is loaded', async () => {
       expect(await page.evaluate(() => {
         return (toolboxWS !== undefined && toolboxWS !== null && toolboxWS instanceof Object);
       })).toBeTruthy();
     });
 
-    /**
-     * Test if playground blockDB is empty
-     */
     test('Playground toolbox blockDB is not empty', async () => {
       expect(await page.evaluate(() => {
         if (!toolboxWS) return false;
@@ -145,9 +115,6 @@ describe('WebView Block tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Test if all categories are defined
-     */
     test('Blockly loaded all categories', async () => {
       expect(await page.evaluate((catsFile) => {
         for (const cat of catsFile) {
@@ -157,9 +124,6 @@ describe('WebView Block tests', () => {
       }, BLOCK_CATEGORIES)).toBeTruthy();
     });
 
-    /**
-     * Check if all blocks are loaded to blockly
-     */
     test('Blockly includes all blocks', async () => {
       const allBlocks = (() => {
         const blocks = [];
@@ -179,9 +143,6 @@ describe('WebView Block tests', () => {
       }, allBlocks)).toBeTruthy();
     });
 
-    /**
-     * Check if all blocks exists in TOOLBOX
-     */
     test('All Blocks exists in Toolbox', async () => {
       const allBlocks = (() => {
         const blocks = [];
@@ -202,14 +163,8 @@ describe('WebView Block tests', () => {
     });
   });
 
-  /**
-   * Test if Scratch-Blocks got initialized properly
-   */
   describe('Workspace actions', () => {
 
-    /**
-     * Test if all icons/media files from the blocks are accessible
-     */
     test('All icons available and rendered', async () => {
       expect(await page.evaluate(() => {
         const imgHref = new Set(Array.from(document.querySelectorAll('svg.blocklyFlyout image')).map(node => node.href.baseVal));
@@ -224,9 +179,6 @@ describe('WebView Block tests', () => {
       })).toBeFalsy();
     });
 
-    /**
-     * Test if formula blocks (without child) are rendered properly.
-     */
     test('formula blocks (without child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
         let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
@@ -235,14 +187,11 @@ describe('WebView Block tests', () => {
         //get default scale value
         const refValue = Blockly.Bricks['ChangeBrightnessByNBrick'].args0[0].text;
         let value = block.inputList[0].fieldRow[1].getText();
-        return (block.getFieldValue() === 'Change brightness  by'
+        return (block.getFieldValue() === 'Change brightness by'
           && value === refValue);
       })).toBeTruthy();
     });
 
-    /**
-     * Test if formula blocks (with left child) are rendered properly.
-     */
     test('formula blocks (with left child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
         let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
@@ -252,14 +201,11 @@ describe('WebView Block tests', () => {
         let valueToSet = '-1';
         block.inputList[0].fieldRow[1].setValue(valueToSet);
         let value = block.inputList[0].fieldRow[1].getValue().toString();
-        return (block.getFieldValue() === 'Change brightness  by'
+        return (block.getFieldValue() === 'Change brightness by'
           && valueToSet === value);
       })).toBeTruthy();
     });
 
-    /**
-     * Test if formula blocks (with left and right child) are rendered properly.
-     */
     test('formula blocks (with left and right child) are rendered properly', async () => {
       expect(await page.evaluate(() => {
         let block = playgroundWS.newBlock('WaitBrick');
@@ -278,9 +224,6 @@ describe('WebView Block tests', () => {
       })).toBeTruthy();
     });
 
-    /**
-     * Check if each defined blocks arguments are rendered properly
-     */
     test('Block arguments are rendered properly', async () => {
       expect(await page.evaluate((BLOCKS) => {
         const allRenderedBlocks = toolboxWS.getAllBlocks();

@@ -6,18 +6,12 @@
 /* eslint no-global-assign:0 */
 'use strict';
 
-/**
- * BeforeAll open the browser and load testing page
- */
 beforeEach(async () => {
   await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
 });
 
 describe('Share utilities testing', () => {
 
-  /**
-   * Test if parsing share options works properly
-   */
   test('Parsing share options performs properly', async () => {
     expect(await page.evaluate(() => {
       const o1 = {
@@ -43,9 +37,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if transform xml works as expected
-   */
   test('Transform xml performs properly', async () => {
     expect(await page.evaluate(() => {
       const xmlDoc = (new DOMParser()).parseFromString('<xml><scene id="tscene" class="value"><block class="tclass">innerValue</block></scene></xml>', 'text/xml');
@@ -58,9 +49,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if inject new dom works as expected
-   */
   test('Inject dom node performs properly', async () => {
     expect(await page.evaluate(() => {
       const shareTestContainer = document.getElementById('shareprogs');
@@ -74,9 +62,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if wrapping xml into element works as expected
-   */
   test('Wrapping xml performs properly', async () => {
     expect(await page.evaluate(() => {
       const xmlDoc = (new DOMParser()).parseFromString('<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>', 'text/xml');
@@ -89,9 +74,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if remove all children from node works as expected
-   */
   test('Remove all children performs properly', async () => {
     expect(await page.evaluate(() => {
       const xmlDoc = (new DOMParser()).parseFromString('<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>', 'text/xml');
@@ -101,9 +83,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if get dom element works as expected
-   */
   test('Get dom element performs properly', async () => {
     expect(await page.evaluate(() => {
       return (shareUtils.getDomElement('shareprogs') === document.getElementById('shareprogs')
@@ -111,9 +90,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if children count feching works as expected
-   */
   test('Has children function performs properly', async () => {
     expect(await page.evaluate(() => {
       const xmlDoc = (new DOMParser()).parseFromString('<scene id="tscene" class="value"><block class="tclass">innerValue1</block><block class="tclass">innerValue2</block></scene>', 'text/xml');
@@ -124,9 +100,6 @@ describe('Share utilities testing', () => {
     })).toBeTruthy();
   });
 
-  /**
-   * Test if triming string works as expected
-   */
   test('Trimming string performs properly', async () => {
     expect(await page.evaluate(() => {
       return (shareUtils.trimString('A very long string, which will get trimmed trimString') === 'A very long str...'
