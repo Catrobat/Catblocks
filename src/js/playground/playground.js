@@ -252,6 +252,13 @@ export class Playground {
     const blocks = this.workspace.topBlocks_;
     console.log(blocks);
     checkNextBlock(blocks);
+    if(blocks[0].colour_ !== blocks[0].style.colourPrimary){
+      for(let i = 0; i < blocks.length; i++){
+        const tempColor = blocks[i].style.colourPrimary;
+        blocks[i].style.colourPrimary = blocks[i].style.colourTertiary;
+        blocks[i].style.colourTertiary = tempColor;
+      }
+    }
   }
 
 

@@ -203,7 +203,19 @@ export const checkNextBlock = (array) => {
     if(array[i].childBlocks_.length > 0) {
       for(let j = 0; j < array[i].childBlocks_.length; j++) {
         if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
-          array[i].childBlocks_[j].style.colourPrimary = array[i].childBlocks_[j].style.colourTertiary;
+          const colourPrimaryTemp = array[i].childBlocks_[j].style.colourPrimary;
+          const colourTertTemp = array[i].childBlocks_[j].style.colourTertiary;
+
+          if(array[i].colour_ === colourPrimaryTemp){
+            array[i].childBlocks_[j].colour_ = colourTertTemp;
+            array[i].childBlocks_[j].style.colourPrimary = colourTertTemp;
+            array[i].childBlocks_[j].style.colourTertiary = colourPrimaryTemp;
+          }
+          else {
+            array[i].childBlocks_[j].colour_ = colourPrimaryTemp;
+            array[i].childBlocks_[j].style.colourPrimary = colourPrimaryTemp;
+            array[i].childBlocks_[j].style.colourTertiary = colourTertTemp;
+          }
           array[i].childBlocks_[j].initSvg();
         }
         checkNextBlock(array[i].childBlocks_);
