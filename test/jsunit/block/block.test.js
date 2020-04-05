@@ -8,7 +8,6 @@
 const utils = require('../commonUtils');
 
 const BLOCK_CATEGORIES = utils.getCategoryList();
-
 /**
  * Parse all defined blocks from BLOCK_CATEGORIES
  */
@@ -221,6 +220,17 @@ describe('WebView Block tests', () => {
         return (block.getFieldValue() === 'Wait'
           && valueToSet === value
           && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText);
+      })).toBeTruthy();
+    });
+
+    test('check if zebra is working properly', async () => {
+      expect(await page.evaluate(() => {
+        let topBlock = playgroundWS.newBlock("WaitBrick");
+        topBlock.childBlocks_.push(playgroundWS.newBlock("WaitBrick"));
+        topBlock.childBlocks_[0].childBlocks_.push(playgroundWS.newBlock("WaitBrick"));
+        playground.zebra();
+        return (topBlock.colour_ !== topBlock.childBlocks_[0].colour_
+          && topBlock.colour_ === topBlock.childBlocks_[0].childBlocks_[0].colour_);
       })).toBeTruthy();
     });
 
