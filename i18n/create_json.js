@@ -12,6 +12,7 @@
  *            2020-03-30: [AK] updated to use xml2js module
  *            2020-03-31: [AK] updated code to use default value for missing in current language
  *            2020-04-01: [AK] updated default language to 'values-en-rAU'
+ *            2020-04-10: [GS] included and updated default language to 'values-en-rUS
  */
 
 const fs = require('fs');
@@ -26,7 +27,7 @@ const MAPPING = JSON.parse(fs.readFileSync(MAPPING_FILE, { encoding: 'utf-8' }))
 
 const STRINGS_DIR = path.join('i18n', 'catroid_strings');
 const STRINGS_FILE = 'strings.xml';
-const DEF_LANG = 'values-en-rAU';
+const DEF_LANG = 'values-en-rUS';
 const DEF_LANG_FILE = path.join(STRINGS_DIR, DEF_LANG, STRINGS_FILE);
 
 const JSON_DIR = path.join('i18n', 'json');
@@ -54,24 +55,21 @@ const parseStringFile = (stream) => {
 
   Object.keys(data).forEach(xmltag => {
     switch (xmltag) {
-      case "string": {
-        data.string.forEach(stringpair => {
-          values[stringpair.$.name] = escapeStringValue(stringpair._);
+    case "string":
+      data.string.forEach(stringpair => {
+        values[stringpair.$.name] = escapeStringValue(stringpair._);
+      });
+      break;
+    case "plurals":
+      data.plurals.forEach(pluralpair => {
+        pluralpair.item.forEach(pluralitem => {
+          values[`${pluralpair.$.name}.${pluralitem.$.quantity}`] = escapeStringValue(pluralitem._);
         });
-        break;
-      }
-      case "plurals": {
-        data.plurals.forEach(pluralpair => {
-          pluralpair.item.forEach(pluralitem => {
-            values[`${pluralpair.$.name}.${pluralitem.$.quantity}`] = escapeStringValue(pluralitem._);
-          });
-        });
-        break;
-      }
-      default: {
-        console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
-        break;
-      }
+      });
+      break;
+    default:
+      console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
+      break;
     }
   });
   return values;

@@ -33,7 +33,7 @@ import { renderAllPrograms } from './render/render';
     share.init({
       'container': catblocksWs,
       'renderSize': 0.75,
-      'language': 'en_AU',
+      'language': 'en_US',
       'shareRoot': '',
       'media': 'media/',
       'noImageFound': 'No_Image_Available.jpg',

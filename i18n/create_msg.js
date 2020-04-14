@@ -35,7 +35,7 @@ const CATBLOCK_MSGS = `
 Blockly.CatblocksMsgs = {};
 Blockly.CatblocksMsgs.locales = {};
 
-Blockly.CatblocksMsgs.currentLocale_ = 'en_AU';
+Blockly.CatblocksMsgs.currentLocale_ = 'en_US';
 
 Blockly.CatblocksMsgs.hasLocale = function(locale) {
   return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);
