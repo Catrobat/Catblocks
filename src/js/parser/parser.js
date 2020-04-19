@@ -144,6 +144,19 @@ function parseCatroidProgram(xml) {
 }
 
 /**
+ * Get the xml program as JSON
+ * @param {XMLDocument} xml catroid program xml
+ * @returns {Object} parsed program
+ */
+function getCatroidProgramObject(xml) {
+  const scenes = xml.getElementsByTagName('scenes')[0].children;
+  for (let i = 0; i < scenes.length; i++) {
+    sceneList.push(parseScenes(scenes[i]));
+  }
+  return { scenes: sceneList };
+}
+
+/**
  * Flat/dereference xml nodes
  * @param {*} node node
  * @param {*} xml XMLDocument
@@ -590,6 +603,43 @@ export default class Parser {
     }
 
     return retVal;
+  }
+
+  static convertProgramToJSON(xmlString) {
+    if (typeof xmlString === 'string') {
+      try {
+        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) return undefined;
+
+        initParser(xml);
+        return getCatroidProgramObject(xml);
+      } catch (e) {
+        catLog(e);
+        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
+    }
+    return getCatroidProgramObject(xmlString);
+  }
+
+  static convertProgramToJSONDebug(xmlString) {
+    const obj = Parser.convertProgramToJSON(xmlString);
+
+    if (obj === undefined) {
+      const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+
+      const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
+      if (appVersion === undefined || appVersion.length < 1) {
+        throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
+      } else if (appVersion[0].innerHTML < supportedAppVersion) {
+        throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
+      }
+
+      initParser(xml);
+      return getCatroidProgramObject(xml);
+    }
+
+    return obj;
   }
 
   /**

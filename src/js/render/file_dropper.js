@@ -237,6 +237,7 @@ export class FileDropper {
             console.info('Rendered ' + containerfile.name);
             resolve(true);
           }).catch(error => {
+            console.error(error);
             MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
             resolve(false);
           });
