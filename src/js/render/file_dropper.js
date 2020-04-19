@@ -233,13 +233,14 @@ export class FileDropper {
           }
           
           const fd = FileDropper.getInstance();
-          fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap).then(() => {
-            console.info('Rendered ' + containerfile.name);
+          try {
+            fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
             resolve(true);
-          }).catch(error => {
+          } catch (error) {
+            console.error(error);
             MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
             resolve(false);
-          });
+          }
         });
       });
     });

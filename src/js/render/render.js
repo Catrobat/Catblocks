@@ -1,4 +1,5 @@
 import { FileDropper } from "./file_dropper";
+import $ from "jquery";
 
 /**
  * Render all programs into one page
@@ -11,13 +12,16 @@ import { FileDropper } from "./file_dropper";
 
 /**
  * Render all programs into page
- * @param {*} share 
+ * @param {Share} share instance of share
+ * @param {Element} container parent container for structure
+ * @param {string} path path where the file is 
+ * @returns {Promise}
  */
 export const renderAllPrograms = (share, container, path) => {
 
   // inject very program from ${path} into ${container} dom
 
-  fetch(path)
+  return fetch(path)
     .then(res => res.text())
     .then(text => {
       const page = (new DOMParser()).parseFromString(text, 'text/html');
@@ -34,8 +38,6 @@ export const renderAllPrograms = (share, container, path) => {
         return;
       }
 
-      // never trust a user :p
-      const counter = 0;
       for (let idx = 0; idx < files.childElementCount; idx++) {
         const fileli = files.children[idx];
         const filea = fileli.getElementsByTagName('a')[0];
@@ -43,65 +45,77 @@ export const renderAllPrograms = (share, container, path) => {
         const name = (filea.title !== '') ? filea.title : filea.innerText;
         if (name === '..' || name === '.') continue;
 
-        renderProgram(share, container, path, name, counter);
+        renderProgram(share, container, path, name, idx);
       }
     });
 };
 
+/**
+ * Render a program from filesystem
+ * @param {Share} share instance of share
+ * @param {Element} container parent container for structure
+ * @param {string} path path of the folder containing the program
+ * @param {string} name name of the program file
+ * @param {number} counter number added to ID to be unique
+ * @returns {Promise} 
+ */
 const renderProgram = (share, container, path, name, counter) => {
-  // prepare container for program injection
-  const containerId = `catblocks-program-${name}-${counter++}`;
-  console.log(`Render program: ${name} with id: ${containerId}`);
-  const programContainer = document.createElement('div');
-  programContainer.id = containerId;
-  const programHeader = document.createElement('h1');
-  programHeader.innerText = `Program: ${name} -> RenderId: ${counter}`;
-  programHeader.setAttribute('style', 'background-color: lawngreen;');
-  programContainer.appendChild(programHeader);
-  container.appendChild(programContainer);
-
   // inject code
-  share.parser.convertProgramUri(`${path}${name}/code.xml`)
-    .then(xmlDoc => {
-      console.log(xmlDoc);
-      const div = document.getElementById(containerId);
-      share.injectAllScenes(div, xmlDoc, {
+  return fetch(`${path}${name}/code.xml`).then(res => res.text())
+    .then(codeXML => {
+      const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
+      const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
+
+      // prepare container for program injection
+      const programContainer = createProgramContainer(container);
+
+      const programID = `catblocks-program-${name}-${counter}`;
+      share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
         object: {
           programRoot: `${path}${name}/`
         }
       });
-    })
-    .catch(err => {
+    }).catch(err => {
       console.error(`Failed to parse catroid file.`);
       console.error(`${path}${name}/code.xml failed`);
       console.error(err);
     });
 };
 
+/**
+ * Render a local program (only on JS, not uploaded anywhere)
+ * @param {Share} share instance of share
+ * @param {Element} container parent container for strcuture
+ * @param {string} codeXML XML content of code.xml in program
+ * @param {string} name name of the program
+ * @param {number} counter number added to ID to be unique
+ * @param {Object} fileMap contains [path => base64_of_file]
+ */
 const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
-  try {
-    // inject code
-    const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
-    console.log(xmlDoc);
+  // inject code
+  const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
+  const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
 
-    // prepare container for program injection
-    const containerId = `catblocks-program-${name}-${counter++}`;
-    console.log(`Render program: ${name} with id: ${containerId}`);
-    const programContainer = document.createElement('div');
-    programContainer.id = containerId;
-    const programHeader = document.createElement('h1');
-    programHeader.innerText = `Program: ${name} -> RenderId: ${counter}`;
-    programHeader.setAttribute('style', 'background-color: lawngreen;');
-    programContainer.appendChild(programHeader);
-    container.appendChild(programContainer);
-    const div = document.getElementById(containerId);
+  // prepare container for program injection
+  const programContainer = createProgramContainer(container);
 
-    return share.injectAllScenesPromise(div, xmlDoc, {
-      object: {
-        fileMap: fileMap
-      } 
-    });
-  } catch (error) {
-    return Promise.reject(error);
-  }
+  const programID = `catblocks-program-${name}-${counter}`;
+  share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
+    object: {
+      fileMap: fileMap
+    }
+  });
+};
+
+/**
+ * Create container for the program.
+ * @param {Element} container Parent container for structure
+ * @returns {Element} container for injecting scenes
+ */
+const createProgramContainer = (container) => {
+  const $programContainer = $('<div/>', {
+    class: 'container text-dark'
+  });
+  $(container).append($programContainer);
+  return $programContainer[0];
 };
