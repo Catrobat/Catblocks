@@ -4,6 +4,7 @@
  */
 
 import $ from 'jquery';
+import md5 from "js-md5";
 
 
 /**
@@ -231,4 +232,12 @@ export const checkNextBlock = (array) => {
       }
     }
   }
+};
+
+/**
+ * Generate HTML safe ID
+ * @param {*} string unique name to identify this item
+ */
+export const generateID = (string) => {
+  return 'catblocks-' + md5(string);
 };

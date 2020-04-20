@@ -4,8 +4,7 @@
 import "../../css/share.css";
 import Blockly from 'blockly';
 import Parser from '../parser/parser';
-import { defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
-import md5 from "js-md5";
+import { generateID, defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, removeAllChildren, getDomElement, hasChildren, enableExpandable, trimString, checkNextBlock } from './utils';
 
 export class Share {
   constructor() {
@@ -214,7 +213,7 @@ export class Share {
       'data-toggle': 'collapse',
       'data-target': `#${sceneID}-collapseOne`,
       'aria-expanded': 'false',
-      'aria-controls': `#${sceneID}-collapseOne`
+      'aria-controls': `${sceneID}-collapseOne`
     });
     sceneHeader.innerHTML = `${sceneName}<i class="material-icons">expand_more</i>`;
 
@@ -298,8 +297,8 @@ export class Share {
   renderProgramJSON(programID, container, programJSON, options = {}) {
     return new Promise((resolve, reject) => {
       // create row and col
-      const programContainer = this.createProgramContainer(programID, container);
-      const scenesContainerID = `${programID}-accordionScenes`;
+      const programContainer = this.createProgramContainer(generateID(programID), container);
+      const scenesContainerID = generateID(`${programID}-accordionScenes`);
       const scenesContainer = injectNewDom(programContainer, 'div', { 
         class: 'catblocks-scene-container accordion',
         id: scenesContainerID
@@ -316,7 +315,7 @@ export class Share {
       }
 
       for (const scene of programJSON.scenes) {
-        const sceneID = `${programID}-${md5(scene.name)}`;
+        const sceneID = generateID(`${programID}-${scene.name}`);
         const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(scene.name));
         
         if (scene.objectList.length === 0) {
@@ -413,7 +412,7 @@ export class Share {
 
       for (const scene of scenes) {
         const sceneName = trimString(scene.getAttribute('type'));
-        const sceneID = `${programID}-${md5(sceneName)}`;
+        const sceneID = generateID(`${programID}-${sceneName}`);
         const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName);
         
         const objects = scene.getElementsByTagName('object');
