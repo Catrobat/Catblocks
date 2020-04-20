@@ -377,25 +377,17 @@ export class Share {
 
   /**
    * Inject all catblocks scenes from xml into div and returns a Promise.
-   * @param {string} programID unique ID of the program
    * @param {Element} container
    * @param {Element} xmlElement
    * @param {Object} [options={}]
    * @returns {Promise}
    */
-  injectAllScenesPromise(programID, container, xmlElement, options = {}) {
+  injectAllScenesPromise(container, xmlElement, options = {}) {
     return new Promise((resolve, reject) => {
-      
-      // create row and col
-      const programContainer = this.createProgramContainer(programID, container);
+      // const program = xmlElement.cloneNode(true);
+      container = getDomElement(container);
+      const scenesContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-scene-container' });
 
-      const scenesContainerID = `${programID}-accordionScenes`;
-      const scenesContainer = injectNewDom(programContainer, 'div', { 
-        class: 'catblocks-scene-container accordion',
-        id: scenesContainerID
-      });
-
-      // TODO: render unsupported version properly
       if (xmlElement === undefined) {
         console.warn('Inject message to upgrade programm to newer version!');
         injectNewDom(scenesContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Unsupported program version! Please reupload your Programm using our app!');
@@ -410,24 +402,6 @@ export class Share {
       }
 
 
-      for (const scene of scenes) {
-        const sceneName = trimString(scene.getAttribute('type'));
-        const sceneID = generateID(`${programID}-${sceneName}`);
-        const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName);
-        
-        const objects = scene.getElementsByTagName('object');
-        if (!hasChildren(objects)) {
-          const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
-          injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
-          return reject(new Error('Empty scene found'));
-        }
-
-        // for (const object of objects) {
-
-        // }
-      }
-      return resolve();
-      /* eslint-disable */
       scenes.forEach(scene => {
         const sceneName = scene.getAttribute('type');
         const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
@@ -490,7 +464,6 @@ export class Share {
       });
 
       resolve();
-      /* es-lint enable */
     });
   }
 
