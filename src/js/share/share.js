@@ -199,9 +199,10 @@ export class Share {
    * @param {string} sceneID unique scene ID
    * @param {Element} container append new scene container to this element
    * @param {string} sceneName mapped to id from the new dom
+   * @param {!object<string, object>} options how we should build up the scene container
    * @returns {Element} new created scene objects container
    */
-  addSceneContainer(accordionID, sceneID, container, sceneName) {
+  addSceneContainer(accordionID, sceneID, container, sceneName, options = defaultOptions.scene) {
     const sceneContainer = injectNewDom(container, 'div', { 
       class: 'catblocks-scene card', 
       id: sceneID 
@@ -237,14 +238,15 @@ export class Share {
   }
 
   /**
- * Inject new object container into Element container provied in params
- * @param {Element} container append new object container to this element
- * @param {string} objectName mapped to id from the new dom
- * @param {!object<string, object>} options how we should build up the scene container
- * @return {Element} new created object container
- */
-  addObjectContainer(container, objectName, options = defaultOptions.object) {
-    const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectName });
+   * Inject new object container into Element container provied in params
+   * @param {string} objectID unique object ID
+   * @param {Element} container append new object container to this element
+   * @param {string} objectName mapped to id from the new dom
+   * @param {!object<string, object>} options how we should build up the object container
+   * @return {Element} new created object container
+   */
+  addObjectContainer(objectID, container, objectName, options = defaultOptions.object) {
+    const objectContainer = injectNewDom(container, 'DIV', { 'class': 'catblocks-object', 'id': objectID });
 
     let objectHeader = undefined;
     if (options.writeHeader) {
@@ -325,19 +327,72 @@ export class Share {
           injectNewDom(errorContainer, 'div', {
             class: 'card-header d-flex justify-content-between'
           }, 'No objects found');
-          console.log(programJSON);
+          continue;
         }
 
-        // const objects = scene.getElementsByTagName('object');
-        // if (!hasChildren(objects)) {
-        //   const emptyContainer = injectNewDom(sceneObjectContainer, 'DIV', { 'class': 'catblocks-object catblocks-empty-container' });
-        //   injectNewDom(emptyContainer, 'P', { 'class': 'catblocks-empty-text' }, 'Empty scene found, nothting to display.');
-        //   return reject(new Error('Empty scene found'));
-        // }
+        for (const object of scene.objectList) {
+          const objectID = generateID(`${programID}-${object.name}`);
+          this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer, object, scene.name);
+
+        }
       }
 
       resolve();
     });
+  }
+
+  renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, sceneName) {
+    const objectCard = injectNewDom(sceneObjectContainer, 'div', {
+      class: 'card',
+      id: objectID
+    });
+
+    const objHeadingID = `${generateID(`${sceneName}-${object.name}`)}-heading`;
+    const objCollapseOneSceneID = `${generateID(`${sceneName}-${object.name}`)}-collapseOneScene`;
+    const cardHeader = injectNewDom(objectCard, 'div', {
+      class: 'card-header d-flex justify-content-between expansion-header',
+      id: objHeadingID,
+      'data-toggle': 'collapse',
+      'data-target': `#${objCollapseOneSceneID}`,
+      'aria-expanded': 'false',
+      'aria-controls': objCollapseOneSceneID
+    });
+    cardHeader.innerHTML = `${object.name}<i class="material-icons">expand_more</i>`;
+
+    const objectContentContainer = injectNewDom(objectCard, 'div', {
+      class: 'collapse',
+      id: objCollapseOneSceneID,
+      'aria-labelledby': objHeadingID,
+      'data-parent': `#${accordionID}`
+    });
+
+    this.generateTabs(objectContentContainer, objectID, object);
+  }
+
+  generateTabs(container, objectID, object) {
+    const tabs = injectNewDom(container, 'div', {
+      class: 'catro-tabs'
+    });
+
+    const ul = injectNewDom(tabs, 'ul', {
+      class: 'nav nav-tabs nav-fill',
+      id: `${objectID}-tabs`,
+      role: 'tablist'
+    });
+
+    const liScript = injectNewDom(ul, 'li', {
+      class: 'nav-item'
+    });
+    injectNewDom(liScript, 'a', {
+      class: 'nav-link active',
+      id: `${objectID}-scripts-tab`,
+      'data-toggle': 'tab',
+      href: `#${objectID}-scripts`,
+      role: 'tab',
+      'aria-controls': 'scripts',
+      'aria-selected': 'true'
+    }, `Scripts (${object.scriptList.length})`);
+    
   }
 
   /**
@@ -377,12 +432,13 @@ export class Share {
 
   /**
    * Inject all catblocks scenes from xml into div and returns a Promise.
+   * @param {string} programID unique ID of the program
    * @param {Element} container
    * @param {Element} xmlElement
    * @param {Object} [options={}]
    * @returns {Promise}
    */
-  injectAllScenesPromise(container, xmlElement, options = {}) {
+  injectAllScenesPromise(programID, container, xmlElement, options = {}) {
     return new Promise((resolve, reject) => {
       // const program = xmlElement.cloneNode(true);
       container = getDomElement(container);
@@ -405,7 +461,9 @@ export class Share {
       scenes.forEach(scene => {
         const sceneName = scene.getAttribute('type');
         const sceneOptions = parseOptions(options.scene, defaultOptions.scene);
-        const sceneContainer = this.addSceneContainer(scenesContainer, trimString(sceneName), sceneOptions);
+        const scenesContainerID = generateID(`${programID}-accordionScenes`);
+        const sceneID = generateID(`${programID}-${sceneName}`);
+        const sceneContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(sceneName), sceneOptions);
         const sceneObjectContainer = getDomElement('.catblocks-object-container', sceneContainer);
 
         const objects = scene.getElementsByTagName('object');
@@ -427,7 +485,7 @@ export class Share {
             }
           })();
 
-          const objectContainer = this.addObjectContainer(sceneObjectContainer, trimString(objectName), objectOptions);
+          const objectContainer = this.addObjectContainer(generateID(`${programID}-${objectName}`), sceneObjectContainer, trimString(objectName), objectOptions);
           const objectScriptContainer = getDomElement('.catblocks-script-container', objectContainer);
 
           let objectStats = {
