@@ -202,10 +202,44 @@ function parseObjects(object) {
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     for (let i = 0; i < lookList.length; i++) {
-      currentObject.lookList.push(new File(lookList[i].getAttribute("name"), lookList[i].getAttribute("fileName")));
-    }
+      let name = lookList[i].getAttribute('name');
+      if (name == null) {
+        const xml = lookList[i].getElementsByTagName('name');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          name = xml[0].textContent;
+        }
+      } 
+
+      let fileName = lookList[i].getAttribute('fileName');
+      if (fileName == null) {
+        const xml = lookList[i].getElementsByTagName('fileName');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          fileName = xml[0].textContent;
+        }
+      } 
+
+      const file = new File(name, fileName);
+      currentObject.lookList.push(file);
+    } 
     for (let i = 0; i < soundList.length; i++) {
-      currentObject.soundList.push(new File(soundList[i].getAttribute("name"), soundList[i].getAttribute("fileName")));
+      let name = soundList[i].getAttribute('name');
+      if (name == null) {
+        const xml = soundList[i].getElementsByTagName('name');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          name = xml[0].textContent;
+        }
+      } 
+
+      let fileName = soundList[i].getAttribute('fileName');
+      if (fileName == null) {
+        const xml = soundList[i].getElementsByTagName('fileName');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          fileName = xml[0].textContent;
+        }
+      }
+
+      const file = new File(name, fileName);
+      currentObject.soundList.push(file);
     }
     for (let i = 0; i < scriptList.length; i++) {
       currentObject.scriptList.push(parseScripts(scriptList[i]));
