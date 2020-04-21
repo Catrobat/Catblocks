@@ -127,8 +127,10 @@ export class Share {
    * @returns {Object<Element, Object>} svg with block stats
    */
   domToSvg(blockXml) {
-    const xOffset = 50;
-    const yOffset = 50;
+    // should happend in CSS, not inside of image
+    // TODO: remove offset transformation
+    const xOffset = 0;
+    const yOffset = 0;
 
     // move it away from the edges
     transformXml(blockXml, {
@@ -292,11 +294,12 @@ export class Share {
    * @param {*} programID
    * @param {*} container
    * @param {*} programJSON
+   * @param {*} xmlElement
    * @param {*} [options={}]
    * @returns
    * @memberof Share
    */
-  renderProgramJSON(programID, container, programJSON, options = {}) {
+  renderProgramJSON(programID, container, programJSON, xmlElement, options = {}) {
     return new Promise((resolve, reject) => {
       // create row and col
       const programContainer = this.createProgramContainer(generateID(programID), container);
@@ -306,7 +309,10 @@ export class Share {
         id: scenesContainerID
       });
 
-      if (programJSON.scenes.length === 0) {
+      const xmlScenes = xmlElement.getElementsByTagName('scene');
+      if (programJSON.scenes.length === 0 || xmlElement == null || !hasChildren(xmlScenes) ||
+        xmlScenes.length != programJSON.scenes.length) {
+
         const errorContainer = injectNewDom(scenesContainer, 'div', { 
           class: 'catblocks-scene card'
         });
@@ -316,11 +322,16 @@ export class Share {
         return reject(new Error('Empty program found'));
       }
 
-      for (const scene of programJSON.scenes) {
+      for (let i = 0; i < programJSON.scenes.length; i++) {
+        const scene = programJSON.scenes[i];
+        const xmlScene = xmlScenes[i];
         const sceneID = generateID(`${programID}-${scene.name}`);
-        const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(scene.name));
+        const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(scene.name), parseOptions(options.scene, defaultOptions.scene));
         
-        if (scene.objectList.length === 0) {
+        const xmlObjects = xmlScene.getElementsByTagName('object');
+        if (scene.objectList.length === 0 || !hasChildren(xmlObjects) || 
+          xmlObjects.length != scene.objectList.length) {
+
           const errorContainer = injectNewDom(sceneObjectContainer, 'div', { 
             class: 'catblocks-object card'
           });
@@ -330,10 +341,12 @@ export class Share {
           continue;
         }
 
-        for (const object of scene.objectList) {
-          const objectID = generateID(`${programID}-${object.name}`);
-          this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer, object, scene.name);
-
+        for (let j = 0; j < scene.objectList.length; j++) {
+          const object = scene.objectList[j];
+          const xmlObject = xmlObjects[j];
+          const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
+          this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer, 
+            xmlObject, object, parseOptions(options.object, defaultOptions.object));
         }
       }
 
@@ -341,14 +354,14 @@ export class Share {
     });
   }
 
-  renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, sceneName) {
+  renderObjectJSON(objectID, accordionID, sceneObjectContainer, xmlObject, object, options = defaultOptions.object) {
     const objectCard = injectNewDom(sceneObjectContainer, 'div', {
       class: 'card',
       id: objectID
     });
 
-    const objHeadingID = `${generateID(`${sceneName}-${object.name}`)}-heading`;
-    const objCollapseOneSceneID = `${generateID(`${sceneName}-${object.name}`)}-collapseOneScene`;
+    const objHeadingID = `${objectID}-heading`;
+    const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
     const cardHeader = injectNewDom(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
@@ -367,13 +380,55 @@ export class Share {
     });
 
     this.generateTabs(objectContentContainer, objectID, object);
+    const contentContainer = injectNewDom(objectContentContainer, 'div', {
+      class: 'tab-content card-body'
+    });
+
+    this.generateScripts(contentContainer, objectID, object, xmlObject, options);
+  }
+
+  generateScripts(container, objectID, object, xmlObject, options = defaultOptions.object) {
+    const scriptContainer = injectNewDom(container, 'div', {
+      class: 'tab-pane show active fade p-3',
+      id: `${objectID}-scripts`,
+      role: 'tabpanel',
+      'aria-labelledby': `${objectID}-scripts-tab`
+    });
+
+    if (object.scriptList.length <= 0 || !hasChildren(xmlObject)) {
+      // TODO: add empty block
+      return;
+    }
+
+    const scripts = xmlObject.getElementsByTagName('script');
+    let failed = 0;
+    for (const script of scripts) {
+      const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+
+      const scriptContainer = injectNewDom(container, 'div', { 
+        class: 'catblocks-script' 
+      });
+
+      const blockSvg = this.domToSvg(blockXml);
+      if (blockSvg === undefined) {
+        failed++;
+      } else {
+        scriptContainer.appendChild(blockSvg);
+      }
+    }
+    
+    if (failed > 0) {
+      scriptContainer.appendChild(injectNewDom(scriptContainer, 'p', { 
+        class: 'catblocks-empty-text' 
+      }, `Failed to parse ${failed} script(s) properly.`));
+    }
   }
 
   generateTabs(container, objectID, object) {
     const tabs = injectNewDom(container, 'div', {
       class: 'catro-tabs'
     });
-
+    console.log(object);
     const ul = injectNewDom(tabs, 'ul', {
       class: 'nav nav-tabs nav-fill',
       id: `${objectID}-tabs`,
@@ -393,6 +448,31 @@ export class Share {
       'aria-selected': 'true'
     }, `Scripts (${object.scriptList.length})`);
     
+    const liLooks = injectNewDom(ul, 'li', {
+      class: 'nav-item'
+    });
+    injectNewDom(liLooks, 'a', {
+      class: 'nav-link',
+      id: `${objectID}-looks-tab`,
+      'data-toggle': 'tab',
+      href: `#${objectID}-looks`,
+      role: 'tab',
+      'aria-controls': 'looks',
+      'aria-selected': 'false'
+    }, `Looks (${object.lookList.length})`);
+
+    const liSounds = injectNewDom(ul, 'li', {
+      class: 'nav-item'
+    });
+    injectNewDom(liSounds, 'a', {
+      class: 'nav-link',
+      id: `${objectID}-sounds-tab`,
+      'data-toggle': 'tab',
+      href: `#${objectID}-sounds`,
+      role: 'tab',
+      'aria-controls': 'sounds',
+      'aria-selected': 'false'
+    }, `Sounds (${object.soundList.length})`);
   }
 
   /**
@@ -530,6 +610,7 @@ export class Share {
 	 * @return {String} css node string
 	 */
   getCssContent() {
+    // TODO: remove css content from javascript and move it to a .css file
     return `
 		.catblocks-scene,
 		.catblocks-object {

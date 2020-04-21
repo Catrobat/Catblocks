@@ -91,13 +91,14 @@ const renderProgram = (share, container, path, name, counter) => {
 const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
   try {
     // inject code
+    const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
     const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
 
     // prepare container for program injection
     const programContainer = createProgramContainer(container);
 
     const programID = `catblocks-program-${name}-${counter++}`;
-    return share.renderProgramJSON(programID, programContainer, programJSON, {
+    return share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
       object: {
         fileMap: fileMap
       }
