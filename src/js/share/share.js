@@ -76,7 +76,7 @@ export class Share {
   /**
 	 * Get script stats and return
 	 * @param {XMLDocument} script to parse starts
-	 * @returns {Element} starts value dictonary
+	 * @returns {Element} starts value dictionary
 	 */
   getScriptStats(script) {
     if (!script) return {};
@@ -98,7 +98,7 @@ export class Share {
   /**
    * Get workspace stats and return it
    * @param {object} workspace to parse stats
-   * @returns {object} stats from worspace
+   * @returns {object} stats from workspace
    */
   getWorkspaceBlockStats() {
     const workspaceStats = {
@@ -300,6 +300,7 @@ export class Share {
    * @memberof Share
    */
   renderProgramJSON(programID, container, programJSON, xmlElement, options = {}) {
+    // TODO: create rendering by JSON only, so we can remove the xmlElement
     return new Promise((resolve, reject) => {
       // create row and col
       const programContainer = this.createProgramContainer(generateID(programID), container);
@@ -341,10 +342,12 @@ export class Share {
           continue;
         }
 
+        options.object.sceneName = scene.name;
         for (let j = 0; j < scene.objectList.length; j++) {
           const object = scene.objectList[j];
           const xmlObject = xmlObjects[j];
           const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
+          
           this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer, 
             xmlObject, object, parseOptions(options.object, defaultOptions.object));
         }
@@ -385,10 +388,50 @@ export class Share {
     });
 
     this.generateScripts(contentContainer, objectID, object, xmlObject, options);
+    this.generateLooks(contentContainer, objectID, object, options);
+  }
+
+  generateLooks(container, objectID, object, options = defaultOptions.object) {
+    const looksContainer = injectNewDom(container, 'div', {
+      class: 'tab-pane fade',
+      id: `${objectID}-looks`,
+      role: 'tabpanel',
+      'aria-labelledby': `${objectID}-looks-tab`
+    });
+
+    if (object.lookList.length <= 0) {
+      // TODO: add empty block
+      return;
+    }
+
+    const group = injectNewDom(looksContainer, 'div', {
+      class: 'list-group-flush'
+    });
+    for (const look of object.lookList) {
+      const row = injectNewDom(group, 'div', {
+        class: 'list-group-item row'
+      });
+      const col = injectNewDom(row, 'div', {
+        class: 'col-3'
+      });
+
+      const imgPath = `${options.sceneName}/images/${look.fileName}`;
+      // TODO: check on docker image
+      let src = `${this.config.shareRoot}${options.programRoot}${imgPath}`; 
+      
+      if (options.fileMap != null && options.fileMap[imgPath]) {
+        src = options.fileMap[imgPath];
+      } 
+      
+      injectNewDom(col, 'img', {
+        src: src,
+        class: 'img-fluid catblocks-object-look-item'
+      });
+    }
   }
 
   generateScripts(container, objectID, object, xmlObject, options = defaultOptions.object) {
-    const scriptContainer = injectNewDom(container, 'div', {
+    const wrapperContainer = injectNewDom(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
       role: 'tabpanel',
@@ -405,7 +448,7 @@ export class Share {
     for (const script of scripts) {
       const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 
-      const scriptContainer = injectNewDom(container, 'div', { 
+      const scriptContainer = injectNewDom(wrapperContainer, 'div', { 
         class: 'catblocks-script' 
       });
 
@@ -418,7 +461,7 @@ export class Share {
     }
     
     if (failed > 0) {
-      scriptContainer.appendChild(injectNewDom(scriptContainer, 'p', { 
+      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', { 
         class: 'catblocks-empty-text' 
       }, `Failed to parse ${failed} script(s) properly.`));
     }
