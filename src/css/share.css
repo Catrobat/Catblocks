@@ -71,3 +71,22 @@ img {
 .material-icons {
     vertical-align: middle;
 }
+
+.blocklyText {
+    fill: #fff;
+    font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.blocklyNonEditableText>rect:not(.blocklyDropdownRect), .blocklyEditableText>rect:not(.blocklyDropdownRect) {
+    fill: #fff;
+}
+
+.blocklyNonEditableText>text, .blocklyEditableText>text, .blocklyNonEditableText>g>text, .blocklyEditableText>g>text {
+    fill: #575E75;
+}
+
+.blocklyDropdownText {
+    fill: #fff !important;
+}

@@ -389,18 +389,70 @@ export class Share {
 
     this.generateScripts(contentContainer, objectID, object, xmlObject, options);
     this.generateLooks(contentContainer, objectID, object, options);
+    this.generateSounds(contentContainer, objectID, object, options);
+  }
+
+  generateSounds(container, objectID, object, options = defaultOptions.object) {
+    const soundsContainer = injectNewDom(container, 'div', {
+      class: 'tab-pane fade p-3',
+      id: `${objectID}-sounds`,
+      role: 'tabpanel',
+      'aria-labelledby': `${objectID}-sounds-tab`
+    });
+
+    if (object.soundList.length <= 0) {
+      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', { 
+        class: 'catblocks-empty-text' 
+      }, 'No Sounds found'));
+      return;
+    }
+
+    const group = injectNewDom(soundsContainer, 'div', {
+      class: 'list-group-flush'
+    });
+    for (const sound of object.soundList) {
+      const row = injectNewDom(group, 'div', {
+        class: 'list-group-item row'
+      });
+      const colIcon = injectNewDom(row, 'div', {
+        class: 'col-3 text-center'
+      });
+      colIcon.innerHTML = `<i class="material-icons" style="font-size:3em">play_circle_outline</i>`;
+
+      const col = injectNewDom(row, 'div', {
+        class: 'col-9'
+      });
+
+      const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
+      // TODO: check on docker image
+      let src = `${this.config.shareRoot}${options.programRoot}${soundPath}`; 
+      
+      if (options.fileMap != null && options.fileMap[soundPath]) {
+        src = options.fileMap[soundPath];
+      } 
+      
+      const audioContainer = injectNewDom(col, 'audio', {
+        class: 'catblocks-object-sound-item',
+        controls: 'controls'
+      });
+      injectNewDom(audioContainer, 'source', {
+        src: src
+      });
+    }
   }
 
   generateLooks(container, objectID, object, options = defaultOptions.object) {
     const looksContainer = injectNewDom(container, 'div', {
-      class: 'tab-pane fade',
+      class: 'tab-pane fade p-3',
       id: `${objectID}-looks`,
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
     if (object.lookList.length <= 0) {
-      // TODO: add empty block
+      looksContainer.appendChild(injectNewDom(looksContainer, 'p', { 
+        class: 'catblocks-empty-text' 
+      }, 'No Looks found'));
       return;
     }
 
@@ -439,7 +491,9 @@ export class Share {
     });
 
     if (object.scriptList.length <= 0 || !hasChildren(xmlObject)) {
-      // TODO: add empty block
+      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', { 
+        class: 'catblocks-empty-text' 
+      }, 'No Scripts found'));
       return;
     }
 
