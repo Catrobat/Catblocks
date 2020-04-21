@@ -90,3 +90,19 @@ img {
 .blocklyDropdownText {
     fill: #fff !important;
 }
+
+.card-header {
+    cursor: pointer;
+}
+
+.catblocks-script {
+    padding: 0 20px;
+}
+
+.catblocks-script+.catblocks-script {
+    margin-top: 20px;
+}
+
+.catblocks-empty-text {
+    padding: 20px;
+}
