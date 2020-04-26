@@ -1,7 +1,7 @@
 /**
  * @description Share test
  */
-/* global page, SERVER, share, shareTestContainer */
+/* global page, SERVER, share, shareTestContainer, shareUtils */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -16,27 +16,48 @@ describe('Share basic tests', () => {
 
   test('Share renders scene container properly', async () => {
     expect(await page.evaluate(() => {
-      const container = share.addSceneContainer(shareTestContainer, 'tscene');
+      const accordionContainer = share.addSceneContainer('accordionID', 'sceneID', shareTestContainer, 'Name of the scene');
+      const cardBody = accordionContainer.parentNode;
+      const sceneObjContainer = cardBody.parentNode;
+      const sceneContainer = sceneObjContainer.parentNode;
 
-      return (container.id === 'tscene'
-        && container.getAttribute('class') === 'catblocks-scene'
-        && container.querySelector('#tscene-header') !== undefined
-        && container.querySelector('#tscene-header').innerText === 'Scene: tscene'
-        && container.querySelector('.catblocks-object-container') !== undefined);
+      return (accordionContainer.id === 'sceneID-accordionObjects'
+        && sceneContainer.id === 'sceneID'
+        && sceneContainer.querySelector('#sceneID-header') !== undefined
+        && sceneContainer.querySelector('#sceneID-header').innerText.startsWith('Name of the scene')
+        && sceneContainer.querySelector('#sceneID-header').getAttribute('data-target') === '#sceneID-collapseOne'
+
+        && sceneContainer.getAttribute('class') === 'catblocks-scene card'
+        && sceneContainer.querySelector('.catblocks-object-container') !== undefined
+        && sceneObjContainer.getAttribute('data-parent') === '#accordionID');
     })).toBeTruthy();
   });
 
   test('Share renders object container properly', async () => {
     expect(await page.evaluate(() => {
-      const container = share.addObjectContainer(shareTestContainer, 'tobject');
+      const container = document.createElement('div');
+      shareTestContainer.append(container);
 
-      return (container.id === 'tobject'
-        && container.getAttribute('class') === 'catblocks-object'
+      share.renderObjectJSON('tobject', 'sceneID-accordionObjects', container, undefined, { name: 'objectName' });
+
+      const objectCard = container.firstChild;
+
+      return (objectCard.id === 'tobject'
+        && objectCard.getAttribute('class') === 'catblocks-object card'
         && container.querySelector('#tobject-header') !== undefined
-        && container.querySelector('#tobject-header').innerText === 'Object: tobject'
-        && container.querySelector('.catblocks-script-container') !== undefined
-        && container.querySelector('.catblocks-object-props-container .catblocks-object-stats-container .catblocks-object-stats-label-container') !== undefined
-        && container.querySelector('.catblocks-object-props-container .catblocks-object-stats-container .catblocks-object-stats-value-container') !== undefined);
+        && container.querySelector('#tobject-header').innerText.startsWith('objectName')
+        && container.querySelector('#tobject-collapseOneScene') !== undefined
+        && container.querySelector('#tobject-collapseOneScene').getAttribute('data-parent') === '#sceneID-accordionObjects'
+
+        && container.querySelector('.tab-content') !== undefined
+        && container.querySelector('#tobject-tabs') !== undefined
+
+        && container.querySelector('#tobject-scripts-tab') !== undefined
+        && container.querySelector('#tobject-looks-tab') !== undefined
+        && container.querySelector('#tobject-sounds-tab') !== undefined
+        && container.querySelector(container.querySelector('#tobject-scripts-tab').getAttribute('href')) !== undefined
+        && container.querySelector(container.querySelector('#tobject-looks-tab').getAttribute('href')) !== undefined
+        && container.querySelector(container.querySelector('#tobject-sounds-tab').getAttribute('href')) !== undefined);
     })).toBeTruthy();
   });
 });
@@ -46,29 +67,33 @@ describe('Share catroid program rendering tests', () => {
   test('Share render unsupported version properly', async () => {
     expect(await page.evaluate(() => {
       const catXml = undefined;
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = undefined;
 
-      return (shareTestContainer.querySelector('.catblocks-empty-text').innerHTML.length > 0);
+      try {
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        return false;
+      } catch (e) {
+        return (e.message === 'Empty program found'
+          && shareTestContainer.querySelector('.card-header').innerText === 'Empty program found');
+      }
+
     })).toBeTruthy();
   });
 
-  test('Share render supported version properly', async () => {
-    expect(await page.evaluate(() => {
-      const xmlString = `<xml></xml>`;
-      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
-
-      return (shareTestContainer.querySelector('.catblocks-scene-container .catblocks-empty-text').innerHTML.length > 0);
-    })).toBeTruthy();
-  });
 
   test('Share render an empty program properly', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {};
 
-      return (shareTestContainer.querySelector('.catblocks-scene-container .catblocks-empty-text').innerHTML.length > 0);
+      try {
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        return false;
+      } catch (e) {
+        return (e.message === 'Empty program found'
+          && shareTestContainer.querySelector('.card-header').innerText === 'Empty program found');
+      }
     })).toBeTruthy();
   });
 
@@ -76,10 +101,20 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene"></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene'
+        }]
+      };
 
-      return (shareTestContainer.querySelector('#tscene') !== undefined
-        && shareTestContainer.querySelector('#tscene .catblocks-empty-text').innerHTML.length > 0);
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+        && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
+        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
+        && shareTestContainer.querySelector('.accordion') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
     })).toBeTruthy();
   });
 
@@ -87,12 +122,22 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene1"></scene><scene type="tscene2"></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene1'
+        }, {
+          name: 'tscene2'
+        }]
+      };
 
-      return (shareTestContainer.querySelector('#tscene1') !== undefined
-        && shareTestContainer.querySelector('#tscene2') !== undefined
-        && shareTestContainer.querySelector('#tscene1 .catblocks-empty-text').innerHTML.length > 0
-        && shareTestContainer.querySelector('#tscene2 .catblocks-empty-text').innerHTML.length > 0);
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+        && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
+        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
+        && shareTestContainer.querySelector('.accordion') !== undefined
+        && shareTestContainer.getElementsByClassName('catblocks-object').length === 2
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
     })).toBeTruthy();
   });
 
@@ -100,10 +145,21 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'toobject'
+          }]
+        }]
+      };
 
-      return (shareTestContainer.querySelector('#tscene #tobject .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#tscene #tobject .catblocks-empty-text').innerHTML.length > 0);
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      return (shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('toobject')
+        && shareTestContainer.querySelector('.tab-pane') !== undefined
+        && shareTestContainer.querySelector('.catblocks-script') !== undefined);
     })).toBeTruthy();
   });
 
@@ -111,12 +167,31 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object><object type="tobject2"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'tobject1'
+          }, {
+            name: 'tobject2'
+          }]
+        }]
+      };
 
-      return (shareTestContainer.querySelector('#tscene #tobject1 .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#tscene #tobject1 .catblocks-empty-text').innerHTML.length > 0
-        && shareTestContainer.querySelector('#tscene #tobject2 .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#tscene #tobject2 .catblocks-empty-text').innerHTML.length > 0);
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      const sceneID = shareUtils.generateID('programID-tscene');
+      const obj1ID = shareUtils.generateID('programID-tscene-toobject1');
+      const obj2ID = shareUtils.generateID('programID-tscene-toobject2');
+
+      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== undefined
+        && shareTestContainer.querySelector('#'+sceneID) !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== undefined);
     })).toBeTruthy();
   });
 
@@ -124,12 +199,40 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene1"><object type="tobject1"></object></scene><scene type="tscene2"><object type="tobject2"></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene1',
+          objectList: [{
+            name: 'tobject1'
+          }]
+        }, {
+          name: 'tscene2',
+          objectList: [{
+            name: 'toobject2'
+          }]
+        }]
+      };
+      
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      return (shareTestContainer.querySelector('#tscene1 #tobject1 .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#tscene1 #tobject1 .catblocks-empty-text').innerHTML.length > 0
-        && shareTestContainer.querySelector('#tscene2 #tobject2 .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#tscene2 #tobject2 .catblocks-empty-text').innerHTML.length > 0);
+      const scene1ID = shareUtils.generateID('programID-tscene1');
+      const scene2ID = shareUtils.generateID('programID-tscene2');
+      const obj1ID = shareUtils.generateID('programID-tscene1-toobject1');
+      const obj2ID = shareUtils.generateID('programID-tscene2-toobject2');
+
+      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== undefined
+        && shareTestContainer.querySelector('#'+scene1ID) !== undefined
+        && shareTestContainer.querySelector('#'+scene2ID) !== undefined
+       
+        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== undefined
+     
+        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds') !== undefined
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== undefined);
     })).toBeTruthy();
   });
 
@@ -145,15 +248,15 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
-  test('Share render svg script bbox properly', async () => {
+  test('Share render svg script box properly', async () => {
     expect(await page.evaluate(() => {
       const scriptString = `<block type="PreviousLookBrick"></block>`;
       const scriptXml = (new DOMParser).parseFromString(scriptString, 'text/xml');
       const svg = share.domToSvg(scriptXml);
 
       return (svg !== undefined
-        && svg.getAttribute('width').replace('px', '') > 50
-        && svg.getAttribute('height').replace('px', '') > 50);
+        && svg.getAttribute('width').replace('px', '') > 0
+        && svg.getAttribute('height').replace('px', '') > 0);
     })).toBeTruthy();
   });
 
@@ -161,10 +264,106 @@ describe('Share catroid program rendering tests', () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene"><object type="tobject"><script type="tscript"><block type="PreviousLookBrick"></block></script></object></scene></xml>`;
       const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      share.injectAllScenes(shareTestContainer, catXml);
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'tobject',
+            scriptList: [{
+              'not-supported': 'yet (takes script from XML)'
+            }]
+          }]
+        }]
+      };
 
-      return shareTestContainer.querySelector('#tscene #tobject .catblocks-script svg.catblocks-svg');
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      const objID = shareUtils.generateID('programID-tscene-toobject');
+      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-scripts .catblocks-script svg.catblocks-svg') !== undefined);
     })).toBeTruthy();
+  });
+
+  test('JSON object has a script, but XML not', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<xml><scene type="tscene"><object type="tobject">/object></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'tobject',
+            scriptList: [{
+              'not-supported': 'yet (takes script from XML)'
+            }]
+          }]
+        }]
+      };
+
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      const objID = shareUtils.generateID('programID-tscene-toobject');
+      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-scripts .catblocks-script svg.catblocks-svg') == null);
+    })).toBeTruthy();
+  });
+
+  test('JSON and XML have unqual number of scenes', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<xml><scene type="tscene1"></scene><scene type="tscene2"></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene1'
+        }]
+      };
+
+      try {
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+      } catch (e) {
+        return false;
+      }
+      
+    })).toBeFalsy();
+  });
+
+  test('JSON and XML have unqual number of objects in scene', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'tobject1'
+          }, {
+            name: 'tobject2'
+          }]
+        }]
+      };
+      
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+        && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
+        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
+        && shareTestContainer.querySelector('.accordion') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
+    })).toBeTruthy();
+  });
+
+  test('JSON empty but XML given', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {};
+      
+      try {
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+      } catch (e) {
+        return false;
+      }
+      
+    })).toBeFalsy();
   });
 });
 
@@ -265,37 +464,6 @@ describe('Share statistic tests', () => {
 
         return (JSON.stringify(scriptStats) === JSON.stringify({ unknown: 1 }));
       })).toBeTruthy();
-    });
-  });
-
-  describe('Share statistic rendering tests', () => {
-
-    test('Share render object status properly', async () => {
-      expect(await page.evaluate(() => {
-        const stats = {
-          'name': 'tobject',
-          'scripts': 1,
-          'sound': 1,
-          'pen': 2,
-          'control': 5
-        };
-        const objectContainer = share.addObjectContainer(shareTestContainer, 'tobject');
-        share.writeObjectStats(objectContainer, stats);
-        const statsValues = shareTestContainer.querySelector('.catblocks-object-stats-value-list');
-
-        return Array.from(statsValues.children)
-          .map(value => {
-            const catClassName = value.getAttribute('class').match(/catblocks-category-[a-z]+/);
-            if (catClassName && catClassName.length === 1) {
-              const catName = catClassName[0].split('-')[2];
-              return (typeof stats[catName] === 'string')
-                ? stats[catName] === value.innerHTML
-                : stats[catName] === parseInt(value.innerHTML, 10);
-            } else {
-              return false;
-            }
-          }).includes(false);
-      })).toBeFalsy();
     });
   });
 });

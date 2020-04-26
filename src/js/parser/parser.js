@@ -144,6 +144,19 @@ function parseCatroidProgram(xml) {
 }
 
 /**
+ * Get the xml program as JSON
+ * @param {XMLDocument} xml catroid program xml
+ * @returns {Object} parsed program
+ */
+function getCatroidProgramObject(xml) {
+  const scenes = xml.getElementsByTagName('scenes')[0].children;
+  for (let i = 0; i < scenes.length; i++) {
+    sceneList.push(parseScenes(scenes[i]));
+  }
+  return { scenes: sceneList };
+}
+
+/**
  * Flat/dereference xml nodes
  * @param {*} node node
  * @param {*} xml XMLDocument
@@ -189,10 +202,44 @@ function parseObjects(object) {
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     for (let i = 0; i < lookList.length; i++) {
-      currentObject.lookList.push(new File(lookList[i].getAttribute("name"), lookList[i].getAttribute("fileName")));
-    }
+      let name = lookList[i].getAttribute('name');
+      if (name == null) {
+        const xml = lookList[i].getElementsByTagName('name');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          name = xml[0].textContent;
+        }
+      } 
+
+      let fileName = lookList[i].getAttribute('fileName');
+      if (fileName == null) {
+        const xml = lookList[i].getElementsByTagName('fileName');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          fileName = xml[0].textContent;
+        }
+      } 
+
+      const file = new File(name, fileName);
+      currentObject.lookList.push(file);
+    } 
     for (let i = 0; i < soundList.length; i++) {
-      currentObject.soundList.push(new File(soundList[i].getAttribute("name"), soundList[i].getAttribute("fileName")));
+      let name = soundList[i].getAttribute('name');
+      if (name == null) {
+        const xml = soundList[i].getElementsByTagName('name');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          name = xml[0].textContent;
+        }
+      } 
+
+      let fileName = soundList[i].getAttribute('fileName');
+      if (fileName == null) {
+        const xml = soundList[i].getElementsByTagName('fileName');
+        if (xml.length > 0 && xml[0] !== undefined) {
+          fileName = xml[0].textContent;
+        }
+      }
+
+      const file = new File(name, fileName);
+      currentObject.soundList.push(file);
     }
     for (let i = 0; i < scriptList.length; i++) {
       currentObject.scriptList.push(parseScripts(scriptList[i]));
@@ -590,6 +637,57 @@ export default class Parser {
     }
 
     return retVal;
+  }
+
+
+  /**
+   * Convert given XML to JSON object
+   * @static
+   * @param {Element} xmlString code.xml file
+   * @returns {Object}
+   */
+  static convertProgramToJSON(xmlString) {
+    if (typeof xmlString === 'string') {
+      try {
+        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) return undefined;
+
+        initParser(xml);
+        return getCatroidProgramObject(xml);
+      } catch (e) {
+        catLog(e);
+        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        return undefined;
+      }
+    }
+    return getCatroidProgramObject(xmlString);
+  }
+
+
+  /**
+   * Convert given XML to JSON object and return every error
+   * @static
+   * @param {Element} xmlString code.xml file
+   * @returns {Object}
+   */
+  static convertProgramToJSONDebug(xmlString) {
+    const obj = Parser.convertProgramToJSON(xmlString);
+
+    if (obj === undefined) {
+      const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+
+      const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
+      if (appVersion === undefined || appVersion.length < 1) {
+        throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
+      } else if (appVersion[0].innerHTML < supportedAppVersion) {
+        throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
+      }
+
+      initParser(xml);
+      return getCatroidProgramObject(xml);
+    }
+
+    return obj;
   }
 
   /**

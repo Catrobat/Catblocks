@@ -4,6 +4,7 @@
  */
 
 import $ from 'jquery';
+import md5 from "js-md5";
 
 
 /**
@@ -178,27 +179,6 @@ export const hasChildren = (element) => {
 };
 
 /**
- * Enable expandable
- * @param {*} node node to expand on trigger click
- * @param {*} trigger trigger to expand node
- */
-export const enableExpandable = (node, trigger) => {
-  // TODO: use jquery, need to fix displaying issues with max-heigth later
-  $(node).css('display', 'none');
-  $(node).addClass('container-closed');
-
-  $(trigger).click(() => {
-    if ($(node).hasClass('container-closed')) {
-      $(node).slideDown();
-      $(node).removeClass('container-closed');
-    } else {
-      $(node).slideUp();
-      $(node).addClass('container-closed');
-    }
-  });
-};
-
-/**
  * Trim string is longer than length and add ...
  * @param {*} str to trim
  * @param {*} length if longer than
@@ -231,4 +211,22 @@ export const checkNextBlock = (array) => {
       }
     }
   }
+};
+
+/**
+ * Generate HTML safe ID
+ * @param {string} string unique name to identify this item
+ * @returns {string} md5 encoded with catblocks- prefix
+ */
+export const generateID = (string) => {
+  return 'catblocks-' + md5(string);
+};
+
+/**
+ * Get URL escaped resource path
+ * @param {string} string path to resource
+ * @returns {string} encoded URI
+ */
+export const escapeURI = (string) => {
+  return encodeURI(string).replace('#', '%23');
 };
