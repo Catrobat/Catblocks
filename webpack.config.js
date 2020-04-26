@@ -73,7 +73,8 @@ module.exports = {
     ]),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      TYPE: 'catblocks'
+      TYPE: 'catblocks',
+      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : ""
     })
   ],
   // watch: true,

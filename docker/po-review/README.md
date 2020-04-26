@@ -30,6 +30,10 @@ A combination of both is supported as well, but not separatly listed below.
 In case you have already built the `catblocks:po-review` container and you would like to reuse it. You can overwrite the
  entrypoint.sh file using the `-v /absolute/path/to/entrypoint.sh:/entrypoint.sh` option. Please validate that the 
  entrypoint.sh file is executable. 
+ 
+ 
+You can set the display language by adding following option `-e DISPLAY_LANGUAGE=de`. E.g. `de` for German. Without this option the blocks will be rendered with the default language.
+Use key values of locales from `i18n/lang_codes_mapping.js` to set display language.
 
 ## Single program testing
 For single program testing use the paramater method. 
@@ -42,6 +46,9 @@ Both values can be found on the [share](https://share.catrob.at/app/).
 
   # use program hash 
   docker run --rm -it -p 8080:8080 catblocks:po-review "4a20f223-5cbf-11ea-a2ae-000c292a0f49"
+
+  # use program hash and set display language to German
+  docker run --rm -it -e DISPLAY_LANGUAGE=de -p 8080:8080 catblocks:po-review "4a20f223-5cbf-11ea-a2ae-000c292a0f49" 
 ```
 
 This will download the program before launching the webserver.
@@ -67,4 +74,7 @@ can be done using the `-v` option.
 ```bash
  # mount folder and run bulk test
   docker run --rm -it -v ./catBulkTest:/test/programs/ -p 8080:8080 catblocks:po-review
+
+ # mount folder, set language to German and run bulk test
+  docker run --rm -it -e DISPLAY_LANGUAGE=de -v ./catBulkTest:/test/programs/ -p 8080:8080 catblocks:po-review
 ```
