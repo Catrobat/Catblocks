@@ -203,18 +203,18 @@ export const checkNextBlock = (array) => {
     if(array[i].childBlocks_.length > 0) {
       for(let j = 0; j < array[i].childBlocks_.length; j++) {
         if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
-          const colourPrimaryTemp = array[i].childBlocks_[j].style.colourPrimary;
-          const colourTertTemp = array[i].childBlocks_[j].style.colourTertiary;
+          const colourPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
+          const colourTertTemporary = array[i].childBlocks_[j].style.colourTertiary;
 
-          if(array[i].colour_ === colourPrimaryTemp){
-            array[i].childBlocks_[j].colour_ = colourTertTemp;
-            array[i].childBlocks_[j].style.colourPrimary = colourTertTemp;
-            array[i].childBlocks_[j].style.colourTertiary = colourPrimaryTemp;
+          if(array[i].colour_ === colourPrimaryTemporary){
+            array[i].childBlocks_[j].colour_ = colourTertTemporary;
+            array[i].childBlocks_[j].style.colourPrimary = colourTertTemporary;
+            array[i].childBlocks_[j].style.colourTertiary = colourPrimaryTemporary;
           }
           else {
-            array[i].childBlocks_[j].colour_ = colourPrimaryTemp;
-            array[i].childBlocks_[j].style.colourPrimary = colourPrimaryTemp;
-            array[i].childBlocks_[j].style.colourTertiary = colourTertTemp;
+            array[i].childBlocks_[j].colour_ = colourPrimaryTemporary;
+            array[i].childBlocks_[j].style.colourPrimary = colourPrimaryTemporary;
+            array[i].childBlocks_[j].style.colourTertiary = colourTertTemporary;
           }
           array[i].childBlocks_[j].initSvg();
         }
