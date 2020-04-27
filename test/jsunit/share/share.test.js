@@ -283,6 +283,39 @@ describe('Share catroid program rendering tests', () => {
     })).toBeTruthy();
   });
 
+  test('Share render object with sound', async () => {
+    expect(await page.evaluate(() => {
+      const testDisplayName = 'Silence Sound';
+      const xmlString = `
+      <xml>
+        <scene type="tscene">
+          <object type="tobject">
+          </object>
+        </scene>
+      </xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'tobject',
+            soundList: [{
+              name: testDisplayName,
+              fileName: 'silence.mp3'
+            }]
+          }]
+        }]
+      };
+
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      const objID = shareUtils.generateID('programID-tscene-tobject');
+      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-sounds .catblocks-object-sound-name') !== undefined
+        && shareTestContainer.querySelector('#'+objID+' #'+objID+'-sounds .catblocks-object-sound-name').innerHTML == testDisplayName);
+      
+    })).toBeTruthy();
+  });
+
   test('JSON object has a script, but XML not', async () => {
     expect(await page.evaluate(() => {
       const xmlString = `<xml><scene type="tscene"><object type="tobject">/object></scene></xml>`;
