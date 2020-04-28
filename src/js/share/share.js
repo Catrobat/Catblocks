@@ -361,13 +361,9 @@ export class Share {
       const row = injectNewDom(group, 'div', {
         class: 'list-group-item row'
       });
-      const colIcon = injectNewDom(row, 'div', {
-        class: 'col-3 text-center'
-      });
-      colIcon.innerHTML = `<i class="material-icons" style="font-size:3em">play_circle_outline</i>`;
 
       const col = injectNewDom(row, 'div', {
-        class: 'col-9'
+        class: 'col-12'
       });
 
       if (!options.sceneName || !sound.fileName) {
@@ -380,7 +376,16 @@ export class Share {
       
       if (options.fileMap != null && options.fileMap[soundPath]) {
         src = options.fileMap[soundPath];
-      } 
+      }
+
+      let displaySoundName = sound.name;
+      if (!displaySoundName) {
+        displaySoundName = sound.fileName;
+      }
+
+      injectNewDom(col, 'span', {
+        class: 'catblocks-object-sound-name d-block'
+      }, displaySoundName);
       
       const audioContainer = injectNewDom(col, 'audio', {
         class: 'catblocks-object-sound-item',
