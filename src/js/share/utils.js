@@ -204,22 +204,33 @@ export const checkNextBlock = (array) => {
       for(let j = 0; j < array[i].childBlocks_.length; j++) {
         if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
           const colourPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
-          const colourTertTemporary = array[i].childBlocks_[j].style.colourTertiary;
+          const colourTertiaryTemporary = array[i].childBlocks_[j].style.colourTertiary;
 
           if(array[i].colour_ === colourPrimaryTemporary){
-            array[i].childBlocks_[j].colour_ = colourTertTemporary;
-            array[i].childBlocks_[j].style.colourPrimary = colourTertTemporary;
+            array[i].childBlocks_[j].colour_ = colourTertiaryTemporary;
+            array[i].childBlocks_[j].style.colourPrimary = colourTertiaryTemporary;
             array[i].childBlocks_[j].style.colourTertiary = colourPrimaryTemporary;
           }
           else {
             array[i].childBlocks_[j].colour_ = colourPrimaryTemporary;
             array[i].childBlocks_[j].style.colourPrimary = colourPrimaryTemporary;
-            array[i].childBlocks_[j].style.colourTertiary = colourTertTemporary;
+            array[i].childBlocks_[j].style.colourTertiary = colourTertiaryTemporary;
           }
           array[i].childBlocks_[j].initSvg();
         }
         checkNextBlock(array[i].childBlocks_);
       }
+    }
+  }
+};
+
+export const zebraChangeColor = (array) => {
+  checkNextBlock(array);
+  if(array[0].colour_ !== array[0].style.colourPrimary){
+    for(let i = 0; i < array.length; i++){
+      const tempColor = array[i].style.colourPrimary;
+      array[i].style.colourPrimary = array[i].style.colourTertiary;
+      array[i].style.colourTertiary = tempColor;
     }
   }
 };
