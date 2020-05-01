@@ -207,6 +207,7 @@ export const checkNextBlock = (array, firstCall = false) => {
           const colorPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
           const colorTertiaryTemporary = array[i].childBlocks_[j].style.colourTertiary;
 
+          array[i].childBlocks_[j].style.colour_ = colorTertiaryTemporary;
           array[i].childBlocks_[j].style.colourPrimary = colorTertiaryTemporary;
           array[i].childBlocks_[j].style.colourTertiary = colorPrimaryTemporary;
 
