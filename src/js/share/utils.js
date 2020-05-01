@@ -197,41 +197,39 @@ export const trimString = (str, length = 15) => {
  * zebra effect -> color next block from same group slightly differently
  * @param {*} array 
  */
-export const checkNextBlock = (array) => {
+export const checkNextBlock = (array, firstCall = false) => {
 
   for(let i = 0; i < array.length; i++) {
     if(array[i].childBlocks_.length > 0) {
       for(let j = 0; j < array[i].childBlocks_.length; j++) {
-        if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
-          const colourPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
-          const colourTertiaryTemporary = array[i].childBlocks_[j].style.colourTertiary;
+        if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary){
 
-          if(array[i].colour_ === colourPrimaryTemporary){
-            array[i].childBlocks_[j].colour_ = colourTertiaryTemporary;
-            array[i].childBlocks_[j].style.colourPrimary = colourTertiaryTemporary;
-            array[i].childBlocks_[j].style.colourTertiary = colourPrimaryTemporary;
-          }
-          else {
-            array[i].childBlocks_[j].colour_ = colourPrimaryTemporary;
-            array[i].childBlocks_[j].style.colourPrimary = colourPrimaryTemporary;
-            array[i].childBlocks_[j].style.colourTertiary = colourTertiaryTemporary;
-          }
+          const colorPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
+          const colorTertiaryTemporary = array[i].childBlocks_[j].style.colourTertiary;
+
+          array[i].childBlocks_[j].style.colourPrimary = colorTertiaryTemporary;
+          array[i].childBlocks_[j].style.colourTertiary = colorPrimaryTemporary;
+
           array[i].childBlocks_[j].initSvg();
+
+          if(firstCall && array[i].childBlocks_[j].childBlocks_.length > 0 &&
+             colorPrimaryTemporary !== array[i].childBlocks_[j].childBlocks_[0].style.colourTertiary){
+            array[i].childBlocks_[j].style.colourPrimary = colorPrimaryTemporary;
+            array[i].childBlocks_[j].style.colourTertiary = colorTertiaryTemporary;
+          }
         }
-        checkNextBlock(array[i].childBlocks_);
       }
+      checkNextBlock(array[i].childBlocks_);
     }
   }
 };
 
 export const zebraChangeColor = (array) => {
-  checkNextBlock(array);
-  if(array[0].colour_ !== array[0].style.colourPrimary){
-    for(let i = 0; i < array.length; i++){
-      const tempColor = array[i].style.colourPrimary;
-      array[i].style.colourPrimary = array[i].style.colourTertiary;
-      array[i].style.colourTertiary = tempColor;
-    }
+  checkNextBlock(array, true);
+  for(let i = 0; i < array.length; i++){
+    const temporaryPrimaryColor = array[i].style.colourPrimary;
+    array[i].style.colourPrimary = array[i].style.colourTertiary;
+    array[i].style.colourTertiary = temporaryPrimaryColor;
   }
 };
 
