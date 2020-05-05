@@ -1,11 +1,12 @@
-name: Deploy develop page to gh-pages
+name: Merge Action
 
 on:
   push:
     branches: [ develop ] # merge creates commit + push
 
 jobs:
-  build:
+  deployTestingpage:
+    name: Deploy Testpage to GH-Pages
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
