@@ -10,6 +10,7 @@ beforeEach(async () => {
   await page.evaluate(() => {
     shareTestContainer = document.getElementById('shareprogs');
   });
+  page.on('console', message => console.log(message.text()));
 });
 
 describe('Share basic tests', () => {
@@ -157,7 +158,7 @@ describe('Share catroid program rendering tests', () => {
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
       return (shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
-        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('toobject')
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('<div style="font-weight: normal;">toobject</div>')
         && shareTestContainer.querySelector('.tab-pane') !== undefined
         && shareTestContainer.querySelector('.catblocks-script') !== undefined);
     })).toBeTruthy();
@@ -397,6 +398,49 @@ describe('Share catroid program rendering tests', () => {
       }
       
     })).toBeFalsy();
+  });
+
+  test('Share renders scene and card headers properly', async () => {
+    expect(await page.evaluate(() => {
+      const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'toobject'
+          }]
+        }]
+      };
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+
+      const expectedSceneHeaderTextCollapsed = '<div style="font-weight: normal;">tscene</div><i class="material-icons">chevron_left</i>';
+      const expectedCardHeaderTextCollapsed = '<div style="font-weight: normal;">toobject</div><i class="material-icons">chevron_left</i>';
+      const expectedSceneHeaderTextExpanded = '<div style="font-weight: bold;">tscene</div><i class="material-icons">expand_more</i>';
+      const expectedCardHeaderTextExpanded = '<div style="font-weight: bold;">toobject</div><i class="material-icons">expand_more</i>';
+      const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+      const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+      const sceneHeaderInitialText = sceneHeader.innerHTML;
+      const cardHeaderInitialText = cardHeader.innerHTML;
+      sceneHeader.click();
+      cardHeader.click();
+      sceneHeader.setAttribute('aria-expanded', "true");
+      cardHeader.setAttribute('aria-expanded', "true");
+      const sceneHeaderTextExpanded = sceneHeader.innerHTML;
+      const cardHeaderTextExpanded = cardHeader.innerHTML;
+      cardHeader.click();
+      sceneHeader.click();
+      sceneHeader.setAttribute('aria-expanded', "false");
+      cardHeader.setAttribute('aria-expanded', "false");
+      const sceneHeaderTextCollapsed = sceneHeader.innerHTML;
+      const cardHeaderTextCollapsed = cardHeader.innerHTML;
+      return (sceneHeaderInitialText === expectedSceneHeaderTextCollapsed
+        && cardHeaderInitialText === expectedCardHeaderTextCollapsed
+        && sceneHeaderTextExpanded === expectedSceneHeaderTextExpanded
+        && cardHeaderTextExpanded === expectedCardHeaderTextExpanded
+        && sceneHeaderTextCollapsed === expectedSceneHeaderTextCollapsed
+        && cardHeaderTextCollapsed === expectedCardHeaderTextCollapsed);
+    })).toBeTruthy();
   });
 });
 
