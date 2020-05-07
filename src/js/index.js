@@ -18,27 +18,13 @@ import { renderAllPrograms } from './render/render';
     break;
   }
   case 'share': {
-    window.share = new Share();
+    const programPath = 'assets/';
+    initShareAndRenderPrograms(programPath);
     break;
   }
   case 'render': {
-    const progPath = 'assets/programs/';
-    const catblocksWs = 'catblocks-workspace-container';
-    const progContainer = document.getElementById('catblocks-programs-container');
-
-    console.log(`Render every program which is located in ${progPath} directory`);
-    console.log(`If this page was loaded by your catblocks docker image, we copy first /test/programs/ to ${progPath}`);
-
-    const share = new Share();
-    share.init({
-      'container': catblocksWs,
-      'renderSize': 0.75,
-      'language': 'en',
-      'shareRoot': '',
-      'media': 'media/',
-      'noImageFound': 'No_Image_Available.jpg',
-    });
-    renderAllPrograms(share, progContainer, progPath);
+    const programPath = 'assets/programs/';
+    initShareAndRenderPrograms(programPath);
     break;
   }
   case 'testing': {
@@ -53,3 +39,18 @@ import { renderAllPrograms } from './render/render';
   }
   }
 })();
+
+function initShareAndRenderPrograms(programPath) {
+  const catblocksWorkspaceContainer = 'catblocks-workspace-container';
+  const programContainer = document.getElementById('catblocks-programs-container');
+  const share = new Share();
+  share.init({
+    'container': catblocksWorkspaceContainer,
+    'renderSize': 0.75,
+    'language': 'en',
+    'shareRoot': '',
+    'media': 'media/',
+    'noImageFound': 'No_Image_Available.jpg',
+  });
+  renderAllPrograms(share, programContainer, programPath);
+}
