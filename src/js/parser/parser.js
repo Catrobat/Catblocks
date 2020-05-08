@@ -62,8 +62,8 @@ const DEBUG = false;
 
 /**
  * Catblocks debug function
- * @param {*} msg 
- * @param {*} debug 
+ * @param {*} msg
+ * @param {*} debug
  */
 const catLog = (msg, debug = DEBUG) => {
   if (debug) {
@@ -74,7 +74,7 @@ const catLog = (msg, debug = DEBUG) => {
 
 /**
  * Escape script values in case unsafe characters are included
- * @param {*} unsafe 
+ * @param {*} unsafe
  */
 const escapeXml = (unsafe) => {
   if (unsafe === undefined || unsafe === null || unsafe.length === 0) {
@@ -113,7 +113,7 @@ function isSupported(program) {
 /**
  * Initialize parser for new conversion
  *  Clean old parsed values and define xmlDoc for xPath
- * @param {XMLDocument} xml 
+ * @param {XMLDocument} xml
  */
 function initParser(xml) {
   xmlDoc = xml;
@@ -142,7 +142,6 @@ function parseCatroidProgram(xml) {
     return undefined;
   }
 }
-
 /**
  * Get the xml program as JSON
  * @param {XMLDocument} xml catroid program xml
@@ -153,9 +152,8 @@ function getCatroidProgramObject(xml) {
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
-  return { scenes: sceneList };
+  return {scenes: sceneList};
 }
-
 /**
  * Flat/dereference xml nodes
  * @param {*} node node
@@ -208,7 +206,7 @@ function parseObjects(object) {
         if (xml.length > 0 && xml[0] !== undefined) {
           name = xml[0].textContent;
         }
-      } 
+      }
 
       let fileName = lookList[i].getAttribute('fileName');
       if (fileName == null) {
@@ -216,11 +214,11 @@ function parseObjects(object) {
         if (xml.length > 0 && xml[0] !== undefined) {
           fileName = xml[0].textContent;
         }
-      } 
+      }
 
       const file = new File(name, fileName);
       currentObject.lookList.push(file);
-    } 
+    }
     for (let i = 0; i < soundList.length; i++) {
       let name = soundList[i].getAttribute('name');
       if (name == null) {
@@ -228,7 +226,7 @@ function parseObjects(object) {
         if (xml.length > 0 && xml[0] !== undefined) {
           name = xml[0].textContent;
         }
-      } 
+      }
 
       let fileName = soundList[i].getAttribute('fileName');
       if (fileName == null) {
@@ -258,21 +256,128 @@ function parseScripts(script) {
     checkUsage(script.childNodes[i], currentScript);
   }
 
+  let positionInScriptBrickList = 0;
   for (let i = 0; i < brickList.length; i++) {
     if (brickList[i].attributes[0].value === "RepeatBrick") {
-      currentScript.brickList.push(parseBrick(brickList[i]));
-      const position = i;
-      i++;
-      while (brickList[i].attributes[0].value !== "LoopEndBrick") {
-        currentScript.brickList[position].loopOrIfBrickList.push(parseBrick(brickList[i]));
-        i++;
-      }
+      const loopFinished = fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, null,true);
+      i = loopFinished + 1;
+    }
+    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, null,true);
+      i = ifFinished + 1;
+    }
+    else if(brickList[i].attributes[0].value === "IfLogicBeginBrick") {
+      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, null,true);
+      i = ifFinished + 1;
     }
     else {
       currentScript.brickList.push(parseBrick(brickList[i]));
+      positionInScriptBrickList++;
     }
   }
   return currentScript;
+
+}
+
+function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, positionInScriptBrickList, currentListToFill = null ,firstCall = false) {
+
+  let i = counter;
+  let endBrick;
+  let elseBrick;
+  if(currentBrick === 'RepeatBrick') {
+    endBrick = "LoopEndBrick";
+    elseBrick = null;
+  }
+  else if(currentBrick === 'IfLogicBeginBrick') {
+    endBrick = "IfLogicEndBrick";
+    elseBrick = "IfLogicElseBrick";
+  }
+  else if(currentBrick === 'IfThenLogicBeginBrick') {
+    endBrick = "IfThenLogicEndBrick";
+    elseBrick = "IfThenLogicElseBrick";
+  }
+  if(firstCall){
+    currentScript.brickList.push(parseBrick(brickList[i]));
+  }
+  positionInScriptBrickList++;
+  let position = 0;
+  if(positionInScriptBrickList !== 0) {
+    position = positionInScriptBrickList - 1;
+  }
+  i++;
+  let list;
+  if(currentListToFill === null){
+    list = currentScript.brickList[position];
+  }
+  else {
+    list = currentListToFill;
+  }
+
+  let lastIndex = 0;
+  let listToFill = null;
+
+  while (brickList[i].attributes[0].value !== endBrick) {
+    if(brickList[i].attributes[0].value === elseBrick && elseBrick !== null) {
+      i++;
+      break;
+    }
+    if(brickList[i].attributes[0].value === "IfLogicBeginBrick"){
+      list.loopOrIfBrickList.push(parseBrick(brickList[i]));
+      lastIndex = list.loopOrIfBrickList.length - 1;
+      listToFill = list.loopOrIfBrickList[lastIndex];
+      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+      i = ifFinished + 1;
+    }
+    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+      list.loopOrIfBrickList.push(parseBrick(brickList[i]));
+      lastIndex = list.loopOrIfBrickList.length - 1;
+      listToFill = list.loopOrIfBrickList[lastIndex];
+      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+      i = ifFinished + 1;
+    }
+    else if(brickList[i].attributes[0].value === "RepeatBrick") {
+      list.loopOrIfBrickList.push(parseBrick(brickList[i]));
+      lastIndex = list.loopOrIfBrickList.length - 1;
+      listToFill = list.loopOrIfBrickList[lastIndex];
+      const loopFinished =  fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, listToFill);
+      i = loopFinished + 1;
+    }
+    else {
+      list.loopOrIfBrickList.push(parseBrick(brickList[i]));
+      i++;
+    }
+  }
+
+  if(elseBrick !== null) {
+    while (brickList[i].attributes[0].value !== endBrick) {
+      if(brickList[i].attributes[0].value === "IfLogicBeginBrick"){
+        list.elseBrickList.push(parseBrick(brickList[i]));
+        lastIndex = list.elseBrickList.length - 1;
+        listToFill = list.elseBrickList[lastIndex];
+        const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+        i = ifFinished + 1;
+      }
+      else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+        list.elseBrickList.push(parseBrick(brickList[i]));
+        lastIndex = list.elseBrickList.length - 1;
+        listToFill = list.elseBrickList[lastIndex];
+        const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+        i = ifFinished + 1;
+      }
+      else if(brickList[i].attributes[0].value === "RepeatBrick") {
+        list.elseBrickList.push(parseBrick(brickList[i]));
+        lastIndex = list.elseBrickList.length - 1;
+        listToFill = list.elseBrickList[lastIndex];
+        const loopFinished =  fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, listToFill);
+        i = loopFinished + 1;
+      }
+      else {
+        list.elseBrickList.push(parseBrick(brickList[i]));
+        i++;
+      }
+    }
+  }
+  return i;
 }
 
 function parseBrick(brick) {
@@ -289,8 +394,8 @@ function parseBrick(brick) {
 
 /**
  * Return crowdin value or default
- * @param {*} key 
- * @param {*} def 
+ * @param {*} key
+ * @param {*} def
  */
 const getMsgValueOrDefault = (key, def = "---") => {
   if (key === undefined) return def;
@@ -300,8 +405,8 @@ const getMsgValueOrDefault = (key, def = "---") => {
 
 /**
  * Return node value or default
- * @param {*} node 
- * @param {*} def 
+ * @param {*} node
+ * @param {*} def
  */
 const getNodeValueOrDefault = (node, def = "---") => {
   if (node === undefined || node.nodeValue === undefined) {
@@ -394,13 +499,6 @@ function checkUsage(list, location) {
     const loopOrIfBrickList = (list.children);
     for (let j = 0; j < loopOrIfBrickList.length; j++) {
       location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
-      if (location.name === loopOrIfBrickList[j].name) {
-        if (loopOrIfBrickList[j].colorVariation === 0) {
-          location.colorVariation = 1;
-        } else {
-          location.colorVariation = 0;
-        }
-      }
     }
     break;
   }
@@ -409,13 +507,6 @@ function checkUsage(list, location) {
     const elseBrickList = (list.children);
     for (let j = 0; j < elseBrickList.length; j++) {
       location.elseBrickList.push(parseBrick(elseBrickList[j]));
-      if (location.name === elseBrickList[j].name) {
-        if (elseBrickList[j].colorVariation === 0) {
-          location.colorVariation = 1;
-        } else {
-          location.colorVariation = 0;
-        }
-      }
     }
     break;
   }
@@ -555,7 +646,7 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
 export default class Parser {
 
   /**
-   * Parse catroid script into catblocks 
+   * Parse catroid script into catblocks
    * @param {XMLDocument} scriptDoc to parse
    * @returns {XMLDocument} catblocks script
    */
@@ -593,10 +684,10 @@ export default class Parser {
   }
 
   /**
-	 * Parse xmlString from catroid to catblocks format
-	 * @param {string|Element} xmlString catroid string or XMLDocument 
-	 * @returns {XMLDocument} catblock XMLDocument
-	 */
+   * Parse xmlString from catroid to catblocks format
+   * @param {string|Element} xmlString catroid string or XMLDocument
+   * @returns {XMLDocument} catblock XMLDocument
+   */
   static convertProgramString(xmlString) {
     if (typeof xmlString === 'string') {
       try {
@@ -615,10 +706,10 @@ export default class Parser {
   }
 
   /**
-	 * Parse xmlString from catroid to catblocks format and return every error
-	 * @param {string|Element} xmlString catroid string or XMLDocument
-	 * @returns {XMLDocument} catblock XMLDocument
-	 */
+   * Parse xmlString from catroid to catblocks format and return every error
+   * @param {string|Element} xmlString catroid string or XMLDocument
+   * @returns {XMLDocument} catblock XMLDocument
+   */
   static convertProgramStringDebug(xmlString) {
     const retVal = Parser.convertProgramString(xmlString);
 
@@ -691,10 +782,10 @@ export default class Parser {
   }
 
   /**
-	 * Fetch and parse xml file defined via uri
-	 * @param {*} xmlFile uri to catroid file
-	 * @returns {Promise} catblock XMLDocument
-	 */
+   * Fetch and parse xml file defined via uri
+   * @param {*} xmlFile uri to catroid file
+   * @returns {Promise} catblock XMLDocument
+   */
   static convertProgramUri(uri) {
     return fetch(uri)
       .then(res => res.text())
