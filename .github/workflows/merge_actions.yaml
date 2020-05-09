@@ -1,0 +1,72 @@
+name: Merge Action
+
+on:
+  push:
+    branches: [ develop ] # merge creates commit + push
+
+jobs:
+  deployTestingpage:
+    name: Deploy Testpage to GH-Pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Project and push to gh-pages
+      uses: ./gh-pages-deploy-action/
+    
+  rerunTests:
+    name: Restart all Pull Request Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.PAT }} # PAT has to be defined in Repository > Settings > Secrets
+          script: |
+            const labelName = "run-tests";
+
+            try {              
+              const owner = context.payload.repository.owner.name;
+              const repo = context.payload.repository.name;
+              const result = await github.pulls.list({
+                owner: owner,
+                repo: repo,
+                state: "open"
+              });
+
+              if (result.data) {
+                for (const pullRequest of result.data) {
+                  // github.issues.addLabels does weird stuff, so we do it the old way
+
+                  const labels = pullRequest.labels
+                    .map(x => {
+                      return x.name;
+                    })
+                    .filter(x => {
+                      return x !== labelName;
+                    })
+                  console.log(labels);
+                  labels.push(labelName);
+
+                  core.info(`Adding Label to ${pullRequest.number}`);
+                  await github.issues.update({
+                    owner: owner,
+                    repo: repo,
+                    issue_number: pullRequest.number,
+                    labels: labels
+                  });
+
+                  labels.pop();
+                  core.info(`Removing Label from ${pullRequest.number}`);
+                  await github.issues.update({
+                    owner: owner,
+                    repo: repo,
+                    issue_number: pullRequest.number,
+                    labels: labels
+                  });
+                }
+              } 
+
+              core.info(`Triggered ${result.data.length} PRs`);
+
+            } catch (error) {
+              core.setFailed(`Action failed with error ${error}`);
+            }

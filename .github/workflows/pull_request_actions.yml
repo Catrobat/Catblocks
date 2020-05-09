@@ -1,13 +1,13 @@
-name: Catblocks Pull Request Action
+name: Pull Request Action
 
 on: 
   pull_request:
     types: [opened, reopened]
 
 jobs:
-  testing:
+  runTests:
+    name: Run Auto-Tests
     runs-on: ubuntu-latest
-    name: Run tests
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -24,8 +24,8 @@ jobs:
           path: /home/runner/work/Catblocks/Catblocks/catblocksTestReport/
       
   uploadDocker:
-    runs-on: ubuntu-latest
     name: Create new artifact for PO review
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
