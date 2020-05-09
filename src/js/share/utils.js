@@ -193,6 +193,27 @@ export const trimString = (str, length = 15) => {
   return undefined;
 };
 
+export const resetColorBlock = (array) => {
+  for(let i = 0; i < array.length; i++){
+    if(array[i].style.colour_ === array[i].style.colourPrimary) {
+      const colorPrimaryTemporary = array[i].style.colourPrimary;
+      array[i].style.colourPrimary = array[i].style.colourTertiary;
+      array[i].style.colourTertiary = colorPrimaryTemporary;
+    }
+    if(array[i].childBlocks_.length > 0) {
+      for(let j = 0; j < array[i].childBlocks_.length; j++) {
+        if(array[i].childBlocks_[j].style.colour_ === array[i].childBlocks_[j].style.colourPrimary) {
+          const colorPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
+          array[i].childBlocks_[j].style.colourPrimary = array[i].childBlocks_[j].style.colourTertiary;
+          array[i].childBlocks_[j].style.colourTertiary = colorPrimaryTemporary;
+        }
+      }
+      resetColorBlock(array[i].childBlocks_);
+    }
+  }
+};
+
+
 /**
  * zebra effect -> color next block from same group slightly differently
  * @param {*} array 
@@ -227,11 +248,7 @@ export const checkNextBlock = (array, firstCall = false) => {
 
 export const zebraChangeColor = (array) => {
   checkNextBlock(array, true);
-  for(let i = 0; i < array.length; i++){
-    const temporaryPrimaryColor = array[i].style.colourPrimary;
-    array[i].style.colourPrimary = array[i].style.colourTertiary;
-    array[i].style.colourTertiary = temporaryPrimaryColor;
-  }
+  resetColorBlock(array);
 };
 
 /**
