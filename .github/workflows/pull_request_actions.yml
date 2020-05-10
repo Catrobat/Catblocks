@@ -2,7 +2,9 @@ name: Pull Request Action
 
 on: 
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, labeled, synchronize]
+    # labeled: when adding a label to PR
+    # synchronize: when adding new commit after PR is already opened
 
 jobs:
   runTests:
