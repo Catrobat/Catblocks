@@ -35,7 +35,7 @@ const CATBLOCK_MSGS = `
 Blockly.CatblocksMsgs = {};
 Blockly.CatblocksMsgs.locales = {};
 
-Blockly.CatblocksMsgs.currentLocale_ = 'en_AU';
+Blockly.CatblocksMsgs.currentLocale_ = 'en';
 
 Blockly.CatblocksMsgs.hasLocale = function(locale) {
   return Object.keys(Blockly.CatblocksMsgs.locales).includes(locale);
@@ -46,8 +46,9 @@ Blockly.CatblocksMsgs.setLocale = function(locale) {
     Blockly.CatblocksMsgs.currentLocale_ = locale;
     Blockly.Msg = Object.assign({}, Blockly.Msg, Blockly.CatblocksMsgs.locales[locale]);
   } else {
-    // keep current locale
+    // fallback to default language
     console.warn('Ignoring unrecognized locale: ' + locale);
+    Blockly.Msg = Object.assign({}, Blockly.Msg, Blockly.CatblocksMsgs.locales[Blockly.CatblocksMsgs.currentLocale_]);
   }
 };
 
