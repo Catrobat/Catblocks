@@ -4,7 +4,7 @@
 import "../../css/share.css";
 import Blockly from 'blockly';
 import Parser from '../parser/parser';
-import { escapeURI, generateID, defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, hasChildren, trimString, checkNextBlock } from './utils';
+import { escapeURI, generateID, defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, hasChildren, trimString, zebraChangeColor } from './utils';
 import $ from 'jquery';
 
 export class Share {
@@ -145,7 +145,7 @@ export class Share {
     let svg = undefined;
     try {
       this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
-      checkNextBlock(this.workspace.topBlocks_);
+      zebraChangeColor(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
 
@@ -174,12 +174,12 @@ export class Share {
    * @returns {Element} new created scene objects container
    */
   addSceneContainer(accordionID, sceneID, container, sceneName, options = defaultOptions.scene) {
-    const sceneContainer = injectNewDom(container, 'div', { 
-      class: 'catblocks-scene card', 
+    const sceneContainer = injectNewDom(container, 'div', {
+      class: 'catblocks-scene card',
       id: sceneID
     });
 
-    const sceneHeader = injectNewDom(sceneContainer, 'div', { 
+    const sceneHeader = injectNewDom(sceneContainer, 'div', {
       class: 'catblocks-scene-header card-header d-flex justify-content-between expansion-header',
       id: `${sceneID}-header`,
       'data-toggle': 'collapse',
@@ -195,7 +195,7 @@ export class Share {
     }
     $(`#${sceneID}-header`).click(() => this.changeHeaderDesign(sceneHeader));
 
-    const sceneObjectContainer = injectNewDom(sceneContainer, 'div', { 
+    const sceneObjectContainer = injectNewDom(sceneContainer, 'div', {
       class: 'catblocks-object-container collapse',
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
@@ -228,7 +228,7 @@ export class Share {
     // create row and col
     const programContainer = this.createProgramContainer(generateID(programID), container);
     const scenesContainerID = `${generateID(programID)}-accordionScenes`;
-    const scenesContainer = injectNewDom(programContainer, 'div', { 
+    const scenesContainer = injectNewDom(programContainer, 'div', {
       class: 'catblocks-scene-container accordion',
       id: scenesContainerID
     });
@@ -237,12 +237,12 @@ export class Share {
     if (xmlElement != null) {
       xmlScenes = xmlElement.getElementsByTagName('scene');
     }
-    
-    if (programJSON == null || programJSON.scenes == null || 
+
+    if (programJSON == null || programJSON.scenes == null ||
       programJSON.scenes.length === 0 || xmlElement == null || xmlScenes == null ||
       !hasChildren(xmlScenes) || xmlScenes.length != programJSON.scenes.length) {
 
-      const errorContainer = injectNewDom(scenesContainer, 'div', { 
+      const errorContainer = injectNewDom(scenesContainer, 'div', {
         class: 'catblocks-scene card'
       });
       injectNewDom(errorContainer, 'div', {
@@ -256,12 +256,12 @@ export class Share {
       const xmlScene = xmlScenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
       const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(scene.name), parseOptions(options.scene, defaultOptions.scene));
-      
+
       const xmlObjects = xmlScene.getElementsByTagName('object');
-      if (scene.objectList == null || scene.objectList.length === 0 || !hasChildren(xmlObjects) || 
+      if (scene.objectList == null || scene.objectList.length === 0 || !hasChildren(xmlObjects) ||
         xmlObjects.length != scene.objectList.length) {
 
-        const errorContainer = injectNewDom(sceneObjectContainer, 'div', { 
+        const errorContainer = injectNewDom(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
         });
         injectNewDom(errorContainer, 'div', {
@@ -275,8 +275,8 @@ export class Share {
         const object = scene.objectList[j];
         const xmlObject = xmlObjects[j];
         const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
-        
-        this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer, 
+
+        this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer,
           xmlObject, object, parseOptions(options.object, parseOptions(options.object, defaultOptions.object)));
       }
     }
@@ -348,8 +348,8 @@ export class Share {
     });
 
     if (!object || !object.soundList || object.soundList.length <= 0) {
-      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, 'No Sounds found'));
       return;
     }
@@ -374,8 +374,8 @@ export class Share {
       }
 
       const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
-      let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`); 
-      
+      let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`);
+
       if (options.fileMap != null && options.fileMap[soundPath]) {
         src = options.fileMap[soundPath];
       }
@@ -388,7 +388,7 @@ export class Share {
       injectNewDom(col, 'span', {
         class: 'catblocks-object-sound-name d-block'
       }, displaySoundName);
-      
+
       const audioContainer = injectNewDom(col, 'audio', {
         class: 'catblocks-object-sound-item',
         controls: 'controls'
@@ -399,8 +399,8 @@ export class Share {
     }
 
     if (failed > 0) {
-      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, `Failed to parse ${failed} sounds(s) properly.`));
     }
   }
@@ -421,8 +421,8 @@ export class Share {
     });
 
     if (!object || !object.lookList || object.lookList.length <= 0) {
-      looksContainer.appendChild(injectNewDom(looksContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+      looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, 'No Looks found'));
       return;
     }
@@ -446,12 +446,12 @@ export class Share {
       }
 
       const imgPath = `${options.sceneName}/images/${look.fileName}`;
-      let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`); 
-      
+      let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
       if (options.fileMap != null && options.fileMap[imgPath]) {
         src = options.fileMap[imgPath];
-      } 
-      
+      }
+
       injectNewDom(col, 'img', {
         src: src,
         class: 'img-fluid catblocks-object-look-item'
@@ -463,8 +463,8 @@ export class Share {
     }
 
     if (failed > 0) {
-      looksContainer.appendChild(injectNewDom(looksContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+      looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, `Failed to parse ${failed} look(s) properly.`));
     }
   }
@@ -474,7 +474,7 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {XMLDocument} 
+   * @param {XMLDocument}
    * @param {Object} [options=defaultOptions.object]
    */
   generateScripts(container, objectID, object, xmlObject, options = defaultOptions.object) {
@@ -485,12 +485,12 @@ export class Share {
       'aria-labelledby': `${objectID}-scripts-tab`
     });
 
-    if (!object || !object.scriptList || !xmlObject || 
+    if (!object || !object.scriptList || !xmlObject ||
       object.scriptList.length <= 0 || !hasChildren(xmlObject) ||
       object.scriptList.length !== xmlObject.children.length) {
-        
-      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+
+      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, 'No Scripts found'));
       return;
     }
@@ -500,8 +500,8 @@ export class Share {
     for (const script of scripts) {
       const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
 
-      const scriptContainer = injectNewDom(wrapperContainer, 'div', { 
-        class: 'catblocks-script' 
+      const scriptContainer = injectNewDom(wrapperContainer, 'div', {
+        class: 'catblocks-script'
       });
 
       const blockSvg = this.domToSvg(blockXml);
@@ -511,10 +511,10 @@ export class Share {
         scriptContainer.appendChild(blockSvg);
       }
     }
-    
+
     if (failed > 0) {
-      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', { 
-        class: 'catblocks-empty-text' 
+      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
+        class: 'catblocks-empty-text'
       }, `Failed to parse ${failed} script(s) properly.`));
     }
   }
@@ -567,7 +567,7 @@ export class Share {
       'aria-controls': 'scripts',
       'aria-selected': 'true'
     }, `Scripts (${object.scriptList.length})`);
-    
+
     const liLooks = injectNewDom(ul, 'li', {
       class: 'nav-item'
     });

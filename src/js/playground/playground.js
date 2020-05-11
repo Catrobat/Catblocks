@@ -1,7 +1,7 @@
 import Blockly from "blockly";
 import "../catblocks_msgs";
 import "./../blocks";
-import { checkNextBlock, wrapElement } from '../share/utils';
+import {wrapElement, zebraChangeColor} from '../share/utils';
 import XStreamParser from "../parser/parser";
 import $ from "jquery";
 
@@ -251,7 +251,7 @@ export class Playground {
   zebra() {
     const blocks = this.workspace.topBlocks_;
     console.log(blocks);
-    checkNextBlock(blocks);
+    zebraChangeColor(blocks);
   }
 
 
