@@ -44,10 +44,22 @@ function initShareAndRenderPrograms(programPath) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
   const share = new Share();
+  let language = 'en';
+  if (process.env.DISPLAY_LANGUAGE !== undefined && process.env.DISPLAY_LANGUAGE.length > 0) {
+    const values = Blockly.CatblocksMsgs.locales[process.env.DISPLAY_LANGUAGE];
+    if (values === undefined) {
+      console.warn('no language found for ' + process.env.DISPLAY_LANGUAGE + '. set to default.');
+      language = 'en';
+    }
+    else {
+      language = process.env.DISPLAY_LANGUAGE;
+    }
+  }
+  console.log("language: " + language);
   share.init({
     'container': catblocksWorkspaceContainer,
     'renderSize': 0.75,
-    'language': 'en',
+    'language': language,
     'shareRoot': '',
     'media': 'media/',
     'noImageFound': 'No_Image_Available.jpg',

@@ -54,7 +54,7 @@ echo "Extract all program archives"
 cd "${PROGROOT}"
 for FILE in $(ls * | grep -E '\.zip|\.catrobat')
 do
-  echo "Proces ${FILE} started"
+  echo "Process ${FILE} started"
   mkdir -p "${FILE%.*}/"
   unzip "$FILE" -d  "${FILE%.*}/"
   rm "$FILE"
