@@ -258,15 +258,15 @@ function parseScripts(script) {
 
   let positionInScriptBrickList = 0;
   for (let i = 0; i < brickList.length; i++) {
-    if (brickList[i].attributes[0].value === "RepeatBrick") {
+    if (brickList[i].attributes[0].value === "RepeatBrick" && checkIfNewProgram("RepeatBrick", brickList)) {
       const loopFinished = fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, null,true);
       i = loopFinished + 1;
     }
-    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick" && checkIfNewProgram("IfThenLogicBeginBrick", brickList)) {
       const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, null,true);
       i = ifFinished + 1;
     }
-    else if(brickList[i].attributes[0].value === "IfLogicBeginBrick") {
+    else if(brickList[i].attributes[0].value === "IfLogicBeginBrick" && checkIfNewProgram("IfLogicBeginBrick", brickList)) {
       const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, null,true);
       i = ifFinished + 1;
     }
@@ -276,7 +276,26 @@ function parseScripts(script) {
     }
   }
   return currentScript;
+}
 
+function checkIfNewProgram(currentBrick, brickList) {
+  let endBrick;
+  if(currentBrick === 'RepeatBrick') {
+    endBrick = "LoopEndBrick";
+  }
+  else if(currentBrick === 'IfLogicBeginBrick') {
+    endBrick = "IfLogicEndBrick";
+  }
+  else if(currentBrick === 'IfThenLogicBeginBrick') {
+    endBrick = "IfThenLogicEndBrick";
+  }
+
+  for(let i = 0; i < brickList.length; i++) {
+    if(brickList[i].attributes[0].value === endBrick) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, positionInScriptBrickList, currentListToFill = null ,firstCall = false) {
@@ -299,6 +318,7 @@ function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, p
   if(firstCall){
     currentScript.brickList.push(parseBrick(brickList[i]));
   }
+
   positionInScriptBrickList++;
   let position = 0;
   if(positionInScriptBrickList !== 0) {
