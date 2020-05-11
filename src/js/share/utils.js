@@ -3,7 +3,6 @@
  * @author andreas.karner@student.tugraz.at (Andreas Karner)
  */
 
-import $ from 'jquery';
 import md5 from "js-md5";
 
 
