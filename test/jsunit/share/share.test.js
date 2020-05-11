@@ -6,11 +6,10 @@
 'use strict';
 
 beforeEach(async () => {
-  await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
   await page.evaluate(() => {
     shareTestContainer = document.getElementById('shareprogs');
   });
-  page.on('console', message => console.log(message.text()));
 });
 
 describe('Share basic tests', () => {

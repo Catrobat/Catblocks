@@ -45,7 +45,6 @@ export class Share {
       },
       renderer: 'zelos'
     });
-    this.blockly.CatblocksMsgs.setLocale(this.config.language);
 
     this.workspaceDom = this.workspace.getInjectionDiv();
     this.workspaceDom.id = this.workspace.id;

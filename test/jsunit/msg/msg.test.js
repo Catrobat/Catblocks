@@ -49,7 +49,7 @@ describe('Filesystem msg tests', () => {
 
   test('Lang JSON file linked in CatblocksMsg.js', () => {
     const langs = CATBLOCKS_PAYLOAD.split('\n')
-      .filter(line => line.indexOf(`Blockly.CatblocksMsgs.locales["`) > -1)
+      .filter(line => line.indexOf(`"DROPDOWN_NAME"`) > -1)
       .map(value => value.split('"')[1].split('"')[0]);
 
     CATBLOCKS_MSGS.forEach(lang => {
@@ -61,7 +61,8 @@ describe('Filesystem msg tests', () => {
 describe('Webview test', () => {
 
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    page.on('console', message => console.log(message.text()));
   });
 
   beforeEach(async () => {
@@ -72,73 +73,74 @@ describe('Webview test', () => {
   });
 
   test('en Messages assigned to Blockly', async () => {
-    const langToTest = 'en';
-    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
+    const languageToTest = 'en';
+    const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
 
-    expect(await page.evaluate((msgDef, lang) => {
+    expect(await page.evaluate((languageObject, languageToTest) => {
       let failedLoading = false;
 
-      playground.setLocale(lang);
-      toolboxWS.getAllBlocks().forEach(block => {
-        const blockName = block.type;
-        const msgKeys = Object.keys(Blockly.Bricks[blockName])
-          .filter(key => key.indexOf('message') > -1)
-          .map(key => Blockly.Bricks[blockName][key])
-          .filter(value => value.startsWith('%{BKY_'));
+      return playground.setLocale(languageToTest).then(() => {
+        toolboxWS.getAllBlocks().forEach(block => {
+          const blockName = block.type;
+          const msgKeys = Object.keys(Blockly.Bricks[blockName])
+            .filter(key => key.indexOf('message') > -1)
+            .map(key => Blockly.Bricks[blockName][key])
+            .filter(value => value.startsWith('%{BKY_'));
 
-        const msgDefParts = msgKeys.flatMap(key => {
-          const msgKey = key.split('%{BKY_').pop().split('}')[0];
-          return msgDef[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
-        });
+          const msgDefParts = msgKeys.flatMap(key => {
+            const msgKey = key.split('%{BKY_').pop().split('}')[0];
+            return languageObject[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+          });
 
-        const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
-        for (let idx = 0; idx < msgBlockParts.length; idx++) {
-          const msgBlockPart = msgBlockParts[idx];
-          const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
-          const refString = msgDefParts[idx].replace(/ /g, '');
-          if (!refString.startsWith(testString)) {
-            failedLoading = true;
-            return failedLoading;
+          const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
+          for (let idx = 0; idx < msgBlockParts.length; idx++) {
+            const msgBlockPart = msgBlockParts[idx];
+            const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
+            const refString = msgDefParts[idx].replace(/ /g, '');
+            if (!refString.startsWith(testString)) {
+              failedLoading = true;
+              return failedLoading;
+            }
           }
-        }
+        });
       });
-      return failedLoading;
-    }, msgDef, langToTest)).toBeFalsy();
+    }, languageObject, languageToTest)).toBeFalsy();
   });
 
   test('Change lang from >en< to >de< works properly', async () => {
-    const langToTest = 'de';
-    const msgDef = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${langToTest}.json`));
+    const languageToTest = 'de';
+    const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
 
-    expect(await page.evaluate((msgDef, lang) => {
+    expect(await page.evaluate((languageObject, languageToTest) => {
       let failedLoading = false;
 
-      playground.setLocale('en');
-      playground.setLocale(lang);
-      toolboxWS.getAllBlocks().forEach(block => {
-        const blockName = block.type;
-        const msgKeys = Object.keys(Blockly.Bricks[blockName])
-          .filter(key => key.indexOf('message') > -1)
-          .map(key => Blockly.Bricks[blockName][key])
-          .filter(value => value.startsWith('%{BKY_'));
+      return playground.setLocale(Blockly.CatblocksMsgs.getCurrentLocale()).then(() => {
+        return playground.setLocale(languageToTest).then(() => {
+          toolboxWS.getAllBlocks().forEach(block => {
+            const blockName = block.type;
+            const msgKeys = Object.keys(Blockly.Bricks[blockName])
+              .filter(key => key.indexOf('message') > -1)
+              .map(key => Blockly.Bricks[blockName][key])
+              .filter(value => value.startsWith('%{BKY_'));
 
-        const msgDefParts = msgKeys.flatMap(key => {
-          const msgKey = key.split('%{BKY_').pop().split('}')[0];
-          return msgDef[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+            const msgDefParts = msgKeys.flatMap(key => {
+              const msgKey = key.split('%{BKY_').pop().split('}')[0];
+              return languageObject[msgKey].split(/%\d/g).map(v => v.trim()).filter(v => v.length > 0);
+            });
+
+            const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
+            for (let idx = 0; idx < msgBlockParts.length; idx++) {
+              const msgBlockPart = msgBlockParts[idx];
+              const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
+              const refString = msgDefParts[idx].replace(/ /g, '');
+              if (!refString.startsWith(testString)) {
+                failedLoading = true;
+                return failedLoading;
+              }
+            }
+          });
         });
-
-        const msgBlockParts = block.svgGroup_.querySelectorAll('g:not(.blocklyEditableText) > text.blocklyText');
-        for (let idx = 0; idx < msgBlockParts.length; idx++) {
-          const msgBlockPart = msgBlockParts[idx];
-          const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
-          const refString = msgDefParts[idx].replace(/ /g, '');
-          if (!refString.startsWith(testString)) {
-            failedLoading = true;
-            return failedLoading;
-          }
-        }
       });
-      return failedLoading;
-    }, msgDef, langToTest)).toBeFalsy();
+    }, languageObject, languageToTest)).toBeFalsy();
   });
 });
