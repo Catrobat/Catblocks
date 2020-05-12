@@ -67,20 +67,13 @@ export class Playground {
 
     // Setup locale
     const select = document.getElementsByName("locale")[0];
-    let hasDefault = false;
     Object.keys(this.Blockly.CatblocksMsgs.locales).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
       lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
-      // TODO: set default to SHARE LANGUAGE
-      if (locale === 'en') hasDefault = true;
     });
-
-    match = location.search.match(/locale=([^&]+)/);
-    const locale = match ? match[1] : (hasDefault ? 'en' : select.options[0].value);
-    this.Blockly.CatblocksMsgs.setLocale(locale);
-    document.forms.options.elements.locale.value = locale;
+    document.forms.options.elements.locale.value = this.Blockly.CatblocksMsgs.getCurrentLocale();
 
     // Create main workspace.
     this.workspace = this.Blockly.inject('blocklyDiv', {
@@ -332,9 +325,12 @@ export class Playground {
     }
   }
   setLocale(locale) {
-    this.Blockly.CatblocksMsgs.setLocale(locale);
-    this.workspace.updateToolbox(this.getToolbox());
-    const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
-    this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
+    return this.Blockly.CatblocksMsgs.setLocale(locale)
+      .then(() => {
+        this.workspace.updateToolbox(this.getToolbox());
+        const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
+        this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
+      })
+      .catch((error) => console.error(error));
   }
 }

@@ -9,7 +9,7 @@
 describe('Parser catroid program tests', () => {
 
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
   });
 
   test('Recognizes not supported program version', async () => {
@@ -126,7 +126,7 @@ describe('Parser catroid program tests', () => {
 describe('Catroid to Catblocks parser tests', () => {
 
   beforeEach(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
   });
 
   test('Xml Character escaping test', async () => {

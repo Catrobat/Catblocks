@@ -7,7 +7,7 @@
 'use strict';
 
 beforeEach(async () => {
-  await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
 });
 
 describe('Share utilities testing', () => {

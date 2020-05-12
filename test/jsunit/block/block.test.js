@@ -74,7 +74,7 @@ describe('Filesystem Block tests', () => {
 describe('WebView Block tests', () => {
 
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => console.log(message.text()));
   });
 
@@ -179,48 +179,56 @@ describe('WebView Block tests', () => {
     });
 
     test('formula blocks (without child) are rendered properly', async () => {
-      expect(await page.evaluate(() => {
-        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+      const languageToTest = 'en';
+      const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').trim();
+      expect(await page.evaluate((blockText) => {
+        const block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
         block.initSvg();
         block.render(false);
         //get default scale value
         const refValue = Blockly.Bricks['ChangeBrightnessByNBrick'].args0[0].text;
-        let value = block.inputList[0].fieldRow[1].getText();
-        return (block.getFieldValue() === 'Change brightness by'
+        const value = block.inputList[0].fieldRow[1].getText();
+        return (block.getFieldValue() === blockText
           && value === refValue);
-      })).toBeTruthy();
+      }, blockText)).toBeTruthy();
     });
 
     test('formula blocks (with left child) are rendered properly', async () => {
-      expect(await page.evaluate(() => {
-        let block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
+      const languageToTest = 'en';
+      const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').trim();
+      expect(await page.evaluate((blockText) => {
+        const block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
         block.initSvg();
         block.render(false);
         //set scale value
-        let valueToSet = '-1';
+        const valueToSet = '-1';
         block.inputList[0].fieldRow[1].setValue(valueToSet);
-        let value = block.inputList[0].fieldRow[1].getValue().toString();
-        return (block.getFieldValue() === 'Change brightness by'
+        const value = block.inputList[0].fieldRow[1].getValue().toString();
+        return (block.getFieldValue() === blockText
           && valueToSet === value);
-      })).toBeTruthy();
+      }, blockText)).toBeTruthy();
     });
 
     test('formula blocks (with left and right child) are rendered properly', async () => {
-      expect(await page.evaluate(() => {
-        let block = playgroundWS.newBlock('WaitBrick');
+      const languageToTest = 'en';
+      const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
+      const blockText = languageObject['CONTROL_WAIT'].trim();
+      expect(await page.evaluate((blockText) => {
+        const block = playgroundWS.newBlock('WaitBrick');
         block.initSvg();
         block.render(false);
         //set scale value
-        let valueToSet = '37';
+        const valueToSet = '37';
         block.inputList[0].fieldRow[1].setValue(valueToSet);
-        let value = block.inputList[0].fieldRow[1].getValue().toString();
-        let desiredBlockText = 'Wait' + valueToSet + 'second';
+        const value = block.inputList[0].fieldRow[1].getValue().toString();
+        let desiredBlockText = blockText.replace("%1", valueToSet);
         desiredBlockText = desiredBlockText.replace(/\s/g, '');
         //check if field text matches when block is in workspace
-        return (block.getFieldValue() === 'Wait'
-          && valueToSet === value
+        return (valueToSet === value
           && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText);
-      })).toBeTruthy();
+      }, blockText)).toBeTruthy();
     });
 
     test('check if zebra is working properly', async () => {

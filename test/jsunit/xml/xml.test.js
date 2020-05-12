@@ -14,7 +14,7 @@ describe('Export and Import XML files to workspace', () => {
    * Execute ones in this scope
    */
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
   });
 
   /**
