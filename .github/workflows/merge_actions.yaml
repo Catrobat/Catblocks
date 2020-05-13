@@ -32,6 +32,8 @@ jobs:
                 state: "open"
               });
 
+              let counter = 0;
+
               if (result.data) {
                 for (const pullRequest of result.data) {
                   // github.issues.addLabels does weird stuff, so we do it the old way
@@ -42,31 +44,35 @@ jobs:
                     })
                     .filter(x => {
                       return x !== labelName;
-                    })
-                  console.log(labels);
+                    });
+
+                  core.info(`${new Date()} - PR ${pullRequest.number} has the following Labels: [${labels}]`);
                   labels.push(labelName);
 
-                  core.info(`Adding Label to ${pullRequest.number}`);
-                  await github.issues.update({
+                  let response = await github.issues.update({
                     owner: owner,
                     repo: repo,
                     issue_number: pullRequest.number,
                     labels: labels
                   });
+                  core.info(`${new Date()} - Set Label PR ${pullRequest.number} - ResponseCode: ${response.status}`);
 
                   labels.pop();
-                  core.info(`Removing Label from ${pullRequest.number}`);
-                  await github.issues.update({
-                    owner: owner,
-                    repo: repo,
-                    issue_number: pullRequest.number,
-                    labels: labels
-                  });
+                  setTimeout(async () => {
+                    let response = await github.issues.update({
+                      owner: owner,
+                      repo: repo,
+                      issue_number: pullRequest.number,
+                      labels: labels
+                    });
+                    core.info(`${new Date()} - Remove Label PR ${pullRequest.number}, sending following Labels: [${labels}] - ResponseCode: ${response.status}`);
+                  }, 5000);
+
+                  counter++;
                 }
               } 
 
-              core.info(`Triggered ${result.data.length} PRs`);
-
+              core.info(`${new Date()} - Triggered ${counter}/${result.data.length} PRs`);
             } catch (error) {
               core.setFailed(`Action failed with error ${error}`);
             }
