@@ -156,6 +156,7 @@ export class Share {
       svg.setAttribute('class', 'catblocks-svg');
 
     } catch (e) {
+      console.error(e);
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
     }
@@ -603,12 +604,12 @@ export class Share {
    */
   createProgramContainer(containerID, container) {
     const row = injectNewDom(container, 'div', {
-      class: 'row mt-5',
+      class: 'row',
       id: containerID
     });
 
     const col = injectNewDom(row, 'div', {
-      class: 'col-12'
+      style: 'width: 100%'
     });
 
     return col;

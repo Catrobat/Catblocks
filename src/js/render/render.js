@@ -51,7 +51,8 @@ export const renderAllPrograms = (share, container, path) => {
 };
 
 /**
- * Render a program from filesystem
+ * Render a program from filesystem, used on share.
+ * Does not catch any errors.
  * @param {Share} share instance of share
  * @param {Element} container parent container for structure
  * @param {string} path path of the folder containing the program
@@ -59,8 +60,14 @@ export const renderAllPrograms = (share, container, path) => {
  * @param {number} counter number added to ID to be unique
  * @returns {Promise} 
  */
-const renderProgram = (share, container, path, name, counter) => {
-  // inject code
+export const renderProgram = (share, container, path, name, counter = -1) => {
+  
+  // be sure that path has a trailing slash
+  path = path.replace(/\/$/, "") + "/";
+
+  // remove the leading slash
+  name = name.replace(/^\//, "");
+
   return fetch(`${path}${name}/code.xml`).then(res => res.text())
     .then(codeXML => {
       const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
@@ -69,16 +76,16 @@ const renderProgram = (share, container, path, name, counter) => {
       // prepare container for program injection
       const programContainer = createProgramContainer(container);
 
-      const programID = `catblocks-program-${name}-${counter}`;
+      let programID = `catblocks-program-${name}`;
+      if (counter >= 0) {
+        programID = `catblocks-program-${name}-${counter}`;
+      }
+
       share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
         object: {
           programRoot: `${path}${name}/`
         }
       });
-    }).catch(err => {
-      console.error(`Failed to parse catroid file.`);
-      console.error(`${path}${name}/code.xml failed`);
-      console.error(err);
     });
 };
 
@@ -114,7 +121,7 @@ const renderProgramByLocalFile = (share, container, codeXML, name, counter, file
  */
 const createProgramContainer = (container) => {
   const $programContainer = $('<div/>', {
-    class: 'container text-dark'
+    class: 'catblocks-container text-dark'
   });
   $(container).append($programContainer);
   return $programContainer[0];

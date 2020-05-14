@@ -21,7 +21,8 @@
     "test:dev": "cross-env-shell NODE_ENV=development TYPE=testing \"yarn initiate && webpack-dev-server\"",
     "initiate": "yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist ; rimraf release",
+    "release": "yarn initiate && webpack --config release.config.js"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
