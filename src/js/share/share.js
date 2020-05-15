@@ -609,7 +609,7 @@ export class Share {
     });
 
     const col = injectNewDom(row, 'div', {
-      style: 'width: 100%'
+      class: 'col-12'
     });
 
     return col;
