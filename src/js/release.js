@@ -34,6 +34,10 @@ function preparePaths(that) {
   
   that.config.media = createURL(that, that.config.media);
   that.config.i18n = createURL(that, that.config.i18n);
+
+  if (!that.config.shareRoot.startsWith("http")) {
+    that.config.shareRoot = "/" + that.config.shareRoot;
+  }
 }
 
 /**

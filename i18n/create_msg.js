@@ -82,6 +82,9 @@ Blockly.CatblocksMsgs.loadNewLocale = function(locale, filesLocation) {
   if (filesLocation != null) {
     url = filesLocation + locale + ".json";
   }
+  if (window.CatBlocks && window.CatBlocks.config && window.CatBlocks.config.i18n) {
+    url = window.CatBlocks.config.i18n + locale + ".json";
+  }
 
   return $.getJSON(url, function (result) {
     json_object = result;

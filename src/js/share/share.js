@@ -415,6 +415,10 @@ export class Share {
       const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`);
 
+      if (options.programRoot.startsWith("http")) {
+        src = escapeURI(`${options.programRoot}${soundPath}`);
+      }
+
       if (options.fileMap != null && options.fileMap[soundPath]) {
         src = options.fileMap[soundPath];
       }
@@ -486,6 +490,11 @@ export class Share {
 
       const imgPath = `${options.sceneName}/images/${look.fileName}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+      // renderProgram got a full link
+      if (options.programRoot.startsWith("http")) {
+        src = escapeURI(`${options.programRoot}${imgPath}`);
+      }
 
       if (options.fileMap != null && options.fileMap[imgPath]) {
         src = options.fileMap[imgPath];
