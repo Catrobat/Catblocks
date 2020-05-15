@@ -45,18 +45,10 @@ Blockly.CatblocksMsgs.getCurrentLocaleValues = function() {
 
 Blockly.CatblocksMsgs.loadNewLocale = function(locale, filesLocation) {
   let json_object = [];
-  let url = window.location.protocol + "//" + window.location.host + "/i18n/" + locale + ".json";
+  let url = window.location.origin + "/i18n/" + locale + ".json";
 
   if (filesLocation != null) {
-    if (filesLocation.startsWith("http")) {
-      url = filesLocation.replace(/\/$/, "");
-      url += "/" + locale + ".json";
-
-    } else {
-      url = filesLocation.replace(/\/$/, "") + "/" + locale + ".json";
-      url = url.replace(/^\//, "");
-      url = window.location.protocol + "//" + window.location.host + "/" + url;
-    }
+    url = filesLocation + locale + ".json";
   }
 
   return $.getJSON(url, function (result) {

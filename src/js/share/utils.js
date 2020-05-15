@@ -16,7 +16,9 @@ export const defaultOptions = {
     renderSize: 0.75,
     shareRoot: '',
     media: 'media/',
-    noImageFound: 'No_Image_Available.jpg',
+    language: 'en',
+    i18n: 'i18n/',
+    noImageFound: 'No_Image_Available.jpg', // TODO: never used anywhere
   },
   scene: {
     writeHeader: true,

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.join(__dirname, 'src/js/release.js'),
   output: {
     filename: 'CatBlocks.js',
@@ -66,6 +66,5 @@ module.exports = {
       { from: 'favicon.ico', to: 'favicon.ico' }
     ])
   ],
-  target: 'web',
-  devtool: 'source-map',
+  target: 'web'
 };
