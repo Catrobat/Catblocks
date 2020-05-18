@@ -23,8 +23,41 @@ export class Share {
 	 */
   init(options) {
     this.config = parseOptions(options, defaultOptions.render);
+    this.createReadonlyWorkspace(); 
 
-    this.createReadonlyWorkspace();
+    // for now only convert when in library
+    if (window.CatBlocks) {
+      this.insertRightMediaURI();
+    }
+    
+    Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+  }
+
+
+  /**
+   * As we don't know the MediaURL when injecting the JS file and we cannot load 
+   * the custom Blocks in a later state, we have to overwrite the URLs in an ugly way here
+   */
+  insertRightMediaURI() {
+    if (this.config.media) {
+      for (const brick in this.blockly.Bricks) {
+        if (Object.prototype.hasOwnProperty.call(this.blockly.Bricks, brick)) {
+          const obj = this.blockly.Bricks[brick];
+          
+          for (const prop in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith("args")) {
+              const args = obj[prop];
+              for (const arg of args) {
+                if (arg.src) {
+                  arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
+                }
+              }
+            }
+          }
+
+        }
+      }
+    }
   }
 
   /**
@@ -35,9 +68,15 @@ export class Share {
       id: 'hidden-workspace'
     });
 
+    let mediapath = `${this.config.shareRoot}${this.config.media}`;
+    // full link or absolute path given
+    if (this.config.media.startsWith("http") || this.config.media.startsWith("/")) {
+      mediapath = this.config.media;
+    } 
+
     this.workspace = this.blockly.inject(hiddenContainer, {
       readOnly: true,
-      media: `${this.config.shareRoot}${this.config.media}`,
+      media: mediapath,
       zoom: {
         controls: false,
         wheel: false,
@@ -376,6 +415,10 @@ export class Share {
       const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`);
 
+      if (options.programRoot.startsWith("http")) {
+        src = escapeURI(`${options.programRoot}${soundPath}`);
+      }
+
       if (options.fileMap != null && options.fileMap[soundPath]) {
         src = options.fileMap[soundPath];
       }
@@ -447,6 +490,11 @@ export class Share {
 
       const imgPath = `${options.sceneName}/images/${look.fileName}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+      // renderProgram got a full link
+      if (options.programRoot.startsWith("http")) {
+        src = escapeURI(`${options.programRoot}${imgPath}`);
+      }
 
       if (options.fileMap != null && options.fileMap[imgPath]) {
         src = options.fileMap[imgPath];
