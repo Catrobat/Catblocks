@@ -46,7 +46,7 @@ describe('Share basic tests', () => {
         const container = document.createElement('div');
         shareTestContainer.append(container);
 
-        share.renderObjectJSON('tobject', 'sceneID-accordionObjects', container, undefined, { name: 'objectName' });
+        share.renderObjectJSON('tobject', 'sceneID-accordionObjects', container, { name: 'objectName' });
 
         const objectCard = container.firstChild;
 
@@ -76,11 +76,10 @@ describe('Share catroid program rendering tests', () => {
   test('Share render unsupported version properly', async () => {
     expect(
       await page.evaluate(() => {
-        const catXml = undefined;
         const catObj = undefined;
 
         try {
-          share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+          share.renderProgramJSON('programID', shareTestContainer, catObj);
           return false;
         } catch (e) {
           return (
@@ -95,12 +94,10 @@ describe('Share catroid program rendering tests', () => {
   test('Share render an empty program properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {};
 
         try {
-          share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+          share.renderProgramJSON('programID', shareTestContainer, catObj);
           return false;
         } catch (e) {
           return (
@@ -115,8 +112,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render a single empty scene properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -125,7 +120,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         return (
           shareTestContainer.querySelector('.catblocks-scene') !== null &&
@@ -142,8 +137,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render multiple empty scenes properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene1"></scene><scene type="tscene2"></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -155,7 +148,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         return (
           shareTestContainer.querySelector('.catblocks-scene') !== null &&
@@ -172,8 +165,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render a single empty object properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -187,7 +178,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         return (
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
@@ -204,8 +195,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render multiple empty objects in same scene', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object><object type="tobject2"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -222,7 +211,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const sceneID = shareUtils.generateID('programID-tscene');
         const obj1ID = shareUtils.generateID('programID-tscene-tobject1');
@@ -245,8 +234,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render empty objects in different scenes', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene1"><object type="tobject1"></object></scene><scene type="tscene2"><object type="tobject2"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -268,7 +255,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const scene1ID = shareUtils.generateID('programID-tscene1');
         const scene2ID = shareUtils.generateID('programID-tscene2');
@@ -295,14 +282,22 @@ describe('Share catroid program rendering tests', () => {
   test('Share render script svg', async () => {
     expect(
       await page.evaluate(() => {
-        const scriptString = `<block type="PreviousLookBrick"></block>`;
-        const scriptXml = new DOMParser().parseFromString(scriptString, 'text/xml');
-        const svg = share.domToSvg(scriptXml);
-
+        const scriptJSON = {
+          name: 'StartScript',
+          brickList: [
+            {
+              name: 'SetXBrick',
+              loopOrIfBrickList: [],
+              elseBrickList: [],
+              formValues: {},
+              colorVariation: 0
+            }
+          ],
+          formValues: {}
+        };
+        const svg = share.domToSvg(scriptJSON);
         return (
-          svg !== null &&
-          svg.getAttribute('class') === 'catblocks-svg' &&
-          svg.querySelector('path.blocklyPath') !== null
+          svg !== null && svg.textContent.includes('When scene starts') && svg.textContent.includes('Set x tounset')
         );
       })
     ).toBeTruthy();
@@ -311,12 +306,25 @@ describe('Share catroid program rendering tests', () => {
   test('Share render svg script box properly', async () => {
     expect(
       await page.evaluate(() => {
-        const scriptString = `<block type="PreviousLookBrick"></block>`;
-        const scriptXml = new DOMParser().parseFromString(scriptString, 'text/xml');
-        const svg = share.domToSvg(scriptXml);
+        const scriptJSON = {
+          name: 'StartScript',
+          brickList: [
+            {
+              name: 'SetXBrick',
+              loopOrIfBrickList: [],
+              elseBrickList: [],
+              formValues: {},
+              colorVariation: 0
+            }
+          ],
+          formValues: {}
+        };
+        const svg = share.domToSvg(scriptJSON);
 
         return (
           svg !== null &&
+          svg.textContent.includes('When scene starts') &&
+          svg.textContent.includes('Set x tounset') &&
           svg.getAttribute('width').replace('px', '') > 0 &&
           svg.getAttribute('height').replace('px', '') > 0
         );
@@ -327,8 +335,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share render single empty scriptlist properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject"><script type="tscript"><block type="PreviousLookBrick"></block></script></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -347,7 +353,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const objID = shareUtils.generateID('programID-tscene-tobject');
         return (
@@ -363,14 +369,6 @@ describe('Share catroid program rendering tests', () => {
     expect(
       await page.evaluate(() => {
         const testDisplayName = 'Silence Sound';
-        const xmlString = `
-      <xml>
-        <scene type="tscene">
-          <object type="tobject">
-          </object>
-        </scene>
-      </xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -390,24 +388,22 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const objID = shareUtils.generateID('programID-tscene-tobject');
         return (
           shareTestContainer.querySelector('#' + objID + ' #' + objID + '-sounds .catblocks-object-sound-name') !=
             null &&
           shareTestContainer.querySelector('#' + objID + ' #' + objID + '-sounds .catblocks-object-sound-name')
-            .innerHTML == testDisplayName
+            .innerHTML === testDisplayName
         );
       })
     ).toBeTruthy();
   });
 
-  test('JSON object has a script, but XML not', async () => {
+  test('JSON object has a script', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject">/object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -425,24 +421,19 @@ describe('Share catroid program rendering tests', () => {
             }
           ]
         };
-
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
-
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
         const objID = shareUtils.generateID('programID-tscene-tobject');
-        return (
-          shareTestContainer.querySelector(
-            '#' + objID + ' #' + objID + '-scripts .catblocks-script svg.catblocks-svg'
-          ) == null
+        const executeQuery = shareTestContainer.querySelector(
+          '#' + objID + ' #' + objID + '-scripts .catblocks-script svg.catblocks-svg'
         );
+        return Object.keys(executeQuery).length === 0;
       })
     ).toBeTruthy();
   });
 
-  test('JSON and XML have unqual number of scenes', async () => {
+  test('JSON with one scene', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene1"></scene><scene type="tscene2"></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -452,7 +443,7 @@ describe('Share catroid program rendering tests', () => {
         };
 
         try {
-          share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+          share.renderProgramJSON('programID', shareTestContainer, catObj);
         } catch (e) {
           return false;
         }
@@ -460,11 +451,9 @@ describe('Share catroid program rendering tests', () => {
     ).toBeFalsy();
   });
 
-  test('JSON and XML have unqual number of objects in scene', async () => {
+  test('JSON with two objects in scene rendered properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -481,7 +470,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
 
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         return (
           shareTestContainer.querySelector('.catblocks-scene') !== null &&
@@ -489,7 +478,8 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.catblocks-object-container') !== null &&
           shareTestContainer.querySelector('.accordion') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
-          shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found')
+          shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML ===
+            '<div style="font-weight: normal;">tobject1</div><i class="material-icons">chevron_left</i>'
         );
       })
     ).toBeTruthy();
@@ -498,12 +488,10 @@ describe('Share catroid program rendering tests', () => {
   test('JSON empty but XML given', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject1"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {};
 
         try {
-          share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+          share.renderProgramJSON('programID', shareTestContainer, catObj);
         } catch (e) {
           return false;
         }
@@ -514,8 +502,6 @@ describe('Share catroid program rendering tests', () => {
   test('Share renders scene and card headers properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -528,7 +514,7 @@ describe('Share catroid program rendering tests', () => {
             }
           ]
         };
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const expectedSceneHeaderTextCollapsed =
           '<div style="font-weight: normal;">tscene</div><i class="material-icons">chevron_left</i>';
@@ -564,128 +550,5 @@ describe('Share catroid program rendering tests', () => {
         );
       })
     ).toBeTruthy();
-  });
-});
-
-describe('Share statistic tests', () => {
-  describe('Update objects statistic tests', () => {
-    test('Check update status function against undefined and null', async () => {
-      expect(
-        await page.evaluate(() => {
-          const objectStats = {
-            name: 'tobject',
-            scripts: 0
-          };
-          const addNull = share.updateObjectStats(objectStats, null);
-          const addUndefined = share.updateObjectStats(objectStats, undefined);
-
-          return (
-            JSON.stringify(addNull) === JSON.stringify(objectStats) &&
-            JSON.stringify(addUndefined) === JSON.stringify(objectStats)
-          );
-        })
-      ).toBeTruthy();
-    });
-
-    test('Add empty script to existing object statistic', async () => {
-      expect(
-        await page.evaluate(() => {
-          const objectStats = {
-            name: 'tobject',
-            scripts: 1,
-            look: 1
-          };
-          const updatedStats = share.updateObjectStats(objectStats, {});
-
-          return (
-            JSON.stringify(updatedStats) ===
-            JSON.stringify({
-              name: 'tobject',
-              scripts: 2,
-              look: 1
-            })
-          );
-        })
-      ).toBeTruthy();
-    });
-
-    test('Add script to existing object statistic', async () => {
-      expect(
-        await page.evaluate(() => {
-          const objectStats = {
-            name: 'tobject',
-            scripts: 1,
-            sound: 1,
-            pen: 2,
-            control: 5
-          };
-          const updatedStats = share.updateObjectStats(objectStats, { looks: 1, sound: 2, control: 0 });
-
-          return (
-            JSON.stringify(updatedStats) ===
-            JSON.stringify({
-              name: 'tobject',
-              scripts: 2,
-              sound: 3,
-              pen: 2,
-              control: 5,
-              looks: 1
-            })
-          );
-        })
-      ).toBeTruthy();
-    });
-  });
-
-  describe('Fetch script statistic tests', () => {
-    test('Check get script stats function against undefined and null', async () => {
-      expect(
-        await page.evaluate(() => {
-          const nullScriptStats = share.getScriptStats(null);
-          const undefinedScriptStats = share.getScriptStats(undefined);
-
-          return (
-            JSON.stringify(nullScriptStats) === JSON.stringify({}) &&
-            JSON.stringify(undefinedScriptStats) === JSON.stringify({})
-          );
-        })
-      ).toBeTruthy();
-    });
-
-    test('Share fetches properly stats from empty script', async () => {
-      expect(
-        await page.evaluate(() => {
-          const scriptString = `<script type="tscript"></script>`;
-          const scriptXml = new DOMParser().parseFromString(scriptString, 'text/xml');
-          const scriptStats = share.getScriptStats(scriptXml);
-
-          return JSON.stringify(scriptStats) === JSON.stringify({});
-        })
-      ).toBeTruthy();
-    });
-
-    test('Share fetches properly stats from script with one block', async () => {
-      expect(
-        await page.evaluate(() => {
-          const scriptString = `<script type="tscript"><block type="PreviousLookBrick"></block></script>`;
-          const scriptXml = new DOMParser().parseFromString(scriptString, 'text/xml');
-          const scriptStats = share.getScriptStats(scriptXml);
-
-          return JSON.stringify(scriptStats) === JSON.stringify({ looks: 1 });
-        })
-      ).toBeTruthy();
-    });
-
-    test('Share fetches properly stats from unknown script', async () => {
-      expect(
-        await page.evaluate(() => {
-          const scriptString = `<script type="tscript"><block type="unknownBrick"></block></script>`;
-          const scriptXml = new DOMParser().parseFromString(scriptString, 'text/xml');
-          const scriptStats = share.getScriptStats(scriptXml);
-
-          return JSON.stringify(scriptStats) === JSON.stringify({ unknown: 1 });
-        })
-      ).toBeTruthy();
-    });
   });
 });

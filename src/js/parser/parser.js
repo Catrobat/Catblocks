@@ -46,16 +46,7 @@ const sceneList = [];
 let xmlDoc = undefined;
 const supportedAppVersion = 0.994;
 
-const XML_BEGIN = '<xml>';
-const XML_END = '\n</xml>';
-const NEXT_BEGIN = '\n<next>';
-const NEXT_END = '\n</next>';
-const SUB1_BEGIN = '\n<statement name="SUBSTACK">';
-const SUB2_BEGIN = '\n<statement name="SUBSTACK2">';
-const SUB_END = '\n</statement>';
-
 let MESSAGES = {};
-let XML = '';
 
 // global log enable switch
 const DEBUG = false;
@@ -68,31 +59,6 @@ const DEBUG = false;
 const catLog = (msg, debug = DEBUG) => {
   if (debug) {
     console.log(msg);
-  }
-};
-
-/**
- * Escape script values in case unsafe characters are included
- * @param {*} unsafe
- */
-const escapeXml = unsafe => {
-  if (unsafe === undefined || unsafe === null || unsafe.length === 0) {
-    return unsafe;
-  } else {
-    return unsafe.replace(/[<>&'"]/g, function (c) {
-      switch (c) {
-        case '<':
-          return '&lt;';
-        case '>':
-          return '&gt;';
-        case '&':
-          return '&amp;';
-        case "'":
-          return '&apos;';
-        case '"':
-          return '&quot;';
-      }
-    });
   }
 };
 
@@ -122,30 +88,9 @@ function isSupported(program) {
 function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
-  XML = '';
   MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
 }
 
-/**
- * Parse catroid Program into catblocks program
- * @param {XMLDocument} xml catroid program xml
- * @return {XMLDocument} catblocks format
- */
-function parseCatroidProgram(xml) {
-  const scenes = xml.getElementsByTagName('scenes')[0].children;
-  for (let i = 0; i < scenes.length; i++) {
-    sceneList.push(parseScenes(scenes[i]));
-  }
-  catLog(sceneList);
-  const xmlStream = generateShareXml();
-  catLog(xmlStream);
-  try {
-    return new DOMParser().parseFromString(xmlStream, 'text/xml');
-  } catch (e) {
-    console.error(`Failed to parse generated catblocks string into a XMLDocument, please verify you input`);
-    return undefined;
-  }
-}
 /**
  * Get the xml program as JSON
  * @param {XMLDocument} xml catroid program xml
@@ -664,185 +609,11 @@ function workFormula(formula, input) {
   }
 }
 
-function generateShareXml() {
-  XML = XML_BEGIN;
-  for (let i = 0; i < sceneList.length; i++) {
-    XML = XML.concat(`<scene type="${escapeXml(sceneList[i].name)}">`);
-    const currObjectList = sceneList[i].objectList;
-    for (let j = 0; j < currObjectList.length; j++) {
-      if (currObjectList[j].lookList.length > 0) {
-        const objectImage = currObjectList[j].lookList[0].fileName;
-        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}" look="${escapeXml(objectImage)}">`);
-      } else {
-        XML = XML.concat(`<object type="${escapeXml(currObjectList[j].name)}">`);
-      }
-      const currScriptList = currObjectList[j].scriptList;
-      for (let k = 0; k < currScriptList.length; k++) {
-        XML = XML.concat(`<script type="${escapeXml(currScriptList[k].name)}">`);
-        writeScriptsToXML(currScriptList[k]);
-        XML = XML.concat(`</script>`);
-      }
-      XML = XML.concat(`</object>`);
-    }
-    XML = XML.concat(`</scene>`);
-  }
-  XML = XML.concat(XML_END);
-  return XML;
-}
-
-function writeScriptsToXML(currScript) {
-  XML = XML.concat('\n<block type="' + escapeXml(currScript.name) + '">');
-  for (const [key, value] of currScript.formValues) {
-    XML = XML.concat('\n<field name="' + escapeXml(key) + '">' + escapeXml(value) + '</field>');
-  }
-  if (currScript.brickList.length !== 0) {
-    writeBrickToXML(currScript, 0, true, 0);
-  }
-  XML = XML.concat('\n</block>');
-}
-
-function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
-  if (nextBrick === true) {
-    XML = XML.concat(NEXT_BEGIN);
-  }
-  let currSubBrick;
-  if (subBlock === 0) {
-    currSubBrick = currBrick.brickList[index];
-  }
-  if (subBlock === 1) {
-    currSubBrick = currBrick.loopOrIfBrickList[index];
-  }
-  if (subBlock === 2) {
-    currSubBrick = currBrick.elseBrickList[index];
-  }
-  XML = XML.concat('\n<block type="' + escapeXml(currSubBrick.name) + '">');
-
-  for (const [key, value] of currSubBrick.formValues) {
-    XML = XML.concat('\n<field name="' + escapeXml(key) + '">' + escapeXml(value) + '</field>');
-  }
-  if (currSubBrick.loopOrIfBrickList.length !== 0) {
-    XML = XML.concat(SUB1_BEGIN);
-    writeBrickToXML(currSubBrick, 0, false, 1);
-    XML = XML.concat(SUB_END);
-  }
-  if (currSubBrick.elseBrickList.length !== 0) {
-    XML = XML.concat(SUB2_BEGIN);
-    writeBrickToXML(currSubBrick, 0, false, 2);
-    XML = XML.concat(SUB_END);
-  }
-  if (subBlock === 0 && currBrick.brickList.length > index + 1) {
-    writeBrickToXML(currBrick, index + 1, true, 0);
-  }
-  if (subBlock === 1 && currBrick.loopOrIfBrickList.length > index + 1) {
-    writeBrickToXML(currBrick, index + 1, true, 1);
-  }
-  if (subBlock === 2 && currBrick.elseBrickList.length > index + 1) {
-    writeBrickToXML(currBrick, index + 1, true, 2);
-  }
-  XML = XML.concat('\n</block>');
-  if (nextBrick === true) {
-    XML = XML.concat(NEXT_END);
-  }
-}
-
 /**
  * Default export Parser class
  * Only those methodes are visible outside this module
  */
 export default class Parser {
-  /**
-   * Parse catroid script into catblocks
-   * @param {XMLDocument} scriptDoc to parse
-   * @returns {XMLDocument} catblocks script
-   */
-  static convertScript(scriptDoc) {
-    // scriptDoc = (new DOMParser()).parseFromString(document.getElementById('importExport').value, 'text/xml');
-    initParser(scriptDoc);
-    const catScript = parseScripts(scriptDoc.firstChild);
-    writeScriptsToXML(catScript);
-    try {
-      return new DOMParser().parseFromString(XML, 'text/xml');
-    } catch (e) {
-      catLog(e);
-      console.error('Failed to convert catblocks script into XMLDocument, verify input');
-      return;
-    }
-  }
-
-  /**
-   * Parse catroid script into catblocks
-   * @param {string} scriptString to parse
-   * @returns {XMLDocument} catblocks script
-   */
-  static convertScriptString(scriptString) {
-    if (typeof scriptString === 'string') {
-      try {
-        const xml = new window.DOMParser().parseFromString(scriptString, 'text/xml');
-        return Parser.convertScript(xml);
-      } catch (e) {
-        catLog(e);
-        console.error(
-          `Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`
-        );
-        return undefined;
-      }
-    }
-    return Parser.convertScript(scriptString);
-  }
-
-  /**
-   * Parse xmlString from catroid to catblocks format
-   * @param {string|Element} xmlString catroid string or XMLDocument
-   * @returns {XMLDocument} catblock XMLDocument
-   */
-  static convertProgramString(xmlString) {
-    if (typeof xmlString === 'string') {
-      try {
-        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
-        if (!isSupported(xml)) {
-          return undefined;
-        }
-
-        initParser(xml);
-        return parseCatroidProgram(xml);
-      } catch (e) {
-        catLog(e);
-        console.error(
-          `Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`
-        );
-        return undefined;
-      }
-    }
-    return parseCatroidProgram(xmlString);
-  }
-
-  /**
-   * Parse xmlString from catroid to catblocks format and return every error
-   * @param {string|Element} xmlString catroid string or XMLDocument
-   * @returns {XMLDocument} catblock XMLDocument
-   */
-  static convertProgramStringDebug(xmlString) {
-    const retVal = Parser.convertProgramString(xmlString);
-
-    if (retVal === undefined) {
-      const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
-
-      const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
-      if (appVersion === undefined || appVersion.length < 1) {
-        throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
-      } else if (appVersion[0].innerHTML < supportedAppVersion) {
-        throw new Error(
-          `Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`
-        );
-      }
-
-      initParser(xml);
-      return parseCatroidProgram(xml);
-    }
-
-    return retVal;
-  }
-
   /**
    * Convert given XML to JSON object
    * @static
@@ -896,23 +667,5 @@ export default class Parser {
     }
 
     return obj;
-  }
-
-  /**
-   * Fetch and parse xml file defined via uri
-   * @param {*} xmlFile uri to catroid file
-   * @returns {Promise} catblock XMLDocument
-   */
-  static convertProgramUri(uri) {
-    return fetch(uri)
-      .then(res => res.text())
-      .then(str => {
-        return Parser.convertProgramString(str);
-      })
-      .catch(err => {
-        console.error(`Failed to fetch uri: ${uri}`);
-        catLog(err);
-        return undefined;
-      });
   }
 }
