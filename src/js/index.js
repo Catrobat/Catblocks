@@ -33,12 +33,12 @@ import { renderAllPrograms } from './render/render';
   }
   case 'share': {
     const programPath = 'assets/';
-    initShareAndRenderPrograms(programPath);
+    initShareAndRenderPrograms(programPath, language);
     break;
   }
   case 'render': {
     const programPath = 'assets/programs/';
-    initShareAndRenderPrograms(programPath);
+    initShareAndRenderPrograms(programPath, language);
     break;
   }
   case 'testing': {
@@ -46,20 +46,17 @@ import { renderAllPrograms } from './render/render';
     window.playground = new Playground();
     window.share = new Share();
     window.shareUtils = shareUtils;
-    // make playground
     window.playground.workspace = Blockly.inject('playworkspace', {
       media: '../media/', zoom: { startScale: 0.75 }, toolbox: window.playground.getToolbox(true), renderer: 'zelos'
     });
-    // make share
     window.share.init({
       'container': 'share',
       'renderSize': 0.75,
       'shareRoot': '',
       'media': 'media/',
+      'language': language,
       'noImageFound': 'No_Image_Available.jpg',
     });
-    // set global workspace variables which are used by the tests
-    // currently your tests just use {shareWS, playgroundWS, toolboxWS}
     window.parser = window.share.parser;
     window.shareWS = window.share.workspace;
     window.playgroundWS = window.playground.workspace;
@@ -72,7 +69,7 @@ import { renderAllPrograms } from './render/render';
   }
 })();
 
-function initShareAndRenderPrograms(programPath) {
+function initShareAndRenderPrograms(programPath, language) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
   const share = new Share();
@@ -81,6 +78,7 @@ function initShareAndRenderPrograms(programPath) {
     'renderSize': 0.75,
     'shareRoot': '',
     'media': 'media/',
+    'language': language,
     'noImageFound': 'No_Image_Available.jpg',
   });
   renderAllPrograms(share, programContainer, programPath);
