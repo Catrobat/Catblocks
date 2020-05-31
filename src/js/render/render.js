@@ -1,5 +1,8 @@
 import { FileDropper } from "./file_dropper";
 import $ from "jquery";
+import { getSearchParam } from "./utils";
+import { FileLoader } from "./file_loader";
+import { PasteListener } from "./paste_listener";
 
 /**
  * Render all programs into one page
@@ -26,6 +29,24 @@ export const renderAllPrograms = (share, container, path) => {
     .then(text => {
       const page = (new DOMParser()).parseFromString(text, 'text/html');
       if (page === undefined) {
+        const urlToRender = getSearchParam(window.location.search, 'programurl');
+        if(urlToRender !== undefined) {
+          // if there is a program passed via url: try to parse
+          const fl = new FileLoader(urlToRender, share, container, renderProgramByLocalFile);
+          fl.loadAndRenderProgram().then(success => {
+            if(!success) {
+              const pasteListener = PasteListener.createInstance(share, container, renderProgramByLocalFile);
+              pasteListener.enablePasteListener();
+
+              const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
+              fd.enableDragAndDrop();
+            }
+          });
+          return;
+        }
+        const pasteListener = PasteListener.createInstance(share, container, renderProgramByLocalFile);
+        pasteListener.enablePasteListener();
+
         const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
         fd.enableDragAndDrop();
         return;
@@ -33,8 +54,26 @@ export const renderAllPrograms = (share, container, path) => {
 
       const files = page.getElementsByTagName('ul')[0] || undefined;
       if (files === undefined) {
+        const urlToRender = getSearchParam(window.location.search, 'programurl');
+        if(urlToRender !== undefined) {
+          // if there is a program passed via url: try to parse
+          const fl = new FileLoader(urlToRender, share, container, renderProgramByLocalFile);
+          fl.loadAndRenderProgram().then(success => {
+            if(!success) {
+              const pasteListener = PasteListener.createInstance(share, container, renderProgramByLocalFile);
+              pasteListener.enablePasteListener();
+
+              const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
+              fd.enableDragAndDrop();
+            }
+          });
+          return;
+        }
+        const pasteListener = PasteListener.createInstance(share, container, renderProgramByLocalFile);
+        pasteListener.enablePasteListener();
+
         const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
-        fd.enableDragAndDrop();
+        fd.enableDragAndDrop();       
         return;
       }
 
