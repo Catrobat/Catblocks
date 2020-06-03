@@ -64,8 +64,6 @@ describe('Filesystem msg tests', () => {
 describe('Webview test', () => {
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
-    // clean workspace before each test
     await page.evaluate(() => {
       playgroundWS.clear();
     });
@@ -198,7 +196,6 @@ describe('Webview test', () => {
 describe('share displays language of UI elements correctly', () => {
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
   });
 
   test('check >en< language of tabs and error messages of scripts, looks and sounds', async () => {
@@ -219,6 +216,42 @@ describe('share displays language of UI elements correctly', () => {
       return Blockly.CatblocksMsgs.setLocale(testLanguage);
     }, testLanguage);
     expect(await executeShareLanguageUITest(testLanguageObject)).toBeTruthy();
+  });
+
+  test('check if unknown >es_US< language is handled as >es<', async () => {
+    const testLanguage = 'es_US';
+    const fallbackLanguage = 'es';
+    const fallbackLanguageObject = JSON.parse(
+      utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
+    );
+    await page.evaluate(testLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    }, testLanguage);
+    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
+  });
+
+  test('check if invalid >de_XY< language is handled as >de<', async () => {
+    const testLanguage = 'de_XY';
+    const fallbackLanguage = 'de';
+    const fallbackLanguageObject = JSON.parse(
+      utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
+    );
+    await page.evaluate(testLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    }, testLanguage);
+    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
+  });
+
+  test('check if >xy_za< language is handled as default >en<', async () => {
+    const testLanguage = 'xy_za';
+    const fallbackLanguage = 'en';
+    const fallbackLanguageObject = JSON.parse(
+      utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
+    );
+    await page.evaluate(testLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    }, testLanguage);
+    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
   });
 
   async function executeShareLanguageUITest(languageObject) {

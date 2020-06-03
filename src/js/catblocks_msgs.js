@@ -26,8 +26,13 @@ Blockly.CatblocksMsgs.setLocale = function (locale, filesLocation = undefined) {
       return Promise.resolve();
     }
   } else {
-    console.warn('Fallback to default language and ignoring unrecognized locale: ' + locale);
-    return Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_);
+    const localeWithoutSuffix = locale.substring(0, locale.indexOf('_'));
+    if (locale !== localeWithoutSuffix) {
+      return Blockly.CatblocksMsgs.setLocale(localeWithoutSuffix, filesLocation);
+    } else {
+      console.warn('Fallback to default language and ignoring unrecognized locale: ' + locale);
+      return Blockly.CatblocksMsgs.setLocale(Blockly.CatblocksMsgs.currentLocale_, filesLocation);
+    }
   }
 };
 

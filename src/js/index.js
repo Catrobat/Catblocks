@@ -20,7 +20,6 @@ import { renderAllPrograms } from './render/render';
       language = process.env.DISPLAY_LANGUAGE;
     }
   }
-  console.log(language);
   await Blockly.CatblocksMsgs.setLocale(language);
 
   switch (process.env.TYPE) {
