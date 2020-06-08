@@ -22,7 +22,9 @@
     "initiate": "yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
     "clean": "rimraf dist ; rimraf release",
-    "release": "yarn initiate && webpack --config release.config.js"
+    "release": "yarn initiate && webpack --config release.config.js",
+    "lint": "yarn eslint --ext .js ./",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
