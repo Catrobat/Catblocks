@@ -1,0 +1,8 @@
+<block type="AskSpeechBrick" id="" x="" y="">
+  <value name="ASK_SPEECH_QUESTION">
+    <shadow type="text" id="">
+      <field name="TEXT">What's your name?</field>
+    </shadow>
+  </value>
+  <field name="DROPDOWN">���</field>
+</block>

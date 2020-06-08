@@ -1,0 +1,13 @@
+<block type="ShowTextBrick" id="" x="" y="">
+  <field name="DROPDOWN">���</field>
+  <value name="X_POSITION">
+    <shadow type="text" id="">
+      <field name="TEXT">100</field>
+    </shadow>
+  </value>
+  <value name="Y_POSITION">
+    <shadow type="text" id="">
+      <field name="TEXT">200</field>
+    </shadow>
+  </value>
+</block>

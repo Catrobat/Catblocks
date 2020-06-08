@@ -1,0 +1,7 @@
+<block type="SetXBrick" x="" y="">
+  <value name="X_POSITION">
+    <shadow type="text">
+      <field name="TEXT">100</field>
+    </shadow>
+  </value>
+</block>

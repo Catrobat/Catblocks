@@ -1,0 +1,7 @@
+<block type="ChangeBrightnessByNBrick" id="" x="" y="">
+  <value name="BRIGHTNESS_CHANGE">
+    <shadow type="text" id="">
+      <field name="TEXT">25</field>
+    </shadow>
+  </value>
+</block>

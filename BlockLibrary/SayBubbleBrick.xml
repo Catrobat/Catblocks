@@ -1,0 +1,7 @@
+<block type="SayBubbleBrick" id="" x="" y="">
+  <value name="SAY_BRICK">
+    <shadow type="text" id="">
+      <field name="TEXT">Hello!</field>
+    </shadow>
+  </value>
+</block>

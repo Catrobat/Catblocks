@@ -1,0 +1,4 @@
+<block type="WhenRaspiPinChangedBrick" id="" x="" y="">
+    <field name="DROPDOWN">5</field>
+    <field name="DROPDOWN2">low</field>
+</block>

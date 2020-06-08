@@ -1,0 +1,9 @@
+dist/
+\.idea/
+node_modules/
+*.log
+i18n/json
+\.vscode/
+./jenkins/testresults/*
+jest_html_reporters.html
+release/

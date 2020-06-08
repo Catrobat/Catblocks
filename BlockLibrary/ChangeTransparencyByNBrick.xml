@@ -1,0 +1,7 @@
+<block type="ChangeTransparencyByNBrick" id="" x="" y="">
+  <value name="TRANSPARENCY_CHANGE">
+    <shadow type="text" id="">
+      <field name="TEXT">25</field>
+    </shadow>
+  </value>
+</block>

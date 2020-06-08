@@ -1,0 +1,40 @@
+name: Pull Request Action
+
+on: 
+  pull_request:
+    types: [opened, reopened, labeled, synchronize]
+    # labeled: when adding a label to PR
+    # synchronize: when adding new commit after PR is already opened
+
+jobs:
+  runTests:
+    name: Run Auto-Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run jest test action
+        uses: ./jest-testing-action/       
+      - name: Prepare test report
+        if: always()
+        run: cd /home/runner/work/Catblocks/Catblocks && mkdir -p ./catblocksTestReport/ && cp ./jest_html_reporters.html ./catblocksTestReport/rep_${GITHUB_SHA}.html
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: CatblocksTestReport
+          path: /home/runner/work/Catblocks/Catblocks/catblocksTestReport/
+      
+  uploadDocker:
+    name: Create new artifact for PO review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prepare artifact entrypoint.sh file
+        run: cd ./docker/po-review && sed -i "s/{{COMMIT}}/${GITHUB_SHA}/g" entrypoint.sh && sed -i "s/{{BRANCH}}/${GITHUB_REF##*/}/g" entrypoint.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: DockerCatblocks
+          path: ./docker/po-review/

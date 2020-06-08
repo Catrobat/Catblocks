@@ -1,0 +1,4 @@
+<block type="RaspiSendDigitalValueBrick" id="" x="" y="">
+    <field name="PIN1">3</field>
+    <field name="PIN2">1</field>
+</block>
