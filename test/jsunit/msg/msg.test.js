@@ -1,7 +1,7 @@
 /**
  * @description Msg tests
  */
-/* global share, page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
+/* global share, shareUtils, page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -161,4 +161,57 @@ describe('Webview test', () => {
         });
     }, testLanguageObject, defaultLanguageObject, languageToTest)).toBeTruthy();
   });
+});
+
+describe('share displays language of UI elements correctly', () => {
+
+  beforeEach(async () => {
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    page.on('console', message => console.log(message.text()));
+  });
+
+  test('check >en< language of tabs and error messages of scripts, looks and sounds', async () => {
+    const defaultLanguage = 'en';
+    const defaultLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${defaultLanguage}.json`));
+    await page.evaluate((defaultLanguage) => {
+      return Blockly.CatblocksMsgs.setLocale(defaultLanguage);
+    }, defaultLanguage);
+    expect(await executeShareLanguageUITest(defaultLanguageObject)).toBeTruthy();
+  });
+
+  test('check >de< language of tabs and error messages of scripts, looks and sounds', async () => {
+    const testLanguage = 'de';
+    const testLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${testLanguage}.json`));
+    await page.evaluate((testLanguage) => {
+      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    }, testLanguage);
+    expect(await executeShareLanguageUITest(testLanguageObject)).toBeTruthy();
+  });
+
+  async function executeShareLanguageUITest(languageObject) {
+    return await page.evaluate((languageObject) => {
+      const shareTestContainer = document.getElementById('shareprogs');
+      const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
+      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
+      const catObj = {
+        scenes: [{
+          name: 'tscene',
+          objectList: [{
+            name: 'toobject'
+          }]
+        }]
+      };
+      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+      const obj1ID = shareUtils.generateID('programID-tscene-toobject');
+      const scriptsText = shareTestContainer.querySelector('#'+obj1ID+'-scripts').textContent;
+      const scriptsTabText = shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab').textContent;
+      const looksText = shareTestContainer.querySelector('#'+obj1ID+'-looks').textContent;
+      const looksTabText = shareTestContainer.querySelector('#'+obj1ID+'-looks-tab').textContent;
+      const soundsText = shareTestContainer.querySelector('#'+obj1ID+'-sounds').textContent;
+      const soundsTabText = shareTestContainer.querySelector('#'+obj1ID+'-sounds-tab').textContent;
+      return (scriptsTabText.includes(languageObject['SCRIPTS']) && scriptsText.includes(languageObject['SCRIPTS'])
+        && looksTabText.includes(languageObject['LOOKS']) && looksText.includes(languageObject['LOOKS'])
+        && soundsTabText.includes(languageObject['SOUNDS']) && soundsText.includes(languageObject['SOUNDS']));
+    }, languageObject);
+  }
 });

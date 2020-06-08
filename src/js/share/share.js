@@ -360,15 +360,15 @@ export class Share {
       'aria-labelledby': objHeadingID,
       'data-parent': `#${accordionID}`
     });
-
-    this.generateTabs(objectContentContainer, objectID, object);
+    const currentLocaleValues = Blockly.CatblocksMsgs.getCurrentLocaleValues();
+    this.generateTabs(objectContentContainer, objectID, object, currentLocaleValues);
     const contentContainer = injectNewDom(objectContentContainer, 'div', {
       class: 'tab-content card-body'
     });
 
-    this.generateScripts(contentContainer, objectID, object, xmlObject, options);
-    this.generateLooks(contentContainer, objectID, object, options);
-    this.generateSounds(contentContainer, objectID, object, options);
+    this.generateScripts(contentContainer, objectID, object, xmlObject, currentLocaleValues, options);
+    this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
+    this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
   }
 
   /**
@@ -376,9 +376,10 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
+   * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateSounds(container, objectID, object, options = defaultOptions.object) {
+  generateSounds(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
     const soundsContainer = injectNewDom(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-sounds`,
@@ -386,10 +387,11 @@ export class Share {
       'aria-labelledby': `${objectID}-sounds-tab`
     });
 
+    const noSoundsText = 'No ' + currentLocaleValues['SOUNDS'] + ' found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
       soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, 'No Sounds found'));
+      }, noSoundsText));
       return;
     }
 
@@ -442,9 +444,10 @@ export class Share {
     }
 
     if (failed > 0) {
+      const failedSoundsText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SOUNDS'];
       soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, `Failed to parse ${failed} sounds(s) properly.`));
+      }, failedSoundsText));
     }
   }
 
@@ -453,9 +456,10 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
+   * @param {Oject} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateLooks(container, objectID, object, options = defaultOptions.object) {
+  generateLooks(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
     const looksContainer = injectNewDom(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-looks`,
@@ -463,10 +467,11 @@ export class Share {
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
+    const noLooksText = 'No ' + currentLocaleValues['LOOKS'] + ' found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
       looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, 'No Looks found'));
+      }, noLooksText));
       return;
     }
 
@@ -511,9 +516,10 @@ export class Share {
     }
 
     if (failed > 0) {
+      const failedLooksText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['LOOKS'];
       looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, `Failed to parse ${failed} look(s) properly.`));
+      }, failedLooksText));
     }
   }
 
@@ -523,9 +529,10 @@ export class Share {
    * @param {string} objectID
    * @param {Object} object
    * @param {XMLDocument}
+   * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateScripts(container, objectID, object, xmlObject, options = defaultOptions.object) {
+  generateScripts(container, objectID, object, xmlObject, currentLocaleValues, options = defaultOptions.object) {
     const wrapperContainer = injectNewDom(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
@@ -537,9 +544,10 @@ export class Share {
       object.scriptList.length <= 0 || !hasChildren(xmlObject) ||
       object.scriptList.length !== xmlObject.children.length) {
 
+      const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
       wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, 'No Scripts found'));
+      }, noScriptText));
       return;
     }
 
@@ -561,9 +569,10 @@ export class Share {
     }
 
     if (failed > 0) {
+      const failedScriptText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SCRIPTS'];
       wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
         class: 'catblocks-empty-text'
-      }, `Failed to parse ${failed} script(s) properly.`));
+      }, failedScriptText));
     }
   }
 
@@ -572,9 +581,9 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Object} [options=defaultOptions.object]
+   * @param {Object} currentLocaleValues
    */
-  generateTabs(container, objectID, object) {
+  generateTabs(container, objectID, object, currentLocaleValues) {
 
     if (!object) {
       object = {
@@ -614,7 +623,7 @@ export class Share {
       role: 'tab',
       'aria-controls': 'scripts',
       'aria-selected': 'true'
-    }, `Scripts (${object.scriptList.length})`);
+    }, `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`);
 
     const liLooks = injectNewDom(ul, 'li', {
       class: 'nav-item'
@@ -627,7 +636,7 @@ export class Share {
       role: 'tab',
       'aria-controls': 'looks',
       'aria-selected': 'false'
-    }, `Looks (${object.lookList.length})`);
+    }, `${currentLocaleValues['LOOKS']} (${object.lookList.length})`);
 
     const liSounds = injectNewDom(ul, 'li', {
       class: 'nav-item'
@@ -640,7 +649,7 @@ export class Share {
       role: 'tab',
       'aria-controls': 'sounds',
       'aria-selected': 'false'
-    }, `Sounds (${object.soundList.length})`);
+    }, `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`);
   }
 
   /**
