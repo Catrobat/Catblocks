@@ -23,12 +23,12 @@ describe('Share basic tests', () => {
 
       return (accordionContainer.id === 'sceneID-accordionObjects'
         && sceneContainer.id === 'sceneID'
-        && sceneContainer.querySelector('#sceneID-header') !== undefined
+        && sceneContainer.querySelector('#sceneID-header') !== null
         && sceneContainer.querySelector('#sceneID-header').innerText.startsWith('Name of the scene')
         && sceneContainer.querySelector('#sceneID-header').getAttribute('data-target') === '#sceneID-collapseOne'
 
         && sceneContainer.getAttribute('class') === 'catblocks-scene card'
-        && sceneContainer.querySelector('.catblocks-object-container') !== undefined
+        && sceneContainer.querySelector('.catblocks-object-container') !== null
         && sceneObjContainer.getAttribute('data-parent') === '#accordionID');
     })).toBeTruthy();
   });
@@ -44,20 +44,20 @@ describe('Share basic tests', () => {
 
       return (objectCard.id === 'tobject'
         && objectCard.getAttribute('class') === 'catblocks-object card'
-        && container.querySelector('#tobject-header') !== undefined
+        && container.querySelector('#tobject-header') !== null
         && container.querySelector('#tobject-header').innerText.startsWith('objectName')
-        && container.querySelector('#tobject-collapseOneScene') !== undefined
+        && container.querySelector('#tobject-collapseOneScene') !== null
         && container.querySelector('#tobject-collapseOneScene').getAttribute('data-parent') === '#sceneID-accordionObjects'
 
-        && container.querySelector('.tab-content') !== undefined
-        && container.querySelector('#tobject-tabs') !== undefined
+        && container.querySelector('.tab-content') !== null
+        && container.querySelector('#tobject-tabs') !== null
 
-        && container.querySelector('#tobject-scripts-tab') !== undefined
-        && container.querySelector('#tobject-looks-tab') !== undefined
-        && container.querySelector('#tobject-sounds-tab') !== undefined
-        && container.querySelector(container.querySelector('#tobject-scripts-tab').getAttribute('href')) !== undefined
-        && container.querySelector(container.querySelector('#tobject-looks-tab').getAttribute('href')) !== undefined
-        && container.querySelector(container.querySelector('#tobject-sounds-tab').getAttribute('href')) !== undefined);
+        && container.querySelector('#tobject-scripts-tab') !== null
+        && container.querySelector('#tobject-looks-tab') !== null
+        && container.querySelector('#tobject-sounds-tab') !== null
+        && container.querySelector(container.querySelector('#tobject-scripts-tab').getAttribute('href')) !== null
+        && container.querySelector(container.querySelector('#tobject-looks-tab').getAttribute('href')) !== null
+        && container.querySelector(container.querySelector('#tobject-sounds-tab').getAttribute('href')) !== null);
     })).toBeTruthy();
   });
 });
@@ -109,11 +109,11 @@ describe('Share catroid program rendering tests', () => {
 
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+      return (shareTestContainer.querySelector('.catblocks-scene') !== null
         && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
-        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
-        && shareTestContainer.querySelector('.accordion') !== undefined
-        && shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object-container') !== null
+        && shareTestContainer.querySelector('.accordion') !== null
+        && shareTestContainer.querySelector('.catblocks-object .card-header') !== null
         && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
     })).toBeTruthy();
   });
@@ -132,10 +132,10 @@ describe('Share catroid program rendering tests', () => {
 
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+      return (shareTestContainer.querySelector('.catblocks-scene') !== null
         && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
-        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
-        && shareTestContainer.querySelector('.accordion') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object-container') !== null
+        && shareTestContainer.querySelector('.accordion') !== null
         && shareTestContainer.getElementsByClassName('catblocks-object').length === 2
         && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
     })).toBeTruthy();
@@ -149,17 +149,17 @@ describe('Share catroid program rendering tests', () => {
         scenes: [{
           name: 'tscene',
           objectList: [{
-            name: 'toobject'
+            name: 'tobject'
           }]
         }]
       };
 
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      return (shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
-        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('<div style="font-weight: normal;">toobject</div>')
-        && shareTestContainer.querySelector('.tab-pane') !== undefined
-        && shareTestContainer.querySelector('.catblocks-script') !== undefined);
+      return (shareTestContainer.querySelector('.catblocks-object .card-header') !== null
+        && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('<div style="font-weight: normal;">tobject</div>')
+        && shareTestContainer.querySelector('.tab-pane') !== null
+        && shareTestContainer.querySelector('.catblocks-script') === null);
     })).toBeTruthy();
   });
 
@@ -181,17 +181,17 @@ describe('Share catroid program rendering tests', () => {
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
       const sceneID = shareUtils.generateID('programID-tscene');
-      const obj1ID = shareUtils.generateID('programID-tscene-toobject1');
-      const obj2ID = shareUtils.generateID('programID-tscene-toobject2');
+      const obj1ID = shareUtils.generateID('programID-tscene-tobject1');
+      const obj2ID = shareUtils.generateID('programID-tscene-tobject2');
 
-      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== undefined
-        && shareTestContainer.querySelector('#'+sceneID) !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== undefined);
+      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== null
+        && shareTestContainer.querySelector('#'+sceneID) !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== null);
     })).toBeTruthy();
   });
 
@@ -208,7 +208,7 @@ describe('Share catroid program rendering tests', () => {
         }, {
           name: 'tscene2',
           objectList: [{
-            name: 'toobject2'
+            name: 'tobject2'
           }]
         }]
       };
@@ -217,22 +217,22 @@ describe('Share catroid program rendering tests', () => {
 
       const scene1ID = shareUtils.generateID('programID-tscene1');
       const scene2ID = shareUtils.generateID('programID-tscene2');
-      const obj1ID = shareUtils.generateID('programID-tscene1-toobject1');
-      const obj2ID = shareUtils.generateID('programID-tscene2-toobject2');
+      const obj1ID = shareUtils.generateID('programID-tscene1-tobject1');
+      const obj2ID = shareUtils.generateID('programID-tscene2-tobject2');
 
-      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== undefined
-        && shareTestContainer.querySelector('#'+scene1ID) !== undefined
-        && shareTestContainer.querySelector('#'+scene2ID) !== undefined
+      return (shareTestContainer.querySelector('#'+shareUtils.generateID('programID')) !== null
+        && shareTestContainer.querySelector('#'+scene1ID) !== null
+        && shareTestContainer.querySelector('#'+scene2ID) !== null
        
-        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-sounds') !== undefined
-        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== undefined
+        && shareTestContainer.querySelector('#'+obj1ID+'-scripts-tab') !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-looks') !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds') !== null
+        && shareTestContainer.querySelector('#'+obj1ID+'-sounds .catblocks-empty-text') !== null
      
-        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-sounds') !== undefined
-        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== undefined);
+        && shareTestContainer.querySelector('#'+obj2ID+'-scripts-tab') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-looks') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds') !== null
+        && shareTestContainer.querySelector('#'+obj2ID+'-sounds .catblocks-empty-text') !== null);
     })).toBeTruthy();
   });
 
@@ -242,9 +242,9 @@ describe('Share catroid program rendering tests', () => {
       const scriptXml = (new DOMParser).parseFromString(scriptString, 'text/xml');
       const svg = share.domToSvg(scriptXml);
 
-      return (svg !== undefined
+      return (svg !== null
         && svg.getAttribute('class') === 'catblocks-svg'
-        && svg.querySelector('path.blocklyPath') !== undefined);
+        && svg.querySelector('path.blocklyPath') !== null);
     })).toBeTruthy();
   });
 
@@ -254,7 +254,7 @@ describe('Share catroid program rendering tests', () => {
       const scriptXml = (new DOMParser).parseFromString(scriptString, 'text/xml');
       const svg = share.domToSvg(scriptXml);
 
-      return (svg !== undefined
+      return (svg !== null
         && svg.getAttribute('width').replace('px', '') > 0
         && svg.getAttribute('height').replace('px', '') > 0);
     })).toBeTruthy();
@@ -278,8 +278,8 @@ describe('Share catroid program rendering tests', () => {
 
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      const objID = shareUtils.generateID('programID-tscene-toobject');
-      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-scripts .catblocks-script svg.catblocks-svg') !== undefined);
+      const objID = shareUtils.generateID('programID-tscene-tobject');
+      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-scripts .catblocks-script svg.catblocks-svg') !== null);
     })).toBeTruthy();
   });
 
@@ -334,7 +334,7 @@ describe('Share catroid program rendering tests', () => {
 
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      const objID = shareUtils.generateID('programID-tscene-toobject');
+      const objID = shareUtils.generateID('programID-tscene-tobject');
       return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-scripts .catblocks-script svg.catblocks-svg') == null);
     })).toBeTruthy();
   });
@@ -375,11 +375,11 @@ describe('Share catroid program rendering tests', () => {
       
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
-      return (shareTestContainer.querySelector('.catblocks-scene') !== undefined
+      return (shareTestContainer.querySelector('.catblocks-scene') !== null
         && shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0
-        && shareTestContainer.querySelector('.catblocks-object-container') !== undefined
-        && shareTestContainer.querySelector('.accordion') !== undefined
-        && shareTestContainer.querySelector('.catblocks-object .card-header') !== undefined
+        && shareTestContainer.querySelector('.catblocks-object-container') !== null
+        && shareTestContainer.querySelector('.accordion') !== null
+        && shareTestContainer.querySelector('.catblocks-object .card-header') !== null
         && shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML.startsWith('No objects found'));
     })).toBeTruthy();
   });
@@ -407,16 +407,16 @@ describe('Share catroid program rendering tests', () => {
         scenes: [{
           name: 'tscene',
           objectList: [{
-            name: 'toobject'
+            name: 'tobject'
           }]
         }]
       };
       share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
 
       const expectedSceneHeaderTextCollapsed = '<div style="font-weight: normal;">tscene</div><i class="material-icons">chevron_left</i>';
-      const expectedCardHeaderTextCollapsed = '<div style="font-weight: normal;">toobject</div><i class="material-icons">chevron_left</i>';
+      const expectedCardHeaderTextCollapsed = '<div style="font-weight: normal;">tobject</div><i class="material-icons">chevron_left</i>';
       const expectedSceneHeaderTextExpanded = '<div style="font-weight: bold;">tscene</div><i class="material-icons">expand_more</i>';
-      const expectedCardHeaderTextExpanded = '<div style="font-weight: bold;">toobject</div><i class="material-icons">expand_more</i>';
+      const expectedCardHeaderTextExpanded = '<div style="font-weight: bold;">tobject</div><i class="material-icons">expand_more</i>';
       const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
       const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
       const sceneHeaderInitialText = sceneHeader.innerHTML;

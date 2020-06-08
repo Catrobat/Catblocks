@@ -1,0 +1,18 @@
+name: Interval Action for Brick Support Check
+
+on:
+    schedule:
+        - cron: '0 7 * * 1' # Mondays 7AM UTC
+
+jobs:
+    runDocker:
+        if: github.repository == 'Catrobat/Catblocks'
+        name: checkout repo and check supported bricks
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout repo
+              uses: actions/checkout@v2
+            - name: run checker for brick support
+              uses: ./brick-support-checker-action/
+              with:
+                slack_webhook: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,0 +1,11 @@
+name: "Catroid Brick Support Checker Action"
+description: "Compares Catroid bricks with Catblocks bricks and sends the new bricks to Slack"
+inputs:
+    slack_webhook:
+      description: 'Webhook to post on in #catblocks Slack channel'
+      required: true
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args: 
+        - ${{ inputs.slack_webhook }}

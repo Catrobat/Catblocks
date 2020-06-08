@@ -1,7 +1,7 @@
 /**
  * @description Msg tests
  */
-/* global page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
+/* global share, page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -60,12 +60,9 @@ describe('Filesystem msg tests', () => {
 
 describe('Webview test', () => {
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => console.log(message.text()));
-  });
-
-  beforeEach(async () => {
     // clean workspace before each test
     await page.evaluate(() => {
       playgroundWS.clear();
@@ -142,5 +139,26 @@ describe('Webview test', () => {
         });
       });
     }, languageObject, languageToTest)).toBeFalsy();
+  });
+
+  test('Changing language on share page is working', async () => {
+    const languageToTest = 'de';
+    const testLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
+    const defaultLanguage = 'en';
+    const defaultLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${defaultLanguage}.json`));
+
+    expect(await page.evaluate((testLanguageObject, defaultLanguageObject, languageToTest) => {
+      const defaultBlock = share.workspace.newBlock("WaitBrick");
+      defaultBlock.initSvg();
+      defaultBlock.render(false);
+      return Blockly.CatblocksMsgs.setLocale(languageToTest)
+        .then(() => {
+          const testBlock = share.workspace.newBlock("WaitBrick");
+          testBlock.initSvg();
+          testBlock.render(false);
+          return (defaultLanguageObject['CONTROL_WAIT'].startsWith(defaultBlock.getFieldValue())
+            && testLanguageObject['CONTROL_WAIT'].startsWith(testBlock.getFieldValue()));
+        });
+    }, testLanguageObject, defaultLanguageObject, languageToTest)).toBeTruthy();
   });
 });
