@@ -50,7 +50,7 @@ describe('Filesystem msg tests', () => {
     const start = 'Blockly.CatblocksMsgs.locales =';
     const startOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(start);
     const endOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(';');
-    
+
     let langs;
     eval('langs =' + CATBLOCKS_PAYLOAD.substring(startOfObject + start.length + 1, endOfObject));
 

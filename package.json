@@ -24,7 +24,7 @@
     "clean": "rimraf dist ; rimraf release",
     "release": "yarn initiate && webpack --config release.config.js",
     "lint:es": "yarn eslint --ext .js ./",
-    "lint:pr": "yarn prettier -c **.js",
+    "lint:pr": "yarn prettier -c src test",
     "lint": "yarn lint:es --max-warnings 0 && yarn lint:pr",
     "lint:fix": "yarn lint:es --fix && yarn lint:pr --write"
   },
