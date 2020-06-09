@@ -1,10 +1,21 @@
 /**
  * This file will be used in catroweb to render everything properly
  */
-import "../../css/share.css";
+import '../../css/share.css';
 import Blockly from 'blockly';
 import Parser from '../parser/parser';
-import { escapeURI, generateID, defaultOptions, parseOptions, transformXml, injectNewDom, wrapElement, hasChildren, trimString, zebraChangeColor } from './utils';
+import {
+  escapeURI,
+  generateID,
+  defaultOptions,
+  parseOptions,
+  transformXml,
+  injectNewDom,
+  wrapElement,
+  hasChildren,
+  trimString,
+  zebraChangeColor
+} from './utils';
 import $ from 'jquery';
 
 export class Share {
@@ -18,24 +29,23 @@ export class Share {
   }
 
   /**
-	 * init share class instance
-	 * @param {Element} options for rendering process
-	 */
+   * init share class instance
+   * @param {Element} options for rendering process
+   */
   init(options) {
     this.config = parseOptions(options, defaultOptions.render);
-    this.createReadonlyWorkspace(); 
+    this.createReadonlyWorkspace();
 
     // for now only convert when in library
     if (window.CatBlocks) {
       this.insertRightMediaURI();
     }
-    
+
     Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
   }
 
-
   /**
-   * As we don't know the MediaURL when injecting the JS file and we cannot load 
+   * As we don't know the MediaURL when injecting the JS file and we cannot load
    * the custom Blocks in a later state, we have to overwrite the URLs in an ugly way here
    */
   insertRightMediaURI() {
@@ -43,9 +53,9 @@ export class Share {
       for (const brick in this.blockly.Bricks) {
         if (Object.prototype.hasOwnProperty.call(this.blockly.Bricks, brick)) {
           const obj = this.blockly.Bricks[brick];
-          
+
           for (const prop in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith("args")) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
               const args = obj[prop];
               for (const arg of args) {
                 if (arg.src) {
@@ -54,7 +64,6 @@ export class Share {
               }
             }
           }
-
         }
       }
     }
@@ -70,9 +79,9 @@ export class Share {
 
     let mediapath = `${this.config.shareRoot}${this.config.media}`;
     // full link or absolute path given
-    if (this.config.media.startsWith("http") || this.config.media.startsWith("/")) {
+    if (this.config.media.startsWith('http') || this.config.media.startsWith('/')) {
       mediapath = this.config.media;
-    } 
+    }
 
     this.workspace = this.blockly.inject(hiddenContainer, {
       readOnly: true,
@@ -106,32 +115,35 @@ export class Share {
           updatedStats[key] = newStats[key];
         }
       });
-      updatedStats['scripts'] = (updatedStats['scripts'])
-        ? updatedStats['scripts'] + 1 : 1;
+      updatedStats['scripts'] = updatedStats['scripts'] ? updatedStats['scripts'] + 1 : 1;
     }
     return updatedStats;
   }
 
   /**
-	 * Get script stats and return
-	 * @param {XMLDocument} script to parse starts
-	 * @returns {Element} starts value dictionary
-	 */
+   * Get script stats and return
+   * @param {XMLDocument} script to parse starts
+   * @returns {Element} starts value dictionary
+   */
   getScriptStats(script) {
-    if (!script) return {};
+    if (!script) {
+      return {};
+    }
 
     const blocks = script.getElementsByTagName('block');
-    return Array.from(blocks).map(block => {
-      const name = block.getAttribute('type') || 'undefined';
-      return (this.blockly.Bricks[name]) ? this.blockly.Bricks[name].category : 'unknown';
-    }).reduce((acc, val) => {
-      if (acc[val]) {
-        acc[val] = acc[val] + 1;
-      } else {
-        acc[val] = 1;
-      }
-      return acc;
-    }, {});
+    return Array.from(blocks)
+      .map(block => {
+        const name = block.getAttribute('type') || 'undefined';
+        return this.blockly.Bricks[name] ? this.blockly.Bricks[name].category : 'unknown';
+      })
+      .reduce((acc, val) => {
+        if (acc[val]) {
+          acc[val] = acc[val] + 1;
+        } else {
+          acc[val] = 1;
+        }
+        return acc;
+      }, {});
   }
 
   /**
@@ -173,8 +185,8 @@ export class Share {
 
     // move it away from the edges
     transformXml(blockXml, {
-      'block': ['remAttr-id', 'remAttr-x', 'remAttr-y'],
-      'shadow': ['remAttr-id', 'remAttr-x', 'remAttr-y']
+      block: ['remAttr-id', 'remAttr-x', 'remAttr-y'],
+      shadow: ['remAttr-id', 'remAttr-x', 'remAttr-y']
     });
     blockXml.firstElementChild.setAttribute('x', xOffset);
     blockXml.firstElementChild.setAttribute('y', yOffset);
@@ -193,7 +205,6 @@ export class Share {
       svg.setAttribute('width', `${oriBox.width + xOffset}px`);
       svg.setAttribute('height', `${oriBox.height + yOffset}px`);
       svg.setAttribute('class', 'catblocks-svg');
-
     } catch (e) {
       console.error(e);
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
@@ -277,16 +288,26 @@ export class Share {
       xmlScenes = xmlElement.getElementsByTagName('scene');
     }
 
-    if (programJSON == null || programJSON.scenes == null ||
-      programJSON.scenes.length === 0 || xmlElement == null || xmlScenes == null ||
-      !hasChildren(xmlScenes) || xmlScenes.length != programJSON.scenes.length) {
-
+    if (
+      programJSON == null ||
+      programJSON.scenes == null ||
+      programJSON.scenes.length === 0 ||
+      xmlElement == null ||
+      xmlScenes == null ||
+      !hasChildren(xmlScenes) ||
+      xmlScenes.length != programJSON.scenes.length
+    ) {
       const errorContainer = injectNewDom(scenesContainer, 'div', {
         class: 'catblocks-scene card'
       });
-      injectNewDom(errorContainer, 'div', {
-        class: 'card-header d-flex justify-content-between'
-      }, 'Empty program found');
+      injectNewDom(
+        errorContainer,
+        'div',
+        {
+          class: 'card-header d-flex justify-content-between'
+        },
+        'Empty program found'
+      );
       throw new Error('Empty program found');
     }
 
@@ -294,18 +315,32 @@ export class Share {
       const scene = programJSON.scenes[i];
       const xmlScene = xmlScenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
-      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, trimString(scene.name), parseOptions(options.scene, defaultOptions.scene));
+      const sceneObjectContainer = this.addSceneContainer(
+        scenesContainerID,
+        sceneID,
+        scenesContainer,
+        trimString(scene.name),
+        parseOptions(options.scene, defaultOptions.scene)
+      );
 
       const xmlObjects = xmlScene.getElementsByTagName('object');
-      if (scene.objectList == null || scene.objectList.length === 0 || !hasChildren(xmlObjects) ||
-        xmlObjects.length != scene.objectList.length) {
-
+      if (
+        scene.objectList == null ||
+        scene.objectList.length === 0 ||
+        !hasChildren(xmlObjects) ||
+        xmlObjects.length != scene.objectList.length
+      ) {
         const errorContainer = injectNewDom(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
         });
-        injectNewDom(errorContainer, 'div', {
-          class: 'card-header d-flex justify-content-between'
-        }, 'No objects found');
+        injectNewDom(
+          errorContainer,
+          'div',
+          {
+            class: 'card-header d-flex justify-content-between'
+          },
+          'No objects found'
+        );
         continue;
       }
 
@@ -315,8 +350,14 @@ export class Share {
         const xmlObject = xmlObjects[j];
         const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
 
-        this.renderObjectJSON(objectID, `${sceneID}-accordionObjects`, sceneObjectContainer,
-          xmlObject, object, parseOptions(options.object, parseOptions(options.object, defaultOptions.object)));
+        this.renderObjectJSON(
+          objectID,
+          `${sceneID}-accordionObjects`,
+          sceneObjectContainer,
+          xmlObject,
+          object,
+          parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
+        );
       }
     }
   }
@@ -389,9 +430,16 @@ export class Share {
 
     const noSoundsText = 'No ' + currentLocaleValues['SOUNDS'] + ' found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
-      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, noSoundsText));
+      soundsContainer.appendChild(
+        injectNewDom(
+          soundsContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          noSoundsText
+        )
+      );
       return;
     }
 
@@ -417,7 +465,7 @@ export class Share {
       const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`);
 
-      if (options.programRoot.startsWith("http")) {
+      if (options.programRoot.startsWith('http')) {
         src = escapeURI(`${options.programRoot}${soundPath}`);
       }
 
@@ -430,9 +478,14 @@ export class Share {
         displaySoundName = sound.fileName;
       }
 
-      injectNewDom(col, 'span', {
-        class: 'catblocks-object-sound-name d-block'
-      }, displaySoundName);
+      injectNewDom(
+        col,
+        'span',
+        {
+          class: 'catblocks-object-sound-name d-block'
+        },
+        displaySoundName
+      );
 
       const audioContainer = injectNewDom(col, 'audio', {
         class: 'catblocks-object-sound-item',
@@ -445,9 +498,16 @@ export class Share {
 
     if (failed > 0) {
       const failedSoundsText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SOUNDS'];
-      soundsContainer.appendChild(injectNewDom(soundsContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, failedSoundsText));
+      soundsContainer.appendChild(
+        injectNewDom(
+          soundsContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          failedSoundsText
+        )
+      );
     }
   }
 
@@ -469,9 +529,16 @@ export class Share {
 
     const noLooksText = 'No ' + currentLocaleValues['LOOKS'] + ' found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
-      looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, noLooksText));
+      looksContainer.appendChild(
+        injectNewDom(
+          looksContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          noLooksText
+        )
+      );
       return;
     }
 
@@ -497,7 +564,7 @@ export class Share {
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
 
       // renderProgram got a full link
-      if (options.programRoot.startsWith("http")) {
+      if (options.programRoot.startsWith('http')) {
         src = escapeURI(`${options.programRoot}${imgPath}`);
       }
 
@@ -510,16 +577,28 @@ export class Share {
         class: 'img-fluid catblocks-object-look-item'
       });
 
-      injectNewDom(row, 'div', {
-        class: 'col-9'
-      }, look.name);
+      injectNewDom(
+        row,
+        'div',
+        {
+          class: 'col-9'
+        },
+        look.name
+      );
     }
 
     if (failed > 0) {
       const failedLooksText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['LOOKS'];
-      looksContainer.appendChild(injectNewDom(looksContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, failedLooksText));
+      looksContainer.appendChild(
+        injectNewDom(
+          looksContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          failedLooksText
+        )
+      );
     }
   }
 
@@ -540,21 +619,32 @@ export class Share {
       'aria-labelledby': `${objectID}-scripts-tab`
     });
 
-    if (!object || !object.scriptList || !xmlObject ||
-      object.scriptList.length <= 0 || !hasChildren(xmlObject) ||
-      object.scriptList.length !== xmlObject.children.length) {
-
+    if (
+      !object ||
+      !object.scriptList ||
+      !xmlObject ||
+      object.scriptList.length <= 0 ||
+      !hasChildren(xmlObject) ||
+      object.scriptList.length !== xmlObject.children.length
+    ) {
       const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
-      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, noScriptText));
+      wrapperContainer.appendChild(
+        injectNewDom(
+          wrapperContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          noScriptText
+        )
+      );
       return;
     }
 
     const scripts = xmlObject.getElementsByTagName('script');
     let failed = 0;
     for (const script of scripts) {
-      const blockXml = wrapElement(script.firstElementChild, 'xml', { 'xmlns': 'http://www.w3.org/1999/xhtml' });
+      const blockXml = wrapElement(script.firstElementChild, 'xml', { xmlns: 'http://www.w3.org/1999/xhtml' });
 
       const scriptContainer = injectNewDom(wrapperContainer, 'div', {
         class: 'catblocks-script'
@@ -570,9 +660,16 @@ export class Share {
 
     if (failed > 0) {
       const failedScriptText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SCRIPTS'];
-      wrapperContainer.appendChild(injectNewDom(wrapperContainer, 'p', {
-        class: 'catblocks-empty-text'
-      }, failedScriptText));
+      wrapperContainer.appendChild(
+        injectNewDom(
+          wrapperContainer,
+          'p',
+          {
+            class: 'catblocks-empty-text'
+          },
+          failedScriptText
+        )
+      );
     }
   }
 
@@ -584,7 +681,6 @@ export class Share {
    * @param {Object} currentLocaleValues
    */
   generateTabs(container, objectID, object, currentLocaleValues) {
-
     if (!object) {
       object = {
         scriptList: [],
@@ -615,41 +711,56 @@ export class Share {
     const liScript = injectNewDom(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(liScript, 'a', {
-      class: 'nav-link active',
-      id: `${objectID}-scripts-tab`,
-      'data-toggle': 'tab',
-      href: `#${objectID}-scripts`,
-      role: 'tab',
-      'aria-controls': 'scripts',
-      'aria-selected': 'true'
-    }, `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`);
+    injectNewDom(
+      liScript,
+      'a',
+      {
+        class: 'nav-link active',
+        id: `${objectID}-scripts-tab`,
+        'data-toggle': 'tab',
+        href: `#${objectID}-scripts`,
+        role: 'tab',
+        'aria-controls': 'scripts',
+        'aria-selected': 'true'
+      },
+      `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`
+    );
 
     const liLooks = injectNewDom(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(liLooks, 'a', {
-      class: 'nav-link',
-      id: `${objectID}-looks-tab`,
-      'data-toggle': 'tab',
-      href: `#${objectID}-looks`,
-      role: 'tab',
-      'aria-controls': 'looks',
-      'aria-selected': 'false'
-    }, `${currentLocaleValues['LOOKS']} (${object.lookList.length})`);
+    injectNewDom(
+      liLooks,
+      'a',
+      {
+        class: 'nav-link',
+        id: `${objectID}-looks-tab`,
+        'data-toggle': 'tab',
+        href: `#${objectID}-looks`,
+        role: 'tab',
+        'aria-controls': 'looks',
+        'aria-selected': 'false'
+      },
+      `${currentLocaleValues['LOOKS']} (${object.lookList.length})`
+    );
 
     const liSounds = injectNewDom(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(liSounds, 'a', {
-      class: 'nav-link',
-      id: `${objectID}-sounds-tab`,
-      'data-toggle': 'tab',
-      href: `#${objectID}-sounds`,
-      role: 'tab',
-      'aria-controls': 'sounds',
-      'aria-selected': 'false'
-    }, `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`);
+    injectNewDom(
+      liSounds,
+      'a',
+      {
+        class: 'nav-link',
+        id: `${objectID}-sounds-tab`,
+        'data-toggle': 'tab',
+        href: `#${objectID}-sounds`,
+        role: 'tab',
+        'aria-controls': 'sounds',
+        'aria-selected': 'false'
+      },
+      `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`
+    );
   }
 
   /**
@@ -684,24 +795,22 @@ export class Share {
     const iElement = sceneElement.children[1];
     //set design for current element
     if (iElement.textContent.includes('chevron_left') && ariaExpanded === 'false') {
-      iElement.textContent = iElement.textContent.replace("chevron_left", "expand_more");
-      divElement.style.fontWeight = "bold";
-    }
-    else {
+      iElement.textContent = iElement.textContent.replace('chevron_left', 'expand_more');
+      divElement.style.fontWeight = 'bold';
+    } else {
       if (iElement.textContent.includes('expand_more') && ariaExpanded === 'true') {
-        iElement.textContent = iElement.textContent.replace("expand_more", "chevron_left");
-        divElement.style.fontWeight = "normal";
-      }
-      else {
+        iElement.textContent = iElement.textContent.replace('expand_more', 'chevron_left');
+        divElement.style.fontWeight = 'normal';
+      } else {
         console.error("can't change chevron and header title: " + sceneElement.getAttribute('class'));
       }
     }
     //set design for all other elements in the same parent div
-    for(let i = 0; i < parentContainer.children.length; i++) {
+    for (let i = 0; i < parentContainer.children.length; i++) {
       const element = parentContainer.children[i].children[0];
       if (element !== sceneElement) {
-        element.children[0].style.fontWeight = "normal";
-        element.children[1].textContent = iElement.textContent.replace("expand_more", "chevron_left");
+        element.children[0].style.fontWeight = 'normal';
+        element.children[1].textContent = iElement.textContent.replace('expand_more', 'chevron_left');
       }
     }
   }

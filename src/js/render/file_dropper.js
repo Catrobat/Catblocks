@@ -1,10 +1,10 @@
-import $ from "jquery";
-import JSZip from "jszip";
-import { MessageBox } from "./message_box";
+import $ from 'jquery';
+import JSZip from 'jszip';
+import { MessageBox } from './message_box';
 
-/** 
+/**
  * Initialize Drag & Drop Field and handle Files.
- * 
+ *
  * @author michael.flucher@student.tugraz.at
  */
 
@@ -16,7 +16,6 @@ export class FileDropper {
     this.container = container;
     this.renderProgram = renderProgram;
   }
-
 
   /**
    * Creates or returns Singleton instance.
@@ -35,7 +34,6 @@ export class FileDropper {
     return instance;
   }
 
-
   /**
    * Returns Singleton instance.
    * @static
@@ -46,7 +44,6 @@ export class FileDropper {
     return instance;
   }
 
-
   /**
    * Register all Events for drag&drop area.
    * @memberof FileDropper
@@ -54,20 +51,23 @@ export class FileDropper {
   enableDragAndDrop() {
     const $ele = $('#catblocks-file-dropper');
 
-    $ele.on('drag dragstart dragend dragover dragenter dragleave drop', e => {
-      e.preventDefault();
-      e.stopPropagation();
-    }).on('dragover dragenter', () => {
-      $ele.addClass('hover');
-    }).on('dragleave dragend drop', () => {
-      $ele.removeClass('hover');
-    }).on('drop', this._handleFileDrop);
+    $ele
+      .on('drag dragstart dragend dragover dragenter dragleave drop', e => {
+        e.preventDefault();
+        e.stopPropagation();
+      })
+      .on('dragover dragenter', () => {
+        $ele.addClass('hover');
+      })
+      .on('dragleave dragend drop', () => {
+        $ele.removeClass('hover');
+      })
+      .on('drop', this._handleFileDrop);
 
     $('#dropper-file-input').on('change', this._handleInputChange);
 
     $ele.css('display', 'flex');
   }
-
 
   /**
    * EventHandler for drop area.
@@ -95,7 +95,6 @@ export class FileDropper {
     }
   }
 
-
   /**
    * Show or Hide loading overlay.
    * @private
@@ -104,19 +103,18 @@ export class FileDropper {
    */
   _updateView(event) {
     switch (event) {
-    case 'onStart': 
-      $('#loading-overlay').show();
-      break;
-    
-    case 'onDone': 
-      $('#loading-overlay').hide();
-      break;
-    
-    default: 
-      console.warn(`Ignore file dropper event: ${event}`);
+      case 'onStart':
+        $('#loading-overlay').show();
+        break;
+
+      case 'onDone':
+        $('#loading-overlay').hide();
+        break;
+
+      default:
+        console.warn(`Ignore file dropper event: ${event}`);
     }
   }
-
 
   /**
    * Returns the Base64 Src String for HTML.
@@ -127,11 +125,10 @@ export class FileDropper {
    * @memberof FileDropper
    */
   _generateBase64Src(fileName, fileExt, base64) {
-    
     // images
     if (fileExt.toLowerCase() === 'png' || fileExt.toLowerCase().includes('png')) {
       return 'data:image/png;charset=utf-8;base64,' + base64;
-    } 
+    }
     if (fileExt.toLowerCase() === 'jpg' || fileExt.toLowerCase().includes('jpg')) {
       return 'data:image/jpg;charset=utf-8;base64,' + base64;
     }
@@ -164,9 +161,8 @@ export class FileDropper {
 
     // ignore the rest
     console.warn('FileDropper: Ignoring File ' + fileName);
-    return "";
+    return '';
   }
-
 
   /**
    * Load .catrobat / .zip file
@@ -177,75 +173,74 @@ export class FileDropper {
    * @memberof FileDropper
    */
   _loadArchive(containerfile, containerCounter) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       // open ZIP
       const zip = new JSZip();
-      zip.loadAsync(containerfile, {
-        createFolders: true
-      }).then(element => {
+      zip
+        .loadAsync(containerfile, {
+          createFolders: true
+        })
+        .then(element => {
+          if (element.files['code.xml'] == null) {
+            throw new Error('Code.xml not found');
+          }
 
-        if (element.files['code.xml'] == null) {
-          throw new Error('Code.xml not found');
-        }
+          const fileMap = {};
+          let codeXML = '';
 
-        const fileMap = {};
-        let codeXML = "";
+          const zipFileKeys = Object.keys(element.files);
+          const filePromises = [];
 
-        const zipFileKeys = Object.keys(element.files);
-        const filePromises = [];
+          for (const key of zipFileKeys) {
+            const file = element.files[key];
 
-        for (const key of zipFileKeys) {
-          const file = element.files[key];
+            if (!file.dir) {
+              if (file.name.toLowerCase() === 'code.xml') {
+                const promise = zip.file(file.name).async('string');
+                filePromises.push(promise);
 
-          if (!file.dir) {
+                promise.then(str => {
+                  codeXML = str;
+                });
+              } else {
+                const promise = zip.file(file.name).async('base64');
+                filePromises.push(promise);
 
-            if (file.name.toLowerCase() === 'code.xml') {
-              const promise = zip.file(file.name).async('string');
-              filePromises.push(promise);
+                promise.then(base64 => {
+                  let fileEnding = file.name.split('.');
 
-              promise.then(str => {
-                codeXML = str;
-              });
-
-            } else {
-              const promise = zip.file(file.name).async('base64');
-              filePromises.push(promise);
-
-              promise.then(base64 => {
-                let fileEnding = file.name.split('.');
-
-                if (fileEnding.length > 1) {
-                  fileEnding = fileEnding[fileEnding.length - 1];
-                  fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
-                } else {
-                  fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
-                }
-                
-              });
+                  if (fileEnding.length > 1) {
+                    fileEnding = fileEnding[fileEnding.length - 1];
+                    fileMap[file.name] = this._generateBase64Src(file.name, fileEnding, base64);
+                  } else {
+                    fileMap[file.name] = this._generateBase64Src(file.name, atob(base64).substr(0, 32), base64);
+                  }
+                });
+              }
             }
           }
-        }
 
-        Promise.all(filePromises).then(response => {
-          if (response.length !== Object.keys(fileMap).length + 1) {
-            MessageBox.show('<b>' + containerfile.name + ':</b> Number of Files in Archive do not match number of read files.');
-            console.error('Number of Files in ZIP do not match number of read files');
-          }
-          
-          const fd = FileDropper.getInstance();
-          try {
-            fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
-            resolve(true);
-          } catch (error) {
-            console.error(error);
-            MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
-            resolve(false);
-          }
+          Promise.all(filePromises).then(response => {
+            if (response.length !== Object.keys(fileMap).length + 1) {
+              MessageBox.show(
+                '<b>' + containerfile.name + ':</b> Number of Files in Archive do not match number of read files.'
+              );
+              console.error('Number of Files in ZIP do not match number of read files');
+            }
+
+            const fd = FileDropper.getInstance();
+            try {
+              fd.renderProgram(fd.share, fd.container, codeXML, containerfile.name, containerCounter, fileMap);
+              resolve(true);
+            } catch (error) {
+              console.error(error);
+              MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
+              resolve(false);
+            }
+          });
         });
-      });
     });
   }
-
 
   /**
    * Unpack Archive and start rendering of code.xml
@@ -287,6 +282,5 @@ export class FileDropper {
     } else {
       this._updateView('onDone');
     }
-    
   }
 }
