@@ -3,8 +3,7 @@
  * @author andreas.karner@student.tugraz.at (Andreas Karner)
  */
 
-import md5 from "js-md5";
-
+import md5 from 'js-md5';
 
 /**
  * Default options defined here
@@ -18,7 +17,7 @@ export const defaultOptions = {
     media: 'media/',
     language: 'en',
     i18n: 'i18n/',
-    noImageFound: 'No_Image_Available.jpg', // TODO: never used anywhere
+    noImageFound: 'No_Image_Available.jpg' // TODO: never used anywhere
   },
   scene: {
     writeHeader: true,
@@ -34,7 +33,6 @@ export const defaultOptions = {
   }
 };
 
-
 /**
  * Parse options, if value exists in inputValues use this one
  * Otherwise go with the value from defaultValues
@@ -45,7 +43,6 @@ export const defaultOptions = {
 export const parseOptions = (inputValues, defaultValues) => {
   return Object.assign({}, defaultValues, inputValues);
 };
-
 
 /**
  * Transform dom xml, execute actions define in options
@@ -67,13 +64,13 @@ export const transformXml = (xmlDom, tagActions) => {
 
         // INFO: please add new features as needed
         switch (actionType) {
-        case 'remAttr': {
-          node.removeAttribute(actionValue);
-          break;
-        }
-        default: {
-          console.warn("Ignore undefined XML transformation.");
-        }
+          case 'remAttr': {
+            node.removeAttribute(actionValue);
+            break;
+          }
+          default: {
+            console.warn('Ignore undefined XML transformation.');
+          }
         }
       });
     });
@@ -123,9 +120,9 @@ export const wrapElement = (element, wrapTag, attributes) => {
 
 /**
  * Remove all children from node
- * @param {Element} node 
+ * @param {Element} node
  */
-export const removeAllChildren = (node) => {
+export const removeAllChildren = node => {
   while (node.hasChildNodes()) {
     node.removeChild(node.lastChild);
   }
@@ -134,25 +131,24 @@ export const removeAllChildren = (node) => {
 /**
  * Retrieve dom from document by id or class name
  * returns undefined in neither string or dom element
- * @param {string|Element} idName 
+ * @param {string|Element} idName
  * @param {Element?} ancestor to search from
  * @return {Element} dom element for name
  */
 export const getDomElement = (name, ancestor) => {
   switch (typeof name) {
-  case 'object': {
-    return name;
-  }
-  case 'string': {
-    if (typeof ancestor !== 'undefined') {
-      return ancestor.querySelector(name);
+    case 'object': {
+      return name;
     }
-    return document.getElementById(name) ||
-        document.querySelector(name);
-  }
-  default: {
-    return undefined;
-  }
+    case 'string': {
+      if (typeof ancestor !== 'undefined') {
+        return ancestor.querySelector(name);
+      }
+      return document.getElementById(name) || document.querySelector(name);
+    }
+    default: {
+      return undefined;
+    }
   }
 };
 
@@ -161,20 +157,20 @@ export const getDomElement = (name, ancestor) => {
  * @param {Element} element to check if has children
  * @return {Boolean} if has children
  */
-export const hasChildren = (element) => {
+export const hasChildren = element => {
   switch (element.toString()) {
-  case '[object HTMLDivElement]': {
-    return (element.children !== undefined && element.children.length > 0);
-  }
-  case '[object HTMLCollection]': {
-    return element.length;
-  }
-  case '[object XMLDocument]': {
-    return element.childElementCount;
-  }
-  default: {
-    return element.children.length || element.hasChildNodes() || element.firstChild;
-  }
+    case '[object HTMLDivElement]': {
+      return element.children !== undefined && element.children.length > 0;
+    }
+    case '[object HTMLCollection]': {
+      return element.length;
+    }
+    case '[object XMLDocument]': {
+      return element.childElementCount;
+    }
+    default: {
+      return element.children.length || element.hasChildNodes() || element.firstChild;
+    }
   }
 };
 
@@ -194,16 +190,16 @@ export const trimString = (str, length = 15) => {
   return undefined;
 };
 
-export const resetColorBlock = (array) => {
-  for(let i = 0; i < array.length; i++){
-    if(array[i].style.colour_ === array[i].style.colourPrimary) {
+export const resetColorBlock = array => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].style.colour_ === array[i].style.colourPrimary) {
       const colorPrimaryTemporary = array[i].style.colourPrimary;
       array[i].style.colourPrimary = array[i].style.colourTertiary;
       array[i].style.colourTertiary = colorPrimaryTemporary;
     }
-    if(array[i].childBlocks_.length > 0) {
-      for(let j = 0; j < array[i].childBlocks_.length; j++) {
-        if(array[i].childBlocks_[j].style.colour_ === array[i].childBlocks_[j].style.colourPrimary) {
+    if (array[i].childBlocks_.length > 0) {
+      for (let j = 0; j < array[i].childBlocks_.length; j++) {
+        if (array[i].childBlocks_[j].style.colour_ === array[i].childBlocks_[j].style.colourPrimary) {
           const colorPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
           array[i].childBlocks_[j].style.colourPrimary = array[i].childBlocks_[j].style.colourTertiary;
           array[i].childBlocks_[j].style.colourTertiary = colorPrimaryTemporary;
@@ -214,18 +210,15 @@ export const resetColorBlock = (array) => {
   }
 };
 
-
 /**
  * zebra effect -> color next block from same group slightly differently
- * @param {*} array 
+ * @param {*} array
  */
 export const checkNextBlock = (array, firstCall = false) => {
-
-  for(let i = 0; i < array.length; i++) {
-    if(array[i].childBlocks_.length > 0) {
-      for(let j = 0; j < array[i].childBlocks_.length; j++) {
-        if(array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary){
-
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].childBlocks_.length > 0) {
+      for (let j = 0; j < array[i].childBlocks_.length; j++) {
+        if (array[i].style.colourPrimary === array[i].childBlocks_[j].style.colourPrimary) {
           const colorPrimaryTemporary = array[i].childBlocks_[j].style.colourPrimary;
           const colorTertiaryTemporary = array[i].childBlocks_[j].style.colourTertiary;
 
@@ -235,8 +228,11 @@ export const checkNextBlock = (array, firstCall = false) => {
 
           array[i].childBlocks_[j].initSvg();
 
-          if(firstCall && array[i].childBlocks_[j].childBlocks_.length > 0 &&
-             colorPrimaryTemporary !== array[i].childBlocks_[j].childBlocks_[0].style.colourTertiary){
+          if (
+            firstCall &&
+            array[i].childBlocks_[j].childBlocks_.length > 0 &&
+            colorPrimaryTemporary !== array[i].childBlocks_[j].childBlocks_[0].style.colourTertiary
+          ) {
             array[i].childBlocks_[j].style.colourPrimary = colorPrimaryTemporary;
             array[i].childBlocks_[j].style.colourTertiary = colorTertiaryTemporary;
           }
@@ -247,7 +243,7 @@ export const checkNextBlock = (array, firstCall = false) => {
   }
 };
 
-export const zebraChangeColor = (array) => {
+export const zebraChangeColor = array => {
   checkNextBlock(array, true);
   resetColorBlock(array);
 };
@@ -257,7 +253,7 @@ export const zebraChangeColor = (array) => {
  * @param {string} string unique name to identify this item
  * @returns {string} md5 encoded with catblocks- prefix
  */
-export const generateID = (string) => {
+export const generateID = string => {
   return 'catblocks-' + md5(string);
 };
 
@@ -266,6 +262,6 @@ export const generateID = (string) => {
  * @param {string} string path to resource
  * @returns {string} encoded URI
  */
-export const escapeURI = (string) => {
+export const escapeURI = string => {
   return encodeURI(string).replace('#', '%23');
 };

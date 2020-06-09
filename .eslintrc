@@ -27,8 +27,19 @@
       "warn"
     ],
     "indent": [
+      "warn",
+      2,
+      { "SwitchCase": 1 }
+    ],
+    "curly": [
       "error",
-      2
+      "all"
+    ],
+    "no-multi-spaces": [
+      "error"
+    ],
+    "no-multi-assign": [
+      "error"
     ],
     "no-mixed-spaces-and-tabs": [
       "error"

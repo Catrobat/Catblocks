@@ -46,16 +46,16 @@ const sceneList = [];
 let xmlDoc = undefined;
 const supportedAppVersion = 0.994;
 
-const XML_BEGIN = "<xml>";
-const XML_END = "\n</xml>";
-const NEXT_BEGIN = "\n<next>";
-const NEXT_END = "\n</next>";
-const SUB1_BEGIN = "\n<statement name=\"SUBSTACK\">";
-const SUB2_BEGIN = "\n<statement name=\"SUBSTACK2\">";
-const SUB_END = "\n</statement>";
+const XML_BEGIN = '<xml>';
+const XML_END = '\n</xml>';
+const NEXT_BEGIN = '\n<next>';
+const NEXT_END = '\n</next>';
+const SUB1_BEGIN = '\n<statement name="SUBSTACK">';
+const SUB2_BEGIN = '\n<statement name="SUBSTACK2">';
+const SUB_END = '\n</statement>';
 
 let MESSAGES = {};
-let XML = "";
+let XML = '';
 
 // global log enable switch
 const DEBUG = false;
@@ -71,22 +71,26 @@ const catLog = (msg, debug = DEBUG) => {
   }
 };
 
-
 /**
  * Escape script values in case unsafe characters are included
  * @param {*} unsafe
  */
-const escapeXml = (unsafe) => {
+const escapeXml = unsafe => {
   if (unsafe === undefined || unsafe === null || unsafe.length === 0) {
     return unsafe;
   } else {
-    return unsafe.replace(/[<>&'"]/g, function(c) {
+    return unsafe.replace(/[<>&'"]/g, function (c) {
       switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
+        case '<':
+          return '&lt;';
+        case '>':
+          return '&gt;';
+        case '&':
+          return '&amp;';
+        case "'":
+          return '&apos;';
+        case '"':
+          return '&quot;';
       }
     });
   }
@@ -136,7 +140,7 @@ function parseCatroidProgram(xml) {
   const xmlStream = generateShareXml();
   catLog(xmlStream);
   try {
-    return (new DOMParser()).parseFromString(xmlStream, 'text/xml');
+    return new DOMParser().parseFromString(xmlStream, 'text/xml');
   } catch (e) {
     console.error(`Failed to parse generated catblocks string into a XMLDocument, please verify you input`);
     return undefined;
@@ -152,7 +156,7 @@ function getCatroidProgramObject(xml) {
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
-  return {scenes: sceneList};
+  return { scenes: sceneList };
 }
 /**
  * Flat/dereference xml nodes
@@ -179,7 +183,7 @@ function escapeName(name) {
 function parseScenes(scene) {
   catLog(scene);
 
-  const name = escapeName(scene.getElementsByTagName("name")[0].childNodes[0].nodeValue);
+  const name = escapeName(scene.getElementsByTagName('name')[0].childNodes[0].nodeValue);
   const currentScene = new Scene(name);
   const objectList = scene.getElementsByTagName('objectList')[0].children;
   for (let i = 0; i < objectList.length; i++) {
@@ -192,7 +196,7 @@ function parseObjects(object) {
   object = flatReference(object);
   catLog(object);
 
-  const name = escapeName(object.getAttribute("name"));
+  const name = escapeName(object.getAttribute('name'));
   if (name !== null) {
     const currentObject = new Object(name);
     const lookList = object.getElementsByTagName('lookList')[0].children;
@@ -249,7 +253,7 @@ function parseObjects(object) {
 function parseScripts(script) {
   catLog(script);
 
-  const name = escapeName(script.getAttribute("type"));
+  const name = escapeName(script.getAttribute('type'));
   const currentScript = new Script(name);
   const brickList = script.getElementsByTagName('brickList')[0].children;
   for (let i = 0; i < script.childNodes.length; i++) {
@@ -258,19 +262,46 @@ function parseScripts(script) {
 
   let positionInScriptBrickList = 0;
   for (let i = 0; i < brickList.length; i++) {
-    if (brickList[i].attributes[0].value === "RepeatBrick" && checkIfNewProgram("RepeatBrick", brickList)) {
-      const loopFinished = fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, null,true);
+    if (brickList[i].attributes[0].value === 'RepeatBrick' && checkIfNewProgram('RepeatBrick', brickList)) {
+      const loopFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'RepeatBrick',
+        i,
+        positionInScriptBrickList,
+        null,
+        true
+      );
       i = loopFinished + 1;
-    }
-    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick" && checkIfNewProgram("IfThenLogicBeginBrick", brickList)) {
-      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, null,true);
+    } else if (
+      brickList[i].attributes[0].value === 'IfThenLogicBeginBrick' &&
+      checkIfNewProgram('IfThenLogicBeginBrick', brickList)
+    ) {
+      const ifFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'IfThenLogicBeginBrick',
+        i,
+        positionInScriptBrickList,
+        null,
+        true
+      );
       i = ifFinished + 1;
-    }
-    else if(brickList[i].attributes[0].value === "IfLogicBeginBrick" && checkIfNewProgram("IfLogicBeginBrick", brickList)) {
-      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, null,true);
+    } else if (
+      brickList[i].attributes[0].value === 'IfLogicBeginBrick' &&
+      checkIfNewProgram('IfLogicBeginBrick', brickList)
+    ) {
+      const ifFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'IfLogicBeginBrick',
+        i,
+        positionInScriptBrickList,
+        null,
+        true
+      );
       i = ifFinished + 1;
-    }
-    else {
+    } else {
       currentScript.brickList.push(parseBrick(brickList[i]));
       positionInScriptBrickList++;
     }
@@ -280,56 +311,58 @@ function parseScripts(script) {
 
 function checkIfNewProgram(currentBrick, brickList) {
   let endBrick;
-  if(currentBrick === 'RepeatBrick') {
-    endBrick = "LoopEndBrick";
-  }
-  else if(currentBrick === 'IfLogicBeginBrick') {
-    endBrick = "IfLogicEndBrick";
-  }
-  else if(currentBrick === 'IfThenLogicBeginBrick') {
-    endBrick = "IfThenLogicEndBrick";
+  if (currentBrick === 'RepeatBrick') {
+    endBrick = 'LoopEndBrick';
+  } else if (currentBrick === 'IfLogicBeginBrick') {
+    endBrick = 'IfLogicEndBrick';
+  } else if (currentBrick === 'IfThenLogicBeginBrick') {
+    endBrick = 'IfThenLogicEndBrick';
   }
 
-  for(let i = 0; i < brickList.length; i++) {
-    if(brickList[i].attributes[0].value === endBrick) {
+  for (let i = 0; i < brickList.length; i++) {
+    if (brickList[i].attributes[0].value === endBrick) {
       return true;
     }
   }
   return false;
 }
 
-function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, positionInScriptBrickList, currentListToFill = null ,firstCall = false) {
-
+function fillLoopControlBrick(
+  brickList,
+  currentScript,
+  currentBrick,
+  counter,
+  positionInScriptBrickList,
+  currentListToFill = null,
+  firstCall = false
+) {
   let i = counter;
   let endBrick;
   let elseBrick;
-  if(currentBrick === 'RepeatBrick') {
-    endBrick = "LoopEndBrick";
+  if (currentBrick === 'RepeatBrick') {
+    endBrick = 'LoopEndBrick';
     elseBrick = null;
+  } else if (currentBrick === 'IfLogicBeginBrick') {
+    endBrick = 'IfLogicEndBrick';
+    elseBrick = 'IfLogicElseBrick';
+  } else if (currentBrick === 'IfThenLogicBeginBrick') {
+    endBrick = 'IfThenLogicEndBrick';
+    elseBrick = 'IfThenLogicElseBrick';
   }
-  else if(currentBrick === 'IfLogicBeginBrick') {
-    endBrick = "IfLogicEndBrick";
-    elseBrick = "IfLogicElseBrick";
-  }
-  else if(currentBrick === 'IfThenLogicBeginBrick') {
-    endBrick = "IfThenLogicEndBrick";
-    elseBrick = "IfThenLogicElseBrick";
-  }
-  if(firstCall){
+  if (firstCall) {
     currentScript.brickList.push(parseBrick(brickList[i]));
   }
 
   positionInScriptBrickList++;
   let position = 0;
-  if(positionInScriptBrickList !== 0) {
+  if (positionInScriptBrickList !== 0) {
     position = positionInScriptBrickList - 1;
   }
   i++;
   let list;
-  if(currentListToFill === null){
+  if (currentListToFill === null) {
     list = currentScript.brickList[position];
-  }
-  else {
+  } else {
     list = currentListToFill;
   }
 
@@ -337,61 +370,97 @@ function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, p
   let listToFill = null;
 
   while (brickList[i].attributes[0].value !== endBrick) {
-    if(brickList[i].attributes[0].value === elseBrick && elseBrick !== null) {
+    if (brickList[i].attributes[0].value === elseBrick && elseBrick !== null) {
       i++;
       break;
     }
-    if(brickList[i].attributes[0].value === "IfLogicBeginBrick"){
+    if (brickList[i].attributes[0].value === 'IfLogicBeginBrick') {
       list.loopOrIfBrickList.push(parseBrick(brickList[i]));
       lastIndex = list.loopOrIfBrickList.length - 1;
       listToFill = list.loopOrIfBrickList[lastIndex];
-      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+      const ifFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'IfLogicBeginBrick',
+        i,
+        positionInScriptBrickList,
+        listToFill
+      );
       i = ifFinished + 1;
-    }
-    else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+    } else if (brickList[i].attributes[0].value === 'IfThenLogicBeginBrick') {
       list.loopOrIfBrickList.push(parseBrick(brickList[i]));
       lastIndex = list.loopOrIfBrickList.length - 1;
       listToFill = list.loopOrIfBrickList[lastIndex];
-      const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+      const ifFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'IfThenLogicBeginBrick',
+        i,
+        positionInScriptBrickList,
+        listToFill
+      );
       i = ifFinished + 1;
-    }
-    else if(brickList[i].attributes[0].value === "RepeatBrick") {
+    } else if (brickList[i].attributes[0].value === 'RepeatBrick') {
       list.loopOrIfBrickList.push(parseBrick(brickList[i]));
       lastIndex = list.loopOrIfBrickList.length - 1;
       listToFill = list.loopOrIfBrickList[lastIndex];
-      const loopFinished =  fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, listToFill);
+      const loopFinished = fillLoopControlBrick(
+        brickList,
+        currentScript,
+        'RepeatBrick',
+        i,
+        positionInScriptBrickList,
+        listToFill
+      );
       i = loopFinished + 1;
-    }
-    else {
+    } else {
       list.loopOrIfBrickList.push(parseBrick(brickList[i]));
       i++;
     }
   }
 
-  if(elseBrick !== null) {
+  if (elseBrick !== null) {
     while (brickList[i].attributes[0].value !== endBrick) {
-      if(brickList[i].attributes[0].value === "IfLogicBeginBrick"){
+      if (brickList[i].attributes[0].value === 'IfLogicBeginBrick') {
         list.elseBrickList.push(parseBrick(brickList[i]));
         lastIndex = list.elseBrickList.length - 1;
         listToFill = list.elseBrickList[lastIndex];
-        const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+        const ifFinished = fillLoopControlBrick(
+          brickList,
+          currentScript,
+          'IfLogicBeginBrick',
+          i,
+          positionInScriptBrickList,
+          listToFill
+        );
         i = ifFinished + 1;
-      }
-      else if(brickList[i].attributes[0].value === "IfThenLogicBeginBrick") {
+      } else if (brickList[i].attributes[0].value === 'IfThenLogicBeginBrick') {
         list.elseBrickList.push(parseBrick(brickList[i]));
         lastIndex = list.elseBrickList.length - 1;
         listToFill = list.elseBrickList[lastIndex];
-        const ifFinished = fillLoopControlBrick(brickList, currentScript, "IfThenLogicBeginBrick", i, positionInScriptBrickList, listToFill);
+        const ifFinished = fillLoopControlBrick(
+          brickList,
+          currentScript,
+          'IfThenLogicBeginBrick',
+          i,
+          positionInScriptBrickList,
+          listToFill
+        );
         i = ifFinished + 1;
-      }
-      else if(brickList[i].attributes[0].value === "RepeatBrick") {
+      } else if (brickList[i].attributes[0].value === 'RepeatBrick') {
         list.elseBrickList.push(parseBrick(brickList[i]));
         lastIndex = list.elseBrickList.length - 1;
         listToFill = list.elseBrickList[lastIndex];
-        const loopFinished =  fillLoopControlBrick(brickList, currentScript, "RepeatBrick", i, positionInScriptBrickList, listToFill);
+        const loopFinished = fillLoopControlBrick(
+          brickList,
+          currentScript,
+          'RepeatBrick',
+          i,
+          positionInScriptBrickList,
+          listToFill
+        );
         i = loopFinished + 1;
-      }
-      else {
+      } else {
         list.elseBrickList.push(parseBrick(brickList[i]));
         i++;
       }
@@ -403,7 +472,7 @@ function fillLoopControlBrick(brickList, currentScript, currentBrick, counter, p
 function parseBrick(brick) {
   catLog(brick);
 
-  const name = (brick.getAttribute("type") || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
+  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
   const currentBrick = new Brick(name);
 
   for (let i = 0; i < brick.childNodes.length; i++) {
@@ -417,8 +486,10 @@ function parseBrick(brick) {
  * @param {*} key
  * @param {*} def
  */
-const getMsgValueOrDefault = (key, def = "---") => {
-  if (key === undefined) return def;
+const getMsgValueOrDefault = (key, def = '---') => {
+  if (key === undefined) {
+    return def;
+  }
   const msgValue = MESSAGES[key];
   return msgValue ? msgValue : def;
 };
@@ -428,7 +499,7 @@ const getMsgValueOrDefault = (key, def = "---") => {
  * @param {*} node
  * @param {*} def
  */
-const getNodeValueOrDefault = (node, def = "---") => {
+const getNodeValueOrDefault = (node, def = '---') => {
   if (node === undefined || node.nodeValue === undefined) {
     return def;
   }
@@ -437,129 +508,130 @@ const getNodeValueOrDefault = (node, def = "---") => {
 
 function checkUsage(list, location) {
   switch (list.nodeName) {
-  case 'broadcastMessage':
-  case 'spriteToBounceOffName':
-  case 'receivedMessage':
-  case 'sceneToStart':
-  case 'objectToClone':
-  case 'soundName':
-  case 'motor':
-  case 'tone':
-  case 'eye':
-  case 'pointedObject':
-  case 'ledStatus':
-  case 'sceneForTransition': {
-    location.formValues.set("DROPDOWN", getNodeValueOrDefault(list.childNodes[0]));
-    break;
-  }
-
-  case 'spinnerSelectionID': {
-    const brickName = list.parentElement.getAttribute('type');
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    if (brickName === 'CameraBrick') {
-      location.formValues.set("SPINNER", getMsgValueOrDefault(`CAMSPINNER_${key}`, key));
-    } else if (brickName === 'ChooseCameraBrick') {
-      location.formValues.set("SPINNER", getMsgValueOrDefault(`CAMCHOOSESPINNER_${key}`, key));
-    } else {
-      location.formValues.set("SPINNER", getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
+    case 'broadcastMessage':
+    case 'spriteToBounceOffName':
+    case 'receivedMessage':
+    case 'sceneToStart':
+    case 'objectToClone':
+    case 'soundName':
+    case 'motor':
+    case 'tone':
+    case 'eye':
+    case 'pointedObject':
+    case 'ledStatus':
+    case 'sceneForTransition': {
+      location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
+      break;
     }
-    break;
-  }
 
-  case 'type': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("DROPDOWN", getMsgValueOrDefault(`GRAVITY_${key}`, key));
-    break;
-  }
-
-  case 'spinnerSelection': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("SPINNER", getMsgValueOrDefault(`SPINNER_${key}`, key));
-    break;
-  }
-
-  case 'alignmentSelection': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("ALIGNMENT", getMsgValueOrDefault(`ALIGNMENTS_${key}`, key));
-    break;
-  }
-
-  case 'ledAnimationName': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("ADRONEANIMATION", getMsgValueOrDefault(key, key));
-    break;
-  }
-
-  case 'animationName': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("ANIMATION", getMsgValueOrDefault(`ANIMATION_${key}`, key));
-    break;
-  }
-
-  case 'selection': {
-    const key = getNodeValueOrDefault(list.childNodes[0]);
-    location.formValues.set("SPINNER", getMsgValueOrDefault(`POINTTO_${key}`, key));
-    break;
-  }
-
-  case 'formulaMap':
-  case 'formulaList': {
-    const formulaList = list.children;
-    for (let j = 0; j < formulaList.length; j++) {
-      const formula = new Formula();
-      workFormula(formula, formulaList[j]);
-      const attribute = formulaList[j].getAttribute("category");
-      location.formValues.set(attribute, Formula.stringify(formula));
+    case 'spinnerSelectionID': {
+      const brickName = list.parentElement.getAttribute('type');
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      if (brickName === 'CameraBrick') {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMSPINNER_${key}`, key));
+      } else if (brickName === 'ChooseCameraBrick') {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMCHOOSESPINNER_${key}`, key));
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
+      }
+      break;
     }
-    break;
-  }
 
-  case 'ifBranchBricks':
-  case 'loopBricks': {
-    const loopOrIfBrickList = (list.children);
-    for (let j = 0; j < loopOrIfBrickList.length; j++) {
-      location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
+    case 'type': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault(`GRAVITY_${key}`, key));
+      break;
     }
-    break;
-  }
 
-  case 'elseBranchBricks': {
-    const elseBrickList = (list.children);
-    for (let j = 0; j < elseBrickList.length; j++) {
-      location.elseBrickList.push(parseBrick(elseBrickList[j]));
+    case 'spinnerSelection': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      break;
     }
-    break;
-  }
 
-  case 'sound':
-  case 'look': {
-    const node = flatReference(list);
-    const name = node.getAttribute('name');
-    location.formValues.set(list.nodeName, name);
-    break;
-  }
+    case 'alignmentSelection': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('ALIGNMENT', getMsgValueOrDefault(`ALIGNMENTS_${key}`, key));
+      break;
+    }
 
-  case 'userVariable':
-  case 'userList': {
-    const node = flatReference(list);
-    const nodeName = (node.querySelector(`${list.nodeName} name`)) ?
-      node.querySelector(`${list.nodeName} name`).textContent : 'node';
-    location.formValues.set('DROPDOWN', nodeName);
-    break;
-  }
+    case 'ledAnimationName': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('ADRONEANIMATION', getMsgValueOrDefault(key, key));
+      break;
+    }
 
-  default:
+    case 'animationName': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('ANIMATION', getMsgValueOrDefault(`ANIMATION_${key}`, key));
+      break;
+    }
+
+    case 'selection': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('SPINNER', getMsgValueOrDefault(`POINTTO_${key}`, key));
+      break;
+    }
+
+    case 'formulaMap':
+    case 'formulaList': {
+      const formulaList = list.children;
+      for (let j = 0; j < formulaList.length; j++) {
+        const formula = new Formula();
+        workFormula(formula, formulaList[j]);
+        const attribute = formulaList[j].getAttribute('category');
+        location.formValues.set(attribute, Formula.stringify(formula));
+      }
+      break;
+    }
+
+    case 'ifBranchBricks':
+    case 'loopBricks': {
+      const loopOrIfBrickList = list.children;
+      for (let j = 0; j < loopOrIfBrickList.length; j++) {
+        location.loopOrIfBrickList.push(parseBrick(loopOrIfBrickList[j]));
+      }
+      break;
+    }
+
+    case 'elseBranchBricks': {
+      const elseBrickList = list.children;
+      for (let j = 0; j < elseBrickList.length; j++) {
+        location.elseBrickList.push(parseBrick(elseBrickList[j]));
+      }
+      break;
+    }
+
+    case 'sound':
+    case 'look': {
+      const node = flatReference(list);
+      const name = node.getAttribute('name');
+      location.formValues.set(list.nodeName, name);
+      break;
+    }
+
+    case 'userVariable':
+    case 'userList': {
+      const node = flatReference(list);
+      const nodeName = node.querySelector(`${list.nodeName} name`)
+        ? node.querySelector(`${list.nodeName} name`).textContent
+        : 'node';
+      location.formValues.set('DROPDOWN', nodeName);
+      break;
+    }
+
+    default:
   }
 }
 
 function workFormula(formula, input) {
   for (let i = 0; i < input.childNodes.length; i++) {
-    if (input.childNodes[i].nodeName === "leftChild") {
+    if (input.childNodes[i].nodeName === 'leftChild') {
       const newFormula = new Formula();
       formula.setLeft(newFormula);
       workFormula(newFormula, input.childNodes[i]);
     }
-    if (input.childNodes[i].nodeName === "rightChild") {
+    if (input.childNodes[i].nodeName === 'rightChild') {
       const newFormula = new Formula();
       formula.setRight(newFormula);
       workFormula(newFormula, input.childNodes[i]);
@@ -567,11 +639,26 @@ function workFormula(formula, input) {
 
     if (input.childNodes[i].nodeName === 'type') {
       const typeValue = input.childNodes[i].innerHTML;
-      if (typeValue === 'BRACKET' || typeValue === 'USER_LIST' || typeValue === 'STRING' || typeValue === 'NUMBER' || typeValue === 'USER_VARIABLE') formula.operator = typeValue;
+      if (
+        typeValue === 'BRACKET' ||
+        typeValue === 'USER_LIST' ||
+        typeValue === 'STRING' ||
+        typeValue === 'NUMBER' ||
+        typeValue === 'USER_VARIABLE'
+      ) {
+        formula.operator = typeValue;
+      }
     }
-    if (input.childNodes[i].nodeName === "value") {
+    if (input.childNodes[i].nodeName === 'value') {
       const operatorKey = getNodeValueOrDefault(input.childNodes[i].childNodes[0]);
-      if (formula.operator !== 'USER_LIST' && formula.operator !== 'STRING' && formula.operator !== 'NUMBER' && formula.operator !== 'USER_VARIABLE') formula.operator = operatorKey;
+      if (
+        formula.operator !== 'USER_LIST' &&
+        formula.operator !== 'STRING' &&
+        formula.operator !== 'NUMBER' &&
+        formula.operator !== 'USER_VARIABLE'
+      ) {
+        formula.operator = operatorKey;
+      }
       formula.value = getMsgValueOrDefault(operatorKey, operatorKey);
     }
   }
@@ -604,16 +691,15 @@ function generateShareXml() {
 }
 
 function writeScriptsToXML(currScript) {
-  XML = XML.concat("\n<block type=\"" + escapeXml(currScript.name) + "\">");
+  XML = XML.concat('\n<block type="' + escapeXml(currScript.name) + '">');
   for (const [key, value] of currScript.formValues) {
-    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
+    XML = XML.concat('\n<field name="' + escapeXml(key) + '">' + escapeXml(value) + '</field>');
   }
   if (currScript.brickList.length !== 0) {
     writeBrickToXML(currScript, 0, true, 0);
   }
-  XML = XML.concat("\n</block>");
+  XML = XML.concat('\n</block>');
 }
-
 
 function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
   if (nextBrick === true) {
@@ -629,10 +715,10 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
   if (subBlock === 2) {
     currSubBrick = currBrick.elseBrickList[index];
   }
-  XML = XML.concat("\n<block type=\"" + escapeXml(currSubBrick.name) + "\">");
+  XML = XML.concat('\n<block type="' + escapeXml(currSubBrick.name) + '">');
 
   for (const [key, value] of currSubBrick.formValues) {
-    XML = XML.concat("\n<field name=\"" + escapeXml(key) + "\">" + escapeXml(value) + "</field>");
+    XML = XML.concat('\n<field name="' + escapeXml(key) + '">' + escapeXml(value) + '</field>');
   }
   if (currSubBrick.loopOrIfBrickList.length !== 0) {
     XML = XML.concat(SUB1_BEGIN);
@@ -644,16 +730,16 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
     writeBrickToXML(currSubBrick, 0, false, 2);
     XML = XML.concat(SUB_END);
   }
-  if (subBlock === 0 && (currBrick.brickList.length > index + 1)) {
+  if (subBlock === 0 && currBrick.brickList.length > index + 1) {
     writeBrickToXML(currBrick, index + 1, true, 0);
   }
-  if (subBlock === 1 && (currBrick.loopOrIfBrickList.length > index + 1)) {
+  if (subBlock === 1 && currBrick.loopOrIfBrickList.length > index + 1) {
     writeBrickToXML(currBrick, index + 1, true, 1);
   }
-  if (subBlock === 2 && (currBrick.elseBrickList.length > index + 1)) {
+  if (subBlock === 2 && currBrick.elseBrickList.length > index + 1) {
     writeBrickToXML(currBrick, index + 1, true, 2);
   }
-  XML = XML.concat("\n</block>");
+  XML = XML.concat('\n</block>');
   if (nextBrick === true) {
     XML = XML.concat(NEXT_END);
   }
@@ -664,7 +750,6 @@ function writeBrickToXML(currBrick, index, nextBrick, subBlock) {
  * Only those methodes are visible outside this module
  */
 export default class Parser {
-
   /**
    * Parse catroid script into catblocks
    * @param {XMLDocument} scriptDoc to parse
@@ -676,7 +761,7 @@ export default class Parser {
     const catScript = parseScripts(scriptDoc.firstChild);
     writeScriptsToXML(catScript);
     try {
-      return (new DOMParser()).parseFromString(XML, 'text/xml');
+      return new DOMParser().parseFromString(XML, 'text/xml');
     } catch (e) {
       catLog(e);
       console.error('Failed to convert catblocks script into XMLDocument, verify input');
@@ -692,11 +777,13 @@ export default class Parser {
   static convertScriptString(scriptString) {
     if (typeof scriptString === 'string') {
       try {
-        const xml = (new window.DOMParser()).parseFromString(scriptString, 'text/xml');
+        const xml = new window.DOMParser().parseFromString(scriptString, 'text/xml');
         return Parser.convertScript(xml);
       } catch (e) {
         catLog(e);
-        console.error(`Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`);
+        console.error(
+          `Failed to convert catroid script given as string into a XMLDocument, please verify that the string is a valid program`
+        );
         return undefined;
       }
     }
@@ -711,14 +798,18 @@ export default class Parser {
   static convertProgramString(xmlString) {
     if (typeof xmlString === 'string') {
       try {
-        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
-        if (!isSupported(xml)) return undefined;
+        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) {
+          return undefined;
+        }
 
         initParser(xml);
         return parseCatroidProgram(xml);
       } catch (e) {
         catLog(e);
-        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        console.error(
+          `Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`
+        );
         return undefined;
       }
     }
@@ -734,13 +825,15 @@ export default class Parser {
     const retVal = Parser.convertProgramString(xmlString);
 
     if (retVal === undefined) {
-      const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+      const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
 
       const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
       if (appVersion === undefined || appVersion.length < 1) {
         throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
       } else if (appVersion[0].innerHTML < supportedAppVersion) {
-        throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
+        throw new Error(
+          `Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`
+        );
       }
 
       initParser(xml);
@@ -749,7 +842,6 @@ export default class Parser {
 
     return retVal;
   }
-
 
   /**
    * Convert given XML to JSON object
@@ -760,20 +852,23 @@ export default class Parser {
   static convertProgramToJSON(xmlString) {
     if (typeof xmlString === 'string') {
       try {
-        const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
-        if (!isSupported(xml)) return undefined;
+        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) {
+          return undefined;
+        }
 
         initParser(xml);
         return getCatroidProgramObject(xml);
       } catch (e) {
         catLog(e);
-        console.error(`Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`);
+        console.error(
+          `Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`
+        );
         return undefined;
       }
     }
     return getCatroidProgramObject(xmlString);
   }
-
 
   /**
    * Convert given XML to JSON object and return every error
@@ -785,13 +880,15 @@ export default class Parser {
     const obj = Parser.convertProgramToJSON(xmlString);
 
     if (obj === undefined) {
-      const xml = (new window.DOMParser()).parseFromString(xmlString, 'text/xml');
+      const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
 
       const appVersion = xml.getElementsByTagName('catrobatLanguageVersion');
       if (appVersion === undefined || appVersion.length < 1) {
         throw new Error(`Found program version "${appVersion}", minimum supported is ${supportedAppVersion}`);
       } else if (appVersion[0].innerHTML < supportedAppVersion) {
-        throw new Error(`Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`);
+        throw new Error(
+          `Found program version ${appVersion[0].innerHTML}, minimum supported is ${supportedAppVersion}`
+        );
       }
 
       initParser(xml);

@@ -3,8 +3,8 @@
  * @author andreas.karner@student.tugraz.at
  */
 
-import Blockly from "blockly";
-import categories from "./categories";
+import Blockly from 'blockly';
+import categories from './categories';
 
 /**
  * Remove all bricks from Blockly instance
@@ -26,11 +26,22 @@ const removeAllBricks = (blockly = Blockly) => {
  * Shape bricks extention
  */
 const shapeBricksExtention = () => {
-  return function() {
+  return function () {
     const blockName = this.type;
     // TODO: please find a better logic than this
-    if (['WhenClonedScript', 'StartScript', 'WhenScript', 'WhenTouchDownScript', 'BroadcastScript', 'WhenConditionScript',
-      'WhenBounceOffScript', 'WhenBackgroundChangesScript', 'WhenRaspiPinChangedBrick'].includes(blockName)) {
+    if (
+      [
+        'WhenClonedScript',
+        'StartScript',
+        'WhenScript',
+        'WhenTouchDownScript',
+        'BroadcastScript',
+        'WhenConditionScript',
+        'WhenBounceOffScript',
+        'WhenBackgroundChangesScript',
+        'WhenRaspiPinChangedBrick'
+      ].includes(blockName)
+    ) {
       this.hat = 'cap';
     } else {
       this.setPreviousStatement(true, null);
@@ -41,7 +52,7 @@ const shapeBricksExtention = () => {
 
 /**
  * Load all bricks from cats into Blockly
- * @param {*} cats 
+ * @param {*} cats
  * @param {*} blockly
  */
 const loadBricks = (cats = categories, blockly = Blockly) => {
@@ -62,7 +73,7 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
       blockly.Bricks[brickName] = brickBody;
       blockly.Categories[catName].push(brickName);
       blockly.Blocks[brickName] = {
-        init: function() {
+        init: function () {
           this.jsonInit(blockly.Bricks[brickName]);
         }
       };
@@ -72,7 +83,7 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
 
 /**
  * Init bricks for blockly
- * @param {*} blockly 
+ * @param {*} blockly
  */
 const initBricks = (blockly = Blockly) => {
   removeAllBricks(blockly);
