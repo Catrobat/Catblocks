@@ -1,9 +1,9 @@
-import Blockly from "blockly";
-import "../catblocks_msgs";
-import "./../blocks";
-import {wrapElement, zebraChangeColor} from '../share/utils';
-import XStreamParser from "../parser/parser";
-import $ from "jquery";
+import Blockly from 'blockly';
+import '../catblocks_msgs';
+import './../blocks';
+import { wrapElement, zebraChangeColor } from '../share/utils';
+import XStreamParser from '../parser/parser';
+import $ from 'jquery';
 
 export class Playground {
   constructor() {
@@ -15,7 +15,6 @@ export class Playground {
     this.workspace = undefined;
   }
   init() {
-
     this.bindListeners();
 
     this.equalsXml = [
@@ -49,7 +48,7 @@ export class Playground {
       if (soundsEnabled === null) {
         soundsEnabled = true;
       } else {
-        soundsEnabled = (soundsEnabled === 'true');
+        soundsEnabled = soundsEnabled === 'true';
       }
     } else {
       soundsEnabled = true;
@@ -66,7 +65,7 @@ export class Playground {
     document.forms.options.elements.side.value = side;
 
     // Setup locale
-    const select = document.getElementsByName("locale")[0];
+    const select = document.getElementsByName('locale')[0];
     Object.keys(this.Blockly.CatblocksMsgs.locales).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
@@ -77,7 +76,10 @@ export class Playground {
 
     // Create main workspace.
     this.workspace = this.Blockly.inject('blocklyDiv', {
-      media: '../media/', zoom: { startScale: 0.75 }, toolbox: this.getToolbox(), renderer: 'zelos'
+      media: '../media/',
+      zoom: { startScale: 0.75 },
+      toolbox: this.getToolbox(),
+      renderer: 'zelos'
     });
 
     if (sessionStorage) {
@@ -114,13 +116,13 @@ export class Playground {
     $('#importFromParser').click(() => this.fromParser());
 
     const self = this;
-    $('#logCheck').click(function() {
+    $('#logCheck').click(function () {
       self.logEvents($(this).is(':checked'));
     });
-    $('#logFlyoutCheck').click(function() {
+    $('#logFlyoutCheck').click(function () {
       self.logFlyoutEvents($(this).is(':checked'));
     });
-    $('#soundsEnabled').click(function() {
+    $('#soundsEnabled').click(function () {
       self.setSoundsEnabled($(this).is(':checked'));
     });
 
@@ -140,7 +142,7 @@ export class Playground {
   }
   setSoundsEnabled(state) {
     const checkbox = document.getElementById('soundsEnabled');
-    checkbox.checked = (state) ? 'checked' : '';
+    checkbox.checked = state ? 'checked' : '';
     if (sessionStorage) {
       sessionStorage.setItem('soundsEnabled', state);
     }
@@ -163,7 +165,9 @@ export class Playground {
           brick.setAttribute('type', brickName);
           parentNode.append(brick);
         }
-        if (!simple) xml.append(parentNode);
+        if (!simple) {
+          xml.append(parentNode);
+        }
       }
       this.toolbox = xml;
     }
@@ -208,8 +212,9 @@ export class Playground {
       sessionStorage.setItem('logFlyoutEvents', state ? 'checked' : '');
     }
 
-    const flyoutWorkspace = (this.workspace.flyout_) ? this.workspace.flyout_.workspace_ :
-      this.workspace.toolbox_.flyout_.workspace_;
+    const flyoutWorkspace = this.workspace.flyout_
+      ? this.workspace.flyout_.workspace_
+      : this.workspace.toolbox_.flyout_.workspace_;
     if (state) {
       flyoutWorkspace.addChangeListener(this.logger);
     } else {
@@ -235,8 +240,8 @@ export class Playground {
     const blocksXml = this.Parser.convertScriptString(input.value);
     console.log(blocksXml);
 
-    if (blocksXml === undefined || blocksXml === "") {
-      throw "no response from XStreamParser";
+    if (blocksXml === undefined || blocksXml === '') {
+      throw 'no response from XStreamParser';
     } else {
       this.Blockly.Xml.domToWorkspace(wrapElement(blocksXml.firstChild, 'xml'), this.workspace);
     }
@@ -246,7 +251,6 @@ export class Playground {
     console.log(blocks);
     zebraChangeColor(blocks);
   }
-
 
   glowBlock() {
     if (this.Blockly.selected) {
@@ -279,36 +283,29 @@ export class Playground {
       const blockXML = blocks[Math.floor(Math.random() * blocks.length)];
       const block = this.Blockly.Xml.domToBlock(blockXML, this.workspace);
       block.initSvg();
-      block.moveBy(
-        Math.round(Math.random() * 450 + 40),
-        Math.round(Math.random() * 600 + 40)
-      );
+      block.moveBy(Math.round(Math.random() * 450 + 40), Math.round(Math.random() * 600 + 40));
     }
   }
   spaghetti(n) {
-    console.log("Starting spaghetti.  This may take some time...");
+    console.log('Starting spaghetti.  This may take some time...');
     let xml = this.spaghettiXml;
     // Nest if/else statements deeply.
     for (let i = 0; i < 2 * n; i++) {
-      xml = xml.replace(/(<statement name="SUBSTACK2?"?>)<\//g,
-        '$1' + this.spaghettiXml + '</');
+      xml = xml.replace(/(<statement name="SUBSTACK2?"?>)<\//g, '$1' + this.spaghettiXml + '</');
     }
     // Stack a bit.
     for (let i = 0; i < n; i++) {
-      xml = xml.replace(/(<next>)<\//g,
-        '$1' + this.spaghettiXml + '</');
+      xml = xml.replace(/(<next>)<\//g, '$1' + this.spaghettiXml + '</');
     }
 
     // Nest boolean comparisons.
     let equalsBlock = this.equalsXml;
     for (let i = 0; i < n; i++) {
-      equalsBlock = equalsBlock.replace(
-        /(<shadow( type="operator_equals")?>)<\/shadow>/g, this.equalsXml);
+      equalsBlock = equalsBlock.replace(/(<shadow( type="operator_equals")?>)<\/shadow>/g, this.equalsXml);
     }
 
     // Put the nested boolean comparisons into if/else statements.
-    xml = xml.replace(/(<shadow( type="operator_equals")?>)<\/shadow>/g,
-      equalsBlock);
+    xml = xml.replace(/(<shadow( type="operator_equals")?>)<\/shadow>/g, equalsBlock);
 
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' + xml + '</xml>';
     const dom = this.Blockly.Xml.textToDom(xml);
@@ -318,10 +315,7 @@ export class Playground {
   }
   reportDemo() {
     if (this.Blockly.selected) {
-      this.workspace.reportValue(
-        this.Blockly.selected.id,
-        document.getElementById('reportValue').value
-      );
+      this.workspace.reportValue(this.Blockly.selected.id, document.getElementById('reportValue').value);
     }
   }
   setLocale(locale) {
@@ -331,6 +325,6 @@ export class Playground {
         const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
         this.Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.workspace);
       })
-      .catch((error) => console.error(error));
+      .catch(error => console.error(error));
   }
 }

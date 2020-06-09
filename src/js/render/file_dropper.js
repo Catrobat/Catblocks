@@ -1,11 +1,11 @@
-import $ from "jquery";
-import { MessageBox } from "./message_box";
-import { loadArchive, updateView } from "./utils";
-import { PasteListener } from "./paste_listener";
+import $ from 'jquery';
+import { MessageBox } from './message_box';
+import { loadArchive, updateView } from './utils';
+import { PasteListener } from './paste_listener';
 
-/** 
+/**
  * Initialize Drag & Drop Field and handle Files.
- * 
+ *
  * @author michael.flucher@student.tugraz.at
  */
 
@@ -17,7 +17,6 @@ export class FileDropper {
     this.container = container;
     this.renderProgram = renderProgram;
   }
-
 
   /**
    * Creates or returns Singleton instance.
@@ -36,7 +35,6 @@ export class FileDropper {
     return instance;
   }
 
-
   /**
    * Returns Singleton instance.
    * @static
@@ -47,7 +45,6 @@ export class FileDropper {
     return instance;
   }
 
-
   /**
    * Register all Events for drag&drop area.
    * @memberof FileDropper
@@ -55,20 +52,23 @@ export class FileDropper {
   enableDragAndDrop() {
     const $ele = $('#catblocks-file-dropper');
 
-    $ele.on('drag dragstart dragend dragover dragenter dragleave drop', e => {
-      e.preventDefault();
-      e.stopPropagation();
-    }).on('dragover dragenter', () => {
-      $ele.addClass('hover');
-    }).on('dragleave dragend drop', () => {
-      $ele.removeClass('hover');
-    }).on('drop', this._handleFileDrop);
+    $ele
+      .on('drag dragstart dragend dragover dragenter dragleave drop', e => {
+        e.preventDefault();
+        e.stopPropagation();
+      })
+      .on('dragover dragenter', () => {
+        $ele.addClass('hover');
+      })
+      .on('dragleave dragend drop', () => {
+        $ele.removeClass('hover');
+      })
+      .on('drop', this._handleFileDrop);
 
     $('#dropper-file-input').on('change', this._handleInputChange);
 
     $ele.css('display', 'flex');
   }
-
 
   /**
    * EventHandler for drop area.
@@ -96,8 +96,6 @@ export class FileDropper {
     }
   }
 
-
-
   /**
    * Unpack Archive and start rendering of code.xml
    * @param {File} inputFiles
@@ -117,12 +115,19 @@ export class FileDropper {
         const promise = loadArchive(containerfile);
         containerCounter++;
         renderPromises.push(promise);
-        promise.then((result) => {
-          if(result !== null) {
+        promise.then(result => {
+          if (result !== null) {
             try {
-              this.renderProgram(this.share, this.container, result.codeXML, containerfile.name, containerCounter, result.fileMap);
+              this.renderProgram(
+                this.share,
+                this.container,
+                result.codeXML,
+                containerfile.name,
+                containerCounter,
+                result.fileMap
+              );
               MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
-            } catch(error) {
+            } catch (error) {
               MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
             }
           }
@@ -139,7 +144,7 @@ export class FileDropper {
             $('#catblocks-file-dropper').hide();
             try {
               PasteListener.getInstance().disablePasteListener();
-            } catch(error) {
+            } catch (error) {
               // ignore
             }
             break;
@@ -151,6 +156,5 @@ export class FileDropper {
     } else {
       updateView('onDone');
     }
-    
   }
 }

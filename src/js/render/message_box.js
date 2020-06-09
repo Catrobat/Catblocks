@@ -1,5 +1,4 @@
-
-import $ from "jquery";
+import $ from 'jquery';
 
 // default display duration
 const DISPLAY_DURATION = 10000;
@@ -7,8 +6,6 @@ const CONTAINER_ID = 'catblocks-message-container';
 const messages = [];
 
 export class MessageBox {
-
-
   /**
    * Show Message in a Box on the bottom of the screen.
    * @static
@@ -31,7 +28,6 @@ export class MessageBox {
     }, time);
   }
 
-
   /**
    * Create/remove or redraw messagebox.
    * @static
@@ -40,10 +36,9 @@ export class MessageBox {
    */
   static _render() {
     if (messages.length === 0) {
-      $(`#${CONTAINER_ID}`).fadeOut("slow", () => {
+      $(`#${CONTAINER_ID}`).fadeOut('slow', () => {
         $(`#${CONTAINER_ID}`).remove();
       });
-
     } else if ($(`#${CONTAINER_ID}`).length) {
       const $ul = $('<ul/>');
       for (const msg of messages) {
@@ -51,7 +46,6 @@ export class MessageBox {
         $ul.prepend($li);
       }
       $(`#${CONTAINER_ID}`).html($ul);
-
     } else {
       const $div = $('<div />', {
         id: CONTAINER_ID,
@@ -66,7 +60,7 @@ export class MessageBox {
 
       $div.append($ul);
       $('body').append($div);
-      $(`#${CONTAINER_ID}`).fadeIn("slow");
+      $(`#${CONTAINER_ID}`).fadeIn('slow');
     }
   }
 }

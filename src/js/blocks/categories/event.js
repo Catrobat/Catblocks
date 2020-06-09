@@ -5,72 +5,72 @@
 'use strict';
 
 export default {
-  "StartScript": {
-    "message0": "%{BKY_EVENT_WHENSCENESTARTS}"
+  StartScript: {
+    message0: '%{BKY_EVENT_WHENSCENESTARTS}'
   },
-  "WhenScript": {
-    "message0": "%{BKY_EVENT_WHENTAPPED}"
+  WhenScript: {
+    message0: '%{BKY_EVENT_WHENTAPPED}'
   },
-  "WhenTouchDownScript": {
-    "message0": "%{BKY_EVENT_WHENSTAGEISTAPPED}"
+  WhenTouchDownScript: {
+    message0: '%{BKY_EVENT_WHENSTAGEISTAPPED}'
   },
-  "BroadcastScript": {
-    "message0": "%{BKY_EVENT_WHENYOURECEIVE}",
-    "args0": [
+  BroadcastScript: {
+    message0: '%{BKY_EVENT_WHENYOURECEIVE}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "unset"
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
       }
     ]
   },
-  "BroadcastBrick": {
-    "message0": "%{BKY_EVENT_BROADCAST_CB}",
-    "args0": [
+  BroadcastBrick: {
+    message0: '%{BKY_EVENT_BROADCAST_CB}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "unset"
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
       }
     ]
   },
-  "BroadcastWaitBrick": {
-    "message0": "%{BKY_EVENT_BROADCASTANDWAIT_CB}",
-    "args0": [
+  BroadcastWaitBrick: {
+    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "unset"
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
       }
     ]
   },
-  "WhenConditionScript": {
-    "message0": "%{BKY_EVENT_WHENBECOMESTRUE}",
-    "args0": [
+  WhenConditionScript: {
+    message0: '%{BKY_EVENT_WHENBECOMESTRUE}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "IF_CONDITION",
-        "text": "unset"
+        type: 'field_input',
+        name: 'IF_CONDITION',
+        text: 'unset'
       }
     ]
   },
-  "WhenBounceOffScript": {
-    "message0": "%{BKY_EVENT_WHENYOUBOUNCEOFF}",
-    "args0": [
+  WhenBounceOffScript: {
+    message0: '%{BKY_EVENT_WHENYOUBOUNCEOFF}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "DROPDOWN",
-        "text": "unset"
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
       }
     ]
   },
-  "WhenBackgroundChangesScript": {
-    "message0": "%{BKY_EVENT_WHENBACKGROUNDCHANGES}",
-    "args0": [
+  WhenBackgroundChangesScript: {
+    message0: '%{BKY_EVENT_WHENBACKGROUNDCHANGES}',
+    args0: [
       {
-        "type": "field_input",
-        "name": "look",
-        "text": "unset"
+        type: 'field_input',
+        name: 'look',
+        text: 'unset'
       }
     ]
   }

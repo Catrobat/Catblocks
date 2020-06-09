@@ -22,7 +22,11 @@
     "initiate": "yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
     "clean": "rimraf dist ; rimraf release",
-    "release": "yarn initiate && webpack --config release.config.js"
+    "release": "yarn initiate && webpack --config release.config.js",
+    "lint:es": "yarn eslint --ext .js ./",
+    "lint:pr": "yarn prettier -c src test",
+    "lint": "yarn lint:es --max-warnings 0 && yarn lint:pr",
+    "lint:fix": "yarn lint:es --fix && yarn lint:pr --write"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
@@ -55,6 +59,8 @@
     "jest": "^24.9.0",
     "jest-environment-node": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
+    "prettier": "^2.0.5",
+    "prettier-webpack-plugin": "^1.2.0",
     "puppeteer": "^2.0.0",
     "rimraf": "^3.0.0"
   }
