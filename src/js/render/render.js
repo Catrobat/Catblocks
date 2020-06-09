@@ -30,7 +30,7 @@ export const renderAllPrograms = (share, container, path) => {
       }
 
       const files = page.getElementsByTagName('ul')[0] || undefined;
-      if (files === undefined) {
+      if (files === undefined || files.childElementCount === 0) {
         const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
         fd.enableDragAndDrop();
         return;
