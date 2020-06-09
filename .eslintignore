@@ -1,2 +1,4 @@
-babel.config.js
-webpack.config.js
+**/*config.js
+dist/
+release/
+tools/
