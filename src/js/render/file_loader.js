@@ -65,6 +65,7 @@ export class FileLoader {
                 }
               })
               .catch(e => {
+                console.error(e);
                 resolve(false);
               });
           }

@@ -163,6 +163,7 @@ export const loadArchive = containerfile => {
           });
         },
         error => {
+          console.error(error);
           MessageBox.show(
             '<b>Error:</b> The file could not be loaded. Maybe you passed an invalid .catrobat/.zip file.'
           );
