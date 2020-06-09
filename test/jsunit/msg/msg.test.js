@@ -47,14 +47,16 @@ describe('Filesystem msg tests', () => {
   });
 
   test('Lang JSON file linked in CatblocksMsg.js', () => {
-    const langs = CATBLOCKS_PAYLOAD.split('\n')
-      .filter(line => line.indexOf(`"DROPDOWN_NAME"`) > -1)
-      .map(value => value.split('"')[1].split('"')[0]);
+    const start = 'Blockly.CatblocksMsgs.locales =';
+    const startOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(start);
+    const endOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(';');
+    
+    let langs;
+    eval('langs =' + CATBLOCKS_PAYLOAD.substring(startOfObject + start.length + 1, endOfObject));
 
-    CATBLOCKS_MSGS.forEach(lang => {
-      console.log('LANG:', lang);
-      console.log('LANGS:', langs);
-      expect(langs.includes(lang.split('.')[0])).toBeTruthy();
+    CATBLOCKS_MSGS.forEach(langfile => {
+      const lang = langfile.split('.')[0];
+      expect(lang in langs).toBeTruthy();
     });
   });
 });

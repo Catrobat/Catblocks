@@ -80,8 +80,13 @@ const parseBlockCategoryFile = category => {
   if (parts.length !== 2) {
     return undefined;
   }
-  const body = parts[1].split(';').join('').split('`').join('"');
-  return JSON.parse(body);
+
+  // remove ${document.location.pathname}
+  const object = parts[1].replace(/\${([a-z]|\.|\s)+}/g, '');
+
+  let body;
+  eval('body = ' + object);
+  return body;
 };
 
 module.exports = {

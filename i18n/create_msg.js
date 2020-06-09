@@ -89,8 +89,9 @@ Blockly.CatblocksMsgs.loadNewLocale = function(locale, filesLocation) {
   return $.getJSON(url, function (result) {
     json_object = result;
     Object.keys(json_object).forEach(key => {
-      if (key !== "DROPDOWN_NAME")
+      if (key !== "DROPDOWN_NAME") {
         Blockly.CatblocksMsgs.locales[locale][key] = json_object[key];
+      }
     });
   });
 };
@@ -106,10 +107,10 @@ langfiles.forEach(langfile => {
     const json_path = path.join(JSON_DIR, langfile);
     const json_object = JSON.parse(fs.readFileSync(json_path, { encoding: 'utf-8' }));
 
-    fs.writeSync(message_fd, `  "${lang_name}": {`);
+    fs.writeSync(message_fd, `  ${lang_name}: {`);
     Object.keys(json_object).forEach(key => {
       if (key === 'DROPDOWN_NAME') {
-        fs.writeSync(message_fd, ` "${key}": "${json_object[key]}" `);
+        fs.writeSync(message_fd, ` ${key}: '${json_object[key]}' `);
       }
     });
     fs.writeSync(message_fd, `},\n`);
