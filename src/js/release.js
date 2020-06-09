@@ -1,17 +1,16 @@
-import { Share } from "./share/share";
-import { renderProgram } from "./render/render";
-import "./catblocks_msgs";
-import "./blocks";
-
+import { Share } from './share/share';
+import { renderProgram } from './render/render';
+import './catblocks_msgs';
+import './blocks';
 
 /**
  * Initialize Share-Object and change Language
  * @export
  * @param {*} config
  */
-export function init (config) {
+export function init(config) {
   if (!config) {
-    throw new Error("No configuration given");
+    throw new Error('No configuration given');
   }
 
   this.config = config;
@@ -27,16 +26,16 @@ export function init (config) {
  */
 function preparePaths(that) {
   that.config.shareRoot = addTrailingSlash(that.config.shareRoot);
-  that.config.shareRoot = that.config.shareRoot.replace(/^\//, "");
+  that.config.shareRoot = that.config.shareRoot.replace(/^\//, '');
 
   that.config.media = addTrailingSlash(that.config.media);
   that.config.i18n = addTrailingSlash(that.config.i18n);
-  
+
   that.config.media = createURL(that, that.config.media);
   that.config.i18n = createURL(that, that.config.i18n);
 
-  if (!that.config.shareRoot.startsWith("http")) {
-    that.config.shareRoot = "/" + that.config.shareRoot;
+  if (!that.config.shareRoot.startsWith('http')) {
+    that.config.shareRoot = '/' + that.config.shareRoot;
   }
 }
 
@@ -46,17 +45,17 @@ function preparePaths(that) {
  * @returns
  */
 function createURL(that, path) {
-  if (path.startsWith("http")) {
+  if (path.startsWith('http')) {
     return path;
   }
-  if (path.startsWith("/")) {
+  if (path.startsWith('/')) {
     return window.location.origin + path;
-  } 
-  
-  if (that.config.shareRoot.startsWith("http")) {
+  }
+
+  if (that.config.shareRoot.startsWith('http')) {
     return that.config.shareRoot + path;
-  } 
-  return window.location.origin + "/" + that.config.shareRoot + path;
+  }
+  return window.location.origin + '/' + that.config.shareRoot + path;
 }
 
 /**
@@ -64,25 +63,24 @@ function createURL(that, path) {
  * @param {*} string
  * @returns
  */
-function addTrailingSlash (string) {
+function addTrailingSlash(string) {
   if (string) {
-    return string.replace(/\/$/, "") + "/";
+    return string.replace(/\/$/, '') + '/';
   }
 }
-
 
 /**
  * Render program from given path
  * @export
  * @param {*} path Path containing the program folders
  * @param {*} name Name of program folder
- * @returns Promise 
+ * @returns Promise
  */
-export function render (path, name) {
+export function render(path, name) {
   if (this.config == null || this.config.container == null) {
-    throw new Error("No Container specified");
+    throw new Error('No Container specified');
   } else if (path == null) {
-    throw new Error("No path specified");
+    throw new Error('No path specified');
   }
 
   const programContainer = document.getElementById(this.config.container);

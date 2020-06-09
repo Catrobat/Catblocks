@@ -1,30 +1,28 @@
-import { FileDropper } from "./file_dropper";
-import $ from "jquery";
+import { FileDropper } from './file_dropper';
+import $ from 'jquery';
 
 /**
  * Render all programs into one page
  * This code is only for testing purpose
- * 
+ *
  * @author andreas.karner@student.tugraz.at
- * 
+ *
  */
-
 
 /**
  * Render all programs into page
  * @param {Share} share instance of share
  * @param {Element} container parent container for structure
- * @param {string} path path where the file is 
+ * @param {string} path path where the file is
  * @returns {Promise}
  */
 export const renderAllPrograms = (share, container, path) => {
-
   // inject very program from ${path} into ${container} dom
 
   return fetch(path)
     .then(res => res.text())
     .then(text => {
-      const page = (new DOMParser()).parseFromString(text, 'text/html');
+      const page = new DOMParser().parseFromString(text, 'text/html');
       if (page === undefined) {
         const fd = FileDropper.createInstance(share, container, renderProgramByLocalFile);
         fd.enableDragAndDrop();
@@ -42,8 +40,10 @@ export const renderAllPrograms = (share, container, path) => {
         const fileli = files.children[idx];
         const filea = fileli.getElementsByTagName('a')[0];
 
-        const name = (filea.title !== '') ? filea.title : filea.innerText;
-        if (name === '..' || name === '.') continue;
+        const name = filea.title !== '' ? filea.title : filea.innerText;
+        if (name === '..' || name === '.') {
+          continue;
+        }
 
         renderProgram(share, container, path, name, idx);
       }
@@ -58,17 +58,17 @@ export const renderAllPrograms = (share, container, path) => {
  * @param {string} path path of the folder containing the program
  * @param {string} name name of the program file
  * @param {number} counter number added to ID to be unique
- * @returns {Promise} 
+ * @returns {Promise}
  */
 export const renderProgram = (share, container, path, name, counter = -1) => {
-  
   // be sure that path has a trailing slash
-  path = path.replace(/\/$/, "") + "/";
+  path = path.replace(/\/$/, '') + '/';
 
   // remove the leading slash
-  name = name.replace(/^\//, "");
+  name = name.replace(/^\//, '');
 
-  return fetch(`${path}${name}/code.xml`).then(res => res.text())
+  return fetch(`${path}${name}/code.xml`)
+    .then(res => res.text())
     .then(codeXML => {
       const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
       const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
@@ -119,7 +119,7 @@ const renderProgramByLocalFile = (share, container, codeXML, name, counter, file
  * @param {Element} container Parent container for structure
  * @returns {Element} container for injecting scenes
  */
-const createProgramContainer = (container) => {
+const createProgramContainer = container => {
   const $programContainer = $('<div/>', {
     class: 'catblocks-container text-dark'
   });

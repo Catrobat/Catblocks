@@ -4,7 +4,7 @@
 /**
  * @author Andreas Karner <andreas.karner@student.tugraz.at>
  * @description generate crowdin message file based on msg/*.json files, please run first create_msg_json.js if needed
- *  
+ *
  * @changelog 2019-08-14: initial version
  *            2019-08-23: added some more comments, refactor code
  *            2019-09-06: changed logic to generate just one catblocks_msgs.js file
@@ -108,7 +108,7 @@ langfiles.forEach(langfile => {
 
     fs.writeSync(message_fd, `  "${lang_name}": {`);
     Object.keys(json_object).forEach(key => {
-      if (key === "DROPDOWN_NAME") {
+      if (key === 'DROPDOWN_NAME') {
         fs.writeSync(message_fd, ` "${key}": "${json_object[key]}" `);
       }
     });
