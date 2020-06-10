@@ -51,7 +51,7 @@ export const renderAllPrograms = (share, container, path) => {
       }
 
       const files = page.getElementsByTagName('ul')[0] || undefined;
-      if (files === undefined) {
+      if (files === undefined || files.childElementCount === 0) {
         const urlToRender = getSearchParam(window.location.search, 'programurl');
         if (urlToRender !== undefined) {
           // if there is a program passed via url: try to parse
