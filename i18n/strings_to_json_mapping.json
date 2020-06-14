@@ -129,7 +129,6 @@
   "CONTROL_DELETETHISCLONE": "${brick_delete_this_clone}",
   "CONTROL_WHENYOUSTARTASACLONE": "${brick_when_cloned}",
   "CONTROL_SETNFCTAG": "${brick_set_nfc_tag} %1 ${ndef_record_label} %2",
-  "CONTROL_WHENCLONED": "${brick_when_cloned}",
   "@pen": "pen blocks",
   "PEN_PENDOWN": "${brick_pen_down}",
   "PEN_PENUP": "${brick_pen_up}",
