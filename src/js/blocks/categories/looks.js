@@ -254,5 +254,25 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  BackgroundRequestBrick: {
+    message0: '%{BKY_LOOKS_BACKGROUNDREQUEST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'BACKGROUND_REQUEST_EDIT_TEXT',
+        text: 'unset'
+      }
+    ]
+  },
+  LookRequestBrick: {
+    message0: '%{BKY_LOOKS_LOOKREQUEST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'LOOK_REQUEST_EDIT_TEXT',
+        text: 'unset'
+      }
+    ]
   }
 };

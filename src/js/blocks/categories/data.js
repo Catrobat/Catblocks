@@ -189,5 +189,70 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  StoreCSVIntoUserListBrick: {
+    message0: '%{BKY_DATA_STORECSVINTOUSERLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'STORE_CSV_INTO_USERLIST_COLUMN_EDIT_TEXT',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'STORE_CSV_INTO_USERLIST_CSV_EDIT_TEXT',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
+  },
+  ReadListFromDeviceBrick: {
+    message0: '%{BKY_DATA_READLISTFROMDEVICE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
+  },
+  WriteListOnDeviceBrick: {
+    message0: '%{BKY_DATA_WRITELISTONDEVICE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
+  },
+  ClearUserListBrick: {
+    message0: '%{BKY_DATA_CLEARUSERLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
+  },
+  WebRequestBrick: {
+    message0: '%{BKY_DATA_WEBREQUEST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'WEB_REQUEST_EDIT_TEXT',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };
