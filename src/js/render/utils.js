@@ -1,6 +1,5 @@
 import JSZip from 'jszip';
 import { MessageBox } from './message_box';
-import $ from 'jquery';
 
 /**
  * Gets the requested param from a passed URLSearchParam

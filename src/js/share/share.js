@@ -16,7 +16,6 @@ import {
   trimString,
   zebraChangeColor
 } from './utils';
-import $ from 'jquery';
 
 export class Share {
   constructor() {
