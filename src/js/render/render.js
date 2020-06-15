@@ -109,7 +109,6 @@ export const renderProgram = (share, container, path, name, counter = -1) => {
   return fetch(`${path}${name}/code.xml`)
     .then(res => res.text())
     .then(codeXML => {
-      const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
       const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
 
       // prepare container for program injection
@@ -120,7 +119,7 @@ export const renderProgram = (share, container, path, name, counter = -1) => {
         programID = `catblocks-program-${name}-${counter}`;
       }
 
-      share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
+      share.renderProgramJSON(programID, programContainer, programJSON, {
         object: {
           programRoot: `${path}${name}/`
         }
@@ -139,14 +138,13 @@ export const renderProgram = (share, container, path, name, counter = -1) => {
  */
 const renderProgramByLocalFile = (share, container, codeXML, name, counter, fileMap) => {
   // inject code
-  const xmlDoc = share.parser.convertProgramStringDebug(codeXML);
   const programJSON = share.parser.convertProgramToJSONDebug(codeXML);
 
   // prepare container for program injection
   const programContainer = createProgramContainer(container);
 
   const programID = `catblocks-program-${name}-${counter}`;
-  share.renderProgramJSON(programID, programContainer, programJSON, xmlDoc, {
+  share.renderProgramJSON(programID, programContainer, programJSON, {
     object: {
       fileMap: fileMap
     }

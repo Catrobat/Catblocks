@@ -1,7 +1,7 @@
 import Blockly from 'blockly';
 import '../catblocks_msgs';
 import './../blocks';
-import { wrapElement, zebraChangeColor } from '../share/utils';
+import { jsonDomToWorkspace, zebraChangeColor } from '../share/utils';
 import XStreamParser from '../parser/parser';
 import $ from 'jquery';
 
@@ -112,7 +112,7 @@ export class Playground {
     });
 
     $('#exportToXML').click(() => this.toXml());
-    $('#importFromXML').click(() => this.fromXml());
+    $('#importFromJSON').click(() => this.fromJSON());
     $('#importFromParser').click(() => this.fromParser());
 
     const self = this;
@@ -183,11 +183,11 @@ export class Playground {
     }
     let valid = true;
     try {
-      this.Blockly.Xml.textToDom(textarea.value);
+      JSON.parse(textarea.value);
     } catch (e) {
       valid = false;
     }
-    document.getElementById('importFromXML').disabled = !valid;
+    document.getElementById('importFromJSON').disabled = !valid;
   }
   logEvents(state) {
     const checkbox = document.getElementById('logCheck');
@@ -227,23 +227,54 @@ export class Playground {
     output.value = this.Blockly.Xml.domToPrettyText(xml);
     output.focus();
     output.select();
-    // this.taChange();
   }
-  fromXml() {
-    const input = document.getElementById('importExport');
-    const xml = this.Blockly.Xml.textToDom(input.value);
-    this.Blockly.Xml.domToWorkspace(xml, this.workspace);
-    // this.taChange();
+  fromJSON() {
+    try {
+      const input = document.getElementById('importExport');
+      const json = JSON.parse(input.value);
+      if (json.scriptList !== undefined && json.scriptList.length > 0) {
+        for (let i = 0; i < json.scriptList.length; i++) {
+          jsonDomToWorkspace(json.scriptList[i], this.workspace);
+        }
+      } else {
+        jsonDomToWorkspace(json, this.workspace);
+      }
+    } catch (e) {
+      console.error(e.message);
+      console.error("Can't render current JSON object - object has to start with scriptList.");
+    }
   }
   fromParser() {
-    const input = document.getElementById('importExport');
-    const blocksXml = this.Parser.convertScriptString(input.value);
-    console.log(blocksXml);
-
-    if (blocksXml === undefined || blocksXml === '') {
-      throw 'no response from XStreamParser';
-    } else {
-      this.Blockly.Xml.domToWorkspace(wrapElement(blocksXml.firstChild, 'xml'), this.workspace);
+    const beforeScript = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header>
+      <catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>testscene</name>
+      <objectList><object type="Sprite" name="testsprite"><lookList><look fileName="test.png" name="testlook"/>
+      </lookList><soundList/><scriptList>`;
+    const afterScript = `</scriptList></object></objectList></scene></scenes></program>`;
+    try {
+      const input = document.getElementById('importExport');
+      const xmlString = beforeScript + input.value + afterScript;
+      const blocksJSON = this.Parser.convertProgramToJSONDebug(xmlString);
+      if (blocksJSON !== undefined) {
+        const scenes = blocksJSON.scenes;
+        if (scenes !== undefined && scenes.length > 0) {
+          for (let i = 0; i < scenes.length; i++) {
+            const objectList = scenes[i].objectList;
+            if (objectList !== undefined && objectList.length > 0) {
+              for (let j = 0; j < objectList.length; j++) {
+                const scriptList = objectList[j].scriptList;
+                if (scriptList !== undefined && scriptList.length > 0) {
+                  for (let k = 0; k < scriptList.length; k++) {
+                    jsonDomToWorkspace(scriptList[k], this.workspace);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.error(e.message);
+      console.error('import script via parser failed. Only use xml object starting with script tag.');
     }
   }
   zebra() {

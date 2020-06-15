@@ -40,26 +40,6 @@ describe('Share utilities testing', () => {
     ).toBeTruthy();
   });
 
-  test('Transform xml performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const xmlDoc = new DOMParser().parseFromString(
-          '<xml><scene id="tscene" class="value"><block class="tclass">innerValue</block></scene></xml>',
-          'text/xml'
-        );
-        shareUtils.transformXml(xmlDoc, {
-          block: ['remAttr-class'],
-          scene: ['remAttr-class', 'remAttr-x']
-        });
-
-        return (
-          '<xml><scene id="tscene"><block>innerValue</block></scene></xml>' ===
-          new XMLSerializer().serializeToString(xmlDoc)
-        );
-      })
-    ).toBeTruthy();
-  });
-
   test('Inject dom node performs properly', async () => {
     expect(
       await page.evaluate(() => {

@@ -6,6 +6,17 @@
 import md5 from 'js-md5';
 
 /**
+ * all list types in json object
+ * @enum {object}
+ */
+export const brickListTypes = Object.freeze({
+  noBrickList: 0,
+  brickList: 1,
+  elseBrickList: 2,
+  loopOrIfBrickList: 3
+});
+
+/**
  * Default options defined here
  * @enum {object}
  */
@@ -42,39 +53,6 @@ export const defaultOptions = {
  */
 export const parseOptions = (inputValues, defaultValues) => {
   return Object.assign({}, defaultValues, inputValues);
-};
-
-/**
- * Transform dom xml, execute actions define in options
- *  example value for tagActions parameter
- *  {
- *    'block': ['remAttr-id', 'remAttr-x', 'remAttr-y'],
- *    'shadow': ['remAttr-id', 'remAttr-x', 'remAttr-y']
- *   }
- *  this will remove the attributes [id, x, y] from all block and shadow nodes
- * @param {XMLDocument} xmlDom to transform
- * @param {object} tagActions to map against tag elements
- */
-export const transformXml = (xmlDom, tagActions) => {
-  Object.keys(tagActions).forEach(tagName => {
-    xmlDom.getElementsByTagName(tagName).forEach(node => {
-      tagActions[tagName].forEach(action => {
-        const actionType = action.split('-')[0];
-        const actionValue = action.split('-')[1];
-
-        // INFO: please add new features as needed
-        switch (actionType) {
-          case 'remAttr': {
-            node.removeAttribute(actionValue);
-            break;
-          }
-          default: {
-            console.warn('Ignore undefined XML transformation.');
-          }
-        }
-      });
-    });
-  });
 };
 
 /**
@@ -264,4 +242,70 @@ export const generateID = string => {
  */
 export const escapeURI = string => {
   return encodeURI(string).replace('#', '%23');
+};
+
+/**
+ * render json object to workspace
+ * @param {object} jsonObject current scriptList as object
+ * @param {object} workspace where blocks are rendered
+ */
+export const jsonDomToWorkspace = (jsonObject, workspace) => {
+  const blockList = [];
+  blockList.push(jsonObject);
+  renderAndConnectBlocksInList(null, blockList, brickListTypes.noBrickList, workspace);
+};
+
+/**
+ * Renders and connects all blocks in a brickList, elseBrickList and loopOrIfBrickList.
+ * Function is calling itself if a *brickList is in a *brickList.
+ * @param {Object} parentBlock parent block to connect
+ * @param {Object} brickList, elseBrickList or loopOrIfBrickList
+ * @param {object} brickListType of list
+ * @param {object} workspace where blocks are rendered
+ */
+export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListType, workspace) => {
+  for (let i = 0; i < brickList.length; i++) {
+    const childBlock = workspace.newBlock(brickList[i].name);
+    if (
+      brickList[i].formValues !== undefined &&
+      brickList[i].formValues.size !== undefined &&
+      brickList[i].formValues.size > 0
+    ) {
+      brickList[i].formValues.forEach(function (value, key) {
+        for (let j = 0; j < childBlock.inputList[0].fieldRow.length; j++) {
+          if (childBlock.inputList[0].fieldRow[j].name === key) {
+            childBlock.inputList[0].fieldRow[j].setValue(value);
+          }
+        }
+      });
+    }
+    childBlock.initSvg();
+    childBlock.render(false);
+    if (brickListType === brickListTypes.brickList) {
+      parentBlock.nextConnection.connect(childBlock.previousConnection);
+    } else if (brickListType === brickListTypes.elseBrickList) {
+      parentBlock.inputList[3].connection.connect(childBlock.previousConnection);
+    } else if (brickListType === brickListTypes.loopOrIfBrickList) {
+      parentBlock.inputList[1].connection.connect(childBlock.previousConnection);
+    }
+    if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
+      renderAndConnectBlocksInList(childBlock, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
+    }
+    if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
+      renderAndConnectBlocksInList(
+        childBlock,
+        brickList[i].elseBrickList.reverse(),
+        brickListTypes.elseBrickList,
+        workspace
+      );
+    }
+    if (brickList[i].loopOrIfBrickList !== undefined && brickList[i].loopOrIfBrickList.length > 0) {
+      renderAndConnectBlocksInList(
+        childBlock,
+        brickList[i].loopOrIfBrickList.reverse(),
+        brickListTypes.loopOrIfBrickList,
+        workspace
+      );
+    }
+  }
 };

@@ -9,12 +9,10 @@ import {
   generateID,
   defaultOptions,
   parseOptions,
-  transformXml,
   injectNewDom,
-  wrapElement,
-  hasChildren,
   trimString,
-  zebraChangeColor
+  zebraChangeColor,
+  jsonDomToWorkspace
 } from './utils';
 import $ from 'jquery';
 
@@ -99,102 +97,16 @@ export class Share {
   }
 
   /**
-   * Little helper function to update object stats object
-   * It returns the merged objects, on same key we generate the sum
-   * @param {Object} oldStats status to update
-   * @param {Object} newStats update, either append or sum up
-   * @returns {Object} updated stats
-   */
-  updateObjectStats(oldStats, newStats) {
-    const updatedStats = Object.assign({}, oldStats);
-    if (newStats) {
-      Object.keys(newStats).forEach(key => {
-        if (oldStats[key]) {
-          updatedStats[key] += newStats[key];
-        } else {
-          updatedStats[key] = newStats[key];
-        }
-      });
-      updatedStats['scripts'] = updatedStats['scripts'] ? updatedStats['scripts'] + 1 : 1;
-    }
-    return updatedStats;
-  }
-
-  /**
-   * Get script stats and return
-   * @param {XMLDocument} script to parse starts
-   * @returns {Element} starts value dictionary
-   */
-  getScriptStats(script) {
-    if (!script) {
-      return {};
-    }
-
-    const blocks = script.getElementsByTagName('block');
-    return Array.from(blocks)
-      .map(block => {
-        const name = block.getAttribute('type') || 'undefined';
-        return this.blockly.Bricks[name] ? this.blockly.Bricks[name].category : 'unknown';
-      })
-      .reduce((acc, val) => {
-        if (acc[val]) {
-          acc[val] = acc[val] + 1;
-        } else {
-          acc[val] = 1;
-        }
-        return acc;
-      }, {});
-  }
-
-  /**
-   * Get workspace stats and return it
-   * @param {object} workspace to parse stats
-   * @returns {object} stats from workspace
-   */
-  getWorkspaceBlockStats() {
-    const workspaceStats = {
-      scripts: 1
-    };
-
-    const blockNames = Object.keys(this.workspace.blockDB_);
-    for (let iblock = 0; iblock < blockNames.length; iblock++) {
-      const blockName = blockNames[iblock];
-      const block = this.workspace.blockDB_[blockName];
-      if (block.category_) {
-        if (workspaceStats[block.category_]) {
-          workspaceStats[block.category_]++;
-        } else {
-          workspaceStats[block.category_] = 1;
-        }
-      }
-    }
-    return workspaceStats;
-  }
-
-  /**
    * Render svg from blockXml via renderWorkspace
    * After rendering, we deep copy just the svg and return it
-   * @param {Element} blockXml blocks to render into svg
+   * @param {Object} blockJSON blocks to render into svg
    * @returns {Object<Element, Object>} svg with block stats
    */
-  domToSvg(blockXml) {
-    // should happend in CSS, not inside of image
-    // TODO: remove offset transformation
-    const xOffset = 0;
-    const yOffset = 0;
-
-    // move it away from the edges
-    transformXml(blockXml, {
-      block: ['remAttr-id', 'remAttr-x', 'remAttr-y'],
-      shadow: ['remAttr-id', 'remAttr-x', 'remAttr-y']
-    });
-    blockXml.firstElementChild.setAttribute('x', xOffset);
-    blockXml.firstElementChild.setAttribute('y', yOffset);
-
+  domToSvg(blockJSON) {
     this.workspace.clear();
     let svg = undefined;
     try {
-      this.blockly.Xml.domToWorkspace(blockXml, this.workspace);
+      jsonDomToWorkspace(blockJSON, this.workspace);
       zebraChangeColor(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
@@ -202,15 +114,14 @@ export class Share {
       // remove rect around it
       svg = oriSvg.cloneNode(true);
       svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
-      svg.setAttribute('width', `${oriBox.width + xOffset}px`);
-      svg.setAttribute('height', `${oriBox.height + yOffset}px`);
+      svg.setAttribute('width', `${oriBox.width}px`);
+      svg.setAttribute('height', `${oriBox.height}px`);
       svg.setAttribute('class', 'catblocks-svg');
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
     }
-
     return svg;
   }
 
@@ -220,7 +131,6 @@ export class Share {
    * @param {string} sceneID unique scene ID
    * @param {Element} container append new scene container to this element
    * @param {string} sceneName mapped to id from the new dom
-   * @param {!object<string, object>} options how we should build up the scene container
    * @returns {Element} new created scene objects container
    */
   addSceneContainer(accordionID, sceneID, container, sceneName) {
@@ -269,11 +179,9 @@ export class Share {
    * @param {string} programID
    * @param {HTMLElement} container
    * @param {Object} programJSON
-   * @param {xmlElement} xmlElement
    * @param {Object} [options={}]
    */
-  renderProgramJSON(programID, container, programJSON, xmlElement, options = {}) {
-    // TODO: create rendering by JSON only, so we can remove the xmlElement
+  renderProgramJSON(programID, container, programJSON, options = {}) {
     options = parseOptions(options, defaultOptions);
     // create row and col
     const programContainer = this.createProgramContainer(generateID(programID), container);
@@ -283,20 +191,7 @@ export class Share {
       id: scenesContainerID
     });
 
-    let xmlScenes = undefined;
-    if (xmlElement != null) {
-      xmlScenes = xmlElement.getElementsByTagName('scene');
-    }
-
-    if (
-      programJSON == null ||
-      programJSON.scenes == null ||
-      programJSON.scenes.length === 0 ||
-      xmlElement == null ||
-      xmlScenes == null ||
-      !hasChildren(xmlScenes) ||
-      xmlScenes.length != programJSON.scenes.length
-    ) {
+    if (programJSON == null || programJSON.scenes == null || programJSON.scenes.length === 0) {
       const errorContainer = injectNewDom(scenesContainer, 'div', {
         class: 'catblocks-scene card'
       });
@@ -313,23 +208,15 @@ export class Share {
 
     for (let i = 0; i < programJSON.scenes.length; i++) {
       const scene = programJSON.scenes[i];
-      const xmlScene = xmlScenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
       const sceneObjectContainer = this.addSceneContainer(
         scenesContainerID,
         sceneID,
         scenesContainer,
-        trimString(scene.name),
-        parseOptions(options.scene, defaultOptions.scene)
+        trimString(scene.name)
       );
 
-      const xmlObjects = xmlScene.getElementsByTagName('object');
-      if (
-        scene.objectList == null ||
-        scene.objectList.length === 0 ||
-        !hasChildren(xmlObjects) ||
-        xmlObjects.length != scene.objectList.length
-      ) {
+      if (scene.objectList == null || scene.objectList.length === 0) {
         const errorContainer = injectNewDom(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
         });
@@ -347,14 +234,12 @@ export class Share {
       options.object.sceneName = scene.name;
       for (let j = 0; j < scene.objectList.length; j++) {
         const object = scene.objectList[j];
-        const xmlObject = xmlObjects[j];
         const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
 
         this.renderObjectJSON(
           objectID,
           `${sceneID}-accordionObjects`,
           sceneObjectContainer,
-          xmlObject,
           object,
           parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
         );
@@ -367,11 +252,10 @@ export class Share {
    * @param {string} objectID ID of object container
    * @param {string} accordionID ID of parent accordion
    * @param {Element} sceneObjectContainer HTMLElement
-   * @param {XMLDocument} xmlObject XML of the program
    * @param {Object} object JSON of the program
    * @param {Object} [options=defaultOptions.object]
    */
-  renderObjectJSON(objectID, accordionID, sceneObjectContainer, xmlObject, object, options = defaultOptions.object) {
+  renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, options = defaultOptions.object) {
     const objectCard = injectNewDom(sceneObjectContainer, 'div', {
       class: 'catblocks-object card',
       id: objectID
@@ -407,7 +291,7 @@ export class Share {
       class: 'tab-content card-body'
     });
 
-    this.generateScripts(contentContainer, objectID, object, xmlObject, currentLocaleValues, options);
+    this.generateScripts(contentContainer, objectID, object, currentLocaleValues, options);
     this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
     this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
   }
@@ -607,11 +491,10 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {XMLDocument}
    * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateScripts(container, objectID, object, xmlObject, currentLocaleValues) {
+  generateScripts(container, objectID, object, currentLocaleValues) {
     const wrapperContainer = injectNewDom(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
@@ -619,14 +502,7 @@ export class Share {
       'aria-labelledby': `${objectID}-scripts-tab`
     });
 
-    if (
-      !object ||
-      !object.scriptList ||
-      !xmlObject ||
-      object.scriptList.length <= 0 ||
-      !hasChildren(xmlObject) ||
-      object.scriptList.length !== xmlObject.children.length
-    ) {
+    if (!object || !object.scriptList || object.scriptList.length <= 0) {
       const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
       wrapperContainer.appendChild(
         injectNewDom(
@@ -640,17 +516,13 @@ export class Share {
       );
       return;
     }
-
-    const scripts = xmlObject.getElementsByTagName('script');
     let failed = 0;
-    for (const script of scripts) {
-      const blockXml = wrapElement(script.firstElementChild, 'xml', { xmlns: 'http://www.w3.org/1999/xhtml' });
-
+    for (let i = 0; i < object.scriptList.length; i++) {
       const scriptContainer = injectNewDom(wrapperContainer, 'div', {
         class: 'catblocks-script'
       });
 
-      const blockSvg = this.domToSvg(blockXml);
+      const blockSvg = this.domToSvg(object.scriptList[i]);
       if (blockSvg === undefined) {
         failed++;
       } else {
