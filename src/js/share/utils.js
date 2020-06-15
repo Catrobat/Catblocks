@@ -283,11 +283,9 @@ export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListTy
     childBlock.render(false);
     if (brickListType === brickListTypes.brickList) {
       parentBlock.nextConnection.connect(childBlock.previousConnection);
-    }
-    if (brickListType === brickListTypes.elseBrickList) {
+    } else if (brickListType === brickListTypes.elseBrickList) {
       parentBlock.inputList[3].connection.connect(childBlock.previousConnection);
-    }
-    if (brickListType === brickListTypes.loopOrIfBrickList) {
+    } else if (brickListType === brickListTypes.loopOrIfBrickList) {
       parentBlock.inputList[1].connection.connect(childBlock.previousConnection);
     }
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
