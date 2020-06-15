@@ -79,7 +79,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'nfc',
+        name: 'DROPDOWN',
         text: 'unset'
       }
     ]
