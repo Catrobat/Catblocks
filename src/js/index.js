@@ -12,13 +12,7 @@ import { renderAllPrograms } from './render/render';
 
   let language = 'en';
   if (process.env.DISPLAY_LANGUAGE !== undefined && process.env.DISPLAY_LANGUAGE.length > 0) {
-    const values = Blockly.CatblocksMsgs.locales[process.env.DISPLAY_LANGUAGE];
-    if (values === undefined) {
-      console.warn('no language found for ' + process.env.DISPLAY_LANGUAGE + '. set to default.');
-      language = 'en';
-    } else {
-      language = process.env.DISPLAY_LANGUAGE;
-    }
+    language = process.env.DISPLAY_LANGUAGE;
   }
   await Blockly.CatblocksMsgs.setLocale(language);
 
