@@ -8,14 +8,8 @@ import requests
 
 # if some files should be excluded for the checks, add them here
 excluded_js_files = ['index.js']
-excluded_java_files = ['Brick.java', 'BrickBaseType.java', 'BroadcastMessageBrick.java', 'CompositeBrick.java',
-                       'ScriptBrick.java',
-                       'UserVariableBrickInterface.java', 'BrickSpinner.java', 'FormulaBrick.java',
-                       'ScriptBrickBaseType.java', 'UserListBrick.java',
-                       'UserVariableBrick.java', 'UserVariableBrickWithFormula.java', 'VisualPlacementBrick.java',
-                       'LoopEndBrick.java', 'SetTextBrick.java', 'IfThenLogicEndBrick.java', 'UserDefinedBrick.java',
-                       'ConcurrentFormulaHashMap.java', 'LoopEndlessBrick.java', 'IfLogicEndBrick.java',
-                       'IfLogicElseBrick.java']
+
+excluded_java_bricks = ['Brick']
 
 map_bricks_scripts = [
     ('WhenScript', 'WhenBrick'),
@@ -71,7 +65,6 @@ def loadCatblocksBricks(base_dir):
 # Loads the bricks supported by Catroid by searching in the bricks-folder of Catroid.
 # Each .java-file is one brick.
 def loadCatroidBricks(base_dir):
-    path = base_dir + '/Catroid/catroid/src/main/java/org/catrobat/catroid/content/bricks/'
     factory_path = base_dir + '/Catroid/catroid/src/main/java/org/catrobat/catroid/ui/fragment/CategoryBricksFactory.java'
     file = open(factory_path, 'r')
     factory_file_lines = file.read().split('\n')
@@ -81,7 +74,7 @@ def loadCatroidBricks(base_dir):
             last_dot = line.rindex('.') + 1
             line_end = line.rindex(';')
             java_brick = line[last_dot: line_end]
-            if java_brick != 'Brick':
+            if java_brick not in excluded_java_bricks:
                 java_bricks.append(java_brick)
     return java_bricks
 
