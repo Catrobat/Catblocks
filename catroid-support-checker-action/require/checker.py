@@ -5,6 +5,10 @@ import json
 import os
 import sys
 import requests
+import git
+import datetime
+import dateutil.parser
+
 
 # if some files should be excluded for the checks, add them here
 excluded_js_files = ['index.js']
@@ -62,8 +66,7 @@ def loadCatblocksBricks(base_dir):
     return js_bricks
 
 
-# Loads the bricks supported by Catroid by searching in the bricks-folder of Catroid.
-# Each .java-file is one brick.
+# Loads the bricks supported by Catroid by searching looking at the imports of CategoryBricksFactory.
 def loadCatroidBricks(base_dir):
     factory_path = base_dir + '/Catroid/catroid/src/main/java/org/catrobat/catroid/ui/fragment/CategoryBricksFactory.java'
     file = open(factory_path, 'r')
@@ -100,7 +103,7 @@ def compareBricks(java_bricks, js_bricks):
 
 
 # Builds the report for the missing bricks
-def generateSlackMessage(missing_bricks, categories):
+def generateBlockMessage(missing_bricks, categories):
     msg = '*Missing Bricks in Catblocks*:\n'
     for brick in missing_bricks:
         category = getCategoryForJavaBrick(brick, categories)
@@ -134,6 +137,53 @@ def getCategoryForJavaBrick(blockname, category_class):
     return None
 
 
+def loadSupportedCatroidLanguages(work_dir):
+    base_dir = work_dir + 'Catroid/catroid/src/main/res/'
+    repo = git.Git(work_dir + 'Catroid')
+    folders = os.listdir(base_dir)
+    languages = {}
+    for folder in folders:
+        if folder.startswith('values-'):
+            xml_file = base_dir + folder + '/strings.xml'
+            if os.path.exists(xml_file):
+                result = repo.log('-1', '--format="%cI"', xml_file)
+                languages[folder] = dateutil.parser.parse(result.strip('"'))
+    return languages
+
+
+def loadSupportedCatblocksLanguages(work_dir):
+    base_dir = work_dir + 'Catblocks/i18n/catroid_strings/'
+    repo = git.Git(work_dir + 'Catblocks')
+    folders = os.listdir(base_dir)
+    languages = {}
+    for folder in folders:
+        xml_file = base_dir + folder + '/strings.xml'
+        if os.path.exists(xml_file):
+            result = repo.log('-1', '--format="%cI"', xml_file)
+            languages[folder] = dateutil.parser.parse(result.strip('"'))
+        else:
+            languages[folder] = None
+    return languages
+
+
+def compareLanguageSupport(catroid_languages, catblocks_languages):
+    language_updates = []
+    for language in catroid_languages:
+        if language in catblocks_languages:
+            if catblocks_languages[language] is None or catblocks_languages[language] < catroid_languages[language]:
+                language_updates.append(language)
+        else:
+            language_updates.append(language + ' [new]')
+    return language_updates
+
+
+def generateLanguageMessage(updated_languages):
+    updated_languages.sort()
+    msg = '*Updated Languages*:\n'
+    for lang in updated_languages:
+        msg += lang.replace('values-', '') + ', '
+    return msg.strip().strip(',')
+
 def sendSlackMessage(webhook, message):
     json_data = {'text': message}
     requests.post(webhook, json=json_data)
@@ -145,17 +195,31 @@ def sendSlackMessage(webhook, message):
 def main():
     path = sys.argv[1]
     slack_webhook = sys.argv[2]
+    slack_msg = ""
+    send_msg = False
 
+    # load bricks and compare them
     java_bricks = loadCatroidBricks(path)
     js_bricks = loadCatblocksBricks(path)
-
     in_java_not_js, in_js_not_java = compareBricks(java_bricks, js_bricks)
 
+    # generate slack report for bricks if necessary
     if in_java_not_js is not None and len(in_java_not_js) > 0:
         category_class = loadJavaCategoryClass(path).splitlines()
-        slack_msg = generateSlackMessage(in_java_not_js, category_class)
-        sendSlackMessage(slack_webhook, slack_msg)
+        slack_msg += generateBlockMessage(in_java_not_js, category_class)
+        send_msg = True
 
+    # compare langauges
+    catroid_langauges = loadSupportedCatroidLanguages(path)
+    catblocks_languages = loadSupportedCatblocksLanguages(path)
+    language_updates = compareLanguageSupport(catroid_langauges, catblocks_languages)
+    
+    if language_updates is not None and len(language_updates) > 0:
+        slack_msg += '\n\n' + generateLanguageMessage(language_updates)
+        send_msg = True
+
+    if send_msg:
+        sendSlackMessage(slack_webhook, slack_msg.strip())
 
 if __name__ == '__main__':
     main()
