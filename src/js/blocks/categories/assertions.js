@@ -10,12 +10,12 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'TAP_AT_EDIT_TEXT_X',
+        name: 'X_POSITION',
         text: 'unset'
       },
       {
         type: 'field_input',
-        name: 'TAP_AT_EDIT_TEXT_Y',
+        name: 'Y_POSITION',
         text: 'unset'
       }
     ]
@@ -31,12 +31,12 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'ASSERT_ACTUAL',
+        name: 'ASSERT_EQUALS_ACTUAL',
         text: 'unset'
       },
       {
         type: 'field_input',
-        name: 'ASSERT_EXPECTED',
+        name: 'ASSERT_EQUALS_EXPECTED',
         text: 'unset'
       }
     ]

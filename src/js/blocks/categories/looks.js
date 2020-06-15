@@ -260,7 +260,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'BACKGROUND_REQUEST_EDIT_TEXT',
+        name: 'BACKGROUND_REQUEST',
         text: 'unset'
       }
     ]
@@ -270,7 +270,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'LOOK_REQUEST_EDIT_TEXT',
+        name: 'LOOK_REQUEST',
         text: 'unset'
       }
     ]

@@ -195,12 +195,12 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'STORE_CSV_INTO_USERLIST_COLUMN_EDIT_TEXT',
+        name: 'STORE_CSV_INTO_USERLIST_COLUMN',
         text: 'unset'
       },
       {
         type: 'field_input',
-        name: 'STORE_CSV_INTO_USERLIST_CSV_EDIT_TEXT',
+        name: 'STORE_CSV_INTO_USERLIST_CSV',
         text: 'unset'
       },
       {
@@ -245,7 +245,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'WEB_REQUEST_EDIT_TEXT',
+        name: 'WEB_REQUEST',
         text: 'unset'
       },
       {

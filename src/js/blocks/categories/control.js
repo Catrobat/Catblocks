@@ -210,7 +210,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'SET_NFC_TAG_EDIT_TEXT',
+        name: 'NFC_NDEF_MESSAGE',
         text: 'unset'
       },
       {
