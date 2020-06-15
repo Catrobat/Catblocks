@@ -28,9 +28,9 @@ def convertJavascriptStringToJsonString(javascript_string):
     index = 0
     json_string = ''
     for char in javascript_string:
-        if char is ' ':
+        if char == ' ':
             last_whitespace = index
-        if char is ':':
+        if char == ':':
             object_name = javascript_string[last_whitespace + 1: index]
             json_string = json_string[:last_whitespace] + '\"' + object_name + '\"'
         json_string = json_string + char
