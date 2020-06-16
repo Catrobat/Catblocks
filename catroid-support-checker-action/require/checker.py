@@ -143,11 +143,15 @@ def loadSupportedCatroidLanguages(work_dir):
     folders = os.listdir(base_dir)
     languages = {}
     for folder in folders:
-        if folder.startswith('values-'):
+        if folder.startswith('values-') or folder == 'values':
             xml_file = base_dir + folder + '/strings.xml'
             if os.path.exists(xml_file):
                 result = repo.log('-1', '--format="%cI"', xml_file)
-                languages[folder] = dateutil.parser.parse(result.strip('"'))
+                
+                map_folder = folder
+                if folder == 'values':
+                    map_folder = 'values-en'
+                languages[map_folder] = dateutil.parser.parse(result.strip('"'))
     return languages
 
 
