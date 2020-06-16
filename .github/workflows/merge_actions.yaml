@@ -6,6 +6,7 @@ on:
 
 jobs:
   deployTestingpage:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Deploy Testpage to GH-Pages
     runs-on: ubuntu-latest
     steps:
@@ -14,6 +15,7 @@ jobs:
       uses: ./gh-pages-deploy-action/
     
   rerunTests:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Restart all Pull Request Tests
     runs-on: ubuntu-latest
     steps:
