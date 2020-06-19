@@ -268,6 +268,11 @@ export class Share {
       'aria-controls': objCollapseOneSceneID
     });
 
+    if (this.config.rtl) {
+      cardHeader.style.paddingLeft = '1.5em';
+      cardHeader.style.paddingRight = '3.5em';
+    }
+
     if (object && object.name) {
       cardHeader.innerHTML = `<div style="font-weight: normal;">${object.name}</div><i class="material-icons">chevron_left</i>`;
     } else {
@@ -320,6 +325,9 @@ export class Share {
           noSoundsText
         )
       );
+      if (this.config.rtl) {
+        soundsContainer.style.textAlign = 'right';
+      }
       return;
     }
 
@@ -358,7 +366,7 @@ export class Share {
         displaySoundName = sound.fileName;
       }
 
-      injectNewDom(
+      const soundName = injectNewDom(
         col,
         'span',
         {
@@ -366,6 +374,9 @@ export class Share {
         },
         displaySoundName
       );
+      if (this.config.rtl) {
+        soundName.style.textAlign = 'right';
+      }
 
       const audioContainer = injectNewDom(col, 'audio', {
         class: 'catblocks-object-sound-item',
@@ -419,6 +430,9 @@ export class Share {
           noLooksText
         )
       );
+      if (this.config.rtl) {
+        looksContainer.style.textAlign = 'right';
+      }
       return;
     }
 
@@ -457,7 +471,7 @@ export class Share {
         class: 'img-fluid catblocks-object-look-item'
       });
 
-      injectNewDom(
+      const lookName = injectNewDom(
         row,
         'div',
         {
@@ -465,6 +479,9 @@ export class Share {
         },
         look.name
       );
+      if (this.config.rtl) {
+        lookName.style.textAlign = 'right';
+      }
     }
 
     if (failed > 0) {
@@ -508,6 +525,9 @@ export class Share {
           noScriptText
         )
       );
+      if (this.config.rtl) {
+        wrapperContainer.style.textAlign = 'right';
+      }
       return;
     }
     let failed = 0;
