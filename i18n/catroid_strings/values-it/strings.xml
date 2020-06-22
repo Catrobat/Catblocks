@@ -125,10 +125,10 @@
     <string name="preference_access_summary_profile_argus">Contrasto elevato, icone aggiuntive</string>
     <string name="preference_access_title_profile_odin">Odino</string>
     <string name="preference_access_summary_profile_odin">Testo di grandi dimensioni, icone grandi, elementi
-      con ampia spaziatura e alto contrasto</string>
+        con ampia spaziatura e alto contrasto</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
     <string name="preference_access_summary_profile_fenrir">Elementi molto distanziati, drag\'n\'drop
-       con ritardo</string>
+        con ritardo</string>
     <string name="preference_access_title_profile_tiro">Shoot</string>
     <string name="preference_access_summary_profile_tiro">Mattoncini principiante</string>
     <!-- Lego/Drone/Raspi/Chromecast/Embroidery -->
@@ -164,6 +164,9 @@
     <string name="preference_raspi_host">Raspberry Pi IP-/Host-Address</string>
     <string name="preference_raspi_port">Porta Raspberry Pi</string>
     <!--  -->
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
+        multiplayer variables shared via Bluetooth</string>
     <!-- Scratch Converter activity -->
     <string name="beta">BETA</string>
     <string name="error_scratch_program_not_accessible_any_more">Oops! Il programma pare essere scomparso
@@ -171,12 +174,12 @@
     <string name="error_scratch_project_data_not_available">Oops! Sembrano mancare alcune parti del programma,
         per favore riprova dopo.</string>
     <string name="error_request_timeout">Oops! Il nostro server non ha risposto in un tempo ragionevole, si prega di riprovare più tardi.</string>
-    <string name="error_scratch_program_conversion_failed">Oops! E\' fallita la conversione del programma Scratch, 
+    <string name="error_scratch_program_conversion_failed">Oops! E\' fallita la conversione del programma Scratch,
         riprova più tardi!</string>
     <string name="error_specific_scratch_program_conversion_failed_x">Oops! La conversione di \"%1$s\" è fallita, riprova
         più tardi!</string>
     <string name="error_scratch_converter_outdated_app_version">La versione di Pocket Code che utilizzi è obsoleta.
-       Il convertitore Scratch funziona solo sulla versione più recente. Aggiorna il programma su Google Play</string>
+        Il convertitore Scratch funziona solo sulla versione più recente. Aggiorna il programma su Google Play</string>
     <string name="error_cannot_open_not_existing_scratch_program">Non posso aprire il programma Scratch. Può darsi che
         tu abbia fermato la conversione/download o che tu abbia rinominato/cancellato il
         programma!</string>
@@ -197,8 +200,8 @@
     <string name="search_failed">Non è stato trovato nulla; riprovare più tardi.</string>
     <string name="connection_lost_or_closed_by_server">Connessione al server interrotta.</string>
     <string name="connection_failed">In questo momento non possiamo connetterti al server; riprova più tardi.</string>
-    <string name="authentication_failed">Sembra esserci un problema con la connessione al servizio, 
-     contatta il team di Catrobat!</string>
+    <string name="authentication_failed">Sembra esserci un problema con la connessione al servizio,
+        contatta il team di Catrobat!</string>
     <plurals name="scratch_conversion_scheduled_x">
         <item quantity="one">Aggiunto %d programma Scratch alla coda&#8230;</item>
         <item quantity="other">Aggiunti %d programmi Scratch alla coda&#8230;</item>
@@ -482,6 +485,7 @@
     <string name="nfc_tag_name_label">Nome del Tag NFC</string>
     <string name="string_label">Testo</string>
     <string name="data_label">Nome</string>
+    <string name="Image_format_not_supported">Image format not supported</string>
     <!-- Details -->
     <string name="project_details">Ultimo accesso: %s, dimensione: %s</string>
     <string name="last_access_today">oggi, %s</string>
@@ -640,6 +644,7 @@
     <string name="tnf_well_known_mailto">E-Mail</string>
     <!--  -->
     <!-- DataListFragment -->
+    <string name="multiplayer_vars_headline">Variables for connected devices</string>
     <string name="global_vars_headline">Variabili per tutti gli oggetti</string>
     <string name="local_vars_headline">Variabili per solo questo oggetto</string>
     <string name="global_lists_headline">Liste per tutti gli oggetti</string>
@@ -647,6 +652,8 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">Per tutti gli oggetti</string>
     <string name="new_data_for_this_sprite_only">Solo per questo oggetto</string>
+    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
+        on connected multiplayer devices</string>
     <!-- Backpack -->
     <string name="backpack_title">Tuo zaino</string>
     <string name="pack">Impacchetta</string>
@@ -697,8 +704,8 @@
     <!-- Terms of Use Dialog -->
     <string name="dialog_terms_of_use_title">Condizioni d\'uso e servizio</string>
     <string name="dialog_terms_of_use_info">Al fine di
-    poter usare le app e gli altri programmi eseguibili offerti dal progetto Catrobat, devi accettare i nostri Termini d\'uso e quelli di Utilizzo dei servizi. Sei tenuto a rispettarli mentre utilizzi le app
-    e gli altri programmi eseguibili. Segui il link sottostante per conoscerne i dettagli.\n</string>
+        poter usare le app e gli altri programmi eseguibili offerti dal progetto Catrobat, devi accettare i nostri Termini d\'uso e quelli di Utilizzo dei servizi. Sei tenuto a rispettarli mentre utilizzi le app
+        e gli altri programmi eseguibili. Segui il link sottostante per conoscerne i dettagli.\n</string>
     <string name="dialog_terms_of_use_link_text">Condizioni d\'uso e servizio</string>
     <!--  -->
     <!-- Terms of Use Dialog Parrot ARDrone-->
@@ -714,60 +721,60 @@
     <!-- Privacy Policy -->
     <string name="dialog_privacy_policy_title">Informativa sulla privacy</string>
     <string name="disclaimer_privacy_police_header_headline">Benvenuto!</string>
-    <string name="disclaimer_privacy_policy_header">Prima si può iniziare a scrivere programmi, leggi e accetta la nostra informativa 
+    <string name="disclaimer_privacy_policy_header">Prima si può iniziare a scrivere programmi, leggi e accetta la nostra informativa
         sulla privacy per utilizzare l\'app:</string>
-    <string name="dialog_privacy_policy_text">Al fine di offrirti il meglio dei nostri servizi e gestire al meglio i tuoi account, 
-è necessario raccogliere alcuni tuoi dati.\n\n
+    <string name="dialog_privacy_policy_text">Al fine di offrirti il meglio dei nostri servizi e gestire al meglio i tuoi account,
+        è necessario raccogliere alcuni tuoi dati.\n\n
 
-        • Per mantenere e migliorare i servizi (app e sito Web) e per svolgere ricerche scientifiche su ICT e 
-            STEM/STEAM education, usiamo Google Analytics, Crashlytics e Firebase, tutti prodotti di Google LLC (USA), 
-            come pure Dynatrace di Dynatrace LLC (USA) per
-            raccogliere dati sull\'uso dei servizi come, per esempio, informazioni sui crash, marche temporali, pagine/schermate visitati,
-            utilizzo di app e servizi, sistemi operativi usati, e informazioni sui fornitori di rete.
-            I dati raccolti e le analisi svolte non sono in alcun modo collegate al profilo e non contengono 
-            alcun dato personale (l\'ultima parte degli indirizzi IP sono resi anonimi). However, the collected data will get
-            I dati raccolti vengono trasmessi ai fornitori dei servizi (Google LLC, USA e Dynatrace LLC, USA). 
-            Il data processing si basa su accordi con Google LLC e Dynatrace LLC. 
-            Le collaborazioni con i fornitori dei servizi sono conformi alla European Union\'s General Data
-            Protection Regulation (EU GDPR) e all\'accordo EU-USA \"Privacy Shield\".\n\n
+        • Per mantenere e migliorare i servizi (app e sito Web) e per svolgere ricerche scientifiche su ICT e
+        STEM/STEAM education, usiamo Google Analytics, Crashlytics e Firebase, tutti prodotti di Google LLC (USA),
+        come pure Dynatrace di Dynatrace LLC (USA) per
+        raccogliere dati sull\'uso dei servizi come, per esempio, informazioni sui crash, marche temporali, pagine/schermate visitati,
+        utilizzo di app e servizi, sistemi operativi usati, e informazioni sui fornitori di rete.
+        I dati raccolti e le analisi svolte non sono in alcun modo collegate al profilo e non contengono
+        alcun dato personale (l\'ultima parte degli indirizzi IP sono resi anonimi). However, the collected data will get
+        I dati raccolti vengono trasmessi ai fornitori dei servizi (Google LLC, USA e Dynatrace LLC, USA).
+        Il data processing si basa su accordi con Google LLC e Dynatrace LLC.
+        Le collaborazioni con i fornitori dei servizi sono conformi alla European Union\'s General Data
+        Protection Regulation (EU GDPR) e all\'accordo EU-USA \"Privacy Shield\".\n\n
         • Per creare e usare un account sui nostri sistemi e informarti via e-email su eventuali modifiche come,
-            per esempio, aggiornamenti o violazioni dei Termini di Servizio e d\'Uso, regole della community,
-            nostre politiche, noi conserviamo il tuo nome utente e, se ce l\'hai fornito, il tuo indirizzo e-mail.
-            Se hai connesso il tuo account con quello di Google o Facebook, in aggiunta, conserveremo una chiave di connessione
-            al tuo account su tali servizi. Non useremo mai i tuoi dati per altri scopi (per es. marketing),
-            a meno che tu non ci autorizzi esplicitamente in tal senso.\n\n
-        • SU base volontaria ci puoi fornire la tua nazione di residenza usando la pagina del tuo account 
-            sul sito di condivisione. Questa informazione verrà mostrata sul tuo profilo pubblico e la useremo unicamente per fini statistici ed eventuali ricerche. Essa potrà essere rimossa in qualsiasi momento dalle impostazioni del tuo profilo.\n\n
+        per esempio, aggiornamenti o violazioni dei Termini di Servizio e d\'Uso, regole della community,
+        nostre politiche, noi conserviamo il tuo nome utente e, se ce l\'hai fornito, il tuo indirizzo e-mail.
+        Se hai connesso il tuo account con quello di Google o Facebook, in aggiunta, conserveremo una chiave di connessione
+        al tuo account su tali servizi. Non useremo mai i tuoi dati per altri scopi (per es. marketing),
+        a meno che tu non ci autorizzi esplicitamente in tal senso.\n\n
+        • SU base volontaria ci puoi fornire la tua nazione di residenza usando la pagina del tuo account
+        sul sito di condivisione. Questa informazione verrà mostrata sul tuo profilo pubblico e la useremo unicamente per fini statistici ed eventuali ricerche. Essa potrà essere rimossa in qualsiasi momento dalle impostazioni del tuo profilo.\n\n
         • In qualsiasi momento puoi togliere l\'autorizzazione all\'uso dei dati personali del tuo account eliminandolo
-            agendo dalla pagina del profilo e su https://share.catrob.at. Eliminando il tuo account potrai
-            continuare ad usare i servizi offerti ma potrai più collaborare, per esempio, facendo upload dei programmi,
-            commentare o collegare programmi altrui. Inoltre tutti le informazioni collegate all\'account,
-            come i programmi inviati, i commenti e così via, verranno eliminati.\n\n
+        agendo dalla pagina del profilo e su https://share.catrob.at. Eliminando il tuo account potrai
+        continuare ad usare i servizi offerti ma potrai più collaborare, per esempio, facendo upload dei programmi,
+        commentare o collegare programmi altrui. Inoltre tutti le informazioni collegate all\'account,
+        come i programmi inviati, i commenti e così via, verranno eliminati.\n\n
         • Per impedire un utilizzo non appropriato dei nostri servizi come, per esempio, l\'invio di upload o commenti
-            per fini illegali, tutti i dati pubblici generati (upload, commenti) vengono memorizzati in maniera persistente su una base dati,
-            insieme ad una marca temporale e all\'indirizzo internet usato. Questi dati non verrano usati o inviati a terzi
-            a meno che ci sia il fondato sospetto di azioni illegali possano essere accadute
-            e, nel qual caso, verranno inviati agli organi competenti. Prima di procedere ogni caso verrà valutato da noi in primo luogo.\n\n
+        per fini illegali, tutti i dati pubblici generati (upload, commenti) vengono memorizzati in maniera persistente su una base dati,
+        insieme ad una marca temporale e all\'indirizzo internet usato. Questi dati non verrano usati o inviati a terzi
+        a meno che ci sia il fondato sospetto di azioni illegali possano essere accadute
+        e, nel qual caso, verranno inviati agli organi competenti. Prima di procedere ogni caso verrà valutato da noi in primo luogo.\n\n
         • Puoi sottoscrivere volontariamente la Catrobat Newsletter, su https://catrob.at/newsletter servizio
-            fornitoci da MailChimp (The Rocket Science Group LLC d/b/a MailChimp, USA). Potrai così
-            ricevere aggiornamenti sul progetto Catrobat e i suoi servizi all\'indirizzo e-mail fornito. 
-            Potrai, in qualsiasi momento, usare il link \"unsubscribe\" (in fondo all\'email) per non ricevere più  la newsletter.
-            La newsletter è fornita da MailChimp con cui abbiamo un accordo di data-processing conforme
-            alla EU General Data Protection Regulation e alla EU-USA \"Privacy Shield\". Per ulteriori dettagli su MailChimp
-            fate riferimento alla policy e ai termini di servizio di MailChimp.\n\n
+        fornitoci da MailChimp (The Rocket Science Group LLC d/b/a MailChimp, USA). Potrai così
+        ricevere aggiornamenti sul progetto Catrobat e i suoi servizi all\'indirizzo e-mail fornito.
+        Potrai, in qualsiasi momento, usare il link \"unsubscribe\" (in fondo all\'email) per non ricevere più  la newsletter.
+        La newsletter è fornita da MailChimp con cui abbiamo un accordo di data-processing conforme
+        alla EU General Data Protection Regulation e alla EU-USA \"Privacy Shield\". Per ulteriori dettagli su MailChimp
+        fate riferimento alla policy e ai termini di servizio di MailChimp.\n\n
         • Tutti i servizi sono offerti gratuitamente dal progetto open source Catrobat che appartiene alla
-            International Catrobat Association – Verein zur Förderung freier Software, una non-profit NGO con sede
-            in Graz, Austria (European Union). Le nostre policies rispettano le leggi sulla protezione dei dati (GDPR) della EU e Austriache.
-              Per metterti in contatto con noi pupoi scrivere una e-mail a contact@catrobat.org o scriverci a Catrobat,\n
-                c/o\n
-                Institute of Software Technology,\n
-                Graz University of Technology,\n
-                Inffeldgasse 16b,\n
-                A-8010 Graz, Austria\n
-                (European Union).\n\n
+        International Catrobat Association – Verein zur Förderung freier Software, una non-profit NGO con sede
+        in Graz, Austria (European Union). Le nostre policies rispettano le leggi sulla protezione dei dati (GDPR) della EU e Austriache.
+        Per metterti in contatto con noi pupoi scrivere una e-mail a contact@catrobat.org o scriverci a Catrobat,\n
+        c/o\n
+        Institute of Software Technology,\n
+        Graz University of Technology,\n
+        Inffeldgasse 16b,\n
+        A-8010 Graz, Austria\n
+        (European Union).\n\n
         Nel caso la tua età sia inferiore a 14 anni, questa policy deve essere accettata da un tuo genitore o di chi ne fa le veci.\n\n
 
-        La pagina con la policy ufficiale di Catrobat è quella inglese disponibile sul web a questa pagina 
+        La pagina con la policy ufficiale di Catrobat è quella inglese disponibile sul web a questa pagina
         https://catrob.at/privacypolicy.\n\n
 
         Versione 2.2, 17 Ottobre 2019\n\n
@@ -813,15 +820,15 @@
     <string name="soundrecorder_text_view">Premere l\'icona qui sopra per avviare e interrompere la registrazione.</string>
     <!--  -->
     <!-- Brick context dialog -->
-    <string name="brick_context_dialog_move_brick">Sposta mattoncino</string>
+    <string name="brick_context_dialog_move_brick">Move brick</string>
     <string name="brick_context_dialog_move_script">Sposta script</string>
     <string name="brick_context_dialog_delete_brick">Elimina mattoncino</string>
     <string name="brick_context_dialog_copy_brick">Copia mattoncino</string>
     <string name="brick_context_dialog_copy_script">Copia script</string>
-    <string name="brick_context_dialog_formula_edit_brick">Modifica Formula</string>
-    <string name="brick_context_dialog_delete_script">Elimina lo script</string>
-    <string name="brick_context_dialog_comment_in">Abilita mattoncino</string>
-    <string name="brick_context_dialog_comment_out">Disabilita mattoncino</string>
+    <string name="brick_context_dialog_formula_edit_brick">Edit formula</string>
+    <string name="brick_context_dialog_delete_script">Cancella script</string>
+    <string name="brick_context_dialog_comment_in">Enable brick</string>
+    <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">Evidenzia parti mattoncino</string>
     <string name="brick_context_dialog_comment_in_script">Abilita script</string>
     <string name="brick_context_dialog_comment_out_script">Disabilita script</string>
@@ -856,9 +863,8 @@
     <string name="sign_in_error">Qualcosa è andato storto durante l\'accesso.</string>
     <string name="error_google_plus_sign_in">Errore di login su Google. Stato: %s</string>
     <string name="error_session_expired">Sessione scaduta, effettua nuovamente il login.</string>
-    <string name="sign_in_with_google">Accedi con Google</string>
     <string name="error_register_empty_username">Nome utente vuoto</string>
-    <string name="error_register_username_as_email">Non si può usare l\'Indirizzo di e-mail come nome utente</string>
+    <string name="error_register_username_as_email">Email address cannot be used as username</string>
     <string name="error_register_invalid_username">Il nome utente deve contenere solo lettere (a-z), numeri (0-9), trattini (-),
         trattini bassi (_) e punti (.).</string>
     <string name="error_register_username_start_with">Il nome utente non deve iniziare con trattini (-), trattini bassi (_) o
@@ -887,8 +893,8 @@
     <string name="prestage_resource_not_available_text">Questo programma non funziona sul tuo dispositivo.
         Non sono disponibili i seguenti componenti:\n\n</string>
     <string name="prestage_resource_in_use_text">Un altro dispositivo è connesso al Jumping Sumo. Assicurati
-    di essere il solo a controllare il drone.</string>
-    <string name="prestage_no_vibration_available">\u2022 Vibrazione\n</string>
+        di essere il solo a controllare il drone.</string>
+    <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">\u2022 Sensore di Accelerazione\n</string>
     <string name="prestage_no_inclination_sensor_available">\u2022 Sensore di Inclinazione\n</string>
     <string name="prestage_no_compass_sensor_available">\u2022 Bussola\n</string>
@@ -902,7 +908,7 @@
     <string name="no_nfc_available">NFC non disponibile</string>
     <string name="nfc_not_activated">Attiva NFC, poi premi indietro per tornare all\'app!</string>
     <string name="nfc_facedetection_support">Utilizzando contemporaneamente NFC e il riconoscimento facciale potrebbe
-     causare problemi di prestazioni!</string>
+        causare problemi di prestazioni!</string>
     <!--  -->
     <!-- Stage menu dialog -->
     <string name="stage_dialog_back">Indietro</string>
@@ -942,9 +948,18 @@
     <string name="category_raspi">Raspberry Pi</string>
     <string name="category_assertions">Verifica</string>
     <!--  -->
+    <!-- User Defined Bricks -->
+    <string name="brick_user_defined_add_label">Add label</string>
+    <string name="brick_user_defined_add_input">Add input</string>
+    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
+    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
+    <string name="brick_user_defined_default_input_name">Name of input</string>
+    <string name="brick_user_defined_default_label">Label text</string>
+    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"Posiziona a "</string>
-    <string name="brick_option_place_visually">Place visually</string>
+    <string name="brick_option_place_visually">Posiziona visivamente</string>
     <string name="x_label">"X: "</string>
     <string name="y_label">"Y: "</string>
     <string name="brick_set_x">"Imposta X a "</string>
@@ -1119,6 +1134,7 @@
     <string name="brick_broadcast_default_value">"messaggio 1"</string>
     <string name="brick_add_item_to_userlist_add">Aggiungi</string>
     <string name="brick_add_item_to_userlist">alla lista</string>
+    <string name="brick_clear_userlist">Delete all items from list</string>
     <string name="brick_delete_item_from_userlist_delete">Elimina l\'elemento dalla lista</string>
     <string name="brick_delete_item_from_userlist">alla posizione</string>
     <string name="brick_insert_item_into_userlist_insert_into">Inserire</string>
@@ -1128,8 +1144,28 @@
     <string name="brick_replace_item_in_userlist_item_at_index">alla posizione</string>
     <string name="brick_replace_item_in_userlist_with_value">con</string>
     <string name="brick_web_request">Invia richiesta web a</string>
+    <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">e memorizza la risposta in</string>
-    <string name="brick_web_request_default_value">https://official-joke-api.appspot.com/random_joke</string>
+    <string name="brick_web_request_warning_title">Allow web access?</string>
+    <string name="brick_web_request_warning_message">Be very careful before allowing access, since the
+        link may expose your personal information, such as your precise geographical location or any text
+        you have entered to malicious other persons or to the public. See our
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
+        be extremely dangerous.
+    </string>
+    <string name="brick_look_request">Get image from</string>
+    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
+    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
+    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
+    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_background_request_result">and use as current background</string>
+    <string name="brick_look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="brick_look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="brick_store_csv_into_userlist_store">Store column</string>
+    <string name="brick_store_csv_into_userlist_of">of the</string>
+    <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
+    <string name="brick_store_csv_into_userlist_into">nella lista</string>
+    <string name="brick_store_csv_into_userlist_data">kitty,cute\npuppy,naughty\noctopus,intelligent</string>
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">Il mio primo programma</string>
@@ -1231,9 +1267,9 @@
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">Questa app necessità delle autorizzazioni richieste per funzionare correttamente. Per esempio
-il mattoncino della videocamera necessita di accedere alla videocamera del dispositivo, l\'elemento \"posizione\" necessita di conoscere
-la posizione del sensore di posizione, per importare o esportare progetti sulla memoria secondaria, l\'app
-deve poter accedere sia in lettura che in scrittura ad essa. Puoi sempre modificare i permessi in un secondo momento dalle impostazioni del dispositivo.</string>
+        il mattoncino della videocamera necessita di accedere alla videocamera del dispositivo, l\'elemento \"posizione\" necessita di conoscere
+        la posizione del sensore di posizione, per importare o esportare progetti sulla memoria secondaria, l\'app
+        deve poter accedere sia in lettura che in scrittura ad essa. Puoi sempre modificare i permessi in un secondo momento dalle impostazioni del dispositivo.</string>
     <!-- Error messages -->
     <string name="error_project_upload">Errore durante il caricamento del programma.</string>
     <string name="error_project_download">Errore durante il download del programma.</string>
@@ -1616,6 +1652,8 @@ deve poter accedere sia in lettura che in scrittura ad essa. Puoi sempre modific
     <string name="formula_editor_function_list_item_parameter">(1,*list name*)</string>
     <string name="formula_editor_function_contains">contiene</string>
     <string name="formula_editor_function_contains_parameter">(*list name*,1)</string>
+    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item_parameter">(1,*list name*)</string>
     <string name="formula_editor_function_number_of_items">numero_di_elementi</string>
     <string name="formula_editor_function_number_of_items_parameter">(*nome _lista*)</string>
     <string name="formula_editor_function_collision">oggetti_toccati</string>
@@ -1757,28 +1795,28 @@ deve poter accedere sia in lettura che in scrittura ad essa. Puoi sempre modific
     <string name="formula_editor_sensor_face_y_position">posizione_y_volto</string>
     <string name="formula_editor_intro_title_formula_editor">Editor di formule</string>
     <string name="formula_editor_intro_summary_formula_editor">L\'editor di formule ti permette di creare formule matematiche e
-    logiche che puoi usare all\'interno dei mattoncini.\n\nPuoi continuare questa piccola introduzione
-    premendo sul pulsante \"Prossimo\" nell\'angolo in basso a destra; puoi concluderla premendo sul
-    pulsante \"Salta\" nell\'angolo in basso a sinistra.</string>
+        logiche che puoi usare all\'interno dei mattoncini.\n\nPuoi continuare questa piccola introduzione
+        premendo sul pulsante \"Prossimo\" nell\'angolo in basso a destra; puoi concluderla premendo sul
+        pulsante \"Salta\" nell\'angolo in basso a sinistra.</string>
     <string name="formula_editor_intro_title_input_field">Campo di inserimento dati</string>
     <string name="formula_editor_intro_summary_input_field">Qui puoi vedere la formula e puoi anche modificarla.</string>
     <string name="formula_editor_intro_title_keyboard">Tastiera</string>
     <string name="formula_editor_intro_summary_keyboard">In modo simile ad una calcolatrice, qui è dove puoi
-    creare la tua formula.</string>
+        creare la tua formula.</string>
     <string name="formula_editor_intro_title_compute">Calcola</string>
     <string name="formula_editor_intro_summary_compute">Per verificare la tua formula e mostrare il risultato attuale
-    puoi usare il comando \"Calcola\".</string>
+        puoi usare il comando \"Calcola\".</string>
     <string name="formula_editor_intro_title_object">Oggetto</string>
     <string name="formula_editor_intro_summary_object">Questa è una collezione di valori che descrivono
-    il tuo oggetto corrente. Alcuni valori sono, per esempio, le coordinate x ed y o l\'attuale velocità.</string>
+        il tuo oggetto corrente. Alcuni valori sono, per esempio, le coordinate x ed y o l\'attuale velocità.</string>
     <string name="formula_editor_intro_title_functions">Funzioni</string>
     <string name="formula_editor_intro_summary_functions">Come una calcolatrice, l\'editor di formule offre
-    una moltitudine di funzioni matematiche.\n Puoi trovare funzioni trigonometriche come \"seno\" e \"coseno\", ma
-    anche un generatori di numeri casuali o funzioni per gestire liste e testo.</string>
+        una moltitudine di funzioni matematiche.\n Puoi trovare funzioni trigonometriche come \"seno\" e \"coseno\", ma
+        anche un generatori di numeri casuali o funzioni per gestire liste e testo.</string>
     <string name="formula_editor_intro_title_logic">Logica</string>
     <string name="formula_editor_intro_summary_logic">Le funzioni logiche sono utilizzate per confrontare valori o gestire formule logiche.\n
-    Per confrontare valori puoi usare operazioni logiche come \"&gt;\" (maggiore di) o \"=\" (uguale).\nPer gestire formule logiche
-   puoi usare operatori logici come \"AND\", \"OR\" e \"NOT\".</string>
+        Per confrontare valori puoi usare operazioni logiche come \"&gt;\" (maggiore di) o \"=\" (uguale).\nPer gestire formule logiche
+        puoi usare operatori logici come \"AND\", \"OR\" e \"NOT\".</string>
     <string name="formula_editor_intro_title_device">Sensori</string>
     <string name="formula_editor_intro_summary_device">In \"Dispositivo\" puoi trovare informazioni che
         il tablet o lo smartphone registra.\nPer esempio, l\'inclinazione del dispositivo o il rumore di fondo.</string>
@@ -1834,7 +1872,7 @@ deve poter accedere sia in lettura che in scrittura ad essa. Puoi sempre modific
         e scaricare.
         Puoi anche scaricare l\'app come applicazione standalone per android.</string>
     <string name="progress_upload_dialog_failed">Upload fallito. Verifica la tua connessione a internet e
-    riprova!</string>
+        riprova!</string>
     <string name="progress_upload_dialog_show_program">Mostra il programma</string>
     <!--  -->
     <!-- Snackbar hints -->

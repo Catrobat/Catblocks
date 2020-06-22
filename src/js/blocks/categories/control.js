@@ -204,5 +204,20 @@ export default {
   },
   WhenClonedScript: {
     message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
+  },
+  SetNfcTagBrick: {
+    message0: '%{BKY_CONTROL_SETNFCTAG}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NFC_NDEF_MESSAGE',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };

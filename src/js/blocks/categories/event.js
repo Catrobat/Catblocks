@@ -73,5 +73,15 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  WhenNfcBrick: {
+    message0: '%{BKY_EVENT_WHENNFC}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };

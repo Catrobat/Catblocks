@@ -7,6 +7,8 @@
 'use strict';
 
 import arduino from './arduino';
+import assertions from './assertions';
+import cast from './cast';
 import control from './control';
 import data from './data';
 import drone from './drone';
@@ -24,6 +26,8 @@ import stitch from './stitch';
 
 export default {
   arduino: arduino,
+  assertions: assertions,
+  cast: cast,
   control: control,
   data: data,
   drone: drone,

@@ -8,6 +8,8 @@ import Blockly from 'blockly';
 
 const colourCodes = {
   arduino: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  assertions: { colourPrimary: '#26A6AE', colourSecondary: '#3BD7E1', colourTertiary: '#40F2Fd' },
+  cast: { colourPrimary: '#866A4E', colourSecondary: '#C1966B', colourTertiary: '#FDC48D' },
   control: { colourPrimary: '#FFAB19', colourSecondary: '#e39613', colourTertiary: '#CF8B17' },
   data: { colourPrimary: '#FF6680', colourSecondary: '#ce4562', colourTertiary: '#FF3355' },
   drone: { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },

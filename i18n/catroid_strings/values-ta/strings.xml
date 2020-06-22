@@ -162,23 +162,26 @@
     <string name="preference_raspi_host">ராஸ்பெர்ரி பை ஐபி- / ஹோஸ்ட்-முகவரி</string>
     <string name="preference_raspi_port">ராஸ்பெர்ரி பை போர்ட்</string>
     <!--  -->
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
+        multiplayer variables shared via Bluetooth</string>
     <!-- Scratch Converter activity -->
     <string name="beta">பீட்டா</string>
     <string name="error_scratch_program_not_accessible_any_more">அச்சச்சோ! திட்டம் மறைந்துவிட்டதாக தெரிகிறது
- அல்லது அதற்கான அணுகலை நீங்கள் இழந்திருக்கலாம்.</string>
+        அல்லது அதற்கான அணுகலை நீங்கள் இழந்திருக்கலாம்.</string>
     <string name="error_scratch_project_data_not_available">அச்சச்சோ! திட்டத்தின் சில பகுதிகள் தெரிகிறது
-காணவில்லை, பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
+        காணவில்லை, பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="error_request_timeout">அச்சச்சோ! எங்கள் சேவையகம் சரியான நேரத்தில் பதிலளிக்கவில்லை, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="error_scratch_program_conversion_failed">அச்சச்சோ! எங்கள் சேவையகம் சரியான நேரத்தில் பதிலளிக்கவில்லை, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="error_specific_scratch_program_conversion_failed_x">அச்சச்சோ! மாற்றுவதில் தோல்வி %1$s, தயவுசெய்து முயற்சிக்கவும்
-மீண்டும் பிறகு.</string>
+        மீண்டும் பிறகு.</string>
     <string name="error_scratch_converter_outdated_app_version">இந்த பயன்பாட்டின் உங்கள் பதிப்பு காலாவதியானது. எங்கள் கீறல் மாற்றி சமீபத்திய பதிப்பில் மட்டுமே இயங்குகிறது. பயன்பாட்டைப் புதுப்பிக்கவும்.</string>
     <string name="error_cannot_open_not_existing_scratch_program">இந்த கீறல் திட்டத்தை என்னால் திறக்க முடியவில்லை. கீறல் திட்டத்தின் மாற்றம் / பதிவிறக்கத்தை நீங்கள் ரத்து செய்துள்ளதாக தெரிகிறது, அல்லது நீங்கள் திட்டத்தின் மறுபெயரிட்டுள்ளீர்கள் / நீக்கியுள்ளீர்கள்
-இதற்கிடையில்.</string>
+        இதற்கிடையில்.</string>
     <string name="error_cannot_open_currently_downloading_scratch_program">நீங்கள் இன்னும் திட்டத்தை திறக்க முடியாது.
-இது பதிவிறக்கம் செய்யப்படும் வரை காத்திருக்கவும்.</string>
+        இது பதிவிறக்கம் செய்யப்படும் வரை காத்திருக்கவும்.</string>
     <string name="error_cannot_open_not_yet_downloaded_scratch_program">நீங்கள் இன்னும் திட்டத்தை திறக்க முடியாது.
-முதலில் அதை பதிவிறக்கம் செய்து பின்னர் திறக்கவும்.</string>
+        முதலில் அதை பதிவிறக்கம் செய்து பின்னர் திறக்கவும்.</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">என்னால் %1$s ஐ மாற்ற முடியவில்லை. இது %2$s க்கு முந்தைய பழைய கீறல் திட்டமாகத் தெரிகிறது. தயவுசெய்து இன்னொன்றை முயற்சிக்கவும்.</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
         <item quantity="one">நீங்கள் ஒரே நேரத்தில்% d திட்டத்தை விட அதிகமாக மாற்ற முடியாது. தயவுசெய்து காத்திருங்கள்
@@ -249,8 +252,8 @@
     <!--  -->
     <!-- ERRORS -->
     <!-- Privacy Policy Error -->
-    <string name="declined_privacy_agreement_alert">எங்கள் பயன்பாட்டைப் பயன்படுத்த, எங்கள் தனியுரிமைக் கொள்கையை ஏற்றுக்கொள்வது அவசியம்.  
-இருப்பினும், நீங்கள் அவ்வாறு செய்ய வசதியாக இல்லை என்றால், எங்கள் இலவச வலை சேவைகளைப் பயன்படுத்தலாம்</string>
+    <string name="declined_privacy_agreement_alert">எங்கள் பயன்பாட்டைப் பயன்படுத்த, எங்கள் தனியுரிமைக் கொள்கையை ஏற்றுக்கொள்வது அவசியம்.
+        இருப்பினும், நீங்கள் அவ்வாறு செய்ய வசதியாக இல்லை என்றால், எங்கள் இலவச வலை சேவைகளைப் பயன்படுத்தலாம்</string>
     <string name="wtf_error">எதிர்பாராத பிழை ஏற்பட்டது: மாதிரி திட்டத்தை என்னால் மீட்டெடுக்க முடியவில்லை.</string>
     <!-- Project Handling Errors -->
     <string name="error_copy_project">திட்டத்தை நகலெடுக்கும் போது பிழை ஏற்பட்டது</string>
@@ -473,6 +476,7 @@
     <string name="nfc_tag_name_label">NFC குறிச்சொல் பெயர்</string>
     <string name="string_label">உரை</string>
     <string name="data_label">பெயர்</string>
+    <string name="Image_format_not_supported">Image format not supported</string>
     <!-- Details -->
     <string name="project_details">கடைசி அணுகல்: %s, அளவு: %s</string>
     <string name="last_access_today">இன்று %s</string>
@@ -631,6 +635,7 @@
     <string name="tnf_well_known_mailto">மின்னஞ்சல்</string>
     <!--  -->
     <!-- DataListFragment -->
+    <string name="multiplayer_vars_headline">Variables for connected devices</string>
     <string name="global_vars_headline">அனைத்து நடிகர்கள் மற்றும் பொருள்களுக்கான மாறுபாடுகள்</string>
     <string name="local_vars_headline">இந்த நடிகர் அல்லது பொருளுக்கு மட்டுமே மாறுபாடுகள்</string>
     <string name="global_lists_headline">அனைத்து நடிகர்கள் மற்றும் பொருள்களுக்கான பட்டியல்கள்</string>
@@ -638,6 +643,8 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">எல்லா காட்சிகளிலும் உள்ள அனைத்து நடிகர்கள், பொருள்கள் மற்றும் குளோன்களுக்கு</string>
     <string name="new_data_for_this_sprite_only">இந்த நடிகருக்கு, பொருள் அல்லது அதன் குளோன்களில் ஒன்று மட்டுமே</string>
+    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
+        on connected multiplayer devices</string>
     <!-- Backpack -->
     <string name="backpack_title">உங்கள் பை</string>
     <string name="pack">கட்டு</string>
@@ -700,71 +707,71 @@
     <!--  -->
     <!-- Terms of Use Dialog Parrot Jumping Sumo-->
     <string name="dialog_terms_of_use_jumpingsumo_reminder_text">நீங்கள் இந்த பயன்பாட்டைப் பயன்படுத்தப் போகிறீர்கள்
-கிளியின் ஜம்பிங் சுமோ. கிளி மற்றும் கேட்ரோபாட்டின் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவைகள் இரண்டையும் பின்பற்றுமாறு நாங்கள் உங்களுக்கு கடுமையாக நினைவூட்டுகிறோம்.</string>
+        கிளியின் ஜம்பிங் சுமோ. கிளி மற்றும் கேட்ரோபாட்டின் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவைகள் இரண்டையும் பின்பற்றுமாறு நாங்கள் உங்களுக்கு கடுமையாக நினைவூட்டுகிறோம்.</string>
     <!--  -->
     <!-- Privacy Policy -->
     <string name="dialog_privacy_policy_title">தனிமனித உரிமை கொள்கை</string>
     <string name="disclaimer_privacy_police_header_headline">வருக!</string>
     <string name="disclaimer_privacy_policy_header">நீங்கள் குறியீட்டைத் தொடங்குவதற்கு முன், தயவுசெய்து எங்கள் தனியுரிமையைப் படித்து ஏற்றுக்கொள்ளுங்கள்      பயன்பாட்டைப் பயன்படுத்துவதற்கான கொள்கை:</string>
     <string name="dialog_privacy_policy_text">எங்கள் சேவைகள் மற்றும் அதனுடன் தொடர்புடைய கணக்கின் அனைத்து நன்மைகளையும் உங்களுக்கு வழங்க,
-         உங்களிடமிருந்து சில தரவைச் சேகரிப்பது அவசியம். \n\n
+                 உங்களிடமிருந்து சில தரவைச் சேகரிப்பது அவசியம். \n\n
 
-         Services எங்கள் சேவைகளை (பயன்பாடுகள் மற்றும் வலைத்தளங்கள்) பராமரிக்கவும் மேம்படுத்தவும் மற்றும் ஐ.சி.டி மற்றும் விஞ்ஞான ஆராய்ச்சி செய்யவும்
-             STEM / STEAM கல்வி, நாங்கள் Google Analytics, Crashlytics மற்றும் Firebase ஐப் பயன்படுத்துகிறோம், இவை அனைத்தும் Google LLC (USA),
-             அத்துடன் டைனட்ரேஸ் எல்.எல்.ஏ (யு.எஸ்.ஏ) வழங்கும் டைனட்ரேஸ்
-             எங்கள் சேவைகளின் பயன்பாடு பற்றிய மெட்டாடேட்டா, எ.கா., செயலிழப்பு தகவல், நேர முத்திரைகள், பார்வையிட்ட பக்கங்கள் / திரைகள்,
-             எங்கள் பயன்பாடுகள் மற்றும் சேவைகளின் பயன்பாடு, பயன்படுத்தப்பட்ட இயக்க முறைமை மற்றும் பிணைய வழங்குநரைப் பற்றிய தகவல்கள்.  இந்த
-             பகுப்பாய்வு மற்றும் சேகரிக்கப்பட்ட தரவு உங்கள் சுயவிவரத்துடன் இணைக்கப்படவில்லை மற்றும் தனிப்பட்டவை எதுவும் இல்லை
-             தகவல் (ஐபி முகவரியின் கடைசி பிட்கள் அநாமதேயமாக்கப்படுகின்றன).  இருப்பினும், சேகரிக்கப்பட்ட தரவு கிடைக்கும்
-             சேவை வழங்குநருக்கு மாற்றப்பட்டது (கூகிள் எல்.எல்.சி, அமெரிக்கா மற்றும் டைனட்ரேஸ் எல்.எல்.சி, அமெரிக்கா).
-             கூகிள் எல்.எல்.சி மற்றும் டைனட்ரேஸ் எல்.எல்.சி உடனான ஒப்பந்தங்களின் அடிப்படையில் தரவு செயலாக்கம் செய்யப்படுகிறது.
-             சேவை வழங்குநருடனான இந்த உறவு ஐரோப்பிய ஒன்றியத்தின் பொது தரவுகளுடன் ஒத்துப்போகிறது
-             பாதுகாப்பு ஒழுங்குமுறை (EU GDPR) மற்றும் EU-USA \"தனியுரிமை கேடயம்\" ஒப்பந்தம். \n\n
-         Systems எங்கள் கணினிகளில் ஒரு கணக்கை உருவாக்கி பயன்படுத்தவும், உங்களைப் பற்றிய தேவையான மாற்றங்களைப் பற்றி உங்களுக்குத் தெரிவிக்கவும்
-             ஒரு மின்னஞ்சலுக்கான கணக்கு, எ.கா., எங்கள் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவை விதிமுறைகள், எங்கள் சமூக விதிகள், அல்லது
-             எங்கள் கொள்கைகள், நாங்கள் உங்கள் பயனர்பெயரை சேமிப்போம், நீங்கள் வழங்கியிருந்தால், உங்கள் மின்னஞ்சல் முகவரி.  உன்னிடம் இருந்தால்
-             உங்கள் கூகிள் அல்லது பேஸ்புக் கணக்கு வழியாக உங்கள் கணக்கை இணைத்துள்ளோம், கூடுதலாக இணைக்கப்பட்ட அடையாள விசையை நாங்கள் சேமிக்கிறோம்
-             இந்த சேவைகளில் உங்கள் கணக்கில்.  இந்தத் தரவை வேறு எந்த (எ.கா., சந்தைப்படுத்தல்) நோக்கங்களுக்காகவும் நாங்கள் பயன்படுத்த மாட்டோம்,
-             அவ்வாறு செய்ய நீங்கள் எங்களை வெளிப்படையாக அனுமதிக்காவிட்டால். \n\n
-         A தன்னார்வ அடிப்படையில், பகிர்வில் உங்கள் கணக்கு பக்கத்தின் மூலம் நீங்கள் வசிக்கும் நாட்டை எங்களுக்கு வழங்கலாம்
-             தளம்.  இது உங்கள் பொது சுயவிவரத்தில் காண்பிக்கப்படும் மற்றும் புள்ளிவிவர மற்றும் ஆராய்ச்சிக்கு மட்டுமே பயன்படுத்தப்படும்
-             எங்களால் நோக்கங்கள்.  உங்கள் சுயவிவர அமைப்புகளில் எந்த நேரத்திலும் இதை அகற்றலாம். \n\n
-         Account உங்கள் கணக்கிற்கு சொந்தமான தனிப்பட்ட தரவின் பயன்பாட்டை எந்த நேரத்திலும் நீக்குவதன் மூலம் திரும்பப் பெறலாம்
-             https://share.catrob.at இல் உங்கள் சுயவிவரப் பக்கத்தின் மூலம் கணக்கு.  உங்கள் கணக்கை நீக்கிய பிறகு நீங்கள் இன்னும் இருப்பீர்கள்
-             வழங்கப்பட்ட சேவைகளைப் பயன்படுத்த முடியும், ஆனால் ஒத்துழைக்க முடியாது, எ.கா., பதிவேற்றும் நிரல்கள் மூலம்,
-             கருத்து தெரிவித்தல் அல்லது விரும்புவது.  மேலும், உங்கள் கணக்கில் இணைக்கப்பட்ட அனைத்து உள்ளடக்கங்களும், எ.கா., பதிவேற்றிய நிரல்கள்,
-             கருத்துகள் போன்றவை நீக்கப்படும். \n\n
-         Services எங்கள் சேவைகளை தவறாகப் பயன்படுத்துவதைத் தவிர்க்க, எ.கா., பயனர் பங்களித்த பதிவேற்றங்கள் அல்லது சட்டவிரோதமான கருத்துகள் மூலம்
-             நோக்கங்களுக்காக, பயனர் உருவாக்கிய அனைத்து பொது தரவுகளும் (பதிவேற்றங்கள், கருத்துகள்) ஒரு தரவுத்தளத்தில் உள்நாட்டில் சேமிக்கப்படும்,
-             நேர முத்திரை மற்றும் பயன்படுத்தப்பட்ட இணைய முகவரியுடன்.  இந்தத் தரவு பயன்படுத்தப்படாது அல்லது அனுப்பப்படாது
-             எந்தவொரு நிறுவனமும், போதுமான சட்டவிரோத நடவடிக்கைகள் நியாயமான முறையில் சந்தேகிக்கப்பட்டு அதிகாரப்பூர்வமாக உரிமை பெறாவிட்டால்
-             சட்ட நிறுவனங்கள் பொருந்தக்கூடிய சட்டத்தின் அடிப்படையில் அதைக் கோருகின்றன.  ஒவ்வொரு வழக்கும் ஒரு மீது முழுமையாக சோதிக்கப்படும்
-             முதலில் எங்களால் தனிப்பட்ட அடிப்படையில். \n\n
-         Http வழங்கப்பட்ட https://catrob.at/newsletter இல் நீங்கள் தானாக முன்வந்து கேட்ரோபாட் செய்திமடலுக்கு குழுசேரலாம்.
-             MailChimp சேவையின் மூலம் (தி ராக்கெட் சயின்ஸ் குரூப் LLC d / b / a MailChimp, USA).  நீங்கள் அப்போது செய்வீர்கள்
-             நீங்கள் வழங்கிய மின்னஞ்சல் முகவரிக்கு கேட்ரோபாட் திட்டம் மற்றும் அதன் சேவைகள் குறித்த புதுப்பிப்புகளைப் பெறுக.  நீங்கள் திரும்பப் பெறலாம்
-             ஒவ்வொரு செய்திமடலின் அடிக்குறிப்பிலும் \"குழுவிலக\" இணைப்பைப் பயன்படுத்தி எந்த நேரத்திலும் செய்திமடல்.  இந்த
-             செய்திமடல் MailChimp ஆல் வழங்கப்படுகிறது, அவருடன் தரவு செயலாக்க ஒப்பந்தம் உள்ளது, யார் உறுதிபூண்டுள்ளனர்
-             ஐரோப்பிய ஒன்றிய பொது தரவு பாதுகாப்பு ஒழுங்குமுறை மற்றும் EU-USA \"தனியுரிமை கேடயம்\".  MailChimp பற்றிய கூடுதல் விவரங்களுக்கு
-             MailChimp இன் தனியுரிமைக் கொள்கை மற்றும் பயன்பாட்டு விதிமுறைகளையும் பார்க்கவும். \n\n
-         Services அனைத்து சேவைகளும் குடையின் கீழ் இலவச திறந்த மூல கேட்ரோபாட் திட்டத்தால் வழங்கப்படுகின்றன
-             இன்டர்நேஷனல் கேட்ரோபாட் அசோசியேஷன் - வெரீன் ஸுர் ஃபுர்டெருங் ஃப்ரீயர் மென்பொருள், ஒரு இலாப நோக்கற்ற என்ஜிஓ
-             கிராஸ், ஆஸ்திரியாவில் (ஐரோப்பிய ஒன்றியம்).  எங்கள் கொள்கைகள் ஐரோப்பிய ஒன்றியம் மற்றும் ஆஸ்திரிய தரவு பாதுகாப்பு சட்டத்திற்கு மரியாதை செலுத்துகின்றன
-             (GDPR).  எங்களுடன் தொடர்பு கொள்ள, தயவுசெய்து contact@catrobat.org க்கு ஒரு மின்னஞ்சல் அனுப்பவும் அல்லது எங்களை Catrobat க்கு அனுப்பவும்,\n
-                 மென்பொருள் தொழில்நுட்ப நிறுவனம்,. \n
-                 கிராஸ் தொழில்நுட்ப பல்கலைக்கழகம்,. \n
-                 இன்ஃபெல்ட்காஸ் 16 பி,. \n
-                 ஏ -8010 கிராஸ், ஆஸ்திரியா \n
-                 (ஐரோப்பிய ஒன்றியம்). \n\n
-         நீங்கள் 14 வயதிற்குட்பட்டவராக இருந்தால், இந்தக் கொள்கையை சட்டப்பூர்வ பாதுகாவலர் (பொதுவாக பெற்றோர்) ஏற்றுக்கொள்ள வேண்டும். \n\n
+                 Services எங்கள் சேவைகளை (பயன்பாடுகள் மற்றும் வலைத்தளங்கள்) பராமரிக்கவும் மேம்படுத்தவும் மற்றும் ஐ.சி.டி மற்றும் விஞ்ஞான ஆராய்ச்சி செய்யவும்
+                     STEM / STEAM கல்வி, நாங்கள் Google Analytics, Crashlytics மற்றும் Firebase ஐப் பயன்படுத்துகிறோம், இவை அனைத்தும் Google LLC (USA),
+                     அத்துடன் டைனட்ரேஸ் எல்.எல்.ஏ (யு.எஸ்.ஏ) வழங்கும் டைனட்ரேஸ்
+                     எங்கள் சேவைகளின் பயன்பாடு பற்றிய மெட்டாடேட்டா, எ.கா., செயலிழப்பு தகவல், நேர முத்திரைகள், பார்வையிட்ட பக்கங்கள் / திரைகள்,
+                     எங்கள் பயன்பாடுகள் மற்றும் சேவைகளின் பயன்பாடு, பயன்படுத்தப்பட்ட இயக்க முறைமை மற்றும் பிணைய வழங்குநரைப் பற்றிய தகவல்கள்.  இந்த
+                     பகுப்பாய்வு மற்றும் சேகரிக்கப்பட்ட தரவு உங்கள் சுயவிவரத்துடன் இணைக்கப்படவில்லை மற்றும் தனிப்பட்டவை எதுவும் இல்லை
+                     தகவல் (ஐபி முகவரியின் கடைசி பிட்கள் அநாமதேயமாக்கப்படுகின்றன).  இருப்பினும், சேகரிக்கப்பட்ட தரவு கிடைக்கும்
+                     சேவை வழங்குநருக்கு மாற்றப்பட்டது (கூகிள் எல்.எல்.சி, அமெரிக்கா மற்றும் டைனட்ரேஸ் எல்.எல்.சி, அமெரிக்கா).
+                     கூகிள் எல்.எல்.சி மற்றும் டைனட்ரேஸ் எல்.எல்.சி உடனான ஒப்பந்தங்களின் அடிப்படையில் தரவு செயலாக்கம் செய்யப்படுகிறது.
+                     சேவை வழங்குநருடனான இந்த உறவு ஐரோப்பிய ஒன்றியத்தின் பொது தரவுகளுடன் ஒத்துப்போகிறது
+                     பாதுகாப்பு ஒழுங்குமுறை (EU GDPR) மற்றும் EU-USA \"தனியுரிமை கேடயம்\" ஒப்பந்தம். \n\n
+                 Systems எங்கள் கணினிகளில் ஒரு கணக்கை உருவாக்கி பயன்படுத்தவும், உங்களைப் பற்றிய தேவையான மாற்றங்களைப் பற்றி உங்களுக்குத் தெரிவிக்கவும்
+                     ஒரு மின்னஞ்சலுக்கான கணக்கு, எ.கா., எங்கள் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவை விதிமுறைகள், எங்கள் சமூக விதிகள், அல்லது
+                     எங்கள் கொள்கைகள், நாங்கள் உங்கள் பயனர்பெயரை சேமிப்போம், நீங்கள் வழங்கியிருந்தால், உங்கள் மின்னஞ்சல் முகவரி.  உன்னிடம் இருந்தால்
+                     உங்கள் கூகிள் அல்லது பேஸ்புக் கணக்கு வழியாக உங்கள் கணக்கை இணைத்துள்ளோம், கூடுதலாக இணைக்கப்பட்ட அடையாள விசையை நாங்கள் சேமிக்கிறோம்
+                     இந்த சேவைகளில் உங்கள் கணக்கில்.  இந்தத் தரவை வேறு எந்த (எ.கா., சந்தைப்படுத்தல்) நோக்கங்களுக்காகவும் நாங்கள் பயன்படுத்த மாட்டோம்,
+                     அவ்வாறு செய்ய நீங்கள் எங்களை வெளிப்படையாக அனுமதிக்காவிட்டால். \n\n
+                 A தன்னார்வ அடிப்படையில், பகிர்வில் உங்கள் கணக்கு பக்கத்தின் மூலம் நீங்கள் வசிக்கும் நாட்டை எங்களுக்கு வழங்கலாம்
+                     தளம்.  இது உங்கள் பொது சுயவிவரத்தில் காண்பிக்கப்படும் மற்றும் புள்ளிவிவர மற்றும் ஆராய்ச்சிக்கு மட்டுமே பயன்படுத்தப்படும்
+                     எங்களால் நோக்கங்கள்.  உங்கள் சுயவிவர அமைப்புகளில் எந்த நேரத்திலும் இதை அகற்றலாம். \n\n
+                 Account உங்கள் கணக்கிற்கு சொந்தமான தனிப்பட்ட தரவின் பயன்பாட்டை எந்த நேரத்திலும் நீக்குவதன் மூலம் திரும்பப் பெறலாம்
+                     https://share.catrob.at இல் உங்கள் சுயவிவரப் பக்கத்தின் மூலம் கணக்கு.  உங்கள் கணக்கை நீக்கிய பிறகு நீங்கள் இன்னும் இருப்பீர்கள்
+                     வழங்கப்பட்ட சேவைகளைப் பயன்படுத்த முடியும், ஆனால் ஒத்துழைக்க முடியாது, எ.கா., பதிவேற்றும் நிரல்கள் மூலம்,
+                     கருத்து தெரிவித்தல் அல்லது விரும்புவது.  மேலும், உங்கள் கணக்கில் இணைக்கப்பட்ட அனைத்து உள்ளடக்கங்களும், எ.கா., பதிவேற்றிய நிரல்கள்,
+                     கருத்துகள் போன்றவை நீக்கப்படும். \n\n
+                 Services எங்கள் சேவைகளை தவறாகப் பயன்படுத்துவதைத் தவிர்க்க, எ.கா., பயனர் பங்களித்த பதிவேற்றங்கள் அல்லது சட்டவிரோதமான கருத்துகள் மூலம்
+                     நோக்கங்களுக்காக, பயனர் உருவாக்கிய அனைத்து பொது தரவுகளும் (பதிவேற்றங்கள், கருத்துகள்) ஒரு தரவுத்தளத்தில் உள்நாட்டில் சேமிக்கப்படும்,
+                     நேர முத்திரை மற்றும் பயன்படுத்தப்பட்ட இணைய முகவரியுடன்.  இந்தத் தரவு பயன்படுத்தப்படாது அல்லது அனுப்பப்படாது
+                     எந்தவொரு நிறுவனமும், போதுமான சட்டவிரோத நடவடிக்கைகள் நியாயமான முறையில் சந்தேகிக்கப்பட்டு அதிகாரப்பூர்வமாக உரிமை பெறாவிட்டால்
+                     சட்ட நிறுவனங்கள் பொருந்தக்கூடிய சட்டத்தின் அடிப்படையில் அதைக் கோருகின்றன.  ஒவ்வொரு வழக்கும் ஒரு மீது முழுமையாக சோதிக்கப்படும்
+                     முதலில் எங்களால் தனிப்பட்ட அடிப்படையில். \n\n
+                 Http வழங்கப்பட்ட https://catrob.at/newsletter இல் நீங்கள் தானாக முன்வந்து கேட்ரோபாட் செய்திமடலுக்கு குழுசேரலாம்.
+                     MailChimp சேவையின் மூலம் (தி ராக்கெட் சயின்ஸ் குரூப் LLC d / b / a MailChimp, USA).  நீங்கள் அப்போது செய்வீர்கள்
+                     நீங்கள் வழங்கிய மின்னஞ்சல் முகவரிக்கு கேட்ரோபாட் திட்டம் மற்றும் அதன் சேவைகள் குறித்த புதுப்பிப்புகளைப் பெறுக.  நீங்கள் திரும்பப் பெறலாம்
+                     ஒவ்வொரு செய்திமடலின் அடிக்குறிப்பிலும் \"குழுவிலக\" இணைப்பைப் பயன்படுத்தி எந்த நேரத்திலும் செய்திமடல்.  இந்த
+                     செய்திமடல் MailChimp ஆல் வழங்கப்படுகிறது, அவருடன் தரவு செயலாக்க ஒப்பந்தம் உள்ளது, யார் உறுதிபூண்டுள்ளனர்
+                     ஐரோப்பிய ஒன்றிய பொது தரவு பாதுகாப்பு ஒழுங்குமுறை மற்றும் EU-USA \"தனியுரிமை கேடயம்\".  MailChimp பற்றிய கூடுதல் விவரங்களுக்கு
+                     MailChimp இன் தனியுரிமைக் கொள்கை மற்றும் பயன்பாட்டு விதிமுறைகளையும் பார்க்கவும். \n\n
+                 Services அனைத்து சேவைகளும் குடையின் கீழ் இலவச திறந்த மூல கேட்ரோபாட் திட்டத்தால் வழங்கப்படுகின்றன
+                     இன்டர்நேஷனல் கேட்ரோபாட் அசோசியேஷன் - வெரீன் ஸுர் ஃபுர்டெருங் ஃப்ரீயர் மென்பொருள், ஒரு இலாப நோக்கற்ற என்ஜிஓ
+                     கிராஸ், ஆஸ்திரியாவில் (ஐரோப்பிய ஒன்றியம்).  எங்கள் கொள்கைகள் ஐரோப்பிய ஒன்றியம் மற்றும் ஆஸ்திரிய தரவு பாதுகாப்பு சட்டத்திற்கு மரியாதை செலுத்துகின்றன
+                     (GDPR).  எங்களுடன் தொடர்பு கொள்ள, தயவுசெய்து contact@catrobat.org க்கு ஒரு மின்னஞ்சல் அனுப்பவும் அல்லது எங்களை Catrobat க்கு அனுப்பவும்,\n
+                         மென்பொருள் தொழில்நுட்ப நிறுவனம்,. \n
+                         கிராஸ் தொழில்நுட்ப பல்கலைக்கழகம்,. \n
+                         இன்ஃபெல்ட்காஸ் 16 பி,. \n
+                         ஏ -8010 கிராஸ், ஆஸ்திரியா \n
+                         (ஐரோப்பிய ஒன்றியம்). \n\n
+                 நீங்கள் 14 வயதிற்குட்பட்டவராக இருந்தால், இந்தக் கொள்கையை சட்டப்பூர்வ பாதுகாவலர் (பொதுவாக பெற்றோர்) ஏற்றுக்கொள்ள வேண்டும். \n\n
 
-         கேட்ரோபாட்டின் அதிகாரப்பூர்வ ஆங்கில மொழி தனியுரிமைக் கொள்கை இணையத்தில் கிடைக்கிறது
-         https://catrob.at/privacypolicy.\n\n
+                 கேட்ரோபாட்டின் அதிகாரப்பூர்வ ஆங்கில மொழி தனியுரிமைக் கொள்கை இணையத்தில் கிடைக்கிறது
+                 https://catrob.at/privacypolicy.\n\n
 
-         பதிப்பு 2.2, 17 அக்டோபர் 2019 \n\n
+                 பதிப்பு 2.2, 17 அக்டோபர் 2019 \n\n
 
-         எங்கள் தனியுரிமைக் கொள்கையின் (2.0) முந்தைய, காலாவதியான, பதிப்பை இங்கே காணலாம்:
-         http://developer.catrobat.org/privacy_policy_2-0    </string>
+                 எங்கள் தனியுரிமைக் கொள்கையின் (2.0) முந்தைய, காலாவதியான, பதிப்பை இங்கே காணலாம்:
+                 http://developer.catrobat.org/privacy_policy_2-0    </string>
     <string name="dialog_privacy_policy_declined_text">பதிவு செய்ய அல்லது தனியுரிமைக் கொள்கையை ஒப்புக்கொள்வது அவசியம்
         உங்கள் கணக்கைப் பயன்படுத்துவதைத் தொடரவும். இந்தத் தரவை நாங்கள் சேகரிக்க விரும்பவில்லை என்றால், நீங்கள் நீக்கலாம்
         எங்கள் https://share.catrob.at/ இணையதளத்தில் உங்கள் சுயவிவரப் பக்கத்தின் வழியாக கணக்கு.    </string>
@@ -800,15 +807,15 @@
     <string name="soundrecorder_text_view">பதிவுசெய்ய தொடங்க மற்றும் நிறுத்த மேலே உள்ள ஐகானைத் தட்டவும்.</string>
     <!--  -->
     <!-- Brick context dialog -->
-    <string name="brick_context_dialog_move_brick">செங்கலை நகர்த்தவும்</string>
+    <string name="brick_context_dialog_move_brick">செங்கல் நகர்த்து</string>
     <string name="brick_context_dialog_move_script">ஸ்கிரிப்டை நகர்த்தவும்</string>
     <string name="brick_context_dialog_delete_brick">செங்கலை நீக்கு</string>
     <string name="brick_context_dialog_copy_brick">செங்கலை நகலெடுக்கவும்</string>
     <string name="brick_context_dialog_copy_script">ஸ்கிரிப்டை நகலெடுக்கவும்</string>
     <string name="brick_context_dialog_formula_edit_brick">சூத்திரத்தைத் திருத்து</string>
     <string name="brick_context_dialog_delete_script">ஸ்கிரிப்டை நீக்கு</string>
-    <string name="brick_context_dialog_comment_in">செங்கலை இயக்கு</string>
-    <string name="brick_context_dialog_comment_out">செங்கலை முடக்கு</string>
+    <string name="brick_context_dialog_comment_in">Enable brick</string>
+    <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">செங்கல் பாகங்களை முன்னிலைப்படுத்தவும்</string>
     <string name="brick_context_dialog_comment_in_script">ஸ்கிரிப்டை இயக்கு</string>
     <string name="brick_context_dialog_comment_out_script">ஸ்கிரிப்டை முடக்கு</string>
@@ -843,9 +850,8 @@
     <string name="sign_in_error">உள்நுழையும்போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_google_plus_sign_in">Google உள்நுழைவு பிழை. நிலை %s</string>
     <string name="error_session_expired">அமர்வு காலாவதியானது, தயவுசெய்து உள்நுழைக.</string>
-    <string name="sign_in_with_google">Google உடன் உள்நுழைக</string>
     <string name="error_register_empty_username">வெற்று பயனர்பெயர்</string>
-    <string name="error_register_username_as_email">மின்னஞ்சல் முகவரியை பயனர் பெயர்களாகப் பயன்படுத்த முடியாது</string>
+    <string name="error_register_username_as_email">Email address cannot be used as username</string>
     <string name="error_register_invalid_username">பயனர்பெயரில் எழுத்துக்கள் (a-z), எண்கள் (0–9),
         கோடுகள் (-), அடிக்கோடிட்டுக் காட்டுகின்றன (_) மற்றும் காலங்கள் (.).</string>
     <string name="error_register_username_start_with">பயனர்பெயர் கோடுகள் (-), அடிக்கோடிட்டுக் காட்டுதல் (_) அல்லது தொடங்கக்கூடாது
@@ -870,12 +876,12 @@
     <!--  -->
     <!-- Resource initialization fka PrestageActivity -->
     <string name="prestage_text_to_speech_engine_not_installed">உரை-க்கு-பேச்சு இயந்திரம் நிறுவப்படவில்லை!
-உனக்கு வேண்டுமா அதை நிறுவவா?</string>
+        உனக்கு வேண்டுமா அதை நிறுவவா?</string>
     <string name="prestage_resource_not_available_title">கூறு கிடைக்கவில்லை</string>
     <string name="prestage_resource_not_available_text">துரதிர்ஷ்டவசமாக இந்த திட்டம் உங்கள் சாதனத்தில் இயங்காது.
-பின்வரும் கூறுகள் கிடைக்கவில்லை</string>
+        பின்வரும் கூறுகள் கிடைக்கவில்லை</string>
     <string name="prestage_resource_in_use_text">மற்றொரு சாதனம் ஜம்பிங் சுமோவுடன் இணைக்கப்பட்டுள்ளது. ட்ரோனுடன் இணைக்கப்பட்டவர் நீங்கள்தான் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்.</string>
-    <string name="prestage_no_vibration_available">அதிர்வு</string>
+    <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">முடுக்கம் சென்சார்</string>
     <string name="prestage_no_inclination_sensor_available">சாய்வு சென்சார்</string>
     <string name="prestage_no_compass_sensor_available">திசைகாட்டி</string>
@@ -928,6 +934,15 @@
     <string name="category_cast">Chromecast</string>
     <string name="category_raspi">ராஸ்பெர்ரி பை</string>
     <string name="category_assertions">சோதனை</string>
+    <!--  -->
+    <!-- User Defined Bricks -->
+    <string name="brick_user_defined_add_label">Add label</string>
+    <string name="brick_user_defined_add_input">Add input</string>
+    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
+    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
+    <string name="brick_user_defined_default_input_name">Name of input</string>
+    <string name="brick_user_defined_default_label">Label text</string>
+    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"இடத்தில்"</string>
@@ -1106,6 +1121,7 @@
     <string name="brick_broadcast_default_value">"புதிய தகவல்"</string>
     <string name="brick_add_item_to_userlist_add">கூட்டு</string>
     <string name="brick_add_item_to_userlist">பட்டியலிட</string>
+    <string name="brick_clear_userlist">Delete all items from list</string>
     <string name="brick_delete_item_from_userlist_delete">பட்டியலிலிருந்து உருப்படியை நீக்கு</string>
     <string name="brick_delete_item_from_userlist">நிலையில்</string>
     <string name="brick_insert_item_into_userlist_insert_into">நுழைக்கவும்</string>
@@ -1115,8 +1131,28 @@
     <string name="brick_replace_item_in_userlist_item_at_index">நிலையில்</string>
     <string name="brick_replace_item_in_userlist_with_value">உடன்</string>
     <string name="brick_web_request">வலை கோரிக்கையை அனுப்பவும்</string>
+    <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">மற்றும் பதிலை சேமிக்கவும்</string>
-    <string name="brick_web_request_default_value">https://official-joke-api.appspot.com/random_joke</string>
+    <string name="brick_web_request_warning_title">Allow web access?</string>
+    <string name="brick_web_request_warning_message">Be very careful before allowing access, since the
+        link may expose your personal information, such as your precise geographical location or any text
+        you have entered to malicious other persons or to the public. See our
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
+        be extremely dangerous.
+    </string>
+    <string name="brick_look_request">Get image from</string>
+    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
+    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
+    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
+    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_background_request_result">and use as current background</string>
+    <string name="brick_look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="brick_look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="brick_store_csv_into_userlist_store">Store column</string>
+    <string name="brick_store_csv_into_userlist_of">of the</string>
+    <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
+    <string name="brick_store_csv_into_userlist_into">பட்டியலில்</string>
+    <string name="brick_store_csv_into_userlist_data">kitty,cute\npuppy,naughty\noctopus,intelligent</string>
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">எனது முதல் திட்டம்</string>
@@ -1596,6 +1632,8 @@
     <string name="formula_editor_function_list_item_parameter">(1, * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_contains">உள் அடக்கி வை</string>
     <string name="formula_editor_function_contains_parameter">( * பட்டியல் பெயர் *,1)</string>
+    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item_parameter">(1, * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_number_of_items">பொருட்களின் எண்ணிக்கை</string>
     <string name="formula_editor_function_number_of_items_parameter">( * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_collision">நடிகர் அல்லது பொருளைத் தொடும்</string>
@@ -1748,8 +1786,8 @@
     <string name="formula_editor_intro_summary_object">இது உங்கள் தற்போதைய நடிகர் அல்லது பொருள்களின் பண்புகளை விவரிக்கும் மதிப்புத் தொகுப்பாகும்.  எடுத்துக்காட்டுகள் x- மற்றும் y- ஆயத்தொகுப்புகள் அல்லது தற்போதைய வேகம்.</string>
     <string name="formula_editor_intro_title_functions">பணிகள்</string>
     <string name="formula_editor_intro_summary_functions">ஒரு கால்குலேட்டரைப் போல, ஃபார்முலா எடிட்டர் வழங்குகிறது
-         பல கணித செயல்பாடுகள். \n \"சைன்\" மற்றும் \"காஸ்\" போன்ற முக்கோணவியல் செயல்பாடுகளை நீங்கள் காணலாம்,
-         ஒரு சீரற்ற எண் ஜெனரேட்டர் மற்றும் உரை மற்றும் பட்டியல் செயல்பாடுகள்.</string>
+                 பல கணித செயல்பாடுகள். \n \"சைன்\" மற்றும் \"காஸ்\" போன்ற முக்கோணவியல் செயல்பாடுகளை நீங்கள் காணலாம்,
+                 ஒரு சீரற்ற எண் ஜெனரேட்டர் மற்றும் உரை மற்றும் பட்டியல் செயல்பாடுகள்.</string>
     <string name="formula_editor_intro_title_logic">தர்க்கம்</string>
     <string name="formula_editor_intro_summary_logic">மதிப்புகளை ஒப்பிடுவதற்கும் தருக்க சூத்திரங்களை இணைப்பதற்கும் தர்க்கம் பயன்படுத்தப்படுகிறது. \n \"&gt;\" (விட பெரியது) அல்லது \"=\" (சமம்) போன்ற தருக்க செயல்பாடுகளை நீங்கள் பயன்படுத்தக்கூடிய மதிப்புகளை ஒப்பிடுங்கள். \n தருக்க சூத்திரங்களை இணைக்க நீங்கள் \"AND\", \"OR\" மற்றும் \"NOT\" போன்ற தருக்க செயல்பாடுகளைப் பயன்படுத்தலாம்.</string>
     <string name="formula_editor_intro_title_device">சென்ஸார்ஸ்</string>
@@ -1802,7 +1840,7 @@
     <string name="deletion_alert_yes">ஆம், நீக்குக!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">உங்கள் திட்டம் பயன்பாட்டின் பகிர்வு தளத்தில் பதிவேற்றப்படும்
-மற்றவர்கள் அதைப் பயன்படுத்தலாம் மற்றும் பதிவிறக்கலாம். உங்கள் திட்டத்தை முழுமையான செயலியாகவும் பதிவிறக்கலாம்.</string>
+        மற்றவர்கள் அதைப் பயன்படுத்தலாம் மற்றும் பதிவிறக்கலாம். உங்கள் திட்டத்தை முழுமையான செயலியாகவும் பதிவிறக்கலாம்.</string>
     <string name="progress_upload_dialog_failed">பதிவேற்றம் தோல்வி. உங்களுடைய இணைப்பை சரி பார்த்து மீண்டும் முயற்சி செய்யவும்!</string>
     <string name="progress_upload_dialog_show_program">திட்டத்தைக் காண்பிக்கவும்</string>
     <!--  -->
@@ -1816,7 +1854,7 @@
     <string name="hint_looks">உங்கள் நடிகர் அல்லது பொருளின் வெவ்வேறு தோற்றங்களை இங்கே காணலாம். புதிய தோற்றத்தைச் சேர்க்க,        \"+\" சின்னத்தைத் தட்டவும்.</string>
     <string name="hint_sounds">இங்கே நீங்கள் உங்கள் நடிகர் அல்லது பொருளுக்கு புதிய ஒலிகளைச் சேர்க்கலாம்.  ஒலி வகையிலிருந்து ஒரு செங்கலைப் பயன்படுத்துவதை நினைவில் கொள்க.</string>
     <string name="hint_objects">உங்கள் நிரல் ஒருவருக்கொருவர் தொடர்பு கொள்ளக்கூடிய வெவ்வேறு நடிகர்கள் மற்றும் பொருள்களைக் கொண்டுள்ளது.
-   புதிய நடிகர் அல்லது பொருளைச் சேர்க்க, \"+\" சின்னத்தைத் தட்டவும்.</string>
+           புதிய நடிகர் அல்லது பொருளைச் சேர்க்க, \"+\" சின்னத்தைத் தட்டவும்.</string>
     <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
