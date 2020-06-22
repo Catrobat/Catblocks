@@ -213,10 +213,10 @@ def main():
         slack_msg += generateBlockMessage(in_java_not_js, category_class)
         send_msg = True
 
-    # compare langauges
-    catroid_langauges = loadSupportedCatroidLanguages(path)
+    # compare languages
+    catroid_languages = loadSupportedCatroidLanguages(path)
     catblocks_languages = loadSupportedCatblocksLanguages(path)
-    language_updates = compareLanguageSupport(catroid_langauges, catblocks_languages)
+    language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
     
     if language_updates is not None and len(language_updates) > 0:
         slack_msg += '\n\n' + generateLanguageMessage(language_updates)
