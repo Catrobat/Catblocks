@@ -8,6 +8,7 @@ on:
 
 jobs:
   runTests:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Run Auto-Tests
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +27,7 @@ jobs:
           path: /home/runner/work/Catblocks/Catblocks/catblocksTestReport/
       
   uploadDocker:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Create new artifact for PO review
     runs-on: ubuntu-latest
     steps:
@@ -41,6 +43,7 @@ jobs:
 
 
   lintCode:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Lint Code
     runs-on: ubuntu-latest
     steps:
