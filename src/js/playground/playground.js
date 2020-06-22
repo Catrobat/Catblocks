@@ -3,7 +3,6 @@ import '../catblocks_msgs';
 import './../blocks';
 import { jsonDomToWorkspace, zebraChangeColor } from '../share/utils';
 import XStreamParser from '../parser/parser';
-import $ from 'jquery';
 
 export class Playground {
   constructor() {

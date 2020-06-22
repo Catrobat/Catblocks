@@ -14,7 +14,6 @@ import {
   zebraChangeColor,
   jsonDomToWorkspace
 } from './utils';
-import $ from 'jquery';
 
 export class Share {
   constructor() {

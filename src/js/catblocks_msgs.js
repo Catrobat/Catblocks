@@ -2,7 +2,6 @@
 // Please do not modify.
 /* eslint no-useless-escape: 0 */
 import Blockly from 'blockly';
-import $ from 'jquery';
 
 Blockly.CatblocksMsgs = {};
 Blockly.CatblocksMsgs.locales = {};

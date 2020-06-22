@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const PrettierPlugin = require("prettier-webpack-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
+const variables = require('./variables');
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
@@ -56,7 +57,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/html/' + process.env.TYPE + '.html'),
       filename: 'index.html',
-      hash: true
+      hash: true,
+      variables: variables
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

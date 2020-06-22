@@ -1,5 +1,4 @@
 import { FileDropper } from './file_dropper';
-import $ from 'jquery';
 import { getSearchParam } from './utils';
 import { FileLoader } from './file_loader';
 import { PasteListener } from './paste_listener';

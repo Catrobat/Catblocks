@@ -46,7 +46,8 @@
     ]
   },
   "globals": {
-    "process": false
+    "process": false,
+    "$": true
   },
   "plugins": ["jest"]
 }

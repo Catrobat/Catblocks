@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      href="<%= htmlWebpackPlugin.options.variables.bootstrap.css %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.bootstrap.cssintegrity %>"
       crossorigin="anonymous"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="<%= htmlWebpackPlugin.options.variables.material.font %>" rel="stylesheet" />
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/css/mdb.min.css" rel="stylesheet" />
+    <link href="<%= htmlWebpackPlugin.options.variables.material.bootstrap %>" rel="stylesheet" />
   </head>
 
   <body>
@@ -26,18 +26,18 @@
     </div>
 
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="<%= htmlWebpackPlugin.options.variables.jquery.js %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.jquery.jsintegrity %>"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      src="<%= htmlWebpackPlugin.options.variables.material.popper %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.material.popperintegrity %>"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      src="<%= htmlWebpackPlugin.options.variables.bootstrap.js %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.bootstrap.jsintegrity %>"
       crossorigin="anonymous"
     ></script>
   </body>

@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { FileLoader } from './file_loader';
 
 /**

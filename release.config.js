@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const variables = require('./variables');
 
 module.exports = {
   mode: 'production',
@@ -49,7 +50,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/html/release.html'),
       filename: 'index.html',
-      hash: true
+      hash: true,
+      variables: variables
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
