@@ -1,4 +1,4 @@
-name: Interval Action for Brick Support Check
+name: Interval Action for brick support and language update check
 
 on:
     schedule:
@@ -7,12 +7,12 @@ on:
 jobs:
     runDocker:
         if: github.repository == 'Catrobat/Catblocks'
-        name: checkout repo and check supported bricks
+        name: checkout repo and check supported bricks and language updates
         runs-on: ubuntu-latest
         steps:
             - name: checkout repo
               uses: actions/checkout@v2
-            - name: run checker for brick support
-              uses: ./brick-support-checker-action/
+            - name: run checker for brick support and language updates
+              uses: ./catroid-support-checker-action/
               with:
                 slack_webhook: ${{ secrets.SLACK_WEBHOOK_URL }}

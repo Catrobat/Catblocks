@@ -24,6 +24,8 @@ RUN apk add --no-cache --virtual udev git
 # install required python packages
 RUN pip3 install --upgrade pip
 RUN pip3 install requests
+RUN pip3 install python-dateutil
+RUN pip3 install gitpython
 
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*

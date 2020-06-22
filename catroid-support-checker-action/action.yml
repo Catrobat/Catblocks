@@ -1,5 +1,5 @@
-name: "Catroid Brick Support Checker Action"
-description: "Compares Catroid bricks with Catblocks bricks and sends the new bricks to Slack"
+name: "Catroid Support Checker Action"
+description: "Compares Catroid and Catblocks properties (supported blocks and language version) and sends a report to Slack"
 inputs:
     slack_webhook:
       description: 'Webhook to post on in #catblocks Slack channel'
