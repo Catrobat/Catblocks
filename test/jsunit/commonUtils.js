@@ -22,7 +22,8 @@ const PATHS = {
   MESSAGE_MAPPING: 'i18n/strings_to_json_mapping.json',
   CATROID_MSGS: 'i18n/catroid_strings/',
   CATBLOCKS_MSGS: 'i18n/json/',
-  CATBLOCKS_MSG: 'src/js/catblocks_msgs.js'
+  CATBLOCKS_MSG: 'src/js/catblocks_msgs.js',
+  CATBLOCKS_LOCALES: 'src/js/locales.js'
 };
 /**
  * Check if variable is string

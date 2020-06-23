@@ -22,7 +22,7 @@ const CATROID_MSGS = utils.listDirectorySync(utils.PATHS.CATROID_MSGS);
  */
 const CATBLOCKS_MSGS = utils.listDirectorySync(utils.PATHS.CATBLOCKS_MSGS);
 
-const CATBLOCKS_PAYLOAD = utils.readFileSync(utils.PATHS.CATBLOCKS_MSG).toString();
+const CATBLOCKS_LOCALES = utils.readFileSync(utils.PATHS.CATBLOCKS_LOCALES).toString();
 
 /**
  * Msg filesystem tests
@@ -47,12 +47,11 @@ describe('Filesystem msg tests', () => {
   });
 
   test('Lang JSON file linked in CatblocksMsg.js', () => {
-    const start = 'Blockly.CatblocksMsgs.locales =';
-    const startOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(start);
-    const endOfObject = CATBLOCKS_PAYLOAD.lastIndexOf(';');
+    const startOfObject = CATBLOCKS_LOCALES.indexOf('{');
+    const endOfObject = CATBLOCKS_LOCALES.lastIndexOf(';');
 
     let langs;
-    eval('langs =' + CATBLOCKS_PAYLOAD.substring(startOfObject + start.length + 1, endOfObject));
+    eval('langs =' + CATBLOCKS_LOCALES.substring(startOfObject, endOfObject));
 
     CATBLOCKS_MSGS.forEach(langfile => {
       const lang = langfile.split('.')[0];

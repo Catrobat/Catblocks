@@ -65,10 +65,10 @@ export class Playground {
 
     // Setup locale
     const select = document.getElementsByName('locale')[0];
-    Object.keys(this.Blockly.CatblocksMsgs.locales).forEach(locale => {
+    Object.keys(this.Blockly.CatblocksMsgs.getLocales()).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
-      lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.locales[locale]['DROPDOWN_NAME'];
+      lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.getLocales()[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
     });
     document.forms.options.elements.locale.value = this.Blockly.CatblocksMsgs.getCurrentLocale();
