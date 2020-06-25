@@ -496,7 +496,6 @@ export class Share {
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-scripts-tab`
     });
-
     if (!object || !object.scriptList || object.scriptList.length <= 0) {
       const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
       wrapperContainer.appendChild(

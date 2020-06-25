@@ -295,7 +295,7 @@ describe('Share catroid program rendering tests', () => {
           ],
           formValues: {}
         };
-        const svg = share.domToSvg(scriptJSON, 0);
+        const svg = share.domToSvg(scriptJSON);
         return (
           svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
           svg.textContent.replace(/\s/g, ' ').includes('Set x to') &&
@@ -321,7 +321,7 @@ describe('Share catroid program rendering tests', () => {
           ],
           formValues: {}
         };
-        const svg = share.domToSvg(scriptJSON, 0);
+        const svg = share.domToSvg(scriptJSON);
         return (
           svg !== null &&
           svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
