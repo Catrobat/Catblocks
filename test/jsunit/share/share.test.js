@@ -295,9 +295,11 @@ describe('Share catroid program rendering tests', () => {
           ],
           formValues: {}
         };
-        const svg = share.domToSvg(scriptJSON);
+        const svg = share.domToSvg(scriptJSON, 0);
         return (
-          svg !== null && svg.textContent.includes('When scene starts') && svg.textContent.includes('Set x tounset')
+          svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
+          svg.textContent.replace(/\s/g, ' ').includes('Set x to') &&
+          svg.textContent.replace(/\s/g, ' ').includes('unset')
         );
       })
     ).toBeTruthy();
@@ -319,12 +321,12 @@ describe('Share catroid program rendering tests', () => {
           ],
           formValues: {}
         };
-        const svg = share.domToSvg(scriptJSON);
-
+        const svg = share.domToSvg(scriptJSON, 0);
         return (
           svg !== null &&
-          svg.textContent.includes('When scene starts') &&
-          svg.textContent.includes('Set x tounset') &&
+          svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
+          svg.textContent.replace(/\s/g, ' ').includes('Set x to') &&
+          svg.textContent.replace(/\s/g, ' ').includes('unset') &&
           svg.getAttribute('width').replace('px', '') > 0 &&
           svg.getAttribute('height').replace('px', '') > 0
         );
@@ -352,9 +354,7 @@ describe('Share catroid program rendering tests', () => {
             }
           ]
         };
-
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-
         const objID = shareUtils.generateID('programID-tscene-tobject');
         return (
           shareTestContainer.querySelector(

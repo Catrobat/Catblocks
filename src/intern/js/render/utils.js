@@ -168,8 +168,9 @@ export async function loadArchive(containerfile) {
  *
  * @param {string} programPath
  * @param {string} language
+ * @param {boolean} isRtl
  */
-export async function initShareAndRenderPrograms(programPath, language) {
+export async function initShareAndRenderPrograms(programPath, language, isRtl) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
   const i18nLocation = window.location.href + 'i18n/';
@@ -179,6 +180,7 @@ export async function initShareAndRenderPrograms(programPath, language) {
     shareRoot: '',
     media: 'media/',
     language: language,
+    rtl: isRtl,
     i18n: i18nLocation,
     noImageFound: 'No_Image_Available.jpg'
   });

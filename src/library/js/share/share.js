@@ -30,12 +30,13 @@ export class Share {
   init(options) {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
-
     // for now only convert when in library
     if (window.CatBlocks) {
       this.insertRightMediaURI();
     }
-
+    if (this.config.rtl) {
+      document.documentElement.style.direction = 'rtl';
+    }
     Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
   }
 
@@ -77,7 +78,6 @@ export class Share {
     if (this.config.media.startsWith('http') || this.config.media.startsWith('/')) {
       mediapath = this.config.media;
     }
-
     this.workspace = this.blockly.inject(hiddenContainer, {
       readOnly: true,
       media: mediapath,
@@ -86,7 +86,8 @@ export class Share {
         wheel: false,
         startScale: this.config.renderSize
       },
-      renderer: 'zelos'
+      renderer: 'zelos',
+      rtl: this.config.rtl
     });
 
     this.workspaceDom = this.workspace.getInjectionDiv();
@@ -107,8 +108,6 @@ export class Share {
       zebraChangeColor(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
-
-      // remove rect around it
       svg = oriSvg.cloneNode(true);
       svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
       svg.setAttribute('width', `${sceneWidth * this.config.renderSize}px`);
@@ -397,7 +396,7 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Oject} currentLocaleValues
+   * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
   generateLooks(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
@@ -489,7 +488,6 @@ export class Share {
    * @param {string} objectID
    * @param {Object} object
    * @param {Object} currentLocaleValues
-   * @param {Object} [options=defaultOptions.object]
    */
   generateScripts(container, objectID, object, currentLocaleValues) {
     const wrapperContainer = injectNewDom(container, 'div', {
@@ -518,6 +516,9 @@ export class Share {
       const scriptContainer = injectNewDom(wrapperContainer, 'div', {
         class: 'catblocks-script'
       });
+      if (this.config.rtl) {
+        scriptContainer.style.textAlign = 'right';
+      }
       scriptContainer.style.overflowX = 'auto';
 
       const blockSvg = this.domToSvg(object.scriptList[i]);
