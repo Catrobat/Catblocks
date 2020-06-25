@@ -1,5 +1,5 @@
 import Blockly from 'blockly';
-import locales from './locales';
+import locales from './locales.json';
 
 Blockly.CatblocksMsgs = {};
 

@@ -47,11 +47,8 @@ describe('Filesystem msg tests', () => {
   });
 
   test('Lang JSON file linked in CatblocksMsg.js', () => {
-    const startOfObject = CATBLOCKS_LOCALES.indexOf('{');
-    const endOfObject = CATBLOCKS_LOCALES.lastIndexOf(';');
-
     let langs;
-    eval('langs =' + CATBLOCKS_LOCALES.substring(startOfObject, endOfObject));
+    eval('langs =' + CATBLOCKS_LOCALES);
 
     CATBLOCKS_MSGS.forEach(langfile => {
       const lang = langfile.split('.')[0];
