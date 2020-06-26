@@ -475,17 +475,22 @@ export class Share {
       }
 
       const imgID = `${displayLookName}-imgID`;
-      injectNewDom(col, 'img', {
-        src: src,
-        class: 'img-fluid catblocks-object-look-item',
-        id: imgID,
-        'data-toggle': 'modal',
-        'data-target': '#modalForImg',
-      }, displayLookName);
+      injectNewDom(
+        col,
+        'img',
+        {
+          src: src,
+          class: 'img-fluid catblocks-object-look-item',
+          id: imgID,
+          'data-toggle': 'modal',
+          'data-target': '#modalForImg'
+        },
+        displayLookName
+      );
 
-      document.getElementById(imgID).onclick = function(){
-        document.getElementById("modalHeader").innerHTML = displayLookName;
-        document.getElementById("modalImg").src = this.src;
+      document.getElementById(imgID).onclick = function () {
+        document.getElementById('modalHeader').innerHTML = displayLookName;
+        document.getElementById('modalImg').src = this.src;
       };
 
       const lookName = injectNewDom(
@@ -497,7 +502,7 @@ export class Share {
         look.name
       );
 
-      const magnifyingGlassID = "button " + displayLookName;
+      const magnifyingGlassID = 'button ' + displayLookName;
       const magnifyingGlass = injectNewDom(button, 'button', {
         class: 'search',
         id: magnifyingGlassID,
@@ -506,9 +511,9 @@ export class Share {
         name: 'not clicked'
       });
       magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
-      document.getElementById(magnifyingGlassID).onclick = function(){
-        document.getElementById("modalHeader").innerHTML = displayLookName;
-        document.getElementById("modalImg").src = src;
+      document.getElementById(magnifyingGlassID).onclick = function () {
+        document.getElementById('modalHeader').innerHTML = displayLookName;
+        document.getElementById('modalImg').src = src;
         magnifyingGlass.name = 'now got clicked!';
       };
 

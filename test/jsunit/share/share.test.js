@@ -432,9 +432,10 @@ describe('Share catroid program rendering tests', () => {
   });
 
   test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
-    expect(await page.evaluate(() => {
-      const testDisplayName = 'My actor';
-      const xmlString = `
+    expect(
+      await page.evaluate(() => {
+        const testDisplayName = 'My actor';
+        const xmlString = `
       <xml>
         <scene type="tscene">
           <object type="tobject">
@@ -444,34 +445,48 @@ describe('Share catroid program rendering tests', () => {
           </object>
         </scene>
       </xml>`;
-      const catXml = (new DOMParser).parseFromString(xmlString, 'text/xml');
-      const catObj = {
-        scenes: [{
-          name: 'tscene',
-          objectList: [{
-            name: 'tobject',
-            lookList: [{
-              name: testDisplayName,
-              fileName: 'My actor or object.png'
-            }]
-          }]
-        }]
-      };
-      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
-      const objID = shareUtils.generateID('programID-tscene-tobject');
-      const expectedID = testDisplayName + '-imgID';
-      const expectedSrc = shareTestContainer.querySelector('#'+objID+' #'+objID+'-looks .catblocks-object-look-item').src;
+        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
+        const catObj = {
+          scenes: [
+            {
+              name: 'tscene',
+              objectList: [
+                {
+                  name: 'tobject',
+                  lookList: [
+                    {
+                      name: testDisplayName,
+                      fileName: 'My actor or object.png'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const expectedID = testDisplayName + '-imgID';
+        const expectedSrc = shareTestContainer.querySelector(
+          '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item'
+        ).src;
 
-      shareTestContainer.querySelector('.catblocks-scene-header').click();
-      shareTestContainer.querySelector('.catblocks-object .card-header').click();
-      shareTestContainer.querySelector('#'+objID+'-looks-tab').click();
-      shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
+        shareTestContainer.querySelector('.catblocks-scene-header').click();
+        shareTestContainer.querySelector('.catblocks-object .card-header').click();
+        shareTestContainer.querySelector('#' + objID + '-looks-tab').click();
+        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
 
-      return (shareTestContainer.querySelector('#'+objID+' #'+objID+'-looks .catblocks-object-look-item') !== null
-        && shareTestContainer.querySelector('#'+objID+' #'+objID+'-looks .search').innerHTML === '<i class="material-icons">search</i>'
-        && shareTestContainer.querySelector('#'+objID+' #'+objID+'-looks .catblocks-object-look-item').id === expectedID
-        && shareTestContainer.querySelector('.imagepreview').src === expectedSrc);
-    })).toBeTruthy();
+        return (
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item') !==
+            null &&
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').innerHTML ===
+            '<i class="material-icons">search</i>' &&
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item').id ===
+            expectedID &&
+          shareTestContainer.querySelector('.imagepreview').src === expectedSrc
+        );
+      })
+    ).toBeTruthy();
   });
 
   test('JSON with one scene', async () => {
