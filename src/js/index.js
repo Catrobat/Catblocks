@@ -72,12 +72,14 @@ function initShareAndRenderPrograms(programPath, language) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
   const share = new Share();
+  const i18nLocation = window.location.href + 'i18n/';
   share.init({
     container: catblocksWorkspaceContainer,
     renderSize: 0.75,
     shareRoot: '',
     media: 'media/',
     language: language,
+    i18n: i18nLocation,
     noImageFound: 'No_Image_Available.jpg'
   });
   renderAllPrograms(share, programContainer, programPath);
