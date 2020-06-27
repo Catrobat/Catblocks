@@ -174,7 +174,7 @@ export async function initShareAndRenderPrograms(programPath, language, isRtl) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
   const i18nLocation = window.location.href + 'i18n/';
-  CatBlocks.init({
+  await CatBlocks.init({
     container: catblocksWorkspaceContainer,
     renderSize: 0.75,
     shareRoot: '',

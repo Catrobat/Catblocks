@@ -27,7 +27,7 @@ export class Share {
    * init share class instance
    * @param {Element} options for rendering process
    */
-  init(options) {
+  async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
     // for now only convert when in library
@@ -37,7 +37,7 @@ export class Share {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
   }
 
   /**

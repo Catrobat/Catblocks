@@ -19,7 +19,7 @@ export class CatBlocks {
    * @export
    * @param {*} config
    */
-  static init(config) {
+  static async init(config) {
     if (!config) {
       throw new Error('No configuration given');
     }
@@ -29,7 +29,7 @@ export class CatBlocks {
     preparePaths();
 
     catblocks_instance.share = new Share();
-    catblocks_instance.share.init(config);
+    await catblocks_instance.share.init(config);
   }
 
   /**
