@@ -103,7 +103,7 @@ export class Share {
     this.workspace.clear();
     let svg = undefined;
     try {
-      jsonDomToWorkspace(blockJSON, this.workspace);
+      const sceneWidth = jsonDomToWorkspace(blockJSON, this.workspace);
       zebraChangeColor(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
@@ -111,7 +111,7 @@ export class Share {
       // remove rect around it
       svg = oriSvg.cloneNode(true);
       svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
-      svg.setAttribute('width', `${oriBox.width}px`);
+      svg.setAttribute('width', `${sceneWidth * this.config.renderSize}px`);
       svg.setAttribute('height', `${oriBox.height}px`);
       svg.setAttribute('class', 'catblocks-svg');
     } catch (e) {
@@ -518,6 +518,7 @@ export class Share {
       const scriptContainer = injectNewDom(wrapperContainer, 'div', {
         class: 'catblocks-script'
       });
+      scriptContainer.style.overflowX = 'auto';
 
       const blockSvg = this.domToSvg(object.scriptList[i]);
       if (blockSvg === undefined) {
