@@ -1,9 +1,10 @@
 import '../css/style.css';
 import { Playground } from './playground/playground';
-import { Share } from './share/share';
-import * as shareUtils from './share/utils';
+import * as shareUtils from '../../library/js/share/utils';
 import Blockly from 'blockly';
-import { renderAllPrograms } from './render/render';
+import { CatBlocks } from '../../library/js/lib';
+import { Parser } from '../../common/js/parser/parser';
+import { initShareAndRenderPrograms } from './render/utils';
 
 (async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -20,12 +21,6 @@ import { renderAllPrograms } from './render/render';
     case 'playground': {
       const app = new Playground();
       app.init();
-      window.Catblocks = app;
-      break;
-    }
-    case 'share': {
-      const programPath = 'assets/';
-      initShareAndRenderPrograms(programPath, language);
       break;
     }
     case 'render': {
@@ -36,15 +31,7 @@ import { renderAllPrograms } from './render/render';
     case 'testing': {
       window.Blockly = Blockly;
       window.playground = new Playground();
-      window.share = new Share();
-      window.shareUtils = shareUtils;
-      window.playground.workspace = Blockly.inject('playworkspace', {
-        media: '../media/',
-        zoom: { startScale: 0.75 },
-        toolbox: window.playground.getToolbox(true),
-        renderer: 'zelos'
-      });
-      window.share.init({
+      CatBlocks.init({
         container: 'share',
         renderSize: 0.75,
         shareRoot: '',
@@ -52,7 +39,15 @@ import { renderAllPrograms } from './render/render';
         language: language,
         noImageFound: 'No_Image_Available.jpg'
       });
-      window.parser = window.share.parser;
+      window.share = CatBlocks.getInstance().share;
+      window.shareUtils = shareUtils;
+      window.playground.workspace = Blockly.inject('playworkspace', {
+        media: '../media/',
+        zoom: { startScale: 0.75 },
+        toolbox: window.playground.getToolbox(true),
+        renderer: 'zelos'
+      });
+      window.parser = Parser;
       window.shareWS = window.share.workspace;
       window.playgroundWS = window.playground.workspace;
       window.toolboxWS = Blockly.Workspace.getById(
@@ -67,20 +62,3 @@ import { renderAllPrograms } from './render/render';
     }
   }
 })();
-
-function initShareAndRenderPrograms(programPath, language) {
-  const catblocksWorkspaceContainer = 'catblocks-workspace-container';
-  const programContainer = document.getElementById('catblocks-programs-container');
-  const share = new Share();
-  const i18nLocation = window.location.href + 'i18n/';
-  share.init({
-    container: catblocksWorkspaceContainer,
-    renderSize: 0.75,
-    shareRoot: '',
-    media: 'media/',
-    language: language,
-    i18n: i18nLocation,
-    noImageFound: 'No_Image_Available.jpg'
-  });
-  renderAllPrograms(share, programContainer, programPath);
-}

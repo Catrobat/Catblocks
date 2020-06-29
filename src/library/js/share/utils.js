@@ -1,6 +1,5 @@
 /**
- * @fileoverview Catblocks integrationt into Web utilities
- * @author andreas.karner@student.tugraz.at (Andreas Karner)
+ * Catblocks integrationt into Web utilities
  */
 
 import md5 from 'js-md5';

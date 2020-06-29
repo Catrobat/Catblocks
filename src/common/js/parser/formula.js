@@ -1,6 +1,5 @@
 /**
- * @author andreas.karner@student.tugraz.at
- * @description Catblocks formular class for parsing catroid programs
+ * Catblocks formular class for parsing catroid programs
  */
 
 export default class Formula {

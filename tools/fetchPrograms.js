@@ -1,8 +1,7 @@
 /**
  * Download n freshest programs from share
  * 
- * @author andreas.karner@student.tugraz.at
- * @description download n freshest programs from share
+ * download n freshest programs from share
  */
 
 'use strict';

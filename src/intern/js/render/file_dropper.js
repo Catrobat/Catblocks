@@ -1,36 +1,32 @@
 import { MessageBox } from './message_box';
 import { loadArchive, updateView } from './utils';
 import { PasteListener } from './paste_listener';
+import { renderProgramByLocalFile } from './render';
 
 /**
  * Initialize Drag & Drop Field and handle Files.
- *
- * @author michael.flucher@student.tugraz.at
  */
 
 let instance = null;
 export class FileDropper {
-  constructor(share, container, renderProgram) {
+  constructor(container) {
     this.usedFiles = {};
-    this.share = share;
     this.container = container;
-    this.renderProgram = renderProgram;
   }
 
   /**
    * Creates or returns Singleton instance.
    * @static
-   * @param {*} share
    * @param {*} container
    * @param {*} renderProgram
    * @returns {FileDropper}
    * @memberof FileDropper
    */
-  static createInstance(share, container, renderProgram) {
+  static createInstance(container, renderProgram) {
     if (instance != null) {
       return instance;
     }
-    instance = new FileDropper(share, container, renderProgram);
+    instance = new FileDropper(container, renderProgram);
     return instance;
   }
 
@@ -100,7 +96,7 @@ export class FileDropper {
    * @param {File} inputFiles
    * @memberof FileDropper
    */
-  computeFiles(inputFiles) {
+  async computeFiles(inputFiles) {
     updateView('onStart');
     let containerCounter = 0;
     let finished = 0;
@@ -114,46 +110,40 @@ export class FileDropper {
         const promise = loadArchive(containerfile);
         containerCounter++;
         renderPromises.push(promise);
-        promise.then(result => {
-          if (result !== null) {
-            try {
-              this.renderProgram(
-                this.share,
-                this.container,
-                result.codeXML,
-                containerfile.name,
-                containerCounter,
-                result.fileMap
-              );
-              MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
-            } catch (error) {
-              MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
-            }
+        const result = await promise;
+        if (result !== null) {
+          try {
+            renderProgramByLocalFile(
+              this.container,
+              result.codeXML,
+              containerfile.name,
+              containerCounter,
+              result.fileMap
+            );
+            MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
+            $('#catblocks-file-dropper').hide();
+          } catch (error) {
+            MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
           }
-        });
+        }
       } else {
         MessageBox.show(`File "${containerfile.name}" is not of type .catrobat/.zip`);
       }
     }
 
     if (renderPromises.length > 0) {
-      Promise.all(renderPromises).then(result => {
-        for (const res of result) {
-          if (res !== undefined && res) {
-            $('#catblocks-file-dropper').hide();
-            try {
-              PasteListener.getInstance().disablePasteListener();
-            } catch (error) {
-              // ignore
-            }
-            break;
+      const result = await Promise.all(renderPromises);
+      for (const res of result) {
+        if (res !== undefined && res) {
+          try {
+            PasteListener.getInstance().disablePasteListener();
+          } catch (error) {
+            // ignore
           }
+          break;
         }
-
-        updateView('onDone');
-      });
-    } else {
-      updateView('onDone');
+      }
     }
+    updateView('onDone');
   }
 }

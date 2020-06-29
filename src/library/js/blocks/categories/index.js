@@ -1,7 +1,6 @@
 /**
- * @description load all brick categories and
- *  export single summarized object
- * @author andreas.karner@student.tugraz.at
+ * load all brick categories and
+ * export single summarized object
  */
 
 'use strict';

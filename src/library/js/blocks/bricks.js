@@ -1,6 +1,5 @@
 /**
  * Define all catrobat supported categories
- * @author andreas.karner@student.tugraz.at
  */
 
 import Blockly from 'blockly';

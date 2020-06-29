@@ -1,9 +1,8 @@
 /**
  * Render automatically programs from share and report errors and warnings into log file
  * 
- * @author andreas.karner@student.tugraz.at
- * @description script downlods several programs and renders
- *  each via puppeteer and fetches console events
+ * script downlods several programs and renders
+ * each via puppeteer and fetches console events
  * 
  */
 
