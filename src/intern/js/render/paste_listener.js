@@ -2,16 +2,12 @@ import { FileLoader } from './file_loader';
 
 /**
  * Initialize Drag & Drop Field and handle Files.
- *
- * @author b.prattes@student.tugraz.at
  */
 
 let pasteListenerInstance = null;
 export class PasteListener {
-  constructor(share, container, renderProgram) {
-    this.share = share;
+  constructor(container) {
     this.container = container;
-    this.renderProgram = renderProgram;
     this.ctrlDown = false;
     this.enabled = false;
   }
@@ -19,15 +15,13 @@ export class PasteListener {
   /**
    * Creates or returns Singleton instance.
    * @static
-   * @param {*} share
    * @param {*} container
-   * @param {*} renderProgram
    * @returns {PasteListener}
    * @memberof PasteListener
    */
-  static createInstance(share, container, renderProgram) {
+  static createInstance(container) {
     if (pasteListenerInstance == null) {
-      pasteListenerInstance = new PasteListener(share, container, renderProgram);
+      pasteListenerInstance = new PasteListener(container);
       pasteListenerInstance.initListener();
     }
     return pasteListenerInstance;
@@ -49,7 +43,7 @@ export class PasteListener {
    * Register paste event on body.
    */
   initListener() {
-    document.getElementsByTagName('body')[0].addEventListener('paste', function (e) {
+    document.getElementsByTagName('body')[0].addEventListener('paste', async function (e) {
       const pl = PasteListener.getInstance();
       if (!pl.enabled) {
         return;
@@ -61,13 +55,15 @@ export class PasteListener {
       const pastedData = (e.clipboardData || window.clipboardData).getData('Text');
 
       if (pastedData) {
-        const fl = new FileLoader(pastedData, pl.share, pl.container, pl.renderProgram);
-        fl.loadAndRenderProgram().then(result => {
-          if (result) {
+        const fl = new FileLoader(pastedData, pl.container);
+        try {
+          if (await fl.loadAndRenderProgram()) {
             $('#catblocks-file-dropper').hide();
             pl.disablePasteListener();
           }
-        });
+        } catch (error) {
+          console.log(error);
+        }
       }
     });
   }

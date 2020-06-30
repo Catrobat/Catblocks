@@ -2,22 +2,15 @@
 /* eslint-env node */
 
 /**
- * @author Andreas Karner <andreas.karner@student.tugraz.at>
- * @description generate crowdin message file based on msg/*.json files, please run first create_msg_json.js if needed
- *
- * @changelog 2019-08-14: initial version
- *            2019-08-23: added some more comments, refactor code
- *            2019-09-06: changed logic to generate just one catblocks_msgs.js file
- *            2019-11-05: [MF] updated to new structure
- *            2020-04-09: [GS] added loadNewLocale() for lazy language loading
- *            2020-05-14: [MF] add filesLocation for i18n
+ * generate crowdin message file based on msg/*.json files, 
+ * please run first create_msg_json.js if needed
  */
 
 const fs = require('fs');
 const path = require('path');
 
 // please define config here
-const SRC_DIR = path.join('src', 'js');
+const SRC_DIR = path.join('src', 'library', 'js');
 const MSG_DIR = path.join('i18n');
 const JSON_DIR = path.join(MSG_DIR, 'json');
 const MESSAGE_FILE = path.join(SRC_DIR, 'catblocks_msgs.js');

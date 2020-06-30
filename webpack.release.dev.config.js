@@ -1,18 +1,18 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const PrettierPlugin = require("prettier-webpack-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
 const variables = require('./variables');
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/intern/js/index.js'),
+  entry: path.join(__dirname, 'src/library/js/index.js'),
   output: {
     filename: 'CatBlocks.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'var',
+    library: 'CatBlocks'
   },
   resolve: {
     extensions: ['.js', '.json']
@@ -55,7 +55,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/intern/html/' + process.env.TYPE + '.html'),
+      template: path.join(__dirname, 'src/library/html/release.html'),
       filename: 'index.html',
       hash: true,
       variables: variables
@@ -63,8 +63,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      filename:  '[name].css',
+      chunkFilename: '[id].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new CopyPlugin([
@@ -73,13 +73,7 @@ module.exports = {
       { from: 'i18n/json', to: 'i18n' },
       { from: 'test/share', to: 'assets/share' },
       { from: 'favicon.ico', to: 'favicon.ico' }
-    ]),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-      TYPE: 'catblocks',
-      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : ""
-    }),
-    new PrettierPlugin()
+    ])
   ],
   // watch: true,
   devtool: 'source-map',

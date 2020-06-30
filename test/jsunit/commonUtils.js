@@ -17,12 +17,12 @@ const ROOT_PATH = './';
  * constant paths from project for testing
  */
 const PATHS = {
-  BLOCKS: 'src/js/blocks/categories/',
-  TOOLBOX: 'src/js/blocks/default_toolbox.js',
+  BLOCKS: 'src/library/js/blocks/categories/',
+  TOOLBOX: 'src/library/js/blocks/default_toolbox.js',
   MESSAGE_MAPPING: 'i18n/strings_to_json_mapping.json',
   CATROID_MSGS: 'i18n/catroid_strings/',
   CATBLOCKS_MSGS: 'i18n/json/',
-  CATBLOCKS_MSG: 'src/js/catblocks_msgs.js'
+  CATBLOCKS_MSG: 'src/library/js/catblocks_msgs.js'
 };
 /**
  * Check if variable is string

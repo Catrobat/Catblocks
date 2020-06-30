@@ -3,7 +3,6 @@
  */
 import '../../css/share.css';
 import Blockly from 'blockly';
-import Parser from '../parser/parser';
 import {
   escapeURI,
   generateID,
@@ -18,7 +17,6 @@ import {
 export class Share {
   constructor() {
     this.blockly = Blockly;
-    this.parser = Parser;
     this.config = {};
     this.workspaceDom = undefined;
     this.workspace = undefined;

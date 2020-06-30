@@ -1,9 +1,8 @@
 /**
  * Jest configuration file
- * @author andreas.karner@student.tugraz.at
  * 
- * @description jest-puppeteer configuration file
- *  pass args sandbox params so we can start chome even as root
+ * jest-puppeteer configuration file
+ * pass args sandbox params so we can start chome even as root
  */
 
 module.exports = {

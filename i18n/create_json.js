@@ -2,17 +2,8 @@
 /* eslint-env node */
 
 /**
- * @author Andreas Karner <andreas.karner@student.tugraz.at>
- * @description generate crowdin json files based on build mapping and string templates from catroid
- *
- * @changelog 2019-08-14: initial version
- *            2019-08-21: fixed some bugs, update to support different xml tags
- *            2019-08-23: added some more comments, refactor code
- *            2019-11-05: [MF] updated to new structure
- *            2020-03-30: [AK] updated to use xml2js module
- *            2020-03-31: [AK] updated code to use default value for missing in current language
- *            2020-04-01: [AK] updated default language to 'values-en-rAU'
- *            2020-05-11: [GS] included and updated default language to 'values-en'
+ * generate crowdin json files based on build mapping and string 
+ * templates from catroid
  */
 
 const fs = require('fs');

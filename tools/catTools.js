@@ -1,8 +1,6 @@
 /**
  * Catblocks utilities
- * 
- * @author andreas.karner@student.tugraz.at
- * @description utilities for tool scripts
+ * utilities for tool scripts
  */
 
 const fs = require('fs');

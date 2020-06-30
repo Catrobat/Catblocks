@@ -1,6 +1,5 @@
 {
   "@metadata": {
-    "author": "Andreas.Karner@student.tugraz.at",
     "source-fork": "https://github.com/LLK/scratch-l10n/blob/master/editor/blocks/en.json",
     "description": "Mapping from catroid strings xml file to catblocks json file",
     "info": "unknown matches got the value ???"

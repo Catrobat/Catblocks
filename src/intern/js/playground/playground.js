@@ -1,14 +1,12 @@
 import Blockly from 'blockly';
-import '../catblocks_msgs';
-import './../blocks';
-import { jsonDomToWorkspace, zebraChangeColor } from '../share/utils';
-import XStreamParser from '../parser/parser';
+import { jsonDomToWorkspace, zebraChangeColor } from '../../../library/js/share/utils';
+import { Parser } from '../../../common/js/parser/parser';
 
 export class Playground {
   constructor() {
     // for debugging
     this.Blockly = Blockly;
-    this.Parser = XStreamParser;
+    this.Parser = Parser;
 
     this.toolbox = undefined;
     this.workspace = undefined;

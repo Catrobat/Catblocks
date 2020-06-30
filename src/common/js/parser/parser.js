@@ -610,10 +610,10 @@ function workFormula(formula, input) {
 }
 
 /**
- * Default export Parser class
- * Only those methodes are visible outside this module
+ * Export Parser class
+ * Only those methods are visible outside this module
  */
-export default class Parser {
+export class Parser {
   /**
    * Convert given XML to JSON object
    * @static
