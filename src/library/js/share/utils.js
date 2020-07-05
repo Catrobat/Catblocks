@@ -247,11 +247,14 @@ export const escapeURI = string => {
  * render json object to workspace
  * @param {object} jsonObject current scriptList as object
  * @param {object} workspace where blocks are rendered
+ * @return {number} sceneWidth width of current scene
  */
 export const jsonDomToWorkspace = (jsonObject, workspace) => {
   const blockList = [];
   blockList.push(jsonObject);
-  renderAndConnectBlocksInList(null, blockList, brickListTypes.noBrickList, workspace);
+  let sceneWidth = 0;
+  sceneWidth = renderAndConnectBlocksInList(null, blockList, brickListTypes.noBrickList, workspace, sceneWidth);
+  return sceneWidth;
 };
 
 /**
@@ -261,8 +264,10 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
  * @param {Object} brickList, elseBrickList or loopOrIfBrickList
  * @param {object} brickListType of list
  * @param {object} workspace where blocks are rendered
+ * @param {number} sceneWidth width of current scene
+ * @return {number} sceneWidth width of current scene
  */
-export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListType, workspace) => {
+export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListType, workspace, sceneWidth) => {
   for (let i = 0; i < brickList.length; i++) {
     const childBlock = workspace.newBlock(brickList[i].name);
     if (
@@ -287,24 +292,49 @@ export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListTy
     } else if (brickListType === brickListTypes.loopOrIfBrickList) {
       parentBlock.inputList[1].connection.connect(childBlock.previousConnection);
     }
+    let blockWidth = 0;
+    if (childBlock.nextConnection !== null) {
+      blockWidth = childBlock.width + childBlock.nextConnection.x - childBlock.nextConnection.offsetInBlock_.x;
+    }
+    if (blockWidth > sceneWidth) {
+      sceneWidth = blockWidth;
+    }
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
-      renderAndConnectBlocksInList(childBlock, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
+      const blockWidth = renderAndConnectBlocksInList(
+        childBlock,
+        brickList[i].brickList.reverse(),
+        brickListTypes.brickList,
+        workspace,
+        sceneWidth
+      );
+      if (blockWidth > sceneWidth) {
+        sceneWidth = blockWidth;
+      }
     }
     if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
-      renderAndConnectBlocksInList(
+      const blockWidth = renderAndConnectBlocksInList(
         childBlock,
         brickList[i].elseBrickList.reverse(),
         brickListTypes.elseBrickList,
-        workspace
+        workspace,
+        sceneWidth
       );
+      if (blockWidth > sceneWidth) {
+        sceneWidth = blockWidth;
+      }
     }
     if (brickList[i].loopOrIfBrickList !== undefined && brickList[i].loopOrIfBrickList.length > 0) {
-      renderAndConnectBlocksInList(
+      const blockWidth = renderAndConnectBlocksInList(
         childBlock,
         brickList[i].loopOrIfBrickList.reverse(),
         brickListTypes.loopOrIfBrickList,
-        workspace
+        workspace,
+        sceneWidth
       );
+      if (blockWidth > sceneWidth) {
+        sceneWidth = blockWidth;
+      }
     }
   }
+  return sceneWidth;
 };

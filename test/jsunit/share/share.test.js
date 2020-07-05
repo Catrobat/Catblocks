@@ -551,4 +551,54 @@ describe('Share catroid program rendering tests', () => {
       })
     ).toBeTruthy();
   });
+
+  test('scrolling bricks on x axis on mobile share page is working', async () => {
+    await page.setViewport({
+      width: 200,
+      height: 1000
+    });
+    expect(
+      await page.evaluate(() => {
+        const catObj = {
+          scenes: [
+            {
+              name: 'TestScene',
+              objectList: [
+                {
+                  name: 'TestObject',
+                  lookList: [],
+                  soundList: [],
+                  scriptList: [
+                    {
+                      name: 'StartScript',
+                      brickList: [
+                        {
+                          name: 'PlaySoundBrick',
+                          loopOrIfBrickList: [],
+                          elseBrickList: [],
+                          formValues: {},
+                          colorVariation: 0
+                        }
+                      ],
+                      formValues: {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
+        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+        const brickContainer = shareTestContainer.querySelector('.catblocks-script');
+        sceneHeader.click();
+        cardHeader.click();
+        const initialXPosition = brickContainer.scrollLeft;
+        brickContainer.scrollBy(1, 0);
+        const scrolledXPosition = brickContainer.scrollLeft;
+        return initialXPosition !== scrolledXPosition && brickContainer.style.overflowX === 'auto';
+      })
+    ).toBeTruthy();
+  });
 });
