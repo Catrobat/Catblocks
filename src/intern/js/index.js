@@ -12,8 +12,12 @@ import { initShareAndRenderPrograms } from './render/utils';
   }
 
   let language = 'en';
+  let isRtl = false;
   if (process.env.DISPLAY_LANGUAGE !== undefined && process.env.DISPLAY_LANGUAGE.length > 0) {
     language = process.env.DISPLAY_LANGUAGE;
+  }
+  if (process.env.DISPLAY_RTL !== undefined && process.env.DISPLAY_RTL.toLowerCase() === 'true') {
+    isRtl = true;
   }
   await Blockly.CatblocksMsgs.setLocale(language);
 
@@ -25,7 +29,7 @@ import { initShareAndRenderPrograms } from './render/utils';
     }
     case 'render': {
       const programPath = 'assets/programs/';
-      initShareAndRenderPrograms(programPath, language);
+      initShareAndRenderPrograms(programPath, language, isRtl);
       break;
     }
     case 'testing': {
@@ -37,6 +41,7 @@ import { initShareAndRenderPrograms } from './render/utils';
         shareRoot: '',
         media: 'media/',
         language: language,
+        rtl: isRtl,
         noImageFound: 'No_Image_Available.jpg'
       });
       window.share = CatBlocks.getInstance().share;

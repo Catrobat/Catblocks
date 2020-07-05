@@ -26,6 +26,7 @@ export const defaultOptions = {
     shareRoot: '',
     media: 'media/',
     language: 'en',
+    rtl: false,
     i18n: 'i18n/',
     noImageFound: 'No_Image_Available.jpg' // TODO: never used anywhere
   },
@@ -108,7 +109,7 @@ export const removeAllChildren = node => {
 /**
  * Retrieve dom from document by id or class name
  * returns undefined in neither string or dom element
- * @param {string|Element} idName
+ * @param {string|Element} name
  * @param {Element?} ancestor to search from
  * @return {Element} dom element for name
  */
@@ -190,6 +191,7 @@ export const resetColorBlock = array => {
 /**
  * zebra effect -> color next block from same group slightly differently
  * @param {*} array
+ * @param {boolean} firstCall
  */
 export const checkNextBlock = (array, firstCall = false) => {
   for (let i = 0; i < array.length; i++) {
@@ -246,95 +248,135 @@ export const escapeURI = string => {
 /**
  * render json object to workspace
  * @param {object} jsonObject current scriptList as object
- * @param {object} workspace where blocks are rendered
+ * @param {object} workspace where bricks are rendered
  * @return {number} sceneWidth width of current scene
  */
 export const jsonDomToWorkspace = (jsonObject, workspace) => {
-  const blockList = [];
-  blockList.push(jsonObject);
+  const brickList = [];
+  brickList.push(jsonObject);
   let sceneWidth = 0;
-  sceneWidth = renderAndConnectBlocksInList(null, blockList, brickListTypes.noBrickList, workspace, sceneWidth);
+  sceneWidth = renderAndConnectBlocksInList(null, brickList, brickListTypes.noBrickList, workspace, sceneWidth);
+  if (workspace.RTL) {
+    const firstBrick = workspace.getAllBlocks()[0];
+    changeSceneToRtl(firstBrick, workspace, sceneWidth);
+  }
   return sceneWidth;
 };
 
 /**
- * Renders and connects all blocks in a brickList, elseBrickList and loopOrIfBrickList.
+ * Renders and connects all bricks in a brickList, elseBrickList and loopOrIfBrickList.
  * Function is calling itself if a *brickList is in a *brickList.
- * @param {Object} parentBlock parent block to connect
+ * @param {Object} parentBrick parent brick to connect
  * @param {Object} brickList, elseBrickList or loopOrIfBrickList
  * @param {object} brickListType of list
- * @param {object} workspace where blocks are rendered
+ * @param {object} workspace where bricks are rendered
  * @param {number} sceneWidth width of current scene
  * @return {number} sceneWidth width of current scene
  */
-export const renderAndConnectBlocksInList = (parentBlock, brickList, brickListType, workspace, sceneWidth) => {
+export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace, sceneWidth) => {
   for (let i = 0; i < brickList.length; i++) {
-    const childBlock = workspace.newBlock(brickList[i].name);
-    if (
-      brickList[i].formValues !== undefined &&
-      brickList[i].formValues.size !== undefined &&
-      brickList[i].formValues.size > 0
-    ) {
-      brickList[i].formValues.forEach(function (value, key) {
-        for (let j = 0; j < childBlock.inputList[0].fieldRow.length; j++) {
-          if (childBlock.inputList[0].fieldRow[j].name === key) {
-            childBlock.inputList[0].fieldRow[j].setValue(value);
-          }
-        }
-      });
+    const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
+    let brickWidth = 0;
+    if (childBrick.nextConnection !== null) {
+      if (workspace.RTL) {
+        brickWidth = childBrick.width - childBrick.nextConnection.x + childBrick.nextConnection.offsetInBlock_.x;
+      } else {
+        brickWidth = childBrick.width + childBrick.nextConnection.x - childBrick.nextConnection.offsetInBlock_.x;
+      }
     }
-    childBlock.initSvg();
-    childBlock.render(false);
-    if (brickListType === brickListTypes.brickList) {
-      parentBlock.nextConnection.connect(childBlock.previousConnection);
-    } else if (brickListType === brickListTypes.elseBrickList) {
-      parentBlock.inputList[3].connection.connect(childBlock.previousConnection);
-    } else if (brickListType === brickListTypes.loopOrIfBrickList) {
-      parentBlock.inputList[1].connection.connect(childBlock.previousConnection);
-    }
-    let blockWidth = 0;
-    if (childBlock.nextConnection !== null) {
-      blockWidth = childBlock.width + childBlock.nextConnection.x - childBlock.nextConnection.offsetInBlock_.x;
-    }
-    if (blockWidth > sceneWidth) {
-      sceneWidth = blockWidth;
+    if (brickWidth > sceneWidth) {
+      sceneWidth = brickWidth;
     }
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
-      const blockWidth = renderAndConnectBlocksInList(
-        childBlock,
+      const brickWidth = renderAndConnectBlocksInList(
+        childBrick,
         brickList[i].brickList.reverse(),
         brickListTypes.brickList,
         workspace,
         sceneWidth
       );
-      if (blockWidth > sceneWidth) {
-        sceneWidth = blockWidth;
+      if (brickWidth > sceneWidth) {
+        sceneWidth = brickWidth;
       }
     }
     if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
-      const blockWidth = renderAndConnectBlocksInList(
-        childBlock,
+      const brickWidth = renderAndConnectBlocksInList(
+        childBrick,
         brickList[i].elseBrickList.reverse(),
         brickListTypes.elseBrickList,
         workspace,
         sceneWidth
       );
-      if (blockWidth > sceneWidth) {
-        sceneWidth = blockWidth;
+      if (brickWidth > sceneWidth) {
+        sceneWidth = brickWidth;
       }
     }
     if (brickList[i].loopOrIfBrickList !== undefined && brickList[i].loopOrIfBrickList.length > 0) {
-      const blockWidth = renderAndConnectBlocksInList(
-        childBlock,
+      const brickWidth = renderAndConnectBlocksInList(
+        childBrick,
         brickList[i].loopOrIfBrickList.reverse(),
         brickListTypes.loopOrIfBrickList,
         workspace,
         sceneWidth
       );
-      if (blockWidth > sceneWidth) {
-        sceneWidth = blockWidth;
+      if (brickWidth > sceneWidth) {
+        sceneWidth = brickWidth;
       }
     }
   }
   return sceneWidth;
+};
+
+/**
+ * Render specific brick with its input values and connect with previous brick.
+ * @param {object} parentBrick parent brick to connect
+ * @param {object} jsonBrick brick as json object
+ * @param {object} brickListType of list
+ * @param {object} workspace where bricks are rendered
+ * @return {object} childBrick
+ */
+export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) => {
+  const childBrick = workspace.newBlock(jsonBrick.name);
+  if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
+    jsonBrick.formValues.forEach(function (value, key) {
+      for (let j = 0; j < childBrick.inputList[0].fieldRow.length; j++) {
+        if (childBrick.inputList[0].fieldRow[j].name === key) {
+          childBrick.inputList[0].fieldRow[j].setValue(value);
+        }
+      }
+    });
+  }
+  childBrick.initSvg();
+  childBrick.render(false);
+  if (brickListType === brickListTypes.brickList) {
+    parentBrick.nextConnection.connect(childBrick.previousConnection);
+  } else if (brickListType === brickListTypes.elseBrickList) {
+    parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
+  } else if (brickListType === brickListTypes.loopOrIfBrickList) {
+    parentBrick.inputList[1].connection.connect(childBrick.previousConnection);
+  }
+  return childBrick;
+};
+
+/**
+ * Change scene to RTL layout by changing x coordinates of first brick in scene
+ * @param {object} brick to change to RTL
+ * @param {object} workspace where bricks are rendered
+ * @param {number} sceneWidth width of largest brick in current scene
+ * @return {object} brick
+ */
+export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
+  brick.svgGroup_.querySelectorAll('.blocklyText').forEach(brickSvg => {
+    const previousWidth = parseFloat(brickSvg.getAttribute('x')) * workspace.scale;
+    const currentWidth = brickSvg.getBoundingClientRect()['width'] / workspace.scale;
+    const sumWidth = currentWidth + previousWidth;
+    brickSvg.setAttribute('x', sumWidth.toString());
+  });
+  const x = sceneWidth;
+  let y = 0;
+  if (brick.nextConnection !== null) {
+    y = brick.nextConnection.y - brick.nextConnection.offsetInBlock_.y;
+  }
+  brick.moveBy(x, y);
+  return brick;
 };
