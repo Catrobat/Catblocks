@@ -443,10 +443,13 @@ export class Share {
     let failed = 0;
     for (const look of object.lookList) {
       const row = injectNewDom(group, 'div', {
-        class: 'list-group-item row'
+        class: 'list-group-item align-items-center'
       });
       const col = injectNewDom(row, 'div', {
         class: 'col-3'
+      });
+      const button = injectNewDom(row, 'span', {
+        class: 'align-items-center'
       });
 
       if (!options.sceneName || !look.fileName) {
@@ -466,10 +469,29 @@ export class Share {
         src = options.fileMap[imgPath];
       }
 
-      injectNewDom(col, 'img', {
-        src: src,
-        class: 'img-fluid catblocks-object-look-item'
-      });
+      let displayLookName = look.name;
+      if (!displayLookName) {
+        displayLookName = look.fileName;
+      }
+
+      const imgID = `${displayLookName}-imgID`;
+      injectNewDom(
+        col,
+        'img',
+        {
+          src: src,
+          class: 'img-fluid catblocks-object-look-item',
+          id: imgID,
+          'data-toggle': 'modal',
+          'data-target': '#modalForImg'
+        },
+        displayLookName
+      );
+
+      document.getElementById(imgID).onclick = function () {
+        document.getElementById('modalHeader').innerHTML = displayLookName;
+        document.getElementById('modalImg').src = this.src;
+      };
 
       const lookName = injectNewDom(
         row,
@@ -479,6 +501,22 @@ export class Share {
         },
         look.name
       );
+
+      const magnifyingGlassID = 'button ' + displayLookName;
+      const magnifyingGlass = injectNewDom(button, 'button', {
+        class: 'search',
+        id: magnifyingGlassID,
+        'data-toggle': 'modal',
+        'data-target': '#modalForImg',
+        name: 'not clicked'
+      });
+      magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
+      document.getElementById(magnifyingGlassID).onclick = function () {
+        document.getElementById('modalHeader').innerHTML = displayLookName;
+        document.getElementById('modalImg').src = src;
+        magnifyingGlass.name = 'now got clicked!';
+      };
+
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
       }
