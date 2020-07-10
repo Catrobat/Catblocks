@@ -520,7 +520,6 @@ export class Share {
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
       }
-
     }
 
     if (failed > 0) {
