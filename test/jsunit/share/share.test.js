@@ -184,7 +184,7 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
           shareTestContainer
             .querySelector('.catblocks-object .card-header')
-            .innerHTML.startsWith('<div style="font-weight: normal;">tobject</div>') &&
+            .innerHTML.startsWith('<div class="header-title">tobject</div>') &&
           shareTestContainer.querySelector('.tab-pane') !== null &&
           shareTestContainer.querySelector('.catblocks-script') === null
         );
@@ -537,7 +537,7 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.accordion') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML ===
-            '<div style="font-weight: normal;">tobject1</div><i class="material-icons">chevron_left</i>'
+            '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>'
         );
       })
     ).toBeTruthy();
@@ -574,14 +574,10 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const expectedSceneHeaderTextCollapsed =
-          '<div style="font-weight: normal;">tscene</div><i class="material-icons">chevron_left</i>';
-        const expectedCardHeaderTextCollapsed =
-          '<div style="font-weight: normal;">tobject</div><i class="material-icons">chevron_left</i>';
-        const expectedSceneHeaderTextExpanded =
-          '<div style="font-weight: bold;">tscene</div><i class="material-icons">expand_more</i>';
-        const expectedCardHeaderTextExpanded =
-          '<div style="font-weight: bold;">tobject</div><i class="material-icons">expand_more</i>';
+        const expectedSceneHeaderText =
+          '<div class="header-title">tscene</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+        const expectedCardHeaderText =
+          '<div class="header-title">tobject</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const sceneHeaderInitialText = sceneHeader.innerHTML;
@@ -599,15 +595,18 @@ describe('Share catroid program rendering tests', () => {
         const sceneHeaderTextCollapsed = sceneHeader.innerHTML;
         const cardHeaderTextCollapsed = cardHeader.innerHTML;
         return (
-          sceneHeaderInitialText === expectedSceneHeaderTextCollapsed &&
-          cardHeaderInitialText === expectedCardHeaderTextCollapsed &&
-          sceneHeaderTextExpanded === expectedSceneHeaderTextExpanded &&
-          cardHeaderTextExpanded === expectedCardHeaderTextExpanded &&
-          sceneHeaderTextCollapsed === expectedSceneHeaderTextCollapsed &&
-          cardHeaderTextCollapsed === expectedCardHeaderTextCollapsed
+          sceneHeaderInitialText === expectedSceneHeaderText &&
+          cardHeaderInitialText === expectedCardHeaderText &&
+          sceneHeaderTextExpanded === expectedSceneHeaderText &&
+          cardHeaderTextExpanded === expectedCardHeaderText &&
+          sceneHeaderTextCollapsed === expectedSceneHeaderText &&
+          cardHeaderTextCollapsed === expectedCardHeaderText
         );
       })
     ).toBeTruthy();
+    await page.waitForSelector('.catblocks-object .card-header', {
+      visible: true
+    });
   });
 
   test('scrolling bricks on x axis on mobile share page is working', async () => {
