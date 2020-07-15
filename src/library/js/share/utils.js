@@ -254,11 +254,18 @@ export const escapeURI = string => {
 export const jsonDomToWorkspace = (jsonObject, workspace) => {
   const brickList = [];
   brickList.push(jsonObject);
+  renderAndConnectBlocksInList(null, brickList, brickListTypes.noBrickList, workspace);
+  workspace.render(false);
   let sceneWidth = 0;
-  sceneWidth = renderAndConnectBlocksInList(null, brickList, brickListTypes.noBrickList, workspace, sceneWidth);
+  const allBricks = workspace.getAllBlocks();
+  allBricks.forEach(brick => {
+    const brickWidth = brick.getSvgRoot().getBBox().width;
+    if (brickWidth > sceneWidth) {
+      sceneWidth = brickWidth;
+    }
+  });
   if (workspace.RTL) {
-    const firstBrick = workspace.getAllBlocks()[0];
-    changeSceneToRtl(firstBrick, workspace, sceneWidth);
+    changeSceneToRtl(allBricks[0], workspace, sceneWidth);
   }
   return sceneWidth;
 };
@@ -270,61 +277,30 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
  * @param {Object} brickList, elseBrickList or loopOrIfBrickList
  * @param {object} brickListType of list
  * @param {object} workspace where bricks are rendered
- * @param {number} sceneWidth width of current scene
- * @return {number} sceneWidth width of current scene
  */
-export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace, sceneWidth) => {
+export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace) => {
   for (let i = 0; i < brickList.length; i++) {
     const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
-    let brickWidth = 0;
-    if (childBrick.nextConnection !== null) {
-      if (workspace.RTL) {
-        brickWidth = childBrick.width - childBrick.nextConnection.x + childBrick.nextConnection.offsetInBlock_.x;
-      } else {
-        brickWidth = childBrick.width + childBrick.nextConnection.x - childBrick.nextConnection.offsetInBlock_.x;
-      }
-    }
-    if (brickWidth > sceneWidth) {
-      sceneWidth = brickWidth;
-    }
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
-      const brickWidth = renderAndConnectBlocksInList(
-        childBrick,
-        brickList[i].brickList.reverse(),
-        brickListTypes.brickList,
-        workspace,
-        sceneWidth
-      );
-      if (brickWidth > sceneWidth) {
-        sceneWidth = brickWidth;
-      }
+      renderAndConnectBlocksInList(childBrick, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
     }
     if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
-      const brickWidth = renderAndConnectBlocksInList(
+      renderAndConnectBlocksInList(
         childBrick,
         brickList[i].elseBrickList.reverse(),
         brickListTypes.elseBrickList,
-        workspace,
-        sceneWidth
+        workspace
       );
-      if (brickWidth > sceneWidth) {
-        sceneWidth = brickWidth;
-      }
     }
     if (brickList[i].loopOrIfBrickList !== undefined && brickList[i].loopOrIfBrickList.length > 0) {
-      const brickWidth = renderAndConnectBlocksInList(
+      renderAndConnectBlocksInList(
         childBrick,
         brickList[i].loopOrIfBrickList.reverse(),
         brickListTypes.loopOrIfBrickList,
-        workspace,
-        sceneWidth
+        workspace
       );
-      if (brickWidth > sceneWidth) {
-        sceneWidth = brickWidth;
-      }
     }
   }
-  return sceneWidth;
 };
 
 /**
@@ -347,7 +323,6 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
     });
   }
   childBrick.initSvg();
-  childBrick.render(false);
   if (brickListType === brickListTypes.brickList) {
     parentBrick.nextConnection.connect(childBrick.previousConnection);
   } else if (brickListType === brickListTypes.elseBrickList) {
