@@ -12,7 +12,8 @@ For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/se
 
 
 # Resources and links 
-* [Google Play Store Download](https://play.google.com/store/apps/details?id=org.catrobat.catroid)
+* [Google Play Store Download](https://catrob.at/gp)
+* [Apple app store](https://catrob.at/PCios)
 * [Community website with sample programs](https://pocketcode.org/)
 * [Getting Started](https://github.com/Catrobat/Catblocks/wiki/Getting-Started)
 
