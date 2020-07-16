@@ -1,7 +1,0 @@
-<block type="RepeatUntilBrick" id="" x="" y="">
-  <value name="REPEAT_UNTIL_CONDITION">
-    <shadow type="text" id="">
-      <field name="TEXT">1&lt;2</field>
-    </shadow>
-  </value>
-</block>

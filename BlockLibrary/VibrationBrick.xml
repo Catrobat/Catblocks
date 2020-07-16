@@ -1,7 +1,0 @@
-<block type="VibrationBrick" x="" y="">
-  <value name="VIBRATE_DURATION_IN_SECONDS">
-    <shadow type="text">
-      <field name="TEXT">1</field>
-    </shadow>
-  </value>
-</block>

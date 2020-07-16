@@ -1,7 +1,0 @@
-<block type="GoNStepsBackBrick" x="" y="">
-  <value name="STEPS">
-    <shadow type="text">
-      <field name="TEXT">1</field>
-    </shadow>
-  </value>
-</block>
