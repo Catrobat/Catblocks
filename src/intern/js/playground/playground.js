@@ -107,6 +107,7 @@ export class Playground {
       e.preventDefault();
       this.workspace.setVisible(false);
     });
+    $('#locale').change(() => this.setLocale(document.forms.options.elements.locale.value));
 
     $('#exportToXML').click(() => this.toXml());
     $('#importFromJSON').click(() => this.fromJSON());

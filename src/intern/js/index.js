@@ -19,23 +19,24 @@ import { initShareAndRenderPrograms } from './render/utils';
   if (process.env.DISPLAY_RTL !== undefined && process.env.DISPLAY_RTL.toLowerCase() === 'true') {
     isRtl = true;
   }
-  await Blockly.CatblocksMsgs.setLocale(language);
 
   switch (process.env.TYPE) {
     case 'playground': {
+      await Blockly.CatblocksMsgs.setLocale(language);
       const app = new Playground();
       app.init();
       break;
     }
     case 'render': {
       const programPath = 'assets/programs/';
-      initShareAndRenderPrograms(programPath, language, isRtl);
+      await initShareAndRenderPrograms(programPath, language, isRtl);
       break;
     }
     case 'testing': {
+      await Blockly.CatblocksMsgs.setLocale(language);
       window.Blockly = Blockly;
       window.playground = new Playground();
-      CatBlocks.init({
+      await CatBlocks.init({
         container: 'share',
         renderSize: 0.75,
         shareRoot: '',
