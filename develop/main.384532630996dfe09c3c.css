@@ -3,7 +3,8 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -308,5 +309,10 @@ img {
   border: none;
 }
 
+#catblocks-program-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-/*# sourceMappingURL=main.3122ee1fad65bf5702bb.css.map*/
+
+/*# sourceMappingURL=main.384532630996dfe09c3c.css.map*/
