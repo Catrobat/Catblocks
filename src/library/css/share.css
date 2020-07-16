@@ -120,3 +120,8 @@ img {
 .search {
   border: none;
 }
+
+#catblocks-program-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
