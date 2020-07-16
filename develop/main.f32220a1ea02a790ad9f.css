@@ -305,6 +305,22 @@ img {
   width: 100%;
 }
 
+[data-toggle='collapse'][aria-expanded='true'] .rotate-left {
+  transform: rotate(-90deg);
+}
+
+.rotate-left {
+  transition: 0.3s transform ease;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+[data-toggle='collapse'][aria-expanded='true'] .header-title {
+  font-weight: bold;
+}
+
 .search {
   border: none;
 }
@@ -315,4 +331,4 @@ img {
 }
 
 
-/*# sourceMappingURL=main.384532630996dfe09c3c.css.map*/
+/*# sourceMappingURL=main.f32220a1ea02a790ad9f.css.map*/
