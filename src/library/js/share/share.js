@@ -145,11 +145,10 @@ export class Share {
     });
 
     if (sceneName) {
-      sceneHeader.innerHTML = `<div style="font-weight: normal;">${sceneName}</div><i class="material-icons">chevron_left</i>`;
+      sceneHeader.innerHTML = `<div class="header-title">${sceneName}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     } else {
-      sceneHeader.innerHTML = `<i class="material-icons">chevron_left</i>`;
+      sceneHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
-    $(`#${sceneID}-header`).click(() => this.changeHeaderDesign(sceneHeader));
 
     const sceneObjectContainer = injectNewDom(sceneContainer, 'div', {
       class: 'catblocks-object-container collapse',
@@ -274,11 +273,10 @@ export class Share {
     }
 
     if (object && object.name) {
-      cardHeader.innerHTML = `<div style="font-weight: normal;">${object.name}</div><i class="material-icons">chevron_left</i>`;
+      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     } else {
-      cardHeader.innerHTML = `<i class="material-icons">chevron_left</i>`;
+      cardHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
-    $(`#${objHeadingID}`).click(() => this.changeHeaderDesign(cardHeader));
 
     const objectContentContainer = injectNewDom(objectCard, 'div', {
       class: 'collapse',
@@ -709,37 +707,5 @@ export class Share {
     });
 
     return col;
-  }
-
-  /**
-   * handle click events on scene headers and card headers
-   * change chevron direction and set title bold/normal
-   * @param {Element} sceneElement
-   */
-  changeHeaderDesign(sceneElement) {
-    const parentContainer = sceneElement.parentElement.parentElement;
-    const ariaExpanded = sceneElement.getAttribute('aria-expanded');
-    const divElement = sceneElement.children[0];
-    const iElement = sceneElement.children[1];
-    //set design for current element
-    if (iElement.textContent.includes('chevron_left') && ariaExpanded === 'false') {
-      iElement.textContent = iElement.textContent.replace('chevron_left', 'expand_more');
-      divElement.style.fontWeight = 'bold';
-    } else {
-      if (iElement.textContent.includes('expand_more') && ariaExpanded === 'true') {
-        iElement.textContent = iElement.textContent.replace('expand_more', 'chevron_left');
-        divElement.style.fontWeight = 'normal';
-      } else {
-        console.error("can't change chevron and header title: " + sceneElement.getAttribute('class'));
-      }
-    }
-    //set design for all other elements in the same parent div
-    for (let i = 0; i < parentContainer.children.length; i++) {
-      const element = parentContainer.children[i].children[0];
-      if (element !== sceneElement) {
-        element.children[0].style.fontWeight = 'normal';
-        element.children[1].textContent = iElement.textContent.replace('expand_more', 'chevron_left');
-      }
-    }
   }
 }
