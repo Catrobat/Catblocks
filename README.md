@@ -1,5 +1,5 @@
 # Catblocks
-Javascript Library to render Scripts from **Pocket Code** using **Google Blockly**.
+Javascript library to render Scripts from **Pocket Code** using **Google Blockly**.
 
 **Catrobat** is a visual programming language and a set of creativity tools for smartphones, tablets, and mobile browsers. 
 Catrobat programs can be written by using the Catroid programming system on Android phones and tablets.
