@@ -199,31 +199,38 @@ def sendSlackMessage(webhook, message):
 def main():
     path = sys.argv[1]
     slack_webhook = sys.argv[2]
-    slack_msg = ""
-    send_msg = False
+    try:
+        slack_msg = ""
+        send_msg = False
 
-    # load bricks and compare them
-    java_bricks = loadCatroidBricks(path)
-    js_bricks = loadCatblocksBricks(path)
-    in_java_not_js, in_js_not_java = compareBricks(java_bricks, js_bricks)
+        # load bricks and compare them
+        java_bricks = loadCatroidBricks(path)
+        js_bricks = loadCatblocksBricks(path)
+        in_java_not_js, in_js_not_java = compareBricks(java_bricks, js_bricks)
 
-    # generate slack report for bricks if necessary
-    if in_java_not_js is not None and len(in_java_not_js) > 0:
-        category_class = loadJavaCategoryClass(path).splitlines()
-        slack_msg += generateBlockMessage(in_java_not_js, category_class)
-        send_msg = True
+        # generate slack report for bricks if necessary
+        if in_java_not_js is not None and len(in_java_not_js) > 0:
+            category_class = loadJavaCategoryClass(path).splitlines()
+            slack_msg += generateBlockMessage(in_java_not_js, category_class)
+            send_msg = True
 
-    # compare languages
-    catroid_languages = loadSupportedCatroidLanguages(path)
-    catblocks_languages = loadSupportedCatblocksLanguages(path)
-    language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
-    
-    if language_updates is not None and len(language_updates) > 0:
-        slack_msg += '\n\n' + generateLanguageMessage(language_updates)
-        send_msg = True
+        # compare languages
+        catroid_languages = loadSupportedCatroidLanguages(path)
+        catblocks_languages = loadSupportedCatblocksLanguages(path)
+        language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
 
-    if send_msg:
-        sendSlackMessage(slack_webhook, slack_msg.strip())
+        if language_updates is not None and len(language_updates) > 0:
+            slack_msg += '\n\n' + generateLanguageMessage(language_updates)
+            send_msg = True
+
+        if send_msg:
+            sendSlackMessage(slack_webhook, slack_msg.strip())
+        else:
+            slack_msg = "Everything is up to date."
+            sendSlackMessage(slack_webhook, slack_msg.strip())
+    except:
+        slack_msg = "Failed to execute checker.py"
+        sendSlackMessage(slack_webhook, slack_msg.strip()
 
 if __name__ == '__main__':
     main()
