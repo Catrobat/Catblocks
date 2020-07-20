@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Catblocks Renderer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link
+      rel="stylesheet"
+      href="<%= htmlWebpackPlugin.options.variables.bootstrap.css %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.bootstrap.cssintegrity %>"
+      crossorigin="anonymous"
+    />
+    <link href="<%= htmlWebpackPlugin.options.variables.material.font %>" rel="stylesheet" />
+
+    <link href="<%= htmlWebpackPlugin.options.variables.material.bootstrap %>" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="catblocks-file-dropper">
+      <div class="dropper-inner">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+          <path
+            d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z"
+          ></path>
+        </svg>
+        <input type="file" name="files[]" id="dropper-file-input" class="dropper-file" multiple="" />
+        <label for="dropper-file-input"><strong>Choose a file</strong> or drag it here.</label>
+        <span class="small">Only .catrobat Files supported</span>
+      </div>
+    </div>
+
+    <div class="modal" id="modalForImg">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span id="modalHeader"></span>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <img src="" id="modalImg" class="imagepreview" style="width: 100%; height: 100%;" />
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="catblocks-workspace-container"></div>
+    <div id="catblocks-programs-container"></div>
+    <div id="loading-overlay">
+      <div class="loading-inner">
+        <div class="loader-icon"></div>
+      </div>
+    </div>
+    <script
+      src="<%= htmlWebpackPlugin.options.variables.jquery.js %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.jquery.jsintegrity %>"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="<%= htmlWebpackPlugin.options.variables.material.popper %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.material.popperintegrity %>"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="<%= htmlWebpackPlugin.options.variables.bootstrap.js %>"
+      integrity="<%= htmlWebpackPlugin.options.variables.bootstrap.jsintegrity %>"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -2,7 +2,6 @@
 
 : '
 Catblocks jest runner action
-@author andreas.karner@student.tugraz.at
 '
 
 set -e

@@ -9,7 +9,7 @@ const variables = require('./variables');
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/js/index.js'),
+  entry: path.join(__dirname, 'src/intern/js/index.js'),
   output: {
     filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist')
@@ -55,7 +55,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/html/' + process.env.TYPE + '.html'),
+      template: path.join(__dirname, 'src/intern/html/' + process.env.TYPE + '.html'),
       filename: 'index.html',
       hash: true,
       variables: variables
@@ -77,7 +77,8 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       TYPE: 'catblocks',
-      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : ""
+      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : "",
+      DISPLAY_RTL: process.env.DISPLAY_RTL ? process.env.DISPLAY_RTL : ""
     }),
     new PrettierPlugin()
   ],

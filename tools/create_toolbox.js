@@ -2,15 +2,11 @@
 /* eslint-env node */
 
 /**
- * @author Andreas Karner <andreas.karner@student.tugraz.at>
- * @description generate default_toolbox.js file
- *                add all categories from the src/blocks/categories folder and map each block to the corresponding category
- *  
- * @changelog 2019-12-16: [AK] initial version, fork from existing updateToolbox.py file
- *            2019-02-18: [AK] moved file into tools folder, use path.join instead of plain string
+ * this script is not needed anymore, because we generate the toolbox now on client side,
+ * so we save bandwidth and we only generate if on demand 
  *
- * @deprecated this script is not needed anymore, because we generate the toolbox now on client side,
- *              so we save bandwidth and we only generate if on demand 
+ * generate default_toolbox.js file
+ * add all categories from the src/blocks/categories folder and map each block to the corresponding category
  */
 
 const fs = require('fs');

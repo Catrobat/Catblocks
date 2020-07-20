@@ -184,7 +184,7 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
           shareTestContainer
             .querySelector('.catblocks-object .card-header')
-            .innerHTML.startsWith('<div style="font-weight: normal;">tobject</div>') &&
+            .innerHTML.startsWith('<div class="header-title">tobject</div>') &&
           shareTestContainer.querySelector('.tab-pane') !== null &&
           shareTestContainer.querySelector('.catblocks-script') === null
         );
@@ -297,7 +297,9 @@ describe('Share catroid program rendering tests', () => {
         };
         const svg = share.domToSvg(scriptJSON);
         return (
-          svg !== null && svg.textContent.includes('When scene starts') && svg.textContent.includes('Set x tounset')
+          svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
+          svg.textContent.replace(/\s/g, ' ').includes('Set x to') &&
+          svg.textContent.replace(/\s/g, ' ').includes('unset')
         );
       })
     ).toBeTruthy();
@@ -320,11 +322,11 @@ describe('Share catroid program rendering tests', () => {
           formValues: {}
         };
         const svg = share.domToSvg(scriptJSON);
-
         return (
           svg !== null &&
-          svg.textContent.includes('When scene starts') &&
-          svg.textContent.includes('Set x tounset') &&
+          svg.textContent.replace(/\s/g, ' ').includes('When scene starts') &&
+          svg.textContent.replace(/\s/g, ' ').includes('Set x to') &&
+          svg.textContent.replace(/\s/g, ' ').includes('unset') &&
           svg.getAttribute('width').replace('px', '') > 0 &&
           svg.getAttribute('height').replace('px', '') > 0
         );
@@ -352,9 +354,7 @@ describe('Share catroid program rendering tests', () => {
             }
           ]
         };
-
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-
         const objID = shareUtils.generateID('programID-tscene-tobject');
         return (
           shareTestContainer.querySelector(
@@ -431,6 +431,64 @@ describe('Share catroid program rendering tests', () => {
     ).toBeTruthy();
   });
 
+  test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
+    expect(
+      await page.evaluate(() => {
+        const testDisplayName = 'My actor';
+        const xmlString = `
+      <xml>
+        <scene type="tscene">
+          <object type="tobject">
+            <lookList>
+              <look fileName="My actor or object.png" name="My actor"/>
+            </lookList>
+          </object>
+        </scene>
+      </xml>`;
+        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
+        const catObj = {
+          scenes: [
+            {
+              name: 'tscene',
+              objectList: [
+                {
+                  name: 'tobject',
+                  lookList: [
+                    {
+                      name: testDisplayName,
+                      fileName: 'My actor or object.png'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const expectedID = testDisplayName + '-imgID';
+        const expectedSrc = shareTestContainer.querySelector(
+          '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item'
+        ).src;
+
+        shareTestContainer.querySelector('.catblocks-scene-header').click();
+        shareTestContainer.querySelector('.catblocks-object .card-header').click();
+        shareTestContainer.querySelector('#' + objID + '-looks-tab').click();
+        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
+
+        return (
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item') !==
+            null &&
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').innerHTML ===
+            '<i class="material-icons">search</i>' &&
+          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item').id ===
+            expectedID &&
+          shareTestContainer.querySelector('.imagepreview').src === expectedSrc
+        );
+      })
+    ).toBeTruthy();
+  });
+
   test('JSON with one scene', async () => {
     expect(
       await page.evaluate(() => {
@@ -479,7 +537,7 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.accordion') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML ===
-            '<div style="font-weight: normal;">tobject1</div><i class="material-icons">chevron_left</i>'
+            '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>'
         );
       })
     ).toBeTruthy();
@@ -516,14 +574,10 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const expectedSceneHeaderTextCollapsed =
-          '<div style="font-weight: normal;">tscene</div><i class="material-icons">chevron_left</i>';
-        const expectedCardHeaderTextCollapsed =
-          '<div style="font-weight: normal;">tobject</div><i class="material-icons">chevron_left</i>';
-        const expectedSceneHeaderTextExpanded =
-          '<div style="font-weight: bold;">tscene</div><i class="material-icons">expand_more</i>';
-        const expectedCardHeaderTextExpanded =
-          '<div style="font-weight: bold;">tobject</div><i class="material-icons">expand_more</i>';
+        const expectedSceneHeaderText =
+          '<div class="header-title">tscene</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+        const expectedCardHeaderText =
+          '<div class="header-title">tobject</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const sceneHeaderInitialText = sceneHeader.innerHTML;
@@ -541,13 +595,66 @@ describe('Share catroid program rendering tests', () => {
         const sceneHeaderTextCollapsed = sceneHeader.innerHTML;
         const cardHeaderTextCollapsed = cardHeader.innerHTML;
         return (
-          sceneHeaderInitialText === expectedSceneHeaderTextCollapsed &&
-          cardHeaderInitialText === expectedCardHeaderTextCollapsed &&
-          sceneHeaderTextExpanded === expectedSceneHeaderTextExpanded &&
-          cardHeaderTextExpanded === expectedCardHeaderTextExpanded &&
-          sceneHeaderTextCollapsed === expectedSceneHeaderTextCollapsed &&
-          cardHeaderTextCollapsed === expectedCardHeaderTextCollapsed
+          sceneHeaderInitialText === expectedSceneHeaderText &&
+          cardHeaderInitialText === expectedCardHeaderText &&
+          sceneHeaderTextExpanded === expectedSceneHeaderText &&
+          cardHeaderTextExpanded === expectedCardHeaderText &&
+          sceneHeaderTextCollapsed === expectedSceneHeaderText &&
+          cardHeaderTextCollapsed === expectedCardHeaderText
         );
+      })
+    ).toBeTruthy();
+    await page.waitForSelector('.catblocks-object .card-header', {
+      visible: true
+    });
+  });
+
+  test('scrolling bricks on x axis on mobile share page is working', async () => {
+    await page.setViewport({
+      width: 200,
+      height: 1000
+    });
+    expect(
+      await page.evaluate(() => {
+        const catObj = {
+          scenes: [
+            {
+              name: 'TestScene',
+              objectList: [
+                {
+                  name: 'TestObject',
+                  lookList: [],
+                  soundList: [],
+                  scriptList: [
+                    {
+                      name: 'StartScript',
+                      brickList: [
+                        {
+                          name: 'PlaySoundBrick',
+                          loopOrIfBrickList: [],
+                          elseBrickList: [],
+                          formValues: {},
+                          colorVariation: 0
+                        }
+                      ],
+                      formValues: {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
+        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+        const brickContainer = shareTestContainer.querySelector('.catblocks-script');
+        sceneHeader.click();
+        cardHeader.click();
+        const initialXPosition = brickContainer.scrollLeft;
+        brickContainer.scrollBy(1, 0);
+        const scrolledXPosition = brickContainer.scrollLeft;
+        return initialXPosition !== scrolledXPosition && brickContainer.style.overflowX === 'auto';
       })
     ).toBeTruthy();
   });
