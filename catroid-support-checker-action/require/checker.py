@@ -230,7 +230,7 @@ def main():
             sendSlackMessage(slack_webhook, slack_msg.strip())
     except:
         slack_msg = "Failed to execute checker.py"
-        sendSlackMessage(slack_webhook, slack_msg.strip()
+        sendSlackMessage(slack_webhook, slack_msg.strip())
 
 if __name__ == '__main__':
     main()
