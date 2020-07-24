@@ -1,9 +1,0 @@
-<block type="AskBrick" id="" x="" y="">
-  <field name="DROPDOWN">���</field>
-  <value name="ASK_QUESTION">
-    <shadow type="text" id="">
-      <field name="TEXT">What's your name?</field>
-    </shadow>
-  </value>
-</block>
-

@@ -1,6 +1,0 @@
-<block type="PhiroRGBLightBrick" id="" x="" y="">
-    <field name="DROPDOWN">Right</field>
-    <field name="RED">0</field>
-    <field name="GREEN">255</field>
-    <field name="BLUE">255</field>
-</block>

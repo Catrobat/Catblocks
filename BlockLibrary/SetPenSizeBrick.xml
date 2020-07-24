@@ -1,7 +1,0 @@
-<block type="SetPenSizeBrick" id="" x="" y="">
-  <value name="PEN_SIZE">
-    <shadow type="text" id="">
-      <field name="TEXT">3.15</field>
-    </shadow>
-  </value>
-</block>

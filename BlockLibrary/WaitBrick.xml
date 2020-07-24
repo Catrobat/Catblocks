@@ -1,7 +1,0 @@
-<block type="WaitBrick" id="" x="" y="">
-  <value name="TIME_TO_WAIT_IN_SECONDS">
-    <shadow type="text" id="">
-      <field name="TEXT">1</field>
-    </shadow>
-  </value>
-</block>

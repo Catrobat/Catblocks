@@ -1,7 +1,0 @@
-<block type="SetColorBrick" id="" x="" y="">
-  <value name="COLOR">
-    <shadow type="text" id="">
-      <field name="TEXT">0</field>
-    </shadow>
-  </value>
-</block>

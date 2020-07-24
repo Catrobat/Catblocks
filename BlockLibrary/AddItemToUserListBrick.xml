@@ -1,8 +1,0 @@
-<block type="AddItemToUserListBrick" id="" x="" y="">
-  <field name="DROPDOWN">���</field>
-  <value name="LIST_ADD_ITEM">
-    <shadow type="text" id="">
-      <field name="TEXT">name</field>
-    </shadow>
-  </value>
-</block>

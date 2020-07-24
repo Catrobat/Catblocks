@@ -1,7 +1,0 @@
-<block type="ChangeColorByNBrick" id="" x="" y="">
-  <value name="COLOR_CHANGE">
-    <shadow type="text" id="">
-      <field name="TEXT">25</field>
-    </shadow>
-  </value>
-</block>
