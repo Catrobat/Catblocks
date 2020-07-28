@@ -204,13 +204,21 @@ export class Share {
     for (let i = 0; i < programJSON.scenes.length; i++) {
       const scene = programJSON.scenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
-      const sceneObjectContainer = this.addSceneContainer(
-        scenesContainerID,
-        sceneID,
-        scenesContainer,
-        trimString(scene.name)
-      );
 
+      let sceneObjectContainer = undefined;
+      if (programJSON.scenes.length === 1) {
+        sceneObjectContainer = injectNewDom(scenesContainer, 'div', {
+          class: 'accordion',
+          id: `${sceneID}-accordionObjects`
+        });
+      } else {
+        sceneObjectContainer = this.addSceneContainer(
+          scenesContainerID,
+          sceneID,
+          scenesContainer,
+          trimString(scene.name)
+        );
+      }
       if (scene.objectList == null || scene.objectList.length === 0) {
         const errorContainer = injectNewDom(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
