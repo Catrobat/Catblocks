@@ -13,7 +13,7 @@ import dateutil.parser
 # if some files should be excluded for the checks, add them here
 excluded_js_files = ['index.js']
 
-excluded_java_bricks = ['Brick']
+excluded_java_bricks = ['Brick', 'ParameterizedEndBrick']
 
 map_bricks_scripts = [
     ('WhenScript', 'WhenBrick'),
