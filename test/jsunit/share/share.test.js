@@ -116,6 +116,9 @@ describe('Share catroid program rendering tests', () => {
           scenes: [
             {
               name: 'tscene'
+            },
+            {
+              name: 'tscene2'
             }
           ]
         };
@@ -207,6 +210,9 @@ describe('Share catroid program rendering tests', () => {
                   name: 'tobject2'
                 }
               ]
+            },
+            {
+              name: 'tscene2'
             }
           ]
         };
@@ -435,17 +441,6 @@ describe('Share catroid program rendering tests', () => {
     expect(
       await page.evaluate(() => {
         const testDisplayName = 'My actor';
-        const xmlString = `
-      <xml>
-        <scene type="tscene">
-          <object type="tobject">
-            <lookList>
-              <look fileName="My actor or object.png" name="My actor"/>
-            </lookList>
-          </object>
-        </scene>
-      </xml>`;
-        const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
         const catObj = {
           scenes: [
             {
@@ -461,10 +456,13 @@ describe('Share catroid program rendering tests', () => {
                   ]
                 }
               ]
+            },
+            {
+              name: 'tscene2'
             }
           ]
         };
-        share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
         const objID = shareUtils.generateID('programID-tscene-tobject');
         const expectedID = testDisplayName + '-imgID';
         const expectedSrc = shareTestContainer.querySelector(
@@ -524,6 +522,9 @@ describe('Share catroid program rendering tests', () => {
                   name: 'tobject2'
                 }
               ]
+            },
+            {
+              name: 'tscene2'
             }
           ]
         };
@@ -557,7 +558,7 @@ describe('Share catroid program rendering tests', () => {
     ).toBeFalsy();
   });
 
-  test('Share renders scene and card headers properly', async () => {
+  test('Share renders scene and card headers for one scene properly', async () => {
     expect(
       await page.evaluate(() => {
         const catObj = {
@@ -574,10 +575,65 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const expectedSceneHeaderText =
-          '<div class="header-title">tscene</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const expectedCardHeaderText =
           '<div class="header-title">tobject</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+        const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+        const cardHeaderInitialText = cardHeader.innerHTML;
+        cardHeader.click();
+        cardHeader.setAttribute('aria-expanded', 'true');
+        const cardHeaderTextExpanded = cardHeader.innerHTML;
+        cardHeader.click();
+        cardHeader.setAttribute('aria-expanded', 'false');
+        const cardHeaderTextCollapsed = cardHeader.innerHTML;
+        return (
+          cardHeaderInitialText === expectedCardHeaderText &&
+          cardHeaderTextExpanded === expectedCardHeaderText &&
+          cardHeaderTextCollapsed === expectedCardHeaderText
+        );
+      })
+    ).toBeTruthy();
+    await page.waitForSelector('.catblocks-object .card-header', {
+      visible: true
+    });
+  });
+
+  test('Share renders scene and card headers for multiple scenes properly', async () => {
+    expect(
+      await page.evaluate(() => {
+        const catObj = {
+          scenes: [
+            {
+              name: 'tscene1',
+              objectList: [
+                {
+                  name: 'tobject1'
+                }
+              ]
+            },
+            {
+              name: 'tscene2',
+              objectList: [
+                {
+                  name: 'tobject2'
+                }
+              ]
+            },
+            {
+              name: 'tscene3',
+              objectList: [
+                {
+                  name: 'tobject3'
+                }
+              ]
+            }
+          ]
+        };
+        share.renderProgramJSON('programID', shareTestContainer, catObj);
+
+        const expectedSceneHeaderText =
+          '<div class="header-title">tscene1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+        const expectedCardHeaderText =
+          '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const sceneHeaderInitialText = sceneHeader.innerHTML;
@@ -642,6 +698,9 @@ describe('Share catroid program rendering tests', () => {
                   ]
                 }
               ]
+            },
+            {
+              name: 'tscene2'
             }
           ]
         };
