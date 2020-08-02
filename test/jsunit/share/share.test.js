@@ -218,6 +218,8 @@ describe('Share catroid program rendering tests', () => {
         };
 
         share.renderProgramJSON('programID', shareTestContainer, catObj);
+        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        sceneHeader.click();
 
         const sceneID = shareUtils.generateID('programID-tscene');
         const obj1ID = shareUtils.generateID('programID-tscene-tobject1');
@@ -262,9 +264,10 @@ describe('Share catroid program rendering tests', () => {
         };
 
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-
         const scene1ID = shareUtils.generateID('programID-tscene1');
         const scene2ID = shareUtils.generateID('programID-tscene2');
+        shareTestContainer.querySelector('#' + scene1ID).click();
+        shareTestContainer.querySelector('#' + scene2ID).click();
         const obj1ID = shareUtils.generateID('programID-tscene1-tobject1');
         const obj2ID = shareUtils.generateID('programID-tscene2-tobject2');
 
@@ -463,6 +466,9 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
+        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        sceneHeader.click();
+
         const objID = shareUtils.generateID('programID-tscene-tobject');
         const expectedID = testDisplayName + '-imgID';
         const expectedSrc = shareTestContainer.querySelector(
@@ -530,7 +536,8 @@ describe('Share catroid program rendering tests', () => {
         };
 
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-
+        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        sceneHeader.click();
         return (
           shareTestContainer.querySelector('.catblocks-scene') !== null &&
           shareTestContainer.querySelector('.catblocks-scene-header').innerHTML.length > 0 &&
@@ -635,10 +642,10 @@ describe('Share catroid program rendering tests', () => {
         const expectedCardHeaderText =
           '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        sceneHeader.click();
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const sceneHeaderInitialText = sceneHeader.innerHTML;
         const cardHeaderInitialText = cardHeader.innerHTML;
-        sceneHeader.click();
         cardHeader.click();
         sceneHeader.setAttribute('aria-expanded', 'true');
         cardHeader.setAttribute('aria-expanded', 'true');
@@ -706,9 +713,9 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+        sceneHeader.click();
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const brickContainer = shareTestContainer.querySelector('.catblocks-script');
-        sceneHeader.click();
         cardHeader.click();
         const initialXPosition = brickContainer.scrollLeft;
         brickContainer.scrollBy(1, 0);
