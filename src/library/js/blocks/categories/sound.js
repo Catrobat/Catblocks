@@ -82,5 +82,15 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  StopSoundBrick: {
+    message0: '%{BKY_SOUND_STOP_SOUND}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };

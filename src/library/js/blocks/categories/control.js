@@ -219,5 +219,28 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  ExitStageBrick: {
+    message0: '%{BKY_CONTROL_EXIT_STAGE}'
+  },
+  ForVariableFromToBrick: {
+    message0: '%{BKY_CONTROL_FOR_VARIABLE_FROM_TO}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'FOR_LOOP_FROM',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'FOR_LOOP_TO',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };

@@ -254,5 +254,40 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  ReadVariableFromFileBrick: {
+    message0: '%{BKY_DATA_READ_VARIABLE_FROM_FILE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'READ_FILENAME',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
+  },
+  WriteVariableToFileBrick: {
+    message0: '%{BKY_DATA_WRITE_VARIABLE_TO_FILE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'WRITE_FILENAME',
+        text: 'unset'
+      }
+    ]
   }
 };

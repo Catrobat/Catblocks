@@ -40,5 +40,50 @@ export default {
         text: 'unset'
       }
     ]
+  },
+  AssertUserListsBrick: {
+    message0: '%{BKY_ASSERTION_ASSERT_USER_LISTS}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ASSERT_LISTS_ACTUAL',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'ASSERT_LISTS_EXPECTED',
+        text: 'unset'
+      }
+    ]
+  },
+  ParameterizedBrick: {
+    message0: '%{BKY_ASSERTION_PARAMETERIZED_HEAD}',
+    message1: '%1',
+    message2: '%{BKY_ASSERTION_PARAMETERIZED_BOTTOM}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_input',
+        name: 'ASSERT_LOOP_ACTUAL',
+        text: 'unset'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      }
+    ]
   }
 };

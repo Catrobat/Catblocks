@@ -47,6 +47,11 @@ describe('Filesystem Block tests', () => {
           return false;
         });
         const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
+        if (blockName === 'ParameterizedBrick') {
+          const blockMsg2 = block.message2;
+          const blockMsgName2 = blockMsg2.substring(6, blockMsg2.length - 1);
+          msgArgs.push(BLOCK_MSG_MAPPINGS[blockMsgName2].match(/%\d+/) || []);
+        }
         expect(defArgs.length).toBe(msgArgs.length);
       });
     });
@@ -69,6 +74,11 @@ describe('Filesystem Block tests', () => {
           return false;
         });
         const msgArgs = BLOCK_MSG_MAPPINGS[blockMsgName].match(/%\d+/) || [];
+        if (blockName === 'ParameterizedBrick') {
+          const blockMsg2 = block.message2;
+          const blockMsgName2 = blockMsg2.substring(6, blockMsg2.length - 1);
+          msgArgs.push(BLOCK_MSG_MAPPINGS[blockMsgName2].match(/%\d+/) || []);
+        }
         expect(defArgs.length).toBe(msgArgs.length);
       });
     });
@@ -299,6 +309,21 @@ describe('WebView Block tests', () => {
                   }
                   if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined) {
                     allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);
+                  }
+                  jsBlockIndex++;
+                }
+              }
+              if (jsBlock['args2'] !== undefined) {
+                let jsBlockIndex = 0;
+                while (jsBlock['args2'][jsBlockIndex] !== undefined) {
+                  if (jsBlock['args2'][jsBlockIndex]['value'] !== undefined) {
+                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['value']);
+                  }
+                  if (jsBlock['args2'][jsBlockIndex]['text'] !== undefined) {
+                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['text']);
+                  }
+                  if (jsBlock['args2'][jsBlockIndex]['options'] !== undefined) {
+                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['options'][0][0]);
                   }
                   jsBlockIndex++;
                 }
