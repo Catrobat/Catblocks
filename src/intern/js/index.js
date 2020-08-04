@@ -45,6 +45,7 @@ import { initShareAndRenderPrograms } from './render/utils';
         rtl: isRtl,
         noImageFound: 'No_Image_Available.jpg'
       });
+      window.CatBlocks = CatBlocks;
       window.share = CatBlocks.getInstance().share;
       window.shareUtils = shareUtils;
       window.playground.workspace = Blockly.inject('playworkspace', {
