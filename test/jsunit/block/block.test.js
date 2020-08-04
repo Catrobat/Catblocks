@@ -281,7 +281,10 @@ describe('WebView Block tests', () => {
           topBlock.childBlocks_[0].childBlocks_.push(playgroundWS.newBlock('WaitBrick'));
           topBlock.childBlocks_[0].childBlocks_[0].childBlocks_.push(playgroundWS.newBlock('WaitBrick'));
           playground.zebra();
-          return topBlock.colour_ === topBlock.childBlocks_[0].childBlocks_[0].style.colour_;
+          return (
+            topBlock.colour_ === topBlock.childBlocks_[0].childBlocks_[0].colour_ &&
+            topBlock.colour_ !== topBlock.childBlocks_[0].colour_
+          );
         })
       ).toBeTruthy();
     });
