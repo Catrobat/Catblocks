@@ -298,6 +298,20 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
       }
     });
   }
+
+  if (childBrick && childBrick.inputList && childBrick.inputList[0] && childBrick.inputList[0].fieldRow) {
+    for (let j = 0; j < childBrick.inputList[0].fieldRow.length; j++) {
+      if (childBrick.inputList[0].fieldRow[j].name && childBrick.inputList[0].fieldRow[j].name.endsWith('_INFO')) {
+        if (j > 0) {
+          const val = childBrick.inputList[0].fieldRow[j - 1].getValue();
+          if (val && val.length < childBrick.inputList[0].fieldRow[j - 1].maxDisplayLength) {
+            childBrick.inputList[0].fieldRow[j].visible_ = false;
+          }
+        }
+      }
+    }
+  }
+
   childBrick.initSvg();
   if (brickListType === brickListTypes.brickList) {
     parentBrick.nextConnection.connect(childBrick.previousConnection);

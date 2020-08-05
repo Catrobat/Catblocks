@@ -18,6 +18,15 @@ export default {
         type: 'field_input',
         name: 'PEN_SIZE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PEN_SIZE_INFO'
       }
     ]
   },
@@ -30,14 +39,41 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PEN_COLOR_RED_INFO'
+      },
+      {
         type: 'field_input',
         name: 'PEN_COLOR_GREEN',
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PEN_COLOR_GREEN_INFO'
+      },
+      {
         type: 'field_input',
         name: 'PEN_COLOR_BLUE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PEN_COLOR_BLUE_INFO'
       }
     ]
   },

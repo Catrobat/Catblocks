@@ -14,9 +14,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN2',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN2_INFO'
       }
     ]
   },
@@ -31,6 +49,15 @@ export default {
         type: 'field_input',
         name: 'IF_CONDITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'IF_CONDITION_INFO'
       }
     ],
     args1: [
@@ -55,9 +82,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'RASPI_DIGITAL_PIN_NUMBER_INFO'
+      },
+      {
         type: 'field_input',
         name: 'RASPI_DIGITAL_PIN_VALUE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'RASPI_DIGITAL_PIN_VALUE_INFO'
       }
     ]
   },
@@ -70,14 +115,41 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'RASPI_DIGITAL_PIN_NUMBER_INFO'
+      },
+      {
         type: 'field_input',
         name: 'RASPI_PWM_PERCENTAGE',
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'RASPI_PWM_PERCENTAGE_INFO'
+      },
+      {
         type: 'field_input',
         name: 'RASPI_PWM_FREQUENCY',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'RASPI_PWM_FREQUENCY_INFO'
       }
     ]
   }

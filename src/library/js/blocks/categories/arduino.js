@@ -14,9 +14,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ARDUINO_DIGITAL_PIN_NUMBER_INFO'
+      },
+      {
         type: 'field_input',
         name: 'ARDUINO_DIGITAL_PIN_VALUE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ARDUINO_DIGITAL_PIN_VALUE_INFO'
       }
     ]
   },
@@ -29,9 +47,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ARDUINO_ANALOG_PIN_NUMBER_INFO'
+      },
+      {
         type: 'field_input',
         name: 'ARDUINO_ANALOG_PIN_VALUE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ARDUINO_ANALOG_PIN_VALUE_INFO'
       }
     ]
   }

@@ -15,6 +15,15 @@ export default {
         type: 'field_input',
         name: 'EMBROIDERY_LENGTH',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'EMBROIDERY_LENGTH_INFO'
       }
     ]
   },
@@ -27,9 +36,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ZIGZAG_EMBROIDERY_LENGTH_INFO'
+      },
+      {
         type: 'field_input',
         name: 'ZIGZAG_EMBROIDERY_WIDTH',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ZIGZAG_EMBROIDERY_WIDTH_INFO'
       }
     ]
   },
@@ -40,6 +67,15 @@ export default {
         type: 'field_input',
         name: 'EMBROIDERY_LENGTH',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'EMBROIDERY_LENGTH_INFO'
       }
     ]
   },
