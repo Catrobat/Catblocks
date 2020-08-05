@@ -30,6 +30,7 @@
     <string name="undo">Deshacer</string>
     <string name="new_option">Nuevo&#8230;</string>
     <string name="confirm">Confirmar</string>
+    <string name="ignore">Ignore</string>
     <string name="cancel">Cancelar</string>
     <string name="next">Siguiente</string>
     <string name="back">Atrás</string>
@@ -38,6 +39,9 @@
     <string name="close">Cerrar</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    <string name="once">Once</string>
+    <string name="always">Always</string>
+    <string name="deny">Deny</string>
     <string name="agree">Acepto</string>
     <string name="disagree">No acepto</string>
     <string name="select_all">Seleccionar todos</string>
@@ -87,6 +91,9 @@
     <string name="preference_title">Configuración</string>
     <string name="preference_title_language">Idioma</string>
     <string name="preference_description_language">Establecer idioma de la aplicación</string>
+    <string name="preference_title_web_access">Web access</string>
+    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
+    <string name="preference_screen_web_access_title">Edit trusted domains</string>
     <string name="preference_title_accessibility">Accesibilidad</string>
     <string name="preference_description_accessibility">Cambiar la apariencia de la aplicación</string>
     <string name="preference_title_accessibility_profiles">Perfiles de accesibilidad</string>
@@ -166,6 +173,8 @@
     <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
     <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
         multiplayer variables shared via Bluetooth</string>
+    <string name="preference_title_enable_test_bricks">Testing extension</string>
+    <string name="preference_description_test_bricks">Allows to create tests</string>
     <!-- Scratch Converter activity -->
     <string name="beta">BETA</string>
     <string name="error_scratch_program_not_accessible_any_more">¡Ups! Parece que el proyecto ha desaparecido
@@ -275,6 +284,8 @@
     <string name="am_convert">Convertir</string>
     <string name="am_merge">Merge</string>
     <string name="dialog_confirm_delete">¡No puedes deshacer esto!</string>
+    <string name="dialog_confirm_delete_definition">This will also remove the brick in all
+        other scripts in which it is being used.\nYou cannot undo this!</string>
     <string name="list_headline_sprites">Actores y objetos</string>
     <!-- Options Menu Options -->
     <string name="backpack">Mochila</string>
@@ -284,155 +295,6 @@
     <string name="merge">Merge</string>
     <string name="show_details">Mostrar detalles</string>
     <string name="hide_details">Ocultar detalles</string>
-    <!-- Action Mode Titles -->
-    <!-- Project Action Mode Titles -->
-    <plurals name="am_pack_projects_title">
-        <item quantity="one">Pack %d project</item>
-        <item quantity="other">Pack %d projects</item>
-    </plurals>
-    <plurals name="am_copy_projects_title">
-        <item quantity="one">Copy %d project</item>
-        <item quantity="other">Copy %d projects</item>
-    </plurals>
-    <plurals name="am_delete_projects_title">
-        <item quantity="one">Delete %d project</item>
-        <item quantity="other">Delete %d projects</item>
-    </plurals>
-    <plurals name="am_rename_projects_title">
-        <item quantity="one">Rename %d project</item>
-        <item quantity="other">Rename %d projects</item>
-    </plurals>
-    <plurals name="am_convert_projects_title">
-        <item quantity="one">Convert %d project</item>
-        <item quantity="other">Convert %d projects</item>
-    </plurals>
-    <plurals name="am_merge_projects_title">
-        <item quantity="one">Merge %d project</item>
-        <item quantity="other">Merge %d projects</item>
-    </plurals>
-    <!-- Scene Action Mode Titles -->
-    <plurals name="am_pack_scenes_title">
-        <item quantity="one">Pack %d scene</item>
-        <item quantity="other">Pack %d scenes</item>
-    </plurals>
-    <plurals name="am_unpack_scenes_title">
-        <item quantity="one">Unpack %d scene</item>
-        <item quantity="other">Unpack %d scenes</item>
-    </plurals>
-    <plurals name="am_copy_scenes_title">
-        <item quantity="one">Copiar %d escena</item>
-        <item quantity="other">Copiar %d escenas</item>
-    </plurals>
-    <plurals name="am_delete_scenes_title">
-        <item quantity="one">Delete %d scene</item>
-        <item quantity="other">Delete %d scenes</item>
-    </plurals>
-    <plurals name="am_rename_scenes_title">
-        <item quantity="one">Rename %d scene</item>
-        <item quantity="other">Rename %d scenes</item>
-    </plurals>
-    <!-- Sprite Action Mode Titles -->
-    <plurals name="am_pack_sprites_title">
-        <item quantity="one">Empacar %d actor o objecto</item>
-        <item quantity="other">Empacar %d actores o objectos</item>
-    </plurals>
-    <plurals name="am_unpack_sprites_title">
-        <item quantity="one">Unpack %d actor or object</item>
-        <item quantity="other">Unpack %d actors or objects</item>
-    </plurals>
-    <plurals name="am_copy_sprites_title">
-        <item quantity="one">Copy %d actor or object</item>
-        <item quantity="other">Copy %d actors or objects</item>
-    </plurals>
-    <plurals name="am_delete_sprites_title">
-        <item quantity="one">Delete %d actor or object</item>
-        <item quantity="other">Delete %d actors or objects</item>
-    </plurals>
-    <plurals name="am_rename_sprites_title">
-        <item quantity="one">Rename %d actor or object</item>
-        <item quantity="other">Rename %d actors or objects</item>
-    </plurals>
-    <!-- Look Action Mode Titles -->
-    <plurals name="am_pack_looks_title">
-        <item quantity="one">Pack %d look</item>
-        <item quantity="other">Pack %d looks</item>
-    </plurals>
-    <plurals name="am_unpack_looks_title">
-        <item quantity="one">Unpack %d look</item>
-        <item quantity="other">Unpack %d looks</item>
-    </plurals>
-    <plurals name="am_copy_looks_title">
-        <item quantity="one">Copy %d look</item>
-        <item quantity="other">Copy %d looks</item>
-    </plurals>
-    <plurals name="am_delete_looks_title">
-        <item quantity="one">Eliminar %d apariencia</item>
-        <item quantity="other">Eliminar %d apariencias</item>
-    </plurals>
-    <plurals name="am_rename_looks_title">
-        <item quantity="one">Rename %d look</item>
-        <item quantity="other">Rename %d looks</item>
-    </plurals>
-    <!-- Sound Action Mode Titles -->
-    <plurals name="am_pack_sounds_title">
-        <item quantity="one">Pack %d sound</item>
-        <item quantity="other">Pack %d sounds</item>
-    </plurals>
-    <plurals name="am_unpack_sounds_title">
-        <item quantity="one">Unpack %d sound</item>
-        <item quantity="other">Unpack %d sounds</item>
-    </plurals>
-    <plurals name="am_copy_sounds_title">
-        <item quantity="one">Copy %d sound</item>
-        <item quantity="other">Copy %d sounds</item>
-    </plurals>
-    <plurals name="am_delete_sounds_title">
-        <item quantity="one">Eliminar %d sonido</item>
-        <item quantity="other">Eliminar %d sonidos</item>
-    </plurals>
-    <plurals name="am_rename_sounds_title">
-        <item quantity="one">Rename %d sound</item>
-        <item quantity="other">Rename %d sounds</item>
-    </plurals>
-    <!-- NFC Tag Action Mode Titles -->
-    <plurals name="am_copy_nfc_tags_title">
-        <item quantity="one">Copiar %d etiqueta NFC</item>
-        <item quantity="other">Copiar %d etiquetas NFC</item>
-    </plurals>
-    <plurals name="am_delete_nfc_tags_title">
-        <item quantity="one">Eliminar %d etiqueta NFC</item>
-        <item quantity="other">Eliminar %d etiquetas NFC</item>
-    </plurals>
-    <plurals name="am_rename_nfc_tags_title">
-        <item quantity="one">Renombrar %d etiqueta NFC</item>
-        <item quantity="other">Renombrar %d etiquetas NFC</item>
-    </plurals>
-    <!-- Script Action Mode Titles -->
-    <plurals name="am_pack_scripts_title">
-        <item quantity="one">Pack %d brick</item>
-        <item quantity="other">Pack %d bricks</item>
-    </plurals>
-    <plurals name="am_unpack_scripts_title">
-        <item quantity="one">Unpack %d script</item>
-        <item quantity="other">Unpack %d scripts</item>
-    </plurals>
-    <plurals name="am_copy_scripts_title">
-        <item quantity="one">Copy %d brick</item>
-        <item quantity="other">Copy %d bricks</item>
-    </plurals>
-    <plurals name="am_delete_bricks_title">
-        <item quantity="one">Eliminar %d bloque</item>
-        <item quantity="other">Eliminar %d bloques</item>
-    </plurals>
-    <plurals name="am_delete_scripts_title">
-        <item quantity="one">Delete %d script</item>
-        <item quantity="other">Delete %d scripts</item>
-    </plurals>
-    <!-- Data Item Action Mode Titles -->
-    <plurals name="am_delete_user_data_items_title">
-        <item quantity="one">Delete %d data item</item>
-        <item quantity="other">Delete %d data items</item>
-    </plurals>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">Nueva escena</string>
     <!-- Delete Dialog Titles -->
@@ -468,6 +330,7 @@
         <item quantity="one">¿Eliminar este bloque?</item>
         <item quantity="other">¿Eliminar estos bloques?</item>
     </plurals>
+    <string name="delete_definition">Delete the definition of this brick?</string>
     <!-- Dialog Labels -->
     <string name="project_name_label">Nombre del proyecto</string>
     <string name="scene_name_label">Scene name</string>
@@ -818,11 +681,13 @@
     <!-- Brick context dialog -->
     <string name="brick_context_dialog_move_brick">Move brick</string>
     <string name="brick_context_dialog_move_script">Mover secuencia de comandos</string>
+    <string name="brick_context_dialog_move_definition">Move this definition</string>
     <string name="brick_context_dialog_delete_brick">Delete brick</string>
     <string name="brick_context_dialog_copy_brick">Copiar bloque</string>
     <string name="brick_context_dialog_copy_script">Copiar secuencia de comandos</string>
     <string name="brick_context_dialog_formula_edit_brick">Edit formula</string>
     <string name="brick_context_dialog_delete_script">Eliminar script</string>
+    <string name="brick_context_dialog_delete_definition">Delete this definition</string>
     <string name="brick_context_dialog_comment_in">Enable brick</string>
     <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">Highlight brick parts</string>
@@ -896,9 +761,11 @@
     <string name="prestage_no_gps_sensor_available">\u2022 GPS\n</string>
     <string name="prestage_text_to_speech_error">\u2022 Motor Texto-A-Voz\n</string>
     <string name="prestage_no_back_camera_available">\u2022 Rear camera\n</string>
-    <string name="prestage_no_camera_available">\u2022 Deteccion de cara\n</string>
+    <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
     <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
     <string name="prestage_no_front_camera_available">\u2022 Front camera\n</string>
+    <string name="prestage_no_camera_available">\u2022 Camera\n</string>
+    <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
     <string name="prestage_default_resource_not_available">\u2022 Componente desconocido\n</string>
     <string name="no_nfc_available">NFC no disponible</string>
     <string name="nfc_not_activated">Please activate NFC and press Back to return to the app.</string>
@@ -951,6 +818,8 @@
     <string name="brick_user_defined_default_input_name">Name of input</string>
     <string name="brick_user_defined_default_label">Label text</string>
     <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <string name="brick_user_defined_script_define">Define</string>
+    <string name="brick_user_defined_script_as">as</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"Coloque en "</string>
@@ -1052,6 +921,7 @@
     <!-- Sound bricks -->
     <string name="brick_play_sound">Reproducir sonido</string>
     <string name="brick_play_sound_and_wait">Reproducir sonido y esperar</string>
+    <string name="brick_stop_sound">Stop sound</string>
     <string name="brick_stop_all_sounds">Parar todos los sonidos</string>
     <string name="brick_set_volume_to">Ajustar el volumen a</string>
     <string name="brick_change_volume_by">Cambiar el volumen a</string>
@@ -1073,6 +943,8 @@
     <string name="brick_when_condition_when">Cuando</string>
     <string name="brick_when_becomes_true">se convierte en verdadero</string>
     <string name="brick_wait">Espere</string>
+    <string name="brick_wait_until">Espera hasta que</string>
+    <string name="brick_wait_until_second_part">es verdadero</string>
     <string name="brick_when_gamepad_button">Cuando el botón</string>
     <string name="brick_when_gamepad_button_tapped">del mando es pulsado</string>
     <string name="brick_when_nfc">Cuando NFC</string>
@@ -1096,6 +968,9 @@
     <string name="brick_say_bubble">Decir</string>
     <string name="brick_think_say_for_text">por</string>
     <string name="brick_forever">Por siempre</string>
+    <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_in">in</string>
+    <string name="brick_loop_to">Para</string>
     <string name="brick_repeat">Repetir</string>
     <string name="brick_repeat_until">Repetir hasta que</string>
     <string name="brick_when_touched">Cuando se toca la pantalla</string>
@@ -1103,11 +978,29 @@
     <string name="brick_clone_this">yo mismo</string>
     <string name="brick_when_cloned">Cuando inicie como un clon</string>
     <string name="brick_delete_this_clone">Eliminar este clon</string>
-    <string name="brick_assert_that">Assert:</string>
-    <string name="brick_is_equal_to">equal to expected:</string>
+    <string name="brick_assert_that">Assert</string>
+    <string name="brick_is_equal_to">equals expected</string>
     <string name="brick_wait_till_idle">Espere hasta que todos los otros scripts se hayan detenido</string>
     <string name="brick_tap_at">"Un toque a"</string>
     <string name="brick_finish_stage">Finish stage</string>
+    <string name="brick_finish_tests">Finish tests</string>
+    <string name="brick_assert_lists">Assert lists</string>
+    <string name="brick_assert_actual">Actual:</string>
+    <string name="brick_assert_expected">Expected:</string>
+    <string name="brick_parameterized_assert">assert</string>
+    <string name="brick_parameterized_equals">equals to expected item of</string>
+    <plurals name="brick_parameterized_foreach_plural">
+        <item quantity="one">For each item of</item>
+        <item quantity="other">For each tuple of items of</item>
+    </plurals>
+    <plurals name="brick_parameterized_stored_plural">
+        <item quantity="one">stored in variable with the same name</item>
+        <item quantity="other">stored in variables with the same names</item>
+    </plurals>
+    <plurals name="list_selection_plural">
+        <item quantity="one">%d list selected</item>
+        <item quantity="other">%d lists selected</item>
+    </plurals>
     <plurals name="time_plural">
         <item quantity="one">vez</item>
         <item quantity="other">veces</item>
@@ -1121,6 +1014,15 @@
     <string name="brick_change_variable">Cambie la variable</string>
     <string name="brick_write_variable_on_device">Escribir variable al dispositivo</string>
     <string name="brick_read_variable_from_device">Leer variable al dispositivo</string>
+    <string name="brick_write_variable_to_file_top">Write variable</string>
+    <string name="brick_write_variable_to_file_bottom">to file</string>
+    <string name="brick_write_variable_to_file_default_value">variable.txt</string>
+    <string name="brick_write_variable_to_file_success">"Data successfully written to %1$s"</string>
+    <string name="brick_read_variable_from_file_top">Read variable</string>
+    <string name="brick_read_variable_from_file_center">from file</string>
+    <string name="brick_read_variable_from_file_bottom">y</string>
+    <string name="brick_read_variable_from_file_keep">keep the file</string>
+    <string name="brick_read_variable_from_file_delete">delete the file</string>
     <string name="brick_write_list_on_device">Escribir lista al dispositivo</string>
     <string name="brick_read_list_from_device">Leer lista al dispositivo</string>
     <string name="brick_note_default_value">añada comentario aquí&#8230;</string>
@@ -1138,24 +1040,32 @@
     <string name="brick_replace_item_in_userlist_replace_in_list">Reemplace el elemento de lista</string>
     <string name="brick_replace_item_in_userlist_item_at_index">en la posición</string>
     <string name="brick_replace_item_in_userlist_with_value">con</string>
-    <string name="brick_web_request">Enviar peticion web a</string>
+    <string name="brick_web_request">Enviar petición web a</string>
     <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">y guardar respuesta en</string>
-    <string name="brick_web_request_warning_title">Allow web access?</string>
-    <string name="brick_web_request_warning_message">Be very careful before allowing access, since the
+    <string name="web_request_warning_title">Allow web access?</string>
+    <string name="web_request_warning_message">Be very careful before allowing access, since the
         link may expose your personal information, such as your precise geographical location or any text
-        you have entered to malicious other persons or to the public. See our
+        you have entered to malicious others or to the public. See our
         &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
         be extremely dangerous.
     </string>
-    <string name="brick_look_request">Get image from</string>
+    <string name="web_request_trust_domain_warning_title">Always allow web access?</string>
+    <string name="web_request_trust_domain_warning_message">By always allowing access, you will
+        not be asked again to confirm web addresses from this domain.
+    </string>
+    <string name="trusted_domains_edit_hint">If you want to revoke this permission
+        later, you can remove the entry from the list of trusted domains in
+        the settings of this app.
+    </string>
+    <string name="brick_look_request">Obtener imagen desde</string>
     <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
     <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
     <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
-    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_look_request_result">y usar como apariencia actual</string>
     <string name="brick_background_request_result">and use as current background</string>
-    <string name="brick_look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
-    <string name="brick_look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
     <string name="brick_store_csv_into_userlist_store">Store column</string>
     <string name="brick_store_csv_into_userlist_of">of the</string>
     <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
@@ -1174,6 +1084,12 @@
     <string name="default_project_sprites_animal_wings_down">Alas abajo</string>
     <string name="default_project_sprites_tweet_1">Tweet1</string>
     <string name="default_project_sprites_tweet_2">Tweet2</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_needle_name">Needle</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_outer_loop">Outer Loop</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_inner_loop">Inner Loop</string>
     <!-- Default ChromeCast Values -->
     <string name="default_cast_project_background_name">Fondo</string>
     <string name="default_cast_project_cloud_name">Nubes</string>
@@ -1649,7 +1565,7 @@
     <string name="formula_editor_function_index_of_item">item\'s index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1, * lista de nombre)</string>
     <string name="formula_editor_function_number_of_items">número_de_elementos</string>
-    <string name="formula_editor_function_number_of_items_parameter">(* lista de nombre)</string>
+    <string name="formula_editor_function_number_of_items_parameter">(*nombre de lista*)</string>
     <string name="formula_editor_function_collision">tocar_objeto</string>
     <string name="formula_editor_function_collides_with_edge">tocar_bordes</string>
     <string name="formula_editor_function_touched">tocar_dedos</string>
@@ -1783,10 +1699,10 @@
     <string name="formula_editor_dialog_change_text">Cambiar texto</string>
     <string name="formula_editor_fragment_data_current_items">elementos actuales</string>
     <string name="formula_editor_data_dialog_is_list">Hazlo una lista</string>
-    <string name="formula_editor_sensor_face_detected">si_cara_detected</string>
+    <string name="formula_editor_sensor_face_detected">cara es visible</string>
     <string name="formula_editor_sensor_face_size">tamaño_de_cara</string>
-    <string name="formula_editor_sensor_face_x_position">cara_x_posición</string>
-    <string name="formula_editor_sensor_face_y_position">cara_y_posición</string>
+    <string name="formula_editor_sensor_face_x_position">posición x cara</string>
+    <string name="formula_editor_sensor_face_y_position">posición y cara</string>
     <string name="formula_editor_intro_title_formula_editor">Editor de fórmulas</string>
     <string name="formula_editor_intro_summary_formula_editor">El editor de fórmulas le permite crear fórmulas matemáticas y lógicas que puede utilizar en sus bloques.\n\nPuede avanzar esta pequeña introducción presionando el botón \"Siguiente\" en la esquina inferior derecha, y puede omitirla presionando el botón \"Saltar\" en la esquina inferior izquierda.</string>
     <string name="formula_editor_intro_title_input_field">Campo de entrada</string>
@@ -1825,8 +1741,11 @@
     <string name="brick_choose_camera">Utilizar la cámara</string>
     <string name="choose_camera_front">frontal</string>
     <string name="choose_camera_back">rear</string>
-    <string name="brick_wait_until">Espera hasta que</string>
-    <string name="brick_wait_until_second_part">es verdadero</string>
+    <string name="camera_error_generic">        Something went wrong while trying to use the camera.
+    </string>
+    <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">A</string>
