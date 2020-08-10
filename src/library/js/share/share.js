@@ -14,6 +14,8 @@ import {
   jsonDomToWorkspace
 } from './utils';
 
+const all_blocks = new Map();
+
 export class Share {
   constructor() {
     this.blockly = Blockly;
@@ -21,6 +23,7 @@ export class Share {
     this.workspaceDom = undefined;
     this.workspace = undefined;
     this.cssNode = undefined;
+    all_blocks.clear();
   }
 
   /**
@@ -30,6 +33,33 @@ export class Share {
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
+
+    $('body').on('click', '.blocklyNonEditableText', function () {
+      const block = all_blocks[$(this).parent().attr('data-id')];
+      const element_idx = $(this).parent().children('g').index($(this));
+      const full_formula = block[element_idx];
+      // const displayed_formula = $(this).children('text').text();
+      if (full_formula.length >= Blockly.Tooltip.LIMIT) {
+        $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+        $('#formulaPopupContent').text(full_formula);
+        $('#formulaPopup').modal('show');
+      }
+    });
+
+    $('body').on('click', 'image', function () {
+      if ($(this).attr('xlink:href').endsWith('info_icon.svg')) {
+        const $parent = $(this).parent();
+        const block = all_blocks[$parent.parent().attr('data-id')];
+        const element_idx = $parent.parent().children('g').index($parent);
+        const full_formula = block[element_idx - 1];
+        if (full_formula.length >= Blockly.Tooltip.LIMIT) {
+          $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+          $('#formulaPopupContent').text(full_formula);
+          $('#formulaPopup').modal('show');
+        }
+      }
+    });
+
     // for now only convert when in library
     if (window.CatBlocks) {
       this.insertRightMediaURI();
@@ -108,6 +138,22 @@ export class Share {
       zebraChangeColor(this.workspace.topBlocks_);
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
+
+      // store all block inputs in a map for later use
+      this.workspace.getAllBlocks().forEach(block => {
+        if (!(block.id in all_blocks)) {
+          const input_list = [];
+          try {
+            block.inputList[0].fieldRow.forEach(input => {
+              input_list.push(input.value_);
+            });
+          } catch {
+            console.log('Cannot load input of block!');
+          }
+          all_blocks[block.id] = input_list;
+        }
+      });
+
       svg = oriSvg.cloneNode(true);
       svg.lastElementChild.removeChild(svg.lastElementChild.firstElementChild);
       svg.setAttribute('width', `${sceneWidth * this.config.renderSize}px`);
@@ -424,6 +470,8 @@ export class Share {
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
+    this.generateFormulaModal();
+
     const noLooksText = 'No ' + currentLocaleValues['LOOKS'] + ' found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
       looksContainer.appendChild(
@@ -541,6 +589,27 @@ export class Share {
         )
       );
     }
+  }
+
+  generateFormulaModal() {
+    const formulaModal = `
+      <div class="modal" id="formulaPopup">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="formulaPopupHeader"></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body" id="formulaPopupContent">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal" id="formulaPopupClose">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+    $('body').append(formulaModal);
   }
 
   /**

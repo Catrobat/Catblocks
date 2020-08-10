@@ -34,6 +34,15 @@ export default {
         type: 'field_input',
         name: 'TIME_TO_WAIT_IN_SECONDS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TIME_TO_WAIT_IN_SECONDS_CATBLOCKS_INFO'
       }
     ]
   },
@@ -44,6 +53,15 @@ export default {
         type: 'field_input',
         name: 'NOTE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'NOTE_INFO'
       }
     ]
   },
@@ -58,6 +76,15 @@ export default {
         type: 'field_input',
         name: 'IF_CONDITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'IF_CONDITION_INFO'
       }
     ],
     args1: [
@@ -82,6 +109,15 @@ export default {
         type: 'field_input',
         name: 'IF_CONDITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'IF_CONDITION_INFO'
       }
     ],
     args1: [
@@ -98,6 +134,15 @@ export default {
         type: 'field_input',
         name: 'IF_CONDITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'IF_CONDITION_INFO'
       }
     ]
   },
@@ -111,6 +156,15 @@ export default {
         type: 'field_input',
         name: 'TIMES_TO_REPEAT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TIMES_TO_REPEAT_INFO'
       }
     ],
     args1: [
@@ -140,6 +194,15 @@ export default {
         type: 'field_input',
         name: 'REPEAT_UNTIL_CONDITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'REPEAT_UNTIL_CONDITION_INFO'
       }
     ],
     args1: [
@@ -166,6 +229,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -176,6 +248,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -186,6 +267,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -196,6 +286,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -214,9 +313,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'NFC_NDEF_MESSAGE_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -232,14 +349,41 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_LOOP_FROM_INFO'
+      },
+      {
         type: 'field_input',
         name: 'FOR_LOOP_TO',
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_LOOP_TO_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   }

@@ -220,7 +220,7 @@ describe('WebView Block tests', () => {
     test('formula blocks (without child) are rendered properly', async () => {
       const languageToTest = 'en';
       const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
-      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').trim();
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').replace('%2', '').trim();
       expect(
         await page.evaluate(blockText => {
           const block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
@@ -237,7 +237,7 @@ describe('WebView Block tests', () => {
     test('formula blocks (with left child) are rendered properly', async () => {
       const languageToTest = 'en';
       const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
-      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').trim();
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').replace('%2', '').trim();
       expect(
         await page.evaluate(blockText => {
           const block = playgroundWS.newBlock('ChangeBrightnessByNBrick');
@@ -265,7 +265,7 @@ describe('WebView Block tests', () => {
           const valueToSet = '37';
           block.inputList[0].fieldRow[1].setValue(valueToSet);
           const value = block.inputList[0].fieldRow[1].getValue().toString();
-          let desiredBlockText = blockText.replace('%1', valueToSet);
+          let desiredBlockText = blockText.replace('%1', valueToSet).replace('%2', '');
           desiredBlockText = desiredBlockText.replace(/\s/g, '');
           //check if field text matches when block is in workspace
           return valueToSet === value && block.svgGroup_.textContent.replace(/\s/g, '') === desiredBlockText;

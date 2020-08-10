@@ -12,6 +12,15 @@ export default {
         type: 'field_input',
         name: 'ANIMATION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ANIMATION_INFO'
       }
     ]
   },
@@ -30,9 +39,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'JUMPING_SUMO_SPEED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_SPEED_INFO'
       }
     ]
   },
@@ -45,9 +72,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'JUMPING_SUMO_SPEED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_SPEED_INFO'
       }
     ]
   },
@@ -60,9 +105,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
         type: 'field_input',
         name: 'JUMPING_SUMO_VOLUME',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_VOLUME_INFO'
       }
     ]
   },
@@ -76,6 +139,15 @@ export default {
         type: 'field_input',
         name: 'JUMPING_SUMO_ROTATE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_ROTATE_INFO'
       }
     ]
   },
@@ -86,6 +158,15 @@ export default {
         type: 'field_input',
         name: 'JUMPING_SUMO_ROTATE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_ROTATE_INFO'
       }
     ]
   },

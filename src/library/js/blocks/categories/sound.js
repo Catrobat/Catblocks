@@ -12,6 +12,15 @@ export default {
         type: 'field_input',
         name: 'sound',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'sound_INFO'
       }
     ]
   },
@@ -22,6 +31,15 @@ export default {
         type: 'field_input',
         name: 'sound',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'sound_INFO'
       }
     ]
   },
@@ -35,6 +53,15 @@ export default {
         type: 'field_input',
         name: 'VOLUME',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'VOLUME_INFO'
       }
     ]
   },
@@ -45,6 +72,15 @@ export default {
         type: 'field_input',
         name: 'VOLUME_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'VOLUME_CHANGE_INFO'
       }
     ]
   },
@@ -55,6 +91,15 @@ export default {
         type: 'field_input',
         name: 'SPEAK',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPEAK_INFO'
       }
     ]
   },
@@ -65,6 +110,15 @@ export default {
         type: 'field_input',
         name: 'SPEAK',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPEAK_INFO'
       }
     ]
   },
@@ -77,9 +131,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASK_SPEECH_QUESTION_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -90,6 +162,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   }

@@ -20,9 +20,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -35,9 +53,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -50,9 +86,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -65,9 +119,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -80,9 +152,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -95,9 +185,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -110,9 +218,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -125,9 +251,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
       }
     ]
   },
@@ -141,6 +285,15 @@ export default {
         type: 'field_input',
         name: 'ADRONEANIMATION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ADRONEANIMATION_INFO'
       }
     ]
   },

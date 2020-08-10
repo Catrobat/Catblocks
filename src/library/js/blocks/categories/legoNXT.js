@@ -14,9 +14,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
         type: 'field_input',
         name: 'LEGO_NXT_DEGREES',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_DEGREES_INFO'
       }
     ]
   },
@@ -27,6 +45,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -39,9 +66,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
         type: 'field_input',
         name: 'LEGO_NXT_SPEED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_SPEED_INFO'
       }
     ]
   },
@@ -54,9 +99,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_DURATION_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'LEGO_NXT_FREQUENCY',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_FREQUENCY_INFO'
       }
     ]
   }

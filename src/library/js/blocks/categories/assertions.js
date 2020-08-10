@@ -14,9 +14,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_POSITION_INFO'
+      },
+      {
         type: 'field_input',
         name: 'Y_POSITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_POSITION_INFO'
       }
     ]
   },
@@ -35,9 +53,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASSERT_EQUALS_ACTUAL_INFO'
+      },
+      {
         type: 'field_input',
         name: 'ASSERT_EQUALS_EXPECTED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASSERT_EQUALS_EXPECTED_INFO'
       }
     ]
   },
@@ -50,9 +86,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASSERT_LISTS_ACTUAL_INFO'
+      },
+      {
         type: 'field_input',
         name: 'ASSERT_LISTS_EXPECTED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASSERT_LISTS_EXPECTED_INFO'
       }
     ]
   },
@@ -65,6 +119,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ],
     args1: [
@@ -80,9 +143,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASSERT_LOOP_ACTUAL_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   }

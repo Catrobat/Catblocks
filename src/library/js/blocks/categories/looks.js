@@ -12,6 +12,15 @@ export default {
         type: 'field_input',
         name: 'look',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'look_INFO'
       }
     ]
   },
@@ -22,6 +31,15 @@ export default {
         type: 'field_input',
         name: 'LOOK_INDEX',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LOOK_INDEX_INFO'
       }
     ]
   },
@@ -38,6 +56,15 @@ export default {
         type: 'field_input',
         name: 'SIZE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SIZE_INFO'
       }
     ]
   },
@@ -56,9 +83,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ASK_QUESTION_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -69,6 +114,15 @@ export default {
         type: 'field_input',
         name: 'STRING',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STRING_INFO'
       }
     ]
   },
@@ -81,9 +135,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STRING_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DURATION_IN_SECONDS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DURATION_IN_SECONDS_INFO'
       }
     ]
   },
@@ -94,6 +166,15 @@ export default {
         type: 'field_input',
         name: 'STRING',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STRING_INFO'
       }
     ]
   },
@@ -106,9 +187,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STRING_INFO'
+      },
+      {
         type: 'field_input',
         name: 'DURATION_IN_SECONDS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DURATION_IN_SECONDS_INFO'
       }
     ]
   },
@@ -119,6 +218,15 @@ export default {
         type: 'field_input',
         name: 'TRANSPARENCY',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TRANSPARENCY_INFO'
       }
     ]
   },
@@ -129,6 +237,15 @@ export default {
         type: 'field_input',
         name: 'SIZE_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SIZE_CHANGE_INFO'
       }
     ]
   },
@@ -139,6 +256,15 @@ export default {
         type: 'field_input',
         name: 'TRANSPARENCY_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TRANSPARENCY_CHANGE_INFO'
       }
     ]
   },
@@ -149,6 +275,15 @@ export default {
         type: 'field_input',
         name: 'BRIGHTNESS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'BRIGHTNESS_INFO'
       }
     ]
   },
@@ -159,6 +294,15 @@ export default {
         type: 'field_input',
         name: 'BRIGHTNESS_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'BRIGHTNESS_CHANGE_INFO'
       }
     ]
   },
@@ -169,6 +313,15 @@ export default {
         type: 'field_input',
         name: 'COLOR',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'COLOR_INFO'
       }
     ]
   },
@@ -179,6 +332,15 @@ export default {
         type: 'field_input',
         name: 'COLOR_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'COLOR_CHANGE_INFO'
       }
     ]
   },
@@ -192,6 +354,15 @@ export default {
         type: 'field_input',
         name: 'look',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'look_INFO'
       }
     ]
   },
@@ -202,6 +373,15 @@ export default {
         type: 'field_input',
         name: 'LOOK_INDEX',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LOOK_INDEX_INFO'
       }
     ]
   },
@@ -212,6 +392,15 @@ export default {
         type: 'field_input',
         name: 'look',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'look_INFO'
       }
     ]
   },
@@ -222,6 +411,15 @@ export default {
         type: 'field_input',
         name: 'LOOK_INDEX',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LOOK_INDEX_INFO'
       }
     ]
   },
@@ -232,6 +430,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -242,6 +449,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -252,6 +468,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -262,6 +487,15 @@ export default {
         type: 'field_input',
         name: 'BACKGROUND_REQUEST',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'BACKGROUND_REQUEST_INFO'
       }
     ]
   },
@@ -272,6 +506,15 @@ export default {
         type: 'field_input',
         name: 'LOOK_REQUEST',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LOOK_REQUEST_INFO'
       }
     ]
   }

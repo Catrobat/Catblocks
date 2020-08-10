@@ -14,9 +14,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_POSITION_INFO'
+      },
+      {
         type: 'field_input',
         name: 'Y_POSITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_POSITION_INFO'
       }
     ]
   },
@@ -27,6 +45,15 @@ export default {
         type: 'field_input',
         name: 'X_POSITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_POSITION_INFO'
       }
     ]
   },
@@ -37,6 +64,15 @@ export default {
         type: 'field_input',
         name: 'Y_POSITION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_POSITION_INFO'
       }
     ]
   },
@@ -47,6 +83,15 @@ export default {
         type: 'field_input',
         name: 'X_POSITION_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_POSITION_CHANGE_INFO'
       }
     ]
   },
@@ -57,6 +102,15 @@ export default {
         type: 'field_input',
         name: 'Y_POSITION_CHANGE',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_POSITION_CHANGE_INFO'
       }
     ]
   },
@@ -67,6 +121,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -80,6 +143,15 @@ export default {
         type: 'field_input',
         name: 'STEPS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STEPS_INFO'
       }
     ]
   },
@@ -90,6 +162,15 @@ export default {
         type: 'field_input',
         name: 'TURN_RIGHT_DEGREES',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TURN_RIGHT_DEGREES_INFO'
       }
     ]
   },
@@ -100,6 +181,15 @@ export default {
         type: 'field_input',
         name: 'TURN_LEFT_DEGREES',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TURN_LEFT_DEGREES_INFO'
       }
     ]
   },
@@ -110,6 +200,15 @@ export default {
         type: 'field_input',
         name: 'DEGREES',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DEGREES_INFO'
       }
     ]
   },
@@ -120,6 +219,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -130,6 +238,15 @@ export default {
         type: 'field_input',
         name: 'SPINNER',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
       }
     ]
   },
@@ -142,14 +259,41 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DURATION_IN_SECONDS_INFO'
+      },
+      {
         type: 'field_input',
         name: 'X_DESTINATION',
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_DESTINATION_INFO'
+      },
+      {
         type: 'field_input',
         name: 'Y_DESTINATION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_DESTINATION_INFO'
       }
     ]
   },
@@ -160,6 +304,15 @@ export default {
         type: 'field_input',
         name: 'STEPS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'STEPS_INFO'
       }
     ]
   },
@@ -173,6 +326,15 @@ export default {
         type: 'field_input',
         name: 'VIBRATE_DURATION_IN_SECONDS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'VIBRATE_DURATION_IN_SECONDS_INFO'
       }
     ]
   },
@@ -183,6 +345,15 @@ export default {
         type: 'field_input',
         name: 'DROPDOWN',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -195,9 +366,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_VELOCITY_X_INFO'
+      },
+      {
         type: 'field_input',
         name: 'PHYSICS_VELOCITY_Y',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_VELOCITY_Y_INFO'
       }
     ]
   },
@@ -208,6 +397,15 @@ export default {
         type: 'field_input',
         name: 'PHYSICS_TURN_LEFT_SPEED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_TURN_LEFT_SPEED_INFO'
       }
     ]
   },
@@ -218,6 +416,15 @@ export default {
         type: 'field_input',
         name: 'PHYSICS_TURN_RIGHT_SPEED',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_TURN_RIGHT_SPEED_INFO'
       }
     ]
   },
@@ -230,9 +437,27 @@ export default {
         text: 'unset'
       },
       {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_GRAVITY_X_INFO'
+      },
+      {
         type: 'field_input',
         name: 'PHYSICS_GRAVITY_Y',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_GRAVITY_Y_INFO'
       }
     ]
   },
@@ -243,6 +468,15 @@ export default {
         type: 'field_input',
         name: 'PHYSICS_MASS',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_MASS_INFO'
       }
     ]
   },
@@ -253,6 +487,15 @@ export default {
         type: 'field_input',
         name: 'PHYSICS_BOUNCE_FACTOR',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_BOUNCE_FACTOR_INFO'
       }
     ]
   },
@@ -263,6 +506,15 @@ export default {
         type: 'field_input',
         name: 'PHYSICS_FRICTION',
         text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHYSICS_FRICTION_INFO'
       }
     ]
   }

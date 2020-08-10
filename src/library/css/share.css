@@ -141,3 +141,7 @@ img {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+#formulaPopupContent {
+  word-wrap: break-word;
+}
