@@ -280,19 +280,33 @@ export class Share {
         continue;
       }
 
-      options.object.sceneName = scene.name;
-      for (let j = 0; j < scene.objectList.length; j++) {
-        const object = scene.objectList[j];
-        const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
-
-        this.renderObjectJSON(
-          objectID,
-          `${sceneID}-accordionObjects`,
-          sceneObjectContainer,
-          object,
-          parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
-        );
+      if (programJSON.scenes.length === 1) {
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+      } else {
+        let clicked = false;
+        document.getElementById(sceneID).onclick = () => {
+          if (clicked === false) {
+            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+          }
+          clicked = true;
+        };
       }
+    }
+  }
+
+  renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer) {
+    options.object.sceneName = scene.name;
+    for (let j = 0; j < scene.objectList.length; j++) {
+      const object = scene.objectList[j];
+      const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
+
+      this.renderObjectJSON(
+        objectID,
+        `${sceneID}-accordionObjects`,
+        sceneObjectContainer,
+        object,
+        parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
+      );
     }
   }
 
