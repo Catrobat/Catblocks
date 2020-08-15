@@ -8,13 +8,15 @@ import {
   generateID,
   defaultOptions,
   parseOptions,
-  injectNewDom,
   trimString,
   zebraChangeColor,
-  jsonDomToWorkspace
+  jsonDomToWorkspace,
+  generateNewDOM,
+  injectNewDom
 } from './utils';
 
 const all_blocks = new Map();
+const rendered_scenes = new Map();
 
 export class Share {
   constructor() {
@@ -24,6 +26,7 @@ export class Share {
     this.workspace = undefined;
     this.cssNode = undefined;
     all_blocks.clear();
+    rendered_scenes.clear();
   }
 
   /**
@@ -33,6 +36,7 @@ export class Share {
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
+    this.generateFormulaModal();
 
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
@@ -176,12 +180,12 @@ export class Share {
    * @returns {Element} new created scene objects container
    */
   addSceneContainer(accordionID, sceneID, container, sceneName) {
-    const sceneContainer = injectNewDom(container, 'div', {
+    const sceneContainer = generateNewDOM(container, 'div', {
       class: 'catblocks-scene card',
       id: sceneID
     });
 
-    const sceneHeader = injectNewDom(sceneContainer, 'div', {
+    const sceneHeader = generateNewDOM(sceneContainer, 'div', {
       class: 'catblocks-scene-header card-header d-flex justify-content-between expansion-header',
       id: `${sceneID}-header`,
       'data-toggle': 'collapse',
@@ -196,18 +200,18 @@ export class Share {
       sceneHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
 
-    const sceneObjectContainer = injectNewDom(sceneContainer, 'div', {
+    const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
       class: 'catblocks-object-container collapse',
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
       'data-parent': `#${accordionID}`
     });
 
-    const cardBody = injectNewDom(sceneObjectContainer, 'div', {
+    const cardBody = generateNewDOM(sceneObjectContainer, 'div', {
       class: 'card-body'
     });
 
-    const accordionObjects = injectNewDom(cardBody, 'div', {
+    const accordionObjects = generateNewDOM(cardBody, 'div', {
       class: 'accordion',
       id: `${sceneID}-accordionObjects`
     });
@@ -225,18 +229,19 @@ export class Share {
   renderProgramJSON(programID, container, programJSON, options = {}) {
     options = parseOptions(options, defaultOptions);
     // create row and col
-    const programContainer = this.createProgramContainer(generateID(programID), container);
+    const programContainers = this.createProgramContainer(generateID(programID), undefined);
+    const programContainer = programContainers[1];
     const scenesContainerID = `${generateID(programID)}-accordionScenes`;
-    const scenesContainer = injectNewDom(programContainer, 'div', {
+    const scenesContainer = generateNewDOM(programContainer, 'div', {
       class: 'catblocks-scene-container accordion',
       id: scenesContainerID
     });
 
     if (programJSON == null || programJSON.scenes == null || programJSON.scenes.length === 0) {
-      const errorContainer = injectNewDom(scenesContainer, 'div', {
+      const errorContainer = generateNewDOM(scenesContainer, 'div', {
         class: 'catblocks-scene card'
       });
-      injectNewDom(
+      generateNewDOM(
         errorContainer,
         'div',
         {
@@ -244,6 +249,7 @@ export class Share {
         },
         'Empty program found'
       );
+      container.appendChild(programContainers[0]);
       throw new Error('Empty program found');
     }
 
@@ -253,7 +259,7 @@ export class Share {
 
       let sceneObjectContainer = undefined;
       if (programJSON.scenes.length === 1) {
-        sceneObjectContainer = injectNewDom(scenesContainer, 'div', {
+        sceneObjectContainer = generateNewDOM(scenesContainer, 'div', {
           class: 'accordion',
           id: `${sceneID}-accordionObjects`
         });
@@ -266,10 +272,10 @@ export class Share {
         );
       }
       if (scene.objectList == null || scene.objectList.length === 0) {
-        const errorContainer = injectNewDom(sceneObjectContainer, 'div', {
+        const errorContainer = generateNewDOM(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
         });
-        injectNewDom(
+        generateNewDOM(
           errorContainer,
           'div',
           {
@@ -283,18 +289,23 @@ export class Share {
       if (programJSON.scenes.length === 1) {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
       } else {
-        let clicked = false;
-        document.getElementById(sceneID).onclick = () => {
-          if (clicked === false) {
-            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
-          }
-          clicked = true;
-        };
+        $('body').on('click', `#${sceneID}`, () => {
+          this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+        });
       }
     }
+
+    container.appendChild(programContainers[0]);
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer) {
+    if (rendered_scenes[sceneID] == true) {
+      return;
+    }
+    rendered_scenes[sceneID] = true;
+
+    const performanceContainer = generateNewDOM(undefined, 'div');
+
     options.object.sceneName = scene.name;
     for (let j = 0; j < scene.objectList.length; j++) {
       const object = scene.objectList[j];
@@ -303,11 +314,13 @@ export class Share {
       this.renderObjectJSON(
         objectID,
         `${sceneID}-accordionObjects`,
-        sceneObjectContainer,
+        performanceContainer,
         object,
         parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
       );
     }
+
+    sceneObjectContainer.appendChild(performanceContainer);
   }
 
   /**
@@ -319,14 +332,14 @@ export class Share {
    * @param {Object} [options=defaultOptions.object]
    */
   renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, options = defaultOptions.object) {
-    const objectCard = injectNewDom(sceneObjectContainer, 'div', {
+    const objectCard = generateNewDOM(sceneObjectContainer, 'div', {
       class: 'catblocks-object card',
       id: objectID
     });
 
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
-    const cardHeader = injectNewDom(objectCard, 'div', {
+    const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
       'data-toggle': 'collapse',
@@ -346,7 +359,7 @@ export class Share {
       cardHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
 
-    const objectContentContainer = injectNewDom(objectCard, 'div', {
+    const objectContentContainer = generateNewDOM(objectCard, 'div', {
       class: 'collapse',
       id: objCollapseOneSceneID,
       'aria-labelledby': objHeadingID,
@@ -354,7 +367,7 @@ export class Share {
     });
     const currentLocaleValues = Blockly.CatblocksMsgs.getCurrentLocaleValues();
     this.generateTabs(objectContentContainer, objectID, object, currentLocaleValues);
-    const contentContainer = injectNewDom(objectContentContainer, 'div', {
+    const contentContainer = generateNewDOM(objectContentContainer, 'div', {
       class: 'tab-content card-body'
     });
 
@@ -372,7 +385,7 @@ export class Share {
    * @param {Object} [options=defaultOptions.object]
    */
   generateSounds(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
-    const soundsContainer = injectNewDom(container, 'div', {
+    const soundsContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-sounds`,
       role: 'tabpanel',
@@ -382,7 +395,7 @@ export class Share {
     const noSoundsText = 'No ' + currentLocaleValues['SOUNDS'] + ' found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
       soundsContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           soundsContainer,
           'p',
           {
@@ -397,17 +410,17 @@ export class Share {
       return;
     }
 
-    const group = injectNewDom(soundsContainer, 'div', {
+    const group = generateNewDOM(soundsContainer, 'div', {
       class: 'list-group-flush'
     });
 
     let failed = 0;
     for (const sound of object.soundList) {
-      const row = injectNewDom(group, 'div', {
+      const row = generateNewDOM(group, 'div', {
         class: 'list-group-item row'
       });
 
-      const col = injectNewDom(row, 'div', {
+      const col = generateNewDOM(row, 'div', {
         class: 'col-12'
       });
 
@@ -432,7 +445,7 @@ export class Share {
         displaySoundName = sound.fileName;
       }
 
-      const soundName = injectNewDom(
+      const soundName = generateNewDOM(
         col,
         'span',
         {
@@ -444,11 +457,11 @@ export class Share {
         soundName.style.textAlign = 'right';
       }
 
-      const audioContainer = injectNewDom(col, 'audio', {
+      const audioContainer = generateNewDOM(col, 'audio', {
         class: 'catblocks-object-sound-item',
         controls: 'controls'
       });
-      injectNewDom(audioContainer, 'source', {
+      generateNewDOM(audioContainer, 'source', {
         src: src
       });
     }
@@ -456,7 +469,7 @@ export class Share {
     if (failed > 0) {
       const failedSoundsText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SOUNDS'];
       soundsContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           soundsContainer,
           'p',
           {
@@ -477,19 +490,17 @@ export class Share {
    * @param {Object} [options=defaultOptions.object]
    */
   generateLooks(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
-    const looksContainer = injectNewDom(container, 'div', {
+    const looksContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-looks`,
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
-    this.generateFormulaModal();
-
     const noLooksText = 'No ' + currentLocaleValues['LOOKS'] + ' found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
       looksContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           looksContainer,
           'p',
           {
@@ -504,19 +515,19 @@ export class Share {
       return;
     }
 
-    const group = injectNewDom(looksContainer, 'div', {
+    const group = generateNewDOM(looksContainer, 'div', {
       class: 'list-group-flush'
     });
 
     let failed = 0;
     for (const look of object.lookList) {
-      const row = injectNewDom(group, 'div', {
+      const row = generateNewDOM(group, 'div', {
         class: 'list-group-item align-items-center'
       });
-      const col = injectNewDom(row, 'div', {
+      const col = generateNewDOM(row, 'div', {
         class: 'col-3'
       });
-      const button = injectNewDom(row, 'span', {
+      const button = generateNewDOM(row, 'span', {
         class: 'align-items-center'
       });
 
@@ -542,8 +553,8 @@ export class Share {
         displayLookName = look.fileName;
       }
 
-      const imgID = `${displayLookName}-imgID`;
-      injectNewDom(
+      const imgID = generateID(`${objectID}-${displayLookName}`) + '-imgID';
+      generateNewDOM(
         col,
         'img',
         {
@@ -556,12 +567,18 @@ export class Share {
         displayLookName
       );
 
-      document.getElementById(imgID).onclick = function () {
-        document.getElementById('modalHeader').innerHTML = displayLookName;
-        document.getElementById('modalImg').src = this.src;
-      };
+      // document.getElementById(imgID).onclick = function () {
+      //   document.getElementById('modalHeader').innerHTML = displayLookName;
+      //   document.getElementById('modalImg').src = this.src;
+      // };
 
-      const lookName = injectNewDom(
+      // register on click on image
+      $('body').on('click', `#${imgID}`, () => {
+        $('#modalHeader').text(displayLookName);
+        $('#modalImg').attr('src', src);
+      });
+
+      const lookName = generateNewDOM(
         row,
         'div',
         {
@@ -570,8 +587,8 @@ export class Share {
         look.name
       );
 
-      const magnifyingGlassID = 'button ' + displayLookName;
-      const magnifyingGlass = injectNewDom(button, 'button', {
+      const magnifyingGlassID = generateID(`${objectID}-button-${displayLookName}`);
+      const magnifyingGlass = generateNewDOM(button, 'button', {
         class: 'search',
         id: magnifyingGlassID,
         'data-toggle': 'modal',
@@ -579,11 +596,19 @@ export class Share {
         name: 'not clicked'
       });
       magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
-      document.getElementById(magnifyingGlassID).onclick = function () {
-        document.getElementById('modalHeader').innerHTML = displayLookName;
-        document.getElementById('modalImg').src = src;
+
+      // register on click on magnifying glass
+      $('body').on('click', `#${magnifyingGlassID}`, () => {
+        $('#modalHeader').text(displayLookName);
+        $('#modalImg').attr('src', src);
         magnifyingGlass.name = 'now got clicked!';
-      };
+      });
+
+      // document.getElementById(magnifyingGlassID).onclick = function () {
+      //   document.getElementById('modalHeader').innerHTML = displayLookName;
+      //   document.getElementById('modalImg').src = src;
+      //   magnifyingGlass.name = 'now got clicked!';
+      // };
 
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
@@ -593,7 +618,7 @@ export class Share {
     if (failed > 0) {
       const failedLooksText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['LOOKS'];
       looksContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           looksContainer,
           'p',
           {
@@ -634,7 +659,7 @@ export class Share {
    * @param {Object} currentLocaleValues
    */
   generateScripts(container, objectID, object, currentLocaleValues) {
-    const wrapperContainer = injectNewDom(container, 'div', {
+    const wrapperContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
       role: 'tabpanel',
@@ -643,7 +668,7 @@ export class Share {
     if (!object || !object.scriptList || object.scriptList.length <= 0) {
       const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
       wrapperContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           wrapperContainer,
           'p',
           {
@@ -659,7 +684,7 @@ export class Share {
     }
     let failed = 0;
     for (let i = 0; i < object.scriptList.length; i++) {
-      const scriptContainer = injectNewDom(wrapperContainer, 'div', {
+      const scriptContainer = generateNewDOM(wrapperContainer, 'div', {
         class: 'catblocks-script'
       });
       if (this.config.rtl) {
@@ -678,7 +703,7 @@ export class Share {
     if (failed > 0) {
       const failedScriptText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SCRIPTS'];
       wrapperContainer.appendChild(
-        injectNewDom(
+        generateNewDOM(
           wrapperContainer,
           'p',
           {
@@ -716,19 +741,19 @@ export class Share {
       }
     }
 
-    const tabs = injectNewDom(container, 'div', {
+    const tabs = generateNewDOM(container, 'div', {
       class: 'catro-tabs'
     });
-    const ul = injectNewDom(tabs, 'ul', {
+    const ul = generateNewDOM(tabs, 'ul', {
       class: 'nav nav-tabs nav-fill',
       id: `${objectID}-tabs`,
       role: 'tablist'
     });
 
-    const liScript = injectNewDom(ul, 'li', {
+    const liScript = generateNewDOM(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(
+    generateNewDOM(
       liScript,
       'a',
       {
@@ -743,10 +768,10 @@ export class Share {
       `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`
     );
 
-    const liLooks = injectNewDom(ul, 'li', {
+    const liLooks = generateNewDOM(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(
+    generateNewDOM(
       liLooks,
       'a',
       {
@@ -761,10 +786,10 @@ export class Share {
       `${currentLocaleValues['LOOKS']} (${object.lookList.length})`
     );
 
-    const liSounds = injectNewDom(ul, 'li', {
+    const liSounds = generateNewDOM(ul, 'li', {
       class: 'nav-item'
     });
-    injectNewDom(
+    generateNewDOM(
       liSounds,
       'a',
       {
@@ -788,15 +813,15 @@ export class Share {
    * @memberof Share
    */
   createProgramContainer(containerID, container) {
-    const row = injectNewDom(container, 'div', {
+    const row = generateNewDOM(container, 'div', {
       class: 'row',
       id: containerID
     });
 
-    const col = injectNewDom(row, 'div', {
+    const col = generateNewDOM(row, 'div', {
       class: 'col-12'
     });
 
-    return col;
+    return [row, col];
   }
 }

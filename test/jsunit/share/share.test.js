@@ -470,7 +470,7 @@ describe('Share catroid program rendering tests', () => {
         sceneHeader.click();
 
         const objID = shareUtils.generateID('programID-tscene-tobject');
-        const expectedID = testDisplayName + '-imgID';
+        const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
         const expectedSrc = shareTestContainer.querySelector(
           '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item'
         ).src;
