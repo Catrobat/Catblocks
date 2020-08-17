@@ -44,7 +44,7 @@ class Brick {
 
 const sceneList = [];
 let xmlDoc = undefined;
-const supportedAppVersion = 0.994;
+const supportedAppVersion = 0.9994;
 
 let MESSAGES = {};
 
