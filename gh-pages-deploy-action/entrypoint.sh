@@ -11,7 +11,7 @@ cd /github/workspace/
 yarn install
 yarn clean
 yarn render:build
-$RETVALUE=$?
+RETVALUE="$?"
 
 mv ./dist ./../dist
 
