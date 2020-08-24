@@ -166,5 +166,52 @@ export default {
         name: 'DROPDOWN_INFO'
       }
     ]
+  },
+  TapForBrick: {
+    message0: '%{BKY_ASSERTION_TAP_FOR}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'X_POSITION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'X_POSITION_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'Y_POSITION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'Y_POSITION_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'FOR_DURATION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_DURATION_INFO'
+      }
+    ]
   }
 };
