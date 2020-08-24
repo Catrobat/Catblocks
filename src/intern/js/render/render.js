@@ -24,7 +24,12 @@ export async function renderAllPrograms(container, path) {
     throw new Error('Page is undefined');
   }
 
+  if (file.statusText === 'Not Found') {
+    throw new Error('INFO: Found no Programs');
+  }
+
   const files = page.getElementsByTagName('ul')[0] || undefined;
+
   if (files === undefined || files.childElementCount === 0) {
     throw new Error('No Files in List');
   }

@@ -188,7 +188,11 @@ export async function initShareAndRenderPrograms(programPath, language, isRtl) {
   try {
     await renderAllPrograms(programContainer, programPath);
   } catch (e) {
-    console.log(e);
+    if (e.message.trim() !== 'INFO: Found no Programs') {
+      console.log(e);
+    } else {
+      console.log(e.message);
+    }
     if (!(await loadProjectByURLParameter(programContainer))) {
       initializeFileDropper(programContainer);
     }
