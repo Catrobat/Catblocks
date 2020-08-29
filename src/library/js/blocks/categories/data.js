@@ -640,5 +640,24 @@ export default {
         name: 'WRITE_FILENAME_INFO'
       }
     ]
+  },
+  WriteEmbroideryToFileBrick: {
+    message0: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
   }
 };
