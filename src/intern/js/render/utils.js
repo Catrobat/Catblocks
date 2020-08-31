@@ -55,43 +55,68 @@ export function updateView(event) {
  * @memberof FileDropper
  */
 export function generateBase64Src(fileName, fileExt, base64) {
+  const dataString = `charset=utf-8;base64,${base64}`;
+
   // images
-  if (fileExt.toLowerCase() === 'png' || fileExt.toLowerCase().includes('png')) {
-    return 'data:image/png;charset=utf-8;base64,' + base64;
-  }
-  if (fileExt.toLowerCase() === 'jpg' || fileExt.toLowerCase().includes('jpg')) {
-    return 'data:image/jpg;charset=utf-8;base64,' + base64;
-  }
-  if (fileExt.toLowerCase() === 'jpeg' || fileExt.toLowerCase().includes('jpeg')) {
-    return 'data:image/jpeg;charset=utf-8;base64,' + base64;
+  const imageString = getBase64StringPart(fileExt, 'image', {
+    png: 'png',
+    jpg: 'jpg',
+    jpeg: 'jpeg',
+    gif: 'gif',
+    svg: 'svg+xml',
+    bmp: 'bmp'
+  });
+  if (imageString != null) {
+    return imageString + dataString;
   }
 
   // sound
-  if (fileExt.toLowerCase() === 'wav' || fileExt.toLowerCase().includes('wav')) {
-    return 'data:audio/wav;charset=utf-8;base64,' + base64;
-  }
-  if (fileExt.toLowerCase() === 'mp3' || fileExt.toLowerCase().includes('mp3')) {
-    return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+  const soundString = getBase64StringPart(fileExt, 'audio', {
+    wav: 'wav',
+    mp3: 'mp3'
+  });
+  if (soundString != null) {
+    return soundString + dataString;
   }
 
   // video
-  if (fileExt.toLowerCase() === 'mp4' || fileExt.toLowerCase().includes('mp4')) {
-    return 'data:video/mp4;charset=utf-8;base64,' + base64;
+  const videoString = getBase64StringPart(fileExt, 'video', {
+    mp4: 'mp4'
+  });
+  if (videoString != null) {
+    return videoString + dataString;
   }
 
   // last try
   if (fileName.includes('/images/')) {
     console.warn('generateBase64Src: guessing Image type for ' + fileName);
-    return 'data:image/png;charset=utf-8;base64,' + base64;
+    return `data:image;${dataString}`;
   }
   if (fileName.includes('/sounds/')) {
     console.warn('generateBase64Src: guessing Sound type for ' + fileName);
-    return 'data:audio/mp3;charset=utf-8;base64,' + base64;
+    return `data:audio;${dataString}`;
   }
 
   // ignore the rest
   console.warn('generateBase64Src: Ignoring File ' + fileName);
   return '';
+}
+
+/**
+ * Iterate over possible file extension and get the data string with MIME-Type
+ * @param {string} fileExt extension of the file
+ * @param {string} typeString image/audio/video
+ * @param {object} typeObject extension => MIME-Type
+ */
+function getBase64StringPart(fileExt, typeString, typeObject) {
+  for (const fileType in typeObject) {
+    if (Object.prototype.hasOwnProperty.call(typeObject, fileType)) {
+      const element = typeObject[fileType];
+      if (fileExt.toLocaleLowerCase() === fileType || fileExt.toLowerCase().includes(fileType)) {
+        return `data:${typeString}/${element};`;
+      }
+    }
+  }
 }
 
 /**
