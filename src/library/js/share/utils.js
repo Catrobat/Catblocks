@@ -76,6 +76,23 @@ export const injectNewDom = (container, tagName, attributes, textContent) => {
   return subContainer;
 };
 
+export const generateNewDOM = (container, tagName, attrs, textContent) => {
+  const newElement = document.createElement(tagName);
+  for (const attrKey in attrs) {
+    newElement.setAttribute(attrKey, attrs[attrKey]);
+  }
+
+  if (textContent) {
+    newElement.textContent = textContent;
+  }
+
+  if (container) {
+    container.appendChild(newElement);
+  }
+
+  return newElement;
+};
+
 /**
  * Wrap element into new element, type defined via wrapTag
  * Map all attributes to wrap element
