@@ -1,0 +1,14 @@
+# action.yml
+
+name: 'gh-deploy-new-develop-webtest'
+description: 'Build docker container and build package'
+inputs:
+  github-token:
+    description: 'Github token for push'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github-token }}
