@@ -18,7 +18,7 @@ describe('Parser catroid program tests', () => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.993</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
           parser.convertProgramToJSONDebug(xmlString);
         } catch (e) {
-          if (e.message === 'Found program version 0.993, minimum supported is 0.994') {
+          if (e.message === 'Found program version 0.993, minimum supported is 0.9994') {
             return true;
           }
         }
@@ -30,7 +30,7 @@ describe('Parser catroid program tests', () => {
   test('Recognizes supported program version', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.9994</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList></objectList></scene></scenes></program>`;
         const programJSON = parser.convertProgramToJSONDebug(xmlString);
         return (
           programJSON !== undefined &&
@@ -45,7 +45,7 @@ describe('Parser catroid program tests', () => {
   test('Handle empty program properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes></scenes></program>`;
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.9994</catrobatLanguageVersion></header><scenes></scenes></program>`;
         const programJSON = parser.convertProgramToJSONDebug(xmlString);
         if (programJSON === undefined) {
           return false;
@@ -58,7 +58,7 @@ describe('Parser catroid program tests', () => {
   test('Handle empty single scene properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>tscene</name><objectList></objectList></scene></scenes></program>`;
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.9994</catrobatLanguageVersion></header><scenes><scene><name>tscene</name><objectList></objectList></scene></scenes></program>`;
         const programJSON = parser.convertProgramToJSONDebug(xmlString);
         if (programJSON === undefined) {
           return false;
@@ -76,7 +76,7 @@ describe('Parser catroid program tests', () => {
   test('Handle multiple empty scenes properly', async () => {
     expect(
       await page.evaluate(() => {
-        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.994</catrobatLanguageVersion></header><scenes><scene><name>tscene1</name><objectList></objectList></scene><scene><name>tscene2</name><objectList></objectList></scene></scenes></program>`;
+        const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><catrobatLanguageVersion>0.9994</catrobatLanguageVersion></header><scenes><scene><name>tscene1</name><objectList></objectList></scene><scene><name>tscene2</name><objectList></objectList></scene></scenes></program>`;
         const programJSON = parser.convertProgramToJSONDebug(xmlString);
         if (programJSON === undefined) {
           return false;
