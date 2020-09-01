@@ -573,6 +573,10 @@
     <string name="local_vars_headline">Variables for this actor or object only</string>
     <string name="global_lists_headline">Lists for all actors and objects</string>
     <string name="local_lists_headline">Lists for this actor or object only</string>
+    <plurals name="user_defined_brick_input_headline">
+        <item quantity="one">Input for this brick</item>
+        <item quantity="other">Inputs for this brick</item>
+    </plurals>
 
 
     <!-- NewDataDialog -->
@@ -1051,6 +1055,12 @@
     <string name="brick_speak">Speak</string>
     <string name="brick_speak_default_value">Hello!</string>
     <string name="brick_speak_and_wait">and wait</string>
+    <string name="brick_start_listening_to_voice">Start listening to voice and store spoken words in</string>
+    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
+    <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
+        for %s is missing or needs to be updated. Would you like to download or update it now?</string>
+    <string name="set_instrument_to">Set instrument to</string>
     <!--  -->
 
     <!-- Embroidery bricks -->
@@ -1098,6 +1108,7 @@
     <string name="brick_think_say_for_text">for</string>
     <string name="brick_forever">Forever</string>
     <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_for_each_value_from">For each value from</string>
     <string name="brick_loop_in">in</string>
     <string name="brick_loop_to">to</string>
     <string name="brick_repeat">Repeat</string>
@@ -1112,6 +1123,8 @@
     <string name="brick_is_equal_to">equals expected</string>
     <string name="brick_wait_till_idle">Wait until all other scripts have stopped</string>
     <string name="brick_tap_at">"Single tap at"</string>
+    <string name="brick_touch_at">"Touch at"</string>
+    <string name="brick_tap_for">"for"</string>
     <string name="brick_finish_stage">Finish stage</string>
     <string name="brick_finish_tests">Finish tests</string>
     <string name="brick_assert_lists">Assert lists</string>
@@ -1764,6 +1777,8 @@
     <string name="formula_editor_function_collision">touches actor or object</string>
     <string name="formula_editor_function_collides_with_edge">touches edge</string>
     <string name="formula_editor_function_touched">touches finger</string>
+    <string name="formula_editor_function_collides_with_color">touches color</string>
+    <string name="formula_editor_function_collides_with_color_parameter" translatable="false">(\'#ff0000\')</string>
     <string name="formula_editor_sensor_x_acceleration">acceleration x</string>
     <string name="formula_editor_sensor_y_acceleration">acceleration y</string>
     <string name="formula_editor_sensor_z_acceleration">acceleration z</string>
