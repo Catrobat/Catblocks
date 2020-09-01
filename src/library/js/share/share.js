@@ -37,6 +37,7 @@ export class Share {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
     this.generateFormulaModal();
+    $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
 
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
