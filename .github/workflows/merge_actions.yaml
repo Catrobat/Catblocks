@@ -14,7 +14,7 @@ jobs:
       - name: Create Pull Request with Release of Catblocks to Share
         uses: ./gh-deploy-new-develop-on-webtest/
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PAT }}
 
 
   deployTestingpage:

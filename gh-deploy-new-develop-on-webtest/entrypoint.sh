@@ -16,8 +16,9 @@ git checkout develop
 yarn install
 yarn clean
 yarn release:build
-$RETVALUE=$?
+RETVALUE="$?"
 
+# create release folder and move it up one level
 mv ./release ./../release
 cd ..
 
@@ -26,22 +27,23 @@ BRANCH="gh_catblocks_automatic_deploy_develop"
 git clone https://github.com/Catrobat/Catroweb.git
 cd Catroweb/
 
-
 if git show-ref --quiet refs/heads/${BRANCH}; then
     git fetch ${BRANCH}
     git checkout ${BRANCH}
 else
     git checkout -b ${BRANCH}
+    git push -u origin ${BRANCH}
 fi
 
-rm -rf Catroweb/assets/catblocks/*
-mv ./../release/* ./assets/catblocks/
+rm -rf assets/catblocks/*
+rsync -a ./../release assets/catblocks/
+rm -rf ./../release
 
 git config user.email "action@github.com"
-git config user.name "GitHub Action"
-git add ./assets/catblocks/
-git commit -m "automatic deploy of new catblocks develop branch"
-git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" "gh_catblocks_automatic_deploy"
-hub pull-request -b develop -h gh_catblocks_automatic_deploy -m "gh-action new Catblocks publish"
+git config user.name "catrobat-github-bot"
+git add ./assets/catblocks/.
+git commit -m "CATBLOCKS: update of catblocks folder"
+git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
+hub pull-request -b develop -h gh_catblocks_automatic_deploy -m "CATBLOCKS: gh-action new Catblocks publish"
 
 exit $RETVALUE
