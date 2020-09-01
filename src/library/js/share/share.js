@@ -37,6 +37,7 @@ export class Share {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
     this.generateFormulaModal();
+    this.generateModalMagnifyingGlass();
     $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
 
     $('body').on('click', '.blocklyNonEditableText', function () {
@@ -300,7 +301,7 @@ export class Share {
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer) {
-    if (rendered_scenes[sceneID] == true) {
+    if (rendered_scenes[sceneID] === true) {
       return;
     }
     rendered_scenes[sceneID] = true;
@@ -372,7 +373,7 @@ export class Share {
       class: 'tab-content card-body'
     });
 
-    this.generateScripts(contentContainer, objectID, object, currentLocaleValues, options);
+    this.generateScripts(contentContainer, objectID, object, currentLocaleValues);
     this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
     this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
   }
@@ -549,6 +550,10 @@ export class Share {
         src = options.fileMap[imgPath];
       }
 
+      if (src === undefined || src === '') {
+        console.log('src is empty or null = ' + src);
+      }
+
       let displayLookName = look.name;
       if (!displayLookName) {
         displayLookName = look.fileName;
@@ -568,13 +573,10 @@ export class Share {
         displayLookName
       );
 
-      // document.getElementById(imgID).onclick = function () {
-      //   document.getElementById('modalHeader').innerHTML = displayLookName;
-      //   document.getElementById('modalImg').src = this.src;
-      // };
+      const body = $('body');
 
       // register on click on image
-      $('body').on('click', `#${imgID}`, () => {
+      body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
       });
@@ -599,17 +601,11 @@ export class Share {
       magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
 
       // register on click on magnifying glass
-      $('body').on('click', `#${magnifyingGlassID}`, () => {
+      body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
         magnifyingGlass.name = 'now got clicked!';
       });
-
-      // document.getElementById(magnifyingGlassID).onclick = function () {
-      //   document.getElementById('modalHeader').innerHTML = displayLookName;
-      //   document.getElementById('modalImg').src = src;
-      //   magnifyingGlass.name = 'now got clicked!';
-      // };
 
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
@@ -629,6 +625,33 @@ export class Share {
         )
       );
     }
+  }
+
+  /**
+   * Generate Modal for magnifying glass
+   */
+  generateModalMagnifyingGlass() {
+    const modal = $(
+      ` <div class="modal" id="modalForImg">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="modalHeader"></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+  
+              <div class="modal-body">
+                <img src="" id="modalImg" class="imagepreview" style="width: 100%; height: 100%;" />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>`
+    );
+    $('body').append(modal);
   }
 
   generateFormulaModal() {
