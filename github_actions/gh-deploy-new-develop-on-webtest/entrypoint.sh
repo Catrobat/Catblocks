@@ -30,6 +30,7 @@ cd Catroweb/
 if git show-ref --quiet refs/heads/${BRANCH}; then
     git fetch ${BRANCH}
     git checkout ${BRANCH}
+    git pull
 else
     git checkout -b ${BRANCH}
     git push -u origin ${BRANCH}
@@ -44,9 +45,13 @@ git config user.name "catrobat-github-bot"
 git add ./assets/catblocks/.
 git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
-RETVALUE= $(($? + $RETVALUE))
+RETVALUE=$(($? + $RETVALUE))
+
 GITHUB_TOKEN="$GITTOKEN"
+GITHUB_USER="catrobat-github-bot"
+GITHUB_REPOSITORY="CATROBAT/CATROWEB"
+HUB_VERBOSE="1"
 hub pull-request -b develop -h gh_catblocks_automatic_deploy -m "CATBLOCKS: gh-action new Catblocks publish"
-RETVALUE= $(($? + $RETVALUE))
+RETVALUE=$(($? + $RETVALUE))
 
 exit $RETVALUE
