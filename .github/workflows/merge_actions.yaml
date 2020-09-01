@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Pull Request with Release of Catblocks to Share
-        uses: ./gh-deploy-new-develop-on-webtest/
+        uses: ./github_actions/gh-deploy-new-develop-on-webtest/
         with:
           github-token: ${{ secrets.PAT }}
 
@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Project and push to gh-pages
-      uses: ./gh-pages-deploy-action/
+      uses: ./github_actions/gh-pages-deploy-action/
     
   rerunTests:
     if: github.repository == 'Catrobat/Catblocks'
