@@ -36,7 +36,7 @@ else
 fi
 
 rm -rf assets/catblocks/*
-rsync -a ./../release assets/catblocks/
+rsync -a ./../release/* assets/catblocks/
 rm -rf ./../release
 
 git config user.email "action@github.com"
@@ -44,6 +44,9 @@ git config user.name "catrobat-github-bot"
 git add ./assets/catblocks/.
 git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
+RETVALUE= $(($? + $RETVALUE))
+GITHUB_TOKEN="$GITTOKEN"
 hub pull-request -b develop -h gh_catblocks_automatic_deploy -m "CATBLOCKS: gh-action new Catblocks publish"
+RETVALUE= $(($? + $RETVALUE))
 
 exit $RETVALUE
