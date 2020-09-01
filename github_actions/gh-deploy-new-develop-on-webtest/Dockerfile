@@ -17,7 +17,7 @@ RUN \
   apk add --no-cache --virtual .build-deps python3 make g++
 
 RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
-    udev ttf-opensans chromium git hub rsync
+    udev ttf-opensans chromium git rsync curl
 
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*

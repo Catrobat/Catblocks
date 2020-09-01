@@ -46,7 +46,7 @@ git add ./assets/catblocks/.
 git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
 RETVALUE=$(($? + $RETVALUE))
-curl -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | grep --silent "201 Created"
+curl -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | grep -q "201 Created"
 RETVALUE=$(($? + $RETVALUE))
 
 exit $RETVALUE
