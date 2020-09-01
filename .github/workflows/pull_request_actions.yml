@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run jest test action
-        uses: ./jest-testing-action/       
+        uses: ./github_actions/jest-testing-action/
       - name: Prepare test report
         if: always()
         run: cd /home/runner/work/Catblocks/Catblocks && mkdir -p ./catblocksTestReport/ && cp ./jest_html_reporters.html ./catblocksTestReport/rep_${GITHUB_SHA}.html
