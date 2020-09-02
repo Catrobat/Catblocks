@@ -1,0 +1,17 @@
+name: Merge Action Master
+
+on:
+  push:
+    branches: [ master ] # merge creates commit + push
+
+jobs:
+  deployToShare:
+    if: github.repository == 'Catrobat/Catblocks'
+    name: Deploy Catblocks to Share
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Pull Request with Release of Catblocks to Share
+        uses: ./github_actions/gh-deploy-new-develop-on-webtest/
+        with:
+          github-token: ${{ secrets.PAT }}
