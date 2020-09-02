@@ -157,6 +157,7 @@
   "DATA_WEBREQUEST": "${brick_web_request} %1%2 ${brick_web_request_result} %3%4",
   "DATA_READ_VARIABLE_FROM_FILE": "${brick_read_variable_from_file_top} %1%2 ${brick_read_variable_from_file_center} %3%4 ${brick_read_variable_from_file_bottom} %5%6",
   "DATA_WRITE_VARIABLE_TO_FILE": "${brick_write_variable_to_file_top} %1%2 ${brick_write_variable_to_file_bottom} %3%4",
+  "DATA_WRITE_EMBROIDERY_TO_FILE": "${brick_write_embroidery} %1%2",
   "@operators": "operators",
   "OPERATORS_ADD": "%1 ${formula_editor_operator_plus} %2",
   "OPERATORS_SUBTRACT": "%1 ${formula_editor_operator_minus} %2",
