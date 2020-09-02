@@ -17,6 +17,7 @@ yarn install
 yarn clean
 yarn release:build
 RETVALUE="$?"
+echo RETVALUE
 
 # create release folder and move it up one level
 mv ./release ./../release
@@ -34,9 +35,11 @@ if git show-ref --quiet refs/remotes/origin/${BRANCH}; then
     git fetch origin ${BRANCH}
     git checkout ${BRANCH}
     git merge origin develop
+    echo '>>>>>>>> BRANCH FOUND!'
 else
     git checkout -b ${BRANCH}
     git push -u origin ${BRANCH}
+    echo '>>>>>>>> BRANCH NOT FOUND!'
 fi
 
 rm -rf assets/catblocks/*
@@ -47,7 +50,9 @@ git add ./assets/catblocks/.
 git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
 RETVALUE=$(($? + $RETVALUE))
-curl -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | tac | tac | grep -qs "201 Created"
+echo RETVALUE
+curl -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | tac | tac | grep -qsE "201 Created|422 Unprocessable Entity"
 RETVALUE=$(($? + $RETVALUE))
+echo RETVALUE
 
 exit $RETVALUE
