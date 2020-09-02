@@ -27,6 +27,9 @@ BRANCH="gh_catblocks_automatic_deploy_develop"
 git clone https://github.com/Catrobat/Catroweb.git
 cd Catroweb/
 
+git config user.email "action@github.com"
+git config user.name "catrobat-github-bot"
+
 if git show-ref --quiet refs/remotes/origin/${BRANCH}; then
     git fetch origin ${BRANCH}
     git checkout ${BRANCH}
@@ -40,8 +43,6 @@ rm -rf assets/catblocks/*
 rsync -a ./../release/* assets/catblocks/
 rm -rf ./../release
 
-git config user.email "action@github.com"
-git config user.name "catrobat-github-bot"
 git add ./assets/catblocks/.
 git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
