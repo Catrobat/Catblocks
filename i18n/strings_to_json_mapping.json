@@ -102,6 +102,7 @@
   "@SOUND_RECORD": "${soundrecorder_recorded_filename}...",
   "SOUND_STOP_SOUND": "${brick_stop_sound} %1%2",
   "SOUND_START_LISTENING": "${brick_start_listening_to_voice} %1%2",
+  "SOUND_SET_INSTRUMENT": "${set_instrument_to} %1%2",
   "@events": "events blocks",
   "EVENT_WHENSCENESTARTS": "${brick_when_started}",
   "EVENT_WHENTAPPED": "${brick_when}",
