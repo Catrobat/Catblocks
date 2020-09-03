@@ -579,6 +579,7 @@ export class Share {
       body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
       const lookName = generateNewDOM(
@@ -604,6 +605,7 @@ export class Share {
       body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
         magnifyingGlass.name = 'now got clicked!';
       });
 
@@ -645,7 +647,7 @@ export class Share {
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
               </div>
             </div>
           </div>
