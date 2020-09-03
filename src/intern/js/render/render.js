@@ -63,11 +63,17 @@ export function renderProgramByLocalFile(container, codeXML, name, counter, file
   const programContainer = createProgramContainer(container);
 
   const programID = `catblocks-program-${name}-${counter}`;
-  CatBlocks.getInstance().share.renderProgramJSON(programID, programContainer, programJSON, {
-    object: {
-      fileMap: fileMap
-    }
-  });
+  CatBlocks.getInstance().share.renderProgramJSON(
+    programID,
+    programContainer,
+    programJSON,
+    {
+      object: {
+        fileMap: fileMap
+      }
+    },
+    true
+  );
 }
 
 /**
