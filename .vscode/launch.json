@@ -10,6 +10,14 @@
             "name": "Launch Chrome (http://localhost:8080)",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chromium Ubuntu (http://localhost:8080)",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "/snap/bin/chromium"
         }
     ]
 }
