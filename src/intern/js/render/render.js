@@ -60,7 +60,7 @@ export function renderProgramByLocalFile(container, codeXML, name, counter, file
   const programJSON = Parser.convertProgramToJSONDebug(codeXML);
 
   // prepare container for program injection
-  const programContainer = createProgramContainer(container);
+  const programContainer = createProgramContainer(container, name, counter);
 
   const programID = `catblocks-program-${name}-${counter}`;
   CatBlocks.getInstance().share.renderProgramJSON(
@@ -79,12 +79,18 @@ export function renderProgramByLocalFile(container, codeXML, name, counter, file
 /**
  * Create container for the program.
  * @param {Element} container Parent container for structure
+ * @param programName contains name of the file
+ * @param programCounter the current number of program rendered
  * @returns {Element} container for injecting scenes
  */
-function createProgramContainer(container) {
+function createProgramContainer(container, programName, programCounter) {
   const $programContainer = $('<div/>', {
-    class: 'catblocks-container text-dark'
+    class: 'catblocks-container text-dark catblocks-scene-header card-header collapsed',
+    text: 'Program ' + programCounter + ' / ' + programName
   });
   $(container).append($programContainer);
+  console.log(programName);
+  console.log(container);
+  console.log($programContainer);
   return $programContainer[0];
 }
