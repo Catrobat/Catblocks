@@ -39,6 +39,7 @@ export class Share {
     this.generateFormulaModal();
     this.generateModalMagnifyingGlass();
     $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
+    this.createLoadingAnimation();
 
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
@@ -228,7 +229,7 @@ export class Share {
    * @param {Object} programJSON
    * @param {Object} [options={}]
    */
-  renderProgramJSON(programID, container, programJSON, options = {}) {
+  renderProgramJSON(programID, container, programJSON, options = {}, renderEverything = false) {
     options = parseOptions(options, defaultOptions);
     // create row and col
     const programContainers = this.createProgramContainer(generateID(programID), undefined);
@@ -288,11 +289,24 @@ export class Share {
         continue;
       }
 
+      const spinnerModal = $('#spinnerModal');
+
+      if (!renderEverything) {
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+        continue;
+      }
+
       if (programJSON.scenes.length === 1) {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
       } else {
         $('body').on('click', `#${sceneID}`, () => {
-          this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+          spinnerModal.on('shown.bs.modal', () => {
+            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+            spinnerModal.modal('hide');
+          });
+          if (rendered_scenes[sceneID] !== true) {
+            spinnerModal.modal('show');
+          }
         });
       }
     }
@@ -304,6 +318,7 @@ export class Share {
     if (rendered_scenes[sceneID] === true) {
       return;
     }
+
     rendered_scenes[sceneID] = true;
 
     const performanceContainer = generateNewDOM(undefined, 'div');
@@ -323,6 +338,16 @@ export class Share {
     }
 
     sceneObjectContainer.appendChild(performanceContainer);
+  }
+
+  createLoadingAnimation() {
+    const loadingAnimation = `
+    <div class="modal fade" tabindex="-1" role="dialog" id="spinnerModal">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <span class="spinner-border" data-dismiss='modal'></span>
+        </div>
+    </div>`;
+    $('body').append(loadingAnimation);
   }
 
   /**

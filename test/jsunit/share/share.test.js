@@ -115,10 +115,10 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene'
+              name: 'testscene'
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
@@ -143,10 +143,10 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene1'
+              name: 'testscene1'
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
@@ -171,7 +171,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject'
@@ -201,7 +201,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject1'
@@ -212,7 +212,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
@@ -221,9 +221,9 @@ describe('Share catroid program rendering tests', () => {
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         sceneHeader.click();
 
-        const sceneID = shareUtils.generateID('programID-tscene');
-        const obj1ID = shareUtils.generateID('programID-tscene-tobject1');
-        const obj2ID = shareUtils.generateID('programID-tscene-tobject2');
+        const sceneID = shareUtils.generateID('programID-testscene');
+        const obj1ID = shareUtils.generateID('programID-testscene-tobject1');
+        const obj2ID = shareUtils.generateID('programID-testscene-tobject2');
 
         return (
           shareTestContainer.querySelector('#' + shareUtils.generateID('programID')) !== null &&
@@ -245,7 +245,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene1',
+              name: 'testscene1',
               objectList: [
                 {
                   name: 'tobject1'
@@ -253,7 +253,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2',
+              name: 'testscene2',
               objectList: [
                 {
                   name: 'tobject2'
@@ -264,12 +264,12 @@ describe('Share catroid program rendering tests', () => {
         };
 
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-        const scene1ID = shareUtils.generateID('programID-tscene1');
-        const scene2ID = shareUtils.generateID('programID-tscene2');
+        const scene1ID = shareUtils.generateID('programID-testscene1');
+        const scene2ID = shareUtils.generateID('programID-testscene2');
         shareTestContainer.querySelector('#' + scene1ID).click();
         shareTestContainer.querySelector('#' + scene2ID).click();
-        const obj1ID = shareUtils.generateID('programID-tscene1-tobject1');
-        const obj2ID = shareUtils.generateID('programID-tscene2-tobject2');
+        const obj1ID = shareUtils.generateID('programID-testscene1-tobject1');
+        const obj2ID = shareUtils.generateID('programID-testscene2-tobject2');
 
         return (
           shareTestContainer.querySelector('#' + shareUtils.generateID('programID')) !== null &&
@@ -349,7 +349,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject',
@@ -364,7 +364,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const objID = shareUtils.generateID('programID-testscene-tobject');
         return (
           shareTestContainer.querySelector(
             '#' + objID + ' #' + objID + '-scripts .catblocks-script svg.catblocks-svg'
@@ -381,7 +381,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject',
@@ -399,7 +399,7 @@ describe('Share catroid program rendering tests', () => {
 
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const objID = shareUtils.generateID('programID-testscene-tobject');
         return (
           shareTestContainer.querySelector('#' + objID + ' #' + objID + '-sounds .catblocks-object-sound-name') !=
             null &&
@@ -416,7 +416,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject',
@@ -431,7 +431,7 @@ describe('Share catroid program rendering tests', () => {
           ]
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
-        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const objID = shareUtils.generateID('programID-testscene-tobject');
         const executeQuery = shareTestContainer.querySelector(
           '#' + objID + ' #' + objID + '-scripts .catblocks-script svg.catblocks-svg'
         );
@@ -447,7 +447,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject',
@@ -461,7 +461,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
@@ -469,7 +469,7 @@ describe('Share catroid program rendering tests', () => {
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         sceneHeader.click();
 
-        const objID = shareUtils.generateID('programID-tscene-tobject');
+        const objID = shareUtils.generateID('programID-testscene-tobject');
         const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
         const expectedSrc = shareTestContainer.querySelector(
           '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item'
@@ -499,7 +499,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene1'
+              name: 'testscene1'
             }
           ]
         };
@@ -519,7 +519,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject1'
@@ -530,7 +530,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
@@ -571,7 +571,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene',
+              name: 'testscene',
               objectList: [
                 {
                   name: 'tobject'
@@ -610,7 +610,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'tscene1',
+              name: 'testscene1',
               objectList: [
                 {
                   name: 'tobject1'
@@ -618,7 +618,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2',
+              name: 'testscene2',
               objectList: [
                 {
                   name: 'tobject2'
@@ -626,7 +626,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene3',
+              name: 'testscene3',
               objectList: [
                 {
                   name: 'tobject3'
@@ -638,7 +638,7 @@ describe('Share catroid program rendering tests', () => {
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const expectedSceneHeaderText =
-          '<div class="header-title">tscene1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+          '<div class="header-title">testscene1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const expectedCardHeaderText =
           '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
@@ -682,7 +682,7 @@ describe('Share catroid program rendering tests', () => {
         const catObj = {
           scenes: [
             {
-              name: 'TestScene',
+              name: 'Testscene',
               objectList: [
                 {
                   name: 'TestObject',
@@ -707,7 +707,7 @@ describe('Share catroid program rendering tests', () => {
               ]
             },
             {
-              name: 'tscene2'
+              name: 'testscene2'
             }
           ]
         };
