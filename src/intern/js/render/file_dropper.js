@@ -120,7 +120,7 @@ export class FileDropper {
               containerCounter,
               result.fileMap
             );
-            MessageBox.show(`Rendered ${++finished}/${containerCounter} Programs`, 4000);
+            MessageBox.show(`Rendered ${++finished}/${inputFiles.length} Programs`, 4000);
             $('#catblocks-file-dropper').hide();
           } catch (error) {
             MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
