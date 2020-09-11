@@ -192,5 +192,24 @@ export default {
         name: 'LISTEN_INFO'
       }
     ]
+  },
+  SetInstrumentBrick: {
+    message0: '%{BKY_SOUND_SET_INSTRUMENT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
   }
 };
