@@ -342,6 +342,9 @@ export default {
   },
   ForVariableFromToBrick: {
     message0: '%{BKY_CONTROL_FOR_VARIABLE_FROM_TO}',
+    message1: '%1',
+    message2: '%1',
+    lastDummyAlign2: 'RIGHT',
     args0: [
       {
         type: 'field_input',
@@ -384,6 +387,22 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/repeat.svg`,
+        height: 24,
+        width: 24,
+        alt: '*',
+        flip_rtl: true
       }
     ]
   }
