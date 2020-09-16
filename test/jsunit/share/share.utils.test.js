@@ -7,6 +7,7 @@
 
 beforeEach(async () => {
   await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+  page.on('console', message => console.log(message.text()));
 });
 
 describe('Share utilities testing', () => {
