@@ -41,16 +41,12 @@ export class Share {
     $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
     this.createLoadingAnimation();
 
+    const share_instance = this;
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
       const element_idx = $(this).parent().children('g').index($(this));
       const full_formula = block[element_idx];
-      // const displayed_formula = $(this).children('text').text();
-      if (full_formula.length >= Blockly.Tooltip.LIMIT) {
-        $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
-        $('#formulaPopupContent').text(full_formula);
-        $('#formulaPopup').modal('show');
-      }
+      share_instance.showFormulaPopup(full_formula);
     });
 
     $('body').on('click', 'image', function () {
@@ -59,11 +55,7 @@ export class Share {
         const block = all_blocks[$parent.parent().attr('data-id')];
         const element_idx = $parent.parent().children('g').index($parent);
         const full_formula = block[element_idx - 1];
-        if (full_formula.length >= Blockly.Tooltip.LIMIT) {
-          $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
-          $('#formulaPopupContent').text(full_formula);
-          $('#formulaPopup').modal('show');
-        }
+        share_instance.showFormulaPopup(full_formula);
       }
     });
 
@@ -75,6 +67,15 @@ export class Share {
       document.documentElement.style.direction = 'rtl';
     }
     await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+  }
+
+  showFormulaPopup(formula) {
+    if (formula.length >= Blockly.Tooltip.LIMIT) {
+      $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+      const html_formula = formula.replaceAll('\n', '<br />');
+      $('#formulaPopupContent').html(html_formula);
+      $('#formulaPopup').modal('show');
+    }
   }
 
   /**
