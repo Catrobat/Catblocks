@@ -292,16 +292,23 @@ export class Share {
       const spinnerModal = $('#spinnerModal');
 
       if (!renderEverything) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
         continue;
       }
 
       if (programJSON.scenes.length === 1) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
       } else {
         $('body').on('click', `#${sceneID}`, () => {
           spinnerModal.on('shown.bs.modal', () => {
-            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+            this.renderAllObjectsFromOneScene(
+              options,
+              scene,
+              programID,
+              sceneID,
+              sceneObjectContainer,
+              renderEverything
+            );
             spinnerModal.modal('hide');
           });
           if (rendered_scenes[sceneID] !== true) {
@@ -314,7 +321,9 @@ export class Share {
     container.appendChild(programContainers[0]);
   }
 
-  renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer) {
+  renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything) {
+    this.handleBackgroundName(programID, scene, sceneID, sceneObjectContainer, options, renderEverything);
+
     if (rendered_scenes[sceneID] === true) {
       return;
     }
@@ -324,7 +333,7 @@ export class Share {
     const performanceContainer = generateNewDOM(undefined, 'div');
 
     options.object.sceneName = scene.name;
-    for (let j = 0; j < scene.objectList.length; j++) {
+    for (let j = 1; j < scene.objectList.length; j++) {
       const object = scene.objectList[j];
       const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
 
@@ -348,6 +357,23 @@ export class Share {
         </div>
     </div>`;
     $('body').append(loadingAnimation);
+  }
+
+  handleBackgroundName(programID, scene, sceneID, sceneObjectContainer, options, renderEverything) {
+    options.object.sceneName = scene.name;
+    const backgroundObjID = generateID(`${programID}-${scene.name}-${scene.objectList[0].name}`);
+
+    if (renderEverything) {
+      scene.objectList[0].name = Blockly.CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
+    }
+
+    this.renderObjectJSON(
+      backgroundObjID,
+      `${sceneID}-accordionObjects`,
+      sceneObjectContainer,
+      scene.objectList[0],
+      parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
+    );
   }
 
   /**
