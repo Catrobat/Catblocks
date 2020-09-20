@@ -386,5 +386,57 @@ export default {
         name: 'DROPDOWN_INFO'
       }
     ]
+  },
+  ForItemInUserListBrick: {
+    message0: '%{BKY_CONTROL_FOR_VARIABLE_IN_USER_LIST}',
+    message1: '%1',
+    message2: '%1',
+    lastDummyAlign2: 'RIGHT',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'for_item_in_userlist_list_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'for_item_in_userlist_list_spinner_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'for_item_in_userlist_variable_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'for_item_in_userlist_variable_spinner_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/repeat.svg`,
+        height: 24,
+        width: 24,
+        alt: '*',
+        flip_rtl: true
+      }
+    ]
   }
 };
