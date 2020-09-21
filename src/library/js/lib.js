@@ -137,10 +137,16 @@ export function renderProgram(share, container, path, name, counter = -1) {
         programID = `catblocks-program-${name}-${counter}`;
       }
 
-      share.renderProgramJSON(programID, container, programJSON, {
-        object: {
-          programRoot: `${path}${name}/`
-        }
-      });
+      share.renderProgramJSON(
+        programID,
+        container,
+        programJSON,
+        {
+          object: {
+            programRoot: `${path}${name}/`
+          }
+        },
+        true
+      );
     });
 }

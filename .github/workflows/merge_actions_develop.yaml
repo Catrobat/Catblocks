@@ -1,22 +1,10 @@
-name: Merge Action
+name: Merge Action develop
 
 on:
   push:
     branches: [ develop ] # merge creates commit + push
 
 jobs:
-  deployToShare:
-    if: github.repository == 'Catrobat/Catblocks'
-    name: Deploy Catblocks to Share
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create Pull Request with Release of Catblocks to Share
-        uses: ./gh-deploy-new-develop-on-webtest/
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-
   deployTestingpage:
     if: github.repository == 'Catrobat/Catblocks'
     name: Deploy Testpage to GH-Pages
@@ -24,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Project and push to gh-pages
-      uses: ./gh-pages-deploy-action/
+      uses: ./github_actions/gh-pages-deploy-action/
     
   rerunTests:
     if: github.repository == 'Catrobat/Catblocks'

@@ -37,6 +37,9 @@ export class Share {
     this.config = parseOptions(options, defaultOptions.render);
     this.createReadonlyWorkspace();
     this.generateFormulaModal();
+    this.generateModalMagnifyingGlass();
+    $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
+    this.createLoadingAnimation();
 
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
@@ -226,7 +229,7 @@ export class Share {
    * @param {Object} programJSON
    * @param {Object} [options={}]
    */
-  renderProgramJSON(programID, container, programJSON, options = {}) {
+  renderProgramJSON(programID, container, programJSON, options = {}, renderEverything = false) {
     options = parseOptions(options, defaultOptions);
     // create row and col
     const programContainers = this.createProgramContainer(generateID(programID), undefined);
@@ -286,11 +289,24 @@ export class Share {
         continue;
       }
 
+      const spinnerModal = $('#spinnerModal');
+
+      if (!renderEverything) {
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+        continue;
+      }
+
       if (programJSON.scenes.length === 1) {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
       } else {
         $('body').on('click', `#${sceneID}`, () => {
-          this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+          spinnerModal.on('shown.bs.modal', () => {
+            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer);
+            spinnerModal.modal('hide');
+          });
+          if (rendered_scenes[sceneID] !== true) {
+            spinnerModal.modal('show');
+          }
         });
       }
     }
@@ -299,9 +315,10 @@ export class Share {
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer) {
-    if (rendered_scenes[sceneID] == true) {
+    if (rendered_scenes[sceneID] === true) {
       return;
     }
+
     rendered_scenes[sceneID] = true;
 
     const performanceContainer = generateNewDOM(undefined, 'div');
@@ -321,6 +338,16 @@ export class Share {
     }
 
     sceneObjectContainer.appendChild(performanceContainer);
+  }
+
+  createLoadingAnimation() {
+    const loadingAnimation = `
+    <div class="modal fade" tabindex="-1" role="dialog" id="spinnerModal">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <span class="spinner-border" data-dismiss='modal'></span>
+        </div>
+    </div>`;
+    $('body').append(loadingAnimation);
   }
 
   /**
@@ -384,7 +411,7 @@ export class Share {
       class: 'tab-content card-body'
     });
 
-    this.generateScripts(contentContainer, objectID, object, currentLocaleValues, options);
+    this.generateScripts(contentContainer, objectID, object, currentLocaleValues);
     this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
     this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
   }
@@ -561,6 +588,10 @@ export class Share {
         src = options.fileMap[imgPath];
       }
 
+      if (src === undefined || src === '') {
+        console.log('src is empty or null = ' + src);
+      }
+
       let displayLookName = look.name;
       if (!displayLookName) {
         displayLookName = look.fileName;
@@ -580,15 +611,13 @@ export class Share {
         displayLookName
       );
 
-      // document.getElementById(imgID).onclick = function () {
-      //   document.getElementById('modalHeader').innerHTML = displayLookName;
-      //   document.getElementById('modalImg').src = this.src;
-      // };
+      const body = $('body');
 
       // register on click on image
-      $('body').on('click', `#${imgID}`, () => {
+      body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
       const lookName = generateNewDOM(
@@ -611,17 +640,12 @@ export class Share {
       magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
 
       // register on click on magnifying glass
-      $('body').on('click', `#${magnifyingGlassID}`, () => {
+      body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
         magnifyingGlass.name = 'now got clicked!';
       });
-
-      // document.getElementById(magnifyingGlassID).onclick = function () {
-      //   document.getElementById('modalHeader').innerHTML = displayLookName;
-      //   document.getElementById('modalImg').src = src;
-      //   magnifyingGlass.name = 'now got clicked!';
-      // };
 
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
@@ -641,6 +665,33 @@ export class Share {
         )
       );
     }
+  }
+
+  /**
+   * Generate Modal for magnifying glass
+   */
+  generateModalMagnifyingGlass() {
+    const modal = $(
+      ` <div class="modal" id="modalForImg">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="modalHeader"></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+  
+              <div class="modal-body">
+                <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>`
+    );
+    $('body').append(modal);
   }
 
   generateFormulaModal() {
