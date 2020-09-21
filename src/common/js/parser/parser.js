@@ -431,7 +431,7 @@ function parseBrick(brick) {
  * @param {*} key
  * @param {*} def
  */
-const getMsgValueOrDefault = (key, def = '---') => {
+const getMsgValueOrDefault = (key, def = '') => {
   if (key === undefined) {
     return def;
   }
@@ -444,7 +444,7 @@ const getMsgValueOrDefault = (key, def = '---') => {
  * @param {*} node
  * @param {*} def
  */
-const getNodeValueOrDefault = (node, def = '---') => {
+const getNodeValueOrDefault = (node, def = '') => {
   if (node === undefined || node.nodeValue === undefined) {
     return def;
   }
