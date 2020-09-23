@@ -364,6 +364,19 @@ export class Share {
       id: objectID
     });
 
+    if (object.userBricks) {
+      for (let i = 0; i < object.userBricks.length; ++i) {
+        const jsonDef = object.userBricks[i].getJsonDefinition();
+        const brickName = object.userBricks[i].id;
+        Blockly.Bricks[brickName] = jsonDef;
+        Blockly.Blocks[brickName] = {
+          init: function () {
+            this.jsonInit(Blockly.Bricks[brickName]);
+          }
+        };
+      }
+    }
+
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
     const cardHeader = generateNewDOM(objectCard, 'div', {

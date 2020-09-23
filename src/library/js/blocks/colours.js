@@ -24,6 +24,7 @@ const colourCodes = {
   raspi: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
   sound: { colourPrimary: '#9966FF', colourSecondary: '#6c51b4', colourTertiary: '#774DCB' },
   stitch: { colourPrimary: '#BC4793', colourSecondary: '#bb3a8d', colourTertiary: '#b72a86' },
+  user: { colourPrimary: '#bbb', colourSecondary: '#aaa', colourTertiary: '#999' },
   default: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' }
 };
 

@@ -3,6 +3,7 @@
  */
 
 import md5 from 'js-md5';
+import Blockly from 'blockly';
 
 /**
  * all list types in json object
@@ -12,7 +13,9 @@ export const brickListTypes = Object.freeze({
   noBrickList: 0,
   brickList: 1,
   elseBrickList: 2,
-  loopOrIfBrickList: 3
+  loopOrIfBrickList: 3,
+  userBrickList: 4,
+  userBrickDefinition: 5
 });
 
 /**
@@ -275,7 +278,33 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
   for (let i = 0; i < brickList.length; i++) {
     const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
-      renderAndConnectBlocksInList(childBrick, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
+      if (brickList[i].userBrickId !== undefined) {
+        // if there are bricks in the brickList and the userBrickId is set, it is a UserDefinedScript
+        renderAndConnectBlocksInList(
+          childBrick,
+          brickList[i].brickList.reverse(),
+          brickListTypes.userBrickList,
+          workspace
+        );
+
+        // create and render the definition brick
+        const brick = Blockly.Bricks[brickList[i].userBrickId];
+        const definitionFormValues = new Map();
+        // i+=2 since after every form value, the _INFO icon is defined
+        for (let i = 0; i < brick.args0.length; i += 2) {
+          definitionFormValues.set(brick.args0[i].name, brick.args0[i].name);
+        }
+        const definitionBrick = {
+          name: brickList[i].userBrickId,
+          loopOrIfBrickList: [],
+          elseBrickList: [],
+          formValues: definitionFormValues,
+          colorVariation: 0
+        };
+        renderBrick(childBrick, definitionBrick, brickListTypes.userBrickDefinition, workspace);
+      } else {
+        renderAndConnectBlocksInList(childBrick, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
+      }
     }
     if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
       renderAndConnectBlocksInList(
@@ -332,9 +361,12 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   childBrick.initSvg();
   if (brickListType === brickListTypes.brickList) {
     parentBrick.nextConnection.connect(childBrick.previousConnection);
-  } else if (brickListType === brickListTypes.elseBrickList) {
+  } else if (brickListType === brickListTypes.elseBrickList || brickListType === brickListTypes.userBrickList) {
     parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
-  } else if (brickListType === brickListTypes.loopOrIfBrickList) {
+  } else if (
+    brickListType === brickListTypes.loopOrIfBrickList ||
+    brickListType == brickListTypes.userBrickDefinition
+  ) {
     parentBrick.inputList[1].connection.connect(childBrick.previousConnection);
   }
   return childBrick;
