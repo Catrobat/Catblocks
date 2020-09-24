@@ -234,7 +234,7 @@ describe('Catroid to Catblocks parser tests', () => {
     ).toBeTruthy();
   });
 
-  test('Test if default value "---" is used if no nodeValue is given', async () => {
+  test('Test if no value is used if no nodeValue is given', async () => {
     expect(
       await page.evaluate(() => {
         const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -244,7 +244,7 @@ describe('Catroid to Catblocks parser tests', () => {
         }
         const brickName = programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].name;
         const formulaMap = programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].formValues;
-        return brickName === 'WaitBrick' && formulaMap.entries().next().value.toString().includes('37 --- 58');
+        return brickName === 'WaitBrick' && formulaMap.entries().next().value.toString().includes('37  58');
       })
     ).toBeTruthy();
   });

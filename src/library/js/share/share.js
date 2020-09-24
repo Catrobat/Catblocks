@@ -364,6 +364,19 @@ export class Share {
       id: objectID
     });
 
+    if (object.userBricks) {
+      for (let i = 0; i < object.userBricks.length; ++i) {
+        const jsonDef = object.userBricks[i].getJsonDefinition();
+        const brickName = object.userBricks[i].id;
+        Blockly.Bricks[brickName] = jsonDef;
+        Blockly.Blocks[brickName] = {
+          init: function () {
+            this.jsonInit(Blockly.Bricks[brickName]);
+          }
+        };
+      }
+    }
+
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
     const cardHeader = generateNewDOM(objectCard, 'div', {
@@ -604,6 +617,7 @@ export class Share {
       body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
       const lookName = generateNewDOM(
@@ -629,6 +643,7 @@ export class Share {
       body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
+        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
         magnifyingGlass.name = 'now got clicked!';
       });
 
@@ -666,11 +681,11 @@ export class Share {
               </div>
   
               <div class="modal-body">
-                <img src="" id="modalImg" class="imagepreview" style="width: 100%; height: 100%;" />
+                <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
               </div>
             </div>
           </div>

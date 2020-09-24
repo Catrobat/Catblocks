@@ -14,6 +14,7 @@ class Object {
     this.lookList = [];
     this.soundList = [];
     this.scriptList = [];
+    this.userBricks = null;
   }
 }
 
@@ -39,6 +40,45 @@ class Brick {
     this.elseBrickList = [];
     this.formValues = new Map();
     this.colorVariation = 0;
+    this.userBrickId = undefined;
+  }
+}
+
+class UserBrickDefinition {
+  constructor(id) {
+    this.id = id;
+    this.inputTypes = [];
+    this.msg = '';
+  }
+
+  getJsonDefinition() {
+    const args = [];
+    for (let i = 0; i < this.inputTypes.length; ++i) {
+      if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
+        args.push({
+          type: 'field_input',
+          name: this.inputTypes[i].varName,
+          text: 'unset'
+        });
+        args.push({
+          type: 'field_image',
+          name: `${this.inputTypes[i].varName}_INFO`,
+          src: `${document.location.pathname}media/info_icon.svg`,
+          height: 24,
+          width: 24,
+          alt: '(i)',
+          flip_rtl: true
+        });
+      }
+    }
+
+    return {
+      message0: this.msg,
+      args0: args,
+      category: 'user',
+      colour: '#3556a2',
+      extensions: ['shapeBrick']
+    };
   }
 }
 
@@ -148,6 +188,12 @@ function parseObjects(object) {
     const soundList = object.getElementsByTagName('soundList')[0].children;
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
+    const userDefinedBrickList = object.getElementsByTagName('userDefinedBrickList');
+    if (userDefinedBrickList && userDefinedBrickList[0]) {
+      const userBrickDefinitions = parseUserBrickDefinitions(userDefinedBrickList[0].children);
+      currentObject.userBricks = userBrickDefinitions;
+    }
+
     for (let i = 0; i < lookList.length; i++) {
       let name = lookList[i].getAttribute('name');
       if (name == null) {
@@ -193,6 +239,61 @@ function parseObjects(object) {
     }
     return currentObject;
   }
+}
+
+function parseUserBrickDefinitions(userBricks) {
+  const userDefinedBrickDefinitions = [];
+
+  for (let i = 0; i < userBricks.length; ++i) {
+    const brickDefinition = userBricks[i];
+    if (!brickDefinition) {
+      continue;
+    }
+
+    // <brick>
+    let msg = '';
+    const inputs = [];
+    const brickId = brickDefinition.getElementsByTagName('userDefinedBrickID')[0].innerHTML;
+    const brickDataDefs = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0].children;
+    if (!brickDataDefs) {
+      continue;
+    }
+
+    let inputCounter = 1;
+    // <userDefinedBrickDataList>
+    for (let j = 0; j < brickDataDefs.length; ++j) {
+      const dataDef = brickDataDefs[j];
+      if (dataDef.nodeName == 'userDefinedBrickLabel') {
+        msg += dataDef.getElementsByTagName('label')[0].innerHTML + ' ';
+      } else if (dataDef.nodeName == 'userDefinedBrickInput') {
+        msg += `%${inputCounter}%${inputCounter + 1} `;
+
+        const inputTag = dataDef.getElementsByTagName('input')[0];
+        let varName;
+        if (inputTag.hasAttribute('reference')) {
+          const inputRef = inputTag.getAttribute('reference');
+          varName = xmlDoc.evaluate(inputRef, inputTag).iterateNext().getElementsByTagName('input')[0].innerHTML;
+        } else {
+          varName = inputTag.getElementsByTagName('input')[0].innerHTML;
+        }
+
+        inputs.push({
+          type: dataDef.getElementsByTagName('type')[0].innerHTML,
+          varName: varName
+        });
+        inputCounter += 2;
+      } else {
+        throw `Unknown user brick data definition: ${dataDef.nodeName}`;
+      }
+    }
+    msg = msg.trimRight();
+    const userBrick = new UserBrickDefinition(brickId);
+    userDefinedBrickDefinitions.push(userBrick);
+    userBrick.msg = msg;
+    userBrick.inputTypes = inputs;
+  }
+
+  return userDefinedBrickDefinitions;
 }
 
 function parseScripts(script) {
@@ -423,6 +524,11 @@ function parseBrick(brick) {
   for (let i = 0; i < brick.childNodes.length; i++) {
     checkUsage(brick.childNodes[i], currentBrick);
   }
+
+  if (currentBrick.userBrickId) {
+    currentBrick.name = currentBrick.userBrickId;
+  }
+
   return currentBrick;
 }
 
@@ -431,7 +537,7 @@ function parseBrick(brick) {
  * @param {*} key
  * @param {*} def
  */
-const getMsgValueOrDefault = (key, def = '---') => {
+const getMsgValueOrDefault = (key, def = '') => {
   if (key === undefined) {
     return def;
   }
@@ -444,7 +550,7 @@ const getMsgValueOrDefault = (key, def = '---') => {
  * @param {*} node
  * @param {*} def
  */
-const getNodeValueOrDefault = (node, def = '---') => {
+const getNodeValueOrDefault = (node, def = '') => {
   if (node === undefined || node.nodeValue === undefined) {
     return def;
   }
@@ -524,7 +630,12 @@ function checkUsage(list, location) {
       for (let j = 0; j < formulaList.length; j++) {
         const formula = new Formula();
         workFormula(formula, formulaList[j]);
-        const attribute = formulaList[j].getAttribute('category');
+        let attribute;
+        if (formulaList[j].hasAttribute('input')) {
+          attribute = formulaList[j].getAttribute('input');
+        } else {
+          attribute = formulaList[j].getAttribute('category');
+        }
         location.formValues.set(attribute, Formula.stringify(formula));
       }
       break;
@@ -565,6 +676,11 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'userDefinedBrickID': {
+      location.userBrickId = list.innerHTML;
+      break;
+    }
+
     default:
   }
 }
@@ -589,7 +705,8 @@ function workFormula(formula, input) {
         typeValue === 'USER_LIST' ||
         typeValue === 'STRING' ||
         typeValue === 'NUMBER' ||
-        typeValue === 'USER_VARIABLE'
+        typeValue === 'USER_VARIABLE' ||
+        typeValue === 'USER_DEFINED_BRICK_INPUT'
       ) {
         formula.operator = typeValue;
       }
@@ -600,7 +717,8 @@ function workFormula(formula, input) {
         formula.operator !== 'USER_LIST' &&
         formula.operator !== 'STRING' &&
         formula.operator !== 'NUMBER' &&
-        formula.operator !== 'USER_VARIABLE'
+        formula.operator !== 'USER_VARIABLE' &&
+        formula.operator !== 'USER_DEFINED_BRICK_INPUT'
       ) {
         formula.operator = operatorKey;
       }

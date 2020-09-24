@@ -22,6 +22,7 @@ import phiro from './phiro';
 import raspi from './raspi';
 import sound from './sound';
 import stitch from './stitch';
+import user from './user';
 
 export default {
   arduino: arduino,
@@ -40,5 +41,6 @@ export default {
   phiro: phiro,
   raspi: raspi,
   sound: sound,
-  stitch: stitch
+  stitch: stitch,
+  user: user
 };

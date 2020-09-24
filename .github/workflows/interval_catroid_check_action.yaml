@@ -14,6 +14,6 @@ jobs:
             - name: checkout repo
               uses: actions/checkout@v2
             - name: run checker for brick support and language updates
-              uses: ./github-actions/catroid-support-checker-action/
+              uses: ./github_actions/catroid-support-checker-action/
               with:
                 slack_webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
