@@ -530,6 +530,7 @@
   "SCRIPTS": "${scripts}",
   "LOOKS": "${looks}",
   "SOUNDS": "${sounds}",
+  "BACKGROUND": "${background}",
   "ASSERTION_TAP_AT": "${brick_tap_at} ${x_label} %1%2 ${y_label} %3%4",
   "ASSERTION_FINISH_STAGE": "${brick_finish_stage}",
   "ASSERTION_WAIT_TILL_IDLE": "${brick_wait_till_idle}",

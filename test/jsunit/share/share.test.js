@@ -523,7 +523,7 @@ describe('Share catroid program rendering tests', () => {
               name: 'testscene',
               objectList: [
                 {
-                  name: 'tobject1'
+                  name: 'Background'
                 },
                 {
                   name: 'tobject2'
@@ -546,7 +546,7 @@ describe('Share catroid program rendering tests', () => {
           shareTestContainer.querySelector('.accordion') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header') !== null &&
           shareTestContainer.querySelector('.catblocks-object .card-header').innerHTML ===
-            '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>'
+            '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>'
         );
       })
     ).toBeTruthy();
@@ -575,7 +575,7 @@ describe('Share catroid program rendering tests', () => {
               name: 'testscene',
               objectList: [
                 {
-                  name: 'tobject'
+                  name: 'Background'
                 }
               ]
             }
@@ -584,7 +584,7 @@ describe('Share catroid program rendering tests', () => {
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
         const expectedCardHeaderText =
-          '<div class="header-title">tobject</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+          '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
         const cardHeaderInitialText = cardHeader.innerHTML;
         cardHeader.click();
@@ -614,7 +614,7 @@ describe('Share catroid program rendering tests', () => {
               name: 'testscene1',
               objectList: [
                 {
-                  name: 'tobject1'
+                  name: 'Background'
                 }
               ]
             },
@@ -641,7 +641,7 @@ describe('Share catroid program rendering tests', () => {
         const expectedSceneHeaderText =
           '<div class="header-title">testscene1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const expectedCardHeaderText =
-          '<div class="header-title">tobject1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+          '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
         const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
         sceneHeader.click();
         const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
