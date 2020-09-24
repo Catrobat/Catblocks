@@ -12,6 +12,25 @@
             "webRoot": "${workspaceFolder}"
         },
         {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Jest Tests",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "env": {
+                "CI": "true"
+            },
+            "args": [
+                "-c",
+                "./test/jest_debug_config.js",
+                "--verbose",
+                "-i",
+                "--no-cache",
+                "--runInBand"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chromium Ubuntu (http://localhost:8080)",
