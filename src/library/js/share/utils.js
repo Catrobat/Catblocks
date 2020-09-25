@@ -394,3 +394,17 @@ export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
   brick.moveBy(x, y);
   return brick;
 };
+
+/**
+ * Handler for loading images when Object is opened
+ * @param {*} event
+ */
+export const lazyLoadImage = event => {
+  const $objectHeader = $(event.target);
+  $objectHeader.off('click', lazyLoadImage);
+
+  const $contentContainer = $objectHeader.next();
+  $contentContainer.find('img').each(function () {
+    $(this).attr('src', $(this).data('src'));
+  });
+};
