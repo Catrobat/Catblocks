@@ -31,13 +31,12 @@
           noImageFound: 'No_Image_Available.jpg'
         });
 
-        CatBlocks.render('assets', 'share')
-          .then(() => {
-            console.log('success');
-          })
-          .catch(e => {
-            console.error(e);
-          });
+        try {
+          await CatBlocks.render('assets', 'share');
+          console.log('success');
+        } catch (e) {
+          console.error(e);
+        }
       };
     </script>
     <script
