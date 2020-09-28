@@ -9,7 +9,10 @@
             "request": "launch",
             "name": "Launch Chrome (http://localhost:8080)",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "sourceMapPathOverrides": {
+                "webpack://CatBlocks/./*": "${workspaceFolder}/*"
+            }
         },
         {
             "type": "node",
