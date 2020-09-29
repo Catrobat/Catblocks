@@ -13,16 +13,38 @@ describe('Performance tests', () => {
 
   test('Rendering test program takes less than 30 seconds', async () => {
     jest.setTimeout(40000);
-    expect(
-      await page.evaluate(() => {
-        const startTime = performance.now();
-        return CatBlocks.render('assets', 'share').then(() => {
-          const endTime = performance.now();
-          const durationInSeconds = (endTime - startTime) / 1000;
-          return durationInSeconds;
+
+    const startTime = await page.evaluate(() => {
+      return performance.now();
+    });
+
+    await page.evaluate(() => {
+      return CatBlocks.render('assets', 'share');
+    });
+
+    // TODO: rewrite after fixing container height to use page.click
+    await page.evaluate(async () => {
+      const modalPromise = () => {
+        return new Promise(resolve => {
+          $('body').one('hidden.bs.modal', () => {
+            resolve();
+          });
         });
-      })
-    ).toBeLessThan(30);
+      };
+
+      const $containers = $('.catblocks-scene');
+      for (const $container of $containers) {
+        $container.click();
+        await modalPromise();
+      }
+    });
+
+    const endTime = await page.evaluate(() => {
+      return performance.now();
+    });
+
+    const durationInSeconds = (endTime - startTime) / 1000;
+    expect(durationInSeconds).toBeLessThan(30);
   });
 
   test('Sample Debuggable Test', async () => {
