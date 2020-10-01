@@ -437,9 +437,15 @@ export class Share {
       class: 'tab-content card-body'
     });
 
-    this.generateScripts(contentContainer, objectID, object, currentLocaleValues);
-    this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
-    this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
+    if (this.config.renderScripts) {
+      this.generateScripts(contentContainer, objectID, object, currentLocaleValues);
+    }
+    if (this.config.renderLooks) {
+      this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
+    }
+    if (this.config.renderSounds) {
+      this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
+    }
   }
 
   /**
@@ -840,59 +846,65 @@ export class Share {
       role: 'tablist'
     });
 
-    const liScript = generateNewDOM(ul, 'li', {
-      class: 'nav-item'
-    });
-    generateNewDOM(
-      liScript,
-      'a',
-      {
-        class: 'nav-link active',
-        id: `${objectID}-scripts-tab`,
-        'data-toggle': 'tab',
-        href: `#${objectID}-scripts`,
-        role: 'tab',
-        'aria-controls': 'scripts',
-        'aria-selected': 'true'
-      },
-      `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`
-    );
+    if (this.config.renderScripts) {
+      const liScript = generateNewDOM(ul, 'li', {
+        class: 'nav-item'
+      });
+      generateNewDOM(
+        liScript,
+        'a',
+        {
+          class: 'nav-link active',
+          id: `${objectID}-scripts-tab`,
+          'data-toggle': 'tab',
+          href: `#${objectID}-scripts`,
+          role: 'tab',
+          'aria-controls': 'scripts',
+          'aria-selected': 'true'
+        },
+        `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`
+      );
+    }
 
-    const liLooks = generateNewDOM(ul, 'li', {
-      class: 'nav-item'
-    });
-    generateNewDOM(
-      liLooks,
-      'a',
-      {
-        class: 'nav-link',
-        id: `${objectID}-looks-tab`,
-        'data-toggle': 'tab',
-        href: `#${objectID}-looks`,
-        role: 'tab',
-        'aria-controls': 'looks',
-        'aria-selected': 'false'
-      },
-      `${currentLocaleValues['LOOKS']} (${object.lookList.length})`
-    );
+    if (this.config.renderLooks) {
+      const liLooks = generateNewDOM(ul, 'li', {
+        class: 'nav-item'
+      });
+      generateNewDOM(
+        liLooks,
+        'a',
+        {
+          class: 'nav-link',
+          id: `${objectID}-looks-tab`,
+          'data-toggle': 'tab',
+          href: `#${objectID}-looks`,
+          role: 'tab',
+          'aria-controls': 'looks',
+          'aria-selected': 'false'
+        },
+        `${currentLocaleValues['LOOKS']} (${object.lookList.length})`
+      );
+    }
 
-    const liSounds = generateNewDOM(ul, 'li', {
-      class: 'nav-item'
-    });
-    generateNewDOM(
-      liSounds,
-      'a',
-      {
-        class: 'nav-link',
-        id: `${objectID}-sounds-tab`,
-        'data-toggle': 'tab',
-        href: `#${objectID}-sounds`,
-        role: 'tab',
-        'aria-controls': 'sounds',
-        'aria-selected': 'false'
-      },
-      `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`
-    );
+    if (this.config.renderSounds) {
+      const liSounds = generateNewDOM(ul, 'li', {
+        class: 'nav-item'
+      });
+      generateNewDOM(
+        liSounds,
+        'a',
+        {
+          class: 'nav-link',
+          id: `${objectID}-sounds-tab`,
+          'data-toggle': 'tab',
+          href: `#${objectID}-sounds`,
+          role: 'tab',
+          'aria-controls': 'sounds',
+          'aria-selected': 'false'
+        },
+        `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`
+      );
+    }
   }
 
   /**
