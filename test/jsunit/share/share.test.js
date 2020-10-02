@@ -789,4 +789,48 @@ describe('Share catroid program rendering tests', () => {
       })
     ).toBeTruthy();
   });
+
+  test('Images not rendered when disabled', async () => {
+    const numTabs = await page.evaluate(() => {
+      share.config.renderLooks = false;
+
+      const catObj = {
+        scenes: [
+          {
+            name: 'Testscene',
+            objectList: [
+              {
+                name: 'TestObject',
+                lookList: [],
+                soundList: [],
+                scriptList: [
+                  {
+                    name: 'StartScript',
+                    brickList: [
+                      {
+                        name: 'PlaySoundBrick',
+                        loopOrIfBrickList: [],
+                        elseBrickList: [],
+                        formValues: {},
+                        colorVariation: 0
+                      }
+                    ],
+                    formValues: {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'testscene2'
+          }
+        ]
+      };
+      share.renderProgramJSON('programID', shareTestContainer, catObj);
+      const tabs = $('.catro-tabs .nav-item');
+      share.config.renderLooks = true;
+      return tabs.length;
+    });
+    expect(numTabs).toBe(2);
+  });
 });

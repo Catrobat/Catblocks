@@ -31,7 +31,10 @@ export const defaultOptions = {
     language: 'en',
     rtl: false,
     i18n: 'i18n/',
-    noImageFound: 'No_Image_Available.jpg' // TODO: never used anywhere
+    noImageFound: 'No_Image_Available.jpg', // TODO: never used anywhere,
+    renderScripts: true,
+    renderLooks: true,
+    renderSounds: true
   },
   scene: {
     writeHeader: true,

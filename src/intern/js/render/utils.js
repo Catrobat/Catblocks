@@ -207,7 +207,10 @@ export async function initShareAndRenderPrograms(programPath, language, isRtl) {
     language: language,
     rtl: isRtl,
     i18n: i18nLocation,
-    noImageFound: 'No_Image_Available.jpg'
+    noImageFound: 'No_Image_Available.jpg',
+    renderScripts: true,
+    renderLooks: true,
+    renderSounds: true
   });
 
   try {
