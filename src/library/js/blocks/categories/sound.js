@@ -174,7 +174,7 @@ export default {
       }
     ]
   },
-  StartListening: {
+  StartListeningBrick: {
     message0: '%{BKY_SOUND_START_LISTENING}',
     args0: [
       {
@@ -209,6 +209,63 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  PauseForBeatsBrick: {
+    message0: '%{BKY_SOUND_PAUSE_FOR_BEATS}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_pause_for_beats_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_pause_for_beats_edit_text_INFO'
+      }
+    ]
+  },
+  SetListeningLanguageBrick: {
+    message0: '%{BKY_SOUND_SET_LISTENING_LANGUAGE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_set_listening_language_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_set_listening_language_spinner_INFO'
+      }
+    ]
+  },
+  SetTempoBrick: {
+    message0: '%{BKY_SOUND_SET_TEMPO}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_set_tempo_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_set_tempo_edit_text_INFO'
       }
     ]
   }
