@@ -441,57 +441,121 @@ describe('Share catroid program rendering tests', () => {
     ).toBeTruthy();
   });
 
+  test('Share test lazy loading of images', async () => {
+    await page.evaluate(() => {
+      const testDisplayName = 'My actor';
+      const catObj = {
+        scenes: [
+          {
+            name: 'testscene',
+            objectList: [
+              {
+                name: 'tobject',
+                lookList: [
+                  {
+                    name: testDisplayName,
+                    fileName: 'My actor or object.png'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'testscene2'
+          }
+        ]
+      };
+      share.renderProgramJSON('programID', shareTestContainer, catObj);
+    });
+
+    await page.click('.catblocks-scene-header');
+    await page.waitFor(2);
+
+    const objID = await page.evaluate(() => {
+      return shareUtils.generateID('programID-testscene-tobject');
+    });
+
+    const dataSrc = await page.evaluate(() => {
+      const objID = shareUtils.generateID('programID-testscene-tobject');
+      return shareTestContainer
+        .querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item')
+        .getAttribute('data-src');
+    });
+    const beforeClickSrc = await page.evaluate(() => {
+      const objID = shareUtils.generateID('programID-testscene-tobject');
+      return shareTestContainer
+        .querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item')
+        .getAttribute('src');
+    });
+
+    const headerSelector = `#${objID}-header`;
+    // TODO: does not work because this part is not really visible
+    // await page.click(headerSelector);
+    await page.evaluate(sel => {
+      document.querySelector(sel).click();
+    }, headerSelector);
+
+    await page.waitFor(2);
+
+    const afterClickSrc = await page.evaluate(() => {
+      const objID = shareUtils.generateID('programID-testscene-tobject');
+      return shareTestContainer
+        .querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item')
+        .getAttribute('src');
+    });
+
+    expect(beforeClickSrc == null && dataSrc === afterClickSrc).toBeTruthy();
+  });
+
   test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
-    expect(
-      await page.evaluate(() => {
-        const testDisplayName = 'My actor';
-        const catObj = {
-          scenes: [
-            {
-              name: 'testscene',
-              objectList: [
-                {
-                  name: 'tobject',
-                  lookList: [
-                    {
-                      name: testDisplayName,
-                      fileName: 'My actor or object.png'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              name: 'testscene2'
-            }
-          ]
-        };
-        share.renderProgramJSON('programID', shareTestContainer, catObj);
-        const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
-        sceneHeader.click();
+    const result = await page.evaluate(() => {
+      const testDisplayName = 'My actor';
+      const catObj = {
+        scenes: [
+          {
+            name: 'testscene',
+            objectList: [
+              {
+                name: 'tobject',
+                lookList: [
+                  {
+                    name: testDisplayName,
+                    fileName: 'My actor or object.png'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'testscene2'
+          }
+        ]
+      };
+      share.renderProgramJSON('programID', shareTestContainer, catObj);
+      const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
+      sceneHeader.click();
 
-        const objID = shareUtils.generateID('programID-testscene-tobject');
-        const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
-        const expectedSrc = shareTestContainer.querySelector(
-          '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item'
-        ).src;
+      const objID = shareUtils.generateID('programID-testscene-tobject');
+      const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
+      const expectedSrc = shareTestContainer
+        .querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item')
+        .getAttribute('data-src');
 
-        shareTestContainer.querySelector('.catblocks-scene-header').click();
-        shareTestContainer.querySelector('.catblocks-object .card-header').click();
-        shareTestContainer.querySelector('#' + objID + '-looks-tab').click();
-        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
+      shareTestContainer.querySelector('.catblocks-scene-header').click();
+      shareTestContainer.querySelector('.catblocks-object .card-header').click();
+      shareTestContainer.querySelector('#' + objID + '-looks-tab').click();
+      shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
 
-        return (
-          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item') !==
-            null &&
-          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').innerHTML ===
-            '<i class="material-icons">search</i>' &&
-          shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item').id ===
-            expectedID &&
-          shareTestContainer.querySelector('.imagepreview').src === expectedSrc
-        );
-      })
-    ).toBeTruthy();
+      return (
+        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item') !== null &&
+        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').innerHTML ===
+          '<i class="material-icons">search</i>' &&
+        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item').id ===
+          expectedID &&
+        shareTestContainer.querySelector('.imagepreview').getAttribute('src') === expectedSrc
+      );
+    });
+    expect(result).toBeTruthy();
   });
 
   test('JSON with one scene', async () => {

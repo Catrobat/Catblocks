@@ -12,7 +12,8 @@ import {
   zebraChangeColor,
   jsonDomToWorkspace,
   generateNewDOM,
-  injectNewDom
+  injectNewDom,
+  lazyLoadImage
 } from './utils';
 
 const all_blocks = new Map();
@@ -414,6 +415,9 @@ export class Share {
       'aria-controls': objCollapseOneSceneID
     });
 
+    // attach listener for lazyloading
+    $(cardHeader).on('click', lazyLoadImage);
+
     if (this.config.rtl) {
       cardHeader.style.paddingLeft = '1.5em';
       cardHeader.style.paddingRight = '3.5em';
@@ -628,7 +632,7 @@ export class Share {
         col,
         'img',
         {
-          src: src,
+          'data-src': src,
           class: 'img-fluid catblocks-object-look-item',
           id: imgID,
           'data-toggle': 'modal',
