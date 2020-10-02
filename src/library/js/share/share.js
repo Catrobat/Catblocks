@@ -290,7 +290,7 @@ export class Share {
         continue;
       }
 
-      const spinnerModal = $('#spinnerModal');
+      const $spinnerModal = $('#spinnerModal');
 
       if (!renderEverything) {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
@@ -301,19 +301,19 @@ export class Share {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
       } else {
         $('body').on('click', `#${sceneID}`, () => {
-          spinnerModal.on('shown.bs.modal', () => {
-            this.renderAllObjectsFromOneScene(
-              options,
-              scene,
-              programID,
-              sceneID,
-              sceneObjectContainer,
-              renderEverything
-            );
-            spinnerModal.modal('hide');
-          });
           if (rendered_scenes[sceneID] !== true) {
-            spinnerModal.modal('show');
+            $spinnerModal.one('shown.bs.modal', () => {
+              this.renderAllObjectsFromOneScene(
+                options,
+                scene,
+                programID,
+                sceneID,
+                sceneObjectContainer,
+                renderEverything
+              );
+              $spinnerModal.modal('hide');
+            });
+            $spinnerModal.modal('show');
           }
         });
       }
