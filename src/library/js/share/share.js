@@ -293,12 +293,7 @@ export class Share {
 
       const $spinnerModal = $('#spinnerModal');
 
-      if (!renderEverything) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
-        continue;
-      }
-
-      if (programJSON.scenes.length === 1) {
+      if (renderEverything || programJSON.scenes.length === 1) {
         this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
       } else {
         $('body').on('click', `#${sceneID}`, () => {
