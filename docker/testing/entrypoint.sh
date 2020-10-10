@@ -2,7 +2,6 @@
 
 : '
 @file Entrypoint file for testing docker container
-@author andreas.karner@student.tugraz.at
 @description First we verfiy the local repository against the remote for updates.
   In case that the local repo is older, it will pull the remote BRANCH fresh.
   

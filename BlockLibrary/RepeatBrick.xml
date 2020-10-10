@@ -1,7 +1,0 @@
-<block type="RepeatBrick" id="" x="" y="">
-  <value name="TIMES_TO_REPEAT">
-    <shadow type="text" id="">
-      <field name="TEXT">10</field>
-    </shadow>
-  </value>
-</block>

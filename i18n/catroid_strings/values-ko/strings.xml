@@ -30,6 +30,7 @@
     <string name="undo">취소</string>
     <string name="new_option">새로운 신호</string>
     <string name="confirm">확인</string>
+    <string name="ignore">Ignore</string>
     <string name="cancel">취소</string>
     <string name="next">다음</string>
     <string name="back">돌아가기</string>
@@ -38,6 +39,9 @@
     <string name="close">닫기</string>
     <string name="yes">예</string>
     <string name="no">아니오</string>
+    <string name="once">Once</string>
+    <string name="always">Always</string>
+    <string name="deny">Deny</string>
     <string name="agree">동의</string>
     <string name="disagree">동의하지 않음</string>
     <string name="select_all">모두 선택</string>
@@ -87,6 +91,9 @@
     <string name="preference_title">설정</string>
     <string name="preference_title_language">언어</string>
     <string name="preference_description_language">앱의 언어 선택</string>
+    <string name="preference_title_web_access">Web access</string>
+    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
+    <string name="preference_screen_web_access_title">Edit trusted domains</string>
     <string name="preference_title_accessibility">접근성</string>
     <string name="preference_description_accessibility">응용 프로그램의 모양을 변경</string>
     <string name="preference_title_accessibility_profiles">접근성 참고사항</string>
@@ -162,6 +169,11 @@
     <string name="preference_raspi_host">Raspberry Pi의 IP-/ 호스트 주소</string>
     <string name="preference_raspi_port">Raspberry Pi 포트</string>
     <!--  -->
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
+        multiplayer variables shared via Bluetooth</string>
+    <string name="preference_title_enable_test_bricks">Testing extension</string>
+    <string name="preference_description_test_bricks">Allows to create tests</string>
     <!-- Scratch Converter activity -->
     <string name="beta">Beta</string>
     <string name="error_scratch_program_not_accessible_any_more">앗! 프로그램 사라지거나 접근할 수 없습니다.</string>
@@ -252,6 +264,8 @@
     <string name="am_convert">변환</string>
     <string name="am_merge">병합</string>
     <string name="dialog_confirm_delete">되돌릴 수 없습니다!</string>
+    <string name="dialog_confirm_delete_definition">This will also remove the brick in all
+        other scripts in which it is being used.\nYou cannot undo this!</string>
     <string name="list_headline_sprites">배우와 오브젝트</string>
     <!-- Options Menu Options -->
     <string name="backpack">스크립트 모음</string>
@@ -261,120 +275,6 @@
     <string name="merge">병합</string>
     <string name="show_details">세부 정보 표시</string>
     <string name="hide_details">세부 사항 숨기기</string>
-    <!-- Action Mode Titles -->
-    <!-- Project Action Mode Titles -->
-    <plurals name="am_pack_projects_title">
-        <item quantity="other">%d 프로젝트 묶기</item>
-    </plurals>
-    <plurals name="am_copy_projects_title">
-        <item quantity="other">%d 프로젝트 복사</item>
-    </plurals>
-    <plurals name="am_delete_projects_title">
-        <item quantity="other">%d 프로젝트 삭제</item>
-    </plurals>
-    <plurals name="am_rename_projects_title">
-        <item quantity="other">%d 프로젝트 이름 변경</item>
-    </plurals>
-    <plurals name="am_convert_projects_title">
-        <item quantity="other">%d 프로젝트 변환</item>
-    </plurals>
-    <plurals name="am_merge_projects_title">
-        <item quantity="other">%d 프로젝트 병합</item>
-    </plurals>
-    <!-- Scene Action Mode Titles -->
-    <plurals name="am_pack_scenes_title">
-        <item quantity="other">%d 장면 묶기</item>
-    </plurals>
-    <plurals name="am_unpack_scenes_title">
-        <item quantity="other">%d 장면 풀기</item>
-    </plurals>
-    <plurals name="am_copy_scenes_title">
-        <item quantity="other">%d 장면 복사</item>
-    </plurals>
-    <plurals name="am_delete_scenes_title">
-        <item quantity="other">%d 장면 삭제</item>
-    </plurals>
-    <plurals name="am_rename_scenes_title">
-        <item quantity="other">%d 장면 이름 변경</item>
-    </plurals>
-    <!-- Sprite Action Mode Titles -->
-    <plurals name="am_pack_sprites_title">
-        <item quantity="other">%d 배우와 오브젝트 묶기</item>
-    </plurals>
-    <plurals name="am_unpack_sprites_title">
-        <item quantity="other">%d 배우와 오브젝트 풀기</item>
-    </plurals>
-    <plurals name="am_copy_sprites_title">
-        <item quantity="other">%d 배우와 오브젝트 복사</item>
-    </plurals>
-    <plurals name="am_delete_sprites_title">
-        <item quantity="other">%d 배우와 오브젝트 삭제</item>
-    </plurals>
-    <plurals name="am_rename_sprites_title">
-        <item quantity="other">%d 배우와 오브젝트 이름 변경</item>
-    </plurals>
-    <!-- Look Action Mode Titles -->
-    <plurals name="am_pack_looks_title">
-        <item quantity="other">%d 모양 묶기</item>
-    </plurals>
-    <plurals name="am_unpack_looks_title">
-        <item quantity="other">%d 모양 풀기</item>
-    </plurals>
-    <plurals name="am_copy_looks_title">
-        <item quantity="other">%d 모양 복사</item>
-    </plurals>
-    <plurals name="am_delete_looks_title">
-        <item quantity="other">%d 모양 삭제</item>
-    </plurals>
-    <plurals name="am_rename_looks_title">
-        <item quantity="other">%d 모양 이름 변경</item>
-    </plurals>
-    <!-- Sound Action Mode Titles -->
-    <plurals name="am_pack_sounds_title">
-        <item quantity="other">%d 소리 묶기</item>
-    </plurals>
-    <plurals name="am_unpack_sounds_title">
-        <item quantity="other">%d 소리 풀기</item>
-    </plurals>
-    <plurals name="am_copy_sounds_title">
-        <item quantity="other">%d 소리 복사</item>
-    </plurals>
-    <plurals name="am_delete_sounds_title">
-        <item quantity="other">%d 소리 삭제</item>
-    </plurals>
-    <plurals name="am_rename_sounds_title">
-        <item quantity="other">%d 소리 이름 변경</item>
-    </plurals>
-    <!-- NFC Tag Action Mode Titles -->
-    <plurals name="am_copy_nfc_tags_title">
-        <item quantity="other">%d NFC 태그 복사</item>
-    </plurals>
-    <plurals name="am_delete_nfc_tags_title">
-        <item quantity="other">%d NFC 태그 삭제</item>
-    </plurals>
-    <plurals name="am_rename_nfc_tags_title">
-        <item quantity="other">%d NFC 태그 이름 변경</item>
-    </plurals>
-    <!-- Script Action Mode Titles -->
-    <plurals name="am_pack_scripts_title">
-        <item quantity="other">%d 블록 묶기</item>
-    </plurals>
-    <plurals name="am_unpack_scripts_title">
-        <item quantity="other">%d 블록 풀기</item>
-    </plurals>
-    <plurals name="am_copy_scripts_title">
-        <item quantity="other">%d 블록 복사</item>
-    </plurals>
-    <plurals name="am_delete_bricks_title">
-        <item quantity="other">%d 블록 삭제</item>
-    </plurals>
-    <plurals name="am_delete_scripts_title">
-        <item quantity="other">%d 스크립트 삭제</item>
-    </plurals>
-    <!-- Data Item Action Mode Titles -->
-    <plurals name="am_delete_user_data_items_title">
-        <item quantity="other">%d 데이터 항목 삭제</item>
-    </plurals>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">새로운 장면</string>
     <!-- Delete Dialog Titles -->
@@ -402,6 +302,7 @@
     <plurals name="delete_bricks">
         <item quantity="other">이 블록을 삭제하시겠습니까?</item>
     </plurals>
+    <string name="delete_definition">Delete the definition of this brick?</string>
     <!-- Dialog Labels -->
     <string name="project_name_label">프로젝트 이름</string>
     <string name="scene_name_label">장면 이름:</string>
@@ -413,6 +314,7 @@
     <string name="nfc_tag_name_label">NFC 태그 이름</string>
     <string name="string_label">텍스트</string>
     <string name="data_label">이름</string>
+    <string name="Image_format_not_supported">Image format not supported</string>
     <!-- Details -->
     <string name="project_details">마지막 접근: %s, 크기: %s</string>
     <string name="last_access_today">오늘, %s</string>
@@ -549,6 +451,7 @@
     <string name="tnf_well_known_mailto">이메일</string>
     <!--  -->
     <!-- DataListFragment -->
+    <string name="multiplayer_vars_headline">Variables for connected devices</string>
     <string name="global_vars_headline">배우와 오브젝트를 위한 변수</string>
     <string name="local_vars_headline">배우와 오브젝트만을 위한 변수</string>
     <string name="global_lists_headline">배우와 오브젝트를 위한 리스트</string>
@@ -556,6 +459,8 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">모든 장면 배우, 오브젝트, 복사본</string>
     <string name="new_data_for_this_sprite_only">이 장면 배우, 오브젝트, 복사본</string>
+    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
+        on connected multiplayer devices</string>
     <!-- Backpack -->
     <string name="backpack_title">당신의 스크립트 모음</string>
     <string name="pack">묶기</string>
@@ -716,13 +621,15 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <!-- Brick context dialog -->
     <string name="brick_context_dialog_move_brick">블록 이동</string>
     <string name="brick_context_dialog_move_script">스크립트 이동</string>
-    <string name="brick_context_dialog_delete_brick">블록 삭제</string>
+    <string name="brick_context_dialog_move_definition">Move this definition</string>
+    <string name="brick_context_dialog_delete_brick">블럭 삭제</string>
     <string name="brick_context_dialog_copy_brick">블록 복사</string>
     <string name="brick_context_dialog_copy_script">스크립트 복사</string>
     <string name="brick_context_dialog_formula_edit_brick">수식 편집</string>
     <string name="brick_context_dialog_delete_script">스크립트 삭제</string>
-    <string name="brick_context_dialog_comment_in">활성화 블록</string>
-    <string name="brick_context_dialog_comment_out">비활성화 블록</string>
+    <string name="brick_context_dialog_delete_definition">Delete this definition</string>
+    <string name="brick_context_dialog_comment_in">Enable brick</string>
+    <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">블록 강조</string>
     <string name="brick_context_dialog_comment_in_script">사용가능 스크립트</string>
     <string name="brick_context_dialog_comment_out_script">비활성화 스크립트</string>
@@ -757,9 +664,8 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="sign_in_error">로그인시 문제가 발생하였습니다.</string>
     <string name="error_google_plus_sign_in">구글 로그인 오류. 상태: %s</string>
     <string name="error_session_expired">세션이 만료되었습니다. 다시 로그인해 주십시오.</string>
-    <string name="sign_in_with_google">Google 계정으로 로그인</string>
     <string name="error_register_empty_username">사용자 이름 없음</string>
-    <string name="error_register_username_as_email">이메일은 사용자 이름으로 사용할 수 없음</string>
+    <string name="error_register_username_as_email">Email address cannot be used as username</string>
     <string name="error_register_invalid_username">사용자 이름에는 문자(a–z), 숫자(0–9)와 dashes (-), underscores (_), and periods (.)만 사용하세요.</string>
     <string name="error_register_username_start_with">사용자 이름은 dashes (-), underscores (_)나 periods (.)로 시작할 수 없습니다.</string>
     <string name="error_register_invalid_email_format">잘못된 이메일 형식</string>
@@ -786,16 +692,18 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="prestage_resource_not_available_text">이 프로젝트는 기기에서 작동하지 않습니다.
 다음 장치가 사용않됩니다:\n\n</string>
     <string name="prestage_resource_in_use_text">다른 장치가 점핑 스모와 연결되어 있습니다. 다른 기기가 드론과 연결되어 있는 것은 아닌지 확인하세요.</string>
-    <string name="prestage_no_vibration_available">\u2022 진동\n</string>
+    <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">\u2022 가속센서\n</string>
     <string name="prestage_no_inclination_sensor_available">\u2022 기울기센서\n</string>
     <string name="prestage_no_compass_sensor_available">\u2022 컴퍼스\n</string>
     <string name="prestage_no_gps_sensor_available">\u2022 GPS\n</string>
     <string name="prestage_text_to_speech_error">\u2022 텍스트 음성 변환 엔진\n</string>
     <string name="prestage_no_back_camera_available">\u2022 뒤 카메라 \n</string>
-    <string name="prestage_no_camera_available">\u2022 얼굴인식\n</string>
+    <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
     <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
     <string name="prestage_no_front_camera_available">\u2022 앞 카메라 \n</string>
+    <string name="prestage_no_camera_available">\u2022 Camera\n</string>
+    <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
     <string name="prestage_default_resource_not_available">\u2022 알 수 없는 구성요소\n</string>
     <string name="no_nfc_available">NFC 이용 불가</string>
     <string name="nfc_not_activated">NFC를 활성화하고 다시 응용 프로그램으로 돌아가세요!</string>
@@ -838,6 +746,17 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="category_cast">캐스트</string>
     <string name="category_raspi">Raspberry Pi</string>
     <string name="category_assertions">테스트 중</string>
+    <!--  -->
+    <!-- User Defined Bricks -->
+    <string name="brick_user_defined_add_label">Add label</string>
+    <string name="brick_user_defined_add_input">Add input</string>
+    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
+    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
+    <string name="brick_user_defined_default_input_name">Name of input</string>
+    <string name="brick_user_defined_default_label">Label text</string>
+    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <string name="brick_user_defined_script_define">Define</string>
+    <string name="brick_user_defined_script_as">as</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"위치 설정"</string>
@@ -937,6 +856,7 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <!-- Sound bricks -->
     <string name="brick_play_sound">소리 재생</string>
     <string name="brick_play_sound_and_wait">소리 재생하고 기다리기</string>
+    <string name="brick_stop_sound">Stop sound</string>
     <string name="brick_stop_all_sounds">모든 소리 멈추기</string>
     <string name="brick_set_volume_to">음량 설정하기</string>
     <string name="brick_change_volume_by">음량 바꾸기</string>
@@ -958,6 +878,8 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_when_condition_when">언제</string>
     <string name="brick_when_becomes_true">참이 된다</string>
     <string name="brick_wait">기다리기</string>
+    <string name="brick_wait_until">대기 조건</string>
+    <string name="brick_wait_until_second_part">참이다</string>
     <string name="brick_when_gamepad_button">게임패드를 누를 때</string>
     <string name="brick_when_gamepad_button_tapped">터치</string>
     <string name="brick_when_nfc">NFC 사용할 때</string>
@@ -980,6 +902,9 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_say_bubble">말</string>
     <string name="brick_think_say_for_text">동안</string>
     <string name="brick_forever">계속 반복</string>
+    <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_in">in</string>
+    <string name="brick_loop_to">to</string>
     <string name="brick_repeat">반복</string>
     <string name="brick_repeat_until">반복 때까지</string>
     <string name="brick_when_touched">화면을 터치할 때</string>
@@ -987,11 +912,26 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_clone_this">스스로</string>
     <string name="brick_when_cloned">복사로 시작할 때</string>
     <string name="brick_delete_this_clone">이 형태를 삭제</string>
-    <string name="brick_assert_that">실행:</string>
-    <string name="brick_is_equal_to">예상:</string>
+    <string name="brick_assert_that">Assert</string>
+    <string name="brick_is_equal_to">equals expected</string>
     <string name="brick_wait_till_idle">다른 스크립트가 정지할 때까지 기다리기</string>
     <string name="brick_tap_at">"한 번 누르기"</string>
     <string name="brick_finish_stage">마지막 스테이지</string>
+    <string name="brick_finish_tests">Finish tests</string>
+    <string name="brick_assert_lists">Assert lists</string>
+    <string name="brick_assert_actual">Actual:</string>
+    <string name="brick_assert_expected">Expected:</string>
+    <string name="brick_parameterized_assert">assert</string>
+    <string name="brick_parameterized_equals">equals to expected item of</string>
+    <plurals name="brick_parameterized_foreach_plural">
+        <item quantity="other">For each tuple of items of</item>
+    </plurals>
+    <plurals name="brick_parameterized_stored_plural">
+        <item quantity="other">stored in variables with the same names</item>
+    </plurals>
+    <plurals name="list_selection_plural">
+        <item quantity="other">%d lists selected</item>
+    </plurals>
     <plurals name="time_plural">
         <item quantity="other">번</item>
     </plurals>
@@ -1004,6 +944,15 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_change_variable">변수 바꾸기</string>
     <string name="brick_write_variable_on_device">변수 저장하기</string>
     <string name="brick_read_variable_from_device">변수 불러오기</string>
+    <string name="brick_write_variable_to_file_top">Write variable</string>
+    <string name="brick_write_variable_to_file_bottom">to file</string>
+    <string name="brick_write_variable_to_file_default_value">variable.txt</string>
+    <string name="brick_write_variable_to_file_success">"Data successfully written to %1$s"</string>
+    <string name="brick_read_variable_from_file_top">Read variable</string>
+    <string name="brick_read_variable_from_file_center">from file</string>
+    <string name="brick_read_variable_from_file_bottom">그리고</string>
+    <string name="brick_read_variable_from_file_keep">keep the file</string>
+    <string name="brick_read_variable_from_file_delete">delete the file</string>
     <string name="brick_write_list_on_device">리스트 저장하기</string>
     <string name="brick_read_list_from_device">리스트 불러오기</string>
     <string name="brick_note_default_value">여기에 코멘트를 추가&#8230;</string>
@@ -1012,6 +961,7 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_broadcast_default_value">"신호 1"</string>
     <string name="brick_add_item_to_userlist_add">추가하기</string>
     <string name="brick_add_item_to_userlist">리스트에</string>
+    <string name="brick_clear_userlist">Delete all items from list</string>
     <string name="brick_delete_item_from_userlist_delete">리스트에서 항목을 삭제하기</string>
     <string name="brick_delete_item_from_userlist">번째 위치에서</string>
     <string name="brick_insert_item_into_userlist_insert_into">추가하기</string>
@@ -1021,8 +971,36 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_replace_item_in_userlist_item_at_index">위치에서</string>
     <string name="brick_replace_item_in_userlist_with_value">으로</string>
     <string name="brick_web_request">웹 요청 보내기</string>
+    <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">답변 저장</string>
-    <string name="brick_web_request_default_value">https://official-joke-api.appspot.com/random_joke</string>
+    <string name="web_request_warning_title">Allow web access?</string>
+    <string name="web_request_warning_message">Be very careful before allowing access, since the
+        link may expose your personal information, such as your precise geographical location or any text
+        you have entered to malicious others or to the public. See our
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
+        be extremely dangerous.
+    </string>
+    <string name="web_request_trust_domain_warning_title">Always allow web access?</string>
+    <string name="web_request_trust_domain_warning_message">By always allowing access, you will
+        not be asked again to confirm web addresses from this domain.
+    </string>
+    <string name="trusted_domains_edit_hint">If you want to revoke this permission
+        later, you can remove the entry from the list of trusted domains in
+        the settings of this app.
+    </string>
+    <string name="brick_look_request">Get image from</string>
+    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
+    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
+    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
+    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_background_request_result">and use as current background</string>
+    <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="brick_store_csv_into_userlist_store">Store column</string>
+    <string name="brick_store_csv_into_userlist_of">of the</string>
+    <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
+    <string name="brick_store_csv_into_userlist_into">리스트로</string>
+    <string name="brick_store_csv_into_userlist_data">kitty,cute\npuppy,naughty\noctopus,intelligent</string>
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">내 첫 프로그램</string>
@@ -1036,6 +1014,12 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="default_project_sprites_animal_wings_down">날개 아래로</string>
     <string name="default_project_sprites_tweet_1">Tweet1</string>
     <string name="default_project_sprites_tweet_2">Tweet2</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_needle_name">Needle</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_outer_loop">Outer Loop</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_inner_loop">Inner Loop</string>
     <!-- Default ChromeCast Values -->
     <string name="default_cast_project_background_name">배경</string>
     <string name="default_cast_project_cloud_name">클라우드</string>
@@ -1501,6 +1485,8 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="formula_editor_function_list_item_parameter">(1, *리스트 이름*)</string>
     <string name="formula_editor_function_contains">포함</string>
     <string name="formula_editor_function_contains_parameter">(*리스트 이름*, 1)</string>
+    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item_parameter">(1, *리스트 이름*)</string>
     <string name="formula_editor_function_number_of_items">항목의 수</string>
     <string name="formula_editor_function_number_of_items_parameter">(*리스트 이름*)</string>
     <string name="formula_editor_function_collision">오브젝트 터치</string>
@@ -1601,7 +1587,6 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="formula_editor_logic_comparison">비교 연산</string>
     <string name="formula_editor_object_general">일반 속성</string>
     <string name="formula_editor_object_movement">운동 속성</string>
-    <string name="formula_editor_device_face_detection">얼굴 인식</string>
     <string name="formula_editor_device_date_and_time">날짜와 시간</string>
     <string name="formula_editor_device_touch_detection">터치 감지</string>
     <string name="formula_editor_device_lego_nxt">레고 NXT</string>
@@ -1678,8 +1663,11 @@ https://share.catrob.at/ website 여기를 통해 계정과 정보를 삭제할 
     <string name="brick_choose_camera">카메라 사용하기</string>
     <string name="choose_camera_front">전면</string>
     <string name="choose_camera_back">뒤쪽</string>
-    <string name="brick_wait_until">대기 조건</string>
-    <string name="brick_wait_until_second_part">참이다</string>
+    <string name="camera_error_generic">        Something went wrong while trying to use the camera.
+    </string>
+    <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">A</string>

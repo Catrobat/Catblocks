@@ -1,0 +1,26 @@
+name: Interval Action checking for Blockly updates
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  updatePackages:
+    if: github.repository == 'Catrobat/Catblocks'
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: set remote url
+        run: git remote set-url --push origin https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/$GITHUB_REPOSITORY
+      - name: update packages
+        uses: taichi/actions-package-update@master
+        env:
+          AUTHOR_EMAIL: action@github.com
+          AUTHOR_NAME: catrobat-github-bot
+          COMMIT_MESSAGE: BLOCKS-MAINTENANCE update blockly version
+          EXECUTE: "true"
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          UPDATE_COMMAND: yarn
+        with:
+          args: upgrade blockly --latest

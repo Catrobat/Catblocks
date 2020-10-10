@@ -2,7 +2,6 @@
 
 : '
 @file Entrypoint file for po-review docker container
-@author andreas.karner@student.tugraz.at
 @description This file will clone the catblocks repository
   and checkout the pr commit for po-review. This is done
   via replacing the {{COMMIT}} string with associated pr commit hash.

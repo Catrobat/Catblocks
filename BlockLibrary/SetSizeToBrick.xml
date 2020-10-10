@@ -1,7 +1,0 @@
-<block type="SetSizeToBrick" id="" x="" y="">
-  <value name="SIZE">
-    <shadow type="text" id="">
-      <field name="TEXT">60</field>
-    </shadow>
-  </value>
-</block>

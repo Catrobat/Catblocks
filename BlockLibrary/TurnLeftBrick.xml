@@ -1,7 +1,0 @@
-<block type="TurnLeftBrick" x="" y="">
-  <value name="TURN_LEFT_DEGREES">
-    <shadow type="text">
-      <field name="TEXT">15</field>
-    </shadow>
-  </value>
-</block>

@@ -1,7 +1,0 @@
-<block type="NoteBrick" id="" x="" y="">
-  <value name="NOTE">
-    <shadow type="text" id="">
-      <field name="TEXT">add comment here...</field>
-    </shadow>
-  </value>
-</block>

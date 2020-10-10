@@ -35,6 +35,7 @@ In case you have already built the `catblocks:po-review` container and you would
 You can set the display language by adding following option `-e DISPLAY_LANGUAGE=de`. E.g. `de` for German. Without this option the blocks will be rendered with the default language.
 Use key values of locales from `i18n/lang_codes_mapping.js` to set display language.
 
+It is also possible to change the layout to RTL. You only have to add following option `-e DISPLAY_RTL=true`. Then the share layout displays right to left. 
 ## Single program testing
 For single program testing use the paramater method. 
 Here you just pass, either the program URL or the program hash, as paramaters to the container.
@@ -49,6 +50,9 @@ Both values can be found on the [share](https://share.catrob.at/app/).
 
   # use program hash and set display language to German
   docker run --rm -it -e DISPLAY_LANGUAGE=de -p 8080:8080 catblocks:po-review "4a20f223-5cbf-11ea-a2ae-000c292a0f49" 
+
+  # use program hash and set RTL 
+  docker run --rm -it -e DISPLAY_RTL=true -p 8080:8080 catblocks:po-review "4a20f223-5cbf-11ea-a2ae-000c292a0f49" 
 ```
 
 This will download the program before launching the webserver.
@@ -77,4 +81,7 @@ can be done using the `-v` option.
 
  # mount folder, set language to German and run bulk test
   docker run --rm -it -e DISPLAY_LANGUAGE=de -v ./catBulkTest:/test/programs/ -p 8080:8080 catblocks:po-review
+
+ # mount folder, set RTL and run bulk test
+  docker run --rm -it -e DISPLAY_RTL=true -v ./catBulkTest:/test/programs/ -p 8080:8080 catblocks:po-review
 ```

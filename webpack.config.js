@@ -3,11 +3,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const PrettierPlugin = require("prettier-webpack-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
+const variables = require('./variables');
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/js/index.js'),
+  entry: path.join(__dirname, 'src/intern/js/index.js'),
   output: {
     filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist')
@@ -53,9 +55,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/html/' + process.env.TYPE + '.html'),
+      template: path.join(__dirname, 'src/intern/html/' + process.env.TYPE + '.html'),
       filename: 'index.html',
-      hash: true
+      hash: true,
+      variables: variables
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -74,8 +77,10 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       TYPE: 'catblocks',
-      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : ""
-    })
+      DISPLAY_LANGUAGE: process.env.DISPLAY_LANGUAGE ? process.env.DISPLAY_LANGUAGE : "",
+      DISPLAY_RTL: process.env.DISPLAY_RTL ? process.env.DISPLAY_RTL : ""
+    }),
+    new PrettierPlugin()
   ],
   // watch: true,
   devtool: 'source-map',

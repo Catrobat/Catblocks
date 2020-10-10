@@ -1,0 +1,80 @@
+name: Merge Action develop
+
+on:
+  push:
+    branches: [ develop ] # merge creates commit + push
+
+jobs:
+  deployTestingpage:
+    if: github.repository == 'Catrobat/Catblocks'
+    name: Deploy Testpage to GH-Pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Project and push to gh-pages
+      uses: ./github_actions/gh-pages-deploy-action/
+    
+  rerunTests:
+    if: github.repository == 'Catrobat/Catblocks'
+    name: Restart all Pull Request Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.PAT }} # PAT has to be defined in Repository > Settings > Secrets
+          script: |
+            const labelName = "run-tests";
+
+            try {              
+              const owner = context.payload.repository.owner.name;
+              const repo = context.payload.repository.name;
+              const result = await github.pulls.list({
+                owner: owner,
+                repo: repo,
+                state: "open"
+              });
+
+              let counter = 0;
+
+              if (result.data) {
+                for (const pullRequest of result.data) {
+                  // github.issues.addLabels does weird stuff, so we do it the old way
+
+                  const labels = pullRequest.labels
+                    .map(x => {
+                      return x.name;
+                    })
+                    .filter(x => {
+                      return x !== labelName;
+                    });
+
+                  core.info(`${new Date()} - PR ${pullRequest.number} has the following Labels: [${labels}]`);
+                  labels.push(labelName);
+
+                  let response = await github.issues.update({
+                    owner: owner,
+                    repo: repo,
+                    issue_number: pullRequest.number,
+                    labels: labels
+                  });
+                  core.info(`${new Date()} - Set Label PR ${pullRequest.number} - ResponseCode: ${response.status}`);
+
+                  labels.pop();
+                  setTimeout(async () => {
+                    let response = await github.issues.update({
+                      owner: owner,
+                      repo: repo,
+                      issue_number: pullRequest.number,
+                      labels: labels
+                    });
+                    core.info(`${new Date()} - Remove Label PR ${pullRequest.number}, sending following Labels: [${labels}] - ResponseCode: ${response.status}`);
+                  }, 5000);
+
+                  counter++;
+                }
+              } 
+
+              core.info(`${new Date()} - Triggered ${counter}/${result.data.length} PRs`);
+            } catch (error) {
+              core.setFailed(`Action failed with error ${error}`);
+            }

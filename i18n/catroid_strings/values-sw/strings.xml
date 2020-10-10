@@ -30,6 +30,7 @@
     <string name="undo">Tengua</string>
     <string name="new_option">Mpya&#8230;</string>
     <string name="confirm">Thibitisha</string>
+    <string name="ignore">Ignore</string>
     <string name="cancel">Katisha</string>
     <string name="next">Ifuatayo</string>
     <string name="back">Nyuma</string>
@@ -38,6 +39,9 @@
     <string name="close">Funga</string>
     <string name="yes">Ndio</string>
     <string name="no">Hapana</string>
+    <string name="once">Once</string>
+    <string name="always">Always</string>
+    <string name="deny">Deny</string>
     <string name="agree">Agree</string>
     <string name="disagree">Disagree</string>
     <string name="select_all">Select all</string>
@@ -87,6 +91,9 @@
     <string name="preference_title">Mipangilio</string>
     <string name="preference_title_language">Lugha</string>
     <string name="preference_description_language">Set the app\'s language</string>
+    <string name="preference_title_web_access">Web access</string>
+    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
+    <string name="preference_screen_web_access_title">Edit trusted domains</string>
     <string name="preference_title_accessibility">Accessibility</string>
     <string name="preference_description_accessibility">Change the app\'s appearance</string>
     <string name="preference_title_accessibility_profiles">Accessibility profiles</string>
@@ -164,6 +171,11 @@
     <string name="preference_raspi_host">Pi Raspberry IP-/ anwani ya mwenyeji</string>
     <string name="preference_raspi_port">Raspberry Pi Poti</string>
     <!--  -->
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
+        multiplayer variables shared via Bluetooth</string>
+    <string name="preference_title_enable_test_bricks">Testing extension</string>
+    <string name="preference_description_test_bricks">Allows to create tests</string>
     <!-- Scratch Converter activity -->
     <string name="beta">BETA</string>
     <string name="error_scratch_program_not_accessible_any_more">Whoops! The project seems to have disappeared
@@ -274,6 +286,8 @@
     <string name="am_convert">Geuza</string>
     <string name="am_merge">Merge</string>
     <string name="dialog_confirm_delete">You can\'t undo this!</string>
+    <string name="dialog_confirm_delete_definition">This will also remove the brick in all
+        other scripts in which it is being used.\nYou cannot undo this!</string>
     <string name="list_headline_sprites">Actors and objects</string>
     <!-- Options Menu Options -->
     <string name="backpack">Mkoba</string>
@@ -283,155 +297,6 @@
     <string name="merge">Merge</string>
     <string name="show_details">Onyesha maelezo</string>
     <string name="hide_details">Ficha Mafafanuzi</string>
-    <!-- Action Mode Titles -->
-    <!-- Project Action Mode Titles -->
-    <plurals name="am_pack_projects_title">
-        <item quantity="one">Pack %d project</item>
-        <item quantity="other">Pack %d projects</item>
-    </plurals>
-    <plurals name="am_copy_projects_title">
-        <item quantity="one">Copy %d project</item>
-        <item quantity="other">Copy %d projects</item>
-    </plurals>
-    <plurals name="am_delete_projects_title">
-        <item quantity="one">Delete %d project</item>
-        <item quantity="other">Delete %d projects</item>
-    </plurals>
-    <plurals name="am_rename_projects_title">
-        <item quantity="one">Rename %d project</item>
-        <item quantity="other">Rename %d projects</item>
-    </plurals>
-    <plurals name="am_convert_projects_title">
-        <item quantity="one">Convert %d project</item>
-        <item quantity="other">Convert %d projects</item>
-    </plurals>
-    <plurals name="am_merge_projects_title">
-        <item quantity="one">Merge %d project</item>
-        <item quantity="other">Merge %d projects</item>
-    </plurals>
-    <!-- Scene Action Mode Titles -->
-    <plurals name="am_pack_scenes_title">
-        <item quantity="one">Pack %d scene</item>
-        <item quantity="other">Pack %d scenes</item>
-    </plurals>
-    <plurals name="am_unpack_scenes_title">
-        <item quantity="one">Unpack %d scene</item>
-        <item quantity="other">Unpack %d scenes</item>
-    </plurals>
-    <plurals name="am_copy_scenes_title">
-        <item quantity="one">Copy %d scene</item>
-        <item quantity="other">Copy %d scenes</item>
-    </plurals>
-    <plurals name="am_delete_scenes_title">
-        <item quantity="one">Delete %d scene</item>
-        <item quantity="other">Delete %d scenes</item>
-    </plurals>
-    <plurals name="am_rename_scenes_title">
-        <item quantity="one">Rename %d scene</item>
-        <item quantity="other">Rename %d scenes</item>
-    </plurals>
-    <!-- Sprite Action Mode Titles -->
-    <plurals name="am_pack_sprites_title">
-        <item quantity="one">Pack %d actor or object</item>
-        <item quantity="other">Pack %d actors or objects</item>
-    </plurals>
-    <plurals name="am_unpack_sprites_title">
-        <item quantity="one">Unpack %d actor or object</item>
-        <item quantity="other">Unpack %d actors or objects</item>
-    </plurals>
-    <plurals name="am_copy_sprites_title">
-        <item quantity="one">Copy %d actor or object</item>
-        <item quantity="other">Copy %d actors or objects</item>
-    </plurals>
-    <plurals name="am_delete_sprites_title">
-        <item quantity="one">Delete %d actor or object</item>
-        <item quantity="other">Delete %d actors or objects</item>
-    </plurals>
-    <plurals name="am_rename_sprites_title">
-        <item quantity="one">Rename %d actor or object</item>
-        <item quantity="other">Rename %d actors or objects</item>
-    </plurals>
-    <!-- Look Action Mode Titles -->
-    <plurals name="am_pack_looks_title">
-        <item quantity="one">Pack %d look</item>
-        <item quantity="other">Pack %d looks</item>
-    </plurals>
-    <plurals name="am_unpack_looks_title">
-        <item quantity="one">Unpack %d look</item>
-        <item quantity="other">Unpack %d looks</item>
-    </plurals>
-    <plurals name="am_copy_looks_title">
-        <item quantity="one">Copy %d look</item>
-        <item quantity="other">Copy %d looks</item>
-    </plurals>
-    <plurals name="am_delete_looks_title">
-        <item quantity="one">Delete %d look</item>
-        <item quantity="other">Delete %d looks</item>
-    </plurals>
-    <plurals name="am_rename_looks_title">
-        <item quantity="one">Rename %d look</item>
-        <item quantity="other">Rename %d looks</item>
-    </plurals>
-    <!-- Sound Action Mode Titles -->
-    <plurals name="am_pack_sounds_title">
-        <item quantity="one">Pack %d sound</item>
-        <item quantity="other">Pack %d sounds</item>
-    </plurals>
-    <plurals name="am_unpack_sounds_title">
-        <item quantity="one">Unpack %d sound</item>
-        <item quantity="other">Unpack %d sounds</item>
-    </plurals>
-    <plurals name="am_copy_sounds_title">
-        <item quantity="one">Copy %d sound</item>
-        <item quantity="other">Copy %d sounds</item>
-    </plurals>
-    <plurals name="am_delete_sounds_title">
-        <item quantity="one">Delete %d sound</item>
-        <item quantity="other">Delete %d sounds</item>
-    </plurals>
-    <plurals name="am_rename_sounds_title">
-        <item quantity="one">Rename %d sound</item>
-        <item quantity="other">Rename %d sounds</item>
-    </plurals>
-    <!-- NFC Tag Action Mode Titles -->
-    <plurals name="am_copy_nfc_tags_title">
-        <item quantity="one">Copy %d NFC tag</item>
-        <item quantity="other">Copy %d NFC tags</item>
-    </plurals>
-    <plurals name="am_delete_nfc_tags_title">
-        <item quantity="one">Delete %d NFC tag</item>
-        <item quantity="other">Delete %d NFC tags</item>
-    </plurals>
-    <plurals name="am_rename_nfc_tags_title">
-        <item quantity="one">Rename %d NFC tag</item>
-        <item quantity="other">Rename %d NFC tags</item>
-    </plurals>
-    <!-- Script Action Mode Titles -->
-    <plurals name="am_pack_scripts_title">
-        <item quantity="one">Pack %d brick</item>
-        <item quantity="other">Pack %d bricks</item>
-    </plurals>
-    <plurals name="am_unpack_scripts_title">
-        <item quantity="one">Unpack %d script</item>
-        <item quantity="other">Unpack %d scripts</item>
-    </plurals>
-    <plurals name="am_copy_scripts_title">
-        <item quantity="one">Copy %d brick</item>
-        <item quantity="other">Copy %d bricks</item>
-    </plurals>
-    <plurals name="am_delete_bricks_title">
-        <item quantity="one">Delete %d brick</item>
-        <item quantity="other">Delete %d bricks</item>
-    </plurals>
-    <plurals name="am_delete_scripts_title">
-        <item quantity="one">Delete %d script</item>
-        <item quantity="other">Delete %d scripts</item>
-    </plurals>
-    <!-- Data Item Action Mode Titles -->
-    <plurals name="am_delete_user_data_items_title">
-        <item quantity="one">Delete %d data item</item>
-        <item quantity="other">Delete %d data items</item>
-    </plurals>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">New scene</string>
     <!-- Delete Dialog Titles -->
@@ -467,6 +332,7 @@
         <item quantity="one">Delete this brick?</item>
         <item quantity="other">Delete these bricks?</item>
     </plurals>
+    <string name="delete_definition">Delete the definition of this brick?</string>
     <!-- Dialog Labels -->
     <string name="project_name_label">Project name</string>
     <string name="scene_name_label">Scene name</string>
@@ -478,6 +344,7 @@
     <string name="nfc_tag_name_label">NFC tag name</string>
     <string name="string_label">Maandishi</string>
     <string name="data_label">Jina</string>
+    <string name="Image_format_not_supported">Image format not supported</string>
     <!-- Details -->
     <string name="project_details">Last access: %s, size: %s</string>
     <string name="last_access_today">today, %s</string>
@@ -636,6 +503,7 @@
     <string name="tnf_well_known_mailto">Barua pepe</string>
     <!--  -->
     <!-- DataListFragment -->
+    <string name="multiplayer_vars_headline">Variables for connected devices</string>
     <string name="global_vars_headline">Variables for all actors and objects</string>
     <string name="local_vars_headline">Variables for this actor or object only</string>
     <string name="global_lists_headline">Lists for all actors and objects</string>
@@ -643,6 +511,8 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">For all actors, objects, and clones in all scenes</string>
     <string name="new_data_for_this_sprite_only">For this actor, object, or one of its clones only</string>
+    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
+        on connected multiplayer devices</string>
     <!-- Backpack -->
     <string name="backpack_title">Mkoba wako</string>
     <string name="pack">Pack</string>
@@ -811,15 +681,17 @@
     <string name="soundrecorder_text_view">Bonyeza ikoni ya juu kuanza na komesha kurekodi</string>
     <!--  -->
     <!-- Brick context dialog -->
-    <string name="brick_context_dialog_move_brick">Sogeza tofali</string>
+    <string name="brick_context_dialog_move_brick">Move brick</string>
     <string name="brick_context_dialog_move_script">Move script</string>
-    <string name="brick_context_dialog_delete_brick">Futa tofali</string>
-    <string name="brick_context_dialog_copy_brick">Nakili tofali</string>
+    <string name="brick_context_dialog_move_definition">Move this definition</string>
+    <string name="brick_context_dialog_delete_brick">Delete brick</string>
+    <string name="brick_context_dialog_copy_brick">Copy brick</string>
     <string name="brick_context_dialog_copy_script">Copy script</string>
-    <string name="brick_context_dialog_formula_edit_brick">Hariri fomula</string>
-    <string name="brick_context_dialog_delete_script">Futa hati</string>
-    <string name="brick_context_dialog_comment_in">Wezesha tofali</string>
-    <string name="brick_context_dialog_comment_out">Legeza tofari</string>
+    <string name="brick_context_dialog_formula_edit_brick">Edit formula</string>
+    <string name="brick_context_dialog_delete_script">Delete script</string>
+    <string name="brick_context_dialog_delete_definition">Delete this definition</string>
+    <string name="brick_context_dialog_comment_in">Enable brick</string>
+    <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">Highlight brick parts</string>
     <string name="brick_context_dialog_comment_in_script">Enable script</string>
     <string name="brick_context_dialog_comment_out_script">Disable script</string>
@@ -854,9 +726,8 @@
     <string name="sign_in_error">Something went wrong during sign in.</string>
     <string name="error_google_plus_sign_in">Google sign-in error. Status: %s</string>
     <string name="error_session_expired">Session expired, please log in.</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
     <string name="error_register_empty_username">Empty username</string>
-    <string name="error_register_username_as_email">Email address cannot be used as user names</string>
+    <string name="error_register_username_as_email">Email address cannot be used as username</string>
     <string name="error_register_invalid_username">Username should only contain letters (a–z), numbers (0–9),
         dashes (-), underscores (_), and periods (.).</string>
     <string name="error_register_username_start_with">Username should not start with dashes (-), underscores (_), or
@@ -893,9 +764,11 @@
     <string name="prestage_no_gps_sensor_available">\u2022 GPS\n</string>
     <string name="prestage_text_to_speech_error">Injini Text-to-Speech </string>
     <string name="prestage_no_back_camera_available">\u2022 Rear camera\n</string>
-    <string name="prestage_no_camera_available">\u2022 uso ugunduzi\n</string>
+    <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
     <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
     <string name="prestage_no_front_camera_available">\u2022 Front camera\n</string>
+    <string name="prestage_no_camera_available">\u2022 Camera\n</string>
+    <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
     <string name="prestage_default_resource_not_available">\u2022 kijenzi hakijulikani\n</string>
     <string name="no_nfc_available">NFC haipatikani</string>
     <string name="nfc_not_activated">Please activate NFC and press Back to return to the app.</string>
@@ -939,6 +812,17 @@
     <string name="category_cast">Rusha </string>
     <string name="category_raspi">Rasiberi pi</string>
     <string name="category_assertions">Testing</string>
+    <!--  -->
+    <!-- User Defined Bricks -->
+    <string name="brick_user_defined_add_label">Add label</string>
+    <string name="brick_user_defined_add_input">Add input</string>
+    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
+    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
+    <string name="brick_user_defined_default_input_name">Name of input</string>
+    <string name="brick_user_defined_default_label">Label text</string>
+    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <string name="brick_user_defined_script_define">Define</string>
+    <string name="brick_user_defined_script_as">as</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"Weka "</string>
@@ -1040,6 +924,7 @@
     <!-- Sound bricks -->
     <string name="brick_play_sound">Anzisha sauti</string>
     <string name="brick_play_sound_and_wait">Anzisha sauti na subiri</string>
+    <string name="brick_stop_sound">Stop sound</string>
     <string name="brick_stop_all_sounds">Komesha sauti zote</string>
     <string name="brick_set_volume_to">Seti sauti kwa</string>
     <string name="brick_change_volume_by">Badili sauti kwa</string>
@@ -1061,6 +946,8 @@
     <string name="brick_when_condition_when">Wakati</string>
     <string name="brick_when_becomes_true">inakuwa kweli</string>
     <string name="brick_wait">Subiri</string>
+    <string name="brick_wait_until">Subiri hadi</string>
+    <string name="brick_wait_until_second_part">ni kweli</string>
     <string name="brick_when_gamepad_button">Wakati gamepad kitufe</string>
     <string name="brick_when_gamepad_button_tapped">kingwa</string>
     <string name="brick_when_nfc">Wakati NFC</string>
@@ -1084,6 +971,9 @@
     <string name="brick_say_bubble">Sema</string>
     <string name="brick_think_say_for_text">kwa ajili ya</string>
     <string name="brick_forever">Milele</string>
+    <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_in">in</string>
+    <string name="brick_loop_to">kwa</string>
     <string name="brick_repeat">Rudia</string>
     <string name="brick_repeat_until">Rudia hadi</string>
     <string name="brick_when_touched">Wakati skrini imeguswa</string>
@@ -1091,11 +981,29 @@
     <string name="brick_clone_this">mwenyewe</string>
     <string name="brick_when_cloned">Unapoanza kama kiunganishi</string>
     <string name="brick_delete_this_clone">Futa hiki kiunganisho</string>
-    <string name="brick_assert_that">Assert:</string>
-    <string name="brick_is_equal_to">equal to expected:</string>
+    <string name="brick_assert_that">Assert</string>
+    <string name="brick_is_equal_to">equals expected</string>
     <string name="brick_wait_till_idle">Wait until all other scripts have stopped</string>
     <string name="brick_tap_at">"Single tap at"</string>
     <string name="brick_finish_stage">Finish stage</string>
+    <string name="brick_finish_tests">Finish tests</string>
+    <string name="brick_assert_lists">Assert lists</string>
+    <string name="brick_assert_actual">Actual:</string>
+    <string name="brick_assert_expected">Expected:</string>
+    <string name="brick_parameterized_assert">assert</string>
+    <string name="brick_parameterized_equals">equals to expected item of</string>
+    <plurals name="brick_parameterized_foreach_plural">
+        <item quantity="one">For each item of</item>
+        <item quantity="other">For each tuple of items of</item>
+    </plurals>
+    <plurals name="brick_parameterized_stored_plural">
+        <item quantity="one">stored in variable with the same name</item>
+        <item quantity="other">stored in variables with the same names</item>
+    </plurals>
+    <plurals name="list_selection_plural">
+        <item quantity="one">%d list selected</item>
+        <item quantity="other">%d lists selected</item>
+    </plurals>
     <plurals name="time_plural">
         <item quantity="one">muda</item>
         <item quantity="other">muda</item>
@@ -1109,6 +1017,15 @@
     <string name="brick_change_variable">Badilisha aina</string>
     <string name="brick_write_variable_on_device">Write variable on device</string>
     <string name="brick_read_variable_from_device">Read variable from device</string>
+    <string name="brick_write_variable_to_file_top">Write variable</string>
+    <string name="brick_write_variable_to_file_bottom">to file</string>
+    <string name="brick_write_variable_to_file_default_value">variable.txt</string>
+    <string name="brick_write_variable_to_file_success">"Data successfully written to %1$s"</string>
+    <string name="brick_read_variable_from_file_top">Read variable</string>
+    <string name="brick_read_variable_from_file_center">from file</string>
+    <string name="brick_read_variable_from_file_bottom">NA</string>
+    <string name="brick_read_variable_from_file_keep">keep the file</string>
+    <string name="brick_read_variable_from_file_delete">delete the file</string>
     <string name="brick_write_list_on_device">Write list on device</string>
     <string name="brick_read_list_from_device">Read list from device</string>
     <string name="brick_note_default_value">ongeza maoni yako hapa&#8230;</string>
@@ -1117,6 +1034,7 @@
     <string name="brick_broadcast_default_value">"ujumbe mpya"</string>
     <string name="brick_add_item_to_userlist_add">Ongeza</string>
     <string name="brick_add_item_to_userlist">katika orodha</string>
+    <string name="brick_clear_userlist">Delete all items from list</string>
     <string name="brick_delete_item_from_userlist_delete">Futa kipengele kutoka kwenye orodha</string>
     <string name="brick_delete_item_from_userlist">katika nafasi ya</string>
     <string name="brick_insert_item_into_userlist_insert_into">Weka</string>
@@ -1126,8 +1044,36 @@
     <string name="brick_replace_item_in_userlist_item_at_index">katika nafasi ya</string>
     <string name="brick_replace_item_in_userlist_with_value">na</string>
     <string name="brick_web_request">Send web request to</string>
+    <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">and store answer in</string>
-    <string name="brick_web_request_default_value">https://official-joke-api.appspot.com/random_joke</string>
+    <string name="web_request_warning_title">Allow web access?</string>
+    <string name="web_request_warning_message">Be very careful before allowing access, since the
+        link may expose your personal information, such as your precise geographical location or any text
+        you have entered to malicious others or to the public. See our
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
+        be extremely dangerous.
+    </string>
+    <string name="web_request_trust_domain_warning_title">Always allow web access?</string>
+    <string name="web_request_trust_domain_warning_message">By always allowing access, you will
+        not be asked again to confirm web addresses from this domain.
+    </string>
+    <string name="trusted_domains_edit_hint">If you want to revoke this permission
+        later, you can remove the entry from the list of trusted domains in
+        the settings of this app.
+    </string>
+    <string name="brick_look_request">Get image from</string>
+    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
+    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
+    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
+    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_background_request_result">and use as current background</string>
+    <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="brick_store_csv_into_userlist_store">Store column</string>
+    <string name="brick_store_csv_into_userlist_of">of the</string>
+    <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
+    <string name="brick_store_csv_into_userlist_into">katika orodha</string>
+    <string name="brick_store_csv_into_userlist_data">kitty,cute\npuppy,naughty\noctopus,intelligent</string>
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">Programu yangu ya kwanza</string>
@@ -1141,6 +1087,12 @@
     <string name="default_project_sprites_animal_wings_down">Wings down</string>
     <string name="default_project_sprites_tweet_1">Tweet1</string>
     <string name="default_project_sprites_tweet_2">Tweet2</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_needle_name">Needle</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_outer_loop">Outer Loop</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_inner_loop">Inner Loop</string>
     <!-- Default ChromeCast Values -->
     <string name="default_cast_project_background_name">Mandharinyuma</string>
     <string name="default_cast_project_cloud_name">Mawingu</string>
@@ -1614,6 +1566,8 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_function_list_item_parameter">(1,*orodhesha jina*)</string>
     <string name="formula_editor_function_contains">ina</string>
     <string name="formula_editor_function_contains_parameter">(*orodhesha jina*,1)</string>
+    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item_parameter">(1,*orodhesha jina*)</string>
     <string name="formula_editor_function_number_of_items">namba_ya_vipengele</string>
     <string name="formula_editor_function_number_of_items_parameter">(*jina la orodha*)</string>
     <string name="formula_editor_function_collision">gusa_kipengee</string>
@@ -1714,7 +1668,6 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_logic_comparison">vikokotoa mfanano</string>
     <string name="formula_editor_object_general">Sifa za jumla</string>
     <string name="formula_editor_object_movement">mwendo mali</string>
-    <string name="formula_editor_device_face_detection">Kigundua uso</string>
     <string name="formula_editor_device_date_and_time">Tarehe na saa</string>
     <string name="formula_editor_device_touch_detection">Gusa kigunduzi</string>
     <string name="formula_editor_device_lego_nxt">Lego NXT </string>
@@ -1791,8 +1744,11 @@ needs read and write access to it. You can always change permissions through you
     <string name="brick_choose_camera">Tumia kamera</string>
     <string name="choose_camera_front">mbele</string>
     <string name="choose_camera_back">rear</string>
-    <string name="brick_wait_until">Subiri hadi</string>
-    <string name="brick_wait_until_second_part">ni kweli</string>
+    <string name="camera_error_generic">        Something went wrong while trying to use the camera.
+    </string>
+    <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">A</string>

@@ -1,5 +1,0 @@
-<block type="LegoEv3PlayToneBrick" id="" x="" y="">
-    <field name="TIME">1</field>
-    <field name="FREQUENCY">2</field>
-    <field name="VOLUME">100</field>
-</block>

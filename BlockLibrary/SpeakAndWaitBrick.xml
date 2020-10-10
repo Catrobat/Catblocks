@@ -1,7 +1,0 @@
-<block type="SpeakAndWaitBrick" id="" x="" y="">
-  <value name="SPEAK">
-    <shadow type="text" id="">
-      <field name="TEXT">Hello!</field>
-    </shadow>
-  </value>
-</block>

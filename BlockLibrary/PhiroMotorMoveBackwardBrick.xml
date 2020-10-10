@@ -1,4 +1,0 @@
-<block type="PhiroMotorMoveBackwardBrick" id="" x="" y="">
-    <field name="DROPDOWN">Right</field>
-    <field name="SPEED">100</field>
-</block>

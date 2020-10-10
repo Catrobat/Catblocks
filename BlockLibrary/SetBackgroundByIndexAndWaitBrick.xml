@@ -1,7 +1,0 @@
-<block type="SetBackgroundByIndexAndWaitBrick" id="" x="" y="">
-  <value name="LOOK_INDEX">
-    <shadow type="text" id="">
-      <field name="TEXT">1</field>
-    </shadow>
-  </value>
-</block>

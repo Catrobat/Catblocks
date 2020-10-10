@@ -1,7 +1,0 @@
-<block type="SetBrightnessBrick" id="" x="" y="">
-  <value name="BRIGHTNESS">
-    <shadow type="text" id="">
-      <field name="TEXT">50</field>
-    </shadow>
-  </value>
-</block>

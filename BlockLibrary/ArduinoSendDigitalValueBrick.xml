@@ -1,4 +1,0 @@
-<block type="ArduinoSendDigitalValueBrick" id="" x="" y="">
-    <field name="DIGITAL_PIN">4</field>
-    <field name="DIGITAL_PIN_VALUE">2</field>
-</block>

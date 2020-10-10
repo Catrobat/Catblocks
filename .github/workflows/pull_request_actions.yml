@@ -8,13 +8,14 @@ on:
 
 jobs:
   runTests:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Run Auto-Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run jest test action
-        uses: ./jest-testing-action/       
+        uses: ./github_actions/jest-testing-action/
       - name: Prepare test report
         if: always()
         run: cd /home/runner/work/Catblocks/Catblocks && mkdir -p ./catblocksTestReport/ && cp ./jest_html_reporters.html ./catblocksTestReport/rep_${GITHUB_SHA}.html
@@ -26,6 +27,7 @@ jobs:
           path: /home/runner/work/Catblocks/Catblocks/catblocksTestReport/
       
   uploadDocker:
+    if: github.repository == 'Catrobat/Catblocks'
     name: Create new artifact for PO review
     runs-on: ubuntu-latest
     steps:
@@ -38,3 +40,18 @@ jobs:
         with:
           name: DockerCatblocks
           path: ./docker/po-review/
+
+
+  lintCode:
+    if: github.repository == 'Catrobat/Catblocks'
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: lint
+        

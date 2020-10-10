@@ -30,6 +30,7 @@
     <string name="undo">واپس کریں</string>
     <string name="new_option">نئی</string>
     <string name="confirm">تصدیق کریں</string>
+    <string name="ignore">Ignore</string>
     <string name="cancel">منسوخ کریں</string>
     <string name="next">اگلا</string>
     <string name="back">پیچھے</string>
@@ -38,10 +39,13 @@
     <string name="close">بند کریں</string>
     <string name="yes">ہاں</string>
     <string name="no">نہيں</string>
+    <string name="once">Once</string>
+    <string name="always">Always</string>
+    <string name="deny">Deny</string>
     <string name="agree">متفق</string>
     <string name="disagree">غیر متفق</string>
     <string name="select_all">تمام منتخب کریں</string>
-    <string name="deselect_all">تمام منتخب کریں</string>
+    <string name="deselect_all">سب منسوخ کریں</string>
     <string name="skip">چھوڑ دو</string>
     <string name="warning">خبردار</string>
     <string name="error">خرابی</string>
@@ -87,6 +91,9 @@
     <string name="preference_title">ترتیبات</string>
     <string name="preference_title_language">زبان</string>
     <string name="preference_description_language">ایپ کی زبان کو سیٹ کریں</string>
+    <string name="preference_title_web_access">Web access</string>
+    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
+    <string name="preference_screen_web_access_title">Edit trusted domains</string>
     <string name="preference_title_accessibility">رسائی</string>
     <string name="preference_description_accessibility">اپلی کیشن کی ظاہری شکل تبدیل کریں</string>
     <string name="preference_title_accessibility_profiles"> پروفائل رسائی</string>
@@ -162,6 +169,11 @@
     <string name="preference_raspi_host">رس بھری Pi IP/ میزبان ایڈریس</string>
     <string name="preference_raspi_port">  رس بھری Pi  پورٹ </string>
     <!--  -->
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
+        multiplayer variables shared via Bluetooth</string>
+    <string name="preference_title_enable_test_bricks">Testing extension</string>
+    <string name="preference_description_test_bricks">Allows to create tests</string>
     <!-- Scratch Converter activity -->
     <string name="beta">بیٹا</string>
     <string name="error_scratch_program_not_accessible_any_more">افسوس! لگتا ہے کہ پراجیکٹ  غائب ہوسکتا ہے یا آپ کو اس تک رسائی کھو دی.</string>
@@ -271,6 +283,8 @@
     <string name="am_convert">تبدیل کریں</string>
     <string name="am_merge">Merge</string>
     <string name="dialog_confirm_delete">آپ اس کو رد نہیں کر سکتے ہیں!</string>
+    <string name="dialog_confirm_delete_definition">This will also remove the brick in all
+        other scripts in which it is being used.\nYou cannot undo this!</string>
     <string name="list_headline_sprites">اداکار اور آبجیکٹ</string>
     <!-- Options Menu Options -->
     <string name="backpack">بستہ</string>
@@ -280,199 +294,6 @@
     <string name="merge">Merge</string>
     <string name="show_details">تفصیلات دکھائیں</string>
     <string name="hide_details">تفصیلات چھپائیں</string>
-    <!-- Action Mode Titles -->
-    <!-- Project Action Mode Titles -->
-    <plurals name="am_pack_projects_title">
-        <item quantity="one">پروجیکٹ کو پیک کریں</item>
-        <item quantity="other">پروجیکٹ کو پیک کریں</item>
-    </plurals>
-    <plurals name="am_copy_projects_title">
-        <item quantity="one">٪ d منصوبے کاپی کریں
-٪ d منصوبوں کاپی کریں</item>
-        <item quantity="other">٪ d منصوبے کاپی کریں
-٪ d منصوبوں کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_projects_title">
-        <item quantity="one">٪ d پروجیکٹ ختم کرو
-٪ d پروجیکٹ کو ختم کرو</item>
-        <item quantity="other">٪ d پروجیکٹ ختم کرو
-٪ d پروجیکٹ کو ختم کرو</item>
-    </plurals>
-    <plurals name="am_rename_projects_title">
-        <item quantity="one">٪ d پروجیکٹ کا نام تبدیل کریں</item>
-        <item quantity="other">٪ d پروجیکٹ کا نام تبدیل کریں</item>
-    </plurals>
-    <plurals name="am_convert_projects_title">
-        <item quantity="one">پروجیکٹ تبدیل کریں</item>
-        <item quantity="other">پروجیکٹ تبدیل کریں</item>
-    </plurals>
-    <plurals name="am_merge_projects_title">
-        <item quantity="one">Merge %d project</item>
-        <item quantity="other">Merge %d projects</item>
-    </plurals>
-    <!-- Scene Action Mode Titles -->
-    <plurals name="am_pack_scenes_title">
-        <item quantity="one">پیک %d منظر</item>
-        <item quantity="other">پیک %d منظر</item>
-    </plurals>
-    <plurals name="am_unpack_scenes_title">
-        <item quantity="one">٪ d منظر غیر پیک کریں
-٪ d مناظر کھولیں</item>
-        <item quantity="other">٪ d منظر غیر پیک کریں
-٪ d مناظر کھولیں</item>
-    </plurals>
-    <plurals name="am_copy_scenes_title">
-        <item quantity="one">منظر ٪ d کاپی کریں
- مناظر ٪ d کاپی کریں</item>
-        <item quantity="other">منظر ٪ d کاپی کریں
- مناظر ٪ d کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_scenes_title">
-        <item quantity="one">ختم٪ d منظر
-ختم٪ d مناظر</item>
-        <item quantity="other">ختم٪ d منظر
-ختم٪ d مناظر</item>
-    </plurals>
-    <plurals name="am_rename_scenes_title">
-        <item quantity="one">%d منظر کو نیا نام دیں</item>
-        <item quantity="other">%d منظر کو نیا نام دیں</item>
-    </plurals>
-    <!-- Sprite Action Mode Titles -->
-    <plurals name="am_pack_sprites_title">
-        <item quantity="one">پیک %d اداکار یا آبجیکٹ</item>
-        <item quantity="other">پیک %d اداکار یا آبجیکٹ</item>
-    </plurals>
-    <plurals name="am_unpack_sprites_title">
-        <item quantity="one"> اداکار یا اعتراض ٪ d غیر پیک کریں</item>
-        <item quantity="other"> اداکار یا اعتراض ٪ d غیر پیک کریں</item>
-    </plurals>
-    <plurals name="am_copy_sprites_title">
-        <item quantity="one">٪ d اداکاروں یا آبجیکٹ کاپی کریں
-٪ d اداکاروں یا آبجیکٹ کاپی کریں</item>
-        <item quantity="other">٪ d اداکاروں یا آبجیکٹ کاپی کریں
-٪ d اداکاروں یا آبجیکٹ کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_sprites_title">
-        <item quantity="one">٪ d اداکار یا اعتراض ختم
-٪ d اداکاروں یا اشیاء ختم</item>
-        <item quantity="other">٪ d اداکار یا اعتراض ختم
-٪ d اداکاروں یا اشیاء ختم</item>
-    </plurals>
-    <plurals name="am_rename_sprites_title">
-        <item quantity="one">٪ d اداکار یا آبجیکٹ کا نام تبدیل کریں
-٪ d اداکاروں یا آبجیکٹ کا نام تبدیل کریں</item>
-        <item quantity="other">٪ d اداکار یا آبجیکٹ کا نام تبدیل کریں
-٪ d اداکاروں یا آبجیکٹ کا نام تبدیل کریں</item>
-    </plurals>
-    <!-- Look Action Mode Titles -->
-    <plurals name="am_pack_looks_title">
-        <item quantity="one">پیک %d نظر</item>
-        <item quantity="other">پیک %d لگتا ہے</item>
-    </plurals>
-    <plurals name="am_unpack_looks_title">
-        <item quantity="one">پیک %d نظر</item>
-        <item quantity="other">٪ d آواز غیر پیک کریں</item>
-    </plurals>
-    <plurals name="am_copy_looks_title">
-        <item quantity="one">٪ d نظر کاپی کریں
-٪ d کاپی لگائیں</item>
-        <item quantity="other">٪ d نظر کاپی کریں
-٪ d کاپی لگائیں</item>
-    </plurals>
-    <plurals name="am_delete_looks_title">
-        <item quantity="one">٪ d نظر کو حذف کریں
-٪ d کو حذف کریں</item>
-        <item quantity="other">٪ d نظر کو حذف کریں
-٪ d کو حذف کریں</item>
-    </plurals>
-    <plurals name="am_rename_looks_title">
-        <item quantity="one"> نظر ٪ d  کا نام تبدیل کریں</item>
-        <item quantity="other"> نظر ٪ d  کا نام تبدیل کریں</item>
-    </plurals>
-    <!-- Sound Action Mode Titles -->
-    <plurals name="am_pack_sounds_title">
-        <item quantity="one">%d آواز پیک</item>
-        <item quantity="other">Pack %d sounds</item>
-    </plurals>
-    <plurals name="am_unpack_sounds_title">
-        <item quantity="one">٪ d آواز غیر پیک کریں
-٪ d آوازوں کو کھولیں</item>
-        <item quantity="other">٪ d آواز غیر پیک کریں
-٪ d آوازوں کو کھولیں</item>
-    </plurals>
-    <plurals name="am_copy_sounds_title">
-        <item quantity="one">٪ d آواز کاپی کریں
-٪ d آواز کاپی کریں</item>
-        <item quantity="other">٪ d آواز کاپی کریں
-٪ d آواز کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_sounds_title">
-        <item quantity="one">٪ d آواز حذف کریں
-٪ d آوازیں حذف کریں</item>
-        <item quantity="other">٪ d آواز حذف کریں
-٪ d آوازیں حذف کریں</item>
-    </plurals>
-    <plurals name="am_rename_sounds_title">
-        <item quantity="one">٪ d آواز کا نام تبدیل کریں
-٪ d آوازوں کا نام تبدیل کریں</item>
-        <item quantity="other">٪ d آواز کا نام تبدیل کریں
-٪ d آوازوں کا نام تبدیل کریں</item>
-    </plurals>
-    <!-- NFC Tag Action Mode Titles -->
-    <plurals name="am_copy_nfc_tags_title">
-        <item quantity="one">٪ d این ایف سی ٹیگ کو کاپی کریں
-٪ d این ایف سی ٹیگز کاپی کریں</item>
-        <item quantity="other">٪ d این ایف سی ٹیگ کو کاپی کریں
-٪ d این ایف سی ٹیگز کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_nfc_tags_title">
-        <item quantity="one">٪ d این ایف سی ٹیگ کو حذف کریں
-٪ d این ایف سی ٹیگ کو حذف کریں</item>
-        <item quantity="other">٪ d این ایف سی ٹیگ کو حذف کریں
-٪ d این ایف سی ٹیگ کو حذف کریں</item>
-    </plurals>
-    <plurals name="am_rename_nfc_tags_title">
-        <item quantity="one">٪ d این ایف سی ٹیگ کا نام تبدیل کریں
-٪ d این ایف ایف ٹیگ کا نام تبدیل کریں</item>
-        <item quantity="other">٪ d این ایف سی ٹیگ کا نام تبدیل کریں
-٪ d این ایف ایف ٹیگ کا نام تبدیل کریں</item>
-    </plurals>
-    <!-- Script Action Mode Titles -->
-    <plurals name="am_pack_scripts_title">
-        <item quantity="one">٪ d اینٹوں پیک
-٪ d اینٹوں پیک</item>
-        <item quantity="other">٪ d اینٹوں پیک
-٪ d اینٹوں پیک</item>
-    </plurals>
-    <plurals name="am_unpack_scripts_title">
-        <item quantity="one">٪ d سکرپٹ کو کھولیں
-٪ d سکرپٹ کو ناپاک کریں</item>
-        <item quantity="other">٪ d سکرپٹ کو کھولیں
-٪ d سکرپٹ کو ناپاک کریں</item>
-    </plurals>
-    <plurals name="am_copy_scripts_title">
-        <item quantity="one">٪ d اینٹ کاپی کریں
-٪ d اینٹوں کاپی کریں</item>
-        <item quantity="other">٪ d اینٹ کاپی کریں
-٪ d اینٹوں کاپی کریں</item>
-    </plurals>
-    <plurals name="am_delete_bricks_title">
-        <item quantity="one">٪ d اینٹ حذف کریں
-٪ d اینٹوں کو حذف کریں</item>
-        <item quantity="other">٪ d اینٹ حذف کریں
-٪ d اینٹوں کو حذف کریں</item>
-    </plurals>
-    <plurals name="am_delete_scripts_title">
-        <item quantity="one">٪ d سکرپٹ کو حذف کریں
-٪ d سکرپٹ حذف کریں</item>
-        <item quantity="other">٪ d سکرپٹ کو حذف کریں
-٪ d سکرپٹ حذف کریں</item>
-    </plurals>
-    <!-- Data Item Action Mode Titles -->
-    <plurals name="am_delete_user_data_items_title">
-        <item quantity="one">٪ d ڈیٹا اشیاء ختم</item>
-        <item quantity="other">٪ d ڈیٹا اشیاء ختم</item>
-    </plurals>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">نیا منظر</string>
     <!-- Delete Dialog Titles -->
@@ -512,6 +333,7 @@
         <item quantity="one">ان اینٹوں کو  ختم کریں؟</item>
         <item quantity="other">ان اینٹوں کو ختم کریں؟</item>
     </plurals>
+    <string name="delete_definition">Delete the definition of this brick?</string>
     <!-- Dialog Labels -->
     <string name="project_name_label">نام پروجیکٹ</string>
     <string name="scene_name_label">نام منظر</string>
@@ -523,6 +345,7 @@
     <string name="nfc_tag_name_label">این ایف سی ٹیگ کا نام</string>
     <string name="string_label">متن</string>
     <string name="data_label">نام</string>
+    <string name="Image_format_not_supported">Image format not supported</string>
     <!-- Details -->
     <string name="project_details">آخری رسائی: %s، سائز: %s</string>
     <string name="last_access_today">today, %s</string>
@@ -700,6 +523,7 @@
     <string name="tnf_well_known_mailto">ای-میل</string>
     <!--  -->
     <!-- DataListFragment -->
+    <string name="multiplayer_vars_headline">Variables for connected devices</string>
     <string name="global_vars_headline">تمام اداکاروں اور اشیاء کے لئے متغیرات</string>
     <string name="local_vars_headline">اس اداکار یا صرف آبجیکٹ کے لیے متغیرات</string>
     <string name="global_lists_headline">فہرست تمام اداکاروں اور اشیاء کے لئے</string>
@@ -707,6 +531,8 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">تمام مناظر میں تمام اداکاروں، اشیاء اور کلونوں کے لئے</string>
     <string name="new_data_for_this_sprite_only">یہ اداکار، آبجیکٹ یا صرف اس کلون میں سے ایک کے لئے</string>
+    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
+        on connected multiplayer devices</string>
     <!-- Backpack -->
     <string name="backpack_title">آپ کا بیک پیک</string>
     <string name="pack">پیک</string>
@@ -872,15 +698,17 @@
     <string name="soundrecorder_text_view">ریکارڈنگ شروع اور بند کرنے کے لئے اوپر دی گئی آئیکون کو ٹیپ کریں</string>
     <!--  -->
     <!-- Brick context dialog -->
-    <string name="brick_context_dialog_move_brick">اینٹوں کو منتقل کریں</string>
+    <string name="brick_context_dialog_move_brick">Move brick</string>
     <string name="brick_context_dialog_move_script">سکرپٹ منتقل کریں</string>
-    <string name="brick_context_dialog_delete_brick">اینٹ ختم کریں</string>
-    <string name="brick_context_dialog_copy_brick">اینٹ کاپی کریں</string>
+    <string name="brick_context_dialog_move_definition">Move this definition</string>
+    <string name="brick_context_dialog_delete_brick">Delete brick</string>
+    <string name="brick_context_dialog_copy_brick">Copy brick</string>
     <string name="brick_context_dialog_copy_script">سکرپٹ کاپی کریں</string>
-    <string name="brick_context_dialog_formula_edit_brick">فارمولا میں ترمیم کریں</string>
-    <string name="brick_context_dialog_delete_script">٪ d سکرپٹ کو  ختم کریں</string>
-    <string name="brick_context_dialog_comment_in">اینٹوں کو فعال کریں</string>
-    <string name="brick_context_dialog_comment_out">اینٹ کو غیر فعال کریں</string>
+    <string name="brick_context_dialog_formula_edit_brick">Edit formula</string>
+    <string name="brick_context_dialog_delete_script">Delete script</string>
+    <string name="brick_context_dialog_delete_definition">Delete this definition</string>
+    <string name="brick_context_dialog_comment_in">Enable brick</string>
+    <string name="brick_context_dialog_comment_out">Disable brick</string>
     <string name="brick_context_dialog_highlight_brick_parts">اینٹ حصوں کو نمایاں کریں</string>
     <string name="brick_context_dialog_comment_in_script">سکرپٹ کو فعال کریں</string>
     <string name="brick_context_dialog_comment_out_script">اینٹ کو غیر فعال کریں</string>
@@ -915,9 +743,8 @@
     <string name="sign_in_error">سائن اپ کے دوران کچ غلط ہوگیا</string>
     <string name="error_google_plus_sign_in">Google سائن ان کی خرابی. حیثیت:٪ %s</string>
     <string name="error_session_expired">Session expired, please log in.</string>
-    <string name="sign_in_with_google">گوگل کے ساتھ سائن ان کریں</string>
     <string name="error_register_empty_username">خالی صارف نام</string>
-    <string name="error_register_username_as_email">ای میل ایڈریس صارف نام کے طور پر استعمال نہیں کیا جاسکتا</string>
+    <string name="error_register_username_as_email">Email address cannot be used as username</string>
     <string name="error_register_invalid_username">صارف کا نام صرف حروف (a-z), نمبروں کا (0-9),
         ڈیش (-)، اجاگر کرتی (_) اور نکتے (.) کا حامل ہونا چاہیے ۔</string>
     <string name="error_register_username_start_with">صارف کا نام ڈیشز (-)، اندراج (_)، یا کے ساتھ شروع نہیں ہونا چاہئے
@@ -947,16 +774,18 @@
          مندرجہ ذیل اجزاء دستیاب نہیں ہیں: \ n \ n</string>
     <string name="prestage_resource_in_use_text">ایک اور آلہ جمپنگ سومو سے منسلک ہے. یقینی بنائیں کہ آپ
          ڈرون سے منسلک ہے.</string>
-    <string name="prestage_no_vibration_available">\u2022 لرزنے کا عمل\n</string>
+    <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">\ u2022 تیز رفتار سینسر n\ </string>
     <string name="prestage_no_inclination_sensor_available">\ u2022 چڑھنے سینسر n\</string>
     <string name="prestage_no_compass_sensor_available">\ u2022 کمپاس \ n</string>
     <string name="prestage_no_gps_sensor_available">\ u2022 جغرافیائی مقام \ n</string>
     <string name="prestage_text_to_speech_error">\ u2022 متن سے بات کرنے والے انجن \ n</string>
     <string name="prestage_no_back_camera_available">\ u2022 ریئر کیمرے \ n</string>
-    <string name="prestage_no_camera_available">\ u2022 چہرے کا پتہ لگانے \ n</string>
+    <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
     <string name="prestage_no_jumping_sumo_available">\ u2022 جموں سمو \ n</string>
     <string name="prestage_no_front_camera_available">\ u2022 فرنٹ کیمرے \ n</string>
+    <string name="prestage_no_camera_available">\u2022 Camera\n</string>
+    <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
     <string name="prestage_default_resource_not_available">\ u2022 نامعلوم اجزاء \ n</string>
     <string name="no_nfc_available">این ایف سی دستیاب نہیں</string>
     <string name="nfc_not_activated">براہ کرم این ایف سی کو چالو کریں اور اپلی کیشن پر واپسی کیلئے واپس دبائیں.</string>
@@ -1000,6 +829,17 @@
     <string name="category_cast">کروم کاسٹ</string>
     <string name="category_raspi">راسباری پائی Pi</string>
     <string name="category_assertions">Testing</string>
+    <!--  -->
+    <!-- User Defined Bricks -->
+    <string name="brick_user_defined_add_label">Add label</string>
+    <string name="brick_user_defined_add_input">Add input</string>
+    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
+    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
+    <string name="brick_user_defined_default_input_name">Name of input</string>
+    <string name="brick_user_defined_default_label">Label text</string>
+    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <string name="brick_user_defined_script_define">Define</string>
+    <string name="brick_user_defined_script_as">as</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"جگہ رکھیں"</string>
@@ -1101,6 +941,7 @@
     <!-- Sound bricks -->
     <string name="brick_play_sound">آواز کا آغاز</string>
     <string name="brick_play_sound_and_wait">آواز کا آغاز اور انتظار کریں</string>
+    <string name="brick_stop_sound">Stop sound</string>
     <string name="brick_stop_all_sounds">تمام آوازیں بند کریں</string>
     <string name="brick_set_volume_to">حجم سیٹ کریں</string>
     <string name="brick_change_volume_by">حجم تبدیل کریں</string>
@@ -1122,6 +963,8 @@
     <string name="brick_when_condition_when">جب</string>
     <string name="brick_when_becomes_true">سچ ہو جاتا ہے</string>
     <string name="brick_wait">انتظار کریں</string>
+    <string name="brick_wait_until">تک انتظار کریں</string>
+    <string name="brick_wait_until_second_part">سچ ہے</string>
     <string name="brick_when_gamepad_button">جب گیم پیڈ بٹن</string>
     <string name="brick_when_gamepad_button_tapped">ٹیپ</string>
     <string name="brick_when_nfc">جب این ایف سی</string>
@@ -1145,6 +988,9 @@
     <string name="brick_say_bubble">کہہ دو</string>
     <string name="brick_think_say_for_text">کےلیے</string>
     <string name="brick_forever">ہمیشہ کے لئے</string>
+    <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_in">in</string>
+    <string name="brick_loop_to">کرنا</string>
     <string name="brick_repeat">دہرائیں</string>
     <string name="brick_repeat_until">تک دہرائیں</string>
     <string name="brick_when_touched">جب اسٹیج  ٹیپ کیا جاتا ہے</string>
@@ -1152,11 +998,29 @@
     <string name="brick_clone_this">اپنے آپ کو</string>
     <string name="brick_when_cloned">جب آپ کلون کے طور پر شروع کرتے ہیں</string>
     <string name="brick_delete_this_clone">اس کلون کو ختم کریں؟</string>
-    <string name="brick_assert_that">Assert:</string>
-    <string name="brick_is_equal_to">equal to expected:</string>
+    <string name="brick_assert_that">Assert</string>
+    <string name="brick_is_equal_to">equals expected</string>
     <string name="brick_wait_till_idle">Wait until all other scripts have stopped</string>
     <string name="brick_tap_at">"Single tap at"</string>
     <string name="brick_finish_stage">Finish stage</string>
+    <string name="brick_finish_tests">Finish tests</string>
+    <string name="brick_assert_lists">Assert lists</string>
+    <string name="brick_assert_actual">Actual:</string>
+    <string name="brick_assert_expected">Expected:</string>
+    <string name="brick_parameterized_assert">assert</string>
+    <string name="brick_parameterized_equals">equals to expected item of</string>
+    <plurals name="brick_parameterized_foreach_plural">
+        <item quantity="one">For each item of</item>
+        <item quantity="other">For each tuple of items of</item>
+    </plurals>
+    <plurals name="brick_parameterized_stored_plural">
+        <item quantity="one">stored in variable with the same name</item>
+        <item quantity="other">stored in variables with the same names</item>
+    </plurals>
+    <plurals name="list_selection_plural">
+        <item quantity="one">%d list selected</item>
+        <item quantity="other">%d lists selected</item>
+    </plurals>
     <plurals name="time_plural">
         <item quantity="one">وقت</item>
         <item quantity="other">وقت</item>
@@ -1170,6 +1034,15 @@
     <string name="brick_change_variable">متغیر تبدیل کریں</string>
     <string name="brick_write_variable_on_device">Write variable on device</string>
     <string name="brick_read_variable_from_device">Read variable from device</string>
+    <string name="brick_write_variable_to_file_top">Write variable</string>
+    <string name="brick_write_variable_to_file_bottom">to file</string>
+    <string name="brick_write_variable_to_file_default_value">variable.txt</string>
+    <string name="brick_write_variable_to_file_success">"Data successfully written to %1$s"</string>
+    <string name="brick_read_variable_from_file_top">Read variable</string>
+    <string name="brick_read_variable_from_file_center">from file</string>
+    <string name="brick_read_variable_from_file_bottom">اور</string>
+    <string name="brick_read_variable_from_file_keep">keep the file</string>
+    <string name="brick_read_variable_from_file_delete">delete the file</string>
     <string name="brick_write_list_on_device">Write list on device</string>
     <string name="brick_read_list_from_device">Read list from device</string>
     <string name="brick_note_default_value">تبصرہ شامل کریں یہاں&#8230;</string>
@@ -1178,6 +1051,7 @@
     <string name="brick_broadcast_default_value">"نیا پیغام"</string>
     <string name="brick_add_item_to_userlist_add">جمع</string>
     <string name="brick_add_item_to_userlist">فہرست کے لیے</string>
+    <string name="brick_clear_userlist">Delete all items from list</string>
     <string name="brick_delete_item_from_userlist_delete">فہرست سے اشیاء حذف کریں</string>
     <string name="brick_delete_item_from_userlist">پوزیشن پر</string>
     <string name="brick_insert_item_into_userlist_insert_into">داخل کریں</string>
@@ -1187,8 +1061,36 @@
     <string name="brick_replace_item_in_userlist_item_at_index">پوزیشن پر</string>
     <string name="brick_replace_item_in_userlist_with_value">کے ساتھ</string>
     <string name="brick_web_request">Send web request to</string>
+    <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">and store answer in</string>
-    <string name="brick_web_request_default_value">https://official-joke-api.appspot.com/random_joke</string>
+    <string name="web_request_warning_title">Allow web access?</string>
+    <string name="web_request_warning_message">Be very careful before allowing access, since the
+        link may expose your personal information, such as your precise geographical location or any text
+        you have entered to malicious others or to the public. See our
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; for more information why this can
+        be extremely dangerous.
+    </string>
+    <string name="web_request_trust_domain_warning_title">Always allow web access?</string>
+    <string name="web_request_trust_domain_warning_message">By always allowing access, you will
+        not be asked again to confirm web addresses from this domain.
+    </string>
+    <string name="trusted_domains_edit_hint">If you want to revoke this permission
+        later, you can remove the entry from the list of trusted domains in
+        the settings of this app.
+    </string>
+    <string name="brick_look_request">Get image from</string>
+    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
+    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
+    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
+    <string name="brick_look_request_result">and use as current look</string>
+    <string name="brick_background_request_result">and use as current background</string>
+    <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
+    <string name="look_request_type_error_message">"Get image from %1$s could not retrieve a recognized image format"</string>
+    <string name="brick_store_csv_into_userlist_store">Store column</string>
+    <string name="brick_store_csv_into_userlist_of">of the</string>
+    <string name="brick_store_csv_into_userlist_csv">comma-separated values</string>
+    <string name="brick_store_csv_into_userlist_into">فہرست میں</string>
+    <string name="brick_store_csv_into_userlist_data">kitty,cute\npuppy,naughty\noctopus,intelligent</string>
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">میرا پہلا پراجیکٹ</string>
@@ -1202,6 +1104,12 @@
     <string name="default_project_sprites_animal_wings_down">پروں کے نیچے</string>
     <string name="default_project_sprites_tweet_1">ٹویٹ1</string>
     <string name="default_project_sprites_tweet_2">ٹویٹ2</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_needle_name">Needle</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_outer_loop">Outer Loop</string>
+    <!--suppress UnusedResources -->
+    <string name="default_project_inner_loop">Inner Loop</string>
     <!-- Default ChromeCast Values -->
     <string name="default_cast_project_background_name">پس پشت</string>
     <string name="default_cast_project_cloud_name">کلا وڈ</string>
@@ -1675,6 +1583,8 @@
     <string name="formula_editor_function_list_item_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_contains">مشتمل</string>
     <string name="formula_editor_function_contains_parameter">(* فہرست نام *)</string>
+    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_number_of_items">اشیاء کی تعداد</string>
     <string name="formula_editor_function_number_of_items_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_collision">کردار اداکار یا اعتراض</string>
@@ -1775,7 +1685,6 @@
     <string name="formula_editor_logic_comparison">موازنہ آپریٹرز</string>
     <string name="formula_editor_object_general">عام خصوصیات</string>
     <string name="formula_editor_object_movement">حرکت خصوصیات</string>
-    <string name="formula_editor_device_face_detection">چہرے کی شناخت</string>
     <string name="formula_editor_device_date_and_time">تاریخ اور وقت</string>
     <string name="formula_editor_device_touch_detection"> چھونا کھوج</string>
     <string name="formula_editor_device_lego_nxt">Lego Mindstorms NXT</string>
@@ -1861,8 +1770,11 @@
     <string name="brick_choose_camera">کیمرے کا استعمال کریں</string>
     <string name="choose_camera_front">سامنے</string>
     <string name="choose_camera_back">پیچھے</string>
-    <string name="brick_wait_until">تک انتظار کریں</string>
-    <string name="brick_wait_until_second_part">سچ ہے</string>
+    <string name="camera_error_generic">        Something went wrong while trying to use the camera.
+    </string>
+    <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">اے</string>
