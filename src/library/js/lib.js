@@ -18,8 +18,9 @@ export class CatBlocks {
    * Initialize Share-Object and change Language
    * @export
    * @param {*} config
+   * @returns Promise which should be waited before rendering
    */
-  static async init(config) {
+  static init(config) {
     if (!config) {
       throw new Error('No configuration given');
     }
@@ -29,7 +30,7 @@ export class CatBlocks {
     preparePaths();
 
     catblocks_instance.share = new Share();
-    await catblocks_instance.share.init(config);
+    return catblocks_instance.share.init(config);
   }
 
   /**
@@ -48,6 +49,21 @@ export class CatBlocks {
 
     const programContainer = document.getElementById(catblocks_instance.config.container);
     return renderProgram(catblocks_instance.share, programContainer, path, name);
+  }
+
+  /**
+   * Renders the program given in codeXML with the given name.
+   * @static
+   * @param {*} codeXML XML-string containing the program description
+   * @param {*} name name of the program
+   * @memberof CatBlocks
+   */
+  static renderForAndroid(codeXML, name) {
+    const programJSON = Parser.convertProgramToJSONDebug(codeXML);
+
+    const programContainer = document.getElementById(catblocks_instance.config.container);
+
+    catblocks_instance.share.renderProgramJSON(`catblocks-program-${name}`, programContainer, programJSON, {}, true);
   }
 
   static getInstance() {
