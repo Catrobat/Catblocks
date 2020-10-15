@@ -12,6 +12,7 @@ const colourCodes = {
   cast: { colourPrimary: '#866A4E', colourSecondary: '#C1966B', colourTertiary: '#FDC48D' },
   control: { colourPrimary: '#FFAB19', colourSecondary: '#e39613', colourTertiary: '#CF8B17' },
   data: { colourPrimary: '#FF6680', colourSecondary: '#ce4562', colourTertiary: '#FF3355' },
+  device: { colourPrimary: '#BDBDBD', colourSecondary: '#A4A4A4', colourTertiary: '#848484' },
   drone: { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
   event: { colourPrimary: '#FF661A', colourSecondary: '#d44c00', colourTertiary: '#E64D00' },
   jumpingSumo: { colourPrimary: '#91d149', colourSecondary: '#6d9c36', colourTertiary: '#669334' },
@@ -24,7 +25,7 @@ const colourCodes = {
   raspi: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
   sound: { colourPrimary: '#9966FF', colourSecondary: '#6c51b4', colourTertiary: '#774DCB' },
   stitch: { colourPrimary: '#BC4793', colourSecondary: '#bb3a8d', colourTertiary: '#b72a86' },
-  user: { colourPrimary: '#bbb', colourSecondary: '#aaa', colourTertiary: '#999' },
+  user: { colourPrimary: '#bbbbbb', colourSecondary: '#aaaaaa', colourTertiary: '#999999' },
   default: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' }
 };
 
