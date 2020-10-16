@@ -33,44 +33,6 @@ export default {
       }
     ]
   },
-  BroadcastBrick: {
-    message0: '%{BKY_EVENT_BROADCAST_CB}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  BroadcastWaitBrick: {
-    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
   WhenConditionScript: {
     message0: '%{BKY_EVENT_WHENBECOMESTRUE}',
     args0: [
@@ -127,5 +89,8 @@ export default {
         name: 'look_INFO'
       }
     ]
+  },
+  WhenClonedScript: {
+    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
   }
 };
