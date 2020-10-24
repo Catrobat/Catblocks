@@ -26,6 +26,7 @@ export class Share {
     this.workspaceDom = undefined;
     this.workspace = undefined;
     this.cssNode = undefined;
+    this.scrollToElements = new Map();
     all_blocks.clear();
     rendered_scenes.clear();
   }
@@ -184,20 +185,26 @@ export class Share {
    * @param {string} sceneName mapped to id from the new dom
    * @returns {Element} new created scene objects container
    */
-  addSceneContainer(accordionID, sceneID, container, sceneName) {
+  addSceneContainer(accordionID, sceneID, container, sceneName, expanded) {
     const sceneContainer = generateNewDOM(container, 'div', {
       class: 'catblocks-scene card',
       id: sceneID
     });
 
     const sceneHeader = generateNewDOM(sceneContainer, 'div', {
-      class: 'catblocks-scene-header card-header d-flex justify-content-between expansion-header',
+      class:
+        'catblocks-scene-header card-header d-flex justify-content-between expansion-header' +
+        (expanded ? '' : 'collapsed'),
       id: `${sceneID}-header`,
       'data-toggle': 'collapse',
       'data-target': `#${sceneID}-collapseOne`,
-      'aria-expanded': 'false',
+      'aria-expanded': expanded ? 'true' : 'false',
       'aria-controls': `${sceneID}-collapseOne`
     });
+
+    if (expanded) {
+      this.scrollToElements['scene'] = sceneHeader;
+    }
 
     if (sceneName) {
       sceneHeader.innerHTML = `<div class="header-title">${sceneName}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
@@ -206,7 +213,7 @@ export class Share {
     }
 
     const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
-      class: 'catblocks-object-container collapse',
+      class: 'catblocks-object-container collapse' + (expanded ? ' show' : ''),
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
       'data-parent': `#${accordionID}`
@@ -262,6 +269,11 @@ export class Share {
       const scene = programJSON.scenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
 
+      let renderNow = false;
+      if (options.scene.renderNow.scene && scene.name) {
+        renderNow = options.scene.renderNow.scene.trim() === scene.name.trim();
+      }
+
       let sceneObjectContainer = undefined;
       if (programJSON.scenes.length === 1) {
         sceneObjectContainer = generateNewDOM(scenesContainer, 'div', {
@@ -273,7 +285,8 @@ export class Share {
           scenesContainerID,
           sceneID,
           scenesContainer,
-          trimString(scene.name)
+          trimString(scene.name),
+          renderNow
         );
       }
       if (scene.objectList == null || scene.objectList.length === 0) {
@@ -293,8 +306,31 @@ export class Share {
 
       const $spinnerModal = $('#spinnerModal');
 
-      if (!renderEverything) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
+      if (!renderEverything || renderNow) {
+        $spinnerModal.one('shown.bs.modal', () => {
+          this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
+          $spinnerModal.modal('hide');
+
+          let scrollTo = this.scrollToElements['script'];
+
+          if (!scrollTo) {
+            scrollTo = this.scrollToElements['object'];
+          }
+
+          if (!scrollTo) {
+            scrollTo = this.scrollToElements['scene'];
+          }
+
+          if (scrollTo) {
+            $('html, body').animate(
+              {
+                scrollTop: $(scrollTo).offset().top
+              },
+              'slow'
+            );
+          }
+        });
+        $spinnerModal.modal('show');
         continue;
       }
 
@@ -334,6 +370,11 @@ export class Share {
 
     const performanceContainer = generateNewDOM(undefined, 'div');
 
+    let sceneDisplayedDefault = false;
+    if (options.scene.renderNow.scene && scene.name) {
+      sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
+    }
+
     options.object.sceneName = scene.name;
     for (let j = 1; j < scene.objectList.length; j++) {
       const object = scene.objectList[j];
@@ -344,6 +385,7 @@ export class Share {
         `${sceneID}-accordionObjects`,
         performanceContainer,
         object,
+        sceneDisplayedDefault,
         parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
       );
     }
@@ -369,11 +411,17 @@ export class Share {
       scene.objectList[0].name = Blockly.CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
     }
 
+    let sceneDisplayedDefault = false;
+    if (options.scene.renderNow.scene && scene.name) {
+      sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
+    }
+
     this.renderObjectJSON(
       backgroundObjID,
       `${sceneID}-accordionObjects`,
       sceneObjectContainer,
       scene.objectList[0],
+      sceneDisplayedDefault,
       parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
     );
   }
@@ -386,7 +434,14 @@ export class Share {
    * @param {Object} object JSON of the program
    * @param {Object} [options=defaultOptions.object]
    */
-  renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, options = defaultOptions.object) {
+  renderObjectJSON(
+    objectID,
+    accordionID,
+    sceneObjectContainer,
+    object,
+    sceneDisplayedDefault,
+    options = defaultOptions.object
+  ) {
     const objectCard = generateNewDOM(sceneObjectContainer, 'div', {
       class: 'catblocks-object card',
       id: objectID
@@ -405,6 +460,13 @@ export class Share {
       }
     }
 
+    let expandObject = false;
+    if (sceneDisplayedDefault === true) {
+      if (object.name) {
+        expandObject = object.name.trim() == options.renderNow.object;
+      }
+    }
+
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
     const cardHeader = generateNewDOM(objectCard, 'div', {
@@ -412,9 +474,13 @@ export class Share {
       id: objHeadingID,
       'data-toggle': 'collapse',
       'data-target': `#${objCollapseOneSceneID}`,
-      'aria-expanded': 'false',
+      'aria-expanded': expandObject ? 'true' : 'false',
       'aria-controls': objCollapseOneSceneID
     });
+
+    if (expandObject) {
+      this.scrollToElements['object'] = cardHeader;
+    }
 
     // attach listener for lazyloading
     $(cardHeader).on('click', lazyLoadImage);
@@ -431,7 +497,7 @@ export class Share {
     }
 
     const objectContentContainer = generateNewDOM(objectCard, 'div', {
-      class: 'collapse',
+      class: 'collapse' + (expandObject ? ' show' : ''),
       id: objCollapseOneSceneID,
       'aria-labelledby': objHeadingID,
       'data-parent': `#${accordionID}`
@@ -442,8 +508,15 @@ export class Share {
       class: 'tab-content card-body'
     });
 
+    let scriptToDisplay = -1;
+    if (expandObject) {
+      if (options.renderNow.script !== null && options.renderNow.script !== undefined) {
+        scriptToDisplay = options.renderNow.script;
+      }
+    }
+
     if (this.config.renderScripts) {
-      this.generateScripts(contentContainer, objectID, object, currentLocaleValues);
+      this.generateScripts(contentContainer, objectID, object, currentLocaleValues, scriptToDisplay);
     }
     if (this.config.renderLooks) {
       this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
@@ -759,7 +832,7 @@ export class Share {
    * @param {Object} object
    * @param {Object} currentLocaleValues
    */
-  generateScripts(container, objectID, object, currentLocaleValues) {
+  generateScripts(container, objectID, object, currentLocaleValues, scriptToDisplay) {
     const wrapperContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
@@ -798,6 +871,9 @@ export class Share {
         failed++;
       } else {
         scriptContainer.appendChild(blockSvg);
+        if (i === scriptToDisplay) {
+          this.scrollToElements['script'] = blockSvg;
+        }
       }
     }
 

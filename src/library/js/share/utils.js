@@ -38,7 +38,10 @@ export const defaultOptions = {
   },
   scene: {
     writeHeader: true,
-    expandable: true
+    expandable: true,
+    renderNow: {
+      scene: null
+    }
   },
   object: {
     writeHeader: true,
@@ -46,7 +49,11 @@ export const defaultOptions = {
     writeLook: true,
     expandable: true,
     programRoot: 'assets/extracted/dc7fb2eb-1733-11ea-8f2b-000c292a0f49/',
-    fileMap: undefined
+    fileMap: undefined,
+    renderNow: {
+      object: null,
+      script: null
+    }
   }
 };
 

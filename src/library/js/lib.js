@@ -58,12 +58,32 @@ export class CatBlocks {
    * @param {*} name name of the program
    * @memberof CatBlocks
    */
-  static renderForAndroid(codeXML, name) {
+  static renderForAndroid(codeXML, name, showScene = null, showObject = null, showScript = null) {
     const programJSON = Parser.convertProgramToJSONDebug(codeXML);
 
     const programContainer = document.getElementById(catblocks_instance.config.container);
 
-    catblocks_instance.share.renderProgramJSON(`catblocks-program-${name}`, programContainer, programJSON, {}, true);
+    const options = {
+      scene: {
+        renderNow: {
+          scene: showScene
+        }
+      },
+      object: {
+        renderNow: {
+          object: showObject,
+          script: showScript
+        }
+      }
+    };
+
+    catblocks_instance.share.renderProgramJSON(
+      `catblocks-program-${name}`,
+      programContainer,
+      programJSON,
+      options,
+      true
+    );
   }
 
   static getInstance() {
