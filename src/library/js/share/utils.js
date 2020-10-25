@@ -34,7 +34,8 @@ export const defaultOptions = {
     noImageFound: 'No_Image_Available.jpg', // TODO: never used anywhere,
     renderScripts: true,
     renderLooks: true,
-    renderSounds: true
+    renderSounds: true,
+    readOnly: true
   },
   scene: {
     writeHeader: true,
@@ -344,7 +345,12 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
  * @return {object} childBrick
  */
 export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) => {
-  const childBrick = workspace.newBlock(jsonBrick.name);
+  let childBrick;
+  if (jsonBrick.id) {
+    childBrick = workspace.newBlock(jsonBrick.name, jsonBrick.id);
+  } else {
+    childBrick = workspace.newBlock(jsonBrick.name);
+  }
   if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
     jsonBrick.formValues.forEach(function (value, key) {
       for (let j = 0; j < childBrick.inputList[0].fieldRow.length; j++) {

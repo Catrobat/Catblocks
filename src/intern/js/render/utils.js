@@ -210,7 +210,8 @@ export async function initShareAndRenderPrograms(programPath, language, isRtl) {
     noImageFound: 'No_Image_Available.jpg',
     renderScripts: true,
     renderLooks: true,
-    renderSounds: true
+    renderSounds: true,
+    readOnly: true
   });
 
   try {

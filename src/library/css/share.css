@@ -145,3 +145,13 @@ img {
 #formulaPopupContent {
   word-wrap: break-word;
 }
+
+.catblocks-script-modifiable {
+  height: 80vh;
+  width: 100%;
+}
+
+.catblocks-script-modifiable.blocklySvg {
+  height: 80vh;
+  width: 100%;
+}
