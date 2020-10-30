@@ -262,20 +262,13 @@ export class Share {
       const scene = programJSON.scenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
 
-      let sceneObjectContainer = undefined;
+      let sceneName = undefined;
       if (programJSON.scenes.length === 1) {
-        sceneObjectContainer = generateNewDOM(scenesContainer, 'div', {
-          class: 'accordion',
-          id: `${sceneID}-accordionObjects`
-        });
+        sceneName = programJSON.programName;
       } else {
-        sceneObjectContainer = this.addSceneContainer(
-          scenesContainerID,
-          sceneID,
-          scenesContainer,
-          trimString(scene.name)
-        );
+        sceneName = trimString(scene.name);
       }
+      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName);
       if (scene.objectList == null || scene.objectList.length === 0) {
         const errorContainer = generateNewDOM(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
@@ -298,26 +291,22 @@ export class Share {
         continue;
       }
 
-      if (programJSON.scenes.length === 1) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
-      } else {
-        $('body').on('click', `#${sceneID}`, () => {
-          if (rendered_scenes[sceneID] !== true) {
-            $spinnerModal.one('shown.bs.modal', () => {
-              this.renderAllObjectsFromOneScene(
-                options,
-                scene,
-                programID,
-                sceneID,
-                sceneObjectContainer,
-                renderEverything
-              );
-              $spinnerModal.modal('hide');
-            });
-            $spinnerModal.modal('show');
-          }
-        });
-      }
+      $('body').on('click', `#${sceneID}`, () => {
+        if (rendered_scenes[sceneID] !== true) {
+          $spinnerModal.one('shown.bs.modal', () => {
+            this.renderAllObjectsFromOneScene(
+              options,
+              scene,
+              programID,
+              sceneID,
+              sceneObjectContainer,
+              renderEverything
+            );
+            $spinnerModal.modal('hide');
+          });
+          $spinnerModal.modal('show');
+        }
+      });
     }
 
     container.appendChild(programContainers[0]);
