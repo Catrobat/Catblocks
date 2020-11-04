@@ -27,6 +27,7 @@ export class Share {
     this.workspace = undefined;
     this.cssNode = undefined;
     this.scrollToElements = new Map();
+    this.modifiableWorkspaces = new Map();
     all_blocks.clear();
     rendered_scenes.clear();
   }
@@ -273,7 +274,8 @@ export class Share {
       class: 'catblocks-object-container collapse' + (expanded ? ' show' : ''),
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
-      'data-parent': `#${accordionID}`
+      'data-parent': `#${accordionID}`,
+      'data-scene': sceneName
     });
 
     const cardBody = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
@@ -426,7 +428,14 @@ export class Share {
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything) {
-    this.handleBackgroundName(programID, scene, sceneID, sceneObjectContainer, options, renderEverything);
+    const bgWorkspaceDetails = this.handleBackgroundName(
+      programID,
+      scene,
+      sceneID,
+      sceneObjectContainer,
+      options,
+      renderEverything
+    );
 
     if (rendered_scenes[sceneID] === true) {
       return;
@@ -446,12 +455,17 @@ export class Share {
       sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
     }
 
+    const scenesWorkspaces = new Map();
+    if (bgWorkspaceDetails) {
+      scenesWorkspaces[bgWorkspaceDetails.name] = bgWorkspaceDetails.workspace;
+    }
+
     options.object.sceneName = scene.name;
     for (let j = 1; j < scene.objectList.length; j++) {
       const object = scene.objectList[j];
       const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
 
-      this.renderObjectJSON(
+      const objectsWorkspace = this.renderObjectJSON(
         objectID,
         `${sceneID}-accordionObjects`,
         performanceContainer,
@@ -459,10 +473,12 @@ export class Share {
         sceneDisplayedDefault,
         parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
       );
+      scenesWorkspaces[scene.objectList[j].name] = objectsWorkspace;
     }
     if (this.config.readOnly) {
       sceneObjectContainer.appendChild(performanceContainer);
     }
+    this.modifiableWorkspaces[scene.name] = scenesWorkspaces;
   }
 
   createLoadingAnimation() {
@@ -488,7 +504,7 @@ export class Share {
       sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
     }
 
-    this.renderObjectJSON(
+    const bgWorkspace = this.renderObjectJSON(
       backgroundObjID,
       `${sceneID}-accordionObjects`,
       sceneObjectContainer,
@@ -496,6 +512,10 @@ export class Share {
       sceneDisplayedDefault,
       parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
     );
+    return {
+      name: scene.objectList[0].name,
+      workspace: bgWorkspace
+    };
   }
 
   /**
@@ -505,6 +525,9 @@ export class Share {
    * @param {Element} sceneObjectContainer HTMLElement
    * @param {Object} object JSON of the program
    * @param {Object} [options=defaultOptions.object]
+   *
+   * @returns {Map} a map of workspaces for each object name
+   *                Map is empty if readOnly is set in options
    */
   renderObjectJSON(
     objectID,
@@ -572,7 +595,8 @@ export class Share {
       class: 'catblocks-script-container collapse' + (expandObject ? ' show' : ''),
       id: objCollapseOneSceneID,
       'aria-labelledby': objHeadingID,
-      'data-parent': `#${accordionID}`
+      'data-parent': `#${accordionID}`,
+      'data-object': object.name
     });
     const currentLocaleValues = Blockly.CatblocksMsgs.getCurrentLocaleValues();
     this.generateTabs(objectContentContainer, objectID, object, currentLocaleValues);
@@ -587,8 +611,9 @@ export class Share {
       }
     }
 
+    let objectsWorkspace = undefined;
     if (this.config.renderScripts) {
-      this.generateScripts(contentContainer, objectID, object, currentLocaleValues, scriptToDisplay);
+      objectsWorkspace = this.generateScripts(contentContainer, objectID, object, currentLocaleValues, scriptToDisplay);
     }
     if (this.config.renderLooks) {
       this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
@@ -596,6 +621,7 @@ export class Share {
     if (this.config.renderSounds) {
       this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
     }
+    return objectsWorkspace;
   }
 
   /**
@@ -930,7 +956,7 @@ export class Share {
     }
 
     let failed = 0;
-
+    let modifiableWorkspace;
     if (this.config.readOnly) {
       for (let i = 0; i < object.scriptList.length; i++) {
         const scriptContainer = this.generateOrInjectNewDOM(wrapperContainer, 'div', {
@@ -956,7 +982,7 @@ export class Share {
       const scriptContainer = this.generateOrInjectNewDOM(wrapperContainer, 'div', {
         class: 'catblocks-script-modifiable'
       });
-      const modifiableWorkspace = this.createModifiableWorkspace(scriptContainer);
+      modifiableWorkspace = this.createModifiableWorkspace(scriptContainer);
       Blockly.svgResize(modifiableWorkspace);
 
       for (let i = 0; i < object.scriptList.length; i++) {
@@ -1042,6 +1068,7 @@ export class Share {
         )
       );
     }
+    return modifiableWorkspace;
   }
 
   /**
@@ -1173,6 +1200,21 @@ export class Share {
       return generateNewDOM(container, tagName, attributes, textContent);
     } else {
       return injectNewDom(container, tagName, attributes, textContent);
+    }
+  }
+
+  reorderCurrentScripts() {
+    const scene = $('.catblocks-object-container.show').attr('data-scene');
+    const object = $('.catblocks-script-container.show').attr('data-object');
+
+    if (!scene || !object) {
+      return;
+    }
+
+    const sceneWorkspaces = this.modifiableWorkspaces[scene];
+    if (sceneWorkspaces) {
+      const objectsWorkspace = sceneWorkspaces[object];
+      objectsWorkspace.cleanUp();
     }
   }
 }

@@ -53,9 +53,14 @@ export class CatBlocks {
 
   /**
    * Renders the program given in codeXML with the given name.
+   * Usually this function should be used for Catroid only-
    * @static
-   * @param {*} codeXML XML-string containing the program description
-   * @param {*} name name of the program
+   * @param {string} codeXML XML-string containing the program description
+   * @param {string} name name of the program
+   * @param {string} showScene the script to be rendered
+   * @param {string} showObject the object to be expanded
+   * @param {string} showScript the script to scroll to
+   *
    * @memberof CatBlocks
    */
   static renderForAndroid(codeXML, name, showScene = null, showObject = null, showScript = null) {
@@ -84,6 +89,14 @@ export class CatBlocks {
       options,
       true
     );
+  }
+
+  /**
+   * Reorders the scripts of the currently shown object.
+   *
+   */
+  static reorderCurrentScripts() {
+    catblocks_instance.share.reorderCurrentScripts();
   }
 
   static getInstance() {
