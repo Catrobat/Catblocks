@@ -664,6 +664,7 @@ describe('Share catroid program rendering tests', () => {
     expect(
       await page.evaluate(() => {
         const catObj = {
+          programName: 'testname',
           scenes: [
             {
               name: 'testscene',
@@ -677,9 +678,11 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const expectedCardHeaderText =
-          '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
-        const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+        const expectedCardHeaderText = 'testname';
+
+        const cardHeader = shareTestContainer
+          .querySelector('.catblocks-scene .card-header')
+          .querySelector('.header-title');
         const cardHeaderInitialText = cardHeader.innerHTML;
         cardHeader.click();
         cardHeader.setAttribute('aria-expanded', 'true');
