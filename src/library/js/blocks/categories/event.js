@@ -14,46 +14,11 @@ export default {
   WhenTouchDownScript: {
     message0: '%{BKY_EVENT_WHENSTAGEISTAPPED}'
   },
+  WhenClonedScript: {
+    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
+  },
   BroadcastScript: {
     message0: '%{BKY_EVENT_WHENYOURECEIVE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  BroadcastBrick: {
-    message0: '%{BKY_EVENT_BROADCAST_CB}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  BroadcastWaitBrick: {
-    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
     args0: [
       {
         type: 'field_input',
