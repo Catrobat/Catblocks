@@ -252,7 +252,7 @@ export class Share {
     const sceneHeader = this.generateOrInjectNewDOM(sceneContainer, 'div', {
       class:
         'catblocks-scene-header card-header d-flex justify-content-between expansion-header' +
-        (expanded ? '' : 'collapsed'),
+        (expanded ? '' : ' collapsed'),
       id: `${sceneID}-header`,
       'data-toggle': 'collapse',
       'data-target': `#${sceneID}-collapseOne`,
@@ -350,7 +350,13 @@ export class Share {
         sceneName.display = trimString(scene.name);
       }
 
-      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName, renderNow);
+      const sceneObjectContainer = this.addSceneContainer(
+        scenesContainerID,
+        sceneID,
+        scenesContainer,
+        sceneName,
+        renderNow
+      );
       if (scene.objectList == null || scene.objectList.length === 0) {
         const errorContainer = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
@@ -366,9 +372,13 @@ export class Share {
         continue;
       }
 
-      const $spinnerModal = $('#spinnerModal');
+      if (!renderEverything) {
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
+        continue;
+      }
 
-      if (!renderEverything || renderNow) {
+      const $spinnerModal = $('#spinnerModal');
+      if (renderNow) {
         $spinnerModal.one('shown.bs.modal', () => {
           this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
           $spinnerModal.modal('hide');
