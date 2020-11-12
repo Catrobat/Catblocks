@@ -15,6 +15,7 @@
   "CATEGORY_EVENT": "${category_event}",
   "CATEGORY_CONTROL": "${category_control}",
   "CATEGORY_DATA": "${category_data}",
+  "CATEGORY_DEVICE": "${category_device}",
   "CATEGORY_MYBLOCKS": "${category_user_bricks}",
   "CATEGORY_LEGONXT": "${category_lego_nxt}",
   "CATEGORY_LEGOEV3": "${category_lego_ev3}",

@@ -144,7 +144,8 @@ function getCatroidProgramObject(xml) {
   for (let i = 0; i < scenes.length; i++) {
     sceneList.push(parseScenes(scenes[i]));
   }
-  return { scenes: sceneList };
+  const name = xml.getElementsByTagName('header')[0].getElementsByTagName('programName')[0].innerHTML;
+  return { scenes: sceneList, programName: name };
 }
 /**
  * Flat/dereference xml nodes

@@ -264,8 +264,8 @@ export class Share {
       this.scrollToElements['scene'] = sceneHeader;
     }
 
-    if (sceneName) {
-      sceneHeader.innerHTML = `<div class="header-title">${sceneName}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+    if (sceneName && sceneName.display) {
+      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     } else {
       sceneHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
@@ -275,7 +275,7 @@ export class Share {
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
       'data-parent': `#${accordionID}`,
-      'data-scene': sceneName
+      'data-scene': sceneName.real
     });
 
     const cardBody = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
@@ -340,21 +340,17 @@ export class Share {
         renderNow = options.scene.renderNow.scene.trim() === scene.name.trim();
       }
 
-      let sceneObjectContainer = undefined;
+      const sceneName = {
+        real: trimString(scene.name),
+        display: undefined
+      };
       if (programJSON.scenes.length === 1) {
-        sceneObjectContainer = this.generateOrInjectNewDOM(scenesContainer, 'div', {
-          class: 'accordion',
-          id: `${sceneID}-accordionObjects`
-        });
+        sceneName.display = programJSON.programName;
       } else {
-        sceneObjectContainer = this.addSceneContainer(
-          scenesContainerID,
-          sceneID,
-          scenesContainer,
-          trimString(scene.name),
-          renderNow
-        );
+        sceneName.display = trimString(scene.name);
       }
+
+      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName, renderNow);
       if (scene.objectList == null || scene.objectList.length === 0) {
         const errorContainer = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
@@ -400,26 +396,22 @@ export class Share {
         continue;
       }
 
-      if (programJSON.scenes.length === 1) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
-      } else {
-        $('body').on('click', `#${sceneID}`, () => {
-          if (rendered_scenes[sceneID] !== true) {
-            $spinnerModal.one('shown.bs.modal', () => {
-              this.renderAllObjectsFromOneScene(
-                options,
-                scene,
-                programID,
-                sceneID,
-                sceneObjectContainer,
-                renderEverything
-              );
-              $spinnerModal.modal('hide');
-            });
-            $spinnerModal.modal('show');
-          }
-        });
-      }
+      $('body').on('click', `#${sceneID}`, () => {
+        if (rendered_scenes[sceneID] !== true) {
+          $spinnerModal.one('shown.bs.modal', () => {
+            this.renderAllObjectsFromOneScene(
+              options,
+              scene,
+              programID,
+              sceneID,
+              sceneObjectContainer,
+              renderEverything
+            );
+            $spinnerModal.modal('hide');
+          });
+          $spinnerModal.modal('show');
+        }
+      });
     }
 
     if (this.config.readOnly) {

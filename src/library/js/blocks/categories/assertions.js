@@ -8,9 +8,6 @@ export default {
   FinishStageBrick: {
     message0: '%{BKY_ASSERTION_FINISH_STAGE}'
   },
-  WaitTillIdleBrick: {
-    message0: '%{BKY_ASSERTION_WAIT_TILL_IDLE}'
-  },
   AssertEqualsBrick: {
     message0: '%{BKY_ASSERTION_ASSERT_EQUALS}',
     args0: [

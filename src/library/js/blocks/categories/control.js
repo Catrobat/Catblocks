@@ -301,8 +301,8 @@ export default {
   DeleteThisCloneBrick: {
     message0: '%{BKY_CONTROL_DELETETHISCLONE}'
   },
-  WhenClonedScript: {
-    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
+  WaitTillIdleBrick: {
+    message0: '%{BKY_ASSERTION_WAIT_TILL_IDLE}'
   },
   ExitStageBrick: {
     message0: '%{BKY_CONTROL_EXIT_STAGE}'
@@ -422,6 +422,44 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      }
+    ]
+  },
+  BroadcastBrick: {
+    message0: '%{BKY_EVENT_BROADCAST_CB}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  BroadcastWaitBrick: {
+    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   }
