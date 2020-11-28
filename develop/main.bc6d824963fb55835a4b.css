@@ -334,5 +334,15 @@ img {
   word-wrap: break-word;
 }
 
+.catblocks-script-modifiable {
+  height: 80vh;
+  width: 100%;
+}
 
-/*# sourceMappingURL=main.6892cdea048f50c2605b.css.map*/
+.catblocks-script-modifiable.blocklySvg {
+  height: 80vh;
+  width: 100%;
+}
+
+
+/*# sourceMappingURL=main.bc6d824963fb55835a4b.css.map*/
