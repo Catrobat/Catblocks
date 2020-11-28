@@ -26,9 +26,12 @@ class File {
 }
 
 class Script {
-  constructor(name) {
+  constructor(name, id, posX, posY) {
     this.name = name;
     this.brickList = [];
+    this.posX = posX;
+    this.posY = posY;
+    this.id = id;
     this.formValues = new Map();
   }
 }
@@ -301,7 +304,18 @@ function parseScripts(script) {
   catLog(script);
 
   const name = escapeName(script.getAttribute('type'));
-  const currentScript = new Script(name);
+  let posX = undefined;
+  let posY = undefined;
+  if (script.hasAttribute('posX') && script.hasAttribute('posY')) {
+    posX = script.getAttribute('posX');
+    posY = script.getAttribute('posY');
+  }
+  const scriptIdTag = script.getElementsByTagName('scriptId');
+  let scriptId = undefined;
+  if (scriptIdTag.length > 0) {
+    scriptId = scriptIdTag[0].innerHTML;
+  }
+  const currentScript = new Script(name, scriptId, posX, posY);
   const brickList = script.getElementsByTagName('brickList')[0].children;
   for (let i = 0; i < script.childNodes.length; i++) {
     checkUsage(script.childNodes[i], currentScript);
@@ -520,6 +534,7 @@ function parseBrick(brick) {
   catLog(brick);
 
   const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
+
   const currentBrick = new Brick(name);
 
   for (let i = 0; i < brick.childNodes.length; i++) {

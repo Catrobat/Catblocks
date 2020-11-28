@@ -17,12 +17,10 @@ describe('Share basic tests', () => {
   test('Share renders scene container properly', async () => {
     expect(
       await page.evaluate(() => {
-        const accordionContainer = share.addSceneContainer(
-          'accordionID',
-          'sceneID',
-          shareTestContainer,
-          'Name of the scene'
-        );
+        const accordionContainer = share.addSceneContainer('accordionID', 'sceneID', shareTestContainer, {
+          real: 'Name of the scene',
+          display: 'Name of the scene'
+        });
         const cardBody = accordionContainer.parentNode;
         const sceneObjContainer = cardBody.parentNode;
         const sceneContainer = sceneObjContainer.parentNode;
