@@ -1705,10 +1705,10 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blockly@^3.20200123.1:
-  version "3.20200924.1"
-  resolved "https://registry.yarnpkg.com/blockly/-/blockly-3.20200924.1.tgz#81e19489b3df1a3eeaf6b5cdba6d80bbb82507a2"
-  integrity sha512-Uv1UBMfyQJ0Q2uko5JZoxZwpZ8zgtb8Tj0+Yp5aVDwHrB8Aj1KSmb4SnepwbJYAOGZLKkPMcJBApayyJMgtUwg==
+blockly@^3.20200924.4:
+  version "3.20200924.4"
+  resolved "https://registry.yarnpkg.com/blockly/-/blockly-3.20200924.4.tgz#bc79169e601e76451ecf29a3733af2a8a38f44fe"
+  integrity sha512-KDPVLJSguxwKXL6GVdVaYRINoxtojTsQ4lOhuWS9LkzyMhmQVZKMgFzlQum5rE5+hlhzj1BqqUQHe8JbfvL+dQ==
   dependencies:
     jsdom "^15.2.1"
 
