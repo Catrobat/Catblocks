@@ -517,5 +517,46 @@ export default {
         name: 'LOOK_REQUEST_INFO'
       }
     ]
+  },
+  CopyLookBrick: {
+    message0: '%{BKY_LOOKS_COPY_LOOK}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_copy_look_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_copy_look_edit_text_INFO'
+      }
+    ]
+  },
+  DeleteLookBrick: {
+    message0: '%{BKY_LOOKS_DELETE_LOOK}'
+  },
+  PaintNewLookBrick: {
+    message0: '%{BKY_LOOKS_PAINT_NEW_LOOK}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_paint_new_look_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_paint_new_look_edit_text_INFO'
+      }
+    ]
   }
 };

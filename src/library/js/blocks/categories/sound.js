@@ -268,5 +268,90 @@ export default {
         name: 'brick_set_tempo_edit_text_INFO'
       }
     ]
+  },
+  ChangeTempoByNBrick: {
+    message0: '%{BKY_SOUND_CHANGE_TEMPO_BY}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_change_tempo_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_change_tempo_edit_text_INFO'
+      }
+    ]
+  },
+  PlayDrumForBeatsBrick: {
+    message0: '%{BKY_SOUND_PLAY_DRUM_FOR_BEATS}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'play_drum_for_beats_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'play_drum_for_beats_spinner_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'brick_play_drum_for_beats_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_play_drum_for_beats_edit_text_INFO'
+      }
+    ]
+  },
+  PlayNoteForBeatsBrick: {
+    message0: '%{BKY_SOUND_PLAY_NOTE_FOR_BEATS}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_play_note_for_beats_note_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_play_note_for_beats_note_edit_text_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'brick_play_note_for_beats_beats_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_play_note_for_beats_beats_edit_text_INFO'
+      }
+    ]
   }
 };
