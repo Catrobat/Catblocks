@@ -81,5 +81,8 @@ export default {
   },
   StopRunningStitchBrick: {
     message0: '%{BKY_STITCH_STOP}'
+  },
+  SewUpBrick: {
+    message0: '%{BKY_EMBRIODERY_SEW_UP}'
   }
 };
