@@ -101,6 +101,11 @@ img {
   cursor: pointer;
 }
 
+.catblocks-tab-icon {
+  height: 2rem;
+  font-size: 2rem;
+}
+
 .catblocks-script {
   padding: 0 20px;
 }
