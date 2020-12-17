@@ -289,6 +289,11 @@ img {
   cursor: pointer;
 }
 
+.catblocks-tab-icon {
+  height: 2rem;
+  font-size: 2rem;
+}
+
 .catblocks-script {
   padding: 0 20px;
 }
@@ -345,4 +350,4 @@ img {
 }
 
 
-/*# sourceMappingURL=main.2cf8f59c7ae5ee7946c7.css.map*/
+/*# sourceMappingURL=main.bc198e530289238f8031.css.map*/
