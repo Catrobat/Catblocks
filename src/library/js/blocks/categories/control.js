@@ -462,24 +462,5 @@ export default {
         name: 'DROPDOWN_INFO'
       }
     ]
-  },
-  OpenUrlBrick: {
-    message0: '%{BKY_CONTROL_OPEN_URL}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'brick_open_url_edit_text',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'brick_open_url_edit_text_INFO'
-      }
-    ]
   }
 };
