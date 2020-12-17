@@ -137,7 +137,7 @@ export default {
   ResetTimerBrick: {
     message0: '%{BKY_DEVICE_RESET_TIMER}'
   },
-  TouchAndSlide: {
+  TouchAndSlideBrick: {
     message0: '%{BKY_CONTROL_TOUCH_AND_SLIDE}',
     args0: [
       {
