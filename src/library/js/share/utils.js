@@ -83,7 +83,7 @@ export const injectNewDom = (container, tagName, attributes, textContent) => {
     subContainer.setAttribute(attrKey, attributes[attrKey]);
   });
   if (typeof textContent !== 'undefined') {
-    subContainer.textContent = textContent;
+    subContainer.innerHTML = textContent;
   }
   getDomElement(container).appendChild(subContainer);
 
@@ -97,7 +97,7 @@ export const generateNewDOM = (container, tagName, attrs, textContent) => {
   }
 
   if (textContent) {
-    newElement.textContent = textContent;
+    newElement.innerHTML = textContent;
   }
 
   if (container) {

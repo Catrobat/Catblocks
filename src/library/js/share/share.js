@@ -600,8 +600,8 @@ export class Share {
       'data-parent': `#${accordionID}`,
       'data-object': object.name
     });
-    const currentLocaleValues = Blockly.CatblocksMsgs.getCurrentLocaleValues();
-    this.generateTabs(objectContentContainer, objectID, object, currentLocaleValues);
+
+    this.generateTabs(objectContentContainer, objectID, object);
     const contentContainer = this.generateOrInjectNewDOM(objectContentContainer, 'div', {
       class: 'tab-content card-body'
     });
@@ -615,13 +615,13 @@ export class Share {
 
     let objectsWorkspace = undefined;
     if (this.config.renderScripts) {
-      objectsWorkspace = this.generateScripts(contentContainer, objectID, object, currentLocaleValues, scriptToDisplay);
+      objectsWorkspace = this.generateScripts(contentContainer, objectID, object, scriptToDisplay);
     }
     if (this.config.renderLooks) {
-      this.generateLooks(contentContainer, objectID, object, currentLocaleValues, options);
+      this.generateLooks(contentContainer, objectID, object, options);
     }
     if (this.config.renderSounds) {
-      this.generateSounds(contentContainer, objectID, object, currentLocaleValues, options);
+      this.generateSounds(contentContainer, objectID, object, options);
     }
     return objectsWorkspace;
   }
@@ -631,10 +631,9 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateSounds(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
+  generateSounds(container, objectID, object, options = defaultOptions.object) {
     const soundsContainer = this.generateOrInjectNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-sounds`,
@@ -642,7 +641,7 @@ export class Share {
       'aria-labelledby': `${objectID}-sounds-tab`
     });
 
-    const noSoundsText = 'No ' + currentLocaleValues['SOUNDS'] + ' found';
+    const noSoundsText = 'No Sounds found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
       soundsContainer.appendChild(
         this.generateOrInjectNewDOM(
@@ -717,7 +716,7 @@ export class Share {
     }
 
     if (failed > 0) {
-      const failedSoundsText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SOUNDS'];
+      const failedSoundsText = 'ERROR parsing ' + failed + ' Sounds';
       soundsContainer.appendChild(
         this.generateOrInjectNewDOM(
           soundsContainer,
@@ -736,10 +735,9 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Object} currentLocaleValues
    * @param {Object} [options=defaultOptions.object]
    */
-  generateLooks(container, objectID, object, currentLocaleValues, options = defaultOptions.object) {
+  generateLooks(container, objectID, object, options = defaultOptions.object) {
     const looksContainer = this.generateOrInjectNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-looks`,
@@ -747,7 +745,7 @@ export class Share {
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
-    const noLooksText = 'No ' + currentLocaleValues['LOOKS'] + ' found';
+    const noLooksText = 'No Looks found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
       looksContainer.appendChild(
         this.generateOrInjectNewDOM(
@@ -863,7 +861,7 @@ export class Share {
     }
 
     if (failed > 0) {
-      const failedLooksText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['LOOKS'];
+      const failedLooksText = 'ERROR parsing ' + failed + ' Looks';
       looksContainer.appendChild(
         this.generateOrInjectNewDOM(
           looksContainer,
@@ -930,9 +928,9 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Object} currentLocaleValues
+   * @param {number} scriptToDisplay
    */
-  generateScripts(container, objectID, object, currentLocaleValues, scriptToDisplay) {
+  generateScripts(container, objectID, object, scriptToDisplay) {
     const wrapperContainer = this.generateOrInjectNewDOM(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
@@ -940,7 +938,7 @@ export class Share {
       'aria-labelledby': `${objectID}-scripts-tab`
     });
     if (!object || !object.scriptList || object.scriptList.length <= 0) {
-      const noScriptText = 'No ' + currentLocaleValues['SCRIPTS'] + ' found';
+      const noScriptText = 'No Scripts found';
       wrapperContainer.appendChild(
         this.generateOrInjectNewDOM(
           wrapperContainer,
@@ -1058,7 +1056,7 @@ export class Share {
     }
 
     if (failed > 0) {
-      const failedScriptText = 'ERROR parsing ' + failed + ' ' + currentLocaleValues['SCRIPTS'];
+      const failedScriptText = 'ERROR parsing ' + failed + ' Scripts';
       wrapperContainer.appendChild(
         this.generateOrInjectNewDOM(
           wrapperContainer,
@@ -1078,9 +1076,8 @@ export class Share {
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
-   * @param {Object} currentLocaleValues
    */
-  generateTabs(container, objectID, object, currentLocaleValues) {
+  generateTabs(container, objectID, object) {
     if (!object) {
       object = {
         scriptList: [],
@@ -1112,6 +1109,12 @@ export class Share {
       const liScript = this.generateOrInjectNewDOM(ul, 'li', {
         class: 'nav-item'
       });
+      let mediapath = `${this.config.shareRoot}${this.config.media}`;
+      // full link or absolute path given
+      if (this.config.media.startsWith('http') || this.config.media.startsWith('/')) {
+        mediapath = this.config.media;
+      }
+
       this.generateOrInjectNewDOM(
         liScript,
         'a',
@@ -1124,7 +1127,7 @@ export class Share {
           'aria-controls': 'scripts',
           'aria-selected': 'true'
         },
-        `${currentLocaleValues['SCRIPTS']} (${object.scriptList.length})`
+        `<img class="catblocks-tab-icon" src="${mediapath}scripts.svg" /> (${object.scriptList.length})`
       );
     }
 
@@ -1144,7 +1147,7 @@ export class Share {
           'aria-controls': 'looks',
           'aria-selected': 'false'
         },
-        `${currentLocaleValues['LOOKS']} (${object.lookList.length})`
+        `<i id="code-view-toggler" class="material-icons catblocks-tab-icon">visibility</i> (${object.lookList.length})`
       );
     }
 
@@ -1164,7 +1167,7 @@ export class Share {
           'aria-controls': 'sounds',
           'aria-selected': 'false'
         },
-        `${currentLocaleValues['SOUNDS']} (${object.soundList.length})`
+        `<i id="code-view-toggler" class="material-icons catblocks-tab-icon">volume_up</i> (${object.soundList.length})`
       );
     }
   }

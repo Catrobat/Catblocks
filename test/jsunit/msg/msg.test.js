@@ -1,7 +1,7 @@
 /**
  * @description Msg tests
  */
-/* global share, shareUtils, page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
+/* global share, page, SERVER, playground, playgroundWS, toolboxWS, Blockly */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -201,19 +201,23 @@ describe('share displays language of UI elements correctly', () => {
     const defaultLanguageObject = JSON.parse(
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${defaultLanguage}.json`)
     );
-    await page.evaluate(defaultLanguage => {
-      return Blockly.CatblocksMsgs.setLocale(defaultLanguage);
+    await page.evaluate(pDefaultLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(pDefaultLanguage);
     }, defaultLanguage);
-    expect(await executeShareLanguageUITest(defaultLanguageObject)).toBeTruthy();
+
+    const result = await executeShareLanguageUITest(defaultLanguageObject);
+    expect(result).toBeTruthy();
   });
 
   test('check >de< language of tabs and error messages of scripts, looks and sounds', async () => {
     const testLanguage = 'de';
     const testLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${testLanguage}.json`));
-    await page.evaluate(testLanguage => {
-      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    await page.evaluate(pTestLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
-    expect(await executeShareLanguageUITest(testLanguageObject)).toBeTruthy();
+
+    const result = await executeShareLanguageUITest(testLanguageObject);
+    expect(result).toBeTruthy();
   });
 
   test('check if unknown >es_US< language is handled as >es<', async () => {
@@ -222,10 +226,12 @@ describe('share displays language of UI elements correctly', () => {
     const fallbackLanguageObject = JSON.parse(
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
-    await page.evaluate(testLanguage => {
-      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    await page.evaluate(pTestLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
-    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
+
+    const result = await executeShareLanguageUITest(fallbackLanguageObject);
+    expect(result).toBeTruthy();
   });
 
   test('check if invalid >de_XY< language is handled as >de<', async () => {
@@ -234,10 +240,12 @@ describe('share displays language of UI elements correctly', () => {
     const fallbackLanguageObject = JSON.parse(
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
-    await page.evaluate(testLanguage => {
-      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    await page.evaluate(pTestLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
-    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
+
+    const result = await executeShareLanguageUITest(fallbackLanguageObject);
+    expect(result).toBeTruthy();
   });
 
   test('check if >xy_za< language is handled as default >en<', async () => {
@@ -246,45 +254,63 @@ describe('share displays language of UI elements correctly', () => {
     const fallbackLanguageObject = JSON.parse(
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
-    await page.evaluate(testLanguage => {
-      return Blockly.CatblocksMsgs.setLocale(testLanguage);
+    await page.evaluate(pTestLanguage => {
+      return Blockly.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
-    expect(await executeShareLanguageUITest(fallbackLanguageObject)).toBeTruthy();
+
+    const result = await executeShareLanguageUITest(fallbackLanguageObject);
+    expect(result).toBeTruthy();
   });
 
   async function executeShareLanguageUITest(languageObject) {
-    return await page.evaluate(languageObject => {
+    const catObj = {
+      scenes: [
+        {
+          name: 'testscene',
+          objectList: [
+            {
+              name: 'tobject',
+              scriptList: [
+                {
+                  name: 'StartScript',
+                  brickList: [
+                    {
+                      name: 'WaitBrick',
+                      loopOrIfBrickList: [],
+                      elseBrickList: [],
+                      formValues: {},
+                      colorVariation: 0
+                    },
+                    {
+                      name: 'SceneStartBrick',
+                      loopOrIfBrickList: [],
+                      elseBrickList: [],
+                      formValues: {},
+                      colorVariation: 0
+                    }
+                  ],
+                  formValues: {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    await page.evaluate(pObj => {
       const shareTestContainer = document.getElementById('shareprogs');
-      const xmlString = `<xml><scene type="tscene"><object type="tobject"></object></scene></xml>`;
-      const catXml = new DOMParser().parseFromString(xmlString, 'text/xml');
-      const catObj = {
-        scenes: [
-          {
-            name: 'tscene',
-            objectList: [
-              {
-                name: 'toobject'
-              }
-            ]
-          }
-        ]
-      };
-      share.renderProgramJSON('programID', shareTestContainer, catObj, catXml);
-      const obj1ID = shareUtils.generateID('programID-tscene-toobject');
-      const scriptsText = shareTestContainer.querySelector('#' + obj1ID + '-scripts').textContent;
-      const scriptsTabText = shareTestContainer.querySelector('#' + obj1ID + '-scripts-tab').textContent;
-      const looksText = shareTestContainer.querySelector('#' + obj1ID + '-looks').textContent;
-      const looksTabText = shareTestContainer.querySelector('#' + obj1ID + '-looks-tab').textContent;
-      const soundsText = shareTestContainer.querySelector('#' + obj1ID + '-sounds').textContent;
-      const soundsTabText = shareTestContainer.querySelector('#' + obj1ID + '-sounds-tab').textContent;
-      return (
-        scriptsTabText.includes(languageObject['SCRIPTS']) &&
-        scriptsText.includes(languageObject['SCRIPTS']) &&
-        looksTabText.includes(languageObject['LOOKS']) &&
-        looksText.includes(languageObject['LOOKS']) &&
-        soundsTabText.includes(languageObject['SOUNDS']) &&
-        soundsText.includes(languageObject['SOUNDS'])
-      );
-    }, languageObject);
+      share.renderProgramJSON('programID', shareTestContainer, pObj);
+    }, catObj);
+
+    let startBrickTextContent = await page.$eval(
+      '.catblocks-script-container svg .blocklyText',
+      node => node.textContent
+    );
+
+    // nbsp to space
+    startBrickTextContent = startBrickTextContent.replace(new RegExp(String.fromCharCode(160), 'g'), ' ');
+
+    return startBrickTextContent == languageObject['EVENT_WHENSCENESTARTS'];
   }
 });
