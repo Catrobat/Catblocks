@@ -18,8 +18,9 @@ export class CatBlocks {
    * Initialize Share-Object and change Language
    * @export
    * @param {*} config
+   * @returns Promise which should be waited before rendering
    */
-  static async init(config) {
+  static init(config) {
     if (!config) {
       throw new Error('No configuration given');
     }
@@ -29,7 +30,7 @@ export class CatBlocks {
     preparePaths();
 
     catblocks_instance.share = new Share();
-    await catblocks_instance.share.init(config);
+    return catblocks_instance.share.init(config);
   }
 
   /**
@@ -48,6 +49,54 @@ export class CatBlocks {
 
     const programContainer = document.getElementById(catblocks_instance.config.container);
     return renderProgram(catblocks_instance.share, programContainer, path, name);
+  }
+
+  /**
+   * Renders the program given in codeXML with the given name.
+   * Usually this function should be used for Catroid only-
+   * @static
+   * @param {string} codeXML XML-string containing the program description
+   * @param {string} name name of the program
+   * @param {string} showScene the script to be rendered
+   * @param {string} showObject the object to be expanded
+   * @param {string} showScript the script to scroll to
+   *
+   * @memberof CatBlocks
+   */
+  static renderForAndroid(codeXML, name, showScene = null, showObject = null, showScript = null) {
+    const programJSON = Parser.convertProgramToJSONDebug(codeXML);
+
+    const programContainer = document.getElementById(catblocks_instance.config.container);
+
+    const options = {
+      scene: {
+        renderNow: {
+          scene: showScene
+        }
+      },
+      object: {
+        renderNow: {
+          object: showObject,
+          script: showScript
+        }
+      }
+    };
+
+    catblocks_instance.share.renderProgramJSON(
+      `catblocks-program-${name}`,
+      programContainer,
+      programJSON,
+      options,
+      true
+    );
+  }
+
+  /**
+   * Reorders the scripts of the currently shown object.
+   *
+   */
+  static reorderCurrentScripts() {
+    catblocks_instance.share.reorderCurrentScripts();
   }
 
   static getInstance() {

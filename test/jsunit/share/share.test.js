@@ -17,12 +17,10 @@ describe('Share basic tests', () => {
   test('Share renders scene container properly', async () => {
     expect(
       await page.evaluate(() => {
-        const accordionContainer = share.addSceneContainer(
-          'accordionID',
-          'sceneID',
-          shareTestContainer,
-          'Name of the scene'
-        );
+        const accordionContainer = share.addSceneContainer('accordionID', 'sceneID', shareTestContainer, {
+          real: 'Name of the scene',
+          display: 'Name of the scene'
+        });
         const cardBody = accordionContainer.parentNode;
         const sceneObjContainer = cardBody.parentNode;
         const sceneContainer = sceneObjContainer.parentNode;
@@ -508,53 +506,83 @@ describe('Share catroid program rendering tests', () => {
   });
 
   test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
-    const result = await page.evaluate(() => {
-      const testDisplayName = 'My actor';
-      const catObj = {
-        scenes: [
-          {
-            name: 'testscene',
-            objectList: [
-              {
-                name: 'tobject',
-                lookList: [
-                  {
-                    name: testDisplayName,
-                    fileName: 'My actor or object.png'
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: 'testscene2'
-          }
-        ]
-      };
-      share.renderProgramJSON('programID', shareTestContainer, catObj);
-      const sceneHeader = shareTestContainer.querySelector('.catblocks-scene-header');
-      sceneHeader.click();
+    const testDisplayName = 'My actor';
+    const programName = 'magnifyMe';
+    const sceneName = 'testscene';
+    const objectName = 'testobj';
 
-      const objID = shareUtils.generateID('programID-testscene-tobject');
-      const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
-      const expectedSrc = shareTestContainer
-        .querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item')
-        .getAttribute('data-src');
+    // render program
+    await page.evaluate(
+      ({ testDisplayName, programName, sceneName, objectName }) => {
+        const catObj = {
+          scenes: [
+            {
+              name: sceneName,
+              objectList: [
+                {
+                  name: objectName,
+                  lookList: [
+                    {
+                      name: testDisplayName,
+                      fileName: 'My actor or object.png'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'testscene2'
+            }
+          ]
+        };
+        share.renderProgramJSON(programName, shareTestContainer, catObj);
+      },
+      { testDisplayName, programName, sceneName, objectName }
+    );
 
-      shareTestContainer.querySelector('.catblocks-scene-header').click();
-      shareTestContainer.querySelector('.catblocks-object .card-header').click();
-      shareTestContainer.querySelector('#' + objID + '-looks-tab').click();
-      shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').click();
+    // open scene
+    await page.click('.catblocks-scene-header');
+    await page.waitFor(500);
 
-      return (
-        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item') !== null &&
-        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .search').innerHTML ===
-          '<i class="material-icons">search</i>' &&
-        shareTestContainer.querySelector('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item').id ===
-          expectedID &&
-        shareTestContainer.querySelector('.imagepreview').getAttribute('src') === expectedSrc
-      );
-    });
+    const { objID, expectedID } = await page.evaluate(
+      ({ testDisplayName, programName, sceneName, objectName }) => {
+        const objID = shareUtils.generateID(`${programName}-${sceneName}-${objectName}`);
+        const expectedID = shareUtils.generateID(`${objID}-${testDisplayName}`) + '-imgID';
+        return { objID, expectedID };
+      },
+      { testDisplayName, programName, sceneName, objectName }
+    );
+
+    const expectedSrc = await page.$eval('#' + objID + ' #' + objID + '-looks .catblocks-object-look-item', node =>
+      node.getAttribute('data-src')
+    );
+    await page.waitForSelector('.catblocks-object-container', { visible: true });
+
+    // open modal
+    await page.click('.catblocks-object .card-header');
+
+    const tabID = '#' + objID + '-looks-tab';
+    await page.waitForSelector(tabID, { visible: true });
+    await page.click(tabID);
+
+    const searchID = '#' + objID + ' #' + objID + '-looks .search';
+    await page.waitForSelector(searchID, { visible: true });
+    await page.click(searchID);
+
+    const itemContainerID = await page.$eval(
+      '#' + objID + ' #' + objID + '-looks .catblocks-object-look-item',
+      node => node.id
+    );
+    const searchContainerInnerHTML = await page.$eval(
+      '#' + objID + ' #' + objID + '-looks .search',
+      node => node.innerHTML
+    );
+    const previewSrc = await page.$eval('.imagepreview', node => node.getAttribute('src'));
+
+    const result =
+      itemContainerID === expectedID &&
+      searchContainerInnerHTML === '<i class="material-icons">search</i>' &&
+      previewSrc === expectedSrc;
     expect(result).toBeTruthy();
   });
 
@@ -634,6 +662,7 @@ describe('Share catroid program rendering tests', () => {
     expect(
       await page.evaluate(() => {
         const catObj = {
+          programName: 'testname',
           scenes: [
             {
               name: 'testscene',
@@ -647,9 +676,11 @@ describe('Share catroid program rendering tests', () => {
         };
         share.renderProgramJSON('programID', shareTestContainer, catObj);
 
-        const expectedCardHeaderText =
-          '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
-        const cardHeader = shareTestContainer.querySelector('.catblocks-object .card-header');
+        const expectedCardHeaderText = 'testname';
+
+        const cardHeader = shareTestContainer
+          .querySelector('.catblocks-scene .card-header')
+          .querySelector('.header-title');
         const cardHeaderInitialText = cardHeader.innerHTML;
         cardHeader.click();
         cardHeader.setAttribute('aria-expanded', 'true');

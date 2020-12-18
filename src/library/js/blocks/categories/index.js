@@ -23,6 +23,7 @@ import raspi from './raspi';
 import sound from './sound';
 import stitch from './stitch';
 import user from './user';
+import device from './device';
 
 export default {
   arduino: arduino,
@@ -30,6 +31,7 @@ export default {
   cast: cast,
   control: control,
   data: data,
+  device: device,
   drone: drone,
   event: event,
   jumpingSumo: jumpingSumo,
