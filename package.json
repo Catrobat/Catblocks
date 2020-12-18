@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.6.3",
     "async": "^3.2.0",
     "babel-loader": "^8.0.6",
-    "blockly": "^3.20200924.4",
+    "blockly": "^4.20201217.0",
     "copy-webpack-plugin": "^5.0.4",
     "core-js": "^3.3.4",
     "cross-env": "^7.0.2",
