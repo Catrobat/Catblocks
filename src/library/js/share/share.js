@@ -38,9 +38,6 @@ export class Share {
    */
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
-    if (this.config.readOnly) {
-      this.createReadonlyWorkspace();
-    }
     this.generateFormulaModal();
     this.generateModalMagnifyingGlass();
     $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
@@ -72,6 +69,31 @@ export class Share {
       document.documentElement.style.direction = 'rtl';
     }
     await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+
+    if (this.config.readOnly) {
+      this.createReadonlyWorkspace();
+    } else {
+      const workspaceItem = {
+        displayText: Blockly.CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
+        preconditionFn: function () {
+          return 'enabled';
+        },
+        callback: function (scope) {
+          if (scope && scope.block && scope.block.id) {
+            try {
+              Android.switchTo1D(scope.block.id);
+            } catch (error) {
+              console.log(error);
+            }
+          }
+          // console.log(scope);
+        },
+        scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+        id: 'catblocks-switch-to-1d',
+        weight: -5
+      };
+      Blockly.ContextMenuRegistry.registry.register(workspaceItem);
+    }
   }
 
   showFormulaPopup(formula) {
