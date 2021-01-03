@@ -1089,6 +1089,8 @@ export class Share {
               this.removeDummyBricksById(modifiableWorkspace, idsToRemove);
             }
           }
+        } else if (event.type == Blockly.Events.DELETE) {
+          Android.removeBricks(event.ids);
         }
       });
     }
