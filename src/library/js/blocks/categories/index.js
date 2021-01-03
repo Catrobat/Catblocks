@@ -24,6 +24,7 @@ import sound from './sound';
 import stitch from './stitch';
 import user from './user';
 import device from './device';
+import dummy from './dummy';
 
 export default {
   arduino: arduino,
@@ -44,5 +45,6 @@ export default {
   raspi: raspi,
   sound: sound,
   stitch: stitch,
-  user: user
+  user: user,
+  dummy: dummy
 };

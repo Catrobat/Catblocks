@@ -1000,7 +1000,6 @@ export class Share {
         }
       }
     } else {
-      let initializing = true;
       const scriptContainer = this.generateOrInjectNewDOM(wrapperContainer, 'div', {
         class: 'catblocks-script-modifiable'
       });
@@ -1020,58 +1019,79 @@ export class Share {
           Blockly.svgResize(modifiableWorkspace);
         });
 
-      const topBlocks = modifiableWorkspace.getTopBlocks();
-      let height = 0;
-      for (let i = 0; i < topBlocks.length; ++i) {
-        const topBlock = topBlocks[i];
+      modifiableWorkspace.cleanUp();
+      const topBricks = modifiableWorkspace.getTopBlocks();
+      for (let i = 0; i < topBricks.length; ++i) {
+        const brick = topBricks[i];
+        const script = object.scriptList[i];
 
-        let script_height = topBlock.xy_.y + topBlock.height;
-        let next_block = topBlock.getNextBlock();
-        while (next_block !== null) {
-          script_height += next_block.height;
-          next_block = next_block.getNextBlock();
-        }
+        brick.setMovable(true);
 
-        let x, y;
-        if (
-          object.scriptList[i].posX === undefined ||
-          object.scriptList[i].posY === undefined ||
-          (object.scriptList[i].posX == 0 && object.scriptList[i].posY == 0)
-        ) {
-          if (i == 0) {
-            x = 9.5;
-          } else {
-            x = 10;
-          }
-          y = height;
-        } else {
-          x = object.scriptList[i].posX;
-          y = object.scriptList[i].posY;
+        if (script.posX !== undefined && script.posY !== undefined && (script.posX != 0 || script.posY != 0)) {
+          const position = brick.getRelativeToSurfaceXY();
+          brick.moveBy(Math.round(script.posX - position.x), Math.round(script.posY - position.y));
         }
-        height += script_height + 10;
-        topBlock.setMovable(true);
-        topBlock.moveBy(Math.round(x), Math.round(y));
       }
-      initializing = false;
 
       modifiableWorkspace.addChangeListener(event => {
-        if (initializing) {
-          return;
-        }
-        if (event.type == Blockly.Events.BLOCK_MOVE) {
-          // console.log(event);
-          let isTopBrick = false;
-          const topBlocks = modifiableWorkspace.getTopBlocks();
-          for (let i = 0; i < topBlocks.length; ++i) {
-            if (topBlocks[i].id == event.blockId) {
-              isTopBrick = true;
-              break;
-            }
-          }
+        if (event.type == Blockly.Events.UI && event.element == 'dragStop') {
+          const droppedBrick = modifiableWorkspace.getBlockById(event.blockId);
+          const isTopBrick = droppedBrick.hat !== undefined;
+          const position = droppedBrick.getRelativeToSurfaceXY();
 
-          if (isTopBrick === true && event.oldParentId === undefined && event.newParentId === undefined) {
-            // move of top (script) brick
-            Android.updateScriptPosition(event.blockId, event.newCoordinate.x, event.newCoordinate.y);
+          if (isTopBrick) {
+            Android.updateScriptPosition(event.blockId, position.x, position.y);
+          } else {
+            const bricksToMove = [];
+            for (let i = 0; i < event.oldValue.length; ++i) {
+              bricksToMove.push(event.oldValue[i].id);
+            }
+
+            if (droppedBrick.getParent() == undefined) {
+              const dummyBrickId = Android.addDummyBrick(bricksToMove);
+              const newBrick = modifiableWorkspace.newBlock('DummyScript', dummyBrickId);
+              newBrick.initSvg();
+              newBrick.moveBy(position.x, position.y);
+              newBrick.nextConnection.connect(droppedBrick.previousConnection);
+              newBrick.render();
+              droppedBrick.setParent(newBrick);
+              Android.updateScriptPosition(dummyBrickId, position.x, position.y);
+
+              if (newBrick.pathObject && newBrick.pathObject.svgRoot) {
+                Blockly.utils.dom.addClass(newBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+              }
+
+              const idsToRemove = Android.removeEmptyDummyBricks();
+              this.removeDummyBricksById(modifiableWorkspace, idsToRemove);
+            } else {
+              // console.log(droppedBrick);
+              // console.log(droppedBrick.getTopStackBlock());
+
+              const firstBrickInStack = droppedBrick.getTopStackBlock();
+              const isFirstBrickInStack = firstBrickInStack.id.toLowerCase() == droppedBrick.id.toLowerCase();
+
+              let subStackIdx = -1;
+              if (
+                isFirstBrickInStack &&
+                firstBrickInStack &&
+                firstBrickInStack.getParent() &&
+                firstBrickInStack.getParent().inputList &&
+                firstBrickInStack.getParent().inputList.length > 0
+              ) {
+                const subStacks = firstBrickInStack.getParent().inputList.filter(x => x.type == 3);
+                for (let i = 0; i < subStacks.length; ++i) {
+                  if (subStacks[i].connection.targetConnection) {
+                    if (subStacks[i].connection.targetConnection.sourceBlock_.id == firstBrickInStack.id) {
+                      subStackIdx = i;
+                      break;
+                    }
+                  }
+                }
+              }
+              Android.moveBricksToScript(droppedBrick.getParent().id, subStackIdx, bricksToMove);
+              const idsToRemove = Android.removeEmptyDummyBricks();
+              this.removeDummyBricksById(modifiableWorkspace, idsToRemove);
+            }
           }
         }
       });
@@ -1091,6 +1111,23 @@ export class Share {
       );
     }
     return modifiableWorkspace;
+  }
+
+  removeDummyBricksById(workspace, strBrickIDs) {
+    try {
+      const brickIDs = JSON.parse(strBrickIDs);
+      if (brickIDs) {
+        for (let i = 0; i < brickIDs.length; ++i) {
+          const brickToRemove = workspace.blockDB_[brickIDs[i]];
+          if (brickToRemove) {
+            workspace.removeBlockById(brickIDs[i]);
+            brickToRemove.dispose(false);
+          }
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   /**
@@ -1245,6 +1282,11 @@ export class Share {
     if (sceneWorkspaces) {
       const objectsWorkspace = sceneWorkspaces[object];
       objectsWorkspace.cleanUp();
+
+      const topBricks = objectsWorkspace.getTopBlocks();
+      for (let i = 0; i < topBricks.length; ++i) {
+        Android.updateScriptPosition(topBricks[i].id, 0, 0);
+      }
     }
   }
 }
