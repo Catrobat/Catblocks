@@ -86,7 +86,6 @@ export class Share {
               console.log(error);
             }
           }
-          // console.log(scope);
         },
         scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
         id: 'catblocks-switch-to-1d',
@@ -1064,9 +1063,6 @@ export class Share {
               const idsToRemove = Android.removeEmptyDummyBricks();
               this.removeDummyBricksById(modifiableWorkspace, idsToRemove);
             } else {
-              // console.log(droppedBrick);
-              // console.log(droppedBrick.getTopStackBlock());
-
               const firstBrickInStack = droppedBrick.getTopStackBlock();
               const isFirstBrickInStack = firstBrickInStack.id.toLowerCase() == droppedBrick.id.toLowerCase();
 
@@ -1270,22 +1266,75 @@ export class Share {
     }
   }
 
-  reorderCurrentScripts() {
+  getWorkspaceOfActiveObject() {
     const scene = $('.catblocks-object-container.show').attr('data-scene');
     const object = $('.catblocks-script-container.show').attr('data-object');
 
     if (!scene || !object) {
-      return;
+      return null;
     }
 
     const sceneWorkspaces = this.modifiableWorkspaces[scene];
     if (sceneWorkspaces) {
-      const objectsWorkspace = sceneWorkspaces[object];
-      objectsWorkspace.cleanUp();
+      return sceneWorkspaces[object];
+    }
+    return null;
+  }
 
-      const topBricks = objectsWorkspace.getTopBlocks();
-      for (let i = 0; i < topBricks.length; ++i) {
-        Android.updateScriptPosition(topBricks[i].id, 0, 0);
+  reorderCurrentScripts() {
+    const objectsWorkspace = this.getWorkspaceOfActiveObject();
+    if (!objectsWorkspace) {
+      return;
+    }
+
+    objectsWorkspace.cleanUp();
+
+    const topBricks = objectsWorkspace.getTopBlocks();
+    for (let i = 0; i < topBricks.length; ++i) {
+      Android.updateScriptPosition(topBricks[i].id, 0, 0);
+    }
+  }
+
+  addBricks(bricksToAdd) {
+    const workspace = this.getWorkspaceOfActiveObject();
+    if (!workspace) {
+      return;
+    }
+    if (!bricksToAdd || bricksToAdd.length == 0) {
+      return;
+    }
+
+    const metrics = workspace.getMetrics();
+
+    const scriptBrick = workspace.newBlock(bricksToAdd[0].brickType, bricksToAdd[0].brickId);
+    scriptBrick.initSvg();
+    const topLeftPixelCoords = new Blockly.utils.Coordinate(metrics.viewLeft, metrics.viewTop);
+    const topLeftWsCoords = topLeftPixelCoords.scale(1 / workspace.scale);
+    scriptBrick.setMovable(true);
+    scriptBrick.moveBy(topLeftWsCoords.x, topLeftWsCoords.y);
+    const pixelWsSize = new Blockly.utils.Coordinate(metrics.viewWidth, metrics.viewHeight);
+    const wsSize = pixelWsSize.scale(1 / workspace.scale);
+    scriptBrick.moveBy(wsSize.x / 2, wsSize.y / 2);
+
+    const scriptPos = scriptBrick.getRelativeToSurfaceXY();
+    Android.updateScriptPosition(bricksToAdd[0].brickId, scriptPos.x, scriptPos.y);
+
+    scriptBrick.render();
+
+    let lastBrick = scriptBrick;
+
+    for (let i = 1; i < bricksToAdd.length; ++i) {
+      const newBrick = workspace.newBlock(bricksToAdd[i].brickType, bricksToAdd[i].brickId);
+      newBrick.initSvg();
+      lastBrick.nextConnection.connect(newBrick.previousConnection);
+      newBrick.setParent(lastBrick);
+      newBrick.render();
+      lastBrick = newBrick;
+    }
+
+    if (bricksToAdd[0].brickType == 'DummyScript') {
+      if (scriptBrick.pathObject && scriptBrick.pathObject.svgRoot) {
+        Blockly.utils.dom.addClass(scriptBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
       }
     }
   }

@@ -99,6 +99,17 @@ export class CatBlocks {
     catblocks_instance.share.reorderCurrentScripts();
   }
 
+  /**
+   * Adds the bricks to the current object.
+   * If there is only one brick, it is assumed that the brick is a script.
+   * Otherwise the first brick is assumed as the script brick,
+   * the following its children.
+   *
+   */
+  static addBricks(bricks) {
+    catblocks_instance.share.addBricks(bricks);
+  }
+
   static getInstance() {
     if (!catblocks_instance) {
       throw new Error('catblocks_instance is not defined yet! Call init() first!');
