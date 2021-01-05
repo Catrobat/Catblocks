@@ -164,3 +164,8 @@ img {
   height: 80vh;
   width: 100%;
 }
+
+.catblocks-blockly-disabled > .blocklyPath {
+  fill-opacity: 0.5;
+  stroke-opacity: 0.5;
+}

@@ -26,12 +26,13 @@ class File {
 }
 
 class Script {
-  constructor(name, id, posX, posY) {
+  constructor(name, id, posX, posY, commentedOut) {
     this.name = name;
     this.brickList = [];
     this.posX = posX;
     this.posY = posY;
     this.id = id;
+    this.commentedOut = commentedOut;
     this.formValues = new Map();
   }
 }
@@ -44,6 +45,7 @@ class Brick {
     this.formValues = new Map();
     this.colorVariation = 0;
     this.userBrickId = undefined;
+    this.commentedOut = false;
   }
 }
 
@@ -315,7 +317,14 @@ function parseScripts(script) {
   if (scriptIdTag.length > 0) {
     scriptId = scriptIdTag[0].innerHTML;
   }
-  const currentScript = new Script(name, scriptId, posX, posY);
+
+  let commentedOut = false;
+  const commentedOutTag = script.getElementsByTagName('commentedOut');
+  if (commentedOutTag.length > 0) {
+    commentedOut = commentedOutTag[0].innerHTML == 'true';
+  }
+
+  const currentScript = new Script(name, scriptId, posX, posY, commentedOut);
   const brickList = script.getElementsByTagName('brickList')[0].children;
   for (let i = 0; i < script.childNodes.length; i++) {
     checkUsage(script.childNodes[i], currentScript);
@@ -694,6 +703,11 @@ function checkUsage(list, location) {
 
     case 'userDefinedBrickID': {
       location.userBrickId = list.innerHTML;
+      break;
+    }
+
+    case 'commentedOut': {
+      location.commentedOut = list.innerHTML == 'true';
       break;
     }
 

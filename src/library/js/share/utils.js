@@ -375,6 +375,11 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
 
   childBrick.initSvg();
+
+  if (jsonBrick.commentedOut && childBrick.pathObject && childBrick.pathObject.svgRoot) {
+    Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+  }
+
   if (brickListType === brickListTypes.brickList) {
     parentBrick.nextConnection.connect(childBrick.previousConnection);
   } else if (brickListType === brickListTypes.elseBrickList || brickListType === brickListTypes.userBrickList) {
