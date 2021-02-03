@@ -6,7 +6,7 @@
 
 export default {
   FinishStageBrick: {
-    message0: '%{BKY_ASSERTION_FINISH_STAGE}'
+    message0: '%{BKY_ASSERTION_FINISH_TESTS}'
   },
   AssertEqualsBrick: {
     message0: '%{BKY_ASSERTION_ASSERT_EQUALS}',
