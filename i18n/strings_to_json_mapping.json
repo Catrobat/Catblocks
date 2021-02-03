@@ -88,6 +88,7 @@
   "LOOKS_COPY_LOOK": "${brick_copy_look} %1%2",
   "LOOKS_DELETE_LOOK": "${brick_delete_look}",
   "LOOKS_PAINT_NEW_LOOK": "${brick_paint_new_look} %1%2",
+  "LOOKS_EDIT_LOOK": "${brick_edit_look}",
   "@sound": "sound blocks",
   "SOUND_STARTSOUND": "${brick_play_sound} %1%2",
   "SOUND_STARTSOUNDANDWAIT": "${brick_play_sound_and_wait} %1%2",
