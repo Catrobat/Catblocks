@@ -558,5 +558,8 @@ export default {
         name: 'brick_paint_new_look_edit_text_INFO'
       }
     ]
+  },
+  EditLookBrick: {
+    message0: '%{BKY_LOOKS_EDIT_LOOK}'
   }
 };
