@@ -79,7 +79,8 @@ export default class Formula {
   static packValue(layout, key, value) {
     if (['%v', '%l', '%r'].includes(key)) {
       if (value.length > 0) {
-        return layout.replace(key, `${value.trim()}`);
+        const result = value.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1');
+        return layout.replace(key, `${result.trim()}`);
       }
       return layout.replace(key, '').trim();
     }

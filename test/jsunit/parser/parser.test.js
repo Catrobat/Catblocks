@@ -197,7 +197,7 @@ describe('Catroid to Catblocks parser tests', () => {
           return false;
         }
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-        return formulaMap !== undefined && formulaMap.entries().next().value.toString().includes('60&.0');
+        return formulaMap !== undefined && formulaMap.entries().next().value.toString().includes('60&');
       })
     ).toBeTruthy();
   });
