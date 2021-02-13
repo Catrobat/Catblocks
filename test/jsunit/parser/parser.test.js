@@ -244,7 +244,7 @@ describe('Catroid to Catblocks parser tests', () => {
         }
         const brickName = programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].name;
         const formulaMap = programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].formValues;
-        return brickName === 'WaitBrick' && formulaMap.entries().next().value.toString().includes('37  58');
+        return brickName === 'WaitBrick' && formulaMap.entries().next().value.toString().includes('37    58');
       })
     ).toBeTruthy();
   });
@@ -362,7 +362,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1] === 'tUserVariable' &&
             block === 'SetVariableBrick'
@@ -391,7 +391,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -420,7 +420,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -449,7 +449,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1] === 'tUserVariable' &&
             block === 'SetVariableBrick'
@@ -478,7 +478,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -507,7 +507,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === '0' &&
+            mapValues[0] === (' 0 ') &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -526,13 +526,13 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'SetVariableBrick' &&
             firstMapKey === 'Y_POSITION' &&
-            firstMapValue === '70 = 90'
+            firstMapValue === ' 70  =  90 '
           );
         })
       ).toBeTruthy();
@@ -550,9 +550,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = '1 × (5 ÷ (9 + 8))'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = ' 1  × ( 5  ÷ ( 9  +  8 ))';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -573,9 +573,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = '((1 + 2) × 8) ÷ 8'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = '(( 1  +  2 ) ×  8 ) ÷  8 ';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -596,9 +596,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = '(1 × 5) + (5 × 6)'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = '( 1  ×  5 ) + ( 5  ×  6 )';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -621,9 +621,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = 'square root(89) × 5'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = 'square root( 89 ) ×  5 ';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -644,9 +644,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = 'sine(98) > 32'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = 'sine( 98 ) >  32 ';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -667,9 +667,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = 'cosine(360) + sine(90)'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = 'cosine( 360 ) + sine( 90 )';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -690,15 +690,14 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = 'contains(3, 1)'.trim();
+          const refString = 'contains( 3 ,  1 )';
           const splitIndex = formulaMap.entries().next().value.toString().indexOf(',');
-          const firstMapKey = formulaMap.entries().next().value.toString().slice(0, splitIndex).trim();
+          const firstMapKey = formulaMap.entries().next().value.toString().slice(0, splitIndex);
           const firstMapValue = formulaMap
             .entries()
             .next()
             .value.toString()
-            .slice(splitIndex + 1)
-            .trim();
+            .slice(splitIndex + 1);
           return (
             formulaMap.size === 1 &&
             block === 'SetXBrick' &&
@@ -719,9 +718,9 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = 'touches finger + true'.trim();
-          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0].trim();
-          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1].trim();
+          const refString = ' touches finger  +  true ';
+          const firstMapKey = formulaMap.entries().next().value.toString().split(',')[0];
+          const firstMapValue = formulaMap.entries().next().value.toString().split(',')[1];
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&
@@ -788,15 +787,14 @@ describe('Catroid to Catblocks parser tests', () => {
           }
           const block = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].name;
           const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
-          const refString = "join('hello', 'world')".trim();
+          const refString = "join('hello', ' world')";
           const splitIndex = formulaMap.entries().next().value.toString().indexOf(',');
-          const firstMapKey = formulaMap.entries().next().value.toString().slice(0, splitIndex).trim();
+          const firstMapKey = formulaMap.entries().next().value.toString().slice(0, splitIndex);
           const firstMapValue = formulaMap
             .entries()
             .next()
             .value.toString()
-            .slice(splitIndex + 1)
-            .trim();
+            .slice(splitIndex + 1);
           return (
             formulaMap.size === 1 &&
             block === 'WaitBrick' &&

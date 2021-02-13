@@ -80,9 +80,9 @@ export default class Formula {
     if (['%v', '%l', '%r'].includes(key)) {
       if (value.length > 0) {
         const result = value.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1');
-        return layout.replace(key, `${result.trim()}`);
+        return layout.replace(key, `${result}`);
       }
-      return layout.replace(key, '').trim();
+      return layout.replace(key, '');
     }
     return layout;
   }
