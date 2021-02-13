@@ -362,7 +362,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1] === 'tUserVariable' &&
             block === 'SetVariableBrick'
@@ -391,7 +391,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -420,7 +420,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -449,7 +449,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1] === 'tUserVariable' &&
             block === 'SetVariableBrick'
@@ -478,7 +478,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
@@ -507,7 +507,7 @@ describe('Catroid to Catblocks parser tests', () => {
             mapKeys.length === 2 &&
             mapValues.length === 2 &&
             mapKeys[0] === 'VARIABLE' &&
-            mapValues[0] === (' 0 ') &&
+            mapValues[0] === ' 0 ' &&
             mapKeys[1] === 'DROPDOWN' &&
             mapValues[1].length === 0 &&
             block === 'SetVariableBrick'
