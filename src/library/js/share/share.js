@@ -15,6 +15,7 @@ import {
   injectNewDom,
   lazyLoadImage
 } from './utils';
+import { Parser } from '../../../common/js/parser/parser';
 
 const all_blocks = new Map();
 const rendered_scenes = new Map();
@@ -92,15 +93,41 @@ export class Share {
         weight: -5
       };
       Blockly.ContextMenuRegistry.registry.register(workspaceItem);
-    }
-  }
 
-  showFormulaPopup(formula) {
-    if (formula.length >= Blockly.Tooltip.LIMIT) {
-      $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
-      const html_formula = formula.replaceAll('\n', '<br />');
-      $('#formulaPopupContent').html(html_formula);
-      $('#formulaPopup').modal('show');
+      const thisShare = this;
+      Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').callback = function (scope) {
+        // console.log(scope);
+        const newId = Android.duplicateBrick(scope.block.id);
+        const programXml = Android.getCurrentProject();
+
+        console.time('parse');
+
+        // (event.blockId, position.x, position.y)
+
+        const programJSON = Parser.convertProgramToJSONDebug(programXml);
+
+        for (let sceneCtr = 0; sceneCtr < programJSON.scenes.length; ++sceneCtr) {
+          const scene = programJSON.scenes[sceneCtr];
+          for (let objCtr = 0; objCtr < scene.objectList.length; ++objCtr) {
+            const object = scene.objectList[objCtr];
+            const clone = object.scriptList.filter(x => x.id.toLowerCase() == newId.toLowerCase());
+            if (clone && clone.length) {
+              const workspace = thisShare.getWorkspaceOfActiveObject();
+              thisShare.domToSvgModifiable(clone[0], workspace);
+              const oldPosition = scope.block.getRelativeToSurfaceXY();
+              const newBrick = workspace.getBlockById(newId);
+              if (newBrick) {
+                const newX = oldPosition.x + scope.block.width;
+                const newY = oldPosition.y;
+                newBrick.moveBy(newX, newY);
+                Android.updateScriptPosition(newId, newX, newY);
+              }
+            }
+          }
+        }
+
+        console.timeEnd('parse');
+      };
     }
   }
 
