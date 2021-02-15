@@ -26,7 +26,8 @@ const colourCodes = {
   sound: { colourPrimary: '#9966FF', colourSecondary: '#6c51b4', colourTertiary: '#774DCB' },
   stitch: { colourPrimary: '#BC4793', colourSecondary: '#bb3a8d', colourTertiary: '#b72a86' },
   user: { colourPrimary: '#bbbbbb', colourSecondary: '#aaaaaa', colourTertiary: '#999999' },
-  default: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' }
+  default: { colourPrimary: '#34c8a5', colourSecondary: '#299377', colourTertiary: '#238770' },
+  dummy: { colourPrimary: '#ffffff', colourSecondary: '#ffffff', colourTertiary: '#ffffff' }
 };
 
 /**
