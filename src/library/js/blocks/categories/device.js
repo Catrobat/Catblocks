@@ -120,7 +120,7 @@ export default {
       },
       {
         type: 'field_input',
-        name: 'FOR_DURATION',
+        name: 'DURATION_IN_SECONDS',
         text: 'unset'
       },
       {
@@ -130,7 +130,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'FOR_DURATION_INFO'
+        name: 'DURATION_IN_SECONDS_INFO'
       }
     ]
   },

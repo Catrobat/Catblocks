@@ -704,6 +704,17 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'userDataList': {
+      const userDataList = list.children;
+      for (let j = 0; j < userDataList.length; j++) {
+        const userDataElement = flatReference(userDataList[j]);
+        const userDataCategory = userDataElement.getAttribute('category');
+        const userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        location.formValues.set(userDataCategory, userDataName);
+      }
+      break;
+    }
+
     case 'userDefinedBrickID': {
       location.userBrickId = list.innerHTML;
       break;
