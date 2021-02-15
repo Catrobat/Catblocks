@@ -94,6 +94,10 @@ export class Share {
       };
       Blockly.ContextMenuRegistry.registry.register(workspaceItem);
 
+      // disable collapse option in context menu
+      Blockly.ContextMenuRegistry.registry.unregister('collapseWorkspace');
+      Blockly.ContextMenuRegistry.registry.unregister('blockCollapseExpand');
+
       const thisShare = this;
       Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').callback = function (scope) {
         // console.log(scope);
