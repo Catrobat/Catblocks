@@ -37,8 +37,11 @@ class Script {
 }
 
 class Brick {
-  constructor(name) {
+  constructor(name, id) {
     this.name = name;
+    if (id) {
+      this.id = id;
+    }
     this.loopOrIfBrickList = [];
     this.elseBrickList = [];
     this.formValues = new Map();
@@ -535,7 +538,16 @@ function parseBrick(brick) {
 
   const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
 
-  const currentBrick = new Brick(name);
+  let brickId = null;
+  const idTag = brick.getElementsByTagName('brickId');
+  if (idTag && idTag.length >= 1) {
+    brickId = idTag[0].innerHTML;
+    if (brickId) {
+      brickId = brickId.trim();
+    }
+  }
+
+  const currentBrick = new Brick(name, brickId);
 
   for (let i = 0; i < brick.childNodes.length; i++) {
     checkUsage(brick.childNodes[i], currentBrick);
