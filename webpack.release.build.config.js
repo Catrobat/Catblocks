@@ -3,14 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+const integrationTarget = process.env.TARGET;
 const variables = require('./variables');
+const releaseFolder = 'release' + (integrationTarget === 'share' ? '' : '_catroid')
+
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/library/js/index.js'),
+  entry: path.join(__dirname, `src/library/js/webpack_${integrationTarget}.js`),
   output: {
     filename: 'CatBlocks.js',
-    path: path.resolve(__dirname, 'release'),
+    path: path.resolve(__dirname, releaseFolder),
     libraryTarget: 'var',
     library: 'CatBlocks'
   },
