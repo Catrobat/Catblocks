@@ -262,29 +262,6 @@ img {
   vertical-align: middle;
 }
 
-.blocklyText {
-  fill: #fff;
-  font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, sans-serif;
-  font-size: 12pt;
-  font-weight: bold;
-}
-
-.blocklyNonEditableText > rect:not(.blocklyDropdownRect),
-.blocklyEditableText > rect:not(.blocklyDropdownRect) {
-  fill: #fff;
-}
-
-.blocklyNonEditableText > text,
-.blocklyEditableText > text,
-.blocklyNonEditableText > g > text,
-.blocklyEditableText > g > text {
-  fill: #575e75;
-}
-
-.blocklyDropdownText {
-  fill: #fff !important;
-}
-
 .card-header {
   cursor: pointer;
 }
@@ -330,27 +307,40 @@ img {
   font-weight: bold;
 }
 
-.search {
-  border: none;
-}
-
 #catblocks-program-container {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+.blocklyText {
+  fill: #fff;
+  font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.blocklyNonEditableText > rect:not(.blocklyDropdownRect),
+.blocklyEditableText > rect:not(.blocklyDropdownRect) {
+  fill: #fff;
+}
+
+.blocklyNonEditableText > text,
+.blocklyEditableText > text,
+.blocklyNonEditableText > g > text,
+.blocklyEditableText > g > text {
+  fill: #575e75;
+}
+
+.blocklyDropdownText {
+  fill: #fff !important;
+}
+
+.search {
+  border: none;
+}
+
 #formulaPopupContent {
   word-wrap: break-word;
-}
-
-.catblocks-script-modifiable {
-  height: 80vh;
-  width: 100%;
-}
-
-.catblocks-script-modifiable.blocklySvg {
-  height: 80vh;
-  width: 100%;
 }
 
 .catblockls-blockly-invisible > .blocklyPath {
@@ -359,4 +349,4 @@ img {
 }
 
 
-/*# sourceMappingURL=main.09370f4b251e011508e8.css.map*/
+/*# sourceMappingURL=main.bd0c20768f7e2e62f51f.css.map*/
