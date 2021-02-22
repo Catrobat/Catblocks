@@ -4,7 +4,7 @@ import { renderAllPrograms } from './render';
 import { FileLoader } from './file_loader';
 import { FileDropper } from './file_dropper';
 import { PasteListener } from './paste_listener';
-import { CatBlocks } from '../../../library/js/lib';
+import { CatBlocks } from '../../../library/js/lib_share';
 
 /**
  * Gets the requested param from a passed URLSearchParam

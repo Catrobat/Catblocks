@@ -34,8 +34,7 @@ export const defaultOptions = {
     noImageFound: 'No_Image_Available.jpg', // TODO: never used anywhere,
     renderScripts: true,
     renderLooks: true,
-    renderSounds: true,
-    readOnly: true
+    renderSounds: true
   },
   scene: {
     writeHeader: true,
@@ -428,4 +427,68 @@ export const lazyLoadImage = event => {
   $contentContainer.find('img').each(function () {
     $(this).attr('src', $(this).data('src'));
   });
+};
+
+export const generateFormulaModal = () => {
+  const formulaModal = `
+      <div class="modal" id="formulaPopup">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="formulaPopupHeader"></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body" id="formulaPopupContent">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal" id="formulaPopupClose">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  $('body').append(formulaModal);
+};
+
+export const generateModalMagnifyingGlass = () => {
+  const modal = $(
+    ` <div class="modal" id="modalForImg">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span id="modalHeader"></span>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+              <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>`
+  );
+  $('body').append(modal);
+};
+
+export const createLoadingAnimation = () => {
+  const loadingAnimation = `
+  <div class="modal fade" tabindex="-1" role="dialog" id="spinnerModal">
+      <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+          <span class="spinner-border" data-dismiss='modal'></span>
+      </div>
+  </div>`;
+  $('body').append(loadingAnimation);
+};
+
+export const showFormulaPopup = formula => {
+  if (formula.length >= Blockly.Tooltip.LIMIT) {
+    $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+    const html_formula = formula.replaceAll('\n', '<br />');
+    $('#formulaPopupContent').html(html_formula);
+    $('#formulaPopup').modal('show');
+  }
 };

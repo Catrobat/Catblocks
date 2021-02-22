@@ -1,8 +1,8 @@
 import '../css/style.css';
 import { Playground } from './playground/playground';
-import * as shareUtils from '../../library/js/share/utils';
+import * as shareUtils from '../../library/js/integration/utils';
 import Blockly from 'blockly';
-import { CatBlocks } from '../../library/js/lib';
+import { CatBlocks } from '../../library/js/lib_share';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
 

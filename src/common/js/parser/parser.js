@@ -772,6 +772,47 @@ function workFormula(formula, input) {
  */
 export class Parser {
   /**
+   * For performance reasons only the requested object is parsed.
+   * The xml is filtered the the selected object is parsed.
+   *
+   * @static
+   * @param {string] xmlString code.xml as string
+   * @param {*} sceneName name of the scene containing the object to render
+   * @param {*} objectName name of the object to render
+   * @memberof Parser
+   */
+  static convertObjectToJSON(xmlString, sceneName, objectName) {
+    if (typeof xmlString === 'string') {
+      try {
+        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) {
+          return undefined;
+        }
+
+        const xpath = `/program/scenes/scene[name='${sceneName}']/objectList/object[@name='${objectName}']`;
+        const xpathResult = xml.evaluate(xpath, xml, null, XPathResult.ANY_TYPE, null);
+        if (!xpathResult) {
+          return undefined;
+        }
+
+        const objectTag = xpathResult.iterateNext();
+        if (!objectTag) {
+          return undefined;
+        }
+
+        initParser(xml);
+        return parseObjects(objectTag);
+      } catch (e) {
+        catLog(e);
+        console.error(
+          `Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`
+        );
+        return undefined;
+      }
+    }
+  }
+
+  /**
    * Convert given XML to JSON object
    * @static
    * @param {Element} xmlString code.xml file

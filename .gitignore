@@ -6,3 +6,5 @@ i18n/json
 ./jenkins/testresults/*
 jest_html_reporters.html
 release/
+release_share/
+release_catroid
