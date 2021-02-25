@@ -34,8 +34,7 @@ import { initShareAndRenderPrograms } from './render/utils';
     }
     case 'testing': {
       await Blockly.CatblocksMsgs.setLocale(language);
-      window.Blockly = Blockly;
-      window.playground = new Playground();
+
       await CatBlocks.init({
         container: 'share',
         renderSize: 0.75,
@@ -45,23 +44,33 @@ import { initShareAndRenderPrograms } from './render/utils';
         rtl: isRtl,
         noImageFound: 'No_Image_Available.jpg'
       });
-      window.CatBlocks = CatBlocks;
-      window.share = CatBlocks.getInstance().share;
-      window.shareUtils = shareUtils;
-      window.playground.workspace = Blockly.inject('playworkspace', {
+      const playground = new Playground();
+
+      playground.workspace = Blockly.inject('playworkspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
-        toolbox: window.playground.getToolbox(true),
+        toolbox: playground.getToolbox(true),
         renderer: 'zelos'
       });
-      window.parser = Parser;
-      window.shareWS = window.share.workspace;
-      window.playgroundWS = window.playground.workspace;
-      window.toolboxWS = Blockly.Workspace.getById(
+
+      const share = CatBlocks.getInstance().share;
+      const toolbox = Blockly.Workspace.getById(
         Object.keys(Blockly.Workspace.WorkspaceDB_).filter(
-          key => ![window.shareWS.id, window.playgroundWS.id].includes(key)
+          key => ![share.workspace.id, playground.workspace.id].includes(key)
         )
       );
+
+      window.Test = {
+        Playground: playground,
+        Blockly: Blockly,
+        CatBlocks: CatBlocks,
+        Share: share,
+        ShareUtils: shareUtils,
+        Toolbox: {
+          workspace: toolbox
+        },
+        Parser: Parser
+      };
       break;
     }
     default: {
