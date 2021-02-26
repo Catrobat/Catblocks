@@ -170,16 +170,23 @@ export class Catroid {
 
           if (droppedBrick.getParent() == undefined) {
             const newEmptyBrickId = Android.moveBricksToEmptyScriptBrick(bricksToMove);
-            const newBrick = this.workspace.newBlock('EmptyScript', newEmptyBrickId);
-            newBrick.initSvg();
-            newBrick.moveBy(position.x, position.y);
-            newBrick.nextConnection.connect(droppedBrick.previousConnection);
-            newBrick.render();
-            droppedBrick.setParent(newBrick);
-            Android.updateScriptPosition(newEmptyBrickId, position.x, position.y);
+            const newEmptyBrick = this.workspace.newBlock('EmptyScript', newEmptyBrickId);
+            newEmptyBrick.initSvg();
+            newEmptyBrick.render();
 
-            if (newBrick.pathObject && newBrick.pathObject.svgRoot) {
-              Blockly.utils.dom.addClass(newBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+            const newEmptyBrickSize = newEmptyBrick.getHeightWidth();
+            const connectionOffset = 8;
+            const newEmptyBrickPositionX = position.x;
+            const newEmptyBrickPositionY = position.y - newEmptyBrickSize.height + connectionOffset;
+            newEmptyBrick.moveBy(newEmptyBrickPositionX, newEmptyBrickPositionY);
+
+            newEmptyBrick.nextConnection.connect(droppedBrick.previousConnection);
+            droppedBrick.setParent(newEmptyBrick);
+
+            Android.updateScriptPosition(newEmptyBrickId, newEmptyBrickPositionX, newEmptyBrickPositionY);
+
+            if (newEmptyBrick.pathObject && newEmptyBrick.pathObject.svgRoot) {
+              Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
             }
             this.removeEmptyScriptBricks();
           } else {
