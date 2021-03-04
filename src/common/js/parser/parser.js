@@ -37,8 +37,11 @@ class Script {
 }
 
 class Brick {
-  constructor(name) {
+  constructor(name, id) {
     this.name = name;
+    if (id) {
+      this.id = id;
+    }
     this.loopOrIfBrickList = [];
     this.elseBrickList = [];
     this.formValues = new Map();
@@ -535,7 +538,16 @@ function parseBrick(brick) {
 
   const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
 
-  const currentBrick = new Brick(name);
+  let brickId = null;
+  const idTag = brick.getElementsByTagName('brickId');
+  if (idTag && idTag.length >= 1) {
+    brickId = idTag[0].innerHTML;
+    if (brickId) {
+      brickId = brickId.trim();
+    }
+  }
+
+  const currentBrick = new Brick(name, brickId);
 
   for (let i = 0; i < brick.childNodes.length; i++) {
     checkUsage(brick.childNodes[i], currentBrick);
@@ -692,6 +704,17 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'userDataList': {
+      const userDataList = list.children;
+      for (let j = 0; j < userDataList.length; j++) {
+        const userDataElement = flatReference(userDataList[j]);
+        const userDataCategory = userDataElement.getAttribute('category');
+        const userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        location.formValues.set(userDataCategory, userDataName);
+      }
+      break;
+    }
+
     case 'userDefinedBrickID': {
       location.userBrickId = list.innerHTML;
       break;
@@ -748,6 +771,47 @@ function workFormula(formula, input) {
  * Only those methods are visible outside this module
  */
 export class Parser {
+  /**
+   * For performance reasons only the requested object is parsed.
+   * The xml is filtered the the selected object is parsed.
+   *
+   * @static
+   * @param {string] xmlString code.xml as string
+   * @param {*} sceneName name of the scene containing the object to render
+   * @param {*} objectName name of the object to render
+   * @memberof Parser
+   */
+  static convertObjectToJSON(xmlString, sceneName, objectName) {
+    if (typeof xmlString === 'string') {
+      try {
+        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
+        if (!isSupported(xml)) {
+          return undefined;
+        }
+
+        const xpath = `/program/scenes/scene[name='${sceneName}']/objectList/object[@name='${objectName}']`;
+        const xpathResult = xml.evaluate(xpath, xml, null, XPathResult.ANY_TYPE, null);
+        if (!xpathResult) {
+          return undefined;
+        }
+
+        const objectTag = xpathResult.iterateNext();
+        if (!objectTag) {
+          return undefined;
+        }
+
+        initParser(xml);
+        return parseObjects(objectTag);
+      } catch (e) {
+        catLog(e);
+        console.error(
+          `Failed to convert catroid program given as string into a XMLDocument, please verify that the string is a valid program`
+        );
+        return undefined;
+      }
+    }
+  }
+
   /**
    * Convert given XML to JSON object
    * @static

@@ -556,5 +556,6 @@
   "ASSERTION_TAP_FOR": "${brick_touch_at} ${x_label} %1%2 ${y_label} %3%4 ${brick_tap_for} %5%6",
   "CAST_WHEN_GAMEPAD_BUTTON": "${brick_when_gamepad_button} %1%2 ${brick_when_gamepad_button_tapped}",
   "CLOSE": "${close}",
-  "SHOW_VARIABLE": "${brick_show_variable}"
+  "SHOW_VARIABLE": "${brick_show_variable}",
+  "SWITCH_TO_1D": "${switch_to_1d}"
 }

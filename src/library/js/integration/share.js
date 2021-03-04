@@ -2,6 +2,7 @@
  * This file will be used in catroweb to render everything properly
  */
 import '../../css/share.css';
+import '../../css/common.css';
 import Blockly from 'blockly';
 import {
   escapeURI,
@@ -13,7 +14,10 @@ import {
   jsonDomToWorkspace,
   generateNewDOM,
   injectNewDom,
-  lazyLoadImage
+  lazyLoadImage,
+  showFormulaPopup,
+  generateFormulaModal,
+  generateModalMagnifyingGlass
 } from './utils';
 
 const all_blocks = new Map();
@@ -25,9 +29,6 @@ export class Share {
     this.config = {};
     this.workspaceDom = undefined;
     this.workspace = undefined;
-    this.cssNode = undefined;
-    this.scrollToElements = new Map();
-    this.modifiableWorkspaces = new Map();
     all_blocks.clear();
     rendered_scenes.clear();
   }
@@ -38,20 +39,16 @@ export class Share {
    */
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
-    if (this.config.readOnly) {
-      this.createReadonlyWorkspace();
-    }
-    this.generateFormulaModal();
-    this.generateModalMagnifyingGlass();
+    generateFormulaModal();
+    generateModalMagnifyingGlass();
     $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
     this.createLoadingAnimation();
 
-    const share_instance = this;
     $('body').on('click', '.blocklyNonEditableText', function () {
       const block = all_blocks[$(this).parent().attr('data-id')];
       const element_idx = $(this).parent().children('g').index($(this));
       const full_formula = block[element_idx];
-      share_instance.showFormulaPopup(full_formula);
+      showFormulaPopup(full_formula);
     });
 
     $('body').on('click', 'image', function () {
@@ -60,7 +57,7 @@ export class Share {
         const block = all_blocks[$parent.parent().attr('data-id')];
         const element_idx = $parent.parent().children('g').index($parent);
         const full_formula = block[element_idx - 1];
-        share_instance.showFormulaPopup(full_formula);
+        showFormulaPopup(full_formula);
       }
     });
 
@@ -72,15 +69,7 @@ export class Share {
       document.documentElement.style.direction = 'rtl';
     }
     await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
-  }
-
-  showFormulaPopup(formula) {
-    if (formula.length >= Blockly.Tooltip.LIMIT) {
-      $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
-      const html_formula = formula.replaceAll('\n', '<br />');
-      $('#formulaPopupContent').html(html_formula);
-      $('#formulaPopup').modal('show');
-    }
+    this.createReadonlyWorkspace();
   }
 
   /**
@@ -137,61 +126,6 @@ export class Share {
     this.workspaceDom.id = this.workspace.id;
   }
 
-  createModifiableWorkspace(container) {
-    let mediapath = `${this.config.shareRoot}${this.config.media}`;
-    // full link or absolute path given
-    if (this.config.media.startsWith('http') || this.config.media.startsWith('/')) {
-      mediapath = this.config.media;
-    }
-    const workspace = this.blockly.inject(container, {
-      readOnly: false,
-      media: mediapath,
-      zoom: {
-        controls: false,
-        wheel: false,
-        pinch: true,
-        startScale: this.config.renderSize
-      },
-      move: {
-        scrollbars: true,
-        drag: true,
-        wheel: false
-      },
-      collapse: false,
-      renderer: 'zelos',
-      rtl: this.config.rtl,
-      sounds: false
-    });
-    // Blockly.svgResize(workspace);
-
-    return workspace;
-  }
-
-  domToSvgModifiable(blockJSON, workspace) {
-    try {
-      jsonDomToWorkspace(blockJSON, workspace);
-      // store all block inputs in a map for later use
-      workspace.getAllBlocks().forEach(block => {
-        if (!(block.id in all_blocks)) {
-          const input_list = [];
-          try {
-            block.inputList[0].fieldRow.forEach(input => {
-              input_list.push(input.value_);
-            });
-          } catch {
-            console.log('Cannot load input of block!');
-          }
-          all_blocks[block.id] = input_list;
-        }
-      });
-      return true;
-    } catch (e) {
-      console.error(e.message);
-      console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
-    }
-    return false;
-  }
-
   /**
    * Render svg from blockXml via renderWorkspace
    * After rendering, we deep copy just the svg and return it
@@ -243,26 +177,20 @@ export class Share {
    * @param {string} sceneName mapped to id from the new dom
    * @returns {Element} new created scene objects container
    */
-  addSceneContainer(accordionID, sceneID, container, sceneName, expanded) {
-    const sceneContainer = this.generateOrInjectNewDOM(container, 'div', {
+  addSceneContainer(accordionID, sceneID, container, sceneName) {
+    const sceneContainer = generateNewDOM(container, 'div', {
       class: 'catblocks-scene card',
       id: sceneID
     });
 
-    const sceneHeader = this.generateOrInjectNewDOM(sceneContainer, 'div', {
-      class:
-        'catblocks-scene-header card-header d-flex justify-content-between expansion-header' +
-        (expanded ? '' : ' collapsed'),
+    const sceneHeader = generateNewDOM(sceneContainer, 'div', {
+      class: 'catblocks-scene-header card-header d-flex justify-content-between expansion-header collapsed',
       id: `${sceneID}-header`,
       'data-toggle': 'collapse',
       'data-target': `#${sceneID}-collapseOne`,
-      'aria-expanded': expanded ? 'true' : 'false',
+      'aria-expanded': 'false',
       'aria-controls': `${sceneID}-collapseOne`
     });
-
-    if (expanded) {
-      this.scrollToElements['scene'] = sceneHeader;
-    }
 
     if (sceneName && sceneName.display) {
       sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
@@ -270,19 +198,19 @@ export class Share {
       sceneHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
 
-    const sceneObjectContainer = this.generateOrInjectNewDOM(sceneContainer, 'div', {
-      class: 'catblocks-object-container collapse' + (expanded ? ' show' : ''),
+    const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
+      class: 'catblocks-object-container collapse',
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
       'data-parent': `#${accordionID}`,
       'data-scene': sceneName.real
     });
 
-    const cardBody = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
+    const cardBody = generateNewDOM(sceneObjectContainer, 'div', {
       class: 'card-body'
     });
 
-    const accordionObjects = this.generateOrInjectNewDOM(cardBody, 'div', {
+    const accordionObjects = generateNewDOM(cardBody, 'div', {
       class: 'accordion',
       id: `${sceneID}-accordionObjects`
     });
@@ -300,24 +228,20 @@ export class Share {
   renderProgramJSON(programID, container, programJSON, options = {}, renderEverything = false) {
     options = parseOptions(options, defaultOptions);
     // create row and col
-    let programContainers;
-    if (this.config.readOnly) {
-      programContainers = this.createProgramContainer(generateID(programID), undefined);
-    } else {
-      programContainers = this.createProgramContainer(generateID(programID), container);
-    }
+    const programContainers = this.createProgramContainer(generateID(programID), undefined);
+
     const programContainer = programContainers[1];
     const scenesContainerID = `${generateID(programID)}-accordionScenes`;
-    const scenesContainer = this.generateOrInjectNewDOM(programContainer, 'div', {
+    const scenesContainer = generateNewDOM(programContainer, 'div', {
       class: 'catblocks-scene-container accordion',
       id: scenesContainerID
     });
 
     if (programJSON == null || programJSON.scenes == null || programJSON.scenes.length === 0) {
-      const errorContainer = this.generateOrInjectNewDOM(scenesContainer, 'div', {
+      const errorContainer = generateNewDOM(scenesContainer, 'div', {
         class: 'catblocks-scene card'
       });
-      this.generateOrInjectNewDOM(
+      generateNewDOM(
         errorContainer,
         'div',
         {
@@ -325,20 +249,15 @@ export class Share {
         },
         'Empty program found'
       );
-      if (this.config.readOnly) {
-        container.appendChild(programContainers[0]);
-      }
+
+      container.appendChild(programContainers[0]);
+
       throw new Error('Empty program found');
     }
 
     for (let i = 0; i < programJSON.scenes.length; i++) {
       const scene = programJSON.scenes[i];
       const sceneID = generateID(`${programID}-${scene.name}`);
-
-      let renderNow = false;
-      if (options.scene.renderNow.scene && scene.name) {
-        renderNow = options.scene.renderNow.scene.trim() === scene.name.trim();
-      }
 
       const sceneName = {
         real: trimString(scene.name),
@@ -350,18 +269,12 @@ export class Share {
         sceneName.display = trimString(scene.name);
       }
 
-      const sceneObjectContainer = this.addSceneContainer(
-        scenesContainerID,
-        sceneID,
-        scenesContainer,
-        sceneName,
-        renderNow
-      );
+      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName);
       if (scene.objectList == null || scene.objectList.length === 0) {
-        const errorContainer = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
+        const errorContainer = generateNewDOM(sceneObjectContainer, 'div', {
           class: 'catblocks-object card'
         });
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           errorContainer,
           'div',
           {
@@ -378,33 +291,6 @@ export class Share {
       }
 
       const $spinnerModal = $('#spinnerModal');
-      if (renderNow) {
-        $spinnerModal.one('shown.bs.modal', () => {
-          this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
-          $spinnerModal.modal('hide');
-
-          let scrollTo = this.scrollToElements['script'];
-
-          if (!scrollTo) {
-            scrollTo = this.scrollToElements['object'];
-          }
-
-          if (!scrollTo) {
-            scrollTo = this.scrollToElements['scene'];
-          }
-
-          if (scrollTo) {
-            $('html, body').animate(
-              {
-                scrollTop: $(scrollTo).offset().top
-              },
-              'slow'
-            );
-          }
-        });
-        $spinnerModal.modal('show');
-        continue;
-      }
 
       $('body').on('click', `#${sceneID}`, () => {
         if (rendered_scenes[sceneID] !== true) {
@@ -424,9 +310,7 @@ export class Share {
       });
     }
 
-    if (this.config.readOnly) {
-      container.appendChild(programContainers[0]);
-    }
+    container.appendChild(programContainers[0]);
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything) {
@@ -442,20 +326,9 @@ export class Share {
     if (rendered_scenes[sceneID] === true) {
       return;
     }
-
     rendered_scenes[sceneID] = true;
 
-    let performanceContainer;
-    if (this.config.readOnly) {
-      performanceContainer = this.generateOrInjectNewDOM(undefined, 'div');
-    } else {
-      performanceContainer = sceneObjectContainer;
-    }
-
-    let sceneDisplayedDefault = false;
-    if (options.scene.renderNow.scene && scene.name) {
-      sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
-    }
+    const performanceContainer = generateNewDOM(undefined, 'div');
 
     const scenesWorkspaces = new Map();
     if (bgWorkspaceDetails) {
@@ -467,20 +340,15 @@ export class Share {
       const object = scene.objectList[j];
       const objectID = generateID(`${programID}-${scene.name}-${object.name}`);
 
-      const objectsWorkspace = this.renderObjectJSON(
+      this.renderObjectJSON(
         objectID,
         `${sceneID}-accordionObjects`,
         performanceContainer,
         object,
-        sceneDisplayedDefault,
         parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
       );
-      scenesWorkspaces[scene.objectList[j].name] = objectsWorkspace;
     }
-    if (this.config.readOnly) {
-      sceneObjectContainer.appendChild(performanceContainer);
-    }
-    this.modifiableWorkspaces[scene.name] = scenesWorkspaces;
+    sceneObjectContainer.appendChild(performanceContainer);
   }
 
   createLoadingAnimation() {
@@ -501,17 +369,11 @@ export class Share {
       scene.objectList[0].name = Blockly.CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
     }
 
-    let sceneDisplayedDefault = false;
-    if (options.scene.renderNow.scene && scene.name) {
-      sceneDisplayedDefault = options.scene.renderNow.scene.trim() == scene.name.trim();
-    }
-
     const bgWorkspace = this.renderObjectJSON(
       backgroundObjID,
       `${sceneID}-accordionObjects`,
       sceneObjectContainer,
       scene.objectList[0],
-      sceneDisplayedDefault,
       parseOptions(options.object, parseOptions(options.object, defaultOptions.object))
     );
     return {
@@ -527,19 +389,9 @@ export class Share {
    * @param {Element} sceneObjectContainer HTMLElement
    * @param {Object} object JSON of the program
    * @param {Object} [options=defaultOptions.object]
-   *
-   * @returns {Map} a map of workspaces for each object name
-   *                Map is empty if readOnly is set in options
    */
-  renderObjectJSON(
-    objectID,
-    accordionID,
-    sceneObjectContainer,
-    object,
-    sceneDisplayedDefault,
-    options = defaultOptions.object
-  ) {
-    const objectCard = this.generateOrInjectNewDOM(sceneObjectContainer, 'div', {
+  renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, options = defaultOptions.object) {
+    const objectCard = generateNewDOM(sceneObjectContainer, 'div', {
       class: 'catblocks-object card',
       id: objectID
     });
@@ -557,27 +409,16 @@ export class Share {
       }
     }
 
-    let expandObject = false;
-    if (sceneDisplayedDefault === true) {
-      if (object.name) {
-        expandObject = object.name.trim() == options.renderNow.object;
-      }
-    }
-
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
-    const cardHeader = this.generateOrInjectNewDOM(objectCard, 'div', {
+    const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
       'data-toggle': 'collapse',
       'data-target': `#${objCollapseOneSceneID}`,
-      'aria-expanded': expandObject ? 'true' : 'false',
+      'aria-expanded': 'false',
       'aria-controls': objCollapseOneSceneID
     });
-
-    if (expandObject) {
-      this.scrollToElements['object'] = cardHeader;
-    }
 
     // attach listener for lazyloading
     $(cardHeader).on('click', lazyLoadImage);
@@ -593,8 +434,8 @@ export class Share {
       cardHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     }
 
-    const objectContentContainer = this.generateOrInjectNewDOM(objectCard, 'div', {
-      class: 'catblocks-script-container collapse' + (expandObject ? ' show' : ''),
+    const objectContentContainer = generateNewDOM(objectCard, 'div', {
+      class: 'catblocks-script-container collapse',
       id: objCollapseOneSceneID,
       'aria-labelledby': objHeadingID,
       'data-parent': `#${accordionID}`,
@@ -602,20 +443,12 @@ export class Share {
     });
 
     this.generateTabs(objectContentContainer, objectID, object);
-    const contentContainer = this.generateOrInjectNewDOM(objectContentContainer, 'div', {
+    const contentContainer = generateNewDOM(objectContentContainer, 'div', {
       class: 'tab-content card-body'
     });
 
-    let scriptToDisplay = -1;
-    if (expandObject) {
-      if (options.renderNow.script !== null && options.renderNow.script !== undefined) {
-        scriptToDisplay = options.renderNow.script;
-      }
-    }
-
-    let objectsWorkspace = undefined;
     if (this.config.renderScripts) {
-      objectsWorkspace = this.generateScripts(contentContainer, objectID, object, scriptToDisplay);
+      this.generateScripts(contentContainer, objectID, object);
     }
     if (this.config.renderLooks) {
       this.generateLooks(contentContainer, objectID, object, options);
@@ -623,7 +456,6 @@ export class Share {
     if (this.config.renderSounds) {
       this.generateSounds(contentContainer, objectID, object, options);
     }
-    return objectsWorkspace;
   }
 
   /**
@@ -634,7 +466,7 @@ export class Share {
    * @param {Object} [options=defaultOptions.object]
    */
   generateSounds(container, objectID, object, options = defaultOptions.object) {
-    const soundsContainer = this.generateOrInjectNewDOM(container, 'div', {
+    const soundsContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-sounds`,
       role: 'tabpanel',
@@ -644,7 +476,7 @@ export class Share {
     const noSoundsText = 'No Sounds found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
       soundsContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           soundsContainer,
           'p',
           {
@@ -659,17 +491,17 @@ export class Share {
       return;
     }
 
-    const group = this.generateOrInjectNewDOM(soundsContainer, 'div', {
+    const group = generateNewDOM(soundsContainer, 'div', {
       class: 'list-group-flush'
     });
 
     let failed = 0;
     for (const sound of object.soundList) {
-      const row = this.generateOrInjectNewDOM(group, 'div', {
+      const row = generateNewDOM(group, 'div', {
         class: 'list-group-item row'
       });
 
-      const col = this.generateOrInjectNewDOM(row, 'div', {
+      const col = generateNewDOM(row, 'div', {
         class: 'col-12'
       });
 
@@ -694,7 +526,7 @@ export class Share {
         displaySoundName = sound.fileName;
       }
 
-      const soundName = this.generateOrInjectNewDOM(
+      const soundName = generateNewDOM(
         col,
         'span',
         {
@@ -706,11 +538,11 @@ export class Share {
         soundName.style.textAlign = 'right';
       }
 
-      const audioContainer = this.generateOrInjectNewDOM(col, 'audio', {
+      const audioContainer = generateNewDOM(col, 'audio', {
         class: 'catblocks-object-sound-item',
         controls: 'controls'
       });
-      this.generateOrInjectNewDOM(audioContainer, 'source', {
+      generateNewDOM(audioContainer, 'source', {
         src: src
       });
     }
@@ -718,7 +550,7 @@ export class Share {
     if (failed > 0) {
       const failedSoundsText = 'ERROR parsing ' + failed + ' Sounds';
       soundsContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           soundsContainer,
           'p',
           {
@@ -738,7 +570,7 @@ export class Share {
    * @param {Object} [options=defaultOptions.object]
    */
   generateLooks(container, objectID, object, options = defaultOptions.object) {
-    const looksContainer = this.generateOrInjectNewDOM(container, 'div', {
+    const looksContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane fade p-3',
       id: `${objectID}-looks`,
       role: 'tabpanel',
@@ -748,7 +580,7 @@ export class Share {
     const noLooksText = 'No Looks found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
       looksContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           looksContainer,
           'p',
           {
@@ -763,19 +595,19 @@ export class Share {
       return;
     }
 
-    const group = this.generateOrInjectNewDOM(looksContainer, 'div', {
+    const group = generateNewDOM(looksContainer, 'div', {
       class: 'list-group-flush'
     });
 
     let failed = 0;
     for (const look of object.lookList) {
-      const row = this.generateOrInjectNewDOM(group, 'div', {
+      const row = generateNewDOM(group, 'div', {
         class: 'list-group-item align-items-center'
       });
-      const col = this.generateOrInjectNewDOM(row, 'div', {
+      const col = generateNewDOM(row, 'div', {
         class: 'col-3'
       });
-      const button = this.generateOrInjectNewDOM(row, 'span', {
+      const button = generateNewDOM(row, 'span', {
         class: 'align-items-center'
       });
 
@@ -806,7 +638,7 @@ export class Share {
       }
 
       const imgID = generateID(`${objectID}-${displayLookName}`) + '-imgID';
-      this.generateOrInjectNewDOM(
+      generateNewDOM(
         col,
         'img',
         {
@@ -828,7 +660,7 @@ export class Share {
         $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
-      const lookName = this.generateOrInjectNewDOM(
+      const lookName = generateNewDOM(
         row,
         'div',
         {
@@ -838,7 +670,7 @@ export class Share {
       );
 
       const magnifyingGlassID = generateID(`${objectID}-button-${displayLookName}`);
-      const magnifyingGlass = this.generateOrInjectNewDOM(button, 'button', {
+      const magnifyingGlass = generateNewDOM(button, 'button', {
         class: 'search',
         id: magnifyingGlassID,
         'data-toggle': 'modal',
@@ -863,7 +695,7 @@ export class Share {
     if (failed > 0) {
       const failedLooksText = 'ERROR parsing ' + failed + ' Looks';
       looksContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           looksContainer,
           'p',
           {
@@ -876,62 +708,14 @@ export class Share {
   }
 
   /**
-   * Generate Modal for magnifying glass
-   */
-  generateModalMagnifyingGlass() {
-    const modal = $(
-      ` <div class="modal" id="modalForImg">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <span id="modalHeader"></span>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-  
-              <div class="modal-body">
-                <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>`
-    );
-    $('body').append(modal);
-  }
-
-  generateFormulaModal() {
-    const formulaModal = `
-      <div class="modal" id="formulaPopup">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="formulaPopupHeader"></h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body" id="formulaPopupContent">
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-dismiss="modal" id="formulaPopupClose">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-    $('body').append(formulaModal);
-  }
-
-  /**
    * Generate Tabcontainer for scripts
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
    * @param {number} scriptToDisplay
    */
-  generateScripts(container, objectID, object, scriptToDisplay) {
-    const wrapperContainer = this.generateOrInjectNewDOM(container, 'div', {
+  generateScripts(container, objectID, object) {
+    const wrapperContainer = generateNewDOM(container, 'div', {
       class: 'tab-pane show active fade p-3',
       id: `${objectID}-scripts`,
       role: 'tabpanel',
@@ -940,7 +724,7 @@ export class Share {
     if (!object || !object.scriptList || object.scriptList.length <= 0) {
       const noScriptText = 'No Scripts found';
       wrapperContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           wrapperContainer,
           'p',
           {
@@ -956,109 +740,27 @@ export class Share {
     }
 
     let failed = 0;
-    let modifiableWorkspace;
-    if (this.config.readOnly) {
-      for (let i = 0; i < object.scriptList.length; i++) {
-        const scriptContainer = this.generateOrInjectNewDOM(wrapperContainer, 'div', {
-          class: 'catblocks-script'
-        });
-        if (this.config.rtl) {
-          scriptContainer.style.textAlign = 'right';
-        }
-        scriptContainer.style.overflowX = 'auto';
-
-        const blockSvg = this.domToSvg(object.scriptList[i]);
-        if (blockSvg === undefined) {
-          failed++;
-        } else {
-          scriptContainer.appendChild(blockSvg);
-          if (i === scriptToDisplay) {
-            this.scrollToElements['script'] = blockSvg;
-          }
-        }
-      }
-    } else {
-      let initializing = true;
-      const scriptContainer = this.generateOrInjectNewDOM(wrapperContainer, 'div', {
-        class: 'catblocks-script-modifiable'
+    for (let i = 0; i < object.scriptList.length; i++) {
+      const scriptContainer = generateNewDOM(wrapperContainer, 'div', {
+        class: 'catblocks-script'
       });
-      modifiableWorkspace = this.createModifiableWorkspace(scriptContainer);
-      Blockly.svgResize(modifiableWorkspace);
-
-      for (let i = 0; i < object.scriptList.length; i++) {
-        if (this.domToSvgModifiable(object.scriptList[i], modifiableWorkspace) === false) {
-          ++failed;
-        }
+      if (this.config.rtl) {
+        scriptContainer.style.textAlign = 'right';
       }
-      zebraChangeColor(modifiableWorkspace.topBlocks_);
+      scriptContainer.style.overflowX = 'auto';
 
-      $(scriptContainer)
-        .parents('.catblocks-script-container')
-        .one('shown.bs.collapse', () => {
-          Blockly.svgResize(modifiableWorkspace);
-        });
-
-      const topBlocks = modifiableWorkspace.getTopBlocks();
-      let height = 0;
-      for (let i = 0; i < topBlocks.length; ++i) {
-        const topBlock = topBlocks[i];
-
-        let script_height = topBlock.xy_.y + topBlock.height;
-        let next_block = topBlock.getNextBlock();
-        while (next_block !== null) {
-          script_height += next_block.height;
-          next_block = next_block.getNextBlock();
-        }
-
-        let x, y;
-        if (
-          object.scriptList[i].posX === undefined ||
-          object.scriptList[i].posY === undefined ||
-          (object.scriptList[i].posX == 0 && object.scriptList[i].posY == 0)
-        ) {
-          if (i == 0) {
-            x = 9.5;
-          } else {
-            x = 10;
-          }
-          y = height;
-        } else {
-          x = object.scriptList[i].posX;
-          y = object.scriptList[i].posY;
-        }
-        height += script_height + 10;
-        topBlock.setMovable(true);
-        topBlock.moveBy(Math.round(x), Math.round(y));
+      const blockSvg = this.domToSvg(object.scriptList[i]);
+      if (blockSvg === undefined) {
+        failed++;
+      } else {
+        scriptContainer.appendChild(blockSvg);
       }
-      initializing = false;
-
-      modifiableWorkspace.addChangeListener(event => {
-        if (initializing) {
-          return;
-        }
-        if (event.type == Blockly.Events.BLOCK_MOVE) {
-          // console.log(event);
-          let isTopBrick = false;
-          const topBlocks = modifiableWorkspace.getTopBlocks();
-          for (let i = 0; i < topBlocks.length; ++i) {
-            if (topBlocks[i].id == event.blockId) {
-              isTopBrick = true;
-              break;
-            }
-          }
-
-          if (isTopBrick === true && event.oldParentId === undefined && event.newParentId === undefined) {
-            // move of top (script) brick
-            Android.updateScriptPosition(event.blockId, event.newCoordinate.x, event.newCoordinate.y);
-          }
-        }
-      });
     }
 
     if (failed > 0) {
       const failedScriptText = 'ERROR parsing ' + failed + ' Scripts';
       wrapperContainer.appendChild(
-        this.generateOrInjectNewDOM(
+        generateNewDOM(
           wrapperContainer,
           'p',
           {
@@ -1068,7 +770,6 @@ export class Share {
         )
       );
     }
-    return modifiableWorkspace;
   }
 
   /**
@@ -1096,21 +797,21 @@ export class Share {
       }
     }
 
-    const tabs = this.generateOrInjectNewDOM(container, 'div', {
+    const tabs = generateNewDOM(container, 'div', {
       class: 'catro-tabs'
     });
-    const ul = this.generateOrInjectNewDOM(tabs, 'ul', {
+    const ul = generateNewDOM(tabs, 'ul', {
       class: 'nav nav-tabs nav-fill',
       id: `${objectID}-tabs`,
       role: 'tablist'
     });
 
     if (this.config.renderScripts) {
-      const liScript = this.generateOrInjectNewDOM(ul, 'li', {
+      const liScript = generateNewDOM(ul, 'li', {
         class: 'nav-item'
       });
 
-      this.generateOrInjectNewDOM(
+      generateNewDOM(
         liScript,
         'a',
         {
@@ -1122,8 +823,7 @@ export class Share {
           'aria-controls': 'scripts',
           'aria-selected': 'true'
         },
-        `
-        <div class="catblocks-tab-script">
+        `<div class="catblocks-tab-script">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32px" viewBox="0 0 32 32" version="1.1">
             <g id="surface1">
               <path style="fill:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 27.322266 11.595703 C 27.322266 11.595703 20.138672 9.339844 14.958984 9.333984 C 10.564453 9.375 8.033203 10.904297 8.033203 10.904297 L 7.998047 22.740234 L 7.998047 37.125 L 12.228516 37.125 L 14.039062 40.001953 L 21.445312 40.001953 L 23.255859 37.125 L 40.001953 37.125 L 40.001953 11.595703 Z M 27.322266 11.595703 " transform="matrix(0.666667,0,0,0.666667,0,0)"/>
@@ -1135,10 +835,10 @@ export class Share {
     }
 
     if (this.config.renderLooks) {
-      const liLooks = this.generateOrInjectNewDOM(ul, 'li', {
+      const liLooks = generateNewDOM(ul, 'li', {
         class: 'nav-item'
       });
-      this.generateOrInjectNewDOM(
+      generateNewDOM(
         liLooks,
         'a',
         {
@@ -1155,10 +855,10 @@ export class Share {
     }
 
     if (this.config.renderSounds) {
-      const liSounds = this.generateOrInjectNewDOM(ul, 'li', {
+      const liSounds = generateNewDOM(ul, 'li', {
         class: 'nav-item'
       });
-      this.generateOrInjectNewDOM(
+      generateNewDOM(
         liSounds,
         'a',
         {
@@ -1183,46 +883,15 @@ export class Share {
    * @memberof Share
    */
   createProgramContainer(containerID, container) {
-    const row = this.generateOrInjectNewDOM(container, 'div', {
+    const row = generateNewDOM(container, 'div', {
       class: 'row',
       id: containerID
     });
 
-    const col = this.generateOrInjectNewDOM(row, 'div', {
+    const col = generateNewDOM(row, 'div', {
       class: 'col-12'
     });
 
     return [row, col];
-  }
-
-  /**
-   * Injects or generates new dom depending on readOnly configuration
-   * @param {Element} container dom where to injectAllScenes the new scene
-   * @param {Object} tagName to injectAllScenes into container
-   * @param {?Object<string, string>|?string} attributes attribute object or just class name
-   * @param {?string} textContent to set for new dom element
-   * @return {Element} new created subcontainer
-   */
-  generateOrInjectNewDOM(container, tagName, attributes, textContent) {
-    if (this.config.readOnly) {
-      return generateNewDOM(container, tagName, attributes, textContent);
-    } else {
-      return injectNewDom(container, tagName, attributes, textContent);
-    }
-  }
-
-  reorderCurrentScripts() {
-    const scene = $('.catblocks-object-container.show').attr('data-scene');
-    const object = $('.catblocks-script-container.show').attr('data-object');
-
-    if (!scene || !object) {
-      return;
-    }
-
-    const sceneWorkspaces = this.modifiableWorkspaces[scene];
-    if (sceneWorkspaces) {
-      const objectsWorkspace = sceneWorkspaces[object];
-      objectsWorkspace.cleanUp();
-    }
   }
 }

@@ -1,5 +1,4 @@
-import { renderProgram } from '../../../library/js/lib';
-import { CatBlocks } from '../../../library/js/lib';
+import { CatBlocks, renderProgram } from '../../../library/js/lib_share';
 import { Parser } from '../../../common/js/parser/parser';
 
 /**

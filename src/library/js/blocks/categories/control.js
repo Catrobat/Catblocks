@@ -381,7 +381,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'for_item_in_userlist_list_spinner',
+        name: 'FOR_ITEM_IN_USERLIST_LIST',
         text: 'unset'
       },
       {
@@ -391,11 +391,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'for_item_in_userlist_list_spinner_INFO'
+        name: 'FOR_ITEM_IN_USERLIST_LIST_INFO'
       },
       {
         type: 'field_input',
-        name: 'for_item_in_userlist_variable_spinner',
+        name: 'FOR_ITEM_IN_USERLIST_VARIABLE',
         text: 'unset'
       },
       {
@@ -405,7 +405,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'for_item_in_userlist_variable_spinner_INFO'
+        name: 'FOR_ITEM_IN_USERLIST_VARIABLE_INFO'
       }
     ],
     args1: [

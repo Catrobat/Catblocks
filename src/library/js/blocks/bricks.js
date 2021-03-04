@@ -39,7 +39,8 @@ const shapeBricksExtention = () => {
         'WhenBounceOffScript',
         'WhenBackgroundChangesScript',
         'WhenRaspiPinChangedBrick',
-        'UserDefinedScript'
+        'UserDefinedScript',
+        'EmptyScript'
       ].includes(blockName)
     ) {
       this.hat = 'cap';

@@ -33,6 +33,11 @@ describe('Filesystem Block tests', () => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
         const block = BLOCKS[categoryName][blockName];
         const blockMsg = block.message0;
+
+        if (blockName == 'EmptyScript') {
+          return blockMsg == ' ';
+        }
+
         const blockMsgName = blockMsg.substring(6, blockMsg.length - 1);
         // verify if it exists
         expect(BLOCK_MSG_MAPPINGS[blockMsgName]).not.toBeUndefined();
@@ -62,6 +67,11 @@ describe('Filesystem Block tests', () => {
       Object.keys(BLOCKS[categoryName]).forEach(blockName => {
         const block = BLOCKS[categoryName][blockName];
         const blockMsg = block.message0;
+
+        if (blockName == 'EmptyScript') {
+          return blockMsg == ' ';
+        }
+
         const blockMsgName = blockMsg.substring(6, blockMsg.length - 1);
 
         const defArgs = Object.keys(block).filter(key => {
@@ -297,52 +307,56 @@ describe('WebView Block tests', () => {
           let returnStatus = true;
           Object.keys(BLOCKS).forEach(categoryName => {
             Object.keys(BLOCKS[categoryName]).forEach(blockName => {
-              const jsBlock = BLOCKS[categoryName][blockName];
-              const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll('g.blocklyEditableText');
-              //get args from js-files (in blocks/categories directory)
-              const allJsArguments = [];
-              if (jsBlock['args0'] !== undefined) {
-                let jsBlockIndex = 0;
-                while (jsBlock['args0'][jsBlockIndex] !== undefined) {
-                  if (jsBlock['args0'][jsBlockIndex]['value'] !== undefined) {
-                    allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
+              if (blockName != 'EmptyScript') {
+                const jsBlock = BLOCKS[categoryName][blockName];
+                const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll(
+                  'g.blocklyEditableText'
+                );
+                //get args from js-files (in blocks/categories directory)
+                const allJsArguments = [];
+                if (jsBlock['args0'] !== undefined) {
+                  let jsBlockIndex = 0;
+                  while (jsBlock['args0'][jsBlockIndex] !== undefined) {
+                    if (jsBlock['args0'][jsBlockIndex]['value'] !== undefined) {
+                      allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
+                    }
+                    if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined) {
+                      allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
+                    }
+                    if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined) {
+                      allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);
+                    }
+                    jsBlockIndex++;
                   }
-                  if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined) {
-                    allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
-                  }
-                  if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined) {
-                    allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);
-                  }
-                  jsBlockIndex++;
                 }
-              }
-              if (jsBlock['args2'] !== undefined) {
-                let jsBlockIndex = 0;
-                while (jsBlock['args2'][jsBlockIndex] !== undefined) {
-                  if (jsBlock['args2'][jsBlockIndex]['value'] !== undefined) {
-                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['value']);
+                if (jsBlock['args2'] !== undefined) {
+                  let jsBlockIndex = 0;
+                  while (jsBlock['args2'][jsBlockIndex] !== undefined) {
+                    if (jsBlock['args2'][jsBlockIndex]['value'] !== undefined) {
+                      allJsArguments.push(jsBlock['args2'][jsBlockIndex]['value']);
+                    }
+                    if (jsBlock['args2'][jsBlockIndex]['text'] !== undefined) {
+                      allJsArguments.push(jsBlock['args2'][jsBlockIndex]['text']);
+                    }
+                    if (jsBlock['args2'][jsBlockIndex]['options'] !== undefined) {
+                      allJsArguments.push(jsBlock['args2'][jsBlockIndex]['options'][0][0]);
+                    }
+                    jsBlockIndex++;
                   }
-                  if (jsBlock['args2'][jsBlockIndex]['text'] !== undefined) {
-                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['text']);
-                  }
-                  if (jsBlock['args2'][jsBlockIndex]['options'] !== undefined) {
-                    allJsArguments.push(jsBlock['args2'][jsBlockIndex]['options'][0][0]);
-                  }
-                  jsBlockIndex++;
                 }
-              }
-              if (allJsArguments.length !== renderedBlock.length) {
-                returnStatus = false;
-              }
-              //check if rendered arguments and js arguments are equal
-              for (let argIndex = 0; argIndex < renderedBlock.length; argIndex++) {
-                const jsArgument = allJsArguments[argIndex].toString().trim().replace(/\s/g, ' ');
-                const renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, ' ');
-                if (jsArgument !== renderedArgument) {
+                if (allJsArguments.length !== renderedBlock.length) {
                   returnStatus = false;
                 }
+                //check if rendered arguments and js arguments are equal
+                for (let argIndex = 0; argIndex < renderedBlock.length; argIndex++) {
+                  const jsArgument = allJsArguments[argIndex].toString().trim().replace(/\s/g, ' ');
+                  const renderedArgument = renderedBlock[argIndex].textContent.trim().replace(/\s/g, ' ');
+                  if (jsArgument !== renderedArgument) {
+                    returnStatus = false;
+                  }
+                }
+                indexOfBlock++;
               }
-              indexOfBlock++;
             });
           });
           return returnStatus;

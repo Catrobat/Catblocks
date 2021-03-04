@@ -7,7 +7,7 @@ const variables = require('./variables');
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/library/js/index.js'),
+  entry: path.join(__dirname, 'src/library/js/webpack_share.js'),
   output: {
     filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist'),
