@@ -21,6 +21,17 @@
   fill: #fff !important;
 }
 
+.catblocks-blockly-disabled > .blocklyNonEditableText > rect:not(.blocklyDropdownRect),
+.catblocks-blockly-disabled > .blocklyEditableText > rect:not(.blocklyDropdownRect),
+.catblocks-blockly-disabled > .blocklyNonEditableText > text,
+.catblocks-blockly-disabled > .blocklyEditableText > text,
+.catblocks-blockly-disabled > .blocklyNonEditableText > g > text,
+.catblocks-blockly-disabled > .blocklyEditableText > g > text,
+.catblocks-blockly-disabled > .blocklyDropdownText {
+  fill-opacity: 0.5;
+  stroke-opacity: 0.5;
+}
+
 .search {
   border: none;
 }
@@ -32,4 +43,9 @@
 .catblockls-blockly-invisible > .blocklyPath {
   fill-opacity: 0;
   stroke-opacity: 0;
+}
+
+.catblocks-blockly-disabled > .blocklyPath {
+  fill-opacity: 0.35;
+  stroke-opacity: 0.35;
 }
