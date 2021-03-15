@@ -429,6 +429,7 @@
 
     <!-- New Script Group Dialog -->
     <string name="new_group">New group</string>
+    <string name="default_group_name">Group</string>
 
     <!-- New Scene Menu -->
     <string name="new_scene">New scene</string>
@@ -881,6 +882,8 @@
     <string name="brick_user_defined_script_as" tools:ignore="UnusedResources">as</string>
 
     <string name="brick_user_defined_list_empty">Tap \"+\" to add your own new bricks.</string>
+
+    <string name="brick_report" tools:ignore="UnusedResources">Report</string>
     <!--  -->
 
     <!-- Motion bricks -->
@@ -1244,7 +1247,11 @@
 
     <!-- Default Values -->
     <string name="default_project_name">My project</string>
-    <string name="default_scene_name">Scene %1$d</string>
+    <string name="default_variable_name">Variable</string>
+    <string name="default_scene_name">Scene (%1$d)</string>
+    <string name="default_script_group_name">Script group</string>
+    <string name="default_broadcast_message_name">Message</string>
+    <string name="default_list_name">List</string>
     <string name="default_project_background_name">Background</string>
     <string name="default_project_cloud_name">Clouds</string>
     <string name="default_project_cloud_sprite_name_1">Clouds1</string>
@@ -1793,6 +1800,10 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_function_color_touches_color_parameter" translatable="false">(\'#ff0000\',\'#00ff00\')</string>
     <string name="formula_editor_sensor_color_at_x_y">color at x y</string>
     <string name="formula_editor_sensor_color_at_x_y_parameter" translatable="false">(100,200)</string>
+    <string name="formula_editor_sensor_color_equals_color" tools:ignore="UnusedResources">color equals color with %
+        tolerance</string>
+    <string name="formula_editor_sensor_color_equals_color_parameter" translatable="false">
+        (\'ff0000\',\'fe0000\',1)</string>
     <string name="formula_editor_sensor_x_acceleration" tools:ignore="UnusedResources">acceleration x</string>
     <string name="formula_editor_sensor_y_acceleration" tools:ignore="UnusedResources">acceleration y</string>
     <string name="formula_editor_sensor_z_acceleration" tools:ignore="UnusedResources">acceleration z</string>
@@ -1943,6 +1954,9 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_function_text_block_x">text block x from camera</string>
     <string name="formula_editor_function_text_block_y">text block y from camera</string>
     <string name="formula_editor_function_text_block_size">text block size from camera</string>
+    <string name="formula_editor_function_text_block_from_camera">text block from camera</string>
+    <string name="formula_editor_function_text_block_language_from_camera">text block language from camera</string>
+    <string name="formula_editor_function_text_block_parameter">(1)</string>
     <string name="formula_editor_intro_title_formula_editor">Formula editor</string>
     <string name="formula_editor_intro_summary_formula_editor">With the  formula editor you can create mathematical and
         logical formulas that you can use in your bricks.\n\nYou can continue through this little intro by tapping
