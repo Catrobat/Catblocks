@@ -155,7 +155,7 @@ export class Catroid {
     }
 
     this.workspace.addChangeListener(event => {
-      if (event.type == Blockly.Events.UI && event.element == 'dragStop') {
+      if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
         const droppedBrick = this.workspace.getBlockById(event.blockId);
         const isTopBrick = droppedBrick.hat !== undefined;
         const position = droppedBrick.getRelativeToSurfaceXY();
@@ -164,8 +164,8 @@ export class Catroid {
           Android.updateScriptPosition(event.blockId, position.x, position.y);
         } else {
           const bricksToMove = [];
-          for (let i = 0; i < event.oldValue.length; ++i) {
-            bricksToMove.push(event.oldValue[i].id);
+          for (let i = 0; i < event.blocks.length; ++i) {
+            bricksToMove.push(event.blocks[i].id);
           }
 
           if (droppedBrick.getParent() == undefined) {
