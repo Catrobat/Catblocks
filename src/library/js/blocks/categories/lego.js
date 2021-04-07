@@ -1,22 +1,12 @@
-/**
- * @description event Catblocks bricks
- */
-
 'use strict';
 
 export default {
-  DroneTakeOffLandBrick: {
-    message0: '%{BKY_DRONE_TAKEOFFLAND}'
-  },
-  DroneEmergencyBrick: {
-    message0: '%{BKY_DRONE_EMERGENCY}'
-  },
-  DroneMoveUpBrick: {
-    message0: '%{BKY_DRONE_MOVEUP}',
+  LegoEv3MotorTurnAngleBrick: {
+    message0: '%{BKY_LEGOEV3_MOTORTURNANGLE}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -26,11 +16,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+        name: 'DROPDOWN_INFO'
       },
       {
         type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
+        name: 'LEGO_EV3_DEGREES',
         text: 'unset'
       },
       {
@@ -40,16 +30,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'LEGO_EV3_DEGREES_INFO'
       }
     ]
   },
-  DroneMoveDownBrick: {
-    message0: '%{BKY_DRONE_MOVEDOWN}',
+  LegoEv3MotorMoveBrick: {
+    message0: '%{BKY_LEGOEV3_MOTORMOVE}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -59,11 +49,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+        name: 'DROPDOWN_INFO'
       },
       {
         type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
+        name: 'LEGO_NXT_SPEED',
         text: 'unset'
       },
       {
@@ -73,16 +63,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'LEGO_NXT_SPEED_INFO'
       }
     ]
   },
-  DroneMoveLeftBrick: {
-    message0: '%{BKY_DRONE_MOVELEFT}',
+  LegoEv3MotorStopBrick: {
+    message0: '%{BKY_LEGOEV3_MOTORSTOP}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -92,30 +82,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
-  DroneMoveRightBrick: {
-    message0: '%{BKY_DRONE_MOVERIGHT}',
+  LegoEv3PlayToneBrick: {
+    message0: '%{BKY_LEGOEV3_PLAYTONE}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'LEGO_EV3_DURATION_IN_SECONDS',
         text: 'unset'
       },
       {
@@ -125,11 +101,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+        name: 'LEGO_EV3_DURATION_IN_SECONDS_INFO'
       },
       {
         type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
+        name: 'LEGO_EV3_FREQUENCY',
         text: 'unset'
       },
       {
@@ -139,16 +115,30 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'LEGO_EV3_FREQUENCY_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'LEGO_EV3_VOLUME',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_EV3_VOLUME_INFO'
       }
     ]
   },
-  DroneMoveForwardBrick: {
-    message0: '%{BKY_DRONE_MOVEFORWARD}',
+  LegoEv3SetLedBrick: {
+    message0: '%{BKY_LEGOEV3_SETLED}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -158,30 +148,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
-  DroneMoveBackwardBrick: {
-    message0: '%{BKY_DRONE_MOVEBACKWARD}',
+  LegoNxtMotorTurnAngleBrick: {
+    message0: '%{BKY_LEGONXT_MOTORTURNANGLE}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -191,11 +167,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+        name: 'DROPDOWN_INFO'
       },
       {
         type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
+        name: 'LEGO_NXT_DEGREES',
         text: 'unset'
       },
       {
@@ -205,16 +181,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'LEGO_NXT_DEGREES_INFO'
       }
     ]
   },
-  DroneTurnLeftBrick: {
-    message0: '%{BKY_DRONE_TURNLEFT}',
+  LegoNxtMotorStopBrick: {
+    message0: '%{BKY_LEGONXT_MOTORSTOP}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -224,30 +200,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
-  DroneTurnRightBrick: {
-    message0: '%{BKY_DRONE_TURNRIGHT}',
+  LegoNxtMotorMoveBrick: {
+    message0: '%{BKY_LEGONXT_MOTORMOVE}',
     args0: [
       {
         type: 'field_input',
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -257,11 +219,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+        name: 'DROPDOWN_INFO'
       },
       {
         type: 'field_input',
-        name: 'DRONE_POWER_IN_PERCENT',
+        name: 'LEGO_NXT_SPEED',
         text: 'unset'
       },
       {
@@ -271,19 +233,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DRONE_POWER_IN_PERCENT_INFO'
+        name: 'LEGO_NXT_SPEED_INFO'
       }
     ]
   },
-  DroneFlipBrick: {
-    message0: '%{BKY_DRONE_FLIP}'
-  },
-  DronePlayLedAnimationBrick: {
-    message0: '%{BKY_DRONE_PLAYLEDANIMATION}',
+  LegoNxtPlayToneBrick: {
+    message0: '%{BKY_LEGONXT_PLAYTONE}',
     args0: [
       {
         type: 'field_input',
-        name: 'ADRONEANIMATION',
+        name: 'LEGO_NXT_DURATION_IN_SECONDS',
         text: 'unset'
       },
       {
@@ -293,11 +252,22 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'ADRONEANIMATION_INFO'
+        name: 'LEGO_NXT_DURATION_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'LEGO_NXT_FREQUENCY',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_FREQUENCY_INFO'
       }
     ]
-  },
-  DroneSwitchCameraBrick: {
-    message0: '%{BKY_DRONE_SWITCHCAMERA}'
   }
 };

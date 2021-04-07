@@ -1,7 +1,3 @@
-/**
- * @description pen Catblocks bricks
- */
-
 'use strict';
 
 export default {

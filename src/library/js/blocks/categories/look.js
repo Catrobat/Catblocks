@@ -1,7 +1,3 @@
-/**
- * @description looks Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -561,5 +557,69 @@ export default {
   },
   EditLookBrick: {
     message0: '%{BKY_LOOKS_EDIT_LOOK}'
+  },
+  DroneSwitchCameraBrick: {
+    message0: '%{BKY_DRONE_SWITCHCAMERA}'
+  },
+  PhiroRGBLightBrick: {
+    message0: '%{BKY_PHIRO_RGBLIGHT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'PHIRO_LIGHT_RED',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHIRO_LIGHT_RED_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'PHIRO_LIGHT_GREEN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHIRO_LIGHT_GREEN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'PHIRO_LIGHT_BLUE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHIRO_LIGHT_BLUE_INFO'
+      }
+    ]
   }
 };
