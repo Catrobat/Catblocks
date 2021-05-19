@@ -1,20 +1,8 @@
 'use strict';
 
 export default {
-  StartScript: {
-    message0: '%{BKY_EVENT_WHENSCENESTARTS}'
-  },
-  WhenScript: {
-    message0: '%{BKY_EVENT_WHENTAPPED}'
-  },
-  WhenTouchDownScript: {
-    message0: '%{BKY_EVENT_WHENSTAGEISTAPPED}'
-  },
-  WhenClonedScript: {
-    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
-  },
-  BroadcastScript: {
-    message0: '%{BKY_EVENT_WHENYOURECEIVE}',
+  WhenGamepadButtonBrick: {
+    message0: '%{BKY_CAST_WHEN_GAMEPAD_BUTTON}',
     args0: [
       {
         type: 'field_input',
@@ -32,12 +20,12 @@ export default {
       }
     ]
   },
-  WhenConditionScript: {
-    message0: '%{BKY_EVENT_WHENBECOMESTRUE}',
+  WhenRaspiPinChangedBrick: {
+    message0: '%{BKY_RASPI_WHENPINCHANGED}',
     args0: [
       {
         type: 'field_input',
-        name: 'IF_CONDITION',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -47,16 +35,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'IF_CONDITION_INFO'
-      }
-    ]
-  },
-  WhenBackgroundChangesScript: {
-    message0: '%{BKY_EVENT_WHENBACKGROUNDCHANGES}',
-    args0: [
+        name: 'DROPDOWN_INFO'
+      },
       {
         type: 'field_input',
-        name: 'look',
+        name: 'DROPDOWN2',
         text: 'unset'
       },
       {
@@ -66,7 +49,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'look_INFO'
+        name: 'DROPDOWN2_INFO'
       }
     ]
   }
