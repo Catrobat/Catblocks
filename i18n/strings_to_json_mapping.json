@@ -194,6 +194,7 @@
   "HELP": "${main_menu_help}",
   "EMBROIDERY_STITCH": "${brick_stitch}",
   "EMBRIODERY_SEW_UP": "${brick_sew_up}",
+  "EMBRIODERY_SET_THREAD_COLOR": "${brick_thread_color} %1%2",
   "UNDO": "${undo}",
   "REDO": "${redo}",
   "ARDUINO_SENDDIGITALVALUE": "${brick_arduino_select_digital_value} %1%2 ${brick_arduino_set_pin_value_to} %3%4",

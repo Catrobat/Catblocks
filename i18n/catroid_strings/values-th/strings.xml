@@ -104,6 +104,10 @@
     <string name="marketing_created_with">สร้างด้วย</string>
     <string name="marketing_app_details">รายละเอียดเกี่ยวกับแอพนี้</string>
     <string name="marketing_more_on_google_play">แอพเพิ่มเติมใน App Store</string>
+    <string name="error_cannot_open_huawei_app_gallery">อ๊ะ! ไม่สามารถเปิด Huawei AppGallery
+         กรุณาลองใหม่อีกครั้งในภายหลัง</string>
+    <string name="google_play_store_logo">Google Play</string>
+    <string name="huawei_app_gallery">Huawei App Gallery</string>
     <!-- NFC activity -->
     <string name="nfc_activity_title">แท็ก NFC</string>
     <!-- Settings activity -->
@@ -206,9 +210,7 @@
     <string name="error_cannot_open_not_yet_downloaded_scratch_program">คุณยังไม่สามารถเปิดโครงการ  โปรดดาวน์โหลดก่อนแล้วจึงเปิด</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">ฉันไม่สามารถแปลง %1$s ได้  ดูเหมือนว่าจะเป็นโครงการเก่าก่อนหน้า %2$s  โปรดลองอันอื่น</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
-        <item quantity="other">คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน
-
- คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน</item>
+        <item quantity="other">คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน</item>
     </plurals>
     <string name="error_cannot_open_failed_scratch_program">คุณไม่สามารถเปิดโครงการเพราะมันไม่ได้แปลงอย่างถูกต้อง  โปรดลองแปลงอีกครั้ง</string>
     <string name="search_failed">ไม่พบสิ่งใดโปรดลองอีกครั้งในภายหลัง</string>
@@ -216,8 +218,7 @@
     <string name="connection_failed">เราไม่สามารถเชื่อมต่อคุณกับเซิร์ฟเวอร์ได้ในขณะนี้โปรดลองอีกครั้งในภายหลัง</string>
     <string name="authentication_failed">ดูเหมือนว่าจะมีปัญหากับการเชื่อมต่อกับบริการของคุณ  กรุณาติดต่อทีม Catrobat</string>
     <plurals name="scratch_conversion_scheduled_x">
-        <item quantity="other">เพิ่ม %d โครงการไปยังคิว&#8230;
-เพิ่ม %d โครงการไปยังคิว&#8230;</item>
+        <item quantity="other">เพิ่ม %d โครงการไปยังคิว&#8230;</item>
     </plurals>
     <string name="scratch_conversion_started">เริ่มแปลงโครงการแล้ว&#8230;</string>
     <string name="convert">แปลง</string>
@@ -227,14 +228,10 @@
     <string name="status_started">เริ่มต้น&#8230;</string>
     <string name="status_conversion_finished">การแปลงเสร็จสิ้น</string>
     <plurals name="status_in_progress_x_jobs">
-        <item quantity="other">กำลังดำเนินการ %d งาน
-
-กำลังดำเนินการ %d งาน</item>
+        <item quantity="other">กำลังดำเนินการ %d งาน</item>
     </plurals>
     <plurals name="status_completed_x_jobs">
-        <item quantity="other">เสร็จงาน %d
-
-เสร็จงาน %d</item>
+        <item quantity="other">เสร็จงาน %d</item>
     </plurals>
     <string name="status_conversion_failed">การแปลงล้มเหลว!</string>
     <string name="status_downloading">ดาวน์โหลด&#8230;</string>
@@ -259,16 +256,13 @@
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">คุณแปลงโครงการนี้ %1$s ที่ผ่านมา</string>
     <plurals name="minutes">
-        <item quantity="other">%d นาที
-%d นาที</item>
+        <item quantity="other">%d นาที</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="other">%d ชั่วโมง
-%d ชั่วโมง</item>
+        <item quantity="other">%d ชั่วโมง</item>
     </plurals>
     <plurals name="days">
-        <item quantity="other">%d วัน
-%d วัน</item>
+        <item quantity="other">%d วัน</item>
     </plurals>
     <string name="reconvert_dialog_download">ดาวน์โหลดโครงการอีกครั้ง</string>
     <string name="reconvert_dialog_reconvert">แปลงโครงการนี้อีกครั้ง</string>
@@ -501,7 +495,7 @@
     <string name="local_vars_headline">ตัวแปรสำหรับนักแสดงหรือวัตถุนี้เท่านั้น</string>
     <string name="global_lists_headline">รายการสำหรับนักแสดงและวัตถุทั้งหมด</string>
     <string name="local_lists_headline">รายการสำหรับนักแสดงหรือวัตถุนี้เท่านั้น</string>
-    <string name="fragment_data_text_description">Tap \"+\" to add\nvariables or lists</string>
+    <string name="fragment_data_text_description">แตะ \"+\" เพื่อเพิ่ม \n ตัวแปรหรือรายการ</string>
     <plurals name="user_defined_brick_input_headline">
         <item quantity="other">อินพุตสำหรับคำสั่งนี้
 อินพุตสำหรับคำสั่งนี้</item>
@@ -552,16 +546,6 @@
     <string name="dialog_terms_of_use_title">ข้อกำหนดการใช้งานและบริการ</string>
     <string name="dialog_terms_of_use_info">ในการได้รับอนุญาตให้ใช้แอพและบริการอื่น ๆ ที่เสนอโดยโครงการ Catrobat คุณต้องยอมรับข้อกำหนดการใช้งานและบริการของเรา  คุณต้องปฏิบัติตามข้อกำหนดเหล่านี้อย่างเคร่งครัดเมื่อใช้แอพและบริการอื่น ๆ ของเรา  โปรดดูลิงก์ด้านล่างสำหรับสูตรที่แม่นยำ \n</string>
     <string name="dialog_terms_of_use_link_text">ข้อกำหนดการใช้งานและบริการ</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot ARDrone-->
-    <string name="dialog_terms_of_use_link_text_parrot_reminder">ข้อกำหนดการใช้งานและบริการ</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">คุณกำลังจะใช้แอพนี้ร่วมกับ AR.Drone 2.0 ของ Parrot  เราขอเตือนอย่างยิ่งให้คุณปฏิบัติตามข้อกำหนดในการให้บริการทั้งของ Parrot และ Catrobat</string>
-    <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">ไม่ต้องเตือนฉันอีก</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot Jumping Sumo-->
-    <string name="dialog_terms_of_use_jumpingsumo_reminder_text">You are about to use this app together with
-        Parrot\'s Jumping Sumo. We strongly remind you to abide by both Parrot\'s and Catrobat\'s Terms of Use and
-        Services.</string>
     <!--  -->
     <!-- Privacy Policy -->
     <string name="disclaimer_privacy_police_header_headline">ยินดีต้อนรับ!</string>
@@ -677,7 +661,6 @@
          ติดตั้งหรือไม่</string>
     <string name="prestage_resource_not_available_title">ไม่มีส่วนประกอบ</string>
     <string name="prestage_resource_not_available_text">น่าเสียดายที่โครงการนี้ใช้ไม่ได้กับอุปกรณ์ของคุณ  ส่วนประกอบต่อไปนี้ไม่สามารถใช้งานได้: \ n\n</string>
-    <string name="prestage_resource_in_use_text">อุปกรณ์อื่นเชื่อมต่อกับ Jumping Sumo  ตรวจสอบให้แน่ใจว่าคุณเป็นคนที่เชื่อมต่อกับโดรน</string>
     <string name="prestage_no_vibration_available">\u2022 การสั่นสะเทือน \n</string>
     <string name="prestage_no_acceleration_sensor_available">\u2022 เซ็นเซอร์ความเร่ง \n</string>
     <string name="prestage_no_inclination_sensor_available">\u2022 เซ็นเซอร์ความเอียง \ n</string>
@@ -687,7 +670,6 @@
     <string name="prestage_no_back_camera_available">\u2022 กล้องด้านหลัง \n</string>
     <string name="prestage_no_face_detection_available">\u2022 การตรวจจับใบหน้า \n</string>
     <string name="prestage_no_text_detection_available">\u2022 การตรวจจับข้อความ \n</string>
-    <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
     <string name="prestage_no_front_camera_available">\u2022 กล้องด้านหน้า \n</string>
     <string name="prestage_no_camera_available">\u2022 กล้อง \n</string>
     <string name="prestage_no_flash_available">\u2022 ไฟแฟรช\n</string>
@@ -890,6 +872,7 @@
     <string name="brick_write_embroidery" tools:ignore="UnusedResources">เขียนข้อมูลการปักลงในไฟล์</string>
     <string name="brick_default_embroidery_file">embroidery.dst</string>
     <string name="brick_sew_up" tools:ignore="UnusedResources">เย็บ</string>
+    <string name="brick_thread_color">ตั้งค่าสีเป็น</string>
     <!--  -->
     <!-- Device bricks -->
     <string name="brick_reset_timer" tools:ignore="UnusedResources">รีเซ็ตเวลา</string>
@@ -1150,17 +1133,7 @@
     <string name="notification_download_pending">ดาวน์โหลดอยู่</string>
     <string name="notification_download_finished">ดาวน์โหลดเสร็จเรียบร้อย</string>
     <string name="notification_title_open">"เปิด​ "</string>
-    <string name="notification_low_battery_with_value">ความสนใจ แบตเตอรี่เหลือน้อย สถานะปัจจุบันคือ %d</string>
     <string name="size_of_project">ขนาด:</string>
-    <string name="drone_emergency_battery_low">แบตเตอรี่ต่ำ (ลงจอดอัตโนมัติ)</string>
-    <string name="drone_emergency_camera">กล้องอย่างน้อยหนึ่งตัวไม่ตอบสนอง</string>
-    <string name="drone_emergency_ultrasound">เซ็นเซอร์อัลตร้าซาวด์ไม่ตอบสนอง</string>
-    <string name="drone_emergency_angle">AR.Drone 2.0 มุมออยเลอร์สูงเกินไป  มอเตอร์ปิดตัวลงเพื่อป้องกันพฤติกรรมที่เป็นอันตราย</string>
-    <string name="drone_emergency_cutout">มอเตอร์หนึ่งตัวหรือมากกว่าถูกหยุดโดยสภาพแวดล้อม</string>
-    <string name="drone_alert_battery_low">แบตเตอรี่เหลือน้อยเกินไปที่จะถอดอีกครั้ง</string>
-    <string name="drone_alert_ultrasound">เซ็นเซอร์อัลตร้าซาวด์ไม่สามารถระบุความสูง AR.Drone 2.0</string>
-    <string name="drone_alert_vision">ไม่มีการประมาณความเร็วจากกล้องหันหน้าไปทางด้านล่าง</string>
-    <string name="drone_emergency_title">ฉุกเฉิน</string>
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">แอปนี้ต้องการสิทธิ์ที่ร้องขอเพื่อให้สามารถทำงานได้ ตัวอย่างเช่นอิฐของกล้องต้องการการเข้าถึงกล้องของอุปกรณ์องค์ประกอบของสูตร \"ตำแหน่ง\" ต้องการการเข้าถึงเซ็นเซอร์ตำแหน่งทางภูมิศาสตร์ของอุปกรณ์และเพื่อนำเข้าและส่งออกโครงการจากและไปยังหน่วยความจำท้องถิ่นแอปนี้จำเป็นต้องมีสิทธิ์อ่านและเขียน. คุณสามารถเปลี่ยนการอนุญาตผ่านการตั้งค่าอุปกรณ์ของคุณ</string>
@@ -1180,18 +1153,6 @@
     <string name="error_upload_default_project">คุณไม่สามารถอัพโหลดโครงการตัวอย่างที่ไม่ได้แก้ไข  โปรดเปลี่ยนบางสิ่งและลองอีกครั้ง</string>
     <string name="error_adding_brick">เกิดข้อผิดพลาดขณะเพิ่มก้อนนี้</string>
     <string name="error_copying_brick">เกิดข้อผิดพลาดขณะคัดลอกก้อนนี้</string>
-    <string name="error_no_drone_connected_title">ไม่พบ AR.Drone 2.0</string>
-    <string name="error_no_drone_connected">เชื่อมต่อ wifi ของคุณกับ AR.Drone 2.0 แล้วลองอีกครั้ง</string>
-    <string name="error_drone_low_battery_title">แบตเตอรี่ AR.Drone 2.0 ต่ำ:%d%%</string>
-    <string name="error_drone_low_battery">ใส่ถ่านที่ช๊าทแล้วและลองใหม่อีกครั้ง</string>
-    <string name="error_jumpingsumo_wrong_platform">เราไม่สามารถเรียกใช้โครงการ Jumping Sumo บนอุปกรณ์ของคุณ</string>
-    <string name="error_no_jumpingsumo_connected_title">ไม่พบ Jumping Sumo</string>
-    <string name="error_no_jumpingsumo_connected">เชื่อมต่อ wifi ของคุณกับ Jumping Sumo แล้วลองอีกครั้ง</string>
-    <string name="error_jumpingsumo_battery_title">Jumping Sumo แบตเตอรี่ต่ำ</string>
-    <string name="error_jumpingsumo_battery">ใส่ถ่านที่ช๊าทแล้วและลองใหม่อีกครั้ง</string>
-    <string name="error_jumpingsumo_wrong_platform_title">ไม่มีการสนับสนุน Jumping Sumo</string>
-    <string name="error_drone_wrong_platform_title">ไม่รองรับ AR.Drone 2.0</string>
-    <string name="error_drone_wrong_platform">เราไม่สามารถเรียกใช้โครงการ AR.Drone 2.0 บนอุปกรณ์ของคุณ</string>
     <string name="error_rename_incompatible_project">ไม่สามารถเปลี่ยนชื่อโครงการที่เข้ากันไม่ได้</string>
     <string name="error_embroidery_file_export">เกิดข้อผิดพลาดบางอย่างขณะแชร์ไฟล์การปัก</string>
     <string name="error_embroidery_file_write">เกิดข้อผิดพลาดขณะเขียนไฟล์ปัก</string>
@@ -1536,7 +1497,7 @@
     <string name="formula_editor_function_arduino_read_pin_value_digital" tools:ignore="UnusedResources">arduino ขาดิจิตอล</string>
     <string name="formula_editor_function_arduino_read_pin_value_analog" tools:ignore="UnusedResources">arduino ขาอะนาล็อก</string>
     <string name="formula_editor_function_raspi_read_pin_value_digital" tools:ignore="UnusedResources">raspberry pi pin</string>
-    <string name="formula_editor_function_pin_default_parameter">(3)</string>
+    <string name="formula_editor_function_pin_default_parameter">(0)</string>
     <string name="formula_editor_function_finger_x" tools:ignore="UnusedResources">เวทีสัมผัส x</string>
     <string name="formula_editor_function_finger_y" tools:ignore="UnusedResources">เวทีสัมผัส y</string>
     <string name="formula_editor_function_is_finger_touching" tools:ignore="UnusedResources">เวทีสัมผัสแล้ว</string>
@@ -1661,7 +1622,8 @@
     <string name="formula_editor_logic_comparison">ผู้ประกอบการเปรียบเทียบ</string>
     <string name="formula_editor_object_look">Look properties</string>
     <string name="formula_editor_object_movement">คุณสมบัติเคลื่อนที่</string>
-    <string name="formula_editor_device_visual_detection">เซ็นเซอร์ภาพ</string>
+    <string name="formula_editor_device_face_detection">Face detection</string>
+    <string name="formula_editor_device_text_recognition">Text recognition</string>
     <string name="formula_editor_device_date_and_time">วันและเวลา</string>
     <string name="formula_editor_device_touch_detection">ตรวจจับการสัมผัส</string>
     <string name="formula_editor_device_lego_nxt">Lego NXT</string>
@@ -1807,6 +1769,15 @@
         again!</string>
     <string name="progress_upload_dialog_show_program">แสดงโครงการ</string>
     <!--  -->
+    <!-- unchanged upload dialog -->
+    <string name="unchanged_upload_warning">The project you are trying to upload already exists on
+        the community platform in exactly the same form. Please change your project, ideally by
+        enhancing it, before uploading your remixed project.</string>
+    <string name="unchanged_upload_info">Please consider adding some kind words towards the original
+        author in the Credits section on the community site or in the project options. Please note
+        that the user will get a notification after your successful upload.</string>
+    <string name="unchanged_upload_url">To learn more about remixes, please visit %1s.</string>
+    <!-- -->
     <!-- Snackbar hints -->
     <string name="got_it">เข้าใจแล้ว</string>
     <string name="preference_description_hints">เปิดใช้งานเพื่อแสดงคำแนะนำ</string>
@@ -1817,6 +1788,14 @@
     <string name="hint_looks">ที่นี่คุณสามารถค้นหาลักษณะที่แตกต่างของนักแสดงหรือวัตถุของคุณ  หากต้องการเพิ่มรูปลักษณ์ใหม่ให้แตะสัญลักษณ์ \"+\"</string>
     <string name="hint_sounds">ที่นี่คุณสามารถเพิ่มเสียงใหม่ให้กับนักแสดงหรือวัตถุของคุณ  จำไว้ว่าใช้อิฐจากหมวดเสียง</string>
     <string name="hint_objects">โปรแกรมของคุณประกอบด้วยนักแสดงและวัตถุต่าง ๆ ที่สามารถโต้ตอบซึ่งกันและกันได้  หากต้องการเพิ่มนักแสดงหรือวัตถุใหม่ให้แตะสัญลักษณ์ \"+\"</string>
+    <!--  -->
+    <!-- Dialog Disable hints -->
+    <string name="dialog_disable_hints_title">แสดงคำใบ้</string>
+    <string name="dialog_disable_hints_text">คำแนะนำให้ข้อมูลที่เป็นประโยชน์แก่คุณ
+         ในขณะที่สร้างโปรเจ็กต์แรกของคุณ \n \n ความสามารถในการมองเห็นของคำใบ้สามารถเปลี่ยนแปลงได้ในไฟล์
+         การตั้งค่า</string>
+    <string name="dialog_disable_hints_button_hide">ซ่อน</string>
+    <string name="dialog_disable_hints_button_show">แสดง</string>
     <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
@@ -1829,6 +1808,11 @@
     <string name="edit">แก้ไข</string>
     <string name="data_value">ค่า</string>
     <string name="category_recently_used">ใช้ล่าสุด</string>
+    <string name="new_sprite_dialog_place_visually">วางสายตา</string>
+    <string name="place_visually_text">คุณจะถูกขอให้วางนักแสดงใหม่หรือวัตถุในไฟล์
+         เวที.</string>
     <!-- Information -->
     <string name="no_variable_selected">ไม่ได้เลือกตัวแปร</string>
+    <string name="find">ค้นหา</string>
+    <string name="no_results_found">ไม่พบผลลัพธ์</string>
 </resources>

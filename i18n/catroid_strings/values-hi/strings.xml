@@ -70,7 +70,7 @@
     <string name="api_replacement_dialog_neutral">बदलाव के बिना अपलोड करें</string>
     <string name="api_replacement_dialog_accept">प्रतिस्थापित कुंजी के साथ अपलोड करें</string>
     <string name="api_replacement_dialog_warning">इस परियोजना में ईंटें शामिल हैं जो तक पहुँचती हैं
-         वेब, और एपीआई कुंजियाँ भी लगती हैं। कृपया% 1s क्यों देखें
+         वेब, और एपीआई कुंजियाँ भी लगती हैं। कृपया %1s क्यों देखें
          इन कुंजियों को अपलोड करना खतरनाक हो सकता है।</string>
     <string name="api_replacement">यहाँ एपीआई कुंजी डालें</string>
     <!-- -->
@@ -106,6 +106,10 @@
     <string name="marketing_created_with">ने बनाया</string>
     <string name="marketing_app_details">इस एप्लिकेशन के बारे में विवरण</string>
     <string name="marketing_more_on_google_play">गूगल प्ले पर अधिक ऐप्स</string>
+    <string name="error_cannot_open_huawei_app_gallery">वूप्स! Huawei AppGallery खोलने में विफल,
+        कृपया बाद में पुन: प्रयास करें।</string>
+    <string name="google_play_store_logo">गूगल प्ले</string>
+    <string name="huawei_app_gallery">हुआवेई ऐप गैलरी</string>
     <!-- NFC activity -->
     <string name="nfc_activity_title">एनएफसी टैग</string>
     <!-- Settings activity -->
@@ -213,13 +217,14 @@
          इस दौरान।</string>
     <string name="error_cannot_open_currently_downloading_scratch_program">आप अभी तक परियोजना नहीं खोल सकते।
          कृपया इसे डाउनलोड होने तक प्रतीक्षा करें।</string>
-    <string name="error_cannot_open_not_yet_downloaded_scratch_program">आप प्रोग्राम अभी नहीं खोल सकते  । &lt; div class = \"notranslate\" &gt; 0 &lt;/div&gt; कृपया इसे पहले डाउनलोड करें और फिर इसे खोलें ।</string>
+    <string name="error_cannot_open_not_yet_downloaded_scratch_program">आप अभी तक परियोजना नहीं खोल सकते।
+        कृपया इसे पहले डाउनलोड करें और फिर खोलें।</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">मैं%1$s को परिवर्तित नहीं कर सका। ऐसा लगता है
          %2$s से पहले एक पुराना स्क्रैच प्रोजेक्ट। कृपया एक और कोशिश करें।</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
-        <item quantity="one">आप एक ही समय में% d प्रोजेक्ट से अधिक परिवर्तित नहीं कर सकते हैं। कृपया प्रतीक्षा करें
+        <item quantity="one">आप एक ही समय में %d प्रोजेक्ट से अधिक परिवर्तित नहीं कर सकते हैं। कृपया प्रतीक्षा करें
              पहले खत्म करने के लिए रूपांतरण चल रहा है।</item>
-        <item quantity="other">आप एक ही समय में% d प्रोजेक्ट से अधिक परिवर्तित नहीं कर सकते हैं। कृपया प्रतीक्षा करें
+        <item quantity="other">आप एक ही समय में %d प्रोजेक्ट से अधिक परिवर्तित नहीं कर सकते हैं। कृपया प्रतीक्षा करें
              पहले खत्म करने के लिए रूपांतरण चल रहा है।</item>
     </plurals>
     <string name="error_cannot_open_failed_scratch_program">आप प्रोजेक्ट नहीं खोल सकते क्योंकि यह नहीं था
@@ -231,7 +236,7 @@
          कैटोबैट टीम से संपर्क करें।</string>
     <plurals name="scratch_conversion_scheduled_x">
         <item quantity="one">कतार में %d स्क्रैच प्रोजेक्ट जोड़ा गया&#8230;</item>
-        <item quantity="other">कतार में% d स्क्रैच प्रोजेक्ट जोड़े गए&#8230;</item>
+        <item quantity="other">कतार में %d स्क्रैच प्रोजेक्ट जोड़े गए&#8230;</item>
     </plurals>
     <string name="scratch_conversion_started">स्क्रैच परियोजना को बदलने के लिए शुरू किया &#8230;</string>
     <string name="convert">बदलें</string>
@@ -241,12 +246,12 @@
     <string name="status_started">शुरू</string>
     <string name="status_conversion_finished">रूपांतरण पूर्ण हो गया है</string>
     <plurals name="status_in_progress_x_jobs">
-        <item quantity="one">प्रगति में:% d नौकरियां</item>
-        <item quantity="other">प्रगति में:% d नौकरियां</item>
+        <item quantity="one">प्रगति में: %d नौकरियां</item>
+        <item quantity="other">प्रगति में: %d नौकरियां</item>
     </plurals>
     <plurals name="status_completed_x_jobs">
-        <item quantity="one">पूर्ण:% d कार्य</item>
-        <item quantity="other">पूर्ण:% d कार्य</item>
+        <item quantity="one">पूर्ण: %d कार्य</item>
+        <item quantity="other">पूर्ण: %d कार्य</item>
     </plurals>
     <string name="status_conversion_failed">रूपांतरण असफल हो गया है</string>
     <string name="status_downloading">डाउनलोड हो रहा है&#8230;</string>
@@ -272,16 +277,16 @@
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">आपने यह प्रोजेक्ट%1$s में परिवर्तित कर दिया है।</string>
     <plurals name="minutes">
-        <item quantity="one">% d मिनट</item>
-        <item quantity="other">% d मिनट</item>
+        <item quantity="one">%d मिनट</item>
+        <item quantity="other">%d मिनट</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">% d घंटा</item>
-        <item quantity="other">% d घंटे</item>
+        <item quantity="one">%d घंटा</item>
+        <item quantity="other">%d घंटे</item>
     </plurals>
     <plurals name="days">
-        <item quantity="one">% D दिन</item>
-        <item quantity="other">% d दिन</item>
+        <item quantity="one">%d दिन</item>
+        <item quantity="other">%d दिन</item>
     </plurals>
     <string name="reconvert_dialog_download">प्रोजेक्ट को फिर से डाउनलोड करें</string>
     <string name="reconvert_dialog_reconvert">इस प्रोजेक्ट को फिर से कन्वर्ट करें</string>
@@ -369,8 +374,8 @@
     <!-- Details -->
     <string name="project_details">अंतिम पहुँच: %s, आकार: %s</string>
     <string name="last_access_today">आज, %s</string>
-    <string name="scene_details">अभिनेताओं और वस्तुओं:% d, लग रहा है:% d, ध्वनियों:% d</string>
-    <string name="sprite_details">ईंटें:% d, लग रहा है:% d, लगता है:% d</string>
+    <string name="scene_details">अभिनेताओं और वस्तुओं: %d, लग रहा है: %d, ध्वनियों: %d</string>
+    <string name="sprite_details">ईंटें: %d, लग रहा है: %d, लगता है: %d</string>
     <string name="look_details">रिज़ॉल्यूशन: %s, आकार: %s</string>
     <string name="sound_duration">अवधि: %s</string>
     <string name="sound_details">अवधि: %s, आकार: %s</string>
@@ -391,34 +396,34 @@
     <!-- Action Toasts -->
     <!-- Backpack -->
     <plurals name="packed_scenes">
-        <item quantity="one">बैकपैक% d दृश्य।</item>
-        <item quantity="other">बैकपैक% d दृश्य</item>
+        <item quantity="one">बैकपैक %d दृश्य।</item>
+        <item quantity="other">बैकपैक %d दृश्य</item>
     </plurals>
     <plurals name="packed_sprites">
-        <item quantity="one">बैकपैक% d अभिनेता या वस्तु।</item>
-        <item quantity="other">बैकपैकड% d अभिनेता या ऑब्जेक्ट।</item>
+        <item quantity="one">बैकपैक %d अभिनेता या वस्तु।</item>
+        <item quantity="other">बैकपैकड %d अभिनेता या ऑब्जेक्ट।</item>
     </plurals>
     <plurals name="packed_looks">
-        <item quantity="one">बैकपैक% d लुक।</item>
-        <item quantity="other">बैकपैक% d दिखता है।</item>
+        <item quantity="one">बैकपैक %d लुक।</item>
+        <item quantity="other">बैकपैक %d दिखता है।</item>
     </plurals>
     <plurals name="packed_sounds">
-        <item quantity="one">बैकपैक% d ध्वनि।</item>
-        <item quantity="other">बैकपैक% d नाद।</item>
+        <item quantity="one">बैकपैक %d ध्वनि।</item>
+        <item quantity="other">बैकपैक %d नाद।</item>
     </plurals>
     <string name="packed_script_group">बैकपैक किया गया एक स्क्रिप्ट समूह।</string>
     <!-- Unpack -->
     <plurals name="unpacked_scenes">
-        <item quantity="one">अनपैक% d दृश्य।</item>
-        <item quantity="other">अनपैक% d दृश्य।</item>
+        <item quantity="one">अनपैक %d दृश्य।</item>
+        <item quantity="other">अनपैक %d दृश्य।</item>
     </plurals>
     <plurals name="unpacked_sprites">
-        <item quantity="one">अनपैक% d अभिनेता या वस्तु।</item>
-        <item quantity="other">अनपैक% d अभिनेता या ऑब्जेक्ट।</item>
+        <item quantity="one">अनपैक %d अभिनेता या वस्तु।</item>
+        <item quantity="other">अनपैक %d अभिनेता या ऑब्जेक्ट।</item>
     </plurals>
     <plurals name="unpacked_looks">
-        <item quantity="one">अनपैक% d लुक।</item>
-        <item quantity="other">अनपैक% d लग रहा है।</item>
+        <item quantity="one">अनपैक %d लुक।</item>
+        <item quantity="other">अनपैक %d लग रहा है।</item>
     </plurals>
     <plurals name="unpacked_sounds">
         <item quantity="one">अनपैक %d ड साउंड।</item>
@@ -594,17 +599,6 @@
         और अन्य सेवाएं। कृपया उनके सटीक निरूपण के लिए नीचे दिया गया लिंक देखें। \n</string>
     <string name="dialog_terms_of_use_link_text">उपयोग और सेवाओं की शर्तें</string>
     <!--  -->
-    <!-- Terms of Use Dialog Parrot ARDrone-->
-    <string name="dialog_terms_of_use_link_text_parrot_reminder">उपयोग और सेवाओं की शर्तें</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">आप इस ऐप का उपयोग तोते के साथ मिलकर करने वाले हैं
-        AR.Drone 2.0। हम आपको तोता और कैटोबोट दोनों के उपयोग और सेवाओं की शर्तों का पालन करने के लिए दृढ़ता से याद दिलाते हैं।</string>
-    <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">मुझे फिर से याद न दिलाएं</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot Jumping Sumo-->
-    <string name="dialog_terms_of_use_jumpingsumo_reminder_text">आप इस ऐप को एक साथ उपयोग करने वाले हैं
-        तोते का उछलना सूमो। हम आपको तोता और कैटोबोट के उपयोग की शर्तों और दोनों का पालन करने के लिए दृढ़ता से याद दिलाते हैं
-        सेवाएँ</string>
-    <!--  -->
     <!-- Privacy Policy -->
     <string name="disclaimer_privacy_police_header_headline">स्वागत हे!</string>
     <string name="disclaimer_privacy_policy_header">इस एप्लिकेशन का उपयोग करने के लिए, कृपया हमारे स्वीकार करें</string>
@@ -721,7 +715,6 @@
     <string name="prestage_resource_not_available_title">घटक उपलब्ध नहीं है</string>
     <string name="prestage_resource_not_available_text">दुर्भाग्य से यह प्रोजेक्ट आपके डिवाइस पर काम नहीं करता है।
         निम्नलिखित घटक अनुपलब्ध हैं: \n\n</string>
-    <string name="prestage_resource_in_use_text">एक अन्य उपकरण सूमो से जुड़ा है । ध्यान रखे, आप अकेले ही गबन के लिए ही नियंत्रक रहे।</string>
     <string name="prestage_no_vibration_available">\u2022 कंपन \n</string>
     <string name="prestage_no_acceleration_sensor_available">\u2022 त्वरण संवेदक\n</string>
     <string name="prestage_no_inclination_sensor_available">\u2022 त्वरण संवेदक\n</string>
@@ -731,7 +724,6 @@
     <string name="prestage_no_back_camera_available">\u2022 रियर कैमरा\n</string>
     <string name="prestage_no_face_detection_available">\u2022 चेहरा पहचान \n</string>
     <string name="prestage_no_text_detection_available">\u2022 पाठ पहचान\n</string>
-    <string name="prestage_no_jumping_sumo_available">\u2022 जंपिंग सूमो\n</string>
     <string name="prestage_no_front_camera_available">\u2022 फ्रंट कैमरा\n</string>
     <string name="prestage_no_camera_available">\u2022 कैमरा \n</string>
     <string name="prestage_no_flash_available">\u2022 टॉर्च \n</string>
@@ -937,6 +929,7 @@
     <string name="brick_write_embroidery" tools:ignore="UnusedResources">फ़ाइल करने के लिए कढ़ाई डेटा लिखें</string>
     <string name="brick_default_embroidery_file">कढ़ाई</string>
     <string name="brick_sew_up" tools:ignore="UnusedResources">सीना</string>
+    <string name="brick_thread_color">थ्रेड कलर को सेट करें</string>
     <!--  -->
     <!-- Device bricks -->
     <string name="brick_reset_timer" tools:ignore="UnusedResources">टाइमर को रीसेट करें</string>
@@ -958,8 +951,7 @@
     <string name="brick_stop_all_scripts" tools:ignore="UnusedResources">सभी स्क्रिप्ट</string>
     <string name="brick_stop_other_scripts" tools:ignore="UnusedResources">इस अभिनेता या वस्तु की अन्य स्क्रिप्ट</string>
     <plurals name="second_plural">
-        <item quantity="one">"\"\"सेकंड
-सेकंड्स\"\""</item>
+        <item quantity="one">"दूसरा"</item>
         <item quantity="other">"सेकंड"</item>
     </plurals>
     <string name="brick_collision_receive" tools:ignore="UnusedResources">जब तुम उछलते हो</string>
@@ -1125,7 +1117,7 @@
     <!-- Default Values -->
     <string name="default_project_name">मेरी परियोजना</string>
     <string name="default_variable_name">परिवर्तनशील</string>
-    <string name="default_scene_name">Scene %1$d</string>
+    <string name="default_scene_name">Scene (%1$d)</string>
     <string name="default_script_group_name">लिपि समूह</string>
     <string name="default_broadcast_message_name">संदेश</string>
     <string name="default_list_name">सूची</string>
@@ -1205,18 +1197,7 @@
     <string name="notification_download_pending">डाउनलोड जारी है</string>
     <string name="notification_download_finished">सफल डाउनलोड करें</string>
     <string name="notification_title_open">"खुला हुआ"</string>
-    <string name="notification_low_battery_with_value">ध्यान। बैटरी कम है। वर्तमान स्थिति %d है</string>
     <string name="size_of_project">आकार:</string>
-    <string name="drone_emergency_battery_low">बैटरी कम है (स्वचालित लैंडिंग)।</string>
-    <string name="drone_emergency_camera">एक या अधिक कैमरे जवाब नहीं दे रहे हैं।</string>
-    <string name="drone_emergency_ultrasound">अल्ट्रासाउंड सेंसर जवाब नहीं दे रहा है।</string>
-    <string name="drone_emergency_angle">AR.Drone 2.0 यूलर कोण बहुत अधिक चला गया। खतरनाक को रोकने के लिए मोटर्स बंद हो गए
-        व्यवहार।</string>
-    <string name="drone_emergency_cutout">एक या अधिक मोटरों को पर्यावरण द्वारा रोक दिया गया था।</string>
-    <string name="drone_alert_battery_low">फिर से उतारने के लिए बैटरी बहुत कम है।</string>
-    <string name="drone_alert_ultrasound">अल्ट्रासाउंड सेंसर AR.Drone 2.0 ऊंचाई निर्धारित नहीं कर सकता है।</string>
-    <string name="drone_alert_vision">नीचे की ओर कैमरे से गति का अनुमान नहीं।</string>
-    <string name="drone_emergency_title">आपातकालीन</string>
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">इस एप्लिकेशन को ठीक से काम करने के लिए अनुरोधित अनुमतियों की आवश्यकता है। जैसे, द
@@ -1242,18 +1223,6 @@
         कुछ बदलें और पुनः प्रयास करें।</string>
     <string name="error_adding_brick">इस ईंट को जोड़ते समय कुछ गड़बड़ हो गई।</string>
     <string name="error_copying_brick">इस ईंट की नकल करते समय कुछ गड़बड़ हुई।</string>
-    <string name="error_no_drone_connected_title">AR.Drone 2.0 नहीं मिल सकता है।</string>
-    <string name="error_no_drone_connected">अपने वाईफाई को AR.Drone 2.0 से कनेक्ट करें और फिर से प्रयास करें।</string>
-    <string name="error_drone_low_battery_title">AR.Drone 2.0 बैटरी कम: %d%%</string>
-    <string name="error_drone_low_battery">अपने बंधन को AR.Drone 2.0 से कनेक्ट करें और फिर से प्रयास करें।</string>
-    <string name="error_jumpingsumo_wrong_platform">हम आपके डिवाइस पर जंपिंग सूमो प्रोजेक्ट नहीं चला सकते हैं।</string>
-    <string name="error_no_jumpingsumo_connected_title">जंपिंग सूमो नहीं मिल सकता</string>
-    <string name="error_no_jumpingsumo_connected">जंपिंग सूमो में अपने वाईफाई को कनेक्ट करें और फिर से प्रयास करें।</string>
-    <string name="error_jumpingsumo_battery_title">जंपिंग सूमो बैटरी कम</string>
-    <string name="error_jumpingsumo_battery">अपने बंधन को AR.Drone 2.0 से कनेक्ट करें और फिर से प्रयास करें।</string>
-    <string name="error_jumpingsumo_wrong_platform_title">नो जंपिंग सूमो सपोर्ट</string>
-    <string name="error_drone_wrong_platform_title">कोई AR.Drone 2.0 समर्थन नहीं करता है।</string>
-    <string name="error_drone_wrong_platform">हम आपके डिवाइस पर AR.Drone 2.0 प्रोजेक्ट नहीं चला सकते हैं।</string>
     <string name="error_rename_incompatible_project">असंगत परियोजना का नाम बदलना संभव नहीं है।</string>
     <string name="error_embroidery_file_export">कढ़ाई फ़ाइल साझा करते समय कुछ गलत हो गया।</string>
     <string name="error_embroidery_file_write">कढ़ाई फ़ाइल लिखते समय कुछ गलत हो गया।</string>
@@ -1627,8 +1596,8 @@
     <string name="formula_editor_sensor_color_at_x_y">रंग x y पर</string>
     <string name="formula_editor_sensor_color_equals_color" tools:ignore="UnusedResources">रंग% के साथ रंग बराबर होता है
          सहनशीलता</string>
-    <string name="formula_editor_sensor_x_acceleration" tools:ignore="UnusedResources">त्वरण_एक्स</string>
-    <string name="formula_editor_sensor_y_acceleration" tools:ignore="UnusedResources">त्वरण_वाई</string>
+    <string name="formula_editor_sensor_x_acceleration" tools:ignore="UnusedResources">त्वरण एक्स</string>
+    <string name="formula_editor_sensor_y_acceleration" tools:ignore="UnusedResources">त्वरण वाई</string>
     <string name="formula_editor_sensor_z_acceleration" tools:ignore="UnusedResources">त्वरण_ज़ेड</string>
     <string name="formula_editor_sensor_compass_direction" tools:ignore="UnusedResources">परकार_दिशा</string>
     <string name="formula_editor_sensor_latitude" tools:ignore="UnusedResources">अक्षांश</string>
@@ -1636,8 +1605,8 @@
     <string name="formula_editor_sensor_location_accuracy" tools:ignore="UnusedResources">स्थान सटीकता</string>
     <string name="formula_editor_sensor_altitude" tools:ignore="UnusedResources">ऊंचाई</string>
     <string name="formula_editor_sensor_user_language">उपयोगकर्ता की भाषा</string>
-    <string name="formula_editor_sensor_x_inclination" tools:ignore="UnusedResources">झुकाव_एक्स</string>
-    <string name="formula_editor_sensor_y_inclination" tools:ignore="UnusedResources">झुकाव_वाई</string>
+    <string name="formula_editor_sensor_x_inclination" tools:ignore="UnusedResources">झुकाव एक्स</string>
+    <string name="formula_editor_sensor_y_inclination" tools:ignore="UnusedResources">झुकाव वाई</string>
     <string name="formula_editor_sensor_loudness" tools:ignore="UnusedResources">प्रबलता</string>
     <string name="formula_editor_sensor_timer">घड़ी</string>
     <string name="formula_editor_sensor_date_year" tools:ignore="UnusedResources">साल</string>
@@ -1696,8 +1665,8 @@
     <string name="formula_editor_phiro_sensor_bottom_right" tools:ignore="UnusedResources">फेरो बॉटम राइट सेंसर</string>
     <string name="formula_editor_nfc_tag_id" tools:ignore="UnusedResources">nfc टैग आई.डी.</string>
     <string name="formula_editor_nfc_tag_message" tools:ignore="UnusedResources">nfc टैग संदेश</string>
-    <string name="formula_editor_object_x" tools:ignore="UnusedResources">एक्स_स्थिति</string>
-    <string name="formula_editor_object_y" tools:ignore="UnusedResources">वाई_स्थिति</string>
+    <string name="formula_editor_object_x" tools:ignore="UnusedResources">एक्स स्थिति</string>
+    <string name="formula_editor_object_y" tools:ignore="UnusedResources">वाई स्थिति</string>
     <string name="formula_editor_object_transparency" tools:ignore="UnusedResources">पारदर्शिता</string>
     <string name="formula_editor_object_brightness" tools:ignore="UnusedResources">चमक</string>
     <string name="formula_editor_object_size" tools:ignore="UnusedResources">आकार</string>
@@ -1724,7 +1693,8 @@
     <string name="formula_editor_logic_comparison">तुलना ऑपरेटरों</string>
     <string name="formula_editor_object_look">गुण देखें</string>
     <string name="formula_editor_object_movement">मोशन गुण</string>
-    <string name="formula_editor_device_visual_detection">दृश्य सेंसर</string>
+    <string name="formula_editor_device_face_detection">चेहरे का पता लगाना</string>
+    <string name="formula_editor_device_text_recognition">पाठ पहचान</string>
     <string name="formula_editor_device_date_and_time">तिथि और समय</string>
     <string name="formula_editor_device_touch_detection">स्पर्श पहचान</string>
     <string name="formula_editor_device_lego_nxt">लेगो माइंडस्टॉर्म एनएक्सटी</string>
@@ -1766,8 +1736,8 @@
     <string name="formula_editor_data_dialog_is_list">इसकी सूची बनाइए</string>
     <string name="formula_editor_sensor_face_detected" tools:ignore="UnusedResources">चेहरा_पहचान_लिया_गया</string>
     <string name="formula_editor_sensor_face_size" tools:ignore="UnusedResources">चेहरे_का_आकार</string>
-    <string name="formula_editor_sensor_face_x_position" tools:ignore="UnusedResources">चेहरे_की_एक्स_स्थिति</string>
-    <string name="formula_editor_sensor_face_y_position" tools:ignore="UnusedResources">चेहरे_की_वाई_स्थिति</string>
+    <string name="formula_editor_sensor_face_x_position" tools:ignore="UnusedResources">चेहरे की एक्स स्थिति</string>
+    <string name="formula_editor_sensor_face_y_position" tools:ignore="UnusedResources">चेहरे की वाई स्थिति</string>
     <string name="formula_editor_sensor_second_face_detected">दूसरा चेहरा दिखाई दे रहा है</string>
     <string name="formula_editor_sensor_second_face_size">दूसरा चेहरा आकार</string>
     <string name="formula_editor_sensor_second_face_x_position">दूसरा चेहरा एक्स स्थिति</string>
@@ -1873,6 +1843,15 @@
         फिर व!</string>
     <string name="progress_upload_dialog_show_program">प्रोजेक्ट दिखाएं</string>
     <!--  -->
+    <!-- unchanged upload dialog -->
+    <string name="unchanged_upload_warning">जिस प्रोजेक्ट को आप अपलोड करने का प्रयास कर रहे हैं, वह पहले से मौजूद है
+        बिल्कुल उसी रूप में सामुदायिक मंच। आदर्श रूप से, कृपया अपना प्रोजेक्ट बदलें
+        अपनी रीमिक्स की गई परियोजना को अपलोड करने से पहले इसे बढ़ाएं।</string>
+    <string name="unchanged_upload_info">कृपया मूल की ओर कुछ प्रकार के शब्द जोड़ने पर विचार करें
+        लेखक सामुदायिक साइट पर या परियोजना विकल्पों में क्रेडिट अनुभाग में। कृपया ध्यान दें
+        आपके सफल अपलोड के बाद उपयोगकर्ता को एक सूचना मिलेगी।</string>
+    <string name="unchanged_upload_url">रीमिक्स के बारे में अधिक जानने के लिए, कृपया %1s पर जाएं।</string>
+    <!-- -->
     <!-- Snackbar hints -->
     <string name="got_it">समझ गया</string>
     <string name="preference_description_hints">संकेत दिखाने के लिए सक्षम करें</string>
@@ -1888,6 +1867,14 @@
     <string name="hint_objects">आपके कार्यक्रम में विभिन्न अभिनेता और ऑब्जेक्ट होते हैं जो एक दूसरे के साथ बातचीत कर सकते हैं।
         एक नया अभिनेता या ऑब्जेक्ट जोड़ने के लिए, \"+\" प्रतीक टैप करें।</string>
     <!--  -->
+    <!-- Dialog Disable hints -->
+    <string name="dialog_disable_hints_title">संकेत दिखाओ?</string>
+    <string name="dialog_disable_hints_text">संकेत आपको उपयोगी जानकारी प्रदान करते हैं
+        अपना पहला प्रोजेक्ट बनाते समय। \n\n संकेतों की विश्वसनीयता को बदला जा सकता है
+        समायोजन।</string>
+    <string name="dialog_disable_hints_button_hide">छिपाना</string>
+    <string name="dialog_disable_hints_button_show">छिपाना</string>
+    <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
     <!-- Multilingual List -->
@@ -1900,6 +1887,11 @@
     <string name="edit">बदलें</string>
     <string name="data_value">मूल्य</string>
     <string name="category_recently_used">हाल ही में उपयोग किया गया</string>
+    <string name="new_sprite_dialog_place_visually">नेत्रहीन जगह</string>
+    <string name="place_visually_text">आपको नए अभिनेता या ऑब्जेक्ट को रखने के लिए कहा जाएगा
+        मंच।</string>
     <!-- Information -->
     <string name="no_variable_selected">कोई चर नहीं चुना गया</string>
+    <string name="find">खोज</string>
+    <string name="no_results_found">कोई परिणाम नहीं मिला</string>
 </resources>
