@@ -99,5 +99,24 @@ export default {
         name: 'DROPDOWN_INFO'
       }
     ]
+  },
+  SetThreadColorBrick: {
+    message0: '%{BKY_EMBRIODERY_SET_THREAD_COLOR}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_set_thread_color_action_edit_text',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_set_thread_color_action_edit_text_INFO'
+      }
+    ]
   }
 };
