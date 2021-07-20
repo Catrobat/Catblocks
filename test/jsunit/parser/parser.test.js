@@ -432,7 +432,7 @@ describe('Catroid to Catblocks parser tests', () => {
       return formulaMap.entries().next().value.toString();
     }, xmlString);
 
-    expect(formula).toMatch('SIZE,60&');
+    expect(formula).toMatch('SIZE, 60& ');
   });
 
   test('LookList reference not within the same object', async () => {
@@ -629,7 +629,7 @@ describe('Catroid to Catblocks parser tests', () => {
     }, xmlString);
 
     expect(programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].name).toBe(brickName);
-    expect(formulaString).toMatch(`${val1}  ${val2}`);
+    expect(formulaString).toMatch(`${val1}    ${val2}`);
   });
 
   test('Test if parser converts catroid script properly', async () => {
@@ -1069,7 +1069,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, userVarialbe]);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', userVarialbe]);
     });
 
     test('Test of local empty name uservariable parsing', async () => {
@@ -1158,7 +1158,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, '']);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
     test('Test of local uservariable parsing without name tag', async () => {
@@ -1247,7 +1247,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, '']);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
     test('Test of remote uservariable parsing', async () => {
@@ -1348,7 +1348,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, userVariable]);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', userVariable]);
     });
 
     test('Test of remote empty name uservariable parsing', async () => {
@@ -1448,7 +1448,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, '']);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
     test('Test of remote uservariable parsing without name tag', async () => {
@@ -1548,7 +1548,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([firstValue, '']);
+      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
     test('Test if parser handles formula operator properly', async () => {
@@ -1639,7 +1639,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName]);
-      expect(mapValues).toEqual([`${firstValue} = ${secondValue}`]);
+      expect(mapValues).toEqual([` ${firstValue}  =  ${secondValue} `]);
     });
   });
 
@@ -1756,7 +1756,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`${first} × (${second} ÷ (${third} + ${fourth}))`]);
+      expect(mapValues).toEqual([` ${first}  × ( ${second}  ÷ ( ${third}  +  ${fourth} ))`]);
     });
 
     test('Formula with left sided brackets', async () => {
@@ -1871,7 +1871,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`((${first} + ${second}) × ${third}) ÷ ${fourth}`]);
+      expect(mapValues).toEqual([`(( ${first}  +  ${second} ) ×  ${third} ) ÷  ${fourth} `]);
     });
 
     test('Formula with both sided brackets', async () => {
@@ -1986,7 +1986,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`(${first} × ${second}) + (${third} × ${fourth})`]);
+      expect(mapValues).toEqual([`( ${first}  ×  ${second} ) + ( ${third}  ×  ${fourth} )`]);
     });
   });
 
@@ -2083,7 +2083,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`square root(${first}) × ${second}`]);
+      expect(mapValues).toEqual([`square root( ${first} ) ×  ${second} `]);
     });
 
     test('Single value like sin function with logic', async () => {
@@ -2178,7 +2178,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`sine(${first}) > ${second}`]);
+      expect(mapValues).toEqual([`sine( ${first} ) >  ${second} `]);
     });
 
     test('Two single values like sin plus cos', async () => {
@@ -2277,7 +2277,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`cosine(${first}) + sine(${second})`]);
+      expect(mapValues).toEqual([`cosine( ${first} ) + sine( ${second} )`]);
     });
 
     test('Double value like contains', async () => {
@@ -2368,7 +2368,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`contains(${first}, ${second})`]);
+      expect(mapValues).toEqual([`contains( ${first} ,  ${second} )`]);
     });
 
     test('Sensor action in formula', async () => {
@@ -2457,7 +2457,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`touches finger + true`]);
+      expect(mapValues).toEqual([` touches finger  +  true `]);
     });
 
     test('UserList in formula', async () => {
