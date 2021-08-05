@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Veliki tekst</string>
     <string name="preference_title_accessibility_element_spacing">Veliki razmak elemenata</string>
     <string name="preference_description_accessibility_element_spacing">Povećajte razmak elemenata u listama.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop kašnjenje</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Drag\'n\'drop kašnjenje za cigle.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop kašnjenje</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Drag'n'drop kašnjenje za cigle.</string>
     <string name="preference_title_accessibility_beginner_bricks">Početnički mod</string>
     <string name="preference_description_accessibility_beginner_bricks">Prikaži samo jednostavne stavke.</string>
     <string name="preference_title_accessibility_font_style">Izaberi tip teksta</string>
@@ -156,7 +156,7 @@
     <string name="preference_access_title_profile_odin">Odin</string>
     <string name="preference_access_summary_profile_odin">Veliki tekst, velike ikone, veliki razmak elemenata, visoki kontrast</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Veliki razmak elemenata, drag\'n\'drop usporavanje</string>
+    <string name="preference_access_summary_profile_fenrir">Veliki razmak elemenata, drag'n'drop usporavanje</string>
     <string name="preference_access_title_profile_tiro">Tiro</string>
     <string name="preference_access_summary_profile_tiro">Početnički mod</string>
     <!-- Lego/Drone/Raspi/Chromecast/Embroidery -->
@@ -930,7 +930,7 @@
     <string name="brick_speak_default_value">Zdravo!</string>
     <string name="brick_speak_and_wait" tools:ignore="UnusedResources">i čekajte</string>
     <string name="brick_start_listening_to_voice" tools:ignore="UnusedResources">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1232,9 +1232,9 @@
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">This app needs the requested permissions to function properly. E.g., the
-Camera brick needs access to the device\'s camera, the \"location\" formula element needs access to the
-device\'s geolocation sensor, and in order to import and export projects from and to the local memory, the app
-needs read and write access to it. You can always change permissions through your device\'s settings.</string>
+Camera brick needs access to the device's camera, the \"location\" formula element needs access to the
+device's geolocation sensor, and in order to import and export projects from and to the local memory, the app
+needs read and write access to it. You can always change permissions through your device's settings.</string>
     <!-- Error messages -->
     <string name="error_project_upload">Nešto je pošlo po zlu pri postavljanju projekta.</string>
     <string name="error_project_download">Došlo je do greške prilikom preuzimanja programa.</string>
@@ -1265,7 +1265,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="error_unsupported_bricks_chromecast">Ova skripta ne može biti dodana u Chromecast projekat.</string>
     <!--  -->
     <!-- Bluetooth Connection Strings -->
-    <string name="notification_blueth_err">Can\'t enable Bluetooth, please try turning it off and on again.</string>
+    <string name="notification_blueth_err">Can't enable Bluetooth, please try turning it off and on again.</string>
     <string name="title_paired_devices">Upareni uređaji</string>
     <string name="title_other_devices">Novi uređaji</string>
     <string name="searching_devices">Traženje uređaja&#8230;</string>
@@ -1609,7 +1609,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_function_list_item_parameter">(1,*naziv liste*)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">sadrži</string>
     <string name="formula_editor_function_contains_parameter">(*naziv liste*,1)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1,*naziv liste*)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">broj stvari</string>
     <string name="formula_editor_function_number_of_items_parameter">(*naziv liste*)</string>
@@ -1849,14 +1849,14 @@ needs read and write access to it. You can always change permissions through you
     <string name="cast_ready_to_cast">Ready to cast to</string>
     <string name="cast_enable_cast_feature">Chromecast features disabled. Please enable cast features in the settings.</string>
     <string name="cast_searching_for_cast_devices">Traženje Chromecast uređaja</string>
-    <string name="cast_trouble_finding_devices_tip">.\nDon\'t see your device? Try turning your device\'s Wifi off
+    <string name="cast_trouble_finding_devices_tip">.\nDon't see your device? Try turning your device's Wifi off
         and on.</string>
     <string name="cast_connection_timout_msg">Veza istekla. Molimo Vas da pokušate ponovo.</string>
     <string name="cast_screen_pause_text">Pauzirano</string>
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">Vaš projekat će se objaviti na stranici za dijeljenje gdje ga ostali mogu koristiti i preuzeti. Također možete preuzeti Vaš projekat kao samostalnu aplikaciju.</string>
     <string name="progress_upload_dialog_failed">Preuzimanje neuspješno. Molimo da provjerite Vašu internet konekciju i pokušate ponovo!</string>

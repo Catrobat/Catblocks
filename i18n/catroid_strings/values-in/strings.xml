@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Teks besar</string>
     <string name="preference_title_accessibility_element_spacing">Jarak elemen yang besar</string>
     <string name="preference_description_accessibility_element_spacing">Tingkatkan spasi elemen dalam daftar.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Penundaan drag\'n\'drop</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Penundaan drag\'n\'drop untuk batu bata.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Penundaan drag'n'drop</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Penundaan drag'n'drop untuk batu bata.</string>
     <string name="preference_title_accessibility_beginner_bricks">Mode pemula</string>
     <string name="preference_description_accessibility_beginner_bricks">Tampilkan hanya fitur-fitur sederhana.</string>
     <string name="preference_title_accessibility_font_style">Pilih jenis teks</string>
@@ -157,7 +157,7 @@
     <string name="preference_access_summary_profile_odin">Teks besar, ikon besar, elemen besar
        jarak, kontras tinggi</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Spasi elemen besar, drag\'n\'drop
+    <string name="preference_access_summary_profile_fenrir">Spasi elemen besar, drag'n'drop
        menunda</string>
     <string name="preference_access_title_profile_tiro">Orang yg belum berpengalaman</string>
     <string name="preference_access_summary_profile_tiro">Mode pemula</string>
@@ -165,7 +165,7 @@
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 batu bata</string>
     <string name="preference_description_quadcopter_bricks">Izinkan aplikasi untuk mengontrol quadcopters Parrot AR.Drone 2.0</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo batu bata</string>
-    <string name="preference_description_jumpingsumo_bricks">Izinkan aplikasi untuk mengontrol robot Parrot\'s Jumping Sumo</string>
+    <string name="preference_description_jumpingsumo_bricks">Izinkan aplikasi untuk mengontrol robot Parrot's Jumping Sumo</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms Batu bata NXT</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">Batu bata Lego Mindstorms EV3</string>
     <string name="preference_description_mindstorms_nxt_bricks">Izinkan aplikasi untuk mengontrol robot Lego Mindstorms NXT</string>

@@ -138,7 +138,7 @@
     <string name="preference_title_accessibility_large_text">Büyük Metin</string>
     <string name="preference_title_accessibility_element_spacing">Büyük eleman aralığı</string>
     <string name="preference_description_accessibility_element_spacing">Listelerde öğe aralığını artırın.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop gecikmesi</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop gecikmesi</string>
     <string name="preference_description_accessibility_dragndrop_delay">Tuğlalar için sürükle bırak gecikmesi.</string>
     <string name="preference_title_accessibility_beginner_bricks">Başlangıç ​​modu</string>
     <string name="preference_description_accessibility_beginner_bricks">Yalnızca basit özellikleri göster</string>
@@ -163,7 +163,7 @@
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 uzantısı</string>
     <string name="preference_description_quadcopter_bricks">Uygulamanın Parrot AR.Drone 2.0 quadcopters\'ı kontrol etmesine izin verin</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo uzantısı</string>
-    <string name="preference_description_jumpingsumo_bricks">Uygulamanın Parrot\'s Jumping Sumo robotlarını kontrol etmesine izin verin</string>
+    <string name="preference_description_jumpingsumo_bricks">Uygulamanın Parrot's Jumping Sumo robotlarını kontrol etmesine izin verin</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms NXT uzantısı</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">Lego Mindstorms EV3 uzantısı</string>
     <string name="preference_description_mindstorms_nxt_bricks">Uygulamanın Lego Mindstorms NXT robotlarını kontrol etmesine izin ver</string>

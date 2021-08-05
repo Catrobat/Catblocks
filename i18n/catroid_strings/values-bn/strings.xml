@@ -878,7 +878,7 @@
     <string name="brick_speak_default_value">হ্যালো</string>
     <string name="brick_speak_and_wait" tools:ignore="UnusedResources">এবং অপেক্ষা করুন</string>
     <string name="brick_start_listening_to_voice" tools:ignore="UnusedResources">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1546,7 +1546,7 @@
     <string name="formula_editor_function_list_item_parameter">(১, * তালিকার নাম *)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">ধারণ করে</string>
     <string name="formula_editor_function_contains_parameter">(* তালিকার নাম *,১)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(১, * তালিকার নাম *)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">আইটেমের সংখ্যা</string>
     <string name="formula_editor_function_number_of_items_parameter">(* তালিকার নাম *)</string>
@@ -1783,7 +1783,7 @@
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">আপনার প্রজেক্টি অ্যাপ্লিকেশনটির শেয়ার করে নেওয়ার সাইটে আপলোড হবে যেখানে অন্যরা এটি ব্যবহার এবং ডাউনলোড করতে পারে। আপনি নিজের প্রজেক্টি একটি স্বতন্ত্র অ্যাপ্লিকেশন হিসাবে ডাউনলোড করতে পারেন।</string>
     <string name="progress_upload_dialog_failed">আপলোড ব্যর্থ হয়েছে। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>

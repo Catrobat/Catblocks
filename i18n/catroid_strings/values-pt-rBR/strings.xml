@@ -164,7 +164,7 @@
     <string name="preference_title_enable_quadcopter_bricks">Extensão Parrot AR.Drone 2.0</string>
     <string name="preference_description_quadcopter_bricks">Permite ao aplicativo controlar os quadricópteros Parrot AR.Drone 2.0</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Extensão Parrot Jumping Sumo</string>
-    <string name="preference_description_jumpingsumo_bricks">Permitir que o aplicativo controle os robôs Parrot\'s Jumping Sumo</string>
+    <string name="preference_description_jumpingsumo_bricks">Permitir que o aplicativo controle os robôs Parrot's Jumping Sumo</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">Extensão Lego Mindstorms NXT</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">Extensão Lego Mindstorms EV3</string>
     <string name="preference_description_mindstorms_nxt_bricks">Permitir o aplicativo controlar os robôs Lego Mindstorms NXT</string>
@@ -172,8 +172,8 @@
     <string name="preference_title_mindstorms_nxt_sensors">Sensores Lego NXT</string>
     <string name="preference_title_mindstorms_ev3_sensors">Sensores Lego EV3</string>
     <string name="preference_title_drone_config_properties">Configuração do Parrot AR.Drone 2.0</string>
-    <string name="preference_title_enable_phiro_bricks">Extensão RobotixEdu\'s Phiro</string>
-    <string name="preference_description_phiro_bricks">Permitir que o aplicativo controle robôs RobotixEdu\'s Phiro</string>
+    <string name="preference_title_enable_phiro_bricks">Extensão RobotixEdu's Phiro</string>
+    <string name="preference_description_phiro_bricks">Permitir que o aplicativo controle robôs RobotixEdu's Phiro</string>
     <string name="preference_title_enable_arduino_bricks">Extensão Arduino</string>
     <string name="preference_description_arduino_bricks">Permitir que o aplicativo controle as placas da Arduino</string>
     <string name="preference_title_enable_embroidery_bricks">Extensão Embroidery</string>

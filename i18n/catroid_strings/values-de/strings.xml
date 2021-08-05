@@ -137,8 +137,8 @@
     <string name="preference_title_accessibility_large_text">Große Schrift</string>
     <string name="preference_title_accessibility_element_spacing">Erhöhter Abstand der Elemente</string>
     <string name="preference_description_accessibility_element_spacing">Diese Einstellung erhöht den Abstand zwischen interaktiven Elementen.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'Drop Verzögerung</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Fügt eine Verzögerung zu den Drag\'n\'Drop Bausteinen hinzu.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'Drop Verzögerung</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Fügt eine Verzögerung zu den Drag'n'Drop Bausteinen hinzu.</string>
     <string name="preference_title_accessibility_beginner_bricks">Beginner modus</string>
     <string name="preference_description_accessibility_beginner_bricks">Zeigt Bausteine zur schnellen und einfachen Programmerstellung.</string>
     <string name="preference_title_accessibility_font_style">Schriftart auswählen</string>
@@ -156,7 +156,7 @@
     <string name="preference_access_summary_profile_odin">Großer Text, große Symbole, großer Elemente-
        Abstand, hoher Kontrast</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Großer Elemente-Abstand, Drag\'n\'Drop
+    <string name="preference_access_summary_profile_fenrir">Großer Elemente-Abstand, Drag'n'Drop
        Verzögerung</string>
     <string name="preference_access_title_profile_tiro">Tiro</string>
     <string name="preference_access_summary_profile_tiro">Start Bausteine</string>

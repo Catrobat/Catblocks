@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Duży tekst</string>
     <string name="preference_title_accessibility_element_spacing">Duże odstępy między elementami</string>
     <string name="preference_description_accessibility_element_spacing">Zwiększ odstępy między elementami w listach.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Opóźnienie drag\'n\'drop (przeciągnij i upuść)</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Opóźnienie drag\'n\'drop dla bloków.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Opóźnienie drag'n'drop (przeciągnij i upuść)</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Opóźnienie drag'n'drop dla bloków.</string>
     <string name="preference_title_accessibility_beginner_bricks">Bloczki dla początkujących</string>
     <string name="preference_description_accessibility_beginner_bricks">Pokaż tylko podstawowe bloki.</string>
     <string name="preference_title_accessibility_font_style">Wybierz czcionkę</string>

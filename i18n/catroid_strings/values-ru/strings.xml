@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Крупный текст</string>
     <string name="preference_title_accessibility_element_spacing">Большой отступ между элементами</string>
     <string name="preference_description_accessibility_element_spacing">Увеличьте интервал между элементами в списках.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop задержка</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Drag\'n\'drop задержка для блоков.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop задержка</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Drag'n'drop задержка для блоков.</string>
     <string name="preference_title_accessibility_beginner_bricks">Простой режим</string>
     <string name="preference_description_accessibility_beginner_bricks">Показать только простые функции.</string>
     <string name="preference_title_accessibility_font_style">Выберите тип текста</string>
@@ -157,7 +157,7 @@
     <string name="preference_access_summary_profile_odin">Большой текст, крупные значки, Большой отступ между
        элементами, высокая контрастность</string>
     <string name="preference_access_title_profile_fenrir">Фенрир</string>
-    <string name="preference_access_summary_profile_fenrir">Большой отступ между элементами, drag\'n\'drop
+    <string name="preference_access_summary_profile_fenrir">Большой отступ между элементами, drag'n'drop
        задержка</string>
     <string name="preference_access_title_profile_tiro">Тиро</string>
     <string name="preference_access_summary_profile_tiro">Простой режим</string>

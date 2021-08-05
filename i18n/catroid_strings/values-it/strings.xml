@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Testo grande</string>
     <string name="preference_title_accessibility_element_spacing">Aumenta spaziatura tra elementi</string>
     <string name="preference_description_accessibility_element_spacing">Aumenta spaziatura tra elementi negli elenchi.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Ritardo nel Drag \'n \'drop</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Ritardo nel Drag\'n\'drop dei mattoncini.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Ritardo nel Drag 'n 'drop</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Ritardo nel Drag'n'drop dei mattoncini.</string>
     <string name="preference_title_accessibility_beginner_bricks">Mattoncini principiante</string>
     <string name="preference_description_accessibility_beginner_bricks">Mostra solo mattoncini di base.</string>
     <string name="preference_title_accessibility_font_style">Scegli il tipo di carattere</string>
@@ -157,7 +157,7 @@
     <string name="preference_access_summary_profile_odin">Testo di grandi dimensioni, icone grandi, elementi
       con ampia spaziatura e alto contrasto</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Elementi molto distanziati, drag\'n\'drop
+    <string name="preference_access_summary_profile_fenrir">Elementi molto distanziati, drag'n'drop
        con ritardo</string>
     <string name="preference_access_title_profile_tiro">Shoot</string>
     <string name="preference_access_summary_profile_tiro">Mattoncini principiante</string>

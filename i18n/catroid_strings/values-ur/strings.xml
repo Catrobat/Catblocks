@@ -892,7 +892,7 @@
     <string name="brick_speak_default_value">ہیلو!</string>
     <string name="brick_speak_and_wait" tools:ignore="UnusedResources">اور انتظار کریں</string>
     <string name="brick_start_listening_to_voice" tools:ignore="UnusedResources">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1567,7 +1567,7 @@
     <string name="formula_editor_function_list_item_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">مشتمل</string>
     <string name="formula_editor_function_contains_parameter">(* فہرست نام *)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">اشیاء کی تعداد</string>
     <string name="formula_editor_function_number_of_items_parameter">(* فہرست نام *)</string>
@@ -1813,7 +1813,7 @@
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">آپ کا پروجیکٹ ایپ  شراکت دار سائٹ پر اپ لوڈ ہو جاتا ہے جہاں دوسروں کو اس کا استعمال اور اسے ڈاؤن لوڈ کرسکتا ہے. آپ اپنے منصوبے کو ایک اسٹائل ایپ کے طور پر بھی ڈاؤن لوڈ کرسکتے ہیں.</string>
     <string name="progress_upload_dialog_failed">Upload failed. Please check your internet connection and try

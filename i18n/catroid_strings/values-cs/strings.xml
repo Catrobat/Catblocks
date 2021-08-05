@@ -138,8 +138,8 @@
     <string name="preference_title_accessibility_large_text">Velké písmo</string>
     <string name="preference_title_accessibility_element_spacing">Large element spacing</string>
     <string name="preference_description_accessibility_element_spacing">Increase element spacing in lists.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop zpoždění</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Drag\'n\'drop zpoždění pro bloky.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop zpoždění</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Drag'n'drop zpoždění pro bloky.</string>
     <string name="preference_title_accessibility_beginner_bricks">Začátečnické bloky</string>
     <string name="preference_description_accessibility_beginner_bricks">Zobrazuje pouze základní bloky.</string>
     <string name="preference_title_accessibility_font_style">Choose a text type</string>
@@ -157,7 +157,7 @@
     <string name="preference_access_summary_profile_odin">Large text, large icons, large element
        spacing, high contrast</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Large element spacing, drag\'n\'drop
+    <string name="preference_access_summary_profile_fenrir">Large element spacing, drag'n'drop
        delay</string>
     <string name="preference_access_title_profile_tiro">Tiro</string>
     <string name="preference_access_summary_profile_tiro">Začátečnické bloky</string>
@@ -165,7 +165,7 @@
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone bloky</string>
     <string name="preference_description_quadcopter_bricks">Povolit aplikaci ovládat AR.Drone 2.0 kvadrakoptéry</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo bloky</string>
-    <string name="preference_description_jumpingsumo_bricks">Allow the app to control Parrot\'s Jumping Sumo robots</string>
+    <string name="preference_description_jumpingsumo_bricks">Allow the app to control Parrot's Jumping Sumo robots</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">LEGO Mindstorms NXT bloky</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">LEGO Mindstorms EV3 kostky</string>
     <string name="preference_description_mindstorms_nxt_bricks">Umožnit aplikaci ovládat roboty z Lego Mindstorms NXT</string>
@@ -174,7 +174,7 @@
     <string name="preference_title_mindstorms_ev3_sensors">Senzory LEGO EV3</string>
     <string name="preference_title_drone_config_properties">Konfigurace AR.Drone 2.0</string>
     <string name="preference_title_enable_phiro_bricks">Phiro bloky</string>
-    <string name="preference_description_phiro_bricks">Allow the app to control RobotixEdu\'s Phiro robots</string>
+    <string name="preference_description_phiro_bricks">Allow the app to control RobotixEdu's Phiro robots</string>
     <string name="preference_title_enable_arduino_bricks">Arduino bloky</string>
     <string name="preference_description_arduino_bricks">Allow the app to control Arduino boards</string>
     <string name="preference_title_enable_embroidery_bricks">Embroidery extension</string>
@@ -227,11 +227,11 @@
         <item quantity="other">You cannot convert more than %d projects at the same time. Please wait for the
             running conversions to finish first.</item>
     </plurals>
-    <string name="error_cannot_open_failed_scratch_program">You cannot open the project because it wasn\'t
+    <string name="error_cannot_open_failed_scratch_program">You cannot open the project because it wasn't
         converted correctly. Please try to convert it again.</string>
     <string name="search_failed">Nothing found, please retry later.</string>
     <string name="connection_lost_or_closed_by_server">Server connection lost.</string>
-    <string name="connection_failed">We can\'t connect you to the server right now, please try again later.</string>
+    <string name="connection_failed">We can't connect you to the server right now, please try again later.</string>
     <string name="authentication_failed">There seems to be a problem with your connection to the service. Please
         contact the Catrobat team.</string>
     <plurals name="scratch_conversion_scheduled_x">
@@ -981,7 +981,7 @@
     <string name="brick_speak_default_value">Ahoj!</string>
     <string name="brick_speak_and_wait" tools:ignore="UnusedResources">a počkat</string>
     <string name="brick_start_listening_to_voice" tools:ignore="UnusedResources">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1288,9 +1288,9 @@
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">This app needs the requested permissions to function properly. E.g., the
-Camera brick needs access to the device\'s camera, the \"location\" formula element needs access to the
-device\'s geolocation sensor, and in order to import and export projects from and to the local memory, the app
-needs read and write access to it. You can always change permissions through your device\'s settings.</string>
+Camera brick needs access to the device's camera, the \"location\" formula element needs access to the
+device's geolocation sensor, and in order to import and export projects from and to the local memory, the app
+needs read and write access to it. You can always change permissions through your device's settings.</string>
     <!-- Error messages -->
     <string name="error_project_upload">Došlo k chybě při nahrávání programu.</string>
     <string name="error_project_download">Došlo k chybě při stahování programu.</string>
@@ -1320,11 +1320,11 @@ needs read and write access to it. You can always change permissions through you
     <string name="error_set_notes_and_credits">Something went wrong while saving the new notes
         and credits.</string>
     <string name="error_no_whatsapp">WhatsApp not installed</string>
-    <string name="error_unsupported_bricks_chromecast">This script can\'t be added  to a Chromecast
+    <string name="error_unsupported_bricks_chromecast">This script can't be added  to a Chromecast
         project.</string>
     <!--  -->
     <!-- Bluetooth Connection Strings -->
-    <string name="notification_blueth_err">Can\'t enable Bluetooth, please try turning it off and on again.</string>
+    <string name="notification_blueth_err">Can't enable Bluetooth, please try turning it off and on again.</string>
     <string name="title_paired_devices">Spárovaná zařízení</string>
     <string name="title_other_devices">Nová zařízení</string>
     <string name="searching_devices">Vyhledávání zařízení&#8230;</string>
@@ -1669,7 +1669,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_function_list_item_parameter">(1, * jméno seznamu *)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">obsahuje</string>
     <string name="formula_editor_function_contains_parameter">(* jméno seznamu *, 1)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1, * jméno seznamu *)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">počet_položek</string>
     <string name="formula_editor_function_number_of_items_parameter">(*název seznamu*)</string>
@@ -1843,7 +1843,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="formula_editor_intro_summary_keyboard">This is where you can create
         your formula, just like on a calculator.</string>
     <string name="formula_editor_intro_title_compute">Výpočetní výkon</string>
-    <string name="formula_editor_intro_summary_compute">To show your formula\'s current result, you can
+    <string name="formula_editor_intro_summary_compute">To show your formula's current result, you can
         use \"Compute\".</string>
     <string name="formula_editor_intro_title_object">Objekt</string>
     <string name="formula_editor_intro_summary_object">This is a collection of values that describe the properties of your
@@ -1903,21 +1903,21 @@ needs read and write access to it. You can always change permissions through you
     <string name="cast_gamepad_left">left</string>
     <string name="cast_gamepad_right">right</string>
     <string name="cast_error_not_connected_msg">Please connect to your Chromecast first</string>
-    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can\'t be started
+    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can't be started
         locally</string>
     <string name="cast_device_selector_dialog_title">Cast to</string>
     <string name="cast_button_menu_item_title">Cast button</string>
     <string name="cast_ready_to_cast">Ready to cast to</string>
     <string name="cast_enable_cast_feature">Chromecast features disabled. Please enable cast features in the settings.</string>
     <string name="cast_searching_for_cast_devices">Searching for Chromecast devices</string>
-    <string name="cast_trouble_finding_devices_tip">.\nDon\'t see your device? Try turning your device\'s Wifi off
+    <string name="cast_trouble_finding_devices_tip">.\nDon't see your device? Try turning your device's Wifi off
         and on.</string>
     <string name="cast_connection_timout_msg">Connection timeout. Please try again.</string>
     <string name="cast_screen_pause_text">Paused</string>
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">Tvůj program bude nahrán na sdílecí stránku, kde si ho budou moci ostatní stáhnout. Můžes ti tam také svůj program stáhnout jako samostatnou aplikaci.</string>
     <string name="progress_upload_dialog_failed">Upload failed. Please check your internet connection and try

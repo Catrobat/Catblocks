@@ -163,7 +163,7 @@
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 extension</string>
     <string name="preference_description_quadcopter_bricks">อนุญาตให้แอปควบคุม Parrot AR.Drone 2.0 quadcopters</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo extension</string>
-    <string name="preference_description_jumpingsumo_bricks">Allow the app to control Parrot\'s Jumping Sumo robots</string>
+    <string name="preference_description_jumpingsumo_bricks">Allow the app to control Parrot's Jumping Sumo robots</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms NXT extension</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">Lego Mindstorms EV3 extension</string>
     <string name="preference_description_mindstorms_nxt_bricks">Allow the app to control Lego Mindstorms NXT robots</string>
@@ -171,8 +171,8 @@
     <string name="preference_title_mindstorms_nxt_sensors">Lego NXT Sensors</string>
     <string name="preference_title_mindstorms_ev3_sensors">Lego EV3 Sensors</string>
     <string name="preference_title_drone_config_properties">Parrot AR.Drone 2.0 configuration</string>
-    <string name="preference_title_enable_phiro_bricks">RobotixEdu\'s Phiro extension</string>
-    <string name="preference_description_phiro_bricks">Allow the app to control RobotixEdu\'s Phiro robots</string>
+    <string name="preference_title_enable_phiro_bricks">RobotixEdu's Phiro extension</string>
+    <string name="preference_description_phiro_bricks">Allow the app to control RobotixEdu's Phiro robots</string>
     <string name="preference_title_enable_arduino_bricks">Arduino extension</string>
     <string name="preference_description_arduino_bricks">Allow the app to control Arduino boards</string>
     <string name="preference_title_enable_embroidery_bricks">Embroidery extension</string>
@@ -1513,7 +1513,7 @@
     <string name="formula_editor_function_list_item_parameter">(1, *ชื่อรายการ*)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">ประกอบด้วย</string>
     <string name="formula_editor_function_contains_parameter">(*ชื่อรายการ*,1)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1, *ชื่อรายการ*)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">จำนวนรายการ</string>
     <string name="formula_editor_function_number_of_items_parameter">(*ชื่อรายการ*)</string>
@@ -1687,7 +1687,7 @@
     <string name="formula_editor_intro_summary_keyboard">This is where you can create
         your formula, just like on a calculator.</string>
     <string name="formula_editor_intro_title_compute">คำนวณ</string>
-    <string name="formula_editor_intro_summary_compute">To show your formula\'s current result, you can
+    <string name="formula_editor_intro_summary_compute">To show your formula's current result, you can
         use \"Compute\".</string>
     <string name="formula_editor_intro_title_object">วัตถุ</string>
     <string name="formula_editor_intro_summary_object">This is a collection of values that describe the properties of your
@@ -1747,14 +1747,14 @@
     <string name="cast_gamepad_left">left</string>
     <string name="cast_gamepad_right">right</string>
     <string name="cast_error_not_connected_msg">Please connect to your Chromecast first</string>
-    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can\'t be started
+    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can't be started
         locally</string>
     <string name="cast_device_selector_dialog_title">Cast to</string>
     <string name="cast_button_menu_item_title">Cast button</string>
     <string name="cast_ready_to_cast">Ready to cast to</string>
     <string name="cast_enable_cast_feature">Chromecast features disabled. Please enable cast features in the settings.</string>
     <string name="cast_searching_for_cast_devices">Searching for Chromecast devices</string>
-    <string name="cast_trouble_finding_devices_tip">.\nDon\'t see your device? Try turning your device\'s Wifi off
+    <string name="cast_trouble_finding_devices_tip">.\nDon't see your device? Try turning your device's Wifi off
         and on.</string>
     <string name="cast_connection_timout_msg">Connection timeout. Please try again.</string>
     <string name="cast_screen_pause_text">Paused</string>

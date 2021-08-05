@@ -156,14 +156,14 @@
     <string name="preference_access_title_profile_odin">ஒடின்</string>
     <string name="preference_access_summary_profile_odin">பெரிய உரை, பெரிய சின்னங்கள், பெரிய உறுப்பு, இடைவெளி, உயர் மாறுபாடு</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">பெரிய உறுப்பு இடைவெளி, drag\'n\'drop, தாமதம்</string>
+    <string name="preference_access_summary_profile_fenrir">பெரிய உறுப்பு இடைவெளி, drag'n'drop, தாமதம்</string>
     <string name="preference_access_title_profile_tiro">டிரோ</string>
     <string name="preference_access_summary_profile_tiro">தொடக்க முறை</string>
     <!-- Lego/Drone/Raspi/Chromecast/Embroidery -->
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 நீட்டிப்பு</string>
     <string name="preference_description_quadcopter_bricks">Parrot AR.Drone 2.0 குவாட்காப்டர்களைக் கட்டுப்படுத்த பயன்பாட்டை அனுமதிக்கவும்</string>
     <string name="preference_title_enable_jumpingsumo_bricks">கிளி ஜம்பிங் சுமோ நீட்டிப்பு</string>
-    <string name="preference_description_jumpingsumo_bricks">Parrot\'s ஜம்பிங் சுமோ ரோபோக்களைக் கட்டுப்படுத்த பயன்பாட்டை அனுமதிக்கவும்</string>
+    <string name="preference_description_jumpingsumo_bricks">Parrot's ஜம்பிங் சுமோ ரோபோக்களைக் கட்டுப்படுத்த பயன்பாட்டை அனுமதிக்கவும்</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">லெகோ மைண்ட்ஸ்டார்ம்ஸ் என்எக்ஸ்டி நீட்டிப்பு</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">லெகோ மைண்ட்ஸ்டார்ம்ஸ் EV3 நீட்டிப்பு</string>
     <string name="preference_description_mindstorms_nxt_bricks">லெகோ மைண்ட்ஸ்டார்ம்ஸ் என்எக்ஸ்டி ரோபோக்களைக் கட்டுப்படுத்த பயன்பாட்டை அனுமதிக்கவும்</string>
@@ -897,7 +897,7 @@
     <string name="brick_speak_default_value">வணக்கம்!</string>
     <string name="brick_speak_and_wait" tools:ignore="UnusedResources">காத்திருங்கள்</string>
     <string name="brick_start_listening_to_voice" tools:ignore="UnusedResources">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1564,7 +1564,7 @@
     <string name="formula_editor_function_list_item_parameter">(1, * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_contains" tools:ignore="UnusedResources">உள் அடக்கி வை</string>
     <string name="formula_editor_function_contains_parameter">( * பட்டியல் பெயர் *,1)</string>
-    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item\'s index</string>
+    <string name="formula_editor_function_index_of_item" tools:ignore="UnusedResources">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1, * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_number_of_items" tools:ignore="UnusedResources">பொருட்களின் எண்ணிக்கை</string>
     <string name="formula_editor_function_number_of_items_parameter">( * பட்டியல் பெயர் *)</string>
@@ -1804,7 +1804,7 @@
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">உங்கள் திட்டம் பயன்பாட்டின் பகிர்வு தளத்தில் பதிவேற்றப்படும்
 மற்றவர்கள் அதைப் பயன்படுத்தலாம் மற்றும் பதிவிறக்கலாம். உங்கள் திட்டத்தை முழுமையான செயலியாகவும் பதிவிறக்கலாம்.</string>

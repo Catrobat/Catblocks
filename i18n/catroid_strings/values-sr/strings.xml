@@ -127,8 +127,8 @@
     <string name="preference_title_accessibility_large_text">Велики текст</string>
     <string name="preference_title_accessibility_element_spacing">Велико одстојање елемента</string>
     <string name="preference_description_accessibility_element_spacing">Повећај одстојање елемента у листама.</string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop delay</string>
-    <string name="preference_description_accessibility_dragndrop_delay">Drag\'n\'drop delay за bricks.</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop delay</string>
+    <string name="preference_description_accessibility_dragndrop_delay">Drag'n'drop delay за bricks.</string>
     <string name="preference_title_accessibility_beginner_bricks">Почетнички мод</string>
     <string name="preference_description_accessibility_beginner_bricks">Прикажи само једноставне одлике.</string>
     <string name="preference_title_accessibility_font_style">Изабери тип текста</string>
@@ -145,14 +145,14 @@
     <string name="preference_access_title_profile_odin">Odin</string>
     <string name="preference_access_summary_profile_odin">Велик текст, велике иконице, велик размак елемента, високи контраст</string>
     <string name="preference_access_title_profile_fenrir">Fenrir</string>
-    <string name="preference_access_summary_profile_fenrir">Велики размак елемента, drag\'n\'drop одлагање</string>
+    <string name="preference_access_summary_profile_fenrir">Велики размак елемента, drag'n'drop одлагање</string>
     <string name="preference_access_title_profile_tiro">Тиро</string>
     <string name="preference_access_summary_profile_tiro">Почетнички мод</string>
     <!-- Lego/Drone/Raspi/Chromecast/Embroidery -->
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 екстензија</string>
     <string name="preference_description_quadcopter_bricks">Дозволи да апликација контролише Parrot AR.Drone 2.0 quadcopters</string>
     <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo екстензија</string>
-    <string name="preference_description_jumpingsumo_bricks">Дозволи да апликација контролише Parrot\'s Jumping Sumo robots</string>
+    <string name="preference_description_jumpingsumo_bricks">Дозволи да апликација контролише Parrot's Jumping Sumo robots</string>
     <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms NXT екстензија</string>
     <string name="preference_title_enable_mindstorms_ev3_bricks">Lego Mindstorms EV3 екстензија</string>
     <string name="preference_description_mindstorms_nxt_bricks">Дозволи да апликација контролише Lego Mindstorms NXT robots</string>
@@ -160,8 +160,8 @@
     <string name="preference_title_mindstorms_nxt_sensors">Lego NXT Сензори</string>
     <string name="preference_title_mindstorms_ev3_sensors">Lego EV3 Сензори</string>
     <string name="preference_title_drone_config_properties">Parrot AR.Drone 2.0 конфигурација</string>
-    <string name="preference_title_enable_phiro_bricks">RobotixEdu\'s Phiro екстензија</string>
-    <string name="preference_description_phiro_bricks">Дозволи да апликација контролише RobotixEdu\'s Phiro robots</string>
+    <string name="preference_title_enable_phiro_bricks">RobotixEdu's Phiro екстензија</string>
+    <string name="preference_description_phiro_bricks">Дозволи да апликација контролише RobotixEdu's Phiro robots</string>
     <string name="preference_title_enable_arduino_bricks">Arduino екстензија</string>
     <string name="preference_description_arduino_bricks">Дозволи да апликација контролише Arduino boards</string>
     <string name="preference_title_enable_embroidery_bricks">Embroidery екстензија</string>
@@ -208,7 +208,7 @@
         <item quantity="other">You cannot convert more than %d projects at the same time. Please wait for the
             running conversions to finish first.</item>
     </plurals>
-    <string name="error_cannot_open_failed_scratch_program">You cannot open the project because it wasn\'t
+    <string name="error_cannot_open_failed_scratch_program">You cannot open the project because it wasn't
         converted correctly. Please try to convert it again.</string>
     <string name="search_failed">Ништа није пронађено. Покушајте поново касније.</string>
     <string name="connection_lost_or_closed_by_server">Веза са сервером је изгубљена.</string>
@@ -606,13 +606,13 @@
     <!--  -->
     <!-- Terms of Use Dialog Parrot ARDrone-->
     <string name="dialog_terms_of_use_link_text_parrot_reminder">Услови коришћења и услуге</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">You are about to use this app together with Parrot\'s
-        AR.Drone 2.0. We strongly remind you to abide by both Parrot\'s and Catrobat\'s Terms of Use and Services.</string>
+    <string name="dialog_terms_of_use_parrot_reminder_text">You are about to use this app together with Parrot's
+        AR.Drone 2.0. We strongly remind you to abide by both Parrot's and Catrobat's Terms of Use and Services.</string>
     <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">Do not remind me again.</string>
     <!--  -->
     <!-- Terms of Use Dialog Parrot Jumping Sumo-->
     <string name="dialog_terms_of_use_jumpingsumo_reminder_text">You are about to use this app together with
-        Parrot\'s Jumping Sumo. We strongly remind you to abide by both Parrot\'s and Catrobat\'s Terms of Use and
+        Parrot's Jumping Sumo. We strongly remind you to abide by both Parrot's and Catrobat's Terms of Use and
         Services.</string>
     <!--  -->
     <!-- Privacy Policy -->
@@ -631,7 +631,7 @@
             information (last bits of the IP address get anonymized). However, the collected data will get
             transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). 
             Data processing is based on agreements with Google LLC and Dynatrace LLC. 
-            This relationship to the service provider conforms to the European Union\'s General Data
+            This relationship to the service provider conforms to the European Union's General Data
             Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n
         • To create and use an account in our systems, and to inform you about necessary changes about your
             account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or
@@ -659,7 +659,7 @@
             the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This
             newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to
             the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp
-            please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n
+            please also look up MailChimp's Privacy Policy and Terms of Use.\n\n
         • All Services are provided by the free open source Catrobat project under the umbrella of the
             International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated
             in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law
@@ -672,7 +672,7 @@
                 (European Union).\n\n
         In case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\n
 
-        Catrobat\'s official English language privacy policy is available on the web under
+        Catrobat's official English language privacy policy is available on the web under
         https://catrob.at/privacypolicy.\n\n
 
         Version 2.2, 17 October 2019\n\n
@@ -953,7 +953,7 @@
     <string name="brick_vibration">Vibrate for</string>
     <string name="brick_ask_label">Ask</string>
     <string name="brick_ask_store">and store written answer in</string>
-    <string name="brick_ask_default_question">What\'s your name?</string>
+    <string name="brick_ask_default_question">What's your name?</string>
     <string name="brick_ask_dialog_hint">"Enter your answer:"</string>
     <string name="brick_ask_dialog_submit">Submit answer</string>
     <string name="brick_ask_speech_label">Ask</string>
@@ -985,7 +985,7 @@
     <string name="brick_speak_default_value">Здраво!</string>
     <string name="brick_speak_and_wait">и чекај</string>
     <string name="brick_start_listening_to_voice">Start listening to voice and store spoken words in</string>
-    <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
+    <string name="speech_recognition_not_available">Speech recognition isn't available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
     <string name="speech_recognition_offline_mode_missing_data_error_dialog_msg">Offline speech recognition
     for %s is missing or needs to be updated. Would you like to download or update it now?</string>
@@ -1339,11 +1339,11 @@
     <string name="error_set_notes_and_credits">Something went wrong while saving the new notes
         and credits.</string>
     <string name="error_no_whatsapp">WhatsApp not installed</string>
-    <string name="error_unsupported_bricks_chromecast">This script can\'t be added  to a Chromecast
+    <string name="error_unsupported_bricks_chromecast">This script can't be added  to a Chromecast
         project.</string>
     <!--  -->
     <!-- Bluetooth Connection Strings -->
-    <string name="notification_blueth_err">Can\'t enable Bluetooth, please try turning it off and on again.</string>
+    <string name="notification_blueth_err">Can't enable Bluetooth, please try turning it off and on again.</string>
     <string name="title_paired_devices">Paired devices</string>
     <string name="title_other_devices">New devices</string>
     <string name="searching_devices">Looking for devices&#8230;</string>
@@ -1684,7 +1684,7 @@
     <string name="formula_editor_function_list_item_parameter">(1,*list name*)</string>
     <string name="formula_editor_function_contains">contains</string>
     <string name="formula_editor_function_contains_parameter">(*list name*,1)</string>
-    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item">item's index</string>
     <string name="formula_editor_function_index_of_item_parameter">(1,*list name*)</string>
     <string name="formula_editor_function_number_of_items">number of items</string>
     <string name="formula_editor_function_number_of_items_parameter">(*list name*)</string>
@@ -1849,7 +1849,7 @@
     <string name="formula_editor_intro_summary_keyboard">This is where you can create
         your formula, just like on a calculator.</string>
     <string name="formula_editor_intro_title_compute">Compute</string>
-    <string name="formula_editor_intro_summary_compute">To show your formula\'s current result, you can
+    <string name="formula_editor_intro_summary_compute">To show your formula's current result, you can
         use \"Compute\".</string>
     <string name="formula_editor_intro_title_object">Properties</string>
     <string name="formula_editor_intro_summary_object">This is a collection of values that describe the properties of your
@@ -1907,21 +1907,21 @@
     <string name="cast_gamepad_left">left</string>
     <string name="cast_gamepad_right">right</string>
     <string name="cast_error_not_connected_msg">Please connect to your Chromecast first</string>
-    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can\'t be started
+    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can't be started
         locally</string>
     <string name="cast_device_selector_dialog_title">Cast to</string>
     <string name="cast_button_menu_item_title">Cast button</string>
     <string name="cast_ready_to_cast">Ready to cast to</string>
     <string name="cast_enable_cast_feature">Chromecast features disabled. Please enable cast features in the settings.</string>
     <string name="cast_searching_for_cast_devices">Searching for Chromecast devices</string>
-    <string name="cast_trouble_finding_devices_tip">.\nDon\'t see your device? Try turning your device\'s Wifi off
+    <string name="cast_trouble_finding_devices_tip">.\nDon't see your device? Try turning your device's Wifi off
         and on.</string>
     <string name="cast_connection_timout_msg">Connection timeout. Please try again.</string>
     <string name="cast_screen_pause_text">Paused</string>
     <!-- -->
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
-        errors. You can\'t undo this!</string>
+        errors. You can't undo this!</string>
     <string name="deletion_alert_yes">Yes, delete anyway!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">Your project gets uploaded to the app\’s sharing site where others
@@ -1948,7 +1948,7 @@
     <!-- Crash report dialog -->
     <!--  -->
     <!-- Multilingual List -->
-    <string name="device_language">Your device\'s language</string>
+    <string name="device_language">Your device's language</string>
     <!-- Symbols -->
     <string name="percent_symbol">%</string>
     <string name="hertz_symbol">㎐</string>

@@ -140,8 +140,8 @@
     <string name="preference_title_accessibility_large_text">बड़ा पाठ</string>
     <string name="preference_title_accessibility_element_spacing">बड़ा तत्व रिक्ति</string>
     <string name="preference_description_accessibility_element_spacing">सूचियों में तत्व रिक्ति बढ़ाएँ। </string>
-    <string name="preference_title_accessibility_dragndrop_delay">Drag\'n\'drop देरी</string>
-    <string name="preference_description_accessibility_dragndrop_delay">ईंटों के लिए Drag\'n\'drop देरी।</string>
+    <string name="preference_title_accessibility_dragndrop_delay">Drag'n'drop देरी</string>
+    <string name="preference_description_accessibility_dragndrop_delay">ईंटों के लिए Drag'n'drop देरी।</string>
     <string name="preference_title_accessibility_beginner_bricks">शुरुआत ब्रिक्स</string>
     <string name="preference_description_accessibility_beginner_bricks">केवल मूल ईंटें दिखाएं।</string>
     <string name="preference_title_accessibility_font_style">एक पाठ प्रकार चुनें</string>
@@ -158,7 +158,7 @@
     <string name="preference_access_title_profile_odin">ओडिन</string>
     <string name="preference_access_summary_profile_odin">बड़े पाठ, बड़े प्रतीक, बड़े तत्व अंतर, उच्च विपरीत</string>
     <string name="preference_access_title_profile_fenrir">फेनरीर</string>
-    <string name="preference_access_summary_profile_fenrir">बड़े तत्व रिक्ति, drag\'n\'drop
+    <string name="preference_access_summary_profile_fenrir">बड़े तत्व रिक्ति, drag'n'drop
         विलंब</string>
     <string name="preference_access_title_profile_tiro">नवसिखुआ</string>
     <string name="preference_access_summary_profile_tiro">शुरुआत ब्रिक्स</string>
