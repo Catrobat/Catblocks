@@ -222,7 +222,7 @@ describe('Webview test', () => {
       const defaultBlock = Test.Share.workspace.newBlock('WaitBrick');
       defaultBlock.initSvg();
       defaultBlock.render(false);
-      return defaultBlock.getFieldValue();
+      return defaultBlock.toString();
     });
 
     await page.evaluate(pLanguageToTest => {
@@ -233,11 +233,14 @@ describe('Webview test', () => {
       const testBlock = Test.Share.workspace.newBlock('WaitBrick');
       testBlock.initSvg();
       testBlock.render(false);
-      return testBlock.getFieldValue();
+      return testBlock.toString();
     });
 
-    expect(defaultLanguageObject['CONTROL_WAIT']).toMatch(defaultBlockValue);
-    expect(testLanguageObject['CONTROL_WAIT']).toMatch(testBlockValue);
+    const defaultExpectedValue = defaultLanguageObject['CONTROL_WAIT'].replace('%1', 'unset ').replace('%2', '(i)');
+    const testExpectedValue = testLanguageObject['CONTROL_WAIT'].replace('%1', 'unset ').replace('%2', '(i)');
+
+    expect(defaultExpectedValue).toMatch(defaultBlockValue);
+    expect(testExpectedValue).toMatch(testBlockValue);
   });
 });
 

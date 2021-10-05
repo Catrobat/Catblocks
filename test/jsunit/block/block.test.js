@@ -242,7 +242,7 @@ describe('WebView Block tests', () => {
     test('formula blocks (without child) are rendered properly', async () => {
       const languageToTest = 'en';
       const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
-      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').replace('%2', '').trim();
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', 'unset ').replace('%2', '(i)').trim();
 
       const [blockFieldValue, refValue, value] = await page.evaluate(() => {
         const block = Test.Playground.workspace.newBlock('ChangeBrightnessByNBrick');
@@ -252,7 +252,7 @@ describe('WebView Block tests', () => {
         const refValue = Test.Blockly.Bricks['ChangeBrightnessByNBrick'].args0[0].text;
         const value = block.inputList[0].fieldRow[1].getText();
 
-        return [block.getFieldValue(), refValue, value];
+        return [block.toString(), refValue, value];
       });
 
       expect(blockFieldValue).toBe(blockText);
@@ -262,7 +262,7 @@ describe('WebView Block tests', () => {
     test('formula blocks (with left child) are rendered properly', async () => {
       const languageToTest = 'en';
       const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
-      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '').replace('%2', '').trim();
+      const blockText = languageObject['LOOKS_CHANGEBRIGHTHNESSBY'].replace('%1', '-1 ').replace('%2', '(i)').trim();
 
       const valueToSet = '-1';
 
@@ -274,7 +274,7 @@ describe('WebView Block tests', () => {
 
         block.inputList[0].fieldRow[1].setValue(pValue);
         const value = block.inputList[0].fieldRow[1].getValue().toString();
-        return [block.getFieldValue(), value];
+        return [block.toString(), value];
       }, valueToSet);
 
       expect(blockFieldValue).toBe(blockText);
