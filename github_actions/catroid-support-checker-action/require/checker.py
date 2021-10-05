@@ -70,15 +70,14 @@ def getBricksFromJsFileContent(jsContent):
 def loadCatroidBricks():
     global path
     base_dir = path
-    factory_path = base_dir + '/Catroid/catroid/src/main/java/org/catrobat/catroid/ui/fragment/CategoryBricksFactory.java'
+    factory_path = base_dir + '/Catroid/catroid/src/main/java/org/catrobat/catroid/ui/fragment/CategoryBricksFactory.kt'
     file = open(factory_path, 'r')
     factory_file_lines = file.read().split('\n')
     java_bricks = []
     for line in factory_file_lines:
         if line.startswith('import org.catrobat.catroid.content.bricks.'):
             last_dot = line.rindex('.') + 1
-            line_end = line.rindex(';')
-            java_brick = line[last_dot: line_end]
+            java_brick = line[last_dot:]
             if java_brick not in excluded_java_bricks:
                 java_category = getCategoryForJavaBrick(java_brick)
                 java_bricks.append((java_brick, java_category))
