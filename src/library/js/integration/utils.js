@@ -305,6 +305,11 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
         for (let i = 0; i < brick.args0.length; i += 2) {
           definitionFormValues.set(brick.args0[i].name, brick.args0[i].name);
         }
+
+        for (let i = 0; i < brick.args2.length; i += 2) {
+          definitionFormValues.set(brick.args2[i].name, brick.args2[i].name);
+        }
+
         const definitionBrick = {
           name: brickList[i].userBrickId,
           loopOrIfBrickList: [],
@@ -353,21 +358,25 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
   if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
     jsonBrick.formValues.forEach(function (value, key) {
-      for (let j = 0; j < childBrick.inputList[0].fieldRow.length; j++) {
-        if (childBrick.inputList[0].fieldRow[j].name === key) {
-          childBrick.inputList[0].fieldRow[j].setValue(value);
+      for (let i = 0; i < childBrick.inputList.length; i++) {
+        for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
+          if (childBrick.inputList[i].fieldRow[j].name === key) {
+            childBrick.inputList[i].fieldRow[j].setValue(value);
+          }
         }
       }
     });
   }
 
   if (childBrick && childBrick.inputList && childBrick.inputList[0] && childBrick.inputList[0].fieldRow) {
-    for (let j = 0; j < childBrick.inputList[0].fieldRow.length; j++) {
-      if (childBrick.inputList[0].fieldRow[j].name && childBrick.inputList[0].fieldRow[j].name.endsWith('_INFO')) {
-        if (j > 0) {
-          const val = childBrick.inputList[0].fieldRow[j - 1].getValue();
-          if (val && val.length < childBrick.inputList[0].fieldRow[j - 1].maxDisplayLength) {
-            childBrick.inputList[0].fieldRow[j].visible_ = false;
+    for (let i = 0; i < childBrick.inputList.length; i++) {
+      for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
+        if (childBrick.inputList[i].fieldRow[j].name && childBrick.inputList[i].fieldRow[j].name.endsWith('_INFO')) {
+          if (j > 0) {
+            const val = childBrick.inputList[i].fieldRow[j - 1].getValue();
+            if (val && val.length < childBrick.inputList[i].fieldRow[j - 1].maxDisplayLength) {
+              childBrick.inputList[i].fieldRow[j].visible_ = false;
+            }
           }
         }
       }

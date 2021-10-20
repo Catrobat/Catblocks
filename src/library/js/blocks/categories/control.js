@@ -281,7 +281,7 @@ export default {
       {
         type: 'field_input',
         name: 'DROPDOWN',
-        text: 'unset'
+        text: 'yourself'
       },
       {
         type: 'field_image',
@@ -340,7 +340,7 @@ export default {
       {
         type: 'field_input',
         name: 'DROPDOWN',
-        text: 'unset'
+        text: 'new...'
       },
       {
         type: 'field_image',

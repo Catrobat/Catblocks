@@ -552,7 +552,7 @@ export default {
       },
       {
         type: 'field_input',
-        name: 'DROPDOWN1',
+        name: 'SPINNER',
         text: 'unset'
       },
       {
@@ -562,7 +562,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN1_INFO'
+        name: 'SPINNER_INFO'
       }
     ]
   },
