@@ -411,6 +411,33 @@ export class Share {
 
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
+
+    let src;
+
+    if (object.lookList) {
+      for (const look of object.lookList) {
+        if (!options.sceneName || !look.fileName) {
+          continue;
+        }
+
+        const imgPath = `${options.sceneName}/images/${look.fileName}`;
+        src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+        if (options.programRoot.startsWith('http')) {
+          src = escapeURI(`${options.programRoot}${imgPath}`);
+        }
+
+        if (options.fileMap != null && options.fileMap[imgPath]) {
+          src = options.fileMap[imgPath];
+        }
+
+        if (src === undefined || src === '') {
+          console.log('src is empty or null = ' + src);
+        }
+        break;
+      }
+    }
+
     const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
@@ -428,7 +455,15 @@ export class Share {
       cardHeader.style.paddingRight = '3.5em';
     }
 
-    if (object && object.name) {
+    if (object && object.name && src) {
+      const address = '"' + src + '"';
+      const picture = `<img src=` + address + `width = "50" height="auto">`;
+      cardHeader.innerHTML =
+        `<div class="d-flex">` +
+        picture +
+        `<div className="header-title" style="padding-left: 10px">${object.name}</div></div>` +
+        `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+    } else if (object && object.name) {
       cardHeader.innerHTML = `<div class="header-title">${object.name}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     } else {
       cardHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
