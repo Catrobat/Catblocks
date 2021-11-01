@@ -234,7 +234,7 @@ describe('Catroid to Catblocks parser tests', () => {
     ).toBeTruthy();
   });
 
-  test('Test if no value is used if no nodeValue is given', async () => {
+  test('if no value is used if no nodeValue is given', async () => {
     expect(
       await page.evaluate(() => {
         const xmlString = `<?xml version="1.0" encoding="UTF-8"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>игра</name><objectList><object type="Sprite" name="TestSoundListObject"><lookList /><soundList><sound fileName="testSound.png" name="testSound" /></soundList><scriptList /></object><object type="Sprite" name="цель"><lookList /><soundList /><scriptList><script type="StartScript"><brickList><brick type="WaitBrick"><commentedOut>false</commentedOut><formulaList><formula category="testFormular"><leftChild><type>NUMBER</type><value>37</value></leftChild><rightChild><type>NUMBER</type><value>58</value></rightChild><type>FUNCTION</type><value /></formula></formulaList></brick></brickList><commentedOut>false</commentedOut></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -249,7 +249,7 @@ describe('Catroid to Catblocks parser tests', () => {
     ).toBeTruthy();
   });
 
-  test('Test if parser converts catroid script properly', async () => {
+  test('parser converts catroid script properly', async () => {
     expect(
       await page.evaluate(() => {
         const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="BroadcastScript"><brickList><brick type="ForeverBrick"><commentedOut>false</commentedOut><loopBricks><brick type="PlaySoundAndWaitBrick"><commentedOut>false</commentedOut><sound name="soundTest"/></brick></loopBricks></brick></brickList><commentedOut>false</commentedOut><receivedMessage>звуки</receivedMessage></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -267,7 +267,7 @@ describe('Catroid to Catblocks parser tests', () => {
     ).toBeTruthy();
   });
 
-  test('Test to check, if the content in the repeat block is right', async () => {
+  test('check if the content in the repeat block is right', async () => {
     expect(
       await page.evaluate(() => {
         const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="PlaySoundBrick"><commentedOut>false</commentedOut></brick><brick type="RepeatBrick"><commentedOut>false</commentedOut><formulaList><formula category="TIMES_TO_REPEAT"><type>NUMBER</type><value>1000000000</value></formula></formulaList></brick><brick type="SetBackgroundBrick"></brick><brick type="WaitBrick"></brick><brick type="LoopEndBrick"><commentedOut>false</commentedOut></brick></brickList><commentedOut>false</commentedOut><isUserScript>false</isUserScript></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -342,7 +342,7 @@ describe('Catroid to Catblocks parser tests', () => {
   });
 
   describe('UserVariable parsing', () => {
-    test('Test of local uservariable parsing', async () => {
+    test('local uservariable parsing', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name>tUserVariable</name></default></userVariable></userVariable></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -371,7 +371,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test of local empty name uservariable parsing', async () => {
+    test('local empty name uservariable parsing', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name></name></default></userVariable></userVariable></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -400,7 +400,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test of local uservariable parsing without name tag', async () => {
+    test('local uservariable parsing without name tag', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name/></default></userVariable></userVariable></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -429,7 +429,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test of remote uservariable parsing', async () => {
+    test('remote uservariable parsing', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name>tUserVariable</name></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -458,7 +458,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test of remote empty name uservariable parsing', async () => {
+    test('remote empty name uservariable parsing', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name></name></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -487,7 +487,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test of remote uservariable parsing without name tag', async () => {
+    test('remote uservariable parsing without name tag', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable type="UserVariable" serialization="custom"><userVariable><default><deviceValueKey>dcfdd34b-47fb-4fcc-a1cc-97495abf2563</deviceValueKey><name/></default></userVariable></userVariable></brick><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="VARIABLE"><type>NUMBER</type><value>0</value></formula></formulaList><userVariable reference="../../brick[1]"/></brick></script></scriptList></object></objectList></scene></scenes></program>`;
@@ -516,7 +516,7 @@ describe('Catroid to Catblocks parser tests', () => {
       ).toBeTruthy();
     });
 
-    test('Test if parser handles formula operator properly', async () => {
+    test('parser handles formula operator properly', async () => {
       expect(
         await page.evaluate(() => {
           const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header><programName>Test Program</programName><catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>TestScene</name><objectList><object type="Sprite" name="TestObject"><lookList><look fileName="Space-Panda.png" name="Space-Panda"/></lookList><soundList/><scriptList><script type="StartScript"><brickList><brick type="SetVariableBrick"><commentedOut>false</commentedOut><formulaList><formula category="Y_POSITION"><leftChild><type>NUMBER</type><value>70</value></leftChild><rightChild><type>NUMBER</type><value>90</value></rightChild><type>OPERATOR</type><value>EQUAL</value></formula></formulaList></brick></script></scriptList></object></objectList></scene></scenes></program>`;

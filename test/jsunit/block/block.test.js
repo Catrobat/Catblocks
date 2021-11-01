@@ -309,9 +309,8 @@ describe('WebView Block tests', () => {
             Object.keys(BLOCKS[categoryName]).forEach(blockName => {
               if (blockName != 'EmptyScript') {
                 const jsBlock = BLOCKS[categoryName][blockName];
-                const renderedBlock = allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll(
-                  'g.blocklyEditableText'
-                );
+                const renderedBlock =
+                  allRenderedBlocks[indexOfBlock].svgGroup_.querySelectorAll('g.blocklyEditableText');
                 //get args from js-files (in blocks/categories directory)
                 const allJsArguments = [];
                 if (jsBlock['args0'] !== undefined) {

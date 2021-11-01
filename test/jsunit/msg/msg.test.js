@@ -40,6 +40,7 @@ describe('Filesystem msg tests', () => {
       const langKeys = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${lang}`));
       Object.keys(BLOCK_MSG_MAPPINGS).forEach(key => {
         if (!key.startsWith('@')) {
+          // eslint-disable-next-line jest/no-conditional-expect
           expect(langKeys[key]).toBeDefined();
         }
       });

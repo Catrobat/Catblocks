@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 // default display duration
 const DISPLAY_DURATION = 10000;
 const CONTAINER_ID = 'catblocks-message-container';

@@ -1,7 +1,7 @@
 /**
  * @description Block tests
  */
-/* global CatBlocks, page, SERVER */
+/* global $, CatBlocks, page, SERVER */
 /* eslint no-global-assign:0 */
 'use strict';
 

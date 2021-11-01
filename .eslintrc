@@ -47,7 +47,6 @@
   },
   "globals": {
     "process": false,
-    "$": true, 
     "Android": true
   },
   "plugins": ["jest"]

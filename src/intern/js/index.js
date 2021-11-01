@@ -5,6 +5,7 @@ import Blockly from 'blockly';
 import { CatBlocks } from '../../library/js/lib_share';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
+import $ from 'jquery';
 
 (async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -45,6 +46,7 @@ import { initShareAndRenderPrograms } from './render/utils';
         rtl: isRtl,
         noImageFound: 'No_Image_Available.jpg'
       });
+      window.$ = $;
       window.CatBlocks = CatBlocks;
       window.share = CatBlocks.getInstance().share;
       window.shareUtils = shareUtils;

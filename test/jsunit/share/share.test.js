@@ -1,7 +1,7 @@
 /**
  * @description Share test
  */
-/* global page, SERVER, share, shareTestContainer, shareUtils */
+/* global $, page, SERVER, share, shareTestContainer, shareUtils */
 /* eslint no-global-assign:0 */
 'use strict';
 
