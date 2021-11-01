@@ -7,6 +7,15 @@
   background: none;
   font-size: 0.9rem;
   border-bottom: 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.catblocks-object-thumbnail {
+  width: 50px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
 }
 
 .card-header.collapsed {
@@ -74,10 +83,6 @@ img {
   vertical-align: middle;
 }
 
-.card-header {
-  cursor: pointer;
-}
-
 .catblocks-tab-script {
   height: 2rem;
 }
@@ -117,6 +122,11 @@ img {
 
 [data-toggle='collapse'][aria-expanded='true'] .header-title {
   font-weight: bold;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
 }
 
 #catblocks-program-container {

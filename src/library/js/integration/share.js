@@ -456,12 +456,11 @@ export class Share {
     }
 
     if (object && object.name && src) {
-      const address = '"' + src + '"';
-      const picture = `<img src=` + address + `width = "50" height="auto">`;
+      const picture = `<img src="${src}" class="catblocks-object-thumbnail" />`;
       cardHeader.innerHTML =
         `<div class="d-flex">` +
         picture +
-        `<div className="header-title" style="padding-left: 10px">${object.name}</div></div>` +
+        `<div class="header-title" style="padding-left: 10px">${object.name}</div></div>` +
         `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
     } else if (object && object.name) {
       cardHeader.innerHTML = `<div class="header-title">${object.name}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
