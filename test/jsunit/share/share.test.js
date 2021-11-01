@@ -785,7 +785,7 @@ describe('Share catroid program rendering tests', () => {
 
     const previewSrc = await page.$eval('.imagepreview', node => node.getAttribute('src'));
     expect(previewSrc).toBe(expectedSrc);
-  }, 100000);
+  });
 
   test('JSON with one scene', async () => {
     const sceneName = 'testscene1';
