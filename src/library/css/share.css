@@ -8,6 +8,15 @@
   background: none !important;
   font-size: 0.9rem !important;
   border-bottom: 0 !important;
+  align-items: center !important;
+  cursor: pointer !important;
+}
+
+.catblocks-object-thumbnail {
+  width: 50px !important;
+  height: auto !important;
+  max-height: 100px !important;
+  object-fit: contain !important;
 }
 
 .card-header.collapsed {
@@ -75,10 +84,6 @@ img {
   vertical-align: middle !important;
 }
 
-.card-header {
-  cursor: pointer !important;
-}
-
 .catblocks-tab-script {
   height: 2rem !important;
 }
@@ -118,6 +123,11 @@ img {
 
 [data-toggle='collapse'][aria-expanded='true'] .header-title {
   font-weight: bold !important;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
 }
 
 #catblocks-program-container {

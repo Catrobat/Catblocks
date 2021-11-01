@@ -416,6 +416,33 @@ export class Share {
 
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
+
+    let src;
+
+    if (object.lookList) {
+      for (const look of object.lookList) {
+        if (!options.sceneName || !look.fileName) {
+          continue;
+        }
+
+        const imgPath = `${options.sceneName}/images/${look.fileName}`;
+        src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+        if (options.programRoot.startsWith('http')) {
+          src = escapeURI(`${options.programRoot}${imgPath}`);
+        }
+
+        if (options.fileMap != null && options.fileMap[imgPath]) {
+          src = options.fileMap[imgPath];
+        }
+
+        if (src === undefined || src === '') {
+          console.log('src is empty or null = ' + src);
+        }
+        break;
+      }
+    }
+
     const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
@@ -433,7 +460,14 @@ export class Share {
       cardHeader.style.paddingRight = '3.5em';
     }
 
-    if (object && object.name) {
+    if (object && object.name && src) {
+      const picture = `<img src="${src}" class="catblocks-object-thumbnail" />`;
+      cardHeader.innerHTML =
+        `<div class="d-flex">` +
+        picture +
+        `<div class="header-title" style="padding-left: 10px">${object.name}</div></div>` +
+        `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+    } else if (object && object.name) {
       cardHeader.innerHTML = `<div class="header-title">${object.name}</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
     } else {
       cardHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
