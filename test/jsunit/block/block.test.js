@@ -98,7 +98,11 @@ describe('Filesystem Block tests', () => {
 describe('WebView Block tests', () => {
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
     page.evaluate(() => {
       // function to JSON.stringify circular objects
       window.shallowJSON = (obj, indent = 2) => {

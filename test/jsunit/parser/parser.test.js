@@ -11,7 +11,11 @@ const utils = require('../commonUtils');
 describe('Parser catroid program tests', () => {
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   test('Recognizes not supported program version', async () => {
@@ -566,7 +570,7 @@ describe('Catroid to Catblocks parser tests', () => {
     );
   });
 
-  test('Test if no value is used if no nodeValue is given', async () => {
+  test('no value is used if no nodeValue is given', async () => {
     const brickName = 'WaitBrick';
     const val1 = 37;
     const val2 = 58;
@@ -632,7 +636,7 @@ describe('Catroid to Catblocks parser tests', () => {
     expect(formulaString).toMatch(`${val1}    ${val2}`);
   });
 
-  test('Test if parser converts catroid script properly', async () => {
+  test('parser converts catroid script properly', async () => {
     const scriptName = 'BroadcastScript';
     const brick1 = 'ForeverBrick';
     const brick2 = 'PlaySoundAndWaitBrick';
@@ -707,7 +711,7 @@ describe('Catroid to Catblocks parser tests', () => {
     );
   });
 
-  test('Test to check, if the content in the repeat block is right', async () => {
+  test('check, if the content in the repeat block is right', async () => {
     const playsoundBrick = 'PlaySoundBrick';
     const repeatBrick = 'RepeatBrick';
     const setBackgroundBrick = 'SetBackgroundBrick';
@@ -982,7 +986,7 @@ describe('Catroid to Catblocks parser tests', () => {
   });
 
   describe('UserVariable parsing', () => {
-    test('Test of local uservariable parsing', async () => {
+    test('of local uservariable parsing', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1072,7 +1076,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', userVarialbe]);
     });
 
-    test('Test of local empty name uservariable parsing', async () => {
+    test('local empty name uservariable parsing', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1161,7 +1165,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
-    test('Test of local uservariable parsing without name tag', async () => {
+    test('local uservariable parsing without name tag', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1250,7 +1254,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
-    test('Test of remote uservariable parsing', async () => {
+    test('remote uservariable parsing', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1351,7 +1355,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', userVariable]);
     });
 
-    test('Test of remote empty name uservariable parsing', async () => {
+    test('remote empty name uservariable parsing', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1451,7 +1455,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
-    test('Test of remote uservariable parsing without name tag', async () => {
+    test('remote uservariable parsing without name tag', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'VARIABLE';
       const firstValue = '0';
@@ -1551,7 +1555,7 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
     });
 
-    test('Test if parser handles formula operator properly', async () => {
+    test('parser handles formula operator properly', async () => {
       const variableBrick = 'SetVariableBrick';
       const variableName = 'Y_POSITION';
       const firstValue = 70;

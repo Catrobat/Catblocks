@@ -66,7 +66,11 @@ describe('Filesystem msg tests', () => {
 describe('Webview test', () => {
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
     await page.evaluate(() => {
       Test.Playground.workspace.clear();
     });
@@ -248,7 +252,11 @@ describe('Webview test', () => {
 describe('share displays language of UI elements correctly', () => {
   beforeEach(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   test('check >en< language of tabs and error messages of scripts, looks and sounds', async () => {
