@@ -1,7 +1,3 @@
-/**
- * @description sound Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -351,6 +347,75 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'brick_play_note_for_beats_beats_edit_text_INFO'
+      }
+    ]
+  },
+  JumpingSumoSoundBrick: {
+    message0: '%{BKY_SUMO_SOUND}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_VOLUME',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_VOLUME_INFO'
+      }
+    ]
+  },
+  JumpingSumoNoSoundBrick: {
+    message0: '%{BKY_SUMO_NOSOUND}'
+  },
+  PhiroPlayToneBrick: {
+    message0: '%{BKY_PHIRO_PLAYTONE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'PHIRO_DURATION_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PHIRO_DURATION_IN_SECONDS_INFO'
       }
     ]
   }

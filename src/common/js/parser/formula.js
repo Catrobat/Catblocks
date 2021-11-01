@@ -58,6 +58,10 @@ export default class Formula {
       LENGTH: '%v(%l%)',
       LETTER: '%v(%l, %r)',
       JOIN: '%v(%l, %r)',
+      COLOR_AT_XY: '%v(%l, %r)',
+      COLOR_TOUCHES_COLOR: '%v(%l, %r)',
+      COLOR_EQUALS_COLOR: '%v(%l, %r)',
+      COLLIDES_WITH_COLOR: '%v(%l)',
       REGEX: '%v(%l, %r)',
       CONTAINS: '%v(%l, %r)',
       NUMBER_OF_ITEMS: '%v(%l)',
@@ -80,9 +84,9 @@ export default class Formula {
     if (['%v', '%l', '%r'].includes(key)) {
       if (value.length > 0) {
         const result = value.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1');
-        return layout.replace(key, `${result.trim()}`);
+        return layout.replace(key, `${result}`);
       }
-      return layout.replace(key, '').trim();
+      return layout.replace(key, '');
     }
     return layout;
   }

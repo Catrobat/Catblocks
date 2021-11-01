@@ -6,45 +6,41 @@
 'use strict';
 
 import arduino from './arduino';
-import assertions from './assertions';
-import cast from './cast';
 import control from './control';
-import data from './data';
-import drone from './drone';
+import device from './device';
+import dummy from './dummy';
+import embroidery from './embroidery';
 import event from './event';
-import jumpingSumo from './jumpingSumo';
-import legoEV3 from './legoEV3';
-import legoNXT from './legoNXT';
-import looks from './looks';
+import lego from './lego';
+import look from './look';
 import motion from './motion';
 import pen from './pen';
 import phiro from './phiro';
-import raspi from './raspi';
+import report from './report';
+import script from './script';
 import sound from './sound';
-import stitch from './stitch';
+import test from './test';
 import user from './user';
-import device from './device';
-import dummy from './dummy';
+import userlist from './userlist';
+import uservariables from './uservariables';
 
 export default {
   arduino: arduino,
-  assertions: assertions,
-  cast: cast,
   control: control,
-  data: data,
   device: device,
-  drone: drone,
+  dummy: dummy,
+  embroidery: embroidery,
   event: event,
-  jumpingSumo: jumpingSumo,
-  legoEV3: legoEV3,
-  legoNXT: legoNXT,
-  looks: looks,
+  lego: lego,
+  look: look,
   motion: motion,
   pen: pen,
   phiro: phiro,
-  raspi: raspi,
+  report: report,
+  script: script,
   sound: sound,
-  stitch: stitch,
+  test: test,
   user: user,
-  dummy: dummy
+  userlist: userlist,
+  uservariables: uservariables
 };

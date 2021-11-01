@@ -1,12 +1,88 @@
-/**
- * @description legoNXT Catblocks bricks
- */
-
 'use strict';
 
 export default {
-  LegoNxtMotorTurnAngleBrick: {
-    message0: '%{BKY_LEGONXT_MOTORTURNANGLE}',
+  StitchBrick: {
+    message0: '%{BKY_STITCH}'
+  },
+  RunningStitchBrick: {
+    message0: '%{BKY_STITCH_RUNNING}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'EMBROIDERY_LENGTH',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'EMBROIDERY_LENGTH_INFO'
+      }
+    ]
+  },
+  ZigZagStitchBrick: {
+    message0: '%{BKY_STITCH_ZIGZAG}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ZIGZAG_EMBROIDERY_LENGTH',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ZIGZAG_EMBROIDERY_LENGTH_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'ZIGZAG_EMBROIDERY_WIDTH',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ZIGZAG_EMBROIDERY_WIDTH_INFO'
+      }
+    ]
+  },
+  TripleStitchBrick: {
+    message0: '%{BKY_STITCH_TRIPLE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'EMBROIDERY_LENGTH',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'EMBROIDERY_LENGTH_INFO'
+      }
+    ]
+  },
+  StopRunningStitchBrick: {
+    message0: '%{BKY_STITCH_STOP}'
+  },
+  SewUpBrick: {
+    message0: '%{BKY_EMBRIODERY_SEW_UP}'
+  },
+  WriteEmbroideryToFileBrick: {
+    message0: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE}',
     args0: [
       {
         type: 'field_input',
@@ -21,29 +97,15 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'LEGO_NXT_DEGREES',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_NXT_DEGREES_INFO'
       }
     ]
   },
-  LegoNxtMotorStopBrick: {
-    message0: '%{BKY_LEGONXT_MOTORSTOP}',
+  SetThreadColorBrick: {
+    message0: '%{BKY_EMBRIODERY_SET_THREAD_COLOR}',
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'brick_set_thread_color_action_edit_text',
         text: 'unset'
       },
       {
@@ -53,73 +115,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  LegoNxtMotorMoveBrick: {
-    message0: '%{BKY_LEGONXT_MOTORMOVE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'LEGO_NXT_SPEED',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_NXT_SPEED_INFO'
-      }
-    ]
-  },
-  LegoNxtPlayToneBrick: {
-    message0: '%{BKY_LEGONXT_PLAYTONE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'LEGO_NXT_DURATION_IN_SECONDS',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_NXT_DURATION_IN_SECONDS_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'LEGO_NXT_FREQUENCY',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_NXT_FREQUENCY_INFO'
+        name: 'brick_set_thread_color_action_edit_text_INFO'
       }
     ]
   }

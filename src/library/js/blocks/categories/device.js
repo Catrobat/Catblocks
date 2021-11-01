@@ -20,7 +20,6 @@ export default {
       }
     ]
   },
-
   SetNfcTagBrick: {
     message0: '%{BKY_CONTROL_SETNFCTAG}',
     args0: [

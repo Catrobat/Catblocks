@@ -1,16 +1,12 @@
-/**
- * @description chromecast Catblocks bricks
- */
-
 'use strict';
 
 export default {
-  WhenGamepadButtonBrick: {
-    message0: '%{BKY_CAST_WHEN_GAMEPAD_BUTTON}',
+  ReportBrick: {
+    message0: '%{BKY_USER_BRICK_REPORT}',
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'REPORT_BRICK',
         text: 'unset'
       },
       {
@@ -20,7 +16,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'REPORT_BRICK_INFO'
       }
     ]
   }

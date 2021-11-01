@@ -160,7 +160,7 @@ export class Catroid {
     }
 
     this.workspace.addChangeListener(event => {
-      if (event.type == Blockly.Events.UI && event.element == 'dragStop') {
+      if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
         const droppedBrick = this.workspace.getBlockById(event.blockId);
         const isTopBrick = droppedBrick.hat !== undefined;
         const position = droppedBrick.getRelativeToSurfaceXY();
@@ -169,22 +169,29 @@ export class Catroid {
           Android.updateScriptPosition(event.blockId, position.x, position.y);
         } else {
           const bricksToMove = [];
-          for (let i = 0; i < event.oldValue.length; ++i) {
-            bricksToMove.push(event.oldValue[i].id);
+          for (let i = 0; i < event.blocks.length; ++i) {
+            bricksToMove.push(event.blocks[i].id);
           }
 
           if (droppedBrick.getParent() == undefined) {
             const newEmptyBrickId = Android.moveBricksToEmptyScriptBrick(bricksToMove);
-            const newBrick = this.workspace.newBlock('EmptyScript', newEmptyBrickId);
-            newBrick.initSvg();
-            newBrick.moveBy(position.x, position.y);
-            newBrick.nextConnection.connect(droppedBrick.previousConnection);
-            newBrick.render();
-            droppedBrick.setParent(newBrick);
-            Android.updateScriptPosition(newEmptyBrickId, position.x, position.y);
+            const newEmptyBrick = this.workspace.newBlock('EmptyScript', newEmptyBrickId);
+            newEmptyBrick.initSvg();
+            newEmptyBrick.render();
 
-            if (newBrick.pathObject && newBrick.pathObject.svgRoot) {
-              Blockly.utils.dom.addClass(newBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+            const newEmptyBrickSize = newEmptyBrick.getHeightWidth();
+            const connectionOffset = 8;
+            const newEmptyBrickPositionX = position.x;
+            const newEmptyBrickPositionY = position.y - newEmptyBrickSize.height + connectionOffset;
+            newEmptyBrick.moveBy(newEmptyBrickPositionX, newEmptyBrickPositionY);
+
+            newEmptyBrick.nextConnection.connect(droppedBrick.previousConnection);
+            droppedBrick.setParent(newEmptyBrick);
+
+            Android.updateScriptPosition(newEmptyBrickId, newEmptyBrickPositionX, newEmptyBrickPositionY);
+
+            if (newEmptyBrick.pathObject && newEmptyBrick.pathObject.svgRoot) {
+              Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
             }
             this.removeEmptyScriptBricks();
           } else {
@@ -283,37 +290,28 @@ export class Catroid {
       return;
     }
 
-    const metrics = this.workspace.getMetrics();
+    const newScriptId = bricksToAdd[0].brickId.toLowerCase();
 
-    const scriptBrick = this.workspace.newBlock(bricksToAdd[0].brickType, bricksToAdd[0].brickId);
-    scriptBrick.initSvg();
-    const topLeftPixelCoords = new Blockly.utils.Coordinate(metrics.viewLeft, metrics.viewTop);
-    const topLeftWsCoords = topLeftPixelCoords.scale(1 / this.workspace.scale);
-    scriptBrick.setMovable(true);
-    scriptBrick.moveBy(topLeftWsCoords.x, topLeftWsCoords.y);
-    const pixelWsSize = new Blockly.utils.Coordinate(metrics.viewWidth, metrics.viewHeight);
-    const wsSize = pixelWsSize.scale(1 / this.workspace.scale);
-    scriptBrick.moveBy(wsSize.x / 2, wsSize.y / 2);
+    const codeXML = Android.getCurrentProject();
+    const objectJSON = Parser.convertObjectToJSON(codeXML, this.scene, this.object);
+    const newScript = objectJSON.scriptList.filter(x => x.id.toLowerCase() == newScriptId);
 
-    const scriptPos = scriptBrick.getRelativeToSurfaceXY();
-    Android.updateScriptPosition(bricksToAdd[0].brickId, scriptPos.x, scriptPos.y);
+    if (newScript && newScript.length) {
+      this.domToSvgModifiable(newScript[0], this.workspace);
 
-    scriptBrick.render();
+      const renderedBrick = this.workspace.getBlockById(newScriptId);
+      if (renderedBrick) {
+        const metrics = this.workspace.getMetrics();
+        const topLeftPixelCoords = new Blockly.utils.Coordinate(metrics.viewLeft, metrics.viewTop);
+        const topLeftWsCoords = topLeftPixelCoords.scale(1 / this.workspace.scale);
+        renderedBrick.setMovable(true);
+        renderedBrick.moveBy(topLeftWsCoords.x, topLeftWsCoords.y);
+        const pixelWsSize = new Blockly.utils.Coordinate(metrics.viewWidth, metrics.viewHeight);
+        const wsSize = pixelWsSize.scale(1 / this.workspace.scale);
+        renderedBrick.moveBy(wsSize.x / 2, wsSize.y / 2);
 
-    let lastBrick = scriptBrick;
-
-    for (let i = 1; i < bricksToAdd.length; ++i) {
-      const newBrick = this.workspace.newBlock(bricksToAdd[i].brickType, bricksToAdd[i].brickId);
-      newBrick.initSvg();
-      lastBrick.nextConnection.connect(newBrick.previousConnection);
-      newBrick.setParent(lastBrick);
-      newBrick.render();
-      lastBrick = newBrick;
-    }
-
-    if (bricksToAdd[0].brickType == 'EmptyScript') {
-      if (scriptBrick.pathObject && scriptBrick.pathObject.svgRoot) {
-        Blockly.utils.dom.addClass(scriptBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+        const scriptPos = renderedBrick.getRelativeToSurfaceXY();
+        Android.updateScriptPosition(bricksToAdd[0].brickId, scriptPos.x, scriptPos.y);
       }
     }
   }

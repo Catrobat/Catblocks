@@ -1,7 +1,3 @@
-/**
- * @description control Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -460,6 +456,76 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  RaspiIfLogicBeginBrick: {
+    type: 'IfThenLogicBeginBrick',
+    message0: '%{BKY_RASPI_IFLOGICBEGINIF}',
+    message1: '%1',
+    message2: '%{BKY_RASPI_IFLOGICBEGINELSE}',
+    message3: '%1',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'IF_CONDITION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'IF_CONDITION_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args3: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK2'
+      }
+    ]
+  },
+  PhiroIfLogicBeginBrick: {
+    type: 'IfThenLogicBeginBrick',
+    message0: '%{BKY_PHIRO_IFLOGICBEGINIF}',
+    message1: '%1',
+    message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}',
+    message3: '%1',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args3: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK2'
       }
     ]
   }

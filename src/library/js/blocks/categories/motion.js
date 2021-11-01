@@ -1,7 +1,3 @@
-/**
- * @description motion Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -515,6 +511,452 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'PHYSICS_FRICTION_INFO'
+      }
+    ]
+  },
+  DroneTakeOffLandBrick: {
+    message0: '%{BKY_DRONE_TAKEOFFLAND}'
+  },
+  DroneEmergencyBrick: {
+    message0: '%{BKY_DRONE_EMERGENCY}'
+  },
+  DroneMoveUpBrick: {
+    message0: '%{BKY_DRONE_MOVEUP}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneMoveDownBrick: {
+    message0: '%{BKY_DRONE_MOVEDOWN}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneMoveLeftBrick: {
+    message0: '%{BKY_DRONE_MOVELEFT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneMoveRightBrick: {
+    message0: '%{BKY_DRONE_MOVERIGHT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneMoveForwardBrick: {
+    message0: '%{BKY_DRONE_MOVEFORWARD}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneMoveBackwardBrick: {
+    message0: '%{BKY_DRONE_MOVEBACKWARD}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneTurnLeftBrick: {
+    message0: '%{BKY_DRONE_TURNLEFT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneTurnRightBrick: {
+    message0: '%{BKY_DRONE_TURNRIGHT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DRONE_POWER_IN_PERCENT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DRONE_POWER_IN_PERCENT_INFO'
+      }
+    ]
+  },
+  DroneFlipBrick: {
+    message0: '%{BKY_DRONE_FLIP}'
+  },
+  DronePlayLedAnimationBrick: {
+    message0: '%{BKY_DRONE_PLAYLEDANIMATION}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ADRONEANIMATION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ADRONEANIMATION_INFO'
+      }
+    ]
+  },
+  JumpingSumoAnimationsBrick: {
+    message0: '%{BKY_SUMO_ANIMATION}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'ANIMATION',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'ANIMATION_INFO'
+      }
+    ]
+  },
+  JumpingSumoJumpHighBrick: {
+    message0: '%{BKY_SUMO_JUMPHIGH}'
+  },
+  JumpingSumoJumpLongBrick: {
+    message0: '%{BKY_SUMO_JUMPLONG}'
+  },
+  JumpingSumoMoveBackwardBrick: {
+    message0: '%{BKY_SUMO_MOVEBACKWARD}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_SPEED',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_SPEED_INFO'
+      }
+    ]
+  },
+  JumpingSumoMoveForwardBrick: {
+    message0: '%{BKY_SUMO_MOVEFORWARD}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_SPEED',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_SPEED_INFO'
+      }
+    ]
+  },
+  JumpingSumoRotateLeftBrick: {
+    message0: '%{BKY_SUMO_ROTATELEFT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_ROTATE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_ROTATE_INFO'
+      }
+    ]
+  },
+  JumpingSumoRotateRightBrick: {
+    message0: '%{BKY_SUMO_ROTATERIGHT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_ROTATE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_ROTATE_INFO'
+      }
+    ]
+  },
+  JumpingSumoTurnBrick: {
+    message0: '%{BKY_SUMO_TURN}'
+  },
+  JumpingSumoTakingPictureBrick: {
+    message0: '%{BKY_SUMO_TAKINGPICTURE}'
+  },
+  WhenBounceOffScript: {
+    message0: '%{BKY_EVENT_WHENYOUBOUNCEOFF}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
       }
     ]
   }
