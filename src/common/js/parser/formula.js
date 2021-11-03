@@ -8,6 +8,7 @@ export default class Formula {
     this.operator = '';
     this.left = null;
     this.right = null;
+    this.mid = null;
   }
 
   setLeft(leftBlock) {
@@ -23,6 +24,14 @@ export default class Formula {
       this.right = rightBlock;
     } else {
       this.right.setRight(rightBlock);
+    }
+  }
+
+  setMid(midBlock) {
+    if (this.mid === null) {
+      this.mid = midBlock;
+    } else {
+      this.mid.setMid(midBlock);
     }
   }
 
@@ -55,9 +64,14 @@ export default class Formula {
       RAND: '%v(%l, %r)',
       MAX: '%v(%l, %r)',
       MIN: '%v(%l, %r)',
-      LENGTH: '%v(%l%)',
+      IF_THEN_ELSE: '%v(%l, %r, %m)',
+      LENGTH: '%v(%l)',
       LETTER: '%v(%l, %r)',
       JOIN: '%v(%l, %r)',
+      JOIN3: '%v(%l, %r, %m)',
+      FLATTEN: '%v(%l)',
+      INDEX_OF_ITEM: '%v(%l, %r)',
+      INDEX_CURRENT_TOUCH: '%v(%l)',
       COLOR_AT_XY: '%v(%l, %r)',
       COLOR_TOUCHES_COLOR: '%v(%l, %r)',
       COLOR_EQUALS_COLOR: '%v(%l, %r)',
@@ -81,7 +95,7 @@ export default class Formula {
   }
 
   static packValue(layout, key, value) {
-    if (['%v', '%l', '%r'].includes(key)) {
+    if (['%v', '%l', '%r', '%m'].includes(key)) {
       if (value.length > 0) {
         const result = value.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1');
         return layout.replace(key, `${result}`);
@@ -91,11 +105,12 @@ export default class Formula {
     return layout;
   }
 
-  static packLayout(op, value, left, right) {
+  static packLayout(op, value, left, right, mid) {
     let layout = Formula.getOpLayout(op);
     layout = Formula.packValue(layout, '%v', value);
     layout = Formula.packValue(layout, '%l', left);
     layout = Formula.packValue(layout, '%r', right);
+    layout = Formula.packValue(layout, '%m', mid);
     return layout;
   }
 
@@ -112,8 +127,14 @@ export default class Formula {
       }
       return '';
     })();
+    const mid = (() => {
+      if (f.mid) {
+        return Formula.stringify(f.mid);
+      }
+      return '';
+    })();
 
-    const nodeValue = Formula.packLayout(f.operator, f.value, left, right);
+    const nodeValue = Formula.packLayout(f.operator, f.value, left, right, mid);
     return nodeValue;
   }
 }

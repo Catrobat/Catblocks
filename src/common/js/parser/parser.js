@@ -740,6 +740,15 @@ function checkUsage(list, location) {
 
 function workFormula(formula, input) {
   for (let i = 0; i < input.childNodes.length; i++) {
+    if (input.childNodes[i].nodeName === 'additionalChildren') {
+      if (input.childNodes[i].hasChildNodes()) {
+        if (input.childNodes[i].childNodes[1].nodeName === 'org.catrobat.catroid.formulaeditor.FormulaElement') {
+          const newFormula = new Formula();
+          formula.setMid(newFormula);
+          workFormula(newFormula, input.childNodes[i].childNodes[1]);
+        }
+      }
+    }
     if (input.childNodes[i].nodeName === 'leftChild') {
       const newFormula = new Formula();
       formula.setLeft(newFormula);
