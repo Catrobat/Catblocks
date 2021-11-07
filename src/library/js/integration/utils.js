@@ -4,6 +4,7 @@
 
 import md5 from 'js-md5';
 import Blockly from 'blockly';
+import $ from 'jquery';
 
 /**
  * all list types in json object

@@ -1,5 +1,6 @@
 import Blockly from 'blockly';
 import locales from './locales.json';
+import $ from 'jquery';
 
 Blockly.CatblocksMsgs = {};
 

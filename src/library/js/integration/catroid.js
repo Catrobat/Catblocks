@@ -1,4 +1,11 @@
+import '../../css/common.css';
+import '../../css/catroid.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
 import Blockly from 'blockly';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 import { Parser } from '../../../common/js/parser/parser';
 import {
   defaultOptions,
@@ -7,8 +14,6 @@ import {
   parseOptions,
   createLoadingAnimation
 } from './utils';
-import '../../css/common.css';
-import '../../css/catroid.css';
 
 export class Catroid {
   constructor() {

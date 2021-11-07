@@ -7,7 +7,11 @@
 
 beforeEach(async () => {
   await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-  page.on('console', message => console.log(message.text()));
+  page.on('console', message => {
+    if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+      console.log(message.text());
+    }
+  });
   await page.evaluate(() => {
     function removeAllChildNodes(parent) {
       while (parent.firstChild) {
@@ -677,6 +681,9 @@ describe('Share catroid program rendering tests', () => {
     // wait for tabs to be visible
     await page.waitForSelector(`#${objID}-tabs`);
 
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
     // open looks tab
     await page.click(`#${objID}-looks-tab`);
     // wait for content to be visible
@@ -754,6 +761,10 @@ describe('Share catroid program rendering tests', () => {
 
     const tabID = '#' + objID + '-looks-tab';
     await page.waitForSelector(tabID, { visible: true });
+
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
     await page.click(tabID);
 
     const searchID = '#' + objID + ' #' + objID + '-looks .search';
@@ -770,7 +781,7 @@ describe('Share catroid program rendering tests', () => {
       '#' + objID + ' #' + objID + '-looks .search',
       node => node.innerHTML
     );
-    expect(searchContainerInnerHTML).toBe('<i class="material-icons">search</i>');
+    expect(searchContainerInnerHTML).toBe('<img src="media/search_black_24dp.svg">');
 
     const previewSrc = await page.$eval('.imagepreview', node => node.getAttribute('src'));
     expect(previewSrc).toBe(expectedSrc);
@@ -864,7 +875,7 @@ describe('Share catroid program rendering tests', () => {
 
     const cbCardHeaderHTML = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
     expect(cbCardHeaderHTML).toBe(
-      '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>'
+      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">'
     );
   });
 
@@ -926,9 +937,9 @@ describe('Share catroid program rendering tests', () => {
     const sceneName1 = 'testscene1';
     const objName1 = 'Background';
     const expectedSceneHeaderText =
-      '<div class="header-title">testscene1</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+      '<div class="header-title">testscene1</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
     const expectedCardHeaderText =
-      '<div class="header-title">Background</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>';
+      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
 
     const catObj = {
       scenes: [

@@ -5,6 +5,7 @@ import Blockly from 'blockly';
 import { CatBlocks } from '../../library/js/lib_share';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
+import $ from 'jquery';
 
 (async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -60,6 +61,7 @@ import { initShareAndRenderPrograms } from './render/utils';
         )
       );
 
+      window.$ = $;
       window.Test = {
         Playground: playground,
         Blockly: Blockly,

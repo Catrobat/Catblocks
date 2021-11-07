@@ -14,7 +14,11 @@ describe('Export and Import XML files to workspace', () => {
    */
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   /**
@@ -76,6 +80,7 @@ describe('Export and Import XML files to workspace', () => {
           Test.Blockly.Xml.domToWorkspace(Test.Blockly.Xml.textToDom(pBlock), Test.Playground.workspace);
           return Object.keys(Test.Playground.workspace.blockDB_).length;
         }, block);
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(length).toBe(1);
       }
     }

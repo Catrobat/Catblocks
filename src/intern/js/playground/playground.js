@@ -1,6 +1,7 @@
 import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
+import $ from 'jquery';
 
 export class Playground {
   constructor() {
