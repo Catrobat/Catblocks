@@ -600,7 +600,7 @@ describe('Catroid to Catblocks parser tests', () => {
                     <brick type="${brickName}">
                       <commentedOut>false</commentedOut>
                       <formulaList>
-                        <formula category="testFormular">
+                        <formula category="testFormula">
                           <leftChild>
                             <type>NUMBER</type>
                             <value>${val1}</value>
@@ -2817,6 +2817,612 @@ describe('Catroid to Catblocks parser tests', () => {
 
       expect(mapKeys).toEqual([categoryName]);
       expect(mapValues).toEqual([expectedOutput]);
+    });
+
+    test('formula with 3 arguments', async () => {
+      const blockName = 'SetXBrick';
+      const categoryName = 'X_POSITION';
+      const first = 1;
+      const second = 2;
+      const third = 3;
+
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>Test Program</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <scenes>
+          <scene>
+            <name>TestScene</name>
+            <objectList>
+              <object type="Sprite" name="TestObject">
+                <lookList>
+                  <look fileName="Space-Panda.png" name="Space-Panda" />
+                </lookList>
+                <soundList />
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                      <brick type="${blockName}">
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName}">
+                            <additionalChildren>
+                              <org.catrobat.catroid.formulaeditor.FormulaElement>
+                                <additionalChildren/>
+                                  <type>NUMBER</type>
+                                  <value>${third}</value>
+                              </org.catrobat.catroid.formulaeditor.FormulaElement>
+                            </additionalChildren>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${first}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${second}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>JOIN3</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                    </brickList>
+                  </script>
+                </scriptList>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
+
+        const mapKeys = [];
+        const mapValues = [];
+        formulaMap.forEach(function (value, key) {
+          mapKeys.push(key);
+          mapValues.push(value);
+        });
+
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual([categoryName]);
+      expect(mapValues).toEqual([`join( ${first} , ${second} , ${third} )`]);
+    });
+
+    test('multiple formula', async () => {
+      const blockName = 'SetXBrick';
+      const categoryName = [
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION',
+        'X_POSITION'
+      ];
+      const first = [
+        'FALSE',
+        'hello world',
+        'hello',
+        'List (1)',
+        '1',
+        'LOOK_DIRECTION',
+        'OBJECT_NUMBER_OF_LOOKS',
+        'MOTION_DIRECTION',
+        'USER_LANGUAGE',
+        'NUMBER_CURRENT_TOUCHES',
+        '1',
+        'TIMER'
+      ];
+      const second = ['2', ' world', 'flatten', 'INDEX_CURRENT_TOUCH'];
+      const third = ['3', '!', 'INDEX_OF_ITEM'];
+      const output = [
+        `if then else( ${first[0].toLowerCase()} , ${second[0]} , ${third[0]} )`,
+        `length('${first[1]}')`,
+        `join('${first[2]}','${second[1]}','${third[1]}')`,
+        `flatten(*${first[3]}*)`,
+        `item's index( ${first[4]} , *${second[2]}*)`,
+        ` ${first[5].toLowerCase().replaceAll('_', ' ')} `,
+        ` number of looks `,
+        ` ${first[7].toLowerCase().replaceAll('_', ' ')} `,
+        ` ${first[8].toLowerCase().replaceAll('_', ' ')} `,
+        ` number of current touches `,
+        `index of current touch( ${first[10]} )`,
+        ` ${first[11].toLowerCase()} `
+      ];
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>formulas</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <settings/>
+        <scenes>
+          <scene>
+            <name>Scene (1)</name>
+            <objectList>
+              <object type="Sprite" name="Background">
+                <lookList/>
+                <soundList/>
+                <scriptList>
+                  <script type="StartScript" posX="0.0" posY="0.0">
+                    <brickList>
+                      <brick type="${blockName}">
+                        <brickId>09574906-0fa9-48d8-aeb5-67dd3539b373</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[0]}">
+                            <additionalChildren>
+                              <org.catrobat.catroid.formulaeditor.FormulaElement>
+                                <additionalChildren/>
+                                <type>NUMBER</type>
+                                <value>${third[0]}</value>
+                              </org.catrobat.catroid.formulaeditor.FormulaElement>
+                            </additionalChildren>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>FUNCTION</type>
+                              <value>${first[0]}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${second[0]}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>IF_THEN_ELSE</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>4545a504-2634-40a4-9361-37fae7dffbb9</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[1]}">
+                            <additionalChildren/>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>${first[1]}</value>
+                            </leftChild>
+                            <type>FUNCTION</type>
+                            <value>LENGTH</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>e0fc278b-bdc7-4967-ab43-3faf902116d0</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[2]}">
+                            <additionalChildren>
+                              <org.catrobat.catroid.formulaeditor.FormulaElement>
+                                <additionalChildren/>
+                                <type>STRING</type>
+                                <value>${third[1]}</value>
+                              </org.catrobat.catroid.formulaeditor.FormulaElement>
+                            </additionalChildren>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>${first[2]}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>${second[1]}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>JOIN3</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>0918faba-f054-47fb-a5ca-9d0c1246fcd2</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[3]}">
+                            <additionalChildren/>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>USER_LIST</type>
+                              <value>${first[3]}</value>
+                            </leftChild>
+                            <type>FUNCTION</type>
+                            <value>FLATTEN</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>49625787-2c64-4aa1-8ed6-9b0f0381394c</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[4]}">
+                            <additionalChildren/>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${first[4]}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>USER_LIST</type>
+                              <value>FLATTEN</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>${third[2]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>c682f1bd-d685-414c-bca4-0b2ee26fed4b</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[5]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[5]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>dbae57e9-7f69-49ca-9b25-37b207794f22</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[6]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[6]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>4f118fec-5472-4dfa-86ae-fd5346c98e8d</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[7]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[7]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>b4a8174b-86fc-40c3-810d-db32be511935</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[8]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[8]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>15ba190f-381c-428d-86c5-6bdd116e0f59</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[9]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[9]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>5d677f8c-b263-43be-9aef-4eba51421548</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[10]}">
+                            <additionalChildren/>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${first[10]}</value>
+                            </leftChild>
+                            <type>FUNCTION</type>
+                            <value>${second[3]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                      <brick type="${blockName}">
+                        <brickId>75490d9d-d27e-4ca7-ac94-d7b17488f048</brickId>
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[11]}">
+                            <additionalChildren/>
+                            <type>SENSOR</type>
+                            <value>${first[11]}</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                    </brickList>
+                    <commentedOut>false</commentedOut>
+                    <scriptId>4dd9f80f-5ed6-4668-bb4a-51711d95da03</scriptId>
+                  </script>
+                </scriptList>
+                <nfcTagList/>
+                <userVariables/>
+                <userLists/>
+                <userDefinedBrickList/>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        const formulaMap = [];
+        const mapKeys = [];
+        const mapValues = [];
+        for (let index = 0; index < 12; index++) {
+          formulaMap.push(programJSON.scenes[0].objectList[0].scriptList[0].brickList[index].formValues);
+          formulaMap[index].forEach(function (value, key) {
+            mapKeys.push(key);
+            mapValues.push(value);
+          });
+        }
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual(categoryName);
+      expect(mapValues).toEqual(output);
+    });
+
+    test('No unnecessary backslash in formula', async () => {
+      const blockName = 'SetRotationStyleBrick';
+      const categoryName = 'SPINNER';
+      const first = '2';
+      const expectedOutput = "don't rotate";
+
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>Test Program</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <scenes>
+          <scene>
+            <name>TestScene</name>
+            <objectList>
+              <object type="Sprite" name="TestObject">
+                <lookList>
+                  <look fileName="Space-Panda.png" name="Space-Panda" />
+                </lookList>
+                <soundList />
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                      <brick type="${blockName}">
+                        <commentedOut>false</commentedOut>
+                        <selection>${first}</selection>
+                      </brick>
+                    </brickList>
+                  </script>
+                </scriptList>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+
+        const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
+
+        const mapKeys = [];
+        const mapValues = [];
+        formulaMap.forEach(function (value, key) {
+          mapKeys.push(key);
+          mapValues.push(value);
+        });
+
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual([categoryName]);
+      expect(mapValues).toEqual([expectedOutput]);
+    });
+
+    test('Color formula tests', async () => {
+      const blockName = 'AssertEqualsBrick';
+      const categoryName = ['ASSERT_EQUALS_ACTUAL', 'ASSERT_EQUALS_EXPECTED'];
+      const first = ['200', '#ff0000'];
+      const second = ['600', '#fe0000'];
+      const third = '1';
+      const expectedOutput = [
+        'color at x y( 200 ,  600 )',
+        "color equals color with % tolerance('#ff0000', '#fe0000')"
+      ];
+
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>Test Program</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <scenes>
+          <scene>
+            <name>TestScene</name>
+            <objectList>
+              <object type="Sprite" name="TestObject">
+                <lookList>
+                  <look fileName="Space-Panda.png" name="Space-Panda" />
+                </lookList>
+                <soundList />
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                      <brick type="${blockName}">
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="${categoryName[0]}">
+                            <additionalChildren/>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${first[0]}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${second[0]}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>COLOR_AT_XY</value>
+                          </formula>
+                          <formula category="${categoryName[1]}">
+                            <additionalChildren>
+                              <org.catrobat.catroid.formulaeditor.FormulaElement>
+                                <additionalChildren/>
+                                <type>NUMBER</type>
+                                <value>${third}</value>
+                              </org.catrobat.catroid.formulaeditor.FormulaElement>
+                            </additionalChildren>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>${first[1]}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>${second[1]}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>COLOR_EQUALS_COLOR</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                    </brickList>
+                  </script>
+                </scriptList>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+
+        const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
+
+        const mapKeys = [];
+        const mapValues = [];
+        formulaMap.forEach(function (value, key) {
+          mapKeys.push(key);
+          mapValues.push(value);
+        });
+
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual(categoryName);
+      expect(mapValues).toEqual(expectedOutput);
     });
   });
 });
