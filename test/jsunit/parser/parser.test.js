@@ -2716,5 +2716,107 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapKeys).toEqual([categoryName]);
       expect(mapValues).toEqual([`join('${first}', '${second}')`]);
     });
+
+    test('No new lines from strings to json mapping', async () => {
+      const blockName = 'SetXBrick';
+      const categoryName = 'X_POSITION';
+      const first = 'ff0000';
+      const second = 'fe0000';
+      const third = '1';
+      const expectedOutput = `color equals color with % tolerance('#${first}', '#${second}')`;
+
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>Test Program</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <scenes>
+          <scene>
+            <name>TestScene</name>
+            <objectList>
+              <object type="Sprite" name="TestObject">
+                <lookList>
+                  <look fileName="Space-Panda.png" name="Space-Panda" />
+                </lookList>
+                <soundList />
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                    <brick type="SetXBrick">
+                      <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="X_POSITION">
+                            <additionalChildren>
+                              <org.catrobat.catroid.formulaeditor.FormulaElement>
+                                <additionalChildren/>
+                                <type>NUMBER</type>
+                                <value>${third}</value>
+                              </org.catrobat.catroid.formulaeditor.FormulaElement>
+                            </additionalChildren>
+                            <leftChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>#${first}</value>
+                            </leftChild>
+                            <rightChild>
+                              <additionalChildren/>
+                              <type>STRING</type>
+                              <value>#${second}</value>
+                            </rightChild>
+                            <type>FUNCTION</type>
+                            <value>COLOR_EQUALS_COLOR</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
+                    </brickList>
+                  </script>
+                </scriptList>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+
+        const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
+
+        const mapKeys = [];
+        const mapValues = [];
+        formulaMap.forEach(function (value, key) {
+          mapKeys.push(key);
+          mapValues.push(value);
+        });
+
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual([categoryName]);
+      expect(mapValues).toEqual([expectedOutput]);
+    });
   });
 });
