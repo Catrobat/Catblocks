@@ -1,4 +1,5 @@
 import { FileLoader } from './file_loader';
+import $ from 'jquery';
 
 /**
  * Initialize Drag & Drop Field and handle Files.

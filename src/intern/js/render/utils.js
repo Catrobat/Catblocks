@@ -5,6 +5,7 @@ import { FileLoader } from './file_loader';
 import { FileDropper } from './file_dropper';
 import { PasteListener } from './paste_listener';
 import { CatBlocks } from '../../../library/js/lib_share';
+import $ from 'jquery';
 
 /**
  * Gets the requested param from a passed URLSearchParam

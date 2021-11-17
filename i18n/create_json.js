@@ -33,7 +33,8 @@ const prepareStringFolderName = dirname => dirname.replace('values-', '').replac
  * Escape received string values from strings xml and return value
  * @param {*} value
  */
-const escapeStringValue = value => (value ? value.replace(/\r?\n|\r|\\n|\\"/g, '') : '');
+const escapeStringValue = value => (value ? value.replace(/\r?\n|\r|\\n|\\"/g, '') : '').replace(/\\'/g, "'").replace(
+  '        ',' ');
 
 /**
  * Parse json string stream from catroid string files and return object for value substitution

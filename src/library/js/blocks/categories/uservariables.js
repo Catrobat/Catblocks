@@ -1,7 +1,3 @@
-/**
- * @description data Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -471,44 +467,6 @@ export default {
       }
     ]
   },
-  ReadListFromDeviceBrick: {
-    message0: '%{BKY_DATA_READLISTFROMDEVICE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  WriteListOnDeviceBrick: {
-    message0: '%{BKY_DATA_WRITELISTONDEVICE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
   ClearUserListBrick: {
     message0: '%{BKY_DATA_CLEARUSERLIST}',
     args0: [
@@ -638,25 +596,6 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'WRITE_FILENAME_INFO'
-      }
-    ]
-  },
-  WriteEmbroideryToFileBrick: {
-    message0: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
       }
     ]
   }

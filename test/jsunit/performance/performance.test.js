@@ -1,43 +1,47 @@
 /**
  * @description Block tests
  */
-/* global CatBlocks, page, SERVER */
+/* global $, page, SERVER, Test */
 /* eslint no-global-assign:0 */
 'use strict';
+
+/**
+ * Wait for the browser to fire an event (including custom events)
+ * @param {string} eventName - Event name
+ * @returns {Promise} resolves when event fires or timeout is reached
+ */
+async function waitForEvent(eventName) {
+  return page.evaluate(pEventName => {
+    return new Promise(resolve => {
+      $('body').one(pEventName, resolve);
+    });
+  }, eventName);
+}
 
 describe('Performance tests', () => {
   beforeAll(async () => {
     await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-    page.on('console', message => console.log(message.text()));
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   test('Rendering test program takes less than 30 seconds', async () => {
-    jest.setTimeout(40000);
-
     const startTime = await page.evaluate(() => {
       return performance.now();
     });
 
     await page.evaluate(() => {
-      return CatBlocks.render('assets', 'share');
+      return Test.CatBlocks.render('assets', 'share');
     });
 
-    // TODO: rewrite after fixing container height to use page.click
-    await page.evaluate(async () => {
-      const modalPromise = () => {
-        return new Promise(resolve => {
-          $('body').one('hidden.bs.modal', () => {
-            resolve();
-          });
-        });
-      };
-
-      const $containers = $('.catblocks-scene');
-      for (const $container of $containers) {
-        $container.click();
-        await modalPromise();
-      }
-    });
+    const headerHandles = await page.$$('.catblocks-scene');
+    for (const handle of headerHandles) {
+      await handle.click();
+      await waitForEvent('hidden.bs.modal');
+    }
 
     const endTime = await page.evaluate(() => {
       return performance.now();
@@ -45,7 +49,7 @@ describe('Performance tests', () => {
 
     const durationInSeconds = (endTime - startTime) / 1000;
     expect(durationInSeconds).toBeLessThan(30);
-  });
+  }, 40000);
 
   test('Sample Debuggable Test', async () => {
     const result = await page.evaluate(() => {

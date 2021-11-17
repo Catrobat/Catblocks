@@ -3,6 +3,7 @@ import { Parser } from '../../common/js/parser/parser';
 import './catblocks_msgs';
 import './blocks';
 import { preparePaths } from './lib_utils';
+import $ from 'jquery';
 
 let catblocks_instance = undefined;
 

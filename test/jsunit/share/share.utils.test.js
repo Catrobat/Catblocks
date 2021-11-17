@@ -1,137 +1,176 @@
 /**
  * @description Share utils tests
  */
-/* global page, SERVER, shareUtils, shareWS */
+/* global page, SERVER, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
 beforeEach(async () => {
   await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
-  page.on('console', message => console.log(message.text()));
+  page.on('console', message => {
+    if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+      console.log(message.text());
+    }
+  });
 });
 
 describe('Share utilities testing', () => {
   test('Parsing share options performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const o1 = {
-          a: 1,
-          b: 'bb',
-          c: {
-            'c.a': 'ccaa'
-          }
-        };
-        const o2 = {
-          b: 'bbb',
-          c: {
-            'c.a': 'ccaaa',
-            'c.b': 'ccbb'
-          },
-          d: 'd',
-          e: {
-            'e.a': 'eeaa'
-          }
-        };
+    const object1 = {
+      a: 1,
+      b: 'bb',
+      c: {
+        'c.a': 'ccaa'
+      }
+    };
+    const object2 = {
+      b: 'bbb',
+      c: {
+        'c.a': 'ccaaa',
+        'c.b': 'ccbb'
+      },
+      d: 'd',
+      e: {
+        'e.a': 'eeaa'
+      }
+    };
 
-        return (
-          JSON.stringify(shareUtils.parseOptions(o1, o2)) ===
-          JSON.stringify({ b: 'bb', c: { 'c.a': 'ccaa' }, d: 'd', e: { 'e.a': 'eeaa' }, a: 1 })
-        );
-      })
-    ).toBeTruthy();
+    const options = await page.evaluate(
+      (pObject1, pObject2) => {
+        return Test.ShareUtils.parseOptions(pObject1, pObject2);
+      },
+      object1,
+      object2
+    );
+
+    expect(options).toEqual({
+      a: 1,
+      b: 'bb',
+      c: {
+        'c.a': 'ccaa'
+      },
+      d: 'd',
+      e: {
+        'e.a': 'eeaa'
+      }
+    });
   });
 
   test('Inject dom node performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const shareTestContainer = document.getElementById('shareprogs');
-        const newDom = shareUtils.injectNewDom(
-          shareTestContainer,
-          'P',
-          { id: 'tid', class: 'tclass1 tclass2' },
-          'tinnerText'
-        );
-        return (
-          newDom !== undefined &&
-          newDom.tagName.toLowerCase() === 'p' &&
-          newDom.id === 'tid' &&
-          newDom.className === 'tclass1 tclass2' &&
-          newDom.innerText === 'tinnerText' &&
-          newDom.parentNode === shareTestContainer
-        );
-      })
-    ).toBeTruthy();
+    const parentID = 'shareprogs';
+    const tag = 'p';
+    const id = 'tid';
+    const classes = 'tclass1 tclass2';
+    const innerText = 'tinnerText';
+
+    await page.evaluate(
+      (pParentID, pTag, pID, pClass, pText) => {
+        const shareTestContainer = document.getElementById(pParentID);
+        Test.ShareUtils.injectNewDom(shareTestContainer, pTag, { id: pID, class: pClass }, pText);
+      },
+      parentID,
+      tag,
+      id,
+      classes,
+      innerText
+    );
+
+    const parentHandle = await page.$(`#${parentID}`);
+    const realID = await parentHandle.$eval(tag, x => x.id);
+    expect(realID).toBe(id);
+
+    const realClass = await parentHandle.$eval(tag, x => x.className);
+    expect(realClass).toBe(classes);
+
+    const reallInnerText = await parentHandle.$eval(tag, x => x.innerText);
+    expect(reallInnerText).toBe(innerText);
   });
 
   test('Wrapping xml performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const xmlDoc = new DOMParser().parseFromString(
-          '<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>',
-          'text/xml'
-        );
-        const wrappedDoc = shareUtils.wrapElement(xmlDoc.firstChild, 'twrapper', { tattr: 'tvalue' });
+    const xmlString = '<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>';
+    const tag = 'twrapper';
+    const attr = 'tvalue';
 
-        return (
-          wrappedDoc !== undefined &&
-          wrappedDoc.tagName.toLowerCase() === 'twrapper' &&
-          wrappedDoc.getAttribute('tattr') === 'tvalue' &&
-          wrappedDoc.firstChild.tagName.toLowerCase() === 'scene'
-        );
-      })
-    ).toBeTruthy();
+    const [realTag, realAttr, realChild] = await page.evaluate(
+      (pXML, pTag, pAttr) => {
+        const xmlDoc = new DOMParser().parseFromString(pXML, 'text/xml');
+
+        const wrappedDoc = Test.ShareUtils.wrapElement(xmlDoc.firstChild, pTag, { tattr: pAttr });
+
+        return [
+          wrappedDoc.tagName.toLowerCase(),
+          wrappedDoc.getAttribute('tattr'),
+          wrappedDoc.firstChild.tagName.toLowerCase()
+        ];
+      },
+      xmlString,
+      tag,
+      attr
+    );
+
+    expect(realTag).toBe(tag);
+    expect(realAttr).toBe(attr);
+    expect(realChild).toBe('scene');
   });
 
   test('Remove all children performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const xmlDoc = new DOMParser().parseFromString(
-          '<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>',
-          'text/xml'
-        );
-        shareUtils.removeAllChildren(xmlDoc);
+    const xmlString = '<scene id="tscene" class="value"><block class="tclass">innerValue</block></scene>';
 
-        return xmlDoc.childElementCount === 0;
-      })
-    ).toBeTruthy();
+    const count = await page.evaluate(pXML => {
+      const xmlDoc = new DOMParser().parseFromString(pXML, 'text/xml');
+      Test.ShareUtils.removeAllChildren(xmlDoc);
+
+      return xmlDoc.childElementCount;
+    }, xmlString);
+
+    expect(count).toBe(0);
   });
 
   test('Get dom element performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        return (
-          shareUtils.getDomElement('shareprogs') === document.getElementById('shareprogs') &&
-          shareUtils.getDomElement('#share .injectionDiv') === shareWS.injectionDiv_
-        );
-      })
-    ).toBeTruthy();
+    const [result1, result2] = await page.evaluate(() => {
+      return [
+        Test.ShareUtils.getDomElement('shareprogs') === document.getElementById('shareprogs'),
+        Test.ShareUtils.getDomElement('#share .injectionDiv') === Test.Share.workspace.injectionDiv_
+      ];
+    });
+    expect(result1).toBeTruthy();
+    expect(result2).toBeTruthy();
   });
 
   test('Has children function performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        const xmlDoc = new DOMParser().parseFromString(
-          '<scene id="tscene" class="value"><block class="tclass">innerValue1</block><block class="tclass">innerValue2</block></scene>',
-          'text/xml'
-        );
+    const xmlString =
+      '<scene id="tscene" class="value"><block class="tclass">innerValue1</block><block class="tclass">innerValue2</block></scene>';
 
-        return (
-          shareUtils.hasChildren(xmlDoc) &&
-          shareUtils.hasChildren(xmlDoc.firstChild) &&
-          shareUtils.hasChildren(xmlDoc.firstChild.firstChild)
-        );
-      })
-    ).toBeTruthy();
+    const [result1, result2, result3] = await page.evaluate(pXML => {
+      const xmlDoc = new DOMParser().parseFromString(pXML, 'text/xml');
+
+      return [
+        Test.ShareUtils.hasChildren(xmlDoc),
+        Test.ShareUtils.hasChildren(xmlDoc.firstChild),
+        Test.ShareUtils.hasChildren(xmlDoc.firstChild.firstChild)
+      ];
+    }, xmlString);
+
+    expect(result1).toBeTruthy();
+    expect(result2).toBeTruthy();
+    expect(result3).toBeTruthy();
   });
 
   test('Trimming string performs properly', async () => {
-    expect(
-      await page.evaluate(() => {
-        return (
-          shareUtils.trimString('A very long string, which will get trimmed trimString') === 'A very long str...' &&
-          shareUtils.trimString('Another long string', 5) === 'Anoth...'
-        );
-      })
-    ).toBeTruthy();
+    const string1 = 'A very long string, which will get trimmed trimString';
+    const string2 = 'Another long string';
+    const countFor2 = 5;
+
+    const [trim1, trim2] = await page.evaluate(
+      (pString1, pString2, pCount) => {
+        return [Test.ShareUtils.trimString(pString1), Test.ShareUtils.trimString(pString2, pCount)];
+      },
+      string1,
+      string2,
+      countFor2
+    );
+
+    expect(trim1).toBe(string1.substr(0, 15) + '...');
+    expect(trim2).toBe(string2.substr(0, countFor2) + '...');
   });
 });

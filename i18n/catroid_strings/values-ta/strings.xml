@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Catroid: An on-device visual programming system for Android devices
-  ~ Copyright (C) 2010-2018 The Catrobat Team
+  ~ Copyright (C) 2010-2021 The Catrobat Team
   ~ (<http://developer.catrobat.org/credits>)
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -21,41 +21,42 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- General terms -->
-    <string name="stage">மேடை</string>
-    <string name="play">விளையாடு</string>
-    <string name="settings">அமைவுகள்</string>
-    <string name="redo">மறுபடியும் செய்</string>
-    <string name="undo">செயல்தவிர்</string>
-    <string name="new_option">புதியவை&#8230;</string>
-    <string name="confirm">உறுதிசெய்</string>
-    <string name="ignore">Ignore</string>
-    <string name="cancel">தவிர்</string>
+    <string name="stage">நிகழ்விடம்</string>
+    <string name="play">நிகழ்த்து</string>
+    <string name="settings">செயலமைவுகள்</string>
+    <string name="redo">முன்செல்</string>
+    <string name="undo">பின்நிகழ்த்து</string>
+    <string name="new_option">புதிய&#8230;</string>
+    <string name="edit_option">தொகுத்திடு&#8230;</string>
+    <string name="confirm">உறுதிபடுத்து</string>
+    <string name="ignore">தவிர்த்திடு</string>
+    <string name="cancel">பின்னெடு</string>
     <string name="save">சேமி</string>
+    <string name="discard">புறக்கணி</string>
     <string name="next">அடுத்து</string>
-    <string name="back">பின்செல்</string>
-    <string name="ok">சரி</string>
+    <string name="ok">ஆம்</string>
     <string name="done">முடிந்தது</string>
     <string name="close">மூடு</string>
-    <string name="assistant">Assistant</string>
-    <string name="yes">அமாம்</string>
+    <string name="assistant">உதவியாளர்</string>
+    <string name="yes">ஆமாம்</string>
     <string name="no">இல்லை</string>
-    <string name="once">Once</string>
-    <string name="always">Always</string>
-    <string name="deny">Deny</string>
-    <string name="disagree">மறுக்கிறேன்</string>
-    <string name="accept">Accept</string>
-    <string name="decline">Decline</string>
-    <string name="select_all">அனைத்தையும் தேர்ந்தெடு</string>
+    <string name="once">ஒருமுறை</string>
+    <string name="always">எப்போதும்</string>
+    <string name="deny">மறுத்துவிடு</string>
+    <string name="do_not_show_again">மீண்டும் காட்ட வேண்டாம்</string>
+    <string name="accept">ஏற்றுக்கொள்</string>
+    <string name="decline">மறுத்துவிடு</string>
+    <string name="select_all">எல்லாவற்றையும் தேர்ந்தெடு</string>
     <string name="deselect_all">அனைத்தையும் தேர்வுநீக்கு</string>
     <string name="skip">தவிர்</string>
     <string name="warning">எச்சரிக்கை</string>
-    <string name="error">தவறு</string>
+    <string name="error">பிழை</string>
     <string name="loading">ஏற்றுதல்&#8230;</string>
-    <string name="please_wait">தயவு செய்து காத்திருக்கவும்</string>
-    <string name="search_hint">தேடல்&#8230;</string>
-    <string name="backpack_add">பையில் வை</string>
+    <string name="please_wait">தயவுசெய்து காத்திருக்கவும்</string>
+    <string name="search_hint">தேடு…</string>
+    <string name="backpack_add">பின்சுமைப்பையில் சேர்</string>
     <string name="share_website_text">share.catrob.at</string>
     <!-- Security warning dialog -->
     <string name="security_warning_dialog_msg">The project you have downloaded listens to your voice
@@ -64,48 +65,80 @@
         project is running is safe. In case of doubt, please delete the downloaded project.
         You may also report the project on its page on the Catrobat community platform in case
         you are sure that it is harmful.</string>
+    <!-- Replace Api dialog -->
+    <string name="api_replacement_dialog_neutral">மாற்றம் இல்லாமல் பதிவேற்று</string>
+    <string name="api_replacement_dialog_accept">மாற்றப்பட்ட விசைகளுடன் பதிவேற்று</string>
+    <string name="api_replacement_dialog_warning">The project contains bricks that access the
+        web, and also seems to contain API keys. Please see %1s why
+        uploading these keys can be dangerous.</string>
+    <string name="api_replacement">பநிஇ (API) விசையை இங்கே செருகவும்</string>
+    <!-- -->
     <!-- Login/Logout Mechanism -->
     <string name="loading_check_oauth_token">உள்நுழைவு தரவைச் சரிபார்க்கிறது&#8230;</string>
-    <string name="loading_google_exchange_code">கூகிள் உள்நுழைவு தரவைப் பரிமாறிக்கொள்கிறது&#8230;</string>
-    <string name="loading_google_login">எங்கள் சேவையகத்தில் கூகிள் உள்நுழைவு முடிந்தது&#8230;</string>
-    <string name="delete_account">என்னுடைய கணக்கை அழித்துவிடு</string>
-    <string name="logout_successful">வெளியேறல் வெற்றி</string>
+    <string name="loading_google_exchange_code">கூகுள் உள்நுழைவு தரவைப் பரிமாறிக்கொள்கிறது&#8230;</string>
+    <string name="loading_google_login">எங்கள் சேவையகத்தில் கூகுள் உள்நுழைவு நிறைவடைந்தது&#8230;</string>
+    <string name="logout_successful">வெளியேறல் வெற்றியாயிற்று</string>
     <string name="degrees">டிகிரிக்கள்</string>
     <string name="background">பின்னணி</string>
-    <string name="landscape">நிலப்பரப்பு</string>
-    <string name="portrait">சித்திரப் படிவம்</string>
-    <string name="unknown">தெரியாத</string>
+    <string name="landscape">நிலப்படம்</string>
+    <string name="portrait">முகப்படம்</string>
+    <string name="unknown">அறியாதவை</string>
     <string name="disconnect">துண்டி</string>
     <!--  -->
     <!-- Main Menu -->
-    <string name="main_menu_continue">தொடர்ந்து</string>
+    <string name="main_menu_continue">திட்டப்பணியைத் தொடர்க</string>
     <string name="main_menu_new">புதிய</string>
     <string name="main_menu_programs">சாதனத்தில் உள்ள திட்டங்கள்</string>
     <string name="main_menu_help">உதவி</string>
-    <string name="main_menu_web">கேட்ரோபாட் சமூகம்</string>
-    <string name="main_menu_upload">பதிவேற்றவும்</string>
-    <string name="main_menu_rate_app">எங்களுக்கு மதிப்பிடுக!</string>
-    <string name="main_menu_terms_of_use">பயன்பாட்டு விதிகள் மற்றும் சேவைகள்</string>
-    <string name="main_menu_privacy_policy">தனிமனித உரிமை கொள்கை</string>
-    <string name="main_menu_about">இந்த பயன்பாட்டை பற்றி</string>
+    <string name="main_menu_web">கற்றோபாட்டுச் சமூகம்</string>
+    <string name="main_menu_upload">திட்டப்பணி ஏற்றுக</string>
+    <string name="main_menu_rate_app">எங்களை மதிப்பிடுக!</string>
+    <string name="main_menu_terms_of_use">பயன்பாட்டு மற்றும் சேவை விதிமுறைகள்</string>
+    <string name="main_menu_privacy_policy">சுய செயலிட கொள்கை</string>
+    <string name="main_menu_about">இச் செயலி பற்றி</string>
     <string name="main_menu_login">உள்நுழை</string>
     <string name="main_menu_logout">வெளியேறு</string>
-    <string name="main_menu_scratch_converter">கீறல் மாற்றி</string>
-    <string name="main_menu_play_store_not_installed">ஆப் ஸ்டோர் கிடைக்கவில்லை</string>
+    <string name="main_menu_scratch_converter">Scratch மாற்றி</string>
+    <string name="main_menu_play_store_not_installed">செயலிக் கடை அகப்படவில்லை</string>
     <!--  -->
     <!-- Marketing activity -->
-    <string name="marketing_created_with">உருவாக்கம்</string>
+    <string name="marketing_created_with">உருவாக்குத் துணை</string>
     <string name="marketing_app_details">இந்த பயன்பாட்டை பற்றி விவரம்</string>
     <string name="marketing_more_on_google_play">ஆப் ஸ்டோரில் கூடுதல் பயன்பாடுகள்</string>
+    <string name="error_cannot_open_huawei_app_gallery">Whoops! Failed to open Huawei AppGallery,
+        please try again later.</string>
+    <string name="google_play_store_logo">கூகுள் பிளே அங்காடி</string>
+    <string name="huawei_app_gallery">அவ்வாய் செயலிக் கூடம்</string>
     <!-- NFC activity -->
-    <string name="nfc_activity_title">NFC tags</string>
+    <string name="nfc_activity_title">NFC குறிச்சொற்கள்</string>
     <!-- Settings activity -->
     <string name="preference_title">அமைப்புகள்</string>
     <string name="preference_title_language">மொழி</string>
     <string name="preference_description_language">பயன்பாட்டு மொழியை மாற்றி அமைக்கவும்</string>
-    <string name="preference_title_web_access">Web access</string>
-    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
-    <string name="preference_screen_web_access_title">Edit trusted domains</string>
+    <string name="preference_title_web_access">வலை அணுகல்</string>
+    <string name="preference_description_web_access">நம்பகமானச் செயற்களங்களைத் திருத்து அல்லது சேர் அல்லது நீக்கு</string>
+    <string name="preference_screen_web_access_title">நம்பகமானச் செயற்களத்தைத் திருத்து</string>
+    <string name="preference_title_ai">செயற்கை நுண்ணறிவு (AI) நீட்டிப்பு</string>
+    <string name="preference_description_ai">AI கட்டுமானங்கற்கள் மற்றும் சென்சார்களை இயக்கு</string>
+    <string name="preference_title_ai_speech_recognition">Speech
+        recognition</string>
+    <string name="preference_description_ai_speech_recognition">Enable
+        speech recognition bricks and sensors</string>
+    <string name="preference_title_ai_speech_synthetization">Speech
+        synthetization</string>
+    <string name="preference_description_ai_speech_synthetization">Enable
+        speech synthetization bricks and sensors</string>
+    <string name="preference_title_ai_face_detection">Face
+        detection</string>
+    <string name="preference_description_ai_face_detection">Enable
+        face detection bricks and sensors</string>
+    <string name="preference_title_ai_pose_detection">போஸ் கண்டறிதல்</string>
+    <string name="preference_description_ai_pose_detection">Enable
+        pose detection bricks and sensors</string>
+    <string name="preference_title_ai_text_recognition">Text
+        recognition</string>
+    <string name="preference_description_ai_text_recognition">Enable
+        text recognition bricks and sensors</string>
     <string name="preference_title_accessibility">அணுகல்தன்மை</string>
     <string name="preference_description_accessibility">செயலியின் தோற்றத்தை மாற்றவும்</string>
     <string name="preference_title_accessibility_profiles">அணுகல் சுயவிவரங்கள்</string>
@@ -181,11 +214,11 @@
     <string name="preference_raspi_host">ராஸ்பெர்ரி பை ஐபி- / ஹோஸ்ட்-முகவரி</string>
     <string name="preference_raspi_port">ராஸ்பெர்ரி பை போர்ட்</string>
     <!--  -->
-    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
+    <string name="preference_title_multiplayer_variables_enabled">மல்டிபிளேயர் நீட்டிப்பு</string>
     <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
         multiplayer variables shared via Bluetooth</string>
-    <string name="preference_title_enable_test_bricks">Testing extension</string>
-    <string name="preference_description_test_bricks">Allows to create tests</string>
+    <string name="preference_title_enable_test_bricks">சோதனை நீட்டிப்பு</string>
+    <string name="preference_description_test_bricks">சோதனைகளை உருவாக்க அனுமதிக்கிறது</string>
     <!-- Scratch Converter activity -->
     <string name="beta">பீட்டா</string>
     <string name="error_scratch_program_not_accessible_any_more">அச்சச்சோ! திட்டம் மறைந்துவிட்டதாக தெரிகிறது
@@ -205,9 +238,9 @@
 முதலில் அதை பதிவிறக்கம் செய்து பின்னர் திறக்கவும்.</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">என்னால் %1$s ஐ மாற்ற முடியவில்லை. இது %2$s க்கு முந்தைய பழைய கீறல் திட்டமாகத் தெரிகிறது. தயவுசெய்து இன்னொன்றை முயற்சிக்கவும்.</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
-        <item quantity="one">நீங்கள் ஒரே நேரத்தில்% d திட்டத்தை விட அதிகமாக மாற்ற முடியாது. தயவுசெய்து காத்திருங்கள்
+        <item quantity="one">நீங்கள் ஒரே நேரத்தில் %d திட்டத்தை விட அதிகமாக மாற்ற முடியாது. தயவுசெய்து காத்திருங்கள்
             முதலில் முடித்த மாற்றங்களை இயக்குகிறது.</item>
-        <item quantity="other">நீங்கள் ஒரே நேரத்தில்% d திட்டத்தை விட அதிகமாக மாற்ற முடியாது. தயவுசெய்து காத்திருங்கள்
+        <item quantity="other">நீங்கள் ஒரே நேரத்தில் %d திட்டத்தை விட அதிகமாக மாற்ற முடியாது. தயவுசெய்து காத்திருங்கள்
             முதலில் முடித்த மாற்றங்களை இயக்குகிறது.</item>
     </plurals>
     <string name="error_cannot_open_failed_scratch_program">திட்டத்தை நீங்கள் திறக்க முடியாது, ஏனெனில் அது         சரியாக மாற்றப்படவில்லை. அதை மீண்டும் மாற்ற முயற்சிக்கவும்.</string>
@@ -217,8 +250,8 @@
     <string name="authentication_failed">சேவையுடனான உங்கள் இணைப்பில் சிக்கல் இருப்பதாகத் தெரிகிறது. தயவு செய்து
         கேட்ரோபாட் குழுவைத் தொடர்பு கொள்ளுங்கள்.</string>
     <plurals name="scratch_conversion_scheduled_x">
-        <item quantity="one">வரிசையில்% d கீறல் திட்டம் சேர்க்கப்பட்டது&#8230;</item>
-        <item quantity="other">வரிசையில்% d கீறல் திட்டம் சேர்க்கப்பட்டது&#8230;</item>
+        <item quantity="one">வரிசையில் %d கீறல் திட்டம் சேர்க்கப்பட்டது&#8230;</item>
+        <item quantity="other">வரிசையில் %d கீறல் திட்டம் சேர்க்கப்பட்டது&#8230;</item>
     </plurals>
     <string name="scratch_conversion_started">கீறல் திட்டத்தை மாற்றத் தொடங்கியது&#8230;</string>
     <string name="convert">மாற்று</string>
@@ -228,12 +261,12 @@
     <string name="status_started">தொடங்கியது&#8230;</string>
     <string name="status_conversion_finished">மாற்றம் பூர்த்தியானது</string>
     <plurals name="status_in_progress_x_jobs">
-        <item quantity="one">செயலில் உள்ளது:% d வேலை</item>
-        <item quantity="other">செயலில் உள்ளது:% d வேலை</item>
+        <item quantity="one">செயலில் உள்ளது: %d வேலை</item>
+        <item quantity="other">செயலில் உள்ளது: %d வேலை</item>
     </plurals>
     <plurals name="status_completed_x_jobs">
-        <item quantity="one">முடிந்தது:% d வேலை</item>
-        <item quantity="other">முடிந்தது:% d வேலை</item>
+        <item quantity="one">முடிந்தது: %d வேலை</item>
+        <item quantity="other">முடிந்தது: %d வேலை</item>
     </plurals>
     <string name="status_conversion_failed">மாற்றம் தோல்வியுற்றது!</string>
     <string name="status_downloading">பதிவிறக்கம் நடைபெறுகிறுது&#8230;</string>
@@ -241,7 +274,7 @@
     <string name="status_download_canceled">பதிவிறக்கம் ரத்து செய்யப்பட்டது!</string>
     <string name="scratch_programs_in_progress_title">செயலில் உள்ளது</string>
     <string name="scratch_programs_finished_title">மாற்றப்பட்ட திட்டங்கள்</string>
-    <string name="by_x">மூலம் %s</string>
+    <string name="by_x">மூலம் %1$s</string>
     <string name="warning_program_visibility">எச்சரிக்கை: \ n இது ஒரு தனியார் திட்டமாகத் தெரிகிறது. நீங்கள் அதை மாற்ற முயற்சி செய்யலாம், ஆனால் அது வேலை செய்யாமல் போகலாம்.</string>
     <string name="instructions">அறிவுறுத்தல்கள்</string>
     <string name="notes_and_credits">குறிப்புகள் மற்றும் வரவுகள்</string>
@@ -254,20 +287,20 @@
     <string name="mode">வகை:</string>
     <string name="remix_of">ரீமிக்ஸ்:</string>
     <string name="description_hint">செய்தி விளக்கம் சேர்க்க</string>
-    <string name="notes_and_credits_hint">Press to add notes and credits</string>
+    <string name="notes_and_credits_hint">குறிப்புகள் மற்றும் வரவுகளைச் சேர்க்க அழுத்தவும்</string>
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">இந்த திட்டத்தை %1$s க்கு முன்பு மாற்றியுள்ளீர்கள்.</string>
     <plurals name="minutes">
         <item quantity="one">%d நிமிடம்</item>
-        <item quantity="other">% d நிமிடங்கள்</item>
+        <item quantity="other">%d நிமிடங்கள்</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">% d மணி</item>
-        <item quantity="other">% d மணிநேரம்</item>
+        <item quantity="one">%d மணி</item>
+        <item quantity="other">%d மணிநேரம்</item>
     </plurals>
     <plurals name="days">
-        <item quantity="one">% d நாள்</item>
-        <item quantity="other">% d நாட்கள்</item>
+        <item quantity="one">%d நாள்</item>
+        <item quantity="other">%d நாட்கள்</item>
     </plurals>
     <string name="reconvert_dialog_download">திட்டத்தை மீண்டும் பதிவிறக்கவும்</string>
     <string name="reconvert_dialog_reconvert">இந்த திட்டத்தை மீண்டும் மாற்றவும்</string>
@@ -285,6 +318,7 @@
     <string name="name_empty">ஒரு உரையை உள்ளிடவும்</string>
     <!-- Recycler View -->
     <string name="am_empty_list">இந்த பட்டியலில் இதுவரை எந்த உருப்படிகளும் இல்லை. முதலில் சிலவற்றைச் சேர்க்கவும்.</string>
+    <string name="reject_import">நடிகர் அல்லது பொருளைச் சேர்க்க முடியவில்லை.</string>
     <string name="am_merge_error">ஒன்றிணைத்தல் எதுவும் செய்யப்படவில்லை. ஒன்றிணைக்க சரியாக 2 திட்டங்கள் தேர்ந்தெடுக்கப்பட வேண்டும்.</string>
     <string name="am_backpack">கட்டு</string>
     <string name="am_unpack">கட்டைப்பிரி</string>
@@ -303,6 +337,10 @@
     <string name="merge">ஒன்றுசேர்</string>
     <string name="show_details">விவரங்கள் காண்பி</string>
     <string name="hide_details">விவரங்களை மறை</string>
+    <string name="project_options">திட்ட விருப்பங்கள்</string>
+    <string name="from_library">Add from library</string>
+    <string name="sort_projects">வரிசைப்படுத்து</string>
+    <string name="unsort_projects">Unsort</string>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">புதிய காட்சி</string>
     <!-- Delete Dialog Titles -->
@@ -345,16 +383,21 @@
     <string name="nfc_tag_name_label">NFC குறிச்சொல் பெயர்</string>
     <string name="string_label">உரை</string>
     <string name="data_label">பெயர்</string>
-    <string name="keyword_label">Insert keyword</string>
-    <string name="html_label">Insert HTML text</string>
-    <string name="Image_format_not_supported">Image format not supported</string>
+    <string name="keyword_label">தேடு…</string>
+    <string name="html_label">HTML உரையைச் செருகவும்</string>
+    <string name="Image_format_not_supported">பட வடிவம் ஆதரிக்கப்படவில்லை</string>
+    <string name="import_conflicting_variables">நடிகர் அல்லது பொருளைச் சேர்க்க முடியவில்லை.</string>
+    <string name="import_conflicting_variables_reason">The reason is that the following variable or
+        list names are in conflict because they are used for
+        all actors and objects and with the same name also for only one of the actors or objects: </string>
+    <string name="import_conflicting_variables_try_again">Please rename one of these variables or lists and try again.</string>
     <!-- Details -->
     <string name="project_details">கடைசி அணுகல்: %s, அளவு: %s</string>
     <string name="last_access_today">இன்று %s</string>
     <string name="scene_details">நடிகர்கள் %d மற்றும் %d பொருள்கள் %d</string>
     <string name="sprite_details">செங்கல் %d தோற்றம் %d ஒலி %d</string>
     <string name="look_details">தீர்மானம் %s அளவு %s</string>
-    <string name="sound_duration">கால அளவு:%1$s</string>
+    <string name="sound_duration">கால அளவு: %s</string>
     <string name="sound_details">கால அளவு:%s, அளவு:%s</string>
     <!--  -->
     <!-- Rename Dialog Titles -->
@@ -367,47 +410,49 @@
     <string name="rename_data_dialog">மறுபெயர்</string>
     <!-- New Script Group Dialog -->
     <string name="new_group">புதிய குழு</string>
+    <string name="default_group_name">Group</string>
     <!-- New Scene Menu -->
     <string name="new_scene">புதிய காட்சி</string>
     <!-- Action Toasts -->
     <!-- Backpack -->
+    <string name="backpack_empty">Backpack empty. Nothing to unpack.</string>
     <plurals name="packed_scenes">
-        <item quantity="one">பேக் பேக் செய்யப்பட்ட% d காட்சி.</item>
-        <item quantity="other">பேக் பேக் செய்யப்பட்ட% d காட்சிகள்.</item>
+        <item quantity="one">பேக் பேக் செய்யப்பட்ட%d காட்சி.</item>
+        <item quantity="other">பேக் பேக் செய்யப்பட்ட%d காட்சிகள்.</item>
     </plurals>
     <plurals name="packed_sprites">
-        <item quantity="one">பேக் பேக் செய்யப்பட்ட% d நடிகர் அல்லது பொருள்.</item>
-        <item quantity="other">பேக் பேக் செய்யப்பட்ட% d நடிகர்கள் அல்லது பொருள்கள்.</item>
+        <item quantity="one">பேக் பேக் செய்யப்பட்ட%d நடிகர் அல்லது பொருள்.</item>
+        <item quantity="other">பேக் பேக் செய்யப்பட்ட%d நடிகர்கள் அல்லது பொருள்கள்.</item>
     </plurals>
     <plurals name="packed_looks">
-        <item quantity="one">பேக் பேக் செய்யப்பட்ட% d தோற்றம்.</item>
-        <item quantity="other">பேக் பேக் செய்யப்பட்ட% d தோற்றங்கள்.</item>
+        <item quantity="one">பேக் பேக் செய்யப்பட்ட%d தோற்றம்.</item>
+        <item quantity="other">பேக் பேக் செய்யப்பட்ட%d தோற்றங்கள்.</item>
     </plurals>
     <plurals name="packed_sounds">
-        <item quantity="one">பேக் பேக் செய்யப்பட்ட% d ஒலி.</item>
-        <item quantity="other">பேக் பேக் செய்யப்பட்ட% d ஒலிகள்.</item>
+        <item quantity="one">பேக் பேக் செய்யப்பட்ட%d ஒலி.</item>
+        <item quantity="other">பேக் பேக் செய்யப்பட்ட%d ஒலிகள்.</item>
     </plurals>
     <string name="packed_script_group">ஒரு ஸ்கிரிப்ட்  குழுவை பேக் பேக் செய்தது.</string>
     <!-- Unpack -->
     <plurals name="unpacked_scenes">
-        <item quantity="one">தொகுக்கப்படாத% d காட்சி.</item>
-        <item quantity="other">தொகுக்கப்படாத% d காட்சிகள்.</item>
+        <item quantity="one">தொகுக்கப்படாத %d காட்சி.</item>
+        <item quantity="other">தொகுக்கப்படாத %d காட்சிகள்.</item>
     </plurals>
     <plurals name="unpacked_sprites">
-        <item quantity="one">தொகுக்கப்படாத% d நடிகர் அல்லது பொருள்.</item>
-        <item quantity="other">தொகுக்கப்படாத % d நடிகர்கள் அல்லது பொருள்கள்.</item>
+        <item quantity="one">தொகுக்கப்படாத %d நடிகர் அல்லது பொருள்.</item>
+        <item quantity="other">தொகுக்கப்படாத %d நடிகர்கள் அல்லது பொருள்கள்.</item>
     </plurals>
     <plurals name="unpacked_looks">
-        <item quantity="one">தொகுக்கப்படாத% d தோற்றங்கள்.</item>
-        <item quantity="other">தொகுக்கப்படாத% d தோற்றம்.</item>
+        <item quantity="one">தொகுக்கப்படாத %d தோற்றங்கள்.</item>
+        <item quantity="other">தொகுக்கப்படாத %d தோற்றம்.</item>
     </plurals>
     <plurals name="unpacked_sounds">
-        <item quantity="one">தொகுக்கப்படாத% d ஒலி.</item>
-        <item quantity="other">தொகுக்கப்படாத% d ஒலிகள்.</item>
+        <item quantity="one">தொகுக்கப்படாத %d ஒலி.</item>
+        <item quantity="other">தொகுக்கப்படாத %d ஒலிகள்.</item>
     </plurals>
     <plurals name="unpacked_scripts">
-        <item quantity="one">தொகுக்கப்படாத% d ஸ்கிரிப்ட்.</item>
-        <item quantity="other">தொகுக்கப்படாத% d ஸ்கிரிப்ட்கள்.</item>
+        <item quantity="one">தொகுக்கப்படாத %d ஸ்கிரிப்ட்.</item>
+        <item quantity="other">தொகுக்கப்படாத %d ஸ்கிரிப்ட்கள்.</item>
     </plurals>
     <!-- Copy -->
     <plurals name="copied_scenes">
@@ -419,49 +464,54 @@
         <item quantity="other">%d நடிகர்கள் அல்லது பொருள்கள் நகலெடுக்கப்பட்டன.</item>
     </plurals>
     <plurals name="copied_looks">
-        <item quantity="one">% D தோற்றம் நகலெடுக்கப்பட்டது.</item>
-        <item quantity="other">நகலெடுக்கப்பட்ட% d தோற்றம்.</item>
+        <item quantity="one">%d தோற்றம் நகலெடுக்கப்பட்டது.</item>
+        <item quantity="other">நகலெடுக்கப்பட்ட%d தோற்றம்.</item>
     </plurals>
     <plurals name="copied_sounds">
-        <item quantity="one">% D ஒலி நகலெடுக்கப்பட்டது.</item>
-        <item quantity="other">% D ஒலிகளை நகலெடுத்தது.</item>
+        <item quantity="one">%d ஒலி நகலெடுக்கப்பட்டது.</item>
+        <item quantity="other">%d ஒலிகளை நகலெடுத்தது.</item>
     </plurals>
     <plurals name="copied_nfc_tags">
-        <item quantity="one">% D NFC குறிச்சொல் நகலெடுக்கப்பட்டது.</item>
-        <item quantity="other">% D NFC குறிச்சொற்கள் நகலெடுக்கப்பட்டன.</item>
+        <item quantity="one">%d NFC குறிச்சொல் நகலெடுக்கப்பட்டது.</item>
+        <item quantity="other">%d NFC குறிச்சொற்கள் நகலெடுக்கப்பட்டன.</item>
     </plurals>
     <!-- Delete -->
     <plurals name="deleted_projects">
-        <item quantity="one">% D திட்டம் நீக்கப்பட்டது.</item>
-        <item quantity="other">% D திட்டங்கள் நீக்கப்பட்டன.</item>
+        <item quantity="one">%d திட்டம் நீக்கப்பட்டது.</item>
+        <item quantity="other">%d திட்டங்கள் நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_scenes">
-        <item quantity="one">% D காட்சி நீக்கப்பட்டது.</item>
-        <item quantity="other">% D காட்சிகள் நீக்கப்பட்டன.</item>
+        <item quantity="one">%d காட்சி நீக்கப்பட்டது.</item>
+        <item quantity="other">%d காட்சிகள் நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_sprites">
-        <item quantity="one">% D ஸ்பிரிட் நீக்கப்பட்டது.</item>
-        <item quantity="other">% D ஸ்பிரிட்டுகள் நீக்கப்பட்டன.</item>
+        <item quantity="one">%d ஸ்பிரிட் நீக்கப்பட்டது.</item>
+        <item quantity="other">%d ஸ்பிரிட்டுகள் நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_looks">
-        <item quantity="one">% D காட்சி நீக்கப்பட்டது.</item>
-        <item quantity="other">% D காட்சிகள் நீக்கப்பட்டன.</item>
+        <item quantity="one">%d காட்சி நீக்கப்பட்டது.</item>
+        <item quantity="other">%d காட்சிகள் நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_sounds">
-        <item quantity="one">% D ஒலி நீக்கப்பட்டது.</item>
-        <item quantity="other">% D ஒலிகளை நீக்கப்பட்டன.</item>
+        <item quantity="one">%d ஒலி நீக்கப்பட்டது.</item>
+        <item quantity="other">%d ஒலிகளை நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_nfc_tags">
-        <item quantity="one">% D NFC குறிச்சொல் நீக்கப்பட்டது.</item>
-        <item quantity="other">% D NFC குறிச்சொற்கள் நீக்கப்பட்டது.</item>
+        <item quantity="one">%d NFC குறிச்சொல் நீக்கப்பட்டது.</item>
+        <item quantity="other">%d NFC குறிச்சொற்கள் நீக்கப்பட்டது.</item>
     </plurals>
     <plurals name="deleted_scripts">
-        <item quantity="one">% D ஸ்பிரிட் நீக்கப்பட்டது.</item>
-        <item quantity="other">% D ஸ்பிரிட்டுகள் நீக்கப்பட்டன.</item>
+        <item quantity="one">%d ஸ்பிரிட் நீக்கப்பட்டது.</item>
+        <item quantity="other">%d ஸ்பிரிட்டுகள் நீக்கப்பட்டன.</item>
     </plurals>
     <plurals name="deleted_Items">
-        <item quantity="one">% D உருப்படி நீக்கப்பட்டது.</item>
-        <item quantity="other">% D உருப்படிகளை நீக்கியது.</item>
+        <item quantity="one">%d உருப்படி நீக்கப்பட்டது.</item>
+        <item quantity="other">%d உருப்படிகளை நீக்கியது.</item>
+    </plurals>
+    <!-- Imported -->
+    <plurals name="imported_projects">
+        <item quantity="one">Imported %d project.</item>
+        <item quantity="other">Imported %d projects.</item>
     </plurals>
     <!--  -->
     <!-- ProjectListActivity and ProjectListFragment -->
@@ -475,7 +525,15 @@
     <string name="details_date_today">இன்று</string>
     <string name="import_project">செயற்திட்டத்தை இறக்குமதி செய்</string>
     <string name="error_import_project">திட்டங்களை இறக்குமதி செய்யும் போது ஏதோ தவறு ஏற்பட்டது.</string>
+    <string name="no_projects_selected">No projects selected for import</string>
     <string name="error_no_files_found">திட்ட கோப்புகள் எதுவும் கிடைக்கவில்லை.</string>
+    <!-- ProjectOptionsFragment -->
+    <string name="project_options_description">விளக்கம்</string>
+    <string name="project_options_notes_and_credits">குறிப்புகளும் பொதுவொப்புதல்களும்</string>
+    <string name="project_options_tags">குறிச்சொற்கள்</string>
+    <string name="project_options_aspect_ratio">Keep original aspect ratio</string>
+    <string name="project_options_more_details">More details</string>
+    <string name="project_options_delete_project">செயல்திட்டத்தை நீக்கு</string>
     <!-- ScriptListFragment -->
     <string name="fragment_script_text_description">ஸ்கிரிப்ட்களைச் சேர்க்க \"+\" தட்டவும்</string>
     <!--  -->
@@ -513,6 +571,7 @@
     <string name="local_vars_headline">இந்த நடிகர் அல்லது பொருளுக்கு மட்டுமே மாறுபாடுகள்</string>
     <string name="global_lists_headline">அனைத்து நடிகர்கள் மற்றும் பொருள்களுக்கான பட்டியல்கள்</string>
     <string name="local_lists_headline">இந்த நடிகர் அல்லது பொருளுக்கு மட்டுமே பட்டியல்கள்</string>
+    <string name="fragment_data_text_description">Tap \"+\" to add\nvariables or lists</string>
     <plurals name="user_defined_brick_input_headline">
         <item quantity="one">Input for this brick</item>
         <item quantity="other">Inputs for this brick</item>
@@ -540,6 +599,7 @@
     <!-- NewLookDialog -->
     <string name="new_look_dialog_title">தோற்றத்தைச் சேர்</string>
     <string name="add_look_from_camera">படம் எடு</string>
+    <string name="add_look_object_library">நூலகம்</string>
     <string name="add_look_draw_new_image">படத்தை வரையவும்</string>
     <string name="add_look_choose_image">படம் தேர்ந்தெடு</string>
     <string name="add_look_media_library">ஊடக நூலகம்</string>
@@ -567,81 +627,9 @@
         மற்றும் பிற சேவைகள். அவற்றின் துல்லியமான வடிவமைப்பிற்கு கீழே உள்ள இணைப்பைக் காண்க. \n</string>
     <string name="dialog_terms_of_use_link_text">பயன்பாட்டு விதிகள் மற்றும் சேவைகள்</string>
     <!--  -->
-    <!-- Terms of Use Dialog Parrot ARDrone-->
-    <string name="dialog_terms_of_use_link_text_parrot_reminder">பயன்பாட்டு விதிகள் மற்றும் சேவைகள்</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">Parrot\'s AR.Drone 2.0 உடன் சேர்ந்து இந்த பயன்பாட்டைப் பயன்படுத்த உள்ளீர்கள். கிளி மற்றும் கேட்ரோபாட்டின் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவைகள் இரண்டையும் பின்பற்றுமாறு நாங்கள் உங்களுக்கு கடுமையாக நினைவூட்டுகிறோம்.</string>
-    <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">மீண்டும் நினைவுபடுத்தாதே.</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot Jumping Sumo-->
-    <string name="dialog_terms_of_use_jumpingsumo_reminder_text">நீங்கள் இந்த பயன்பாட்டைப் பயன்படுத்தப் போகிறீர்கள்
-கிளியின் ஜம்பிங் சுமோ. கிளி மற்றும் கேட்ரோபாட்டின் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவைகள் இரண்டையும் பின்பற்றுமாறு நாங்கள் உங்களுக்கு கடுமையாக நினைவூட்டுகிறோம்.</string>
-    <!--  -->
     <!-- Privacy Policy -->
-    <string name="dialog_privacy_policy_title">தனிமனித உரிமை கொள்கை</string>
     <string name="disclaimer_privacy_police_header_headline">வருக!</string>
     <string name="disclaimer_privacy_policy_header">To use this app, please accept our</string>
-    <string name="dialog_privacy_policy_text">எங்கள் சேவைகள் மற்றும் அதனுடன் தொடர்புடைய கணக்கின் அனைத்து நன்மைகளையும் உங்களுக்கு வழங்க,
-         உங்களிடமிருந்து சில தரவைச் சேகரிப்பது அவசியம். \n\n
-
-         Services எங்கள் சேவைகளை (பயன்பாடுகள் மற்றும் வலைத்தளங்கள்) பராமரிக்கவும் மேம்படுத்தவும் மற்றும் ஐ.சி.டி மற்றும் விஞ்ஞான ஆராய்ச்சி செய்யவும்
-             STEM / STEAM கல்வி, நாங்கள் Google Analytics, Crashlytics மற்றும் Firebase ஐப் பயன்படுத்துகிறோம், இவை அனைத்தும் Google LLC (USA),
-             அத்துடன் டைனட்ரேஸ் எல்.எல்.ஏ (யு.எஸ்.ஏ) வழங்கும் டைனட்ரேஸ்
-             எங்கள் சேவைகளின் பயன்பாடு பற்றிய மெட்டாடேட்டா, எ.கா., செயலிழப்பு தகவல், நேர முத்திரைகள், பார்வையிட்ட பக்கங்கள் / திரைகள்,
-             எங்கள் பயன்பாடுகள் மற்றும் சேவைகளின் பயன்பாடு, பயன்படுத்தப்பட்ட இயக்க முறைமை மற்றும் பிணைய வழங்குநரைப் பற்றிய தகவல்கள்.  இந்த
-             பகுப்பாய்வு மற்றும் சேகரிக்கப்பட்ட தரவு உங்கள் சுயவிவரத்துடன் இணைக்கப்படவில்லை மற்றும் தனிப்பட்டவை எதுவும் இல்லை
-             தகவல் (ஐபி முகவரியின் கடைசி பிட்கள் அநாமதேயமாக்கப்படுகின்றன).  இருப்பினும், சேகரிக்கப்பட்ட தரவு கிடைக்கும்
-             சேவை வழங்குநருக்கு மாற்றப்பட்டது (கூகிள் எல்.எல்.சி, அமெரிக்கா மற்றும் டைனட்ரேஸ் எல்.எல்.சி, அமெரிக்கா).
-             கூகிள் எல்.எல்.சி மற்றும் டைனட்ரேஸ் எல்.எல்.சி உடனான ஒப்பந்தங்களின் அடிப்படையில் தரவு செயலாக்கம் செய்யப்படுகிறது.
-             சேவை வழங்குநருடனான இந்த உறவு ஐரோப்பிய ஒன்றியத்தின் பொது தரவுகளுடன் ஒத்துப்போகிறது
-             பாதுகாப்பு ஒழுங்குமுறை (EU GDPR) மற்றும் EU-USA \"தனியுரிமை கேடயம்\" ஒப்பந்தம். \n\n
-         Systems எங்கள் கணினிகளில் ஒரு கணக்கை உருவாக்கி பயன்படுத்தவும், உங்களைப் பற்றிய தேவையான மாற்றங்களைப் பற்றி உங்களுக்குத் தெரிவிக்கவும்
-             ஒரு மின்னஞ்சலுக்கான கணக்கு, எ.கா., எங்கள் பயன்பாட்டு விதிமுறைகள் மற்றும் சேவை விதிமுறைகள், எங்கள் சமூக விதிகள், அல்லது
-             எங்கள் கொள்கைகள், நாங்கள் உங்கள் பயனர்பெயரை சேமிப்போம், நீங்கள் வழங்கியிருந்தால், உங்கள் மின்னஞ்சல் முகவரி.  உன்னிடம் இருந்தால்
-             உங்கள் கூகிள் அல்லது பேஸ்புக் கணக்கு வழியாக உங்கள் கணக்கை இணைத்துள்ளோம், கூடுதலாக இணைக்கப்பட்ட அடையாள விசையை நாங்கள் சேமிக்கிறோம்
-             இந்த சேவைகளில் உங்கள் கணக்கில்.  இந்தத் தரவை வேறு எந்த (எ.கா., சந்தைப்படுத்தல்) நோக்கங்களுக்காகவும் நாங்கள் பயன்படுத்த மாட்டோம்,
-             அவ்வாறு செய்ய நீங்கள் எங்களை வெளிப்படையாக அனுமதிக்காவிட்டால். \n\n
-         A தன்னார்வ அடிப்படையில், பகிர்வில் உங்கள் கணக்கு பக்கத்தின் மூலம் நீங்கள் வசிக்கும் நாட்டை எங்களுக்கு வழங்கலாம்
-             தளம்.  இது உங்கள் பொது சுயவிவரத்தில் காண்பிக்கப்படும் மற்றும் புள்ளிவிவர மற்றும் ஆராய்ச்சிக்கு மட்டுமே பயன்படுத்தப்படும்
-             எங்களால் நோக்கங்கள்.  உங்கள் சுயவிவர அமைப்புகளில் எந்த நேரத்திலும் இதை அகற்றலாம். \n\n
-         Account உங்கள் கணக்கிற்கு சொந்தமான தனிப்பட்ட தரவின் பயன்பாட்டை எந்த நேரத்திலும் நீக்குவதன் மூலம் திரும்பப் பெறலாம்
-             https://share.catrob.at இல் உங்கள் சுயவிவரப் பக்கத்தின் மூலம் கணக்கு.  உங்கள் கணக்கை நீக்கிய பிறகு நீங்கள் இன்னும் இருப்பீர்கள்
-             வழங்கப்பட்ட சேவைகளைப் பயன்படுத்த முடியும், ஆனால் ஒத்துழைக்க முடியாது, எ.கா., பதிவேற்றும் நிரல்கள் மூலம்,
-             கருத்து தெரிவித்தல் அல்லது விரும்புவது.  மேலும், உங்கள் கணக்கில் இணைக்கப்பட்ட அனைத்து உள்ளடக்கங்களும், எ.கா., பதிவேற்றிய நிரல்கள்,
-             கருத்துகள் போன்றவை நீக்கப்படும். \n\n
-         Services எங்கள் சேவைகளை தவறாகப் பயன்படுத்துவதைத் தவிர்க்க, எ.கா., பயனர் பங்களித்த பதிவேற்றங்கள் அல்லது சட்டவிரோதமான கருத்துகள் மூலம்
-             நோக்கங்களுக்காக, பயனர் உருவாக்கிய அனைத்து பொது தரவுகளும் (பதிவேற்றங்கள், கருத்துகள்) ஒரு தரவுத்தளத்தில் உள்நாட்டில் சேமிக்கப்படும்,
-             நேர முத்திரை மற்றும் பயன்படுத்தப்பட்ட இணைய முகவரியுடன்.  இந்தத் தரவு பயன்படுத்தப்படாது அல்லது அனுப்பப்படாது
-             எந்தவொரு நிறுவனமும், போதுமான சட்டவிரோத நடவடிக்கைகள் நியாயமான முறையில் சந்தேகிக்கப்பட்டு அதிகாரப்பூர்வமாக உரிமை பெறாவிட்டால்
-             சட்ட நிறுவனங்கள் பொருந்தக்கூடிய சட்டத்தின் அடிப்படையில் அதைக் கோருகின்றன.  ஒவ்வொரு வழக்கும் ஒரு மீது முழுமையாக சோதிக்கப்படும்
-             முதலில் எங்களால் தனிப்பட்ட அடிப்படையில். \n\n
-         Http வழங்கப்பட்ட https://catrob.at/newsletter இல் நீங்கள் தானாக முன்வந்து கேட்ரோபாட் செய்திமடலுக்கு குழுசேரலாம்.
-             MailChimp சேவையின் மூலம் (தி ராக்கெட் சயின்ஸ் குரூப் LLC d / b / a MailChimp, USA).  நீங்கள் அப்போது செய்வீர்கள்
-             நீங்கள் வழங்கிய மின்னஞ்சல் முகவரிக்கு கேட்ரோபாட் திட்டம் மற்றும் அதன் சேவைகள் குறித்த புதுப்பிப்புகளைப் பெறுக.  நீங்கள் திரும்பப் பெறலாம்
-             ஒவ்வொரு செய்திமடலின் அடிக்குறிப்பிலும் \"குழுவிலக\" இணைப்பைப் பயன்படுத்தி எந்த நேரத்திலும் செய்திமடல்.  இந்த
-             செய்திமடல் MailChimp ஆல் வழங்கப்படுகிறது, அவருடன் தரவு செயலாக்க ஒப்பந்தம் உள்ளது, யார் உறுதிபூண்டுள்ளனர்
-             ஐரோப்பிய ஒன்றிய பொது தரவு பாதுகாப்பு ஒழுங்குமுறை மற்றும் EU-USA \"தனியுரிமை கேடயம்\".  MailChimp பற்றிய கூடுதல் விவரங்களுக்கு
-             MailChimp இன் தனியுரிமைக் கொள்கை மற்றும் பயன்பாட்டு விதிமுறைகளையும் பார்க்கவும். \n\n
-         Services அனைத்து சேவைகளும் குடையின் கீழ் இலவச திறந்த மூல கேட்ரோபாட் திட்டத்தால் வழங்கப்படுகின்றன
-             இன்டர்நேஷனல் கேட்ரோபாட் அசோசியேஷன் - வெரீன் ஸுர் ஃபுர்டெருங் ஃப்ரீயர் மென்பொருள், ஒரு இலாப நோக்கற்ற என்ஜிஓ
-             கிராஸ், ஆஸ்திரியாவில் (ஐரோப்பிய ஒன்றியம்).  எங்கள் கொள்கைகள் ஐரோப்பிய ஒன்றியம் மற்றும் ஆஸ்திரிய தரவு பாதுகாப்பு சட்டத்திற்கு மரியாதை செலுத்துகின்றன
-             (GDPR).  எங்களுடன் தொடர்பு கொள்ள, தயவுசெய்து contact@catrobat.org க்கு ஒரு மின்னஞ்சல் அனுப்பவும் அல்லது எங்களை Catrobat க்கு அனுப்பவும்,\n
-                 மென்பொருள் தொழில்நுட்ப நிறுவனம்,. \n
-                 கிராஸ் தொழில்நுட்ப பல்கலைக்கழகம்,. \n
-                 இன்ஃபெல்ட்காஸ் 16 பி,. \n
-                 ஏ -8010 கிராஸ், ஆஸ்திரியா \n
-                 (ஐரோப்பிய ஒன்றியம்). \n\n
-         நீங்கள் 14 வயதிற்குட்பட்டவராக இருந்தால், இந்தக் கொள்கையை சட்டப்பூர்வ பாதுகாவலர் (பொதுவாக பெற்றோர்) ஏற்றுக்கொள்ள வேண்டும். \n\n
-
-         கேட்ரோபாட்டின் அதிகாரப்பூர்வ ஆங்கில மொழி தனியுரிமைக் கொள்கை இணையத்தில் கிடைக்கிறது
-         https://catrob.at/privacypolicy.\n\n
-
-         பதிப்பு 2.2, 17 அக்டோபர் 2019 \n\n
-
-         எங்கள் தனியுரிமைக் கொள்கையின் (2.0) முந்தைய, காலாவதியான, பதிப்பை இங்கே காணலாம்:
-         http://developer.catrobat.org/privacy_policy_2-0    </string>
-    <string name="dialog_privacy_policy_declined_text">பதிவு செய்ய அல்லது தனியுரிமைக் கொள்கையை ஒப்புக்கொள்வது அவசியம்
-        உங்கள் கணக்கைப் பயன்படுத்துவதைத் தொடரவும். இந்தத் தரவை நாங்கள் சேகரிக்க விரும்பவில்லை என்றால், நீங்கள் நீக்கலாம்
-        எங்கள் https://share.catrob.at/ இணையதளத்தில் உங்கள் சுயவிவரப் பக்கத்தின் வழியாக கணக்கு.    </string>
     <!-- -->
     <!-- About Dialog -->
     <string name="dialog_about_title">இந்த பயன்பாட்டை பற்றி</string>
@@ -651,16 +639,18 @@
         உரிமம் குறித்த கூடுதல் விவரங்களுக்கு கீழே உள்ள இணைப்பைக் காண்க</string>
     <string name="dialog_about_license_link_text">மூல குறியீடு உரிமம்</string>
     <string name="dialog_about_catrobat_link_text">கேட்ரோபாட் பற்றி</string>
+    <string name="dialog_about_catrobat_language_version">Catrobat language version</string>
+    <string name="dialog_about_version">version:</string>
     <!--  -->
     <!-- NetworkAlertDialog -->
     <string name="error_no_network_title">நெட்வொர்க் இல்லை</string>
     <!-- UploadProjectDialog -->
-    <string name="upload_button">பதிவேற்றவும்</string>
     <string name="upload_project_dialog_title">பதிவேற்றும் திட்டம்</string>
     <string name="upload_description">விளக்கம்:</string>
     <string name="upload_notes_and_credits">Notes and credits:</string>
     <string name="upload_notes_and_credits_explanation">How did you create this project? Did you use ideas, scripts or artwork from other people? Thank them here.</string>
     <string name="upload_tag_dialog_title">மூன்று வகைகள் வரை தேர்வு செய்யவும்</string>
+    <string name="upload_tags_maximum_error">Selecting more than 3 tags is not possible.</string>
     <!-- Save Project to External Storage -->
     <string name="save_to_external_storage_button">திட்டத்தை வெளிப்புற சேமிப்பகத்தில் சேமிக்கவும்</string>
     <string name="notification_save_project_to_external_storage_title_pending">" "</string>
@@ -694,6 +684,7 @@
     <string name="comment_in_out">முடக்கு / செயல்படுத்த</string>
     <string name="catblocks">Toggle 2D</string>
     <string name="catblocks_reorder">Clean up scripts</string>
+    <string name="switch_to_1d">1D view</string>
     <!--  -->
     <!-- Play scene dialog -->
     <string name="play_scene_dialog_title">காட்சி காட்சி:</string>
@@ -704,7 +695,7 @@
     <string name="sign_in_dialog_title">உள்நுழைக</string>
     <string name="username">பயனர் பெயர்</string>
     <string name="password">கடவுச்சொல்</string>
-    <string name="password_forgotten">உங்கள் கடவுச்சொல்லை மறந்துவிட்டீர்களா?</string>
+    <string name="reset_password">Reset password</string>
     <string name="new_user_registered">புதிய கணக்கு உருவாக்கப்பட்டது</string>
     <string name="user_logged_in">உள்நுழைதல் வெற்றி</string>
     <string name="register_error">உள்நுழைவு தவறானது</string>
@@ -753,7 +744,6 @@
     <string name="prestage_resource_not_available_title">கூறு கிடைக்கவில்லை</string>
     <string name="prestage_resource_not_available_text">துரதிர்ஷ்டவசமாக இந்த திட்டம் உங்கள் சாதனத்தில் இயங்காது.
 பின்வரும் கூறுகள் கிடைக்கவில்லை</string>
-    <string name="prestage_resource_in_use_text">மற்றொரு சாதனம் ஜம்பிங் சுமோவுடன் இணைக்கப்பட்டுள்ளது. ட்ரோனுடன் இணைக்கப்பட்டவர் நீங்கள்தான் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்.</string>
     <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">முடுக்கம் சென்சார்</string>
     <string name="prestage_no_inclination_sensor_available">சாய்வு சென்சார்</string>
@@ -762,8 +752,8 @@
     <string name="prestage_text_to_speech_error">உரை-க்கு-பேச்சு இயந்திரம்</string>
     <string name="prestage_no_back_camera_available">பின் கேமரா</string>
     <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
+    <string name="prestage_no_pose_detection_available">\u2022 Pose detection\n</string>
     <string name="prestage_no_text_detection_available">\u2022 Text detection\n</string>
-    <string name="prestage_no_jumping_sumo_available">ஜம்பிங் சுமோ</string>
     <string name="prestage_no_front_camera_available">முன் கேமரா</string>
     <string name="prestage_no_camera_available">\u2022 Camera\n</string>
     <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
@@ -785,7 +775,8 @@
     <!--  -->
     <!-- Broadcast spinner -->
     <string name="dialog_new_broadcast_message_title">புதிய தகவல்</string>
-    <string name="dialog_new_broadcast_message_name">செய்தி:</string>
+    <string name="dialog_broadcast_message_name">message:</string>
+    <string name="dialog_edit_broadcast_message_title">Edit message</string>
     <!--  -->
     <!-- NFC spinner -->
     <string name="brick_when_nfc_edit_list_of_nfc_tags">Edit list of NFC tags</string>
@@ -812,6 +803,7 @@
     <string name="category_cast">Chromecast</string>
     <string name="category_raspi">ராஸ்பெர்ரி பை</string>
     <string name="category_assertions">சோதனை</string>
+    <string name="category_search_bricks">Search Bricks</string>
     <!--  -->
     <!-- User Defined Bricks -->
     <string name="brick_user_defined_add_label">Add label</string>
@@ -824,6 +816,7 @@
     <string name="brick_user_defined_script_define">Define</string>
     <string name="brick_user_defined_script_as">as</string>
     <string name="brick_user_defined_list_empty">Tap \"+\" to add your own new bricks.</string>
+    <string name="brick_report">அறிக்கையிடு</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"இடத்தில்"</string>
@@ -901,6 +894,8 @@
     <string name="brick_next_background">அடுத்த பின்னணி</string>
     <string name="brick_previous_look">முந்தைய தோற்றம்</string>
     <string name="brick_previous_background">முந்தைய பின்னணி</string>
+    <string name="brick_edit_look">தோற்றத்தைத் திருத்து</string>
+    <string name="brick_edit_background">பின்னணியைத் திருத்து</string>
     <string name="brick_delete_look">Delete look</string>
     <string name="brick_delete_background">Delete background</string>
     <string name="brick_flash">ஒளிரும் விளக்கை இயக்கவும்</string>
@@ -921,6 +916,9 @@
     <string name="brick_copy_look">Copy look and name it</string>
     <string name="brick_copy_look_name">name of copied look</string>
     <string name="brick_copy_background">Copy background and name it</string>
+    <string name="brick_focus_point">இதனுடன் கவனப்புள்ளியாய் ஆகு</string>
+    <string name="brick_horizontal_and">கிடைமட்டம் மற்றும்</string>
+    <string name="brick_vertical_flex">செங்குத்து நெகிழ்வுத்தன்மை</string>
     <!--  -->
     <!-- Pen bricks -->
     <string name="brick_pen_down">பேனா கீழே</string>
@@ -965,6 +963,7 @@
     <string name="brick_write_embroidery">Write embroidery data to file</string>
     <string name="brick_default_embroidery_file">embroidery.dst</string>
     <string name="brick_sew_up">Sew up</string>
+    <string name="brick_thread_color">Set thread color to</string>
     <!--  -->
     <!-- Device bricks -->
     <string name="brick_reset_timer">Reset timer</string>
@@ -1097,9 +1096,6 @@
         the settings of this app.
     </string>
     <string name="brick_look_request">Get image from</string>
-    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
-    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
-    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
     <string name="brick_look_request_result">and use as current look</string>
     <string name="brick_background_request_result">and use as current background</string>
     <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
@@ -1155,7 +1151,11 @@
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">My project</string>
-    <string name="default_scene_name">Scene %1$d</string>
+    <string name="default_variable_name">Variable</string>
+    <string name="default_scene_name">Scene (%1$d)</string>
+    <string name="default_script_group_name">Script group</string>
+    <string name="default_broadcast_message_name">செய்தி</string>
+    <string name="default_list_name">List</string>
     <string name="default_project_background_name">பின்னணி</string>
     <string name="default_project_cloud_name">மேகங்கள்</string>
     <string name="default_project_cloud_sprite_name_1">மேகங்கள்</string>
@@ -1232,18 +1232,7 @@
     <string name="notification_download_pending">பதிவிறக்கம் செயலில் உள்ளது</string>
     <string name="notification_download_finished">பதிவிறக்கம் வெற்றிகரமாக</string>
     <string name="notification_title_open">"திறந்த"</string>
-    <string name="notification_low_battery_with_value">கவனம். பேட்டரி குறைவாக உள்ளது. தற்போதைய நிலை %d</string>
     <string name="size_of_project">அளவு:</string>
-    <string name="drone_emergency_battery_low">பேட்டரி குறைவாக உள்ளது (தானியங்கி தரையிறக்கம்).</string>
-    <string name="drone_emergency_camera">ஒன்று அல்லது அதற்கு மேற்பட்ட கேமராக்கள் பதிலளிக்கவில்லை.</string>
-    <string name="drone_emergency_ultrasound">அல்ட்ராசவுண்ட் சென்சார் பதிலளிக்கவில்லை.</string>
-    <string name="drone_emergency_angle">AR.Drone 2.0 யூலர் கோணங்கள் மிக அதிகமாக சென்றன. ஆபத்துகளைத் தடுக்க மோட்டார் நிறுத்தப்பட்டது
-        நடத்தை.</string>
-    <string name="drone_emergency_cutout">ஒன்று அல்லது அதற்கு மேற்பட்ட மோட்டார்கள் சூழலால் நிறுத்தப்பட்டன.</string>
-    <string name="drone_alert_battery_low">பேட்டரி மீண்டும் எடுக்க மிகவும் குறைவு.</string>
-    <string name="drone_alert_ultrasound">அல்ட்ராசவுண்ட் சென்சார் AR.Drone 2.0 உயரத்தை தீர்மானிக்க முடியாது.</string>
-    <string name="drone_alert_vision">கீழே எதிர்கொள்ளும் கேமராவிலிருந்து வேக மதிப்பீடு இல்லை.</string>
-    <string name="drone_emergency_title">அவசரம்</string>
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">இந்த பயன்பாடு சரியாக செயல்பட கோரப்பட்ட அனுமதிகள் தேவை. எ.கா., கேமரா செங்கலுக்கு சாதனத்தின் கேமராவிற்கு அணுகல் தேவை, \"இருப்பிடம்\" சூத்திர உறுப்புக்கு சாதனத்தின் புவிஇருப்பிட சென்சார் அணுகல் தேவை, மேலும் உள்ளூர் நினைவகம் மற்றும் பயன்பாட்டிலிருந்து திட்டங்களை இறக்குமதி மற்றும் ஏற்றுமதி செய்ய.</string>
@@ -1251,7 +1240,7 @@
     <string name="error_project_upload">திட்டத்தை பதிவேற்றும் போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_project_download">திட்டத்தைப் பதிவிறக்கும் போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_project_already_in_queue">"திட்டம் %s ஏற்கனவே வரிசையில் உள்ளது."</string>
-    <string name="error_could_not_decode_project_name_from_url">"உங்கள் பதிவிறக்கத்தைத் தொடங்க முடியவில்லை, எங்கள் சேவையகத்தில் சிக்கல் இருப்பதாகத் தெரிகிறது."</string>
+    <string name="error_could_not_decode_project_name_from_url">உங்கள் பதிவிறக்கத்தைத் தொடங்க முடியவில்லை, எங்கள் சேவையகத்தில் சிக்கல் இருப்பதாகத் தெரிகிறது.</string>
     <string name="error_new_project">புதிய திட்டத்தை உருவாக்கும் போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_rename_scene">காட்சியின் மறுபெயரிடும்போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_load_project">திட்டத்தை ஏற்றும்போது ஏதோ தவறு ஏற்பட்டது.</string>
@@ -1263,18 +1252,6 @@
     <string name="error_upload_default_project">மாற்றப்படாத எடுத்துக்காட்டு திட்டத்தை நீங்கள் பதிவேற்ற முடியாது. ஏதாவது ஒன்றை மாற்றி மீண்டும் முயற்சிக்கவும்.</string>
     <string name="error_adding_brick">இந்த செங்கலைச் சேர்க்கும்போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_copying_brick">இந்த செங்கலை நகலெடுக்கும் போது ஏதோ தவறு ஏற்பட்டது.</string>
-    <string name="error_no_drone_connected_title">AR.Drone 2.0 ஐக் கண்டுபிடிக்க முடியவில்லை.</string>
-    <string name="error_no_drone_connected">உங்கள் வைஃபை AR.Drone 2.0 உடன் இணைத்து மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="error_drone_low_battery_title">AR.Drone 2.0 பேட்டரி குறைவாக %d%%</string>
-    <string name="error_drone_low_battery">சார்ஜ் செய்யப்பட்ட பேட்டரியைச் செருகவும், மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="error_jumpingsumo_wrong_platform">உங்கள் சாதனத்தில் ஜம்பிங் சுமோ திட்டத்தை எங்களால் இயக்க முடியாது.</string>
-    <string name="error_no_jumpingsumo_connected_title">ஜம்பிங் சுமோவைக் கண்டுபிடிக்க முடியவில்லை</string>
-    <string name="error_no_jumpingsumo_connected">உங்கள் வைஃபை ஜம்பிங் சுமோவுடன் இணைத்து மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="error_jumpingsumo_battery_title">ஜம்பிங் சுமோ பேட்டரி குறைவாக</string>
-    <string name="error_jumpingsumo_battery">சார்ஜ் செய்யப்பட்ட பேட்டரியைச் செருகவும், மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="error_jumpingsumo_wrong_platform_title">ஜம்பிங் சுமோ ஆதரவு இல்லை</string>
-    <string name="error_drone_wrong_platform_title">AR.Drone 2.0 ஆதரவு இல்லை.</string>
-    <string name="error_drone_wrong_platform">உங்கள் சாதனத்தில் AR.Drone 2.0 திட்டத்தை எங்களால் இயக்க முடியாது.</string>
     <string name="error_rename_incompatible_project">பொருந்தாத திட்டத்தை மறுபெயரிடுவது சாத்தியமில்லை.</string>
     <string name="error_embroidery_file_export">எம்பிராய்டரி கோப்பைப் பகிரும்போது ஏதோ தவறு ஏற்பட்டது.</string>
     <string name="error_embroidery_file_write">Something went wrong while writing the embroidery file.</string>
@@ -1539,7 +1516,6 @@
     <string name="formula_editor_false">தவறு</string>
     <string name="formula_editor_decimal_mark">.</string>
     <string name="formula_editor_title">சூத்திரத் தொகுப்பி</string>
-    <string name="formula_editor_changes_saved">மாற்றங்கள் சேமிக்கப்பட்டன.</string>
     <string name="formula_editor_changes_discarded">மாற்றங்கள் நிராகரிக்கப்பட்டன!</string>
     <string name="formula_editor_parse_fail">சூத்திரம் செல்லுபடியாகாது!</string>
     <string name="formula_nothing_selected">உள்ளீட்டு மதிப்பை வரையறுக்கவும்</string>
@@ -1623,6 +1599,7 @@
     <string name="formula_editor_function_is_multi_finger_touching">மேடை தொட்டது</string>
     <string name="formula_editor_function_index_of_last_finger">கடைசி நிலை தொடு குறியீடு</string>
     <string name="formula_editor_function_number_of_current_touches">number of current touches</string>
+    <string name="formula_editor_function_index_of_current_touch">index of current touch</string>
     <string name="formula_editor_function_no_parameter"></string>
     <string name="formula_editor_function_touch_parameter">(1)</string>
     <string name="formula_editor_function_list_item">உருப்படி</string>
@@ -1633,12 +1610,16 @@
     <string name="formula_editor_function_index_of_item_parameter">(1, * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_number_of_items">பொருட்களின் எண்ணிக்கை</string>
     <string name="formula_editor_function_number_of_items_parameter">( * பட்டியல் பெயர் *)</string>
+    <string name="formula_editor_function_flatten">flatten</string>
+    <string name="formula_editor_function_flatten_parameter">( * பட்டியல் பெயர் *)</string>
     <string name="formula_editor_function_collision">நடிகர் அல்லது பொருளைத் தொடும்</string>
     <string name="formula_editor_function_collides_with_edge">விளிம்பைத் தொடும்</string>
     <string name="formula_editor_function_touched">விரலைத் தொடும்</string>
     <string name="formula_editor_function_collides_with_color">touches color</string>
     <string name="formula_editor_function_color_touches_color">color touches color</string>
     <string name="formula_editor_sensor_color_at_x_y">color at x y</string>
+    <string name="formula_editor_sensor_color_equals_color">color equals color with %
+        tolerance</string>
     <string name="formula_editor_sensor_x_acceleration">முடுக்கம் x</string>
     <string name="formula_editor_sensor_y_acceleration">முடுக்கம் y</string>
     <string name="formula_editor_sensor_z_acceleration">முடுக்கம் z</string>
@@ -1714,14 +1695,17 @@
     <string name="formula_editor_object_brightness">பிரகாசம்</string>
     <string name="formula_editor_object_size">அளவு</string>
     <string name="formula_editor_object_rotation">திசை</string>
+    <string name="formula_editor_object_rotation_look">look direction</string>
     <string name="formula_editor_object_layer">அடுக்கு</string>
     <string name="formula_editor_object_x_velocity">x வேகம்</string>
     <string name="formula_editor_object_y_velocity">y வேகம்</string>
     <string name="formula_editor_object_angular_velocity">கோண வேகம்</string>
     <string name="formula_editor_object_look_number">எண் பார்</string>
     <string name="formula_editor_object_look_name"> பெயர் பார்</string>
+    <string name="formula_editor_object_number_of_looks">number of looks</string>
     <string name="formula_editor_object_background_number">பின்னணி எண்</string>
     <string name="formula_editor_object_background_name">பின்னணி பெயர்</string>
+    <string name="formula_editor_object_number_of_backgrounds">number of backgrounds</string>
     <string name="formula_editor_object_distance_to">தொடுவதற்கான தூரம்</string>
     <string name="formula_editor_compute">கம்ப்யூட்</string>
     <string name="formula_editor_object">பொருள்</string>
@@ -1734,9 +1718,11 @@
     <string name="formula_editor_functions_lists">பட்டியல்கள்</string>
     <string name="formula_editor_logic_boolean">தருக்க (பூலியன்) ஆபரேட்டர்கள் மற்றும் மாறிலிகள்</string>
     <string name="formula_editor_logic_comparison">ஒப்பீட்டு ஆபரேட்டர்கள்</string>
-    <string name="formula_editor_object_general">பொது பண்புகள்</string>
+    <string name="formula_editor_object_look">Look properties</string>
     <string name="formula_editor_object_movement">இயக்க பண்புகள்</string>
-    <string name="formula_editor_device_visual_detection">Visual sensors</string>
+    <string name="formula_editor_device_face_detection">Face detection</string>
+    <string name="formula_editor_device_pose_detection">போஸ் கண்டறிதல்</string>
+    <string name="formula_editor_device_text_recognition">Text recognition</string>
     <string name="formula_editor_device_date_and_time">தேதி மற்றும் நேரம்</string>
     <string name="formula_editor_device_touch_detection">தொடு கண்டறிதல்</string>
     <string name="formula_editor_device_lego_nxt">லெகோ மைண்ட்ஸ்டார்ம்ஸ் என்.எக்ஸ்.டி.</string>
@@ -1763,6 +1749,8 @@
     <string name="formula_editor_operator_divide">÷</string>
     <string name="formula_editor_operator_power">^</string>
     <string name="formula_editor_image_button_description_delete">அழித்துவிடு</string>
+    <string name="formula_editor_image_button_description_color_picker">color picker</string>
+    <string name="formula_editor_image_button_description_functions_toggle">toggle functions</string>
     <string name="formula_editor_variable_dialog_title">புதிய மாறி</string>
     <string name="formula_editor_list_dialog_title">புதிய பட்டியல்</string>
     <string name="formula_editor_regex_html_extractor_dialog_title">HTML extractor</string>
@@ -1778,11 +1766,84 @@
     <string name="formula_editor_sensor_face_size">முகம் அளவு</string>
     <string name="formula_editor_sensor_face_x_position">முகம் x நிலை</string>
     <string name="formula_editor_sensor_face_y_position">முகம் y நிலை</string>
+    <string name="formula_editor_sensor_second_face_detected">second face is visible</string>
+    <string name="formula_editor_sensor_second_face_size">second face size</string>
+    <string name="formula_editor_sensor_second_face_x_position">second face x position</string>
+    <string name="formula_editor_sensor_second_face_y_position">second face y position</string>
+    <string name="formula_editor_sensor_nose_x">nose x</string>
+    <string name="formula_editor_sensor_nose_y">nose y</string>
+    <string name="formula_editor_sensor_left_eye_inner_x">left eye inner x</string>
+    <string name="formula_editor_sensor_left_eye_inner_y">left eye inner y</string>
+    <string name="formula_editor_sensor_left_eye_center_x">left eye center x</string>
+    <string name="formula_editor_sensor_left_eye_center_y">left eye center y</string>
+    <string name="formula_editor_sensor_left_eye_outer_x">left eye outer x</string>
+    <string name="formula_editor_sensor_left_eye_outer_y">left eye outer y</string>
+    <string name="formula_editor_sensor_right_eye_inner_x">right eye inner x</string>
+    <string name="formula_editor_sensor_right_eye_inner_y">right eye inner y</string>
+    <string name="formula_editor_sensor_right_eye_center_x">right eye center x</string>
+    <string name="formula_editor_sensor_right_eye_center_y">right eye center y</string>
+    <string name="formula_editor_sensor_right_eye_outer_x">right eye outer x</string>
+    <string name="formula_editor_sensor_right_eye_outer_y">right eye outer y</string>
+    <string name="formula_editor_sensor_left_ear_x">left ear x</string>
+    <string name="formula_editor_sensor_left_ear_y">left ear y</string>
+    <string name="formula_editor_sensor_right_ear_x">right ear x</string>
+    <string name="formula_editor_sensor_right_ear_y">right ear y</string>
+    <string name="formula_editor_sensor_mouth_left_corner_x">mouth left corner x</string>
+    <string name="formula_editor_sensor_mouth_left_corner_y">mouth left corner y</string>
+    <string name="formula_editor_sensor_mouth_right_corner_x">mouth right corner x</string>
+    <string name="formula_editor_sensor_mouth_right_corner_y">mouth right corner y</string>
+    <string name="formula_editor_sensor_left_shoulder_x">left shoulder x</string>
+    <string name="formula_editor_sensor_left_shoulder_y">left shoulder y</string>
+    <string name="formula_editor_sensor_right_shoulder_x">right shoulder x</string>
+    <string name="formula_editor_sensor_right_shoulder_y">right shoulder y</string>
+    <string name="formula_editor_sensor_left_elbow_x">left elbow x</string>
+    <string name="formula_editor_sensor_left_elbow_y">left elbow y</string>
+    <string name="formula_editor_sensor_right_elbow_x">right elbow x</string>
+    <string name="formula_editor_sensor_right_elbow_y">right elbow y</string>
+    <string name="formula_editor_sensor_left_wrist_x">left wrist x</string>
+    <string name="formula_editor_sensor_left_wrist_y">left wrist y</string>
+    <string name="formula_editor_sensor_right_wrist_x">right wrist x</string>
+    <string name="formula_editor_sensor_right_wrist_y">right wrist y</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_x">left pinky knuckle x</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_y">left pinky knuckle y</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_x">right pinky knuckle x</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_y">right pinky knuckle y</string>
+    <string name="formula_editor_sensor_left_index_knuckle_x">left index knuckle x</string>
+    <string name="formula_editor_sensor_left_index_knuckle_y">left index knuckle y</string>
+    <string name="formula_editor_sensor_right_index_knuckle_x">right index knuckle x</string>
+    <string name="formula_editor_sensor_right_index_knuckle_y">right index knuckle y</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_x">left thumb knuckle x</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_y">left thumb knuckle y</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_x">right thumb knuckle x</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_y">right thumb knuckle y</string>
+    <string name="formula_editor_sensor_left_hip_x">left hip x</string>
+    <string name="formula_editor_sensor_left_hip_y">left hip y</string>
+    <string name="formula_editor_sensor_right_hip_x">right hip x</string>
+    <string name="formula_editor_sensor_right_hip_y">right hip y</string>
+    <string name="formula_editor_sensor_left_knee_x">left knee x</string>
+    <string name="formula_editor_sensor_left_knee_y">left knee y</string>
+    <string name="formula_editor_sensor_right_knee_x">right knee x</string>
+    <string name="formula_editor_sensor_right_knee_y">right knee y</string>
+    <string name="formula_editor_sensor_left_ankle_x">left ankle x</string>
+    <string name="formula_editor_sensor_left_ankle_y">left ankle y</string>
+    <string name="formula_editor_sensor_right_ankle_x">right ankle x</string>
+    <string name="formula_editor_sensor_right_ankle_y">right ankle y</string>
+    <string name="formula_editor_sensor_left_heel_x">left heel x</string>
+    <string name="formula_editor_sensor_left_heel_y">left heel y</string>
+    <string name="formula_editor_sensor_right_heel_x">right heel x</string>
+    <string name="formula_editor_sensor_right_heel_y">right heel y</string>
+    <string name="formula_editor_sensor_left_foot_index_x">left foot index x</string>
+    <string name="formula_editor_sensor_left_foot_index_y">left foot index y</string>
+    <string name="formula_editor_sensor_right_foot_index_x">right foot index x</string>
+    <string name="formula_editor_sensor_right_foot_index_y">right foot index y</string>
     <string name="formula_editor_sensor_text_from_camera">text from camera</string>
     <string name="formula_editor_sensor_text_blocks_number">number of text blocks</string>
     <string name="formula_editor_function_text_block_x">text block x from camera</string>
     <string name="formula_editor_function_text_block_y">text block y from camera</string>
     <string name="formula_editor_function_text_block_size">text block size from camera</string>
+    <string name="formula_editor_function_text_block_from_camera">text block from camera</string>
+    <string name="formula_editor_function_text_block_language_from_camera">text block language from camera</string>
+    <string name="formula_editor_function_text_block_parameter">(1)</string>
     <string name="formula_editor_intro_title_formula_editor">சூத்திரத் தொகுப்பி</string>
     <string name="formula_editor_intro_summary_formula_editor">ஃபார்முலா எடிட்டர் மூலம் நீங்கள் கணிதத்தை உருவாக்கலாம் மற்றும்
         உங்கள் செங்கற்களில் நீங்கள் பயன்படுத்தக்கூடிய தருக்க சூத்திரங்கள்.\n\nதட்டுவதன் மூலம் இந்த சிறிய அறிமுகத்தை நீங்கள் தொடரலாம்       கீழ் வலது மூலையில் உள்ள \"அடுத்து\" பொத்தானை, மேலும் \"ஸ்கிப்\" பொத்தானைக் கிளிக் செய்வதன் மூலம் அதைத் தவிர்க்கலாம்        கீழ் இடது மூலையில்.</string>
@@ -1808,6 +1869,9 @@
     <string name="formula_editor_speech_recognition">Speech recognition</string>
     <string name="camera_error_text_detection">        There was a problem with text detection. Some components may still be downloading in the
         background. Please make sure you are connected to the internet and check back later.</string>
+    <string name="warning_formula_recognized">You entered a text that looks like a formula. If you want to use functions,
+        sensors, variables and other formula elements, please select them instead using the
+        buttons in the formula editor.</string>
     <!--  -->
     <!-- Brick Data Editor Strings -->
     <string name="brick_show_variable">மாறியை காட்டுக</string>
@@ -1834,6 +1898,9 @@
     <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
         background. Please make sure you are connected to the internet and check back later.
     </string>
+    <string name="camera_error_pose_detection">        There was a problem with pose detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">A</string>
@@ -1856,13 +1923,21 @@
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
         errors. You can\'t undo this!</string>
-    <string name="deletion_alert_yes">ஆம், நீக்குக!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">உங்கள் திட்டம் பயன்பாட்டின் பகிர்வு தளத்தில் பதிவேற்றப்படும்
 மற்றவர்கள் அதைப் பயன்படுத்தலாம் மற்றும் பதிவிறக்கலாம். உங்கள் திட்டத்தை முழுமையான செயலியாகவும் பதிவிறக்கலாம்.</string>
     <string name="progress_upload_dialog_failed">பதிவேற்றம் தோல்வி. உங்களுடைய இணைப்பை சரி பார்த்து மீண்டும் முயற்சி செய்யவும்!</string>
     <string name="progress_upload_dialog_show_program">திட்டத்தைக் காண்பிக்கவும்</string>
     <!--  -->
+    <!-- unchanged upload dialog -->
+    <string name="unchanged_upload_warning">The project you are trying to upload already exists on
+        the community platform in exactly the same form. Please change your project, ideally by
+        enhancing it, before uploading your remixed project.</string>
+    <string name="unchanged_upload_info">Please consider adding some kind words towards the original
+        author in the Credits section on the community site or in the project options. Please note
+        that the user will get a notification after your successful upload.</string>
+    <string name="unchanged_upload_url">To learn more about remixes, please visit %1s.</string>
+    <!-- -->
     <!-- Snackbar hints -->
     <string name="got_it">புரிந்தது</string>
     <string name="preference_description_hints">குறிப்புகளைக் காட்ட இயக்கவும்</string>
@@ -1875,6 +1950,14 @@
     <string name="hint_objects">உங்கள் நிரல் ஒருவருக்கொருவர் தொடர்பு கொள்ளக்கூடிய வெவ்வேறு நடிகர்கள் மற்றும் பொருள்களைக் கொண்டுள்ளது.
    புதிய நடிகர் அல்லது பொருளைச் சேர்க்க, \"+\" சின்னத்தைத் தட்டவும்.</string>
     <!--  -->
+    <!-- Dialog Disable hints -->
+    <string name="dialog_disable_hints_title">Show hints?</string>
+    <string name="dialog_disable_hints_text">Hints provide you with helpful information
+        while making your first project.\n\nVisibility of hints can be changed in the
+        settings.</string>
+    <string name="dialog_disable_hints_button_hide">HIDE</string>
+    <string name="dialog_disable_hints_button_show">SHOW</string>
+    <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
     <!-- Multilingual List -->
@@ -1882,4 +1965,29 @@
     <!-- Symbols -->
     <string name="percent_symbol">சதவீதம்</string>
     <string name="hertz_symbol">(ஹெர்ட்ஸ்) அதிர்வெண்</string>
+    <string name="no_internet_connection">No internet connection. Make sure Wi-Fi or mobile
+    data is turned on.</string>
+    <string name="edit">திருத்து</string>
+    <string name="data_value">Value</string>
+    <string name="category_recently_used">Recently used</string>
+    <string name="new_sprite_dialog_place_visually">Place visually</string>
+    <string name="place_visually_text">You will be asked to place the new actor or object on the
+        stage.</string>
+    <!-- Information -->
+    <string name="no_variable_selected">No variable selected</string>
+    <string name="find">Find</string>
+    <string name="no_results_found">No results found</string>
+    <string name="query_field_is_empty">Query field is empty</string>
+    <string name="cut">வெட்டு</string>
+    <string name="paste">ஒட்டு</string>
+    <!-- Particle Effects -->
+    <string name="fade_particle_effect">Fade particle effect</string>
+    <string name="particle_effects_fade_in">in</string>
+    <string name="particle_effects_fade_out">out</string>
+    <string name="turn_particle_effect_additivity">Turn particle effect additivity</string>
+    <string name="particle_effects_additive_on">மீது</string>
+    <string name="particle_effects_additive_off">ஆஃப்</string>
+    <string name="set_particle_color_to">Set particle color to</string>
+    <string name="undo_sort">Undo sort</string>
+    <string name="sort">வரிசைப்படுத்து</string>
 </resources>

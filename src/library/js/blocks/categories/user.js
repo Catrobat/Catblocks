@@ -1,7 +1,3 @@
-/**
- * @description user defined bricks
- */
-
 'use strict';
 
 export default {

@@ -1,6 +1,6 @@
-FROM node:10-alpine
+FROM node:16-alpine
 
-MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
+LABEL org.opencontainers.image.authors="Catblocks https://github.com/Catrobat/Catblocks"
 
 # enable new repositories
 RUN \
@@ -14,13 +14,17 @@ RUN apk --no-cache  update \
 
 # install build dependencies
 RUN \
-  apk add --no-cache --virtual .build-deps python3 make g++
+  apk add --no-cache --virtual .build-deps python3 py3-pip make g++
 
 RUN apk add --no-cache --virtual gifsicle pngquant optipng libjpeg-turbo-utils \
     udev ttf-opensans chromium git
 
 # remove cache
 RUN rm -rf /var/cache/apk/* /tmp/*
+
+RUN pip3 install requests
+
+COPY require/PREvaluator.py /PREvaluator.py
 
 # cmd
 COPY entrypoint.sh /entrypoint.sh

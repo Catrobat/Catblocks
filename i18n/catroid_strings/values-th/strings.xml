@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Catroid: An on-device visual programming system for Android devices
-  ~ Copyright (C) 2010-2018 The Catrobat Team
+  ~ Copyright (C) 2010-2021 The Catrobat Team
   ~ (<http://developer.catrobat.org/credits>)
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -21,22 +21,23 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- General terms -->
-    <string name="stage">เวที</string>
+    <string name="stage">เลเยอร์</string>
     <string name="play">เล่น</string>
     <string name="settings">การตั้งค่า</string>
     <string name="redo">ทำซ้ำ</string>
     <string name="undo">เลิกทำ</string>
     <string name="new_option">สร้างใหม่&#8230;</string>
+    <string name="edit_option">แก้ไข&#8230;</string>
     <string name="confirm">ยืนยัน</string>
     <string name="ignore">เพิกเฉย</string>
     <string name="cancel">ยกเลิก</string>
     <string name="save">บันทึก</string>
+    <string name="discard">ละทิ้ง</string>
     <string name="next">ถัดไป</string>
-    <string name="back">ย้อนกลับ</string>
     <string name="ok">ตกลง</string>
-    <string name="done">เสร็จสิ้น</string>
+    <string name="done">เสร็จแล้ว</string>
     <string name="close">ปิด</string>
     <string name="assistant">ผู้ช่วย</string>
     <string name="yes">ใช่</string>
@@ -44,7 +45,7 @@
     <string name="once">ครั้งเดียว</string>
     <string name="always">ทุกครั้ง</string>
     <string name="deny">ปฏิเสธ</string>
-    <string name="disagree">ไม่เห็นด้วย</string>
+    <string name="do_not_show_again">ไม่แสดงอีกครั้ง</string>
     <string name="accept">ยอมรับ</string>
     <string name="decline">ปฏิเสธ</string>
     <string name="select_all">เลือก​ทั้ง​หมด</string>
@@ -54,9 +55,9 @@
     <string name="error">ผิดพลาด</string>
     <string name="loading">กำลังโหลด&#8230;</string>
     <string name="please_wait">โปรดรอสักครู่</string>
-    <string name="search_hint">ค้นหา&#8230;</string>
+    <string name="search_hint">ค้นหา…</string>
     <string name="backpack_add">เพิ่มไปยังชุดข้อมูล</string>
-    <string name="share_website_text">แชร์เว็บไซต์</string>
+    <string name="share_website_text">share.catrob.at</string>
     <!-- Security warning dialog -->
     <string name="security_warning_dialog_msg">โครงการที่คุณดาวน์โหลดไว้ฟังเสียงของคุณ
          อยู่เบื้องหลังและส่งข้อมูลไปยังอินเทอร์เน็ต สิ่งนี้อาจไม่เป็นอันตรายและจำเป็น
@@ -64,11 +65,18 @@
          โครงการกำลังดำเนินอยู่นั้นปลอดภัย ในกรณีที่มีข้อสงสัยโปรดลบโครงการที่ดาวน์โหลด
          นอกจากนี้คุณยังสามารถรายงานโครงการบนหน้าของโครงการบนแพลตฟอร์มชุมชน Catrobat ได้ในกรณี
          คุณมั่นใจว่ามันเป็นอันตราย</string>
+    <!-- Replace Api dialog -->
+    <string name="api_replacement_dialog_neutral">อัปโหลดโดยไม่มีการเปลี่ยนแปลง</string>
+    <string name="api_replacement_dialog_accept">อัปโหลดโดยแทนที่คีย์</string>
+    <string name="api_replacement_dialog_warning">โครงการมีคำสั่งที่เข้าถึงไฟล์
+         เว็บและดูเหมือนว่าจะมีคีย์ API ด้วย โปรดดูเหตุผลที่ %1s
+         การอัปโหลดคีย์เหล่านี้อาจเป็นอันตรายได้</string>
+    <string name="api_replacement">ใส่คีย์ API ที่นี่</string>
+    <!-- -->
     <!-- Login/Logout Mechanism -->
     <string name="loading_check_oauth_token">กำลังตรวจสอบข้อมูลการเข้าสู่ระบบ&#8230;</string>
     <string name="loading_google_exchange_code">กำลังแลกเปลี่ยนข้อมูลการลงชื่อเข้าใช้ Google&#8230;</string>
     <string name="loading_google_login">การเข้าสู่ระบบ Google บนเซิร์ฟเวอร์ของเราเสร็จสมบูรณ&#8230;</string>
-    <string name="delete_account">ลบบัญชีของฉัน</string>
     <string name="logout_successful">ออกจากระบบสำเร็จ</string>
     <string name="degrees">องศา</string>
     <string name="background">พื้นหลัง</string>
@@ -81,9 +89,9 @@
     <string name="main_menu_continue">ดำเนินการโครงการ</string>
     <string name="main_menu_new">โครงการใหม่</string>
     <string name="main_menu_programs">โปรแกรม</string>
-    <string name="main_menu_help">ช่วยเหลือ</string>
+    <string name="main_menu_help">ช่วย</string>
     <string name="main_menu_web">ชุมชน Catrobat</string>
-    <string name="main_menu_upload">อัพโหลดโปรแกรม</string>
+    <string name="main_menu_upload">อัพโหลดโปรเจกต์</string>
     <string name="main_menu_rate_app">ให้คะแนนเรา</string>
     <string name="main_menu_terms_of_use">ข้อกำหนดการใช้งานและบริการ</string>
     <string name="main_menu_privacy_policy">นโยบายความเป็นส่วนตัว</string>
@@ -97,6 +105,10 @@
     <string name="marketing_created_with">สร้างด้วย</string>
     <string name="marketing_app_details">รายละเอียดเกี่ยวกับแอพนี้</string>
     <string name="marketing_more_on_google_play">แอพเพิ่มเติมใน App Store</string>
+    <string name="error_cannot_open_huawei_app_gallery">อ๊ะ! ไม่สามารถเปิด Huawei AppGallery
+         กรุณาลองใหม่อีกครั้งในภายหลัง</string>
+    <string name="google_play_store_logo">Google Play</string>
+    <string name="huawei_app_gallery">Huawei App Gallery</string>
     <!-- NFC activity -->
     <string name="nfc_activity_title">แท็ก NFC</string>
     <!-- Settings activity -->
@@ -106,6 +118,27 @@
     <string name="preference_title_web_access">การเข้าถึงเว็บ</string>
     <string name="preference_description_web_access">แก้ไขเพื่อเพิ่มหรือลบโดเมนที่เชื่อถือได้</string>
     <string name="preference_screen_web_access_title">แก้ไขโดเมนที่เชื่อถือได้</string>
+    <string name="preference_title_ai">ส่วนขยายปัญญาประดิษฐ์ (AI)</string>
+    <string name="preference_description_ai">เปิดใช้งานอิฐ AI และเซ็นเซอร์</string>
+    <string name="preference_title_ai_speech_recognition">คำพูด
+        การรับรู้</string>
+    <string name="preference_description_ai_speech_recognition">เปิดใช้งาน
+        อิฐและเซ็นเซอร์การรู้จำเสียง</string>
+    <string name="preference_title_ai_speech_synthetization">คำพูด
+        การสังเคราะห์</string>
+    <string name="preference_description_ai_speech_synthetization">เปิดใช้งาน
+        อิฐสังเคราะห์เสียงพูดและเซ็นเซอร์</string>
+    <string name="preference_title_ai_face_detection">ใบหน้า
+        การตรวจจับ</string>
+    <string name="preference_description_ai_face_detection">เปิดใช้งาน
+        อิฐและเซ็นเซอร์ตรวจจับใบหน้า</string>
+    <string name="preference_title_ai_pose_detection">การตรวจจับท่าทาง</string>
+    <string name="preference_description_ai_pose_detection">เปิดใช้งาน
+        ก่อให้เกิดการตรวจจับอิฐและเซ็นเซอร์</string>
+    <string name="preference_title_ai_text_recognition">ข้อความ
+        การรับรู้</string>
+    <string name="preference_description_ai_text_recognition">เปิดใช้งาน
+        อิฐและเซ็นเซอร์การรู้จำข้อความ</string>
     <string name="preference_title_accessibility">การ​เข้า​ใช้​งาน</string>
     <string name="preference_description_accessibility">เปลี่ยนรูปลักษณ์ของแอพ</string>
     <string name="preference_title_accessibility_profiles">โปรไฟล์การเข้าถึง</string>
@@ -143,43 +176,45 @@
     <string name="preference_access_title_profile_argus">อาร์กัส</string>
     <string name="preference_access_summary_profile_argus">ความคมชัดสูง, ไอคอนเพิ่มเติม</string>
     <string name="preference_access_title_profile_odin">โอดิน</string>
-    <string name="preference_access_summary_profile_odin">ข้อความขนาดใหญ่, ไอคอนขนาดใหญ่, ระยะห่างองค์ประกอบขนาดใหญ่, ความคมชัดสูง</string>
+    <string name="preference_access_summary_profile_odin">ข้อความขนาดใหญ่, ไอคอนขนาดใหญ่, ระยะห่างองค์ประกอบขนาดใหญ่, 
+       ความคมชัดสูง</string>
     <string name="preference_access_title_profile_fenrir">เฟนเรีย</string>
-    <string name="preference_access_summary_profile_fenrir">ระยะห่างองค์ประกอบขนาดใหญ่, ลาก\'n\'เลื่อนการหน่วงเวลา</string>
+    <string name="preference_access_summary_profile_fenrir">การเว้นวรรคองค์ประกอบขนาดใหญ่ drag\'n\'drop
+       ล่าช้า</string>
     <string name="preference_access_title_profile_tiro">Tiro</string>
     <string name="preference_access_summary_profile_tiro">โหมดเริ่มต้น</string>
     <!-- Lego/Drone/Raspi/Chromecast/Embroidery -->
     <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 extension</string>
     <string name="preference_description_quadcopter_bricks">อนุญาตให้แอปควบคุม Parrot AR.Drone 2.0 quadcopters</string>
-    <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo extension</string>
-    <string name="preference_description_jumpingsumo_bricks">Allow the app to control Parrot\'s Jumping Sumo robots</string>
-    <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms NXT extension</string>
-    <string name="preference_title_enable_mindstorms_ev3_bricks">Lego Mindstorms EV3 extension</string>
-    <string name="preference_description_mindstorms_nxt_bricks">Allow the app to control Lego Mindstorms NXT robots</string>
-    <string name="preference_description_mindstorms_ev3_bricks">Allow the app to control Lego Mindstorms EV3 robots</string>
-    <string name="preference_title_mindstorms_nxt_sensors">Lego NXT Sensors</string>
-    <string name="preference_title_mindstorms_ev3_sensors">Lego EV3 Sensors</string>
-    <string name="preference_title_drone_config_properties">Parrot AR.Drone 2.0 configuration</string>
-    <string name="preference_title_enable_phiro_bricks">RobotixEdu\'s Phiro extension</string>
-    <string name="preference_description_phiro_bricks">Allow the app to control RobotixEdu\'s Phiro robots</string>
-    <string name="preference_title_enable_arduino_bricks">Arduino extension</string>
-    <string name="preference_description_arduino_bricks">Allow the app to control Arduino boards</string>
-    <string name="preference_title_enable_embroidery_bricks">Embroidery extension</string>
-    <string name="preference_description_embroidery_bricks">Create patterns for stitching machines</string>
-    <string name="preference_title_cast_feature_globally_enabled">Chromecast extension</string>
-    <string name="preference_description_cast_feature_globally_enabled">Show cast button and enable cast projects</string>
+    <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo ส่วนขยาย</string>
+    <string name="preference_description_jumpingsumo_bricks">อนุญาตให้แอปควบคุมหุ่นยนต์ซูโม่กระโดดของนกแก้ว</string>
+    <string name="preference_title_enable_mindstorms_nxt_bricks">ส่วนขยาย Lego Mindstorms NXT</string>
+    <string name="preference_title_enable_mindstorms_ev3_bricks">ตัวต่อ Lego Mindstorms EV3</string>
+    <string name="preference_description_mindstorms_nxt_bricks">อนุญาตให้แอปควบคุมหุ่นยนต์ Lego Mindstorms NXT</string>
+    <string name="preference_description_mindstorms_ev3_bricks">อนุญาตให้แอปควบคุมหุ่นยนต์ Lego Mindstorms EV3</string>
+    <string name="preference_title_mindstorms_nxt_sensors">เลโก้ NXT เซนเซอร์</string>
+    <string name="preference_title_mindstorms_ev3_sensors">เลโก้ EV3 เซนเซอร์</string>
+    <string name="preference_title_drone_config_properties">การกำหนดค่า Parrot AR.Drone 2.0</string>
+    <string name="preference_title_enable_phiro_bricks">ส่วนขยาย Phiro ของ RobotixEdu</string>
+    <string name="preference_description_phiro_bricks">อนุญาตให้แอปควบคุมหุ่นยนต์ Phiro ของ RobotixEdu</string>
+    <string name="preference_title_enable_arduino_bricks">ส่วนขยาย Arduino</string>
+    <string name="preference_description_arduino_bricks">อนุญาตให้แอปควบคุมบอร์ด Arduino</string>
+    <string name="preference_title_enable_embroidery_bricks">การต่อเย็บปักถักร้อย</string>
+    <string name="preference_description_embroidery_bricks">สร้างรูปแบบสำหรับเครื่องเย็บ</string>
+    <string name="preference_title_cast_feature_globally_enabled">ส่วนขยาย Chromecast</string>
+    <string name="preference_description_cast_feature_globally_enabled">แสดงปุ่มแคสต์และเปิดใช้โปรเจ็กต์แคสต์</string>
     <string name="preference_title_enable_nfc_bricks">ส่วนขยายการสื่อสารระยะใกล้</string>
     <string name="preference_description_nfc_bricks">อนุญาตให้แอปใช้แท็ก NFC ในโครงการ</string>
     <string name="preference_title_enable_crash_reports">การส่งรายงานข้อผิดพลาดที่ไม่ระบุชื่อ</string>
     <string name="preference_description_crash_reports">อนุญาตให้แอปส่งรายงานข้อขัดข้องโดยอัตโนมัติ</string>
     <!-- -->
-    <string name="preference_title_enable_raspi_bricks">Raspberry Pi extension</string>
-    <string name="preference_description_raspi_bricks">Allow the app to control Raspberry Pi computers</string>
+    <string name="preference_title_enable_raspi_bricks">ส่วนขยาย Raspberry Pi</string>
+    <string name="preference_description_raspi_bricks">อนุญาตให้แอปควบคุมคอมพิวเตอร์ Raspberry Pi</string>
     <string name="preference_raspi_enable_bricks">เปิดใช้งานชุดคำสั้งและเซ็นเซอร์</string>
     <string name="preference_raspi_help">ช่วยเหลือ / เริ่มต้นใช้งาน</string>
     <string name="preference_raspi_help_summary">รับความช่วยเหลือเกี่ยวกับวิธีกำหนดการตั้งค่าการเชื่อมต่อ</string>
-    <string name="preference_raspi_host">Raspberry Pi IP-/host-address</string>
-    <string name="preference_raspi_port">Raspberry Pi port</string>
+    <string name="preference_raspi_host">Raspberry Pi IP- / ที่อยู่โฮสต์</string>
+    <string name="preference_raspi_port">พอร์ต Raspberry Pi</string>
     <!--  -->
     <string name="preference_title_multiplayer_variables_enabled">ส่วนขยายผู้เล่นหลายคน</string>
     <string name="preference_description_multiplayer_variables_enabled">อนุญาตให้แอปใช้
@@ -193,15 +228,18 @@
     <string name="error_request_timeout">อ๊ะ! เซิร์ฟเวอร์ของเราไม่ตอบสนองโปรดลองอีกครั้งในภายหลัง</string>
     <string name="error_scratch_program_conversion_failed">อ๊ะ!  การแปลงโครงการล้มเหลวโปรดลองอีกครั้งในภายหลัง</string>
     <string name="error_specific_scratch_program_conversion_failed_x">อ๊ะ!  ไม่สามารถแปลง %1$s ได้โปรดลองอีกครั้งในภายหลัง</string>
-    <string name="error_scratch_converter_outdated_app_version">แอพเวอร์ชันนี้ของคุณล้าสมัยแล้ว  ตัวแปลง Scratch ของเราใช้งานได้กับเวอร์ชันล่าสุดเท่านั้น  โปรดอัปเดตแอป</string>
-    <string name="error_cannot_open_not_existing_scratch_program">ฉันไม่สามารถเปิดโครงการเริ่มต้นนี้ได้  ดูเหมือนว่าคุณได้ยกเลิกการแปลง / ดาวน์โหลดโครงการ Scratch หรือคุณได้เปลี่ยนชื่อ / ลบโครงการในขณะเดียวกัน</string>
-    <string name="error_cannot_open_currently_downloading_scratch_program">คุณยังไม่สามารถเปิดโครงการ  โปรดรอจนกว่ามันจะถูกดาวน์โหลด</string>
-    <string name="error_cannot_open_not_yet_downloaded_scratch_program">คุณยังไม่สามารถเปิดโครงการ  โปรดดาวน์โหลดก่อนแล้วจึงเปิด</string>
+    <string name="error_scratch_converter_outdated_app_version">แอพเวอร์ชันนี้ของคุณล้าสมัยแล้ว  ตัวแปลง 
+        Scratch ของเราใช้งานได้กับเวอร์ชันล่าสุดเท่านั้น  โปรดอัปเดตแอป</string>
+    <string name="error_cannot_open_not_existing_scratch_program">ฉันไม่สามารถเปิดโครงการ Scratch นี้ได้ ดูเหมือนว่าคุณ
+        ได้ยกเลิกการแปลง/ดาวน์โหลดโครงการ Scratch หรือคุณได้เปลี่ยนชื่อ/ลบโครงการใน
+        ในขณะเดียวกัน.</string>
+    <string name="error_cannot_open_currently_downloading_scratch_program">คุณยังไม่สามารถเปิดโครงการ  
+        โปรดรอจนกว่ามันจะถูกดาวน์โหลด</string>
+    <string name="error_cannot_open_not_yet_downloaded_scratch_program">คุณยังไม่สามารถเปิดโครงการ  
+        โปรดดาวน์โหลดก่อนแล้วจึงเปิด</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">ฉันไม่สามารถแปลง %1$s ได้  ดูเหมือนว่าจะเป็นโครงการเก่าก่อนหน้า %2$s  โปรดลองอันอื่น</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
-        <item quantity="other">คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน
-
- คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน</item>
+        <item quantity="other">คุณไม่สามารถแปลงมากกว่า %d โครงการได้ในเวลาเดียวกัน  โปรดรอให้การแปลงที่ดำเนินการเสร็จสิ้นก่อน</item>
     </plurals>
     <string name="error_cannot_open_failed_scratch_program">คุณไม่สามารถเปิดโครงการเพราะมันไม่ได้แปลงอย่างถูกต้อง  โปรดลองแปลงอีกครั้ง</string>
     <string name="search_failed">ไม่พบสิ่งใดโปรดลองอีกครั้งในภายหลัง</string>
@@ -209,8 +247,7 @@
     <string name="connection_failed">เราไม่สามารถเชื่อมต่อคุณกับเซิร์ฟเวอร์ได้ในขณะนี้โปรดลองอีกครั้งในภายหลัง</string>
     <string name="authentication_failed">ดูเหมือนว่าจะมีปัญหากับการเชื่อมต่อกับบริการของคุณ  กรุณาติดต่อทีม Catrobat</string>
     <plurals name="scratch_conversion_scheduled_x">
-        <item quantity="other">เพิ่ม %d โครงการไปยังคิว&#8230;
-เพิ่ม %d โครงการไปยังคิว&#8230;</item>
+        <item quantity="other">เพิ่ม %d โครงการไปยังคิว&#8230;</item>
     </plurals>
     <string name="scratch_conversion_started">เริ่มแปลงโครงการแล้ว&#8230;</string>
     <string name="convert">แปลง</string>
@@ -220,14 +257,10 @@
     <string name="status_started">เริ่มต้น&#8230;</string>
     <string name="status_conversion_finished">การแปลงเสร็จสิ้น</string>
     <plurals name="status_in_progress_x_jobs">
-        <item quantity="other">กำลังดำเนินการ %d งาน
-
-กำลังดำเนินการ %d งาน</item>
+        <item quantity="other">กำลังดำเนินการ %d งาน</item>
     </plurals>
     <plurals name="status_completed_x_jobs">
-        <item quantity="other">เสร็จงาน %d
-
-เสร็จงาน %d</item>
+        <item quantity="other">เสร็จงาน %d</item>
     </plurals>
     <string name="status_conversion_failed">การแปลงล้มเหลว!</string>
     <string name="status_downloading">ดาวน์โหลด&#8230;</string>
@@ -252,16 +285,13 @@
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">คุณแปลงโครงการนี้ %1$s ที่ผ่านมา</string>
     <plurals name="minutes">
-        <item quantity="other">%d นาที
-%d นาที</item>
+        <item quantity="other">%d นาที</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="other">%d ชั่วโมง
-%d ชั่วโมง</item>
+        <item quantity="other">%d ชั่วโมง</item>
     </plurals>
     <plurals name="days">
-        <item quantity="other">%d วัน
-%d วัน</item>
+        <item quantity="other">%d วัน</item>
     </plurals>
     <string name="reconvert_dialog_download">ดาวน์โหลดโครงการอีกครั้ง</string>
     <string name="reconvert_dialog_reconvert">แปลงโครงการนี้อีกครั้ง</string>
@@ -278,6 +308,7 @@
     <string name="name_empty">กรุณากรอกข้อความ</string>
     <!-- Recycler View -->
     <string name="am_empty_list">ยังไม่มีรายการในรายการนี้ กรุณาเพิ่มก่อน</string>
+    <string name="reject_import">ไม่สามารถเพิ่มนักแสดงหรือวัตถุได้</string>
     <string name="am_merge_error">ไม่ทำการผสาน ต้องเลือกโครงการ 2 รายการเพื่อรวมเข้าด้วยกัน</string>
     <string name="am_backpack">เก็บ</string>
     <string name="am_unpack">แตกออก</string>
@@ -296,35 +327,33 @@
     <string name="merge">รวม</string>
     <string name="show_details">แสดงรายละเอียด</string>
     <string name="hide_details">แก้ไขรายละเอียด</string>
+    <string name="project_options">ตัวเลือกโครงการ</string>
+    <string name="from_library">เพิ่มจากคลังภาพ</string>
+    <string name="sort_projects">เรียงลำดับ</string>
+    <string name="unsort_projects">ไม่เรียงลำดับ</string>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">ฉากใหม่</string>
     <!-- Delete Dialog Titles -->
     <plurals name="delete_projects">
-        <item quantity="other">ลบโครงการนี้หรือไม่
-ลบโครงการเหล่านี้หรือไม่</item>
+        <item quantity="other">ลบโครงการนี้หรือไม่</item>
     </plurals>
     <plurals name="delete_scenes">
-        <item quantity="other">ลบฉากนี้หรือไม่
-ลบฉากเหล่านี้หรือไม่</item>
+        <item quantity="other">ลบฉากนี้หรือไม่</item>
     </plurals>
     <plurals name="delete_sprites">
         <item quantity="other">ลบนักแสดงหรือวัตถุนี้หรือไม่</item>
     </plurals>
     <plurals name="delete_looks">
-        <item quantity="other">ลบรูปลักษณ์นี้หรือไม่
-ลบรูปลักษณ์เหล่านี้หรือไม่</item>
+        <item quantity="other">ลบรูปลักษณ์นี้หรือไม่</item>
     </plurals>
     <plurals name="delete_sounds">
-        <item quantity="other">ลบเสียงนี้ไหม
-ลบเสียงเหล่านี้หรือไม่</item>
+        <item quantity="other">ลบเสียงนี้ไหม</item>
     </plurals>
     <plurals name="delete_nfc_tags">
-        <item quantity="other">ลบแท็กนี้หรือไม่
-ลบแท็กเหล่านี้หรือไม่</item>
+        <item quantity="other">ลบแท็กนี้หรือไม่</item>
     </plurals>
     <plurals name="delete_scripts">
-        <item quantity="other">ลบสคริปต์นี้หรือไม่
-ลบสคริปต์เหล่านี้หรือไม่</item>
+        <item quantity="other">ลบสคริปต์นี้หรือไม่</item>
     </plurals>
     <!-- Dialog Labels -->
     <string name="project_name_label">ชื่อโครงการ</string>
@@ -333,13 +362,18 @@
     <string name="sprite_group_name_label">ชื่อกลุ่ม</string>
     <string name="script_group_label">ชื่อกลุ่มสคริปต์</string>
     <string name="look_name_label">ดูชื่อ</string>
-    <string name="sound_name_label">ชื่อของเสียง</string>
+    <string name="sound_name_label">ชื่อเสียง</string>
     <string name="nfc_tag_name_label">ชื่อแท็ก NFC</string>
     <string name="string_label">ข้อความ</string>
     <string name="data_label">ชื่อ</string>
     <string name="keyword_label">แทรกคำหลัก</string>
     <string name="html_label">แทรกข้อความ HTML</string>
     <string name="Image_format_not_supported">รูปแบบไฟล์ที่ไม่สนับสนุน</string>
+    <string name="import_conflicting_variables">ไม่สามารถเพิ่มนักแสดงหรือวัตถุได้</string>
+    <string name="import_conflicting_variables_reason">เหตุผลก็คือว่าตัวแปรต่อไปนี้หรือ
+        ชื่อรายการขัดแย้งกันเพราะใช้สำหรับ
+        นักแสดงและวัตถุทั้งหมดและมีชื่อเดียวกันสำหรับนักแสดงหรือวัตถุเพียงคนเดียว: </string>
+    <string name="import_conflicting_variables_try_again">โปรดเปลี่ยนชื่อหนึ่งในตัวแปรหรือรายการเหล่านี้แล้วลองอีกครั้ง</string>
     <!-- Details -->
     <string name="project_details">การเข้าถึงล่าสุด: %s ขนาด: %s</string>
     <string name="last_access_today">วันนี้ %s</string>
@@ -359,10 +393,12 @@
     <string name="rename_data_dialog">เปลี่ยนชื่อ</string>
     <!-- New Script Group Dialog -->
     <string name="new_group">กลุ่มใหม่</string>
+    <string name="default_group_name">กลุ่ม</string>
     <!-- New Scene Menu -->
     <string name="new_scene">ฉากใหม่</string>
     <!-- Action Toasts -->
     <!-- Backpack -->
+    <string name="backpack_empty">ชุดคำสั่งว่างเปล่า ไม่มีอะไรให้จัดการ</string>
     <plurals name="packed_scenes">
         <item quantity="other">ชุดข้อมูล %d ฉาก</item>
     </plurals>
@@ -433,6 +469,10 @@
     <plurals name="deleted_Items">
         <item quantity="other">ลบ %d รายการ?</item>
     </plurals>
+    <!-- Imported -->
+    <plurals name="imported_projects">
+        <item quantity="other">นำเข้า %d โครงการ</item>
+    </plurals>
     <!--  -->
     <!-- ProjectListActivity and ProjectListFragment -->
     <string name="project_list_title">โปรแกรม</string>
@@ -445,7 +485,15 @@
     <string name="details_date_today">วันนี้</string>
     <string name="import_project">นำเข้าโครงการ</string>
     <string name="error_import_project">เกิดข้อผิดพลาดขณะนำเข้าโครงการ</string>
+    <string name="no_projects_selected">ไม่ได้เลือกโครงการสำหรับการนำเข้า</string>
     <string name="error_no_files_found">ไม่พบไฟล์โครงการ</string>
+    <!-- ProjectOptionsFragment -->
+    <string name="project_options_description">คำอธิบาย</string>
+    <string name="project_options_notes_and_credits">เครดิต</string>
+    <string name="project_options_tags">แท็ก</string>
+    <string name="project_options_aspect_ratio">คงอัตราส่วนเดิมไว้</string>
+    <string name="project_options_more_details">ข้อมูลเพิ่มเติม</string>
+    <string name="project_options_delete_project">ลบโปรเจค</string>
     <!-- ScriptListFragment -->
     <string name="fragment_script_text_description">เคาะ \"+\" เพื่อเพิ่มสคริปต์</string>
     <!--  -->
@@ -483,9 +531,9 @@
     <string name="local_vars_headline">ตัวแปรสำหรับนักแสดงหรือวัตถุนี้เท่านั้น</string>
     <string name="global_lists_headline">รายการสำหรับนักแสดงและวัตถุทั้งหมด</string>
     <string name="local_lists_headline">รายการสำหรับนักแสดงหรือวัตถุนี้เท่านั้น</string>
+    <string name="fragment_data_text_description">แตะ \"+\" เพื่อเพิ่ม \n ตัวแปรหรือรายการ</string>
     <plurals name="user_defined_brick_input_headline">
-        <item quantity="other">อินพุตสำหรับคำสั่งนี้
-อินพุตสำหรับคำสั่งนี้</item>
+        <item quantity="other">อินพุตสำหรับคำสั่งนี้</item>
     </plurals>
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">สำหรับนักแสดงวัตถุและโคลนทุกฉาก</string>
@@ -510,8 +558,9 @@
     <!-- NewLookDialog -->
     <string name="new_look_dialog_title">เพิ่มรูปลักษณ์</string>
     <string name="add_look_from_camera">ถ่ายภาพ</string>
+    <string name="add_look_object_library">ห้องสมุด</string>
     <string name="add_look_draw_new_image">วาดรูป</string>
-    <string name="add_look_choose_image">เลือกรูปภาพ</string>
+    <string name="add_look_choose_image">แกลลอรี่</string>
     <string name="add_look_media_library">ไลบรารีสื่อ</string>
     <!--  -->
     <!-- NewSoundDialog -->
@@ -530,62 +579,37 @@
     <string name="rating_dialog_rate_never">ไม่เลย</string>
     <!--  -->
     <!-- Terms of Use Dialog -->
-    <string name="dialog_terms_of_use_title">ข้อกำหนดการใช้งานและบริการ</string>
-    <string name="dialog_terms_of_use_info">ในการได้รับอนุญาตให้ใช้แอพและบริการอื่น ๆ ที่เสนอโดยโครงการ Catrobat คุณต้องยอมรับข้อกำหนดการใช้งานและบริการของเรา  คุณต้องปฏิบัติตามข้อกำหนดเหล่านี้อย่างเคร่งครัดเมื่อใช้แอพและบริการอื่น ๆ ของเรา  โปรดดูลิงก์ด้านล่างสำหรับสูตรที่แม่นยำ \n</string>
-    <string name="dialog_terms_of_use_link_text">ข้อกำหนดการใช้งานและบริการ</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot ARDrone-->
-    <string name="dialog_terms_of_use_link_text_parrot_reminder">ข้อกำหนดการใช้งานและบริการ</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">คุณกำลังจะใช้แอพนี้ร่วมกับ AR.Drone 2.0 ของ Parrot  เราขอเตือนอย่างยิ่งให้คุณปฏิบัติตามข้อกำหนดในการให้บริการทั้งของ Parrot และ Catrobat</string>
-    <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">ไม่ต้องเตือนฉันอีก</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot Jumping Sumo-->
-    <string name="dialog_terms_of_use_jumpingsumo_reminder_text">You are about to use this app together with
-        Parrot\'s Jumping Sumo. We strongly remind you to abide by both Parrot\'s and Catrobat\'s Terms of Use and
-        Services.</string>
+    <string name="dialog_terms_of_use_title">เงื่อนไขการใช้งานและบริการ</string>
+    <string name="dialog_terms_of_use_info">เพื่อที่จะ
+        ได้รับอนุญาตให้ใช้แอพและบริการอื่น ๆ ที่นำเสนอโดยโครงการ Catrobat คุณ
+        ต้องยอมรับข้อกำหนดการใช้งานและบริการของเรา คุณต้องปฏิบัติตามข้อกำหนดเหล่านี้อย่างเคร่งครัดเมื่อใช้แอพของเรา
+        และบริการอื่นๆ โปรดดูลิงก์ด้านล่างสำหรับสูตรที่แม่นยำ\n</string>
+    <string name="dialog_terms_of_use_link_text">เงื่อนไขการใช้งานและบริการ</string>
     <!--  -->
     <!-- Privacy Policy -->
-    <string name="dialog_privacy_policy_title">นโยบายความเป็นส่วนตัว</string>
     <string name="disclaimer_privacy_police_header_headline">ยินดีต้อนรับ!</string>
     <string name="disclaimer_privacy_policy_header">ในการใช้แอพนี้โปรดยอมรับไฟล์</string>
-    <string name="dialog_privacy_policy_text">เพื่อให้คุณได้รับประโยชน์ทั้งหมดจากบริการของเราและบัญชีที่เกี่ยวข้องคุณจำเป็นต้องรวบรวมข้อมูลบางอย่างจากคุณ \n\n
-      •เพื่อรักษาและปรับปรุงบริการของเรา (แอพและเว็บไซต์) และเพื่อทำการวิจัยทางวิทยาศาสตร์เกี่ยวกับ ICT และ STEM /  การศึกษา STEAM เราใช้ Google Analytics, Crashlytics และ Firebase ทั้งหมดโดย Google LLC (USA) และ Dynatrace โดย Dynatrace LLC (USA) เพื่อรับข้อมูลเมตาเกี่ยวกับการใช้บริการของเราเช่นข้อมูลการชนเวลาบันทึกหน้าเว็บที่เข้าชม  / หน้าจอการใช้แอพและบริการของเราระบบปฏิบัติการที่ใช้และข้อมูลเกี่ยวกับผู้ให้บริการเครือข่าย  การวิเคราะห์และข้อมูลที่เก็บรวบรวมนี้ไม่ได้เชื่อมโยงกับโปรไฟล์ของคุณและไม่มีข้อมูลส่วนบุคคลใด ๆ (บิตสุดท้ายของที่อยู่ IP จะถูกลบออก)  อย่างไรก็ตามข้อมูลที่รวบรวมจะถูกถ่ายโอนไปยังผู้ให้บริการ (Google LLC, USA และ Dynatrace LLC, สหรัฐอเมริกา)  การประมวลผลข้อมูลเป็นไปตามข้อตกลงกับ Google LLC และ Dynatrace LLC  ความสัมพันธ์นี้กับผู้ให้บริการเป็นไปตามข้อกำหนดการป้องกันข้อมูลทั่วไปของสหภาพยุโรป (EU GDPR) และข้อตกลง \"Privacy Shield\" ของสหภาพยุโรป - สหรัฐอเมริกา \n\n
-      •เพื่อสร้างและใช้บัญชีในระบบของเราและแจ้งให้คุณทราบเกี่ยวกับความจำเป็น  การเปลี่ยนแปลงเกี่ยวกับบัญชีของคุณต่ออีเมลเช่นการอัปเดตหรือการละเมิดข้อกำหนดในการให้บริการและกฎการใช้ชุมชนของเราหรือนโยบายของเราเราจะจัดเก็บชื่อผู้ใช้ของคุณและที่อยู่อีเมลของคุณ  หากคุณเชื่อมต่อบัญชีของคุณผ่านบัญชี Google หรือ Facebook ของคุณเราจะจัดเก็บรหัสระบุตัวตนที่เชื่อมต่อกับบัญชีของคุณในบริการเหล่านี้  เราจะไม่ใช้ข้อมูลนี้เพื่อจุดประสงค์อื่น ๆ (เช่นการตลาด) เว้นแต่คุณจะอนุญาตให้เราทำอย่างชัดเจน \n\n
-      •ด้วยความสมัครใจคุณสามารถให้ประเทศที่พำนักอาศัยของคุณผ่านหน้าบัญชีของคุณในการแบ่งปัน  เว็บไซต์.  สิ่งนี้จะปรากฏในโปรไฟล์สาธารณะของคุณและใช้เพื่อวัตถุประสงค์ทางสถิติและการวิจัยโดยเราเท่านั้น  สามารถลบออกได้ตลอดเวลาในการตั้งค่าโปรไฟล์ของคุณ \ n\n
-     •คุณสามารถถอนการใช้ข้อมูลส่วนบุคคลที่เป็นของบัญชีของคุณได้ตลอดเวลาโดยการลบบัญชีของคุณผ่านหน้าโปรไฟล์ของคุณใน https: //share.catrob  ที่.  หลังจากลบบัญชีของคุณคุณจะยังสามารถใช้บริการที่ให้ไว้ได้ แต่จะไม่ทำงานร่วมกันเช่นผ่านการอัปโหลดโปรแกรมการแสดงความคิดเห็นหรือความชอบ  นอกจากนี้เนื้อหาทั้งหมดที่เชื่อมโยงกับบัญชีของคุณเช่นโปรแกรมที่อัปโหลดความคิดเห็น ฯลฯ จะถูกลบ \n\n
-      •เพื่อหลีกเลี่ยงการใช้บริการของเราในทางที่ผิดเช่นผ่านการอัพโหลดหรือความคิดเห็นของผู้ใช้เพื่อวัตถุประสงค์ที่ผิดกฎหมาย  ข้อมูลสาธารณะที่สร้างขึ้น (อัพโหลดความคิดเห็น) จะถูกเก็บไว้ภายในฐานข้อมูลพร้อมกับเวลาและที่อยู่อินเทอร์เน็ตที่ใช้  ข้อมูลนี้จะไม่ถูกนำไปใช้โดยหรือส่งต่อไปยังสถาบันใด ๆ เว้นแต่จะมีการกระทำที่ผิดกฎหมายอย่างเพียงพอและสงสัยว่ามีเหตุผลอย่างเป็นทางการและได้รับสิทธิ์อย่างเป็นทางการจากสถาบันทางกฎหมายตามคำขอ  แต่ละกรณีจะได้รับการตรวจสอบอย่างละเอียดเป็นรายบุคคลโดยเราก่อน \n\n
-      •คุณสามารถสมัครรับจดหมายข่าว Catrobat โดยสมัครใจได้ที่ https://catrob.at/newsletter จากเราผ่านบริการ MailChimp (The Rocket Science Group  LLC d / b / a MailChimp สหรัฐอเมริกา)  จากนั้นคุณจะได้รับการอัปเดตเกี่ยวกับโครงการ Catrobat และบริการของโครงการไปยังที่อยู่อีเมลที่คุณให้ไว้  คุณสามารถถอนจดหมายข่าวได้ตลอดเวลาโดยใช้ลิงก์ \"ยกเลิกการเป็นสมาชิก\" ในส่วนท้ายของจดหมายข่าวทุกฉบับ  จดหมายข่าวนี้จัดทำโดย MailChimp ที่เรามีข้อตกลงการประมวลผลข้อมูลและผู้ที่มุ่งมั่นที่จะระเบียบคุ้มครองข้อมูลทั่วไปของสหภาพยุโรปและ \"ความเป็นส่วนตัวโล่\" EU-USA  สำหรับรายละเอียดเพิ่มเติมเกี่ยวกับ MailChimp โปรดค้นหานโยบายความเป็นส่วนตัวและข้อกำหนดการใช้งานของ MailChimp \ n\n 
-      •บริการทั้งหมดจัดทำโดยโครงการโอเพ่นซอร์ส Catrobat ฟรีภายใต้สมาคม Catrobat นานาชาติ - Verein zur Förderung freier Software, non  -profit NGO จัดตั้งขึ้นใน Graz, Austria (สหภาพยุโรป)  นโยบายของเราให้ความสำคัญกับกฎหมายคุ้มครองข้อมูลของสหภาพยุโรปและออสเตรีย (GDPR)  หากต้องการติดต่อเราโปรดส่งอีเมลไปที่ contact@catrobat.org หรือส่งอีเมลถึงเราที่ Catrobat \n
-c/o \n
-สถาบันเทคโนโลยีซอฟท์แวร์ \n
-มหาวิทยาลัยเทคโนโลยี Graz, \n
-อินฟอร์เดลกาส 16b, \n
-A-8010 กราซ, ออสเตรีย \n
-(สหภาพยุโรป) \n\n 
-ในกรณีที่คุณอายุต่ำกว่า 14 ปี  นโยบายนี้จะต้องได้รับการยอมรับจากผู้ปกครองตามกฎหมาย (โดยปกติจะเป็นผู้ปกครอง) \n\n
-นโยบายความเป็นส่วนตัวภาษาอังกฤษอย่างเป็นทางการของ Catrobat มีอยู่บนเว็บภายใต้ https://catrob.at/privacypolicy.\n\n
-เวอร์ชั่น 2.2, 17  ตุลาคม 2019 \ n\n
-ค้นหานโยบายส่วนบุคคลรุ่นก่อนหน้าล้าสมัย (2.0) ที่นี่: http://developer.catrobat.org/privacy_policy_2-0    </string>
-    <string name="dialog_privacy_policy_declined_text">จำเป็นต้องยอมรับนโยบายความเป็นส่วนตัวเพื่อลงทะเบียนหรือใช้งานบัญชีของคุณต่อไป  หากคุณไม่ต้องการให้เรารวบรวมข้อมูลนี้คุณสามารถลบบัญชีของคุณผ่านหน้าโปรไฟล์ของคุณในเว็บไซต์ https://share.catrob.at/ ของเรา    </string>
     <!-- -->
     <!-- About Dialog -->
     <string name="dialog_about_title">เกี่ยวกับ App นี้</string>
-    <string name="dialog_about_license_info">This app offers a coding
-        environment and interpreter for the visual programming language Catrobat.\n
-        The source code of this app is mainly licensed under the GNU AGPL v3 license.
-        For further details on the license see the link below.\n</string>
+    <string name="dialog_about_license_info">แอพนี้มีการเข้ารหัส
+        สภาพแวดล้อมและล่ามสำหรับภาษาโปรแกรมภาพ Catrobat\n
+        ซอร์สโค้ดของแอพนี้ส่วนใหญ่ได้รับอนุญาตภายใต้ใบอนุญาต GNU AGPL v3
+        สำหรับรายละเอียดเพิ่มเติมเกี่ยวกับใบอนุญาตโปรดดูลิงก์ด้านล่าง\n</string>
     <string name="dialog_about_license_link_text">ใบอนุญาตรหัสที่มา</string>
     <string name="dialog_about_catrobat_link_text">เกี่ยวกับ Catrobat</string>
+    <string name="dialog_about_catrobat_language_version">Catrobat เวอร์ชันภาษา </string>
+    <string name="dialog_about_version">รุ่น:</string>
     <!--  -->
     <!-- NetworkAlertDialog -->
     <string name="error_no_network_title">ไม่มีเครือข่าย</string>
     <!-- UploadProjectDialog -->
-    <string name="upload_button">อัพโหลด</string>
     <string name="upload_project_dialog_title">อัพโหลดโปรแกรม</string>
     <string name="upload_description">คำอธิบาย:</string>
     <string name="upload_notes_and_credits">หมายเหตุและเครดิต:</string>
     <string name="upload_notes_and_credits_explanation">คุณสร้างโครงการนี้ได้อย่างไร คุณใช้ไอเดียสคริปต์หรืออาร์ตเวิร์คจากคนอื่นหรือไม่? ขอบคุณพวกเขาที่นี่</string>
     <string name="upload_tag_dialog_title">โปรดเลือกได้สูงสุดสามหมวด</string>
+    <string name="upload_tags_maximum_error">ไม่สามารถเลือกมากกว่า 3 แท็กได้</string>
     <!-- Save Project to External Storage -->
     <string name="save_to_external_storage_button">บันทึกโครงการไปยังที่จัดเก็บข้อมูลภายนอก</string>
     <string name="notification_save_project_to_external_storage_title_pending">" "</string>
@@ -605,7 +629,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_context_dialog_move_script">ย้ายสคริปต์</string>
     <string name="brick_context_dialog_move_definition">ย้ายคำจำกัดความนี้</string>
     <string name="brick_context_dialog_delete_brick">ลบคำสั่ง</string>
-    <string name="brick_context_dialog_copy_brick">คัดลอกคำสั่ง</string>
+    <string name="brick_context_dialog_copy_brick">คัดลอกอิฐ</string>
     <string name="brick_context_dialog_copy_script">คัดลอกสคริปต์</string>
     <string name="brick_context_dialog_formula_edit_brick">แก้ไขสูตร</string>
     <string name="brick_context_dialog_delete_script">ลบสคริปต์</string>
@@ -619,6 +643,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="comment_in_out">ปิด / เปิด</string>
     <string name="catblocks">สลับ 2D</string>
     <string name="catblocks_reorder">ล้างสคริปต์</string>
+    <string name="switch_to_1d">มุมมอง 1D</string>
     <!--  -->
     <!-- Play scene dialog -->
     <string name="play_scene_dialog_title">เล่นฉาก:</string>
@@ -629,11 +654,11 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="sign_in_dialog_title">เข้าสู่ระบบ</string>
     <string name="username">ชื่อผู้ใช้</string>
     <string name="password">รหัสผ่าน</string>
-    <string name="password_forgotten">ลืมรหัสผ่าน?</string>
+    <string name="reset_password">รีเซ็ตรหัสผ่าน</string>
     <string name="new_user_registered">บัญชีใหม่ถูกสร้างแล้ว</string>
     <string name="user_logged_in">เข้าสู่ระบบสำเร็จแล้ว</string>
     <string name="register_error">เข้าสู่ระบบไม่ถูกต้อง</string>
-    <string name="register_terms">โดยการลงทะเบียน คุณยอมรับ</string>
+    <string name="register_terms">ในการลงทะเบียนแสดงว่าคุณยอมรับ</string>
     <string name="register_code_terms_of_use_text">เงื่อนไขการใช้งานและบริการ</string>
     <string name="login">เข้าสู่ระบบ</string>
     <string name="register">สมัครสมาชิก</string>
@@ -650,7 +675,8 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="error_session_expired">เซสชันหมดอายุโปรดเข้าสู่ระบบ</string>
     <string name="error_register_empty_username">ชื่อผู้ใช้ว่างเปล่า</string>
     <string name="error_register_username_as_email">ไม่สามารถใช้ที่อยู่อีเมลเป็นชื่อผู้ใช้</string>
-    <string name="error_register_invalid_username">ชื่อผู้ใช้ควรมีตัวอักษร (a – z), ตัวเลข (0–9), เครื่องหมายขีดกลาง (-), เครื่องหมายขีดล่าง (_) และจุด (.)</string>
+    <string name="error_register_invalid_username">ชื่อผู้ใช้ควรมีตัวอักษร (a – z), ตัวเลข (0–9), 
+        เครื่องหมายขีดกลาง (-), เครื่องหมายขีดล่าง (_) และจุด (.)</string>
     <string name="error_register_username_start_with">ชื่อผู้ใช้ไม่ควรเริ่มต้นด้วยขีดกลาง (-), ขีดล่าง (_) หรือจุด (.)</string>
     <string name="error_register_invalid_email_format">รูปแบบอีเมลไม่ถูกต้อง</string>
     <string name="error_register_empty_password">ช่องรหัสผ่านว่างเปล่า</string>
@@ -675,17 +701,16 @@ A-8010 กราซ, ออสเตรีย \n
          ติดตั้งหรือไม่</string>
     <string name="prestage_resource_not_available_title">ไม่มีส่วนประกอบ</string>
     <string name="prestage_resource_not_available_text">น่าเสียดายที่โครงการนี้ใช้ไม่ได้กับอุปกรณ์ของคุณ  ส่วนประกอบต่อไปนี้ไม่สามารถใช้งานได้: \ n\n</string>
-    <string name="prestage_resource_in_use_text">อุปกรณ์อื่นเชื่อมต่อกับ Jumping Sumo  ตรวจสอบให้แน่ใจว่าคุณเป็นคนที่เชื่อมต่อกับโดรน</string>
     <string name="prestage_no_vibration_available">\u2022 การสั่นสะเทือน \n</string>
     <string name="prestage_no_acceleration_sensor_available">\u2022 เซ็นเซอร์ความเร่ง \n</string>
-    <string name="prestage_no_inclination_sensor_available">\u2022 เซ็นเซอร์ความเอียง \ n</string>
+    <string name="prestage_no_inclination_sensor_available">\u2022 เซ็นเซอร์ความเอียง \n</string>
     <string name="prestage_no_compass_sensor_available">\u2022 เข็มทิศ \n</string>
     <string name="prestage_no_gps_sensor_available">\u2022 ตำแหน่งทางภูมิศาสตร์ \n</string>
     <string name="prestage_text_to_speech_error">\u2022 เครื่องมือแปลงข้อความเป็นคำพูด \n</string>
     <string name="prestage_no_back_camera_available">\u2022 กล้องด้านหลัง \n</string>
     <string name="prestage_no_face_detection_available">\u2022 การตรวจจับใบหน้า \n</string>
+    <string name="prestage_no_pose_detection_available">\u2022 การตรวจจับท่าทาง \n</string>
     <string name="prestage_no_text_detection_available">\u2022 การตรวจจับข้อความ \n</string>
-    <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
     <string name="prestage_no_front_camera_available">\u2022 กล้องด้านหน้า \n</string>
     <string name="prestage_no_camera_available">\u2022 กล้อง \n</string>
     <string name="prestage_no_flash_available">\u2022 ไฟแฟรช\n</string>
@@ -706,7 +731,8 @@ A-8010 กราซ, ออสเตรีย \n
     <!--  -->
     <!-- Broadcast spinner -->
     <string name="dialog_new_broadcast_message_title">ข้อความใหม่</string>
-    <string name="dialog_new_broadcast_message_name">ข้อความ:</string>
+    <string name="dialog_broadcast_message_name">ข้อความ:</string>
+    <string name="dialog_edit_broadcast_message_title">แก้ไขข้อความ</string>
     <!--  -->
     <!-- NFC spinner -->
     <string name="brick_when_nfc_edit_list_of_nfc_tags">แก้ไขรายการแท็ก NFC</string>
@@ -725,30 +751,32 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="category_data">ข้อมูล</string>
     <string name="category_device">อุปกรณ์</string>
     <string name="category_lego_nxt">Lego NXT</string>
-    <string name="category_lego_ev3">Lego EV3</string>
+    <string name="category_lego_ev3">เลโก้ EV3</string>
     <string name="category_drone">AR.Drone 2.0</string>
-    <string name="category_jumping_sumo">Jumping Sumo</string>
-    <string name="category_phiro">Phiro</string>
+    <string name="category_jumping_sumo">กระโดดซูโม่</string>
+    <string name="category_phiro">ฟีโร</string>
     <string name="category_arduino">Arduino</string>
     <string name="category_cast">Chromecast</string>
-    <string name="category_raspi">Raspberry Pi</string>
-    <string name="category_assertions">Testing</string>
+    <string name="category_raspi">ราสเบอร์รี่ Pi</string>
+    <string name="category_assertions">การทดสอบ</string>
+    <string name="category_search_bricks">ค้นหาชุดคำสั่ง</string>
     <!--  -->
     <!-- User Defined Bricks -->
     <string name="brick_user_defined_add_label">เพิ่มป้ายชื่อ</string>
     <string name="brick_user_defined_add_input">เพิ่มข้อมูลนำเข้า</string>
-    <string name="brick_user_defined_add_input_description">Add input for this brick:</string>
-    <string name="brick_user_defined_add_label_description">Add label for this brick:</string>
-    <string name="brick_user_defined_default_input_name">Name of input</string>
-    <string name="brick_user_defined_default_label">Label text</string>
-    <string name="brick_user_defined_already_exists">A brick with these labels already exists. Please add more labels or inputs.</string>
+    <string name="brick_user_defined_add_input_description">เพิ่มอินพุตสำหรับอิฐนี้:</string>
+    <string name="brick_user_defined_add_label_description">เพิ่มป้ายกำกับสำหรับอิฐนี้:</string>
+    <string name="brick_user_defined_default_input_name">ชื่ออินพุต</string>
+    <string name="brick_user_defined_default_label">ข้อความป้ายกำกับ</string>
+    <string name="brick_user_defined_already_exists">อิฐที่มีป้ายกำกับเหล่านี้มีอยู่แล้ว โปรดเพิ่มป้ายกำกับหรืออินพุตเพิ่มเติม</string>
     <string name="brick_user_defined_script_define">กำหนด</string>
     <string name="brick_user_defined_script_as">เช่นเดียวกับ</string>
-    <string name="brick_user_defined_list_empty">Tap \"+\" to add your own new bricks.</string>
+    <string name="brick_user_defined_list_empty">แตะ \"+\" เพื่อเพิ่มอิฐใหม่ของคุณเอง</string>
+    <string name="brick_report">รายงาน</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"วางที่"</string>
-    <string name="brick_option_place_visually">Place visually</string>
+    <string name="brick_option_place_visually">วางด้วยสายตา</string>
     <string name="x_label">"X: "</string>
     <string name="y_label">"Y: "</string>
     <string name="brick_set_x">"ตั้งค่า X เป็น"</string>
@@ -790,19 +818,19 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_set_gravity_unit">ขั้นตอน / วินาที²</string>
     <string name="brick_set_velocity_to">"ตั้งค่าความเร็วเป็น"</string>
     <string name="brick_set_velocity_unit">ขั้นตอน / วินาที</string>
-    <string name="brick_turn_speed_unit">degrees/second</string>
-    <string name="brick_set_friction">"Set friction to"</string>
-    <string name="brick_set_bounce_factor">"Set bounce factor to"</string>
-    <string name="brick_rotate_left">"Spin left"</string>
-    <string name="brick_rotate_right">"Spin right"</string>
+    <string name="brick_turn_speed_unit">องศา / วินาที</string>
+    <string name="brick_set_friction">" ตั้งค่าความเสียดทานเป็น"</string>
+    <string name="brick_set_bounce_factor">"ตั้งค่า Bounce Factor เป็น"</string>
+    <string name="brick_rotate_left">"หมุนไปทางซ้าย"</string>
+    <string name="brick_rotate_right">"หมุนไปทางขวา"</string>
     <!-- Look bricks -->
     <string name="brick_set_look">เปลี่ยนรูปลักษณ์เป็น</string>
-    <string name="brick_set_look_by_index">Switch to look with number</string>
+    <string name="brick_set_look_by_index">สลับไปมองด้วยตัวเลข</string>
     <string name="brick_and_wait">และรอ</string>
     <string name="brick_set_background">ตั้งค่าพื้นหลัง</string>
-    <string name="brick_set_background_and_wait">Set background and wait</string>
-    <string name="brick_set_background_by_index">Set background to number</string>
-    <string name="brick_when_background">When background changes to</string>
+    <string name="brick_set_background_and_wait">ตั้งค่าพื้นหลังและรอ</string>
+    <string name="brick_set_background_by_index">ตั้งค่าพื้นหลังเป็นตัวเลข</string>
+    <string name="brick_when_background">เมื่อพื้นหลังเปลี่ยนเป็น</string>
     <string name="brick_set_size_to">ตั้งขนาดให้เป็น</string>
     <string name="brick_change_size_by">เปลี่ยนขนาดทีละ</string>
     <string name="brick_hide">ซ่อน</string>
@@ -820,6 +848,8 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_next_background">พื้นหลังถัดไป</string>
     <string name="brick_previous_look">ดูก่อนหน้า</string>
     <string name="brick_previous_background">พื้นหลังก่อนหน้า</string>
+    <string name="brick_edit_look">แก้ไขรูปลักษณ์</string>
+    <string name="brick_edit_background">แก้ไขพื้นหลัง</string>
     <string name="brick_delete_look">ลบรูปลักษณ์</string>
     <string name="brick_delete_background">ลบพื้นหลัง</string>
     <string name="brick_flash">เปิดไฟฉาย</string>
@@ -840,6 +870,9 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_copy_look">คัดลอกรูปลักษณ์และตั้งชื่อ</string>
     <string name="brick_copy_look_name">ชื่อของรูปลักษณ์ที่คัดลอก</string>
     <string name="brick_copy_background">คัดลอกพื้นหลังและตั้งชื่อ</string>
+    <string name="brick_focus_point">กลายเป็นจุดโฟกัสด้วย</string>
+    <string name="brick_horizontal_and">แนวนอนและ</string>
+    <string name="brick_vertical_flex">ความยืดหยุ่นในแนวตั้ง</string>
     <!--  -->
     <!-- Pen bricks -->
     <string name="brick_pen_down">วางปากกาลง</string>
@@ -868,22 +901,23 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="set_instrument_to">ตั้งค่าเครื่องมือเป็น</string>
     <string name="set_tempo_to">ตั้งเวลาเป็น</string>
     <string name="change_tempo_by">เปลี่ยนจังหวะโดย</string>
-    <string name="pause_for">Pause for</string>
+    <string name="pause_for">หยุดชั่วคราวสำหรับ</string>
     <string name="play_drum">เล่นกลอง</string>
-    <string name="beats">beats</string>
+    <string name="beats">เต้น</string>
     <string name="play_note">เล่นบันทึก</string>
     <string name="for_string">สำหรับ</string>
     <!--  -->
     <!-- Embroidery bricks -->
     <string name="brick_stitch">ตะเข็บ</string>
-    <string name="brick_running_stitch">Start running stitch with length</string>
-    <string name="brick_zigzag_stitch">Start zigzag stitch with length</string>
+    <string name="brick_running_stitch">เริ่มใช้ตะเข็บที่มีความยาว</string>
+    <string name="brick_zigzag_stitch">เริ่มเย็บซิกแซกด้วยความยาว</string>
     <string name="brick_zigzag_stitch_width">และความกว้าง</string>
-    <string name="brick_triple_stitch">Start triple stitch with length</string>
-    <string name="brick_stop_stitch">Stop current stitch</string>
+    <string name="brick_triple_stitch">เริ่มเย็บสามครั้งด้วยความยาว</string>
+    <string name="brick_stop_stitch">หยุดตะเข็บปัจจุบัน</string>
     <string name="brick_write_embroidery">เขียนข้อมูลการปักลงในไฟล์</string>
-    <string name="brick_default_embroidery_file">embroidery.dst</string>
+    <string name="brick_default_embroidery_file">เย็บปักถักร้อย.dst</string>
     <string name="brick_sew_up">เย็บ</string>
+    <string name="brick_thread_color">ตั้งค่าสีเป็น</string>
     <!--  -->
     <!-- Device bricks -->
     <string name="brick_reset_timer">รีเซ็ตเวลา</string>
@@ -919,10 +953,10 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_say_bubble">พูด</string>
     <string name="brick_think_say_for_text">สำหรับ</string>
     <string name="brick_forever">ตลอดไป</string>
-    <string name="brick_loop_for_values_from">For values from</string>
+    <string name="brick_loop_for_values_from">สำหรับค่าจาก</string>
     <string name="brick_loop_for_each_value_from">สำหรับแต่ละค่าจาก</string>
     <string name="brick_loop_in">ใน</string>
-    <string name="brick_loop_to">กำหนดความหมาย</string>
+    <string name="brick_loop_to">ถึง</string>
     <string name="brick_repeat">ทำซ้ำ</string>
     <string name="brick_repeat_until">ทำซ้ำจนกระทั่ง</string>
     <string name="brick_when_touched">เมื่อเวทีถูกทาบทาม</string>
@@ -934,7 +968,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_is_equal_to">เท่ากับที่คาดไว้</string>
     <string name="brick_wait_till_idle">รอจนกระทั่งสคริปต์อื่น ๆ หยุดทำงาน</string>
     <string name="brick_tap_at">"แตะครั้งเดียวที่"</string>
-    <string name="brick_touch_at">"Touch at"</string>
+    <string name="brick_touch_at">"แตะที่"</string>
     <string name="brick_tap_for">"สำหรับ"</string>
     <string name="brick_touch_slide">"แตะและเลื่อน"</string>
     <string name="brick_touch_from_x">"จาก x:"</string>
@@ -967,7 +1001,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_write_variable_on_device">เขียนตัวแปรบนอุปกรณ์</string>
     <string name="brick_read_variable_from_device">อ่านตัวแปรจากอุปกรณ์</string>
     <string name="brick_write_variable_to_file_top">เขียนตัวแปร</string>
-    <string name="brick_write_variable_to_file_bottom">to file</string>
+    <string name="brick_write_variable_to_file_bottom">ไปยังไฟล์</string>
     <string name="brick_write_variable_to_file_default_value">variable.txt</string>
     <string name="brick_write_variable_to_file_success">"เขียนข้อมูลไปยัง %1$s สำเร็จแล้ว"</string>
     <string name="brick_read_variable_from_file_top">อ่านตัวแปร</string>
@@ -978,7 +1012,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_write_list_on_device">เขียนรายการบนอุปกรณ์</string>
     <string name="brick_read_list_from_device">อ่านรายการจากอุปกรณ์</string>
     <string name="brick_note_default_value">เพิ่มความคิดเห็นที่นี่&#8230;</string>
-    <string name="brick_think_bubble_default_value">Hmmmm!</string>
+    <string name="brick_think_bubble_default_value">อืม!</string>
     <string name="brick_say_bubble_default_value">สวัสดี!</string>
     <string name="brick_broadcast_default_value">"ข้อความ 1"</string>
     <string name="brick_add_item_to_userlist_add">เพิ่ม</string>
@@ -996,11 +1030,11 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_web_request_default_value">https://catrob.at/joke</string>
     <string name="brick_web_request_result">และเก็บคำตอบไว้</string>
     <string name="web_request_warning_title">อนุญาตการเข้าถึงเว็บหรือไม่</string>
-    <string name="web_request_warning_message">ระวังให้มากก่อนอนุญาตให้เข้าถึงตั้งแต่
-         ลิงก์อาจเปิดเผยข้อมูลส่วนบุคคลของคุณ
-         คุณเข้าสู่บุคคลอื่นที่เป็นอันตรายหรือสาธารณะ ดูของเรา
-         &lt;a href=%1s>wiki&lt;/a&gt; สำหรับข้อมูลเพิ่มเติมว่าทำไมสิ่งนี้ถึงได้
-         เป็นอันตรายอย่างยิ่ง</string>
+    <string name="web_request_warning_message">โปรดใช้ความระมัดระวังก่อนอนุญาตให้เข้าถึง เนื่องจาก
+        ลิงก์อาจเปิดเผยข้อมูลส่วนบุคคลของคุณ เช่น ตำแหน่งทางภูมิศาสตร์ที่แม่นยำหรือข้อความใดๆ
+        คุณได้เข้าสู่ผู้อื่นที่เป็นอันตรายหรือต่อสาธารณะ ดูของเรา
+        &lt;a href=%1s&gt;wiki&lt;/a&gt; สำหรับข้อมูลเพิ่มเติมว่าทำไมสิ่งนี้สามารถ
+        จะเป็นอันตรายอย่างยิ่ง</string>
     <string name="web_request_trust_domain_warning_title">อนุญาตการเข้าถึงเว็บเสมอหรือไม่</string>
     <string name="web_request_trust_domain_warning_message">ด้วยการอนุญาตให้เข้าถึงเสมอคุณจะ
          จะไม่ถูกถามอีกครั้งเพื่อยืนยันที่อยู่เว็บจากโดเมนนี้</string>
@@ -1008,9 +1042,6 @@ A-8010 กราซ, ออสเตรีย \n
          ในภายหลังคุณสามารถลบรายการออกจากรายการโดเมนที่เชื่อถือได้ใน
          การตั้งค่าของแอพนี้</string>
     <string name="brick_look_request">รับภาพจาก</string>
-    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
-    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
-    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
     <string name="brick_look_request_result">และใช้เป็นรูปลักษณ์ปัจจุบัน</string>
     <string name="brick_background_request_result">และใช้เป็นพื้นหลังปัจจุบัน</string>
     <string name="look_request_http_error_message">"รับภาพจาก%1$sข้อผิดพลาด HTTP ที่ส่งคืน%2$s"</string>
@@ -1031,10 +1062,10 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="guitar">กีตาร์</string>
     <string name="electric_guitar">กีต้าร์ไฟฟ้า</string>
     <string name="bass">เบส</string>
-    <string name="pizzicato">pizzicato</string>
-    <string name="synth_pad">synth pad</string>
+    <string name="pizzicato">พิซซ่า</string>
+    <string name="synth_pad">แผ่น Synth</string>
     <string name="choir">นักร้องประสานเสียง</string>
-    <string name="synth_lead">synth lead</string>
+    <string name="synth_lead">นำไปสู่การสังเคราะห์</string>
     <string name="wooden_flute">ขลุ่ยไม้</string>
     <string name="trombone">ทรอมโบน</string>
     <string name="saxophone">แซกโซโฟน</string>
@@ -1048,7 +1079,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="snare_drum">กลองสแนร์</string>
     <string name="bass_drum">กลองเบส</string>
     <string name="side_stick">ไม้ด้านข้าง</string>
-    <string name="crash_cymbal">crash cymbal</string>
+    <string name="crash_cymbal">ฉิ่งผิดพลาด</string>
     <string name="open_hi_hat">เปิด hi-hat</string>
     <string name="closed_hi_hat">ปิด hi-hat</string>
     <string name="tambourine">รำมะนา</string>
@@ -1066,7 +1097,11 @@ A-8010 กราซ, ออสเตรีย \n
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">โครงการของฉัน</string>
-    <string name="default_scene_name">ฉาก %1$d</string>
+    <string name="default_variable_name">ตัวแปร</string>
+    <string name="default_scene_name">ฉาก (%1$d)</string>
+    <string name="default_script_group_name">กลุ่มสคริปต์</string>
+    <string name="default_broadcast_message_name">ข้อความ</string>
+    <string name="default_list_name">รายการ</string>
     <string name="default_project_background_name">พื้นหลัง</string>
     <string name="default_project_cloud_name">เมฆ</string>
     <string name="default_project_cloud_sprite_name_1">เมฆ 1</string>
@@ -1101,10 +1136,10 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="drone_brick_set_x">X:</string>
     <!--  -->
     <!-- Drone config spinner values  -->
-    <string name="drone_config_indoor_with_hull">indoor with hull</string>
-    <string name="drone_config_indoor_without_hull">indoor without hull</string>
-    <string name="drone_config_outdoor_with_hull">outdoor with hull</string>
-    <string name="drone_config_outdoor_without_hull">outdoor without hull</string>
+    <string name="drone_config_indoor_with_hull">ในร่มพร้อมตัวถัง</string>
+    <string name="drone_config_indoor_without_hull">ในร่มไม่มีตัวถัง</string>
+    <string name="drone_config_outdoor_with_hull">กลางแจ้งพร้อมตัวถัง</string>
+    <string name="drone_config_outdoor_without_hull">กลางแจ้งไม่มีตัวถัง</string>
     <!-- Drone altitude limit values  -->
     <string name="drone_set_altitude_max_3m">3 เมตร</string>
     <string name="drone_set_altitude_max_5m">5 เมตร</string>
@@ -1139,21 +1174,11 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="notification_upload_rejected">โปรแกรมอัพโหลดถูกปฏิเสธ</string>
     <string name="notification_upload_retry">ลองอีกครั้ง</string>
     <string name="notification_open_play_store">เปิด App store</string>
-    <string name="notification_download_title_pending">"กำลังดาวน์โหลด "</string>
+    <string name="notification_download_title_pending">"กำลังดาวน์โหลด"</string>
     <string name="notification_download_pending">ดาวน์โหลดอยู่</string>
     <string name="notification_download_finished">ดาวน์โหลดเสร็จเรียบร้อย</string>
-    <string name="notification_title_open">"เปิด​ "</string>
-    <string name="notification_low_battery_with_value">ความสนใจ แบตเตอรี่เหลือน้อย สถานะปัจจุบันคือ %d</string>
+    <string name="notification_title_open">"เปิด​"</string>
     <string name="size_of_project">ขนาด:</string>
-    <string name="drone_emergency_battery_low">แบตเตอรี่ต่ำ (ลงจอดอัตโนมัติ)</string>
-    <string name="drone_emergency_camera">กล้องอย่างน้อยหนึ่งตัวไม่ตอบสนอง</string>
-    <string name="drone_emergency_ultrasound">เซ็นเซอร์อัลตร้าซาวด์ไม่ตอบสนอง</string>
-    <string name="drone_emergency_angle">AR.Drone 2.0 มุมออยเลอร์สูงเกินไป  มอเตอร์ปิดตัวลงเพื่อป้องกันพฤติกรรมที่เป็นอันตราย</string>
-    <string name="drone_emergency_cutout">มอเตอร์หนึ่งตัวหรือมากกว่าถูกหยุดโดยสภาพแวดล้อม</string>
-    <string name="drone_alert_battery_low">แบตเตอรี่เหลือน้อยเกินไปที่จะถอดอีกครั้ง</string>
-    <string name="drone_alert_ultrasound">เซ็นเซอร์อัลตร้าซาวด์ไม่สามารถระบุความสูง AR.Drone 2.0</string>
-    <string name="drone_alert_vision">ไม่มีการประมาณความเร็วจากกล้องหันหน้าไปทางด้านล่าง</string>
-    <string name="drone_emergency_title">ฉุกเฉิน</string>
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">แอปนี้ต้องการสิทธิ์ที่ร้องขอเพื่อให้สามารถทำงานได้ ตัวอย่างเช่นอิฐของกล้องต้องการการเข้าถึงกล้องของอุปกรณ์องค์ประกอบของสูตร \"ตำแหน่ง\" ต้องการการเข้าถึงเซ็นเซอร์ตำแหน่งทางภูมิศาสตร์ของอุปกรณ์และเพื่อนำเข้าและส่งออกโครงการจากและไปยังหน่วยความจำท้องถิ่นแอปนี้จำเป็นต้องมีสิทธิ์อ่านและเขียน. คุณสามารถเปลี่ยนการอนุญาตผ่านการตั้งค่าอุปกรณ์ของคุณ</string>
@@ -1173,22 +1198,10 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="error_upload_default_project">คุณไม่สามารถอัพโหลดโครงการตัวอย่างที่ไม่ได้แก้ไข  โปรดเปลี่ยนบางสิ่งและลองอีกครั้ง</string>
     <string name="error_adding_brick">เกิดข้อผิดพลาดขณะเพิ่มก้อนนี้</string>
     <string name="error_copying_brick">เกิดข้อผิดพลาดขณะคัดลอกก้อนนี้</string>
-    <string name="error_no_drone_connected_title">ไม่พบ AR.Drone 2.0</string>
-    <string name="error_no_drone_connected">เชื่อมต่อ wifi ของคุณกับ AR.Drone 2.0 แล้วลองอีกครั้ง</string>
-    <string name="error_drone_low_battery_title">แบตเตอรี่ AR.Drone 2.0 ต่ำ:%d%%</string>
-    <string name="error_drone_low_battery">ใส่ถ่านที่ช๊าทแล้วและลองใหม่อีกครั้ง</string>
-    <string name="error_jumpingsumo_wrong_platform">เราไม่สามารถเรียกใช้โครงการ Jumping Sumo บนอุปกรณ์ของคุณ</string>
-    <string name="error_no_jumpingsumo_connected_title">ไม่พบ Jumping Sumo</string>
-    <string name="error_no_jumpingsumo_connected">เชื่อมต่อ wifi ของคุณกับ Jumping Sumo แล้วลองอีกครั้ง</string>
-    <string name="error_jumpingsumo_battery_title">Jumping Sumo แบตเตอรี่ต่ำ</string>
-    <string name="error_jumpingsumo_battery">ใส่ถ่านที่ช๊าทแล้วและลองใหม่อีกครั้ง</string>
-    <string name="error_jumpingsumo_wrong_platform_title">ไม่มีการสนับสนุน Jumping Sumo</string>
-    <string name="error_drone_wrong_platform_title">ไม่รองรับ AR.Drone 2.0</string>
-    <string name="error_drone_wrong_platform">เราไม่สามารถเรียกใช้โครงการ AR.Drone 2.0 บนอุปกรณ์ของคุณ</string>
     <string name="error_rename_incompatible_project">ไม่สามารถเปลี่ยนชื่อโครงการที่เข้ากันไม่ได้</string>
     <string name="error_embroidery_file_export">เกิดข้อผิดพลาดบางอย่างขณะแชร์ไฟล์การปัก</string>
     <string name="error_embroidery_file_write">เกิดข้อผิดพลาดขณะเขียนไฟล์ปัก</string>
-    <string name="error_embroidery_data_not_found">Embroidery is missing.</string>
+    <string name="error_embroidery_data_not_found">เย็บปักถักร้อยขาดหายไป</string>
     <string name="error_unknown_error">บางอย่างผิดพลาด.</string>
     <string name="error_gps_not_available">ไม่มีข้อมูลตำแหน่งทางภูมิศาสตร์</string>
     <string name="error_set_description">เกิดข้อผิดพลาดขณะบันทึกคำอธิบายใหม่</string>
@@ -1213,78 +1226,78 @@ A-8010 กราซ, ออสเตรีย \n
     <!-- Arduino Bricks -->
     <string name="brick_arduino_select_digital_value">ตั้ง Arduino ดิจิตอลพิน</string>
     <string name="brick_arduino_select_analog_value">ตั้ง Arduino PWM ~ pin</string>
-    <string name="brick_arduino_set_pin_value_to">กำหนดความหมาย</string>
+    <string name="brick_arduino_set_pin_value_to">ถึง</string>
     <!--  -->
     <!-- Raspi Bricks -->
-    <string name="brick_raspi_select_digital_value">Set Raspberry Pi pin</string>
-    <string name="brick_raspi_set_pin_value_to">กำหนดความหมาย</string>
-    <string name="brick_raspi_if_begin">If Raspberry Pi pin</string>
+    <string name="brick_raspi_select_digital_value">ตั้งค่าพิน Raspberry Pi</string>
+    <string name="brick_raspi_set_pin_value_to">ถึง</string>
+    <string name="brick_raspi_if_begin">ถ้าขา Raspberry Pi</string>
     <string name="brick_raspi_if_begin_second_part">เป็นจริงแล้ว</string>
-    <string name="brick_raspi_when_begin">When Raspberry Pi pin</string>
+    <string name="brick_raspi_when_begin">เมื่อ Raspberry Pi พิน</string>
     <string name="brick_raspi_when_equals">เปลี่ยนเป็น</string>
-    <string name="brick_raspi_pressed_text">high</string>
-    <string name="brick_raspi_released_text">low</string>
-    <string name="brick_raspi_set_pwm">Set Raspberry Pi PWM pin</string>
+    <string name="brick_raspi_pressed_text">สูง</string>
+    <string name="brick_raspi_released_text">ต่ำ</string>
+    <string name="brick_raspi_set_pwm">ตั้งขา Raspberry Pi PWM</string>
     <!--  -->
     <!-- Raspi Settings -->
-    <string name="raspi_settings_title_name">Raspberry Pi settings</string>
-    <string name="raspi_settings_gpio_version">GPIO Version</string>
-    <string name="error_connecting_to">Error: Could not connect to %s : %d</string>
+    <string name="raspi_settings_title_name">การตั้งค่า Raspberry Pi</string>
+    <string name="raspi_settings_gpio_version">เวอร์ชัน GPIO</string>
+    <string name="error_connecting_to">ข้อผิดพลาด: ไม่สามารถเชื่อมต่อกับ %s: %d</string>
     <!--  -->
     <!-- Lego Mindstorms Strings -->
-    <string name="nxt_brick_motor_move">Set NXT motor</string>
-    <string name="nxt_motor_speed_to">กำหนดความหมาย</string>
-    <string name="nxt_motor_speed">speed</string>
-    <string name="nxt_brick_motor_turn_angle">Turn NXT motor</string>
+    <string name="nxt_brick_motor_move">ตั้งค่ามอเตอร์ NXT</string>
+    <string name="nxt_motor_speed_to">ถึง</string>
+    <string name="nxt_motor_speed">ความเร็ว</string>
+    <string name="nxt_brick_motor_turn_angle">หมุนมอเตอร์ NXT</string>
     <string name="nxt_motor_move_by">โดย</string>
-    <string name="nxt_motor_stop">Stop NXT motor</string>
-    <string name="nxt_play_tone">Play NXT tone</string>
-    <string name="nxt_tone_duration">Duration</string>
+    <string name="nxt_motor_stop">หยุดมอเตอร์ NXT</string>
+    <string name="nxt_play_tone">เล่นเสียง NXT</string>
+    <string name="nxt_tone_duration">ระยะเวลา</string>
     <string name="nxt_tone_frequency">ความถี่</string>
     <string name="nxt_tone_hundred_hz">x100Hz</string>
     <string name="nxt_motor_a">A</string>
     <string name="nxt_motor_b">B</string>
     <string name="nxt_motor_c">C</string>
-    <string name="nxt_motor_b_and_c">B+C</string>
+    <string name="nxt_motor_b_and_c">B + C</string>
     <string name="nxt_motor_all">ทั้งหมด</string>
-    <string name="nxt_choose_sensor_1">Sensor connected on port 1</string>
-    <string name="nxt_choose_sensor_2">Sensor connected on port 2</string>
-    <string name="nxt_choose_sensor_3">Sensor connected on port 3</string>
-    <string name="nxt_choose_sensor_4">Sensor connected on port 4</string>
-    <string name="nxt_no_sensor">none</string>
-    <string name="nxt_sensor_touch">NXT touch sensor</string>
-    <string name="nxt_sensor_sound">NXT sound sensor</string>
-    <string name="nxt_sensor_light">NXT light sensor</string>
-    <string name="nxt_sensor_light_active">NXT light sensor active</string>
-    <string name="nxt_sensor_ultrasonic">NXT ultrasonic sensor</string>
-    <string name="nxt_sensor_not_found">Sensor not found!</string>
-    <string name="lego_nxt_sensor_config_info_title">NXT sensor configuration</string>
-    <string name="preference_disable_nxt_info_dialog">Disable info dialog</string>
-    <string name="preference_disable_nxt_info_dialog_description">Project specific NXT settings are not shown when
-        opening a project.</string>
-    <string name="preference_title_mindstorms_nxt_sensors_description">The mapping of NXT sensors to ports is project
-        specific and can only be configured for opened projects.</string>
-    <string name="lego_nxt_sensor_config_info_text">The current project uses Lego Mindstorms NXT bricks or sensors. For
-        proper functionality please connect the sensors to the robot as follows</string>
-    <string name="lego_port_1">Port 1</string>
-    <string name="lego_port_2">Port 2</string>
-    <string name="lego_port_3">Port 3</string>
-    <string name="lego_port_4">Port 4</string>
-    <string name="lego_sensor_config_dont_show_again">Do not show this message again.</string>
-    <string name="lego_sensor_port_config_dialog_title">Choose a port for connecting to %1$s.</string>
-    <string name="lego_ev3_sensor_config_info_title">EV3 sensor configuration</string>
-    <string name="preference_disable_ev3_info_dialog_description">Project specific EV3 settings are not shown when
-        opening a project.</string>
-    <string name="preference_title_mindstorms_ev3_sensors_description">The mapping of EV3 sensors to ports is project
-        specific and can only be configured for opened projects.</string>
-    <string name="lego_ev3_sensor_config_info_text">The current project uses Lego Mindstorms EV3 bricks or sensors. For
-        proper functionality please connect the sensors to the robot as follows</string>
-    <string name="ev3_choose_sensor_1">Sensor connected on port 1</string>
-    <string name="ev3_choose_sensor_2">Sensor connected on port 2</string>
-    <string name="ev3_choose_sensor_3">Sensor connected on port 3</string>
-    <string name="ev3_choose_sensor_4">Sensor connected on port 4</string>
-    <string name="ev3_no_sensor">none</string>
-    <string name="ev3_sensor_touch">EV3 touch sensor</string>
+    <string name="nxt_choose_sensor_1">เซ็นเซอร์เชื่อมต่อที่พอร์ต 1</string>
+    <string name="nxt_choose_sensor_2">เซ็นเซอร์เชื่อมต่อที่พอร์ต 2</string>
+    <string name="nxt_choose_sensor_3">เซ็นเซอร์เชื่อมต่อที่พอร์ต 3</string>
+    <string name="nxt_choose_sensor_4">เซ็นเซอร์เชื่อมต่อที่พอร์ต 4</string>
+    <string name="nxt_no_sensor">ไม่มี</string>
+    <string name="nxt_sensor_touch">เซ็นเซอร์สัมผัส NXT</string>
+    <string name="nxt_sensor_sound">เซ็นเซอร์เสียง NXT</string>
+    <string name="nxt_sensor_light">เซ็นเซอร์แสง NXT</string>
+    <string name="nxt_sensor_light_active">เซ็นเซอร์แสง NXT ทำงานอยู่</string>
+    <string name="nxt_sensor_ultrasonic">เซ็นเซอร์อัลตราโซนิก NXT</string>
+    <string name="nxt_sensor_not_found">ไม่พบเซ็นเซอร์!</string>
+    <string name="lego_nxt_sensor_config_info_title">การกำหนดค่าเซ็นเซอร์ NXT</string>
+    <string name="preference_disable_nxt_info_dialog">ปิดใช้งานกล่องโต้ตอบข้อมูล</string>
+    <string name="preference_disable_nxt_info_dialog_description">การตั้งค่า NXT เฉพาะโปรเจ็กต์จะไม่แสดงเมื่อ
+        เปิดโครงการ</string>
+    <string name="preference_title_mindstorms_nxt_sensors_description">การแมปเซ็นเซอร์ NXT กับพอร์ตเป็นโปรเจ็กต์
+        เฉพาะและสามารถกำหนดค่าได้สำหรับโครงการที่เปิดเท่านั้น</string>
+    <string name="lego_nxt_sensor_config_info_text">โครงการปัจจุบันใช้อิฐ Lego Mindstorms NXT หรือเซ็นเซอร์ สำหรับ
+        การทำงานที่เหมาะสมโปรดเชื่อมต่อเซ็นเซอร์กับหุ่นยนต์ดังต่อไปนี้</string>
+    <string name="lego_port_1">พอร์ต 1</string>
+    <string name="lego_port_2">พอร์ต 2</string>
+    <string name="lego_port_3">พอร์ต 3</string>
+    <string name="lego_port_4">พอร์ต 4</string>
+    <string name="lego_sensor_config_dont_show_again">อย่าแสดงข้อความนี้อีก.</string>
+    <string name="lego_sensor_port_config_dialog_title">เลือกพอร์ตสำหรับเชื่อมต่อกับ %1$s</string>
+    <string name="lego_ev3_sensor_config_info_title">การกำหนดค่าเซ็นเซอร์ EV3</string>
+    <string name="preference_disable_ev3_info_dialog_description">การตั้งค่า EV3 เฉพาะโปรเจ็กต์จะไม่แสดงเมื่อ
+        เปิดโครงการ</string>
+    <string name="preference_title_mindstorms_ev3_sensors_description">การจับคู่เซ็นเซอร์ EV3 กับพอร์ตเป็นโครงการ
+        เฉพาะและสามารถกำหนดค่าได้สำหรับโครงการที่เปิดเท่านั้น</string>
+    <string name="lego_ev3_sensor_config_info_text">โครงการปัจจุบันใช้อิฐ Lego Mindstorms EV3 หรือเซ็นเซอร์ สำหรับ
+        การทำงานที่เหมาะสมโปรดเชื่อมต่อเซ็นเซอร์กับหุ่นยนต์ดังต่อไปนี้</string>
+    <string name="ev3_choose_sensor_1">เซ็นเซอร์เชื่อมต่อที่พอร์ต 1</string>
+    <string name="ev3_choose_sensor_2">เซ็นเซอร์เชื่อมต่อที่พอร์ต 2</string>
+    <string name="ev3_choose_sensor_3">เซ็นเซอร์เชื่อมต่อที่พอร์ต 3</string>
+    <string name="ev3_choose_sensor_4">เซ็นเซอร์เชื่อมต่อที่พอร์ต 4</string>
+    <string name="ev3_no_sensor">ไม่มี</string>
+    <string name="ev3_sensor_touch">เซ็นเซอร์สัมผัส EV3</string>
     <string name="ev3_sensor_infrared">เซ็นเซอร์อินฟราเรด EV3</string>
     <string name="ev3_sensor_color">เซ็นเซอร์สี EV3</string>
     <string name="ev3_sensor_color_ambient">สภาพแวดล้อมของเซ็นเซอร์สี EV3</string>
@@ -1300,7 +1313,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="ev3_motor_b">B</string>
     <string name="ev3_motor_c">C</string>
     <string name="ev3_motor_d">วัน</string>
-    <string name="ev3_motor_b_and_c">B+C</string>
+    <string name="ev3_motor_b_and_c">B + C</string>
     <string name="ev3_motor_all">ทั้งหมด</string>
     <string name="ev3_play_tone">เล่นเสียง EV3</string>
     <string name="ev3_tone_duration_for">สำหรับ</string>
@@ -1332,7 +1345,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_drone_move_backward">ย้าย AR.Drone 2.0 ไปข้างหลัง</string>
     <string name="brick_drone_move_up">ย้าย AR.Drone 2.0 ขึ้นไป</string>
     <string name="brick_drone_move_down">ย้าย AR.Drone 2.0 ลง</string>
-    <string name="brick_drone_emergency">Emergency AR.Drone 2.0</string>
+    <string name="brick_drone_emergency">ฉุกเฉิน AR.Drone 2.0</string>
     <string name="brick_drone_turn_right">เลี้ยว AR.Drone 2.0 ขวา</string>
     <string name="brick_drone_turn_left">เลี้ยว AR.Drone 2.0 ซ้าย</string>
     <string name="brick_drone_set_config">ตั้งค่าคอนฟิก AR.Drone 2.0</string>
@@ -1341,67 +1354,67 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="brick_drone_set_vertical_speed">จำกัด ความเร็วในแนวตั้ง</string>
     <string name="brick_drone_set_rotation_speed">จำกัด ความเร็วในการหมุน</string>
     <string name="brick_drone_set_tilt_limit">ขีด จำกัด การเอียง</string>
-    <string name="brick_drone_with.">แทนด้วย</string>
+    <string name="brick_drone_with.">กับ</string>
     <string name="brick_drone_power">กำลัง</string>
     <!--  -->
     <!-- Drone play led animation strings -->
     <string name="drone_animation_blinkgreenred">กระพริบสีแดงสีเขียว</string>
     <string name="drone_animation_blinkgreen">สีเขียวกระพริบ</string>
     <string name="drone_animation_blinkred">กะพริบไฟสีแดง</string>
-    <string name="drone_animation_blinkorange">Blink orange</string>
-    <string name="drone_animation_snakegreenred">Snake green red</string>
+    <string name="drone_animation_blinkorange">กะพริบเป็นสีส้ม</string>
+    <string name="drone_animation_snakegreenred">งูเขียวแดง</string>
     <string name="drone_animation_fire">ไฟ</string>
-    <string name="drone_animation_standard">Standard</string>
+    <string name="drone_animation_standard">มาตรฐาน</string>
     <string name="drone_animation_red">สีแดง</string>
     <string name="drone_animation_green">สีเขียว</string>
-    <string name="drone_animation_redsnake">Red snake</string>
-    <string name="drone_animation_blank">Blank</string>
-    <string name="drone_animation_rightmissile">Right missile</string>
-    <string name="drone_animation_leftmissile">Left missile</string>
-    <string name="drone_animation_doublemissile">Double missile</string>
-    <string name="drone_animation_frontleftgreenothersred">Front left green others red</string>
-    <string name="drone_animation_frontrightgreenothersred">Front right green others red</string>
-    <string name="drone_animation_rearrightgreenothersred">Rear right green others red</string>
-    <string name="drone_animation_rearleftgreenothersred">Rear left green others red</string>
-    <string name="drone_animation_leftgreenrightred">Left green right red</string>
-    <string name="drone_animation_leftredrightgreen">Left red right green</string>
+    <string name="drone_animation_redsnake">งูแดง</string>
+    <string name="drone_animation_blank">ว่างเปล่า</string>
+    <string name="drone_animation_rightmissile">ขีปนาวุธขวา</string>
+    <string name="drone_animation_leftmissile">ขีปนาวุธซ้าย</string>
+    <string name="drone_animation_doublemissile">ขีปนาวุธคู่</string>
+    <string name="drone_animation_frontleftgreenothersred">ด้านหน้าซ้ายสีเขียวอื่น ๆ สีแดง</string>
+    <string name="drone_animation_frontrightgreenothersred">ด้านหน้าขวาสีเขียวอื่น ๆ สีแดง</string>
+    <string name="drone_animation_rearrightgreenothersred">ด้านหลังขวาสีเขียวอื่น ๆ สีแดง</string>
+    <string name="drone_animation_rearleftgreenothersred">ด้านหลังซ้ายสีเขียวอื่น ๆ สีแดง</string>
+    <string name="drone_animation_leftgreenrightred">ซ้ายเขียวขวาแดง</string>
+    <string name="drone_animation_leftredrightgreen">ซ้ายแดงขวาเขียว</string>
     <string name="drone_animation_blinkstandard">กะพริบ</string>
     <!-- Jumping Sumo Bricks -->
-    <string name="brick_jumping_sumo_move_forward">Move Jumping Sumo forward</string>
-    <string name="brick_jumping_sumo_move_backward">Move Jumping Sumo backward</string>
-    <string name="brick_jumping_sumo_animation">Animations Jumping Sumo</string>
-    <string name="brick_jumping_sumo_no_sound">No Jumping Sumo sound</string>
-    <string name="brick_jumping_sumo_jump_long">Jump Jumping Sumo long</string>
-    <string name="brick_jumping_sumo_jump_high">Jump Jumping Sumo high</string>
-    <string name="brick_jumping_sumo_rotate_left">Turn Jumping Sumo left</string>
-    <string name="brick_jumping_sumo_rotate_right">Turn Jumping Sumo right</string>
+    <string name="brick_jumping_sumo_move_forward">ย้าย Jumping Sumo ไปข้างหน้า</string>
+    <string name="brick_jumping_sumo_move_backward">ย้าย Jumping Sumo ไปข้างหลัง</string>
+    <string name="brick_jumping_sumo_animation">แอนิเมชั่นกระโดดซูโม่</string>
+    <string name="brick_jumping_sumo_no_sound">ไม่มีเสียงซูโม่กระโดด</string>
+    <string name="brick_jumping_sumo_jump_long">Jump Jumping Sumo ยาว</string>
+    <string name="brick_jumping_sumo_jump_high">กระโดดกระโดดซูโม่สูง</string>
+    <string name="brick_jumping_sumo_rotate_left">เลี้ยว Jumping Sumo ไปทางซ้าย</string>
+    <string name="brick_jumping_sumo_rotate_right">เลี้ยวซูโม่กระโดดไปทางขวา</string>
     <string name="brick_jumping_sumo_rotate_text">องศา</string>
-    <string name="brick_jumping_sumo_turn">Flip Jumping Sumo</string>
-    <string name="brick_jumping_sumo_taking_picture">Taking picture Jumping Sumo</string>
+    <string name="brick_jumping_sumo_turn">ซูโม่กระโดดพลิก</string>
+    <string name="brick_jumping_sumo_taking_picture">การถ่ายภาพ Jumping Sumo</string>
     <!--  -->
     <!-- defaultJumpingSumoValues -->
     <string name="default_jumping_sumo_project_sprites_sound">เสียง</string>
     <!--  -->
     <!-- Jumping Sumo animation strings -->
-    <string name="animation_spin">Spin</string>
-    <string name="animation_tab">Tab</string>
+    <string name="animation_spin">หมุน</string>
+    <string name="animation_tab">แท็บ</string>
     <string name="animation_slowshake">Slowshake</string>
-    <string name="animation_metronome">Metronome</string>
-    <string name="animation_ondulation">Ondulation</string>
-    <string name="animation_spinjump">Spinjump</string>
-    <string name="animation_spiral">Spiral</string>
-    <string name="animation_slalom">Slalom</string>
+    <string name="animation_metronome">เครื่องเมตรอนอม</string>
+    <string name="animation_ondulation">การตกไข่</string>
+    <string name="animation_spinjump">สปินจัมป์</string>
+    <string name="animation_spiral">เกลียว</string>
+    <string name="animation_slalom">สลา</string>
     <!-- Jumping Sumo sound strings -->
-    <string name="jumping_sumo_volume">ระดับเสียง</string>
-    <string name="sound_default">Normal</string>
-    <string name="sound_robot">Robot</string>
-    <string name="sound_insect">Insect</string>
-    <string name="sound_monster">Monster</string>
+    <string name="jumping_sumo_volume">ปริมาณ</string>
+    <string name="sound_default">ปกติ</string>
+    <string name="sound_robot">หุ่นยนต์</string>
+    <string name="sound_insect">แมลง</string>
+    <string name="sound_monster">สัตว์ประหลาด</string>
     <!--  -->
     <!-- Phiro bricks -->
     <!-- motor -->
-    <string name="phiro_motor_stop">Stop Phiro motor</string>
-    <string name="brick_phiro_motor_forward_action">Move Phiro motor forward</string>
+    <string name="phiro_motor_stop">หยุดมอเตอร์ฟีโร</string>
+    <string name="brick_phiro_motor_forward_action">เลื่อนมอเตอร์ไปข้างหน้า</string>
     <string name="brick_phiro_motor_backward_action">เลื่อนมอเตอร์ Phiro ไปด้านหลัง</string>
     <string name="phiro_motor_speed">ความเร็ว</string>
     <!-- sensor -->
@@ -1455,7 +1468,6 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="formula_editor_false">เท็จ</string>
     <string name="formula_editor_decimal_mark">.</string>
     <string name="formula_editor_title">ตัวแก้ไขสูตร</string>
-    <string name="formula_editor_changes_saved">บันทึกการเปลี่ยนแปลงแล้ว!</string>
     <string name="formula_editor_changes_discarded">ละทิ้งการเปลี่ยนแปลงแล้ว!</string>
     <string name="formula_editor_parse_fail">สูตรไม่ถูกต้อง!</string>
     <string name="formula_nothing_selected">กำหนดค่ารับเข้า</string>
@@ -1492,7 +1504,7 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="formula_editor_function_arccos_parameter">(0)</string>
     <string name="formula_editor_function_arctan">arctan</string>
     <string name="formula_editor_function_arctan_parameter">(1)</string>
-    <string name="formula_editor_function_arctan2">arctangent2</string>
+    <string name="formula_editor_function_arctan2">อาร์กแทนเจนต์ 2</string>
     <string name="formula_editor_function_arctan2_parameter">(-1, 0)</string>
     <string name="formula_editor_function_exp">exp</string>
     <string name="formula_editor_function_exp_parameter">(1)</string>
@@ -1526,83 +1538,88 @@ A-8010 กราซ, ออสเตรีย \n
          ผู้ช่วยแสดงออก</string>
     <string name="formula_editor_dialog_wiki_button">ข้อมูลมากกว่านี้</string>
     <string name="formula_editor_function_regex_html_extractor_not_found">ไม่พบคีย์เวิร์ด</string>
-    <string name="formula_editor_function_regex_json_extractor_title">JSON extractor</string>
+    <string name="formula_editor_function_regex_json_extractor_title">ตัวแยก JSON</string>
     <string name="formula_editor_function_arduino_read_pin_value_digital">arduino ขาดิจิตอล</string>
     <string name="formula_editor_function_arduino_read_pin_value_analog">arduino ขาอะนาล็อก</string>
-    <string name="formula_editor_function_raspi_read_pin_value_digital">raspberry pi pin</string>
-    <string name="formula_editor_function_pin_default_parameter">(3)</string>
+    <string name="formula_editor_function_raspi_read_pin_value_digital">ราสเบอร์รี่พิพิน</string>
+    <string name="formula_editor_function_pin_default_parameter">(0)</string>
     <string name="formula_editor_function_finger_x">เวทีสัมผัส x</string>
     <string name="formula_editor_function_finger_y">เวทีสัมผัส y</string>
     <string name="formula_editor_function_is_finger_touching">เวทีสัมผัสแล้ว</string>
-    <string name="formula_editor_function_multi_finger_x">เวทีสัมผัส x</string>
-    <string name="formula_editor_function_multi_finger_y">เวทีสัมผัส y</string>
-    <string name="formula_editor_function_is_multi_finger_touching">เวทีสัมผัสแล้ว</string>
-    <string name="formula_editor_function_index_of_last_finger">last stage touch index</string>
+    <string name="formula_editor_function_multi_finger_x">สัมผัสเวที x</string>
+    <string name="formula_editor_function_multi_finger_y">สัมผัสเวที y</string>
+    <string name="formula_editor_function_is_multi_finger_touching">เวทีสัมผัส</string>
+    <string name="formula_editor_function_index_of_last_finger">ดัชนีสัมผัสขั้นสุดท้าย</string>
     <string name="formula_editor_function_number_of_current_touches">จำนวนการสัมผัสในปัจจุบัน</string>
+    <string name="formula_editor_function_index_of_current_touch">จำนวนการสัมผัสในปัจจุบัน</string>
     <string name="formula_editor_function_no_parameter"></string>
     <string name="formula_editor_function_touch_parameter">(1)</string>
     <string name="formula_editor_function_list_item">ชิ้น</string>
     <string name="formula_editor_function_list_item_parameter">(1, *ชื่อรายการ*)</string>
     <string name="formula_editor_function_contains">ประกอบด้วย</string>
     <string name="formula_editor_function_contains_parameter">(*ชื่อรายการ*,1)</string>
-    <string name="formula_editor_function_index_of_item">item\'s index</string>
+    <string name="formula_editor_function_index_of_item">ดัชนีของรายการ</string>
     <string name="formula_editor_function_index_of_item_parameter">(1, *ชื่อรายการ*)</string>
     <string name="formula_editor_function_number_of_items">จำนวนรายการ</string>
     <string name="formula_editor_function_number_of_items_parameter">(*ชื่อรายการ*)</string>
-    <string name="formula_editor_function_collision">touches actor or object</string>
-    <string name="formula_editor_function_collides_with_edge">touches edge</string>
-    <string name="formula_editor_function_touched">touches finger</string>
+    <string name="formula_editor_function_flatten">เรียบ</string>
+    <string name="formula_editor_function_flatten_parameter">(*ชื่อรายการ*)</string>
+    <string name="formula_editor_function_collision">สัมผัสนักแสดงหรือวัตถุ</string>
+    <string name="formula_editor_function_collides_with_edge">สัมผัสขอบ</string>
+    <string name="formula_editor_function_touched">นิ้วสัมผัส</string>
     <string name="formula_editor_function_collides_with_color">สัมผัสสี</string>
     <string name="formula_editor_function_color_touches_color">สีสัมผัสสี</string>
     <string name="formula_editor_sensor_color_at_x_y">สีที่ x y</string>
-    <string name="formula_editor_sensor_x_acceleration">ความเร่ง_x</string>
-    <string name="formula_editor_sensor_y_acceleration">ความเร่ง_y</string>
-    <string name="formula_editor_sensor_z_acceleration">ความเร่ง_z</string>
+    <string name="formula_editor_sensor_color_equals_color">สีเท่ากับสีด้วย%
+         ความอดทน</string>
+    <string name="formula_editor_sensor_x_acceleration">ความเร่ง x</string>
+    <string name="formula_editor_sensor_y_acceleration">ความเร่ง y</string>
+    <string name="formula_editor_sensor_z_acceleration">ความเร่ง z</string>
     <string name="formula_editor_sensor_compass_direction">ทิศทาง_เข็มทิศ</string>
-    <string name="formula_editor_sensor_latitude">latitude</string>
-    <string name="formula_editor_sensor_longitude">longitude</string>
-    <string name="formula_editor_sensor_location_accuracy">location accuracy</string>
-    <string name="formula_editor_sensor_altitude">altitude</string>
+    <string name="formula_editor_sensor_latitude">ละติจูด</string>
+    <string name="formula_editor_sensor_longitude">ลองจิจูด</string>
+    <string name="formula_editor_sensor_location_accuracy">ความแม่นยำของตำแหน่ง</string>
+    <string name="formula_editor_sensor_altitude">ระดับความสูง</string>
     <string name="formula_editor_sensor_user_language">ภาษาของผู้ใช้</string>
-    <string name="formula_editor_sensor_x_inclination">ความลาดเอียง_x</string>
-    <string name="formula_editor_sensor_y_inclination">ความลาดเอียง_y</string>
+    <string name="formula_editor_sensor_x_inclination">ความลาดเอียง x</string>
+    <string name="formula_editor_sensor_y_inclination">ความลาดเอียง y</string>
     <string name="formula_editor_sensor_loudness">ระดับความดัง</string>
     <string name="formula_editor_sensor_timer">จับเวลา</string>
-    <string name="formula_editor_sensor_date_year">year</string>
-    <string name="formula_editor_sensor_date_month">month</string>
-    <string name="formula_editor_sensor_date_day">day</string>
-    <string name="formula_editor_sensor_date_weekday">weekday</string>
-    <string name="formula_editor_sensor_time_hour">hour</string>
-    <string name="formula_editor_sensor_time_minute">minute</string>
-    <string name="formula_editor_sensor_time_second">second</string>
-    <string name="formula_editor_sensor_drone_battery_status">drone battery status</string>
-    <string name="formula_editor_sensor_drone_emergency_state">drone emergency state</string>
-    <string name="formula_editor_sensor_drone_flying">drone flying</string>
-    <string name="formula_editor_sensor_drone_initialized">drone initialized</string>
-    <string name="formula_editor_sensor_drone_usb_active">drone usb active</string>
-    <string name="formula_editor_sensor_drone_usb_remaining_time">drone usb remaining time</string>
-    <string name="formula_editor_sensor_drone_camera_ready">drone camera ready</string>
-    <string name="formula_editor_sensor_drone_record_ready">drone record ready</string>
-    <string name="formula_editor_sensor_drone_recording">drone camera recording</string>
-    <string name="formula_editor_sensor_drone_num_frames">drone camera number of frames</string>
-    <string name="formula_editor_sensor_lego_nxt_1">NXT sensor 1</string>
-    <string name="formula_editor_sensor_lego_nxt_2">NXT sensor 2</string>
-    <string name="formula_editor_sensor_lego_nxt_3">NXT sensor 3</string>
-    <string name="formula_editor_sensor_lego_nxt_4">NXT sensor 4</string>
-    <string name="formula_editor_sensor_lego_ev3_1">EV3 sensor 1</string>
-    <string name="formula_editor_sensor_lego_ev3_2">EV3 sensor 2</string>
-    <string name="formula_editor_sensor_lego_ev3_3">EV3 sensor 3</string>
-    <string name="formula_editor_sensor_lego_ev3_4">EV3 sensor 4</string>
-    <string name="formula_editor_sensor_lego_nxt_touch">NXT touch</string>
-    <string name="formula_editor_sensor_lego_nxt_sound">NXT sound</string>
-    <string name="formula_editor_sensor_lego_nxt_light">NXT light</string>
-    <string name="formula_editor_sensor_lego_nxt_light_active">NXT light active</string>
-    <string name="formula_editor_sensor_lego_nxt_ultrasonic">NXT ultrasonic</string>
-    <string name="formula_editor_sensor_lego_ev3_sensor_touch">EV3 touch</string>
-    <string name="formula_editor_sensor_lego_ev3_sensor_infrared">EV3 infrared</string>
-    <string name="formula_editor_sensor_lego_ev3_sensor_color">EV3 color</string>
-    <string name="formula_editor_sensor_lego_ev3_sensor_color_ambient">EV3 ambient color</string>
-    <string name="formula_editor_sensor_lego_ev3_sensor_color_reflected">EV3 reflected color</string>
+    <string name="formula_editor_sensor_date_year">ปี</string>
+    <string name="formula_editor_sensor_date_month">เดือน</string>
+    <string name="formula_editor_sensor_date_day">วัน</string>
+    <string name="formula_editor_sensor_date_weekday">วันธรรมดา</string>
+    <string name="formula_editor_sensor_time_hour">ชั่วโมง</string>
+    <string name="formula_editor_sensor_time_minute">นาที</string>
+    <string name="formula_editor_sensor_time_second">วินาที</string>
+    <string name="formula_editor_sensor_drone_battery_status">สถานะแบตเตอรี่โดรน</string>
+    <string name="formula_editor_sensor_drone_emergency_state">สถานะฉุกเฉินของโดรน</string>
+    <string name="formula_editor_sensor_drone_flying">โดรนบิน</string>
+    <string name="formula_editor_sensor_drone_initialized">เริ่มต้นเสียงพึมพำ</string>
+    <string name="formula_editor_sensor_drone_usb_active">เสียงพึมพำ usb ใช้งานอยู่</string>
+    <string name="formula_editor_sensor_drone_usb_remaining_time">เวลาที่เหลือของโดรน USB</string>
+    <string name="formula_editor_sensor_drone_camera_ready">กล้องโดรนพร้อม</string>
+    <string name="formula_editor_sensor_drone_record_ready">บันทึกเสียงพึมพำพร้อม</string>
+    <string name="formula_editor_sensor_drone_recording">การบันทึกกล้องโดรน</string>
+    <string name="formula_editor_sensor_drone_num_frames">จำนวนเฟรมของกล้องโดรน</string>
+    <string name="formula_editor_sensor_lego_nxt_1">เซ็นเซอร์ NXT 1</string>
+    <string name="formula_editor_sensor_lego_nxt_2">เซ็นเซอร์ NXT 2</string>
+    <string name="formula_editor_sensor_lego_nxt_3">เซ็นเซอร์ NXT 3</string>
+    <string name="formula_editor_sensor_lego_nxt_4">เซ็นเซอร์ NXT 4</string>
+    <string name="formula_editor_sensor_lego_ev3_1">เซ็นเซอร์ EV3 1</string>
+    <string name="formula_editor_sensor_lego_ev3_2">เซ็นเซอร์ EV3 2</string>
+    <string name="formula_editor_sensor_lego_ev3_3">เซ็นเซอร์ EV3 3</string>
+    <string name="formula_editor_sensor_lego_ev3_4">เซ็นเซอร์ EV3 4</string>
+    <string name="formula_editor_sensor_lego_nxt_touch">สัมผัส NXT</string>
+    <string name="formula_editor_sensor_lego_nxt_sound">เสียง NXT</string>
+    <string name="formula_editor_sensor_lego_nxt_light">ไฟ NXT</string>
+    <string name="formula_editor_sensor_lego_nxt_light_active">ไฟ NXT ทำงานอยู่</string>
+    <string name="formula_editor_sensor_lego_nxt_ultrasonic">NXT ล้ำ</string>
+    <string name="formula_editor_sensor_lego_ev3_sensor_touch">สัมผัส EV3</string>
+    <string name="formula_editor_sensor_lego_ev3_sensor_infrared">EV3 อินฟราเรด</string>
+    <string name="formula_editor_sensor_lego_ev3_sensor_color">สี EV3</string>
+    <string name="formula_editor_sensor_lego_ev3_sensor_color_ambient">EV3 สีโดยรอบ</string>
+    <string name="formula_editor_sensor_lego_ev3_sensor_color_reflected">EV3 สะท้อนสี</string>
     <string name="formula_editor_sensor_lego_ev3_sensor_hitechnic_color">สี hitechnic EV3</string>
     <string name="formula_editor_sensor_lego_ev3_sensor_nxt_temperature_c">อุณหภูมิ EV3 NXT เป็น° C</string>
     <string name="formula_editor_sensor_lego_ev3_sensor_nxt_temperature_f">อุณหภูมิ EV3 NXT เป็น°F</string>
@@ -1624,20 +1641,23 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="formula_editor_phiro_sensor_bottom_right">phiro เซ็นเซอร์ขวาล่าง</string>
     <string name="formula_editor_nfc_tag_id">รหัสแท็ก nfc</string>
     <string name="formula_editor_nfc_tag_message">ข้อความแท็ก nfc</string>
-    <string name="formula_editor_object_x">ตำแหน่ง_x</string>
-    <string name="formula_editor_object_y">ตำแหน่ง_y</string>
+    <string name="formula_editor_object_x">ตำแหน่ง x</string>
+    <string name="formula_editor_object_y">ตำแหน่ง y</string>
     <string name="formula_editor_object_transparency">ความโปร่งใส</string>
     <string name="formula_editor_object_brightness">ความสว่าง</string>
     <string name="formula_editor_object_size">ขนาด</string>
     <string name="formula_editor_object_rotation">ทิศทาง</string>
+    <string name="formula_editor_object_rotation_look">ดูทิศทาง</string>
     <string name="formula_editor_object_layer">ชั้น</string>
     <string name="formula_editor_object_x_velocity">ความเร็ว x</string>
     <string name="formula_editor_object_y_velocity">ความเร็ว y</string>
     <string name="formula_editor_object_angular_velocity">ความเร็วเชิงมุม</string>
     <string name="formula_editor_object_look_number">ดูหมายเลข</string>
     <string name="formula_editor_object_look_name">ดูชื่อ</string>
+    <string name="formula_editor_object_number_of_looks">จำนวนรูปลักษณ์</string>
     <string name="formula_editor_object_background_number">หมายเลขพื้นหลัง</string>
     <string name="formula_editor_object_background_name">ชื่อพื้นหลัง</string>
+    <string name="formula_editor_object_number_of_backgrounds">จำนวนพื้นหลัง</string>
     <string name="formula_editor_object_distance_to">ระยะทางไปยังตำแหน่งที่สัมผัส</string>
     <string name="formula_editor_compute">คำนวณ</string>
     <string name="formula_editor_object">วัตถุ</string>
@@ -1650,16 +1670,18 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="formula_editor_functions_lists">รายการ</string>
     <string name="formula_editor_logic_boolean">ตัวดำเนินการเชิงตรรกะ (บูลีน) และค่าคงที่</string>
     <string name="formula_editor_logic_comparison">ผู้ประกอบการเปรียบเทียบ</string>
-    <string name="formula_editor_object_general">คุณสมบัติทั่วไป</string>
+    <string name="formula_editor_object_look">ดูคุณสมบัติ</string>
     <string name="formula_editor_object_movement">คุณสมบัติเคลื่อนที่</string>
-    <string name="formula_editor_device_visual_detection">เซ็นเซอร์ภาพ</string>
+    <string name="formula_editor_device_face_detection">ตรวจจับใบหน้า</string>
+    <string name="formula_editor_device_pose_detection">การตรวจจับท่าทาง</string>
+    <string name="formula_editor_device_text_recognition">การจดจำข้อความ</string>
     <string name="formula_editor_device_date_and_time">วันและเวลา</string>
     <string name="formula_editor_device_touch_detection">ตรวจจับการสัมผัส</string>
     <string name="formula_editor_device_lego_nxt">Lego NXT</string>
-    <string name="formula_editor_device_lego_ev3">Lego Mindstorms EV3</string>
+    <string name="formula_editor_device_lego_ev3">เลโก้ Mindstorms EV3</string>
     <string name="formula_editor_device_arduino">Arduino</string>
-    <string name="formula_editor_device_phiro">Phiro</string>
-    <string name="formula_editor_device_raspberry">Raspberry Pi</string>
+    <string name="formula_editor_device_phiro">ฟีโร</string>
+    <string name="formula_editor_device_raspberry">ราสเบอร์รี่ Pi</string>
     <string name="formula_editor_device_drone">โดรน</string>
     <string name="formula_editor_device_nfc">NFC</string>
     <string name="formula_editor_device_cast">Chromecast</string>
@@ -1679,6 +1701,8 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="formula_editor_operator_divide">÷</string>
     <string name="formula_editor_operator_power">^</string>
     <string name="formula_editor_image_button_description_delete">ลบ</string>
+    <string name="formula_editor_image_button_description_color_picker">ตัวเลือกสี</string>
+    <string name="formula_editor_image_button_description_functions_toggle">ฟังก์ชันสลับ</string>
     <string name="formula_editor_variable_dialog_title">สร้างตัวแปรใหม่</string>
     <string name="formula_editor_list_dialog_title">สร้างรายการใหม่</string>
     <string name="formula_editor_regex_html_extractor_dialog_title">ตัวแยก HTML</string>
@@ -1690,104 +1714,193 @@ A-8010 กราซ, ออสเตรีย \n
          นิพจน์</string>
     <string name="formula_editor_fragment_data_current_items">รายการปัจจุบัน</string>
     <string name="formula_editor_data_dialog_is_list">ทำให้เป็นรายการ</string>
-    <string name="formula_editor_sensor_face_detected">พบใบหน้า</string>
-    <string name="formula_editor_sensor_face_size">ขนาดใบหน้า</string>
-    <string name="formula_editor_sensor_face_x_position">ตำแหน่งใบหน้าแกน_x</string>
-    <string name="formula_editor_sensor_face_y_position">ตำแหน่งใบหน้าแกน_y</string>
+    <string name="formula_editor_sensor_face_detected">ใบหน้าแรกสามารถมองเห็นได้</string>
+    <string name="formula_editor_sensor_face_size">ขนาดใบหน้าแรก</string>
+    <string name="formula_editor_sensor_face_x_position">ใบหน้า x ตำแหน่งแรก</string>
+    <string name="formula_editor_sensor_face_y_position">ใบหน้า y ตำแหน่งแรก</string>
+    <string name="formula_editor_sensor_second_face_detected">ใบหน้าที่สองสามารถมองเห็นได้</string>
+    <string name="formula_editor_sensor_second_face_size">ขนาดใบหน้าที่สอง</string>
+    <string name="formula_editor_sensor_second_face_x_position">ใบหน้าที่สอง x ตำแหน่ง</string>
+    <string name="formula_editor_sensor_second_face_y_position">ใบหน้าที่สอง y ตำแหน่ง</string>
+    <string name="formula_editor_sensor_nose_x">จมูก x</string>
+    <string name="formula_editor_sensor_nose_y">จมูก y</string>
+    <string name="formula_editor_sensor_left_eye_inner_x">ตาซ้ายด้านใน x</string>
+    <string name="formula_editor_sensor_left_eye_inner_y">ตาซ้ายด้านใน y</string>
+    <string name="formula_editor_sensor_left_eye_center_x">ศูนย์ตาซ้าย x</string>
+    <string name="formula_editor_sensor_left_eye_center_y">ศูนย์ตาซ้าย y</string>
+    <string name="formula_editor_sensor_left_eye_outer_x">ตาซ้ายด้านนอก x</string>
+    <string name="formula_editor_sensor_left_eye_outer_y">ตาซ้ายด้านนอก y</string>
+    <string name="formula_editor_sensor_right_eye_inner_x">ตาขวาด้านใน x</string>
+    <string name="formula_editor_sensor_right_eye_inner_y">ตาขวาด้านใน y</string>
+    <string name="formula_editor_sensor_right_eye_center_x">ศูนย์ตาขวา x</string>
+    <string name="formula_editor_sensor_right_eye_center_y">ศูนย์ตาขวา y</string>
+    <string name="formula_editor_sensor_right_eye_outer_x">ตาขวาด้านนอก x</string>
+    <string name="formula_editor_sensor_right_eye_outer_y">ตาขวาด้านนอก y</string>
+    <string name="formula_editor_sensor_left_ear_x">หูซ้าย x</string>
+    <string name="formula_editor_sensor_left_ear_y">หูซ้าย y</string>
+    <string name="formula_editor_sensor_right_ear_x">หูขวา x</string>
+    <string name="formula_editor_sensor_right_ear_y">หูขวา y</string>
+    <string name="formula_editor_sensor_mouth_left_corner_x">มุมปากซ้าย x</string>
+    <string name="formula_editor_sensor_mouth_left_corner_y">มุมปากซ้าย y</string>
+    <string name="formula_editor_sensor_mouth_right_corner_x">มุมปากขวา x</string>
+    <string name="formula_editor_sensor_mouth_right_corner_y">มุมปากขวา y</string>
+    <string name="formula_editor_sensor_left_shoulder_x">ไหล่ซ้าย x</string>
+    <string name="formula_editor_sensor_left_shoulder_y">ไหล่ซ้าย y</string>
+    <string name="formula_editor_sensor_right_shoulder_x">ไหล่ขวา x</string>
+    <string name="formula_editor_sensor_right_shoulder_y">ไหล่ขวา y</string>
+    <string name="formula_editor_sensor_left_elbow_x">ศอกซ้าย x</string>
+    <string name="formula_editor_sensor_left_elbow_y">ศอกซ้าย y</string>
+    <string name="formula_editor_sensor_right_elbow_x">ศอกขวา x</string>
+    <string name="formula_editor_sensor_right_elbow_y">ศอกขวา y</string>
+    <string name="formula_editor_sensor_left_wrist_x">ข้อมือซ้าย x</string>
+    <string name="formula_editor_sensor_left_wrist_y">ข้อมือซ้าย y</string>
+    <string name="formula_editor_sensor_right_wrist_x">ข้อมือขวา x</string>
+    <string name="formula_editor_sensor_right_wrist_y">ข้อมือขวา y</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_x">นิ้วก้อยซ้าย x</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_y">นิ้วก้อยซ้าย y</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_x">นิ้วก้อยขวา x</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_y">นิ้วก้อยขวา y</string>
+    <string name="formula_editor_sensor_left_index_knuckle_x">สนับมือซ้าย x</string>
+    <string name="formula_editor_sensor_left_index_knuckle_y">สนับมือซ้าย y</string>
+    <string name="formula_editor_sensor_right_index_knuckle_x">สนับมือขวา x</string>
+    <string name="formula_editor_sensor_right_index_knuckle_y">สนับมือขวา y</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_x">นิ้วหัวแม่มือซ้าย x</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_y">นิ้วหัวแม่มือซ้าย y</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_x">นิ้วหัวแม่มือขวา x</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_y">นิ้วหัวแม่มือขวา y</string>
+    <string name="formula_editor_sensor_left_hip_x">สะโพกซ้าย x</string>
+    <string name="formula_editor_sensor_left_hip_y">สะโพกซ้าย y</string>
+    <string name="formula_editor_sensor_right_hip_x">สะโพกขวา x</string>
+    <string name="formula_editor_sensor_right_hip_y">สะโพกขวา y</string>
+    <string name="formula_editor_sensor_left_knee_x">เข่าซ้าย x</string>
+    <string name="formula_editor_sensor_left_knee_y">เข่าซ้าย y</string>
+    <string name="formula_editor_sensor_right_knee_x">เข่าขวา x</string>
+    <string name="formula_editor_sensor_right_knee_y">เข่าขวา y</string>
+    <string name="formula_editor_sensor_left_ankle_x">ข้อเท้าซ้าย x</string>
+    <string name="formula_editor_sensor_left_ankle_y">ข้อเท้าซ้าย y</string>
+    <string name="formula_editor_sensor_right_ankle_x">ข้อเท้าขวา x</string>
+    <string name="formula_editor_sensor_right_ankle_y">ข้อเท้าขวา y</string>
+    <string name="formula_editor_sensor_left_heel_x">ส้นเท้าซ้าย x</string>
+    <string name="formula_editor_sensor_left_heel_y">ส้นเท้าซ้าย y</string>
+    <string name="formula_editor_sensor_right_heel_x">ส้นขวา x</string>
+    <string name="formula_editor_sensor_right_heel_y">ส้นขวา y</string>
+    <string name="formula_editor_sensor_left_foot_index_x">ดัชนีเท้าซ้าย x</string>
+    <string name="formula_editor_sensor_left_foot_index_y">ดัชนีเท้าซ้าย y</string>
+    <string name="formula_editor_sensor_right_foot_index_x">ดัชนีเท้าขวา x</string>
+    <string name="formula_editor_sensor_right_foot_index_y">ดัชนีเท้าขวา y</string>
     <string name="formula_editor_sensor_text_from_camera">ข้อความจากกล้อง</string>
     <string name="formula_editor_sensor_text_blocks_number">จำนวนบล็อกข้อความ</string>
     <string name="formula_editor_function_text_block_x">บล็อกข้อความ x จากกล้อง</string>
     <string name="formula_editor_function_text_block_y">บล็อกข้อความ y จากกล้อง</string>
     <string name="formula_editor_function_text_block_size">ขนาดบล็อกข้อความจากกล้อง</string>
+    <string name="formula_editor_function_text_block_from_camera">บล็อกข้อความจากกล้อง</string>
+    <string name="formula_editor_function_text_block_language_from_camera">ภาษาบล็อกข้อความจากกล้อง</string>
+    <string name="formula_editor_function_text_block_parameter">(1)</string>
     <string name="formula_editor_intro_title_formula_editor">ตัวแก้ไขสูตร</string>
-    <string name="formula_editor_intro_summary_formula_editor">ด้วยตัวแก้ไขสูตรคุณสามารถสร้างสูตรทางคณิตศาสตร์และตรรกะที่คุณสามารถใช้ในคำสั่งของคุณ \n\n คุณสามารถดำเนินการผ่านบทนำเล็กน้อยนี้ได้โดยแตะปุ่ม \"ถัดไป\" ที่มุมล่างขวาและคุณสามารถข้ามได้โดยคลิกที่  ปุ่ม \"ข้าม\" ที่มุมล่างซ้าย</string>
+    <string name="formula_editor_intro_summary_formula_editor">ด้วยตัวแก้ไขทางคณิตศาสตร์คุณสามารถสร้างสูตรและ
+         สูตรตรรกะที่คุณสามารถใช้ในชุดคำสั่งของคุณ \n\n ดำเนินการต่อโดยแตะ \"NEXT\" หรือออก
+         ด้วย“ SKIP”</string>
     <string name="formula_editor_intro_title_input_field">ช่องป้อนข้อมูล</string>
-    <string name="formula_editor_intro_summary_input_field">Here you can see and edit your formula.</string>
-    <string name="formula_editor_intro_title_keyboard">Keyboard</string>
-    <string name="formula_editor_intro_summary_keyboard">This is where you can create
-        your formula, just like on a calculator.</string>
+    <string name="formula_editor_intro_summary_input_field">คุณสามารถดูและแก้ไขสูตรได้ที่นี่</string>
+    <string name="formula_editor_intro_title_keyboard">คีย์บอร์ด</string>
+    <string name="formula_editor_intro_summary_keyboard">นี่คือที่ที่คุณสามารถสร้างได้
+        สูตรของคุณเหมือนกับเครื่องคิดเลข</string>
     <string name="formula_editor_intro_title_compute">คำนวณ</string>
-    <string name="formula_editor_intro_summary_compute">To show your formula\'s current result, you can
-        use \"Compute\".</string>
-    <string name="formula_editor_intro_title_object">วัตถุ</string>
-    <string name="formula_editor_intro_summary_object">This is a collection of values that describe the properties of your
-        current actor or object. Examples are the x- and y-coordinates, or the current speed.</string>
+    <string name="formula_editor_intro_summary_compute">หากต้องการแสดงผลลัพธ์ปัจจุบันของสูตรของคุณคุณสามารถทำได้
+        ใช้ \"Compute\"</string>
+    <string name="formula_editor_intro_title_object">คุณสมบัติ</string>
+    <string name="formula_editor_intro_summary_object">นี่คือชุดของค่าที่อธิบายคุณสมบัติของไฟล์
+        นักแสดงหรือวัตถุในปัจจุบัน ตัวอย่างเช่นพิกัด x และ y หรือความเร็วปัจจุบัน</string>
     <string name="formula_editor_intro_title_functions">ฟังก์ชัน</string>
-    <string name="formula_editor_intro_summary_functions">Like a calculator, the formula editor offers
-        many mathematical functions.\nYou can find trigonometric functions such as \"sin\" and \"cos\",
-        a random number generator, and text and list functions.</string>
+    <string name="formula_editor_intro_summary_functions">เช่นเดียวกับเครื่องคิดเลขโปรแกรมแก้ไขสูตรมีให้
+        ฟังก์ชันทางคณิตศาสตร์มากมาย \n คุณสามารถค้นหาฟังก์ชันตรีโกณมิติเช่น \"sin\" และ \"cos\"
+        ตัวสร้างตัวเลขสุ่มและฟังก์ชันข้อความและรายการ</string>
     <string name="formula_editor_intro_title_logic">ตรรกะ</string>
-    <string name="formula_editor_intro_summary_logic">Logic is used to compare values and combine logical formulas.\nTo
-        compare values you can use logical operations such as \"&gt;\" (greater than) or \"=\" (equals).\nTo combine
-        logical formulas you can use logical operations such as \"AND\", \"OR\" and \"NOT\".</string>
+    <string name="formula_editor_intro_summary_logic">ตรรกะใช้เพื่อเปรียบเทียบค่าและรวมสูตรตรรกะ \n ถึง
+        เปรียบเทียบค่าที่คุณสามารถใช้การดำเนินการเชิงตรรกะเช่น \"&amp; gt;\" (มากกว่า) หรือ \"=\" (เท่ากับ) \n เพื่อรวม
+        สูตรตรรกะคุณสามารถใช้การดำเนินการเชิงตรรกะเช่น \"AND\" \"OR\" และ \"NOT\"</string>
     <string name="formula_editor_intro_title_device">เซนเซอร์</string>
-    <string name="formula_editor_intro_summary_device">In \"Sensors\" you can find information that your
-        device records.\nFor example, the tilt of your device, or the loudness of your surroundings.</string>
+    <string name="formula_editor_intro_summary_device">ใน \"เซนเซอร์\" คุณสามารถค้นหาข้อมูลที่
+        บันทึกอุปกรณ์ \n ตัวอย่างเช่นการเอียงของอุปกรณ์หรือความดังของสิ่งรอบข้าง</string>
     <string name="formula_editor_intro_title_data">ข้อมูล</string>
-    <string name="formula_editor_intro_summary_data">Variables and lists that are used in your project can be found here.
-        \nYou can simply insert these in your formula, or add new ones.</string>
+    <string name="formula_editor_intro_summary_data">ตัวแปรและรายการที่ใช้ในโครงการของคุณสามารถพบได้ที่นี่
+        \n คุณสามารถแทรกสิ่งเหล่านี้ในสูตรของคุณหรือเพิ่มใหม่ได้</string>
     <string name="formula_editor_listening_language_sensor">ภาษาที่ใช้ในการฟัง</string>
     <string name="formula_editor_speech_recognition">การเรียนรู้จดจำเสียง</string>
     <string name="camera_error_text_detection">        มีปัญหากับการตรวจจับข้อความ ส่วนประกอบบางอย่างอาจยังดาวน์โหลดอยู่ในไฟล์
          พื้นหลัง. โปรดตรวจสอบว่าคุณเชื่อมต่ออินเทอร์เน็ตแล้วและกลับมาตรวจสอบในภายหลัง</string>
+    <string name="warning_formula_recognized">คุณป้อนข้อความที่ดูเหมือนสูตร หากคุณต้องการใช้ฟังก์ชัน
+         เซ็นเซอร์ ตัวแปร และองค์ประกอบสูตรอื่นๆ โปรดเลือกแทนโดยใช้
+         ปุ่มในตัวแก้ไขสูตร</string>
     <!--  -->
     <!-- Brick Data Editor Strings -->
-    <string name="brick_show_variable">Show variable</string>
-    <string name="brick_hide_variable">Hide variable</string>
-    <string name="brick_show_variable_position">at</string>
-    <string name="brick_show_variable_size">size:</string>
-    <string name="brick_show_variable_color">color:</string>
-    <string name="brick_show_variable_aligned">aligned</string>
-    <string name="brick_show_variable_aligned_centered">centered</string>
-    <string name="brick_show_variable_aligned_left">left</string>
-    <string name="brick_show_variable_aligned_right">right</string>
-    <string name="brick_context_dialog_pick_color">Pick color</string>
+    <string name="brick_show_variable">แสดงตัวแปร</string>
+    <string name="brick_hide_variable">ซ่อนตัวแปร</string>
+    <string name="brick_show_variable_position">ที่</string>
+    <string name="brick_show_variable_size">ขนาด:</string>
+    <string name="brick_show_variable_color">สี:</string>
+    <string name="brick_show_variable_aligned">ชิด</string>
+    <string name="brick_show_variable_aligned_centered">อยู่ตรงกลาง</string>
+    <string name="brick_show_variable_aligned_left">ซ้าย</string>
+    <string name="brick_show_variable_aligned_right">ขวา</string>
+    <string name="brick_context_dialog_pick_color">เลือกสี</string>
     <string name="brick_context_dialog_pick_note">เลือกบันทึก</string>
     <!-- -->
     <!-- Camera related strings -->
-    <string name="brick_video">Turn camera</string>
+    <string name="brick_video">เปิดกล้อง</string>
     <string name="video_brick_camera_on">เปิด</string>
     <string name="video_brick_camera_off">ปิด</string>
-    <string name="brick_choose_camera">Use camera</string>
-    <string name="choose_camera_front">front</string>
-    <string name="choose_camera_back">rear</string>
-    <string name="camera_error_generic">        Something went wrong while trying to use the camera.
+    <string name="brick_choose_camera">ใช้กล้องถ่ายรูป</string>
+    <string name="choose_camera_front">ด้านหน้า</string>
+    <string name="choose_camera_back">ด้านหลัง</string>
+    <string name="camera_error_generic">        เกิดข้อผิดพลาดขณะพยายามใช้กล้อง
     </string>
-    <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
-        background. Please make sure you are connected to the internet and check back later.
+    <string name="camera_error_face_detection">        มีปัญหากับการตรวจจับใบหน้า ส่วนประกอบบางอย่างอาจยังคงดาวน์โหลดอยู่ในไฟล์
+        พื้นหลัง. โปรดตรวจสอบว่าคุณเชื่อมต่อกับอินเทอร์เน็ตและกลับมาตรวจสอบในภายหลัง
+    </string>
+    <string name="camera_error_pose_detection">        มีปัญหากับการตรวจจับท่าทาง ส่วนประกอบบางอย่างอาจยังคงดาวน์โหลดอยู่ในไฟล์
+        พื้นหลัง. โปรดตรวจสอบว่าคุณเชื่อมต่อกับอินเทอร์เน็ตและกลับมาตรวจสอบในภายหลัง
     </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">A</string>
     <string name="cast_gamepad_B">B</string>
-    <string name="cast_gamepad_up">up</string>
-    <string name="cast_gamepad_down">down</string>
-    <string name="cast_gamepad_left">left</string>
-    <string name="cast_gamepad_right">right</string>
-    <string name="cast_error_not_connected_msg">Please connect to your Chromecast first</string>
-    <string name="cast_error_cast_bricks_in_no_cast_project">Your project uses Chromecast bricks and can\'t be started
-        locally</string>
-    <string name="cast_device_selector_dialog_title">Cast to</string>
-    <string name="cast_button_menu_item_title">Cast button</string>
-    <string name="cast_ready_to_cast">Ready to cast to</string>
-    <string name="cast_enable_cast_feature">Chromecast features disabled. Please enable cast features in the settings.</string>
-    <string name="cast_searching_for_cast_devices">Searching for Chromecast devices</string>
-    <string name="cast_trouble_finding_devices_tip">.\nDon\'t see your device? Try turning your device\'s Wifi off
-        and on.</string>
-    <string name="cast_connection_timout_msg">Connection timeout. Please try again.</string>
-    <string name="cast_screen_pause_text">Paused</string>
+    <string name="cast_gamepad_up">ขึ้น</string>
+    <string name="cast_gamepad_down">ลง</string>
+    <string name="cast_gamepad_left">ซ้าย</string>
+    <string name="cast_gamepad_right">ขวา</string>
+    <string name="cast_error_not_connected_msg">โปรดเชื่อมต่อกับ Chromecast ของคุณก่อน</string>
+    <string name="cast_error_cast_bricks_in_no_cast_project">โครงการของคุณใช้อิฐ Chromecast และไม่สามารถเริ่มต้นได้
+        ในประเทศ</string>
+    <string name="cast_device_selector_dialog_title">ส่งไปที่</string>
+    <string name="cast_button_menu_item_title">ปุ่มแคสต์</string>
+    <string name="cast_ready_to_cast">พร้อมที่จะส่งไปยัง</string>
+    <string name="cast_enable_cast_feature">คุณลักษณะของ Chromecast ถูกปิดใช้งาน โปรดเปิดใช้งานคุณสมบัติการส่งในการตั้งค่า</string>
+    <string name="cast_searching_for_cast_devices">กำลังค้นหาอุปกรณ์ Chromecast</string>
+    <string name="cast_trouble_finding_devices_tip">.\n ไม่เห็นอุปกรณ์ของคุณ? ลองปิด Wifi ของอุปกรณ์
+        และใน</string>
+    <string name="cast_connection_timout_msg">หมดเวลาการเชื่อมต่อ กรุณาลองอีกครั้ง.</string>
+    <string name="cast_screen_pause_text">หยุดชั่วคราว</string>
     <!-- -->
     <string name="deletion_alert_title">ลบ?</string>
     <string name="deletion_alert_text">การลบตัวแปรหรือรายการที่ยังคงใช้งานอยู่อาจทำให้เกิด
          ข้อผิดพลาด คุณไม่สามารถเลิกทำได้!</string>
-    <string name="deletion_alert_yes">Yes, delete anyway!</string>
     <!-- Upload progress dialog -->
-    <string name="progress_upload_dialog_message">Your project gets uploaded to the app\’s sharing site where others
-        can use and download it. You can also download your project as a standalone app.</string>
-    <string name="progress_upload_dialog_failed">Upload failed. Please check your internet connection and try
-        again!</string>
+    <string name="progress_upload_dialog_message">โปรเจ็กต์ของคุณจะอัปโหลดไปยังไซต์แชร์ของแอปที่คนอื่น ๆ
+        สามารถใช้และดาวน์โหลดได้ คุณยังดาวน์โหลดโปรเจ็กต์ของคุณเป็นแอพแบบสแตนด์อโลนได้อีกด้วย</string>
+    <string name="progress_upload_dialog_failed">การอัพโหลดล้มเหลว. โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลอง
+        อีกแล้ว!</string>
     <string name="progress_upload_dialog_show_program">แสดงโครงการ</string>
     <!--  -->
+    <!-- unchanged upload dialog -->
+    <string name="unchanged_upload_warning">โปรเจ็กต์ที่คุณพยายามอัปโหลดมีอยู่แล้ว
+        แพลตฟอร์มชุมชนในรูปแบบเดียวกัน โปรดเปลี่ยนโปรเจ็กต์ของคุณตามความเหมาะสม
+        ปรับปรุงก่อนที่จะอัปโหลดโปรเจ็กต์รีมิกซ์ของคุณ</string>
+    <string name="unchanged_upload_info">โปรดพิจารณาเพิ่มคำที่เป็นประโยชน์ต่อต้นฉบับ
+        ผู้เขียนในส่วนเครดิตบนไซต์ชุมชนหรือในตัวเลือกโครงการ โปรดทราบ
+        ว่าผู้ใช้จะได้รับการแจ้งเตือนหลังจากที่คุณอัปโหลดสำเร็จ</string>
+    <string name="unchanged_upload_url">หากต้องการเรียนรู้เพิ่มเติมเกี่ยวกับการรีมิกซ์โปรดไปที่%1s</string>
+    <!-- -->
     <!-- Snackbar hints -->
     <string name="got_it">เข้าใจแล้ว</string>
     <string name="preference_description_hints">เปิดใช้งานเพื่อแสดงคำแนะนำ</string>
@@ -1797,7 +1910,16 @@ A-8010 กราซ, ออสเตรีย \n
     <string name="hint_scripts">สคริปต์จะกำหนดพฤติกรรมของนักแสดงหรือวัตถุของคุณ  ในการเพิ่มบล็อกลงในสคริปต์ให้แตะสัญลักษณ์ \"+\"</string>
     <string name="hint_looks">ที่นี่คุณสามารถค้นหาลักษณะที่แตกต่างของนักแสดงหรือวัตถุของคุณ  หากต้องการเพิ่มรูปลักษณ์ใหม่ให้แตะสัญลักษณ์ \"+\"</string>
     <string name="hint_sounds">ที่นี่คุณสามารถเพิ่มเสียงใหม่ให้กับนักแสดงหรือวัตถุของคุณ  จำไว้ว่าใช้อิฐจากหมวดเสียง</string>
-    <string name="hint_objects">โปรแกรมของคุณประกอบด้วยนักแสดงและวัตถุต่าง ๆ ที่สามารถโต้ตอบซึ่งกันและกันได้  หากต้องการเพิ่มนักแสดงหรือวัตถุใหม่ให้แตะสัญลักษณ์ \"+\"</string>
+    <string name="hint_objects">โปรแกรมของคุณประกอบด้วยนักแสดงและวัตถุต่าง ๆ ที่สามารถโต้ตอบซึ่งกันและกันได้  
+        หากต้องการเพิ่มนักแสดงหรือวัตถุใหม่ให้แตะสัญลักษณ์ \"+\"</string>
+    <!--  -->
+    <!-- Dialog Disable hints -->
+    <string name="dialog_disable_hints_title">แสดงคำใบ้</string>
+    <string name="dialog_disable_hints_text">คำแนะนำให้ข้อมูลที่เป็นประโยชน์แก่คุณ
+         ในขณะที่สร้างโปรเจ็กต์แรกของคุณ \n \n ความสามารถในการมองเห็นของคำใบ้สามารถเปลี่ยนแปลงได้ในไฟล์
+         การตั้งค่า</string>
+    <string name="dialog_disable_hints_button_hide">ซ่อน</string>
+    <string name="dialog_disable_hints_button_show">แสดง</string>
     <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
@@ -1806,4 +1928,28 @@ A-8010 กราซ, ออสเตรีย \n
     <!-- Symbols -->
     <string name="percent_symbol">%</string>
     <string name="hertz_symbol">㎐</string>
+    <string name="no_internet_connection">ไม่มีการเชื่อมต่ออินเทอร์เน็ต. ตรวจสอบว่า Wi-Fi หรือเน็ตมือถือปิดอยู่</string>
+    <string name="edit">แก้ไข</string>
+    <string name="data_value">ค่า</string>
+    <string name="category_recently_used">ใช้ล่าสุด</string>
+    <string name="new_sprite_dialog_place_visually">วางสายตา</string>
+    <string name="place_visually_text">คุณจะถูกขอให้วางนักแสดงใหม่หรือวัตถุในไฟล์
+         เวที.</string>
+    <!-- Information -->
+    <string name="no_variable_selected">ไม่ได้เลือกตัวแปร</string>
+    <string name="find">ค้นหา</string>
+    <string name="no_results_found">ไม่พบผลลัพธ์</string>
+    <string name="query_field_is_empty">ฟิลด์แบบสอบถามว่างเปล่า</string>
+    <string name="cut">ตัด</string>
+    <string name="paste">วาง</string>
+    <!-- Particle Effects -->
+    <string name="fade_particle_effect">เอฟเฟกต์อนุภาคจาง</string>
+    <string name="particle_effects_fade_in">ใน</string>
+    <string name="particle_effects_fade_out">ออก</string>
+    <string name="turn_particle_effect_additivity">เปลี่ยนการเติมเอฟเฟกต์อนุภาค</string>
+    <string name="particle_effects_additive_on">เปิด</string>
+    <string name="particle_effects_additive_off">ปิด</string>
+    <string name="set_particle_color_to">ตั้งค่าสีอนุภาคเป็น</string>
+    <string name="undo_sort">เลิกทำการเรียงลำดับ</string>
+    <string name="sort">เรียงลำดับ</string>
 </resources>

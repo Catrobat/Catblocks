@@ -1,7 +1,3 @@
-/**
- * @description arduino Catblocks bricks
- */
-
 'use strict';
 
 export default {
@@ -52,25 +48,6 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'IF_CONDITION_INFO'
-      }
-    ]
-  },
-  WhenBounceOffScript: {
-    message0: '%{BKY_EVENT_WHENYOUBOUNCEOFF}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
       }
     ]
   },

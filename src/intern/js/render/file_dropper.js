@@ -2,6 +2,7 @@ import { MessageBox } from './message_box';
 import { loadArchive, updateView } from './utils';
 import { PasteListener } from './paste_listener';
 import { renderProgramByLocalFile } from './render';
+import $ from 'jquery';
 
 /**
  * Initialize Drag & Drop Field and handle Files.

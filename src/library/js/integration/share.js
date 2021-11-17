@@ -3,7 +3,12 @@
  */
 import '../../css/share.css';
 import '../../css/common.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
 import Blockly from 'blockly';
+import $ from 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 import {
   escapeURI,
   generateID,
@@ -193,9 +198,9 @@ export class Share {
     });
 
     if (sceneName && sceneName.display) {
-      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
     } else {
-      sceneHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+      sceneHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
     }
 
     const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
@@ -411,6 +416,33 @@ export class Share {
 
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
+
+    let src;
+
+    if (object.lookList) {
+      for (const look of object.lookList) {
+        if (!options.sceneName || !look.fileName) {
+          continue;
+        }
+
+        const imgPath = `${options.sceneName}/images/${look.fileName}`;
+        src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+        if (options.programRoot.startsWith('http')) {
+          src = escapeURI(`${options.programRoot}${imgPath}`);
+        }
+
+        if (options.fileMap != null && options.fileMap[imgPath]) {
+          src = options.fileMap[imgPath];
+        }
+
+        if (src === undefined || src === '') {
+          console.log('src is empty or null = ' + src);
+        }
+        break;
+      }
+    }
+
     const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
       id: objHeadingID,
@@ -428,10 +460,17 @@ export class Share {
       cardHeader.style.paddingRight = '3.5em';
     }
 
-    if (object && object.name) {
-      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+    if (object && object.name && src) {
+      const picture = `<img src="${src}" class="catblocks-object-thumbnail" />`;
+      cardHeader.innerHTML =
+        `<div class="d-flex">` +
+        picture +
+        `<div class="header-title" style="padding-left: 10px">${object.name}</div></div>` +
+        `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+    } else if (object && object.name) {
+      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
     } else {
-      cardHeader.innerHTML = `<i id="code-view-toggler" class="material-icons rotate-left">chevron_left</i>`;
+      cardHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
     }
 
     const objectContentContainer = generateNewDOM(objectCard, 'div', {
@@ -677,7 +716,7 @@ export class Share {
         'data-target': '#modalForImg',
         name: 'not clicked'
       });
-      magnifyingGlass.innerHTML = '<i class="material-icons">search</i>';
+      magnifyingGlass.innerHTML = '<img src="media/search_black_24dp.svg" />';
 
       // register on click on magnifying glass
       body.on('click', `#${magnifyingGlassID}`, () => {
@@ -850,7 +889,7 @@ export class Share {
           'aria-controls': 'looks',
           'aria-selected': 'false'
         },
-        `<i id="code-view-toggler" class="material-icons catblocks-tab-icon">visibility</i> (${object.lookList.length})`
+        `<img id="code-view-toggler" class="catblocks-tab-icon" src="media/visibility_black_24dp.svg" /> (${object.lookList.length})`
       );
     }
 
@@ -870,7 +909,7 @@ export class Share {
           'aria-controls': 'sounds',
           'aria-selected': 'false'
         },
-        `<i id="code-view-toggler" class="material-icons catblocks-tab-icon">volume_up</i> (${object.soundList.length})`
+        `<img id="code-view-toggler" class="catblocks-tab-icon" src="media/volume_up_black_24dp.svg" /> (${object.soundList.length})`
       );
     }
   }

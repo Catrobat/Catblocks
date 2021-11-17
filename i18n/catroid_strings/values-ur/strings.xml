@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Catroid: An on-device visual programming system for Android devices
-  ~ Copyright (C) 2010-2018 The Catrobat Team
+  ~ Copyright (C) 2010-2021 The Catrobat Team
   ~ (<http://developer.catrobat.org/credits>)
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- General terms -->
     <string name="stage">مرحلہ</string>
     <string name="play">چلائیں</string>
@@ -29,24 +29,25 @@
     <string name="redo">واپس ے آؤ</string>
     <string name="undo">واپس کریں</string>
     <string name="new_option">نئی</string>
+    <string name="edit_option">ترمیم&#8230;</string>
     <string name="confirm">تصدیق کریں</string>
-    <string name="ignore">Ignore</string>
+    <string name="ignore">نظر انداز</string>
     <string name="cancel">منسوخ کریں</string>
     <string name="save">محفوظ </string>
+    <string name="discard">مسترد کریں</string>
     <string name="next">اگلا</string>
-    <string name="back">پیچھے</string>
     <string name="ok">ٹھيک ہے</string>
     <string name="done">مکمل</string>
     <string name="close">بند کریں</string>
-    <string name="assistant">Assistant</string>
+    <string name="assistant">اسسٹنٹ</string>
     <string name="yes">ہاں</string>
     <string name="no">نہيں</string>
-    <string name="once">Once</string>
-    <string name="always">Always</string>
-    <string name="deny">Deny</string>
-    <string name="disagree">غیر متفق</string>
-    <string name="accept">Accept</string>
-    <string name="decline">Decline</string>
+    <string name="once">ایک بار</string>
+    <string name="always">ہمیشہ</string>
+    <string name="deny">انکار</string>
+    <string name="do_not_show_again">DO NOT SHOW AGAIN</string>
+    <string name="accept">قبول</string>
+    <string name="decline">مسترد کریں</string>
     <string name="select_all">تمام منتخب کریں</string>
     <string name="deselect_all">سب منسوخ کریں</string>
     <string name="skip">چھوڑ دو</string>
@@ -54,21 +55,25 @@
     <string name="error">خرابی</string>
     <string name="loading">لدائی کا عمل ہورہاہے&#8230;</string>
     <string name="please_wait">براۓ مہربانی انتظار کريں</string>
-    <string name="search_hint">تلاش کریں&#8230;</string>
+    <string name="search_hint">تلاش کریں…</string>
     <string name="backpack_add">بستہ میں جمع کریں</string>
     <string name="share_website_text">share.catrob.at</string>
     <!-- Security warning dialog -->
-    <string name="security_warning_dialog_msg">The project you have downloaded listens to your voice
-        in the background and also sends data to the internet. This may be harmless, and necessary
-        for its intended behavior. However, please make sure that what you are saying while the
-        project is running is safe. In case of doubt, please delete the downloaded project.
-        You may also report the project on its page on the Catrobat community platform in case
-        you are sure that it is harmful.</string>
+    <string name="security_warning_dialog_msg">اس منصوبے نے آپ کو پس منظر میں اپنی آواز پر سنبھال لیا ہے اور انٹرنیٹ کو ڈیٹا بھی بھیجتا ہے. یہ اس کے ارادہ کے لئے نقصان دہ، اور ضروری ہو سکتا ہے.
+        تاہم، براہ کرم اس بات کو یقینی بنائیں کہ آپ کیا کہہ رہے ہیں جبکہ منصوبے چل رہا ہے جبکہ محفوظ ہے. شک کی صورت میں، ڈاؤن لوڈ کردہ پروجیکٹ کو خارج کر دیں.
+        آپ اس منصوبے کو Catrobat کمیونٹی پلیٹ فارم پر اس منصوبے کو بھی رپورٹ کر سکتے ہیں اگر آپ اس بات کو یقینی بنائیں کہ یہ نقصان دہ ہے.</string>
+    <!-- Replace Api dialog -->
+    <string name="api_replacement_dialog_neutral">تبدیلی کے بغیر اپ لوڈ کریں</string>
+    <string name="api_replacement_dialog_accept">چابیاں تبدیل کرنے کے ساتھ اپ لوڈ کریں</string>
+    <string name="api_replacement_dialog_warning">اس منصوبے میں اینٹوں پر مشتمل ہے جو 
+        ویب تک رسائی حاصل کرتی ہے، اور یہ بھی API کی چابیاں پر مشتمل ہے. براہ مہربانی %1s ملاحظہ کریں 
+        کیوں ان چابیاں اپ لوڈ کر رہے ہیں خطرناک ہوسکتے ہیں.</string>
+    <string name="api_replacement">یہاں API کلید داخل کریں</string>
+    <!-- -->
     <!-- Login/Logout Mechanism -->
     <string name="loading_check_oauth_token">لاگ ان کے اعداد و شمار کی جانچ پڑتال&#8230;</string>
     <string name="loading_google_exchange_code">گوگل لاگ ان کے اعداد و شمار کو تبدیل کرنے&#8230;</string>
     <string name="loading_google_login">ہمارے سرور پر گوگل لاگ ان مکمل ہو گیا ہے&#8230;</string>
-    <string name="delete_account">  میرا اکاؤنٹ ختم کریں</string>
     <string name="logout_successful">لاگ آؤٹ کامیاب ہوا</string>
     <string name="degrees">ڈگری</string>
     <string name="background">پس پشت</string>
@@ -97,15 +102,39 @@
     <string name="marketing_created_with">کے ساتھ پیدا</string>
     <string name="marketing_app_details">اس ایپ کے بارے میں تفصیلات</string>
     <string name="marketing_more_on_google_play">اپلی کیشن سٹور پر مزید ایپ</string>
+    <string name="error_cannot_open_huawei_app_gallery">اوهح Huawei Appgallery کھولنے میں ناکامی،
+        براہ کرم کچھ دیر بعد کوشش کریں.</string>
+    <string name="google_play_store_logo">گوگل پلے</string>
+    <string name="huawei_app_gallery">Huawei ایپ گیلری</string>
     <!-- NFC activity -->
-    <string name="nfc_activity_title">NFC tags</string>
+    <string name="nfc_activity_title">این ایف سی ٹیگز</string>
     <!-- Settings activity -->
     <string name="preference_title">ترتیبات</string>
     <string name="preference_title_language">زبان</string>
     <string name="preference_description_language">ایپ کی زبان کو سیٹ کریں</string>
-    <string name="preference_title_web_access">Web access</string>
-    <string name="preference_description_web_access">Edit to add or remove trusted domains</string>
-    <string name="preference_screen_web_access_title">Edit trusted domains</string>
+    <string name="preference_title_web_access">ویب تک رسائی</string>
+    <string name="preference_description_web_access">قابل اعتماد ڈومینز کو شامل یا ہٹانے میں ترمیم کریں</string>
+    <string name="preference_screen_web_access_title">قابل اعتماد ڈومینز میں ترمیم کریں</string>
+    <string name="preference_title_ai">مصنوعی انٹیلی جنس (اے آئی) توسیع</string>
+    <string name="preference_description_ai">اے آئی اینٹوں اور سینسر کو فعال کریں</string>
+    <string name="preference_title_ai_speech_recognition">تقریر
+        کی شناخت</string>
+    <string name="preference_description_ai_speech_recognition">تقریر
+        کی شناخت اینٹوں اور سینسر کو فعال کریں</string>
+    <string name="preference_title_ai_speech_synthetization">تقریر
+         مصنوعی</string>
+    <string name="preference_description_ai_speech_synthetization">تقریر
+        مصنوعی اینٹوں اور سینسر کو فعال کریں</string>
+    <string name="preference_title_ai_face_detection">چہرہ
+        شناخت</string>
+    <string name="preference_description_ai_face_detection">چہرے کا پتہ لگانے اینٹوں اور سینسر کو 
+        فعال کریں</string>
+    <string name="preference_title_ai_pose_detection">پوز کا تشخیص</string>
+    <string name="preference_description_ai_pose_detection">پوز کا تشخیص اینٹوں اور سینسر کو فعال کریں</string>
+    <string name="preference_title_ai_text_recognition">متن کی
+         شناخت</string>
+    <string name="preference_description_ai_text_recognition">متن
+        کی شناخت اینٹوں اور سینسر کو فعال کریں</string>
     <string name="preference_title_accessibility">رسائی</string>
     <string name="preference_description_accessibility">اپلی کیشن کی ظاہری شکل تبدیل کریں</string>
     <string name="preference_title_accessibility_profiles"> پروفائل رسائی</string>
@@ -181,11 +210,11 @@
     <string name="preference_raspi_host">رس بھری Pi IP/ میزبان ایڈریس</string>
     <string name="preference_raspi_port">  رس بھری Pi  پورٹ </string>
     <!--  -->
-    <string name="preference_title_multiplayer_variables_enabled">Multiplayer extension</string>
-    <string name="preference_description_multiplayer_variables_enabled">Allow the app to use
-        multiplayer variables shared via Bluetooth</string>
-    <string name="preference_title_enable_test_bricks">Testing extension</string>
-    <string name="preference_description_test_bricks">Allows to create tests</string>
+    <string name="preference_title_multiplayer_variables_enabled">Multiplayer توسیع</string>
+    <string name="preference_description_multiplayer_variables_enabled">اے پی پی بلوٹوت کے ذریعہ
+        مشترکہ multiplayer متغیر استعمال کرنے کی اجازت دیں</string>
+    <string name="preference_title_enable_test_bricks">جانچ کی توسیع</string>
+    <string name="preference_description_test_bricks">ٹیسٹ پیدا کرنے کی اجازت دیتا ہے</string>
     <!-- Scratch Converter activity -->
     <string name="beta">بیٹا</string>
     <string name="error_scratch_program_not_accessible_any_more">افسوس! لگتا ہے کہ پراجیکٹ  غائب ہوسکتا ہے یا آپ کو اس تک رسائی کھو دی.</string>
@@ -201,8 +230,8 @@
     <string name="error_cannot_open_not_yet_downloaded_scratch_program">آپ ابھی تک اس منصوبے کو کھول نہیں سکتے ہیں. براہ کرم اسے پہلے ڈاؤن لوڈ کریں اور پھر کھولیں.</string>
     <string name="error_cannot_convert_deprecated_scratch_program_x_x">میں %1$s کو تبدیل نہیں کر سکا. ایسا لگتا ہے کہ %2$s سے پہلے ایک پرانے سکریچ پروجیکٹ ہو. ایک اور کوشش کریں.</string>
     <plurals name="error_cannot_convert_more_than_x_programs">
-        <item quantity="one">آپ ایک ہی وقت میں٪ d منصوبے سے زیادہ تبدیل نہیں کر سکتے ہیں. براہ کرم سب سے پہلے ختم کرنے کیلئے چلنے والے تبادلے کا انتظار کریں.</item>
-        <item quantity="other">آپ ایک ہی وقت میں٪ d منصوبے سے زیادہ تبدیل نہیں کر سکتے ہیں. براہ کرم سب سے پہلے ختم کرنے کیلئے چلنے والے تبادلے کا انتظار کریں.</item>
+        <item quantity="one">آپ ایک ہی وقت میں%d منصوبے سے زیادہ تبدیل نہیں کر سکتے ہیں. براہ کرم سب سے پہلے ختم کرنے کیلئے چلنے والے تبادلے کا انتظار کریں.</item>
+        <item quantity="other">آپ ایک ہی وقت میں %d منصوبے سے زیادہ تبدیل نہیں کر سکتے ہیں. براہ کرم سب سے پہلے ختم کرنے کیلئے چلنے والے تبادلے کا انتظار کریں.</item>
     </plurals>
     <string name="error_cannot_open_failed_scratch_program">آپ اس منصوبے کو کھول نہیں سکتے کیونکہ اس کو صحیح طریقے سے تبدیل نہیں کیا گیا تھا. براہ کرم اسے دوبارہ تبدیل کرنے کی کوشش کریں.</string>
     <string name="search_failed">کچھ بھی نہیں مل سکا، بعد میں دوبارہ کوشش کریں.</string>
@@ -221,16 +250,12 @@
     <string name="status_started">شروع&#8230;</string>
     <string name="status_conversion_finished">تبادلوں کا خاتمہ</string>
     <plurals name="status_in_progress_x_jobs">
-        <item quantity="one">ترقی میں:٪ d کام
-ترقی میں:٪ d ملازمت</item>
-        <item quantity="other">ترقی میں:٪ d کام
-ترقی میں:٪ d ملازمت</item>
+        <item quantity="one">ترقی میں:%d کام</item>
+        <item quantity="other">ترقی میں:%d ملازمت</item>
     </plurals>
     <plurals name="status_completed_x_jobs">
-        <item quantity="one">مکمل:٪ d ملازمت
-مکمل:٪ d ملازمت</item>
-        <item quantity="other">مکمل:٪ d ملازمت
-مکمل:٪ d ملازمت</item>
+        <item quantity="one">مکمل:%d ملازمت</item>
+        <item quantity="other">مکمل:%d ملازمت</item>
     </plurals>
     <string name="status_conversion_failed">تبادلوں میں ناکامی</string>
     <string name="status_downloading">ڈاؤن لوڈ کر رہا ہے&#8230;</string>
@@ -251,26 +276,20 @@
     <string name="mode">موڈ</string>
     <string name="remix_of">ریمکس کا:</string>
     <string name="description_hint">وضاحت شامل کرنے کیلئے دبائیں</string>
-    <string name="notes_and_credits_hint">Press to add notes and credits</string>
+    <string name="notes_and_credits_hint">نوٹ اور کریڈٹ شامل کرنے کے لئے دبائیں</string>
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">آپ نے اس منصوبے کو %1$s پہلے تبدیل کر دیا.</string>
     <plurals name="minutes">
-        <item quantity="one">٪ d منٹ
-٪ d منٹ</item>
-        <item quantity="other">٪ d منٹ
-٪ d منٹ</item>
+        <item quantity="one">%d منٹ</item>
+        <item quantity="other">%d منٹ</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">٪ d گھنٹے
-٪ d گھنٹے</item>
-        <item quantity="other">٪ d گھنٹے
-٪ d گھنٹے</item>
+        <item quantity="one">%d گھنٹے</item>
+        <item quantity="other">%d گھنٹے</item>
     </plurals>
     <plurals name="days">
-        <item quantity="one">٪ d دن
-٪ d دن</item>
-        <item quantity="other">٪ d دن
-٪ d دن</item>
+        <item quantity="one">%d دن</item>
+        <item quantity="other">%d دن</item>
     </plurals>
     <string name="reconvert_dialog_download">پروجیکٹ دوبارہ ڈاؤن لوڈ کریں</string>
     <string name="reconvert_dialog_reconvert">اس پروجیکٹ  کو دوبارہ تبدیل کریں</string>
@@ -288,14 +307,15 @@
     <string name="name_empty">براہ مہربانی ایک متن درج کریں</string>
     <!-- Recycler View -->
     <string name="am_empty_list">اس فہرست میں ابھی تک کوئی چیز نہیں ہیں. براہ مہربانی کچھ پہلے شامل کریں.</string>
-    <string name="am_merge_error">No merging is done. Exactly 2 projects need to be selected to merge.</string>
+    <string name="reject_import">The actor or object could not be added.</string>
+    <string name="am_merge_error">کوئی ضم نہیں کیا جاتا ہے. بالکل ۲ منصوبوں کو ضم کرنے کے لئے منتخب کرنے کی ضرورت ہے.</string>
     <string name="am_backpack">پیک</string>
     <string name="am_unpack">کھولنا</string>
     <string name="am_copy">نقل بنائین</string>
     <string name="am_delete">خارج کر دیں</string>
     <string name="am_rename">نام تبدیل کریں</string>
     <string name="am_convert">تبدیل کریں</string>
-    <string name="am_merge">Merge</string>
+    <string name="am_merge">ضم کریں</string>
     <string name="dialog_confirm_delete">آپ اس کو رد نہیں کر سکتے ہیں!</string>
     <string name="list_headline_sprites">اداکار اور آبجیکٹ</string>
     <!-- Options Menu Options -->
@@ -303,9 +323,13 @@
     <string name="copy">نقل بنائین</string>
     <string name="delete">خارج کر دیں</string>
     <string name="rename">نام تبدیل کریں</string>
-    <string name="merge">Merge</string>
+    <string name="merge">ضم کریں</string>
     <string name="show_details">تفصیلات دکھائیں</string>
     <string name="hide_details">تفصیلات چھپائیں</string>
+    <string name="project_options">پروجیکٹ کے اختیارات</string>
+    <string name="from_library">Add from library</string>
+    <string name="sort_projects">ترتیب دیں</string>
+    <string name="unsort_projects">غیر منظم</string>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">نیا منظر</string>
     <!-- Delete Dialog Titles -->
@@ -352,16 +376,21 @@
     <string name="nfc_tag_name_label">این ایف سی ٹیگ کا نام</string>
     <string name="string_label">متن</string>
     <string name="data_label">نام</string>
-    <string name="keyword_label">Insert keyword</string>
-    <string name="html_label">Insert HTML text</string>
-    <string name="Image_format_not_supported">Image format not supported</string>
+    <string name="keyword_label">مطلوبہ الفاظ درج کریں</string>
+    <string name="html_label">HTML متن داخل کریں</string>
+    <string name="Image_format_not_supported">تصویری شکل کی حمایت نہیں کی</string>
+    <string name="import_conflicting_variables">The actor or object could not be added.</string>
+    <string name="import_conflicting_variables_reason">The reason is that the following variable or
+        list names are in conflict because they are used for
+        all actors and objects and with the same name also for only one of the actors or objects: </string>
+    <string name="import_conflicting_variables_try_again">Please rename one of these variables or lists and try again.</string>
     <!-- Details -->
     <string name="project_details">آخری رسائی: %s، سائز: %s</string>
-    <string name="last_access_today">today, %s</string>
+    <string name="last_access_today">آج، %s</string>
     <string name="scene_details">اداکار اور آبجیکٹ: %d،  نظر: %d، آواز: %d</string>
     <string name="sprite_details">اینٹوں: %d،  نظر  : %d، آواز: %d</string>
     <string name="look_details">قرارداد:٪ %s، سائز:٪ %s</string>
-    <string name="sound_duration">دورانیہ: %1$s</string>
+    <string name="sound_duration">دورانیہ: %s</string>
     <string name="sound_details">قرارداد:٪ %s، سائز:٪ %s</string>
     <!--  -->
     <!-- Rename Dialog Titles -->
@@ -374,120 +403,108 @@
     <string name="rename_data_dialog">نام تبدیل کریں</string>
     <!-- New Script Group Dialog -->
     <string name="new_group">نیا گروپ</string>
+    <string name="default_group_name">گروہ</string>
     <!-- New Scene Menu -->
     <string name="new_scene">نیا منظر</string>
     <!-- Action Toasts -->
     <!-- Backpack -->
+    <string name="backpack_empty">Backpack empty. Nothing to unpack.</string>
     <plurals name="packed_scenes">
-        <item quantity="one">بیگ پیک ٪ d منظر.</item>
-        <item quantity="other">بیگ پیک ٪ d منظر.</item>
+        <item quantity="one">بیگ پیک %d منظر.</item>
+        <item quantity="other">بیگ پیک %d منظر.</item>
     </plurals>
     <plurals name="packed_sprites">
         <item quantity="one">بیک پیک  %d اداکار یا آبجیکٹ ہے ۔</item>
         <item quantity="other">بیک پیک  %d اداکار یا آبجیکٹ ہے ۔</item>
     </plurals>
     <plurals name="packed_looks">
-        <item quantity="one">بیگ پیک ٪ d نظر.</item>
-        <item quantity="other">بیگ پیک ٪ d نظر.</item>
+        <item quantity="one">بیگ پیک %d نظر.</item>
+        <item quantity="other">بیگ پیک %d نظر.</item>
     </plurals>
     <plurals name="packed_sounds">
-        <item quantity="one">بیگ پیک ٪ d  آواز.</item>
-        <item quantity="other">بیگ پیک ٪ d  آواز.</item>
+        <item quantity="one">بیگ پیک %d  آواز.</item>
+        <item quantity="other">بیگ پیک %d آواز.</item>
     </plurals>
     <string name="packed_script_group">بیگ پیک  ایک سکرپٹ گروپ</string>
     <!-- Unpack -->
     <plurals name="unpacked_scenes">
-        <item quantity="one">  کھولیں٪ d منظر</item>
-        <item quantity="other">  کھولیں٪ d منظر</item>
+        <item quantity="one">  کھولیں%d منظر</item>
+        <item quantity="other">  کھولیں%d منظر</item>
     </plurals>
     <plurals name="unpacked_sprites">
         <item quantity="one">غیر فعال %d اداکار یا آبجیکٹ ہے ۔</item>
         <item quantity="other">غیر فعال %d اداکار یا آبجیکٹ ہے ۔</item>
     </plurals>
     <plurals name="unpacked_looks">
-        <item quantity="one">  کھولیں٪ d نظر</item>
-        <item quantity="other">  کھولیں٪ d نظر</item>
+        <item quantity="one">  کھولیں%d نظر</item>
+        <item quantity="other">  کھولیں%d نظر</item>
     </plurals>
     <plurals name="unpacked_sounds">
-        <item quantity="one">  کھولیں٪ d آواز.</item>
-        <item quantity="other">  کھولیں٪ d آواز.</item>
+        <item quantity="one">  کھولیں%d آواز.</item>
+        <item quantity="other">  کھولیں%d آواز.</item>
     </plurals>
     <plurals name="unpacked_scripts">
-        <item quantity="one">  کھولیں٪ d سکرپٹ</item>
+        <item quantity="one">  کھولیں%d سکرپٹ</item>
         <item quantity="other">کھولیں %d سکرپٹ.</item>
     </plurals>
     <!-- Copy -->
     <plurals name="copied_scenes">
-        <item quantity="one">کاپی کیا ٪ d منظر  
- کاپی٪ d مناظر.</item>
-        <item quantity="other">کاپی کیا ٪ d منظر  
- کاپی٪ d مناظر.</item>
+        <item quantity="one">کاپی کیا %d منظر.</item>
+        <item quantity="other"> کاپی %d مناظر.</item>
     </plurals>
     <plurals name="copied_sprites">
-        <item quantity="one">٪ d اداکاروں یا آبجیکٹ کاپی کریں
-٪ d اداکاروں یا آبجیکٹ کاپی کریں</item>
-        <item quantity="other">٪ d اداکاروں یا آبجیکٹ کاپی کریں
-٪ d اداکاروں یا آبجیکٹ کاپی کریں</item>
+        <item quantity="one">%d اداکاروں یا آبجیکٹ کاپی کریں</item>
+        <item quantity="other">%d اداکاروں یا آبجیکٹ کاپی کریں</item>
     </plurals>
     <plurals name="copied_looks">
         <item quantity="one">کاپی کیا %d نظر.</item>
         <item quantity="other">کاپی کیا %d نظر.</item>
     </plurals>
     <plurals name="copied_sounds">
-        <item quantity="one">٪ d آواز کاپی کریں:
-٪ d آواز کاپی کریں:</item>
-        <item quantity="other">٪ d آواز کاپی کریں:
-٪ d آواز کاپی کریں:</item>
+        <item quantity="one">%d آواز کاپی کریں:</item>
+        <item quantity="other">%dآواز کاپی کریں:</item>
     </plurals>
     <plurals name="copied_nfc_tags">
-        <item quantity="one">٪ d این ایف سی ٹیگ کو کاپی کریں
-٪ d این ایف سی ٹیگز کاپی کریں</item>
-        <item quantity="other">٪ d این ایف سی ٹیگ کو کاپی کریں
-٪ d این ایف سی ٹیگز کاپی کریں</item>
+        <item quantity="one">%d این ایف سی ٹیگ کو کاپی کریں</item>
+        <item quantity="other">%d این ایف سی ٹیگز کاپی کریں</item>
     </plurals>
     <!-- Delete -->
     <plurals name="deleted_projects">
-        <item quantity="one">٪ d پروجیکٹ ختم کرو
-٪ d پروجیکٹ کو ختم کرو</item>
-        <item quantity="other">٪ d پروجیکٹ ختم کرو
-٪ d پروجیکٹ کو ختم کرو</item>
+        <item quantity="one"> %dپروجیکٹ ختم کرو</item>
+        <item quantity="other">%d پروجیکٹ کو ختم کرو</item>
     </plurals>
     <plurals name="deleted_scenes">
-        <item quantity="one">ختم٪ d منظر
-ختم٪ d مناظر</item>
-        <item quantity="other">ختم٪ d منظر
-ختم٪ d مناظر</item>
+        <item quantity="one">ختم%dمنظر</item>
+        <item quantity="other">تم%d مناظر</item>
     </plurals>
     <plurals name="deleted_sprites">
-        <item quantity="one">ختم٪ d جن.
-ختم٪ d جن.</item>
-        <item quantity="other">Deleted %d sprites.</item>
+        <item quantity="one">ختم%d جن.</item>
+        <item quantity="other">ختم%d جن.</item>
     </plurals>
     <plurals name="deleted_looks">
-        <item quantity="one"> ختم کریں % نظکوکو.</item>
-        <item quantity="other"> ختم کریں % نظکوکو.</item>
+        <item quantity="one"> ختم کریں %d نظکوکو.</item>
+        <item quantity="other"> ختم کریں %d نظکوکو.</item>
     </plurals>
     <plurals name="deleted_sounds">
-        <item quantity="one">٪ d آواز ختم کریں</item>
-        <item quantity="other">٪ d آواز ختم کریں</item>
+        <item quantity="one">%d آواز ختم کریں</item>
+        <item quantity="other">%d آواز ختم کریں</item>
     </plurals>
     <plurals name="deleted_nfc_tags">
-        <item quantity="one">٪ d این ایف سی ٹیگ کو حذف کریں
-٪ d این ایف سی ٹیگ کو حذف کریں </item>
-        <item quantity="other">٪ d این ایف سی ٹیگ کو حذف کریں
-٪ d این ایف سی ٹیگ کو حذف کریں </item>
+        <item quantity="one">%d این ایف سی ٹیگ کو حذف کریں</item>
+        <item quantity="other">%d این ایف سی ٹیگ کو حذف کریں </item>
     </plurals>
     <plurals name="deleted_scripts">
-        <item quantity="one">٪ d سکرپٹ کو حذف کریں
-٪ d سکرپٹ حذف کریں</item>
-        <item quantity="other">٪ d سکرپٹ کو حذف کریں
-٪ d سکرپٹ حذف کریں</item>
+        <item quantity="one">%d سکرپٹ کو حذف کریں</item>
+        <item quantity="other">%d سکرپٹ حذف کریں</item>
     </plurals>
     <plurals name="deleted_Items">
-        <item quantity="one">٪ d اشیاء کو خارج کر دیا
-٪ d اشیاء کو خارج کر دیا</item>
-        <item quantity="other">٪ d اشیاء کو خارج کر دیا
-٪ d اشیاء کو خارج کر دیا</item>
+        <item quantity="one">%d اشیاء کو خارج کر دیا</item>
+        <item quantity="other">%d اشیاء کو خارج کر دیا</item>
+    </plurals>
+    <!-- Imported -->
+    <plurals name="imported_projects">
+        <item quantity="one">Imported %d project.</item>
+        <item quantity="other">Imported %d projects.</item>
     </plurals>
     <!--  -->
     <!-- ProjectListActivity and ProjectListFragment -->
@@ -496,12 +513,20 @@
     <string name="size">پیمائش:</string>
     <string name="description">وضاحت:</string>
     <string name="set_description">تفصیل مقرر کریں</string>
-    <string name="notes_and_credits_title">Notes and credits:</string>
-    <string name="set_notes_and_credits">Set notes and credits</string>
+    <string name="notes_and_credits_title">نوٹس اور کریڈٹ:</string>
+    <string name="set_notes_and_credits">نوٹ اور کریڈٹ مقرر کریں</string>
     <string name="details_date_today">آج</string>
     <string name="import_project">پروجیکٹ درآمد کریں</string>
     <string name="error_import_project">پروجیکٹ کو درآمد کرتے وقت کچھ غلط ہو گیا.</string>
+    <string name="no_projects_selected">No projects selected for import</string>
     <string name="error_no_files_found">کوئی پروجیکٹ فائل نہیں ملی.</string>
+    <!-- ProjectOptionsFragment -->
+    <string name="project_options_description">تفصیل (وضاحت)</string>
+    <string name="project_options_notes_and_credits">Credits</string>
+    <string name="project_options_tags">ٹیگز</string>
+    <string name="project_options_aspect_ratio">اصل پہلو تناسب رکھیں</string>
+    <string name="project_options_more_details">مزید تفصیلات</string>
+    <string name="project_options_delete_project">منصوبے کو حذف کریں</string>
     <!-- ScriptListFragment -->
     <string name="fragment_script_text_description">نئے نوشتہ جات اضافہ کرنے کے لیے \"+\" پر کلک کریں</string>
     <!--  -->
@@ -534,11 +559,12 @@
     <string name="tnf_well_known_mailto">ای-میل</string>
     <!--  -->
     <!-- DataListFragment -->
-    <string name="multiplayer_vars_headline">Variables for connected devices</string>
+    <string name="multiplayer_vars_headline">منسلک آلات کے لئے متغیرات</string>
     <string name="global_vars_headline">تمام اداکاروں اور اشیاء کے لئے متغیرات</string>
     <string name="local_vars_headline">اس اداکار یا صرف آبجیکٹ کے لیے متغیرات</string>
     <string name="global_lists_headline">فہرست تمام اداکاروں اور اشیاء کے لئے</string>
     <string name="local_lists_headline">اس اداکار یا صرف آبجیکٹ کے لیے فہرستیں</string>
+    <string name="fragment_data_text_description">متغیرات یا فہرست شامل کرنے کیلئے \"+\" ٹیپ کریں\n</string>
     <plurals name="user_defined_brick_input_headline">
         <item quantity="one">Input for this brick</item>
         <item quantity="other">Inputs for this brick</item>
@@ -546,19 +572,19 @@
     <!-- NewDataDialog -->
     <string name="new_data_for_all_sprites">تمام مناظر میں تمام اداکاروں، اشیاء اور کلونوں کے لئے</string>
     <string name="new_data_for_this_sprite_only">یہ اداکار، آبجیکٹ یا صرف اس کلون میں سے ایک کے لئے</string>
-    <string name="new_data_for_connected_devices">For all actors, objects, and clones in all scenes of projects
-        on connected multiplayer devices</string>
+    <string name="new_data_for_connected_devices">منسلک ملتی پلیر کهیل آلات پر منصوبوں کے 
+        تمام مناظر میں تمام اداکاروں، اشیاء، اور کلونوں کے لئے</string>
     <!-- Backpack -->
     <string name="backpack_title">آپ کا بیک پیک</string>
     <string name="pack">پیک</string>
     <string name="unpack">غیر پیکنگ</string>
     <!--  -->
     <!-- NewProjectDialog -->
-    <string name="new_project_dialog_example_project">Example project</string>
+    <string name="new_project_dialog_example_project">مثال کے طور پر منصوبے</string>
     <!--  -->
     <!-- NewMergedProjectDialog -->
-    <string name="new_merge_project_dialog_title">Merged project</string>
-    <string name="merging_project_text">These two projects cannot yet be merged</string>
+    <string name="new_merge_project_dialog_title">ضمنی منصوبے</string>
+    <string name="merging_project_text">یہ دو منصوبوں کو ابھی تک ضم نہیں کیا جا سکتا</string>
     <!--  -->
     <!-- NewSpriteDialog -->
     <string name="new_sprite_dialog_title">نئی آبجیکٹ</string>
@@ -566,6 +592,7 @@
     <!-- NewLookDialog -->
     <string name="new_look_dialog_title">نظر کا ا ضافہ کریں</string>
     <string name="add_look_from_camera">تصویر لیجئے</string>
+    <string name="add_look_object_library">Library</string>
     <string name="add_look_draw_new_image">تصویر بنائیں</string>
     <string name="add_look_choose_image">تصویر منتخب کریں</string>
     <string name="add_look_media_library">میڈیا لائبریری</string>
@@ -576,7 +603,7 @@
     <string name="add_sound_choose_file">فائل منتخب کریں</string>
     <string name="add_sound_music">موسیقی کے کمپوزر</string>
     <!-- NotePickerDialog -->
-    <string name="note_picker_title">Note Picker</string>
+    <string name="note_picker_title">نوٹ چنندہ</string>
     <!--  -->
     <!-- Rating Dialog -->
     <string name="rating_dialog_title"> اپلی کیشن درجہ بندی</string>
@@ -593,84 +620,9 @@
          اور دیگر خدمات. برائے مہربانی ذیل میں دیئے گئے لنک کو ان کے عین مطابق تشکیل کے لئے ملاحظہ کریں. \ n</string>
     <string name="dialog_terms_of_use_link_text">استعمال اور خدمات کی شرائط</string>
     <!--  -->
-    <!-- Terms of Use Dialog Parrot ARDrone-->
-    <string name="dialog_terms_of_use_link_text_parrot_reminder">استعمال اور خدمات کی شرائط</string>
-    <string name="dialog_terms_of_use_parrot_reminder_text">آپ اس اپلی کیشن کو طوطا کے ساتھ ساتھ استعمال کرنا چاہتے ہیں
-         AR.Done 2.0. ہم آپ کو پادری اور کیٹتوٹ دونوں کے استعمال اور خدمات کی شرائط دونوں کی طرف سے اطمینان دینے پر زور دیتے ہیں.</string>
-    <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">مجھے دوبارہ یاد نہ دلائیں۔</string>
-    <!--  -->
-    <!-- Terms of Use Dialog Parrot Jumping Sumo-->
-    <string name="dialog_terms_of_use_jumpingsumo_reminder_text">آپ اس اپلی کیشن کے ساتھ مل کر استعمال کرتے ہیں
-          طوطا کی جمپنگ سومو. ہم آپ کو پادری اور Catrobat کے استعمال کی شرائط اور دونوں دونوں کی طرف سے اطمینان دینے پر زور دیتے ہیں
-         خدمات</string>
-    <!--  -->
     <!-- Privacy Policy -->
-    <string name="dialog_privacy_policy_title">رازداری کا طریقہ کار</string>
     <string name="disclaimer_privacy_police_header_headline">خوش آمدید</string>
-    <string name="disclaimer_privacy_policy_header">To use this app, please accept our</string>
-    <string name="dialog_privacy_policy_text">To offer you all the benefits of our services and the associated account,
-        it is necessary to collect certain data from you.\n\n
-
-        • To maintain and improve our services (apps and websites) and to do scientific research on ICT and
-            STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), 
-            as well as Dynatrace by Dynatrace LLC (USA) to get
-            metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens,
-            usage of our apps and services, used operating system, and information about the network provider. This
-            analysis and the collected data is not linked to your profile and does not contain any personal
-            information (last bits of the IP address get anonymized). However, the collected data will get
-            transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). 
-            Data processing is based on agreements with Google LLC and Dynatrace LLC. 
-            This relationship to the service provider conforms to the European Union\'s General Data
-            Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n
-        • To create and use an account in our systems, and to inform you about necessary changes about your
-            account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or
-            our policies, we will store your username and, if provided by you, your e-mail address. If you have
-            connected your account via your Google or Facebook account, we additionally store an identification key connected
-            to your account on these services. We will not use this data for any other (e.g., marketing) purposes,
-            unless you explicitly allowed us to do so.\n\n
-        • On a voluntary basis, you can give us your country of residence through your account page on the sharing
-            site. This will get displayed on your public profile and only be used for statistical and research
-            purposes by us. It can be removed at any time in your profile settings.\n\n
-        • You can withdraw the usage of the personal data belonging to your account at any time by deleting your
-            account through your profile page on https://share.catrob.at. After deleting your account you will still
-            be able to use the provided services, but not to collaborate, e.g., through uploading programs,
-            commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs,
-            comments, etc., will be deleted.\n\n
-        • To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal
-            purposes, all user generated public data (uploads, comments) will be stored internally in a database,
-            together with a timestamp and the used internet address. This data will not be used by or forwarded to
-            any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled
-            legal institutions request it based on applicable law. Each case will be thoroughly checked on an
-            individual basis by us first.\n\n
-        • You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided
-            by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then
-            receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw
-            the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This
-            newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to
-            the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp
-            please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n
-        • All Services are provided by the free open source Catrobat project under the umbrella of the
-            International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated
-            in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law
-            (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\n
-                c/o\n
-                Institute of Software Technology,\n
-                Graz University of Technology,\n
-                Inffeldgasse 16b,\n
-                A-8010 Graz, Austria\n
-                (European Union).\n\n
-        In case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\n
-
-        Catrobat\'s official English language privacy policy is available on the web under
-        https://catrob.at/privacypolicy.\n\n
-
-        Version 2.2, 17 October 2019\n\n
-
-        Find the previous, outdated, version of our privacy policy (2.0) here:
-        http://developer.catrobat.org/privacy_policy_2-0
-    </string>
-    <string name="dialog_privacy_policy_declined_text">رجسٹریشن کرنے کے لئے یا آپ کے اکاؤنٹ کو استعمال کرنے کے لئے پرائیویسی پالیسی سے اتفاق کرنے کے لئے ضروری ہے. اگر آپ اس ڈیٹا کو جمع کرنے کے لئے نہیں چاہتے ہیں، تو آپ اپنا حذف کرسکتے ہیں
-         اپنے https://share.catrob.at/ ویب سائٹ پر اپنے پروفائل کے ذریعے اکاؤنٹ.</string>
+    <string name="disclaimer_privacy_policy_header">اس اپلی کیشن کو استعمال کرنے کے لئے، براہ مہربانی قبول کریں ہمارے </string>
     <!-- -->
     <!-- About Dialog -->
     <string name="dialog_about_title">اس ایپ کے بارے میں</string>
@@ -679,16 +631,18 @@
          لائسنس پر مزید تفصیلات کے لئے ذیل میں لنک دیکھیں. \ n</string>
     <string name="dialog_about_license_link_text">ماخذ کوڈ لائسنس</string>
     <string name="dialog_about_catrobat_link_text">کیٹروبیٹ کے بارے میں</string>
+    <string name="dialog_about_catrobat_language_version">Catrobat زبان کا ورژن</string>
+    <string name="dialog_about_version">ورژن</string>
     <!--  -->
     <!-- NetworkAlertDialog -->
     <string name="error_no_network_title">کوئی نیٹ ورک نہیں</string>
     <!-- UploadProjectDialog -->
-    <string name="upload_button">اپ لوڈ کریں</string>
     <string name="upload_project_dialog_title">پروجیکٹ کو اپ لوڈ کریں</string>
     <string name="upload_description">وضاحت:</string>
-    <string name="upload_notes_and_credits">Notes and credits:</string>
-    <string name="upload_notes_and_credits_explanation">How did you create this project? Did you use ideas, scripts or artwork from other people? Thank them here.</string>
+    <string name="upload_notes_and_credits">نوٹس اور کریڈٹ:</string>
+    <string name="upload_notes_and_credits_explanation">آپ نے اس منصوبے کو کیسے بنایا؟ کیا آپ نے دوسرے لوگوں سے خیالات، سکرپٹ یا آرٹ ورک کا استعمال کیا؟ یہاں ان کا شکریہ اداه کریں.</string>
     <string name="upload_tag_dialog_title">تین زمرے کا انتخاب کریں</string>
+    <string name="upload_tags_maximum_error">Selecting more than 3 tags is not possible.</string>
     <!-- Save Project to External Storage -->
     <string name="save_to_external_storage_button">پراجیکٹ کے لیے بیرونی ذخیرہ محفوظ کریں</string>
     <string name="notification_save_project_to_external_storage_title_pending">" "</string>
@@ -722,6 +676,7 @@
     <string name="comment_in_out">اہل/نااہل</string>
     <string name="catblocks">Toggle 2D</string>
     <string name="catblocks_reorder">Clean up scripts</string>
+    <string name="switch_to_1d">1D view</string>
     <!--  -->
     <!-- Play scene dialog -->
     <string name="play_scene_dialog_title">منظر چلائیں:</string>
@@ -732,7 +687,7 @@
     <string name="sign_in_dialog_title">سائن ان کریں</string>
     <string name="username">صارف کا نام</string>
     <string name="password">خفیہ کوڈ</string>
-    <string name="password_forgotten">اپنا پاس ورڈ بھول گئے؟</string>
+    <string name="reset_password">Reset password</string>
     <string name="new_user_registered">نیا اکاؤنٹ بن گیا</string>
     <string name="user_logged_in">لاگ ان کامیاب</string>
     <string name="register_error">غلط لاگ ان کریں</string>
@@ -780,8 +735,6 @@
     <string name="prestage_resource_not_available_title">اجزاء دستیاب نہیں</string>
     <string name="prestage_resource_not_available_text">بدقسمتی سے یہ منصوبہ آپ کے آلے پر کام نہیں کرتا.
          مندرجہ ذیل اجزاء دستیاب نہیں ہیں: \ n \ n</string>
-    <string name="prestage_resource_in_use_text">ایک اور آلہ جمپنگ سومو سے منسلک ہے. یقینی بنائیں کہ آپ
-         ڈرون سے منسلک ہے.</string>
     <string name="prestage_no_vibration_available">\u2022 Vibration\n</string>
     <string name="prestage_no_acceleration_sensor_available">\ u2022 تیز رفتار سینسر n\ </string>
     <string name="prestage_no_inclination_sensor_available">\ u2022 چڑھنے سینسر n\</string>
@@ -790,8 +743,8 @@
     <string name="prestage_text_to_speech_error">\ u2022 متن سے بات کرنے والے انجن \ n</string>
     <string name="prestage_no_back_camera_available">\ u2022 ریئر کیمرے \ n</string>
     <string name="prestage_no_face_detection_available">\u2022 Face detection\n</string>
+    <string name="prestage_no_pose_detection_available">\u2022 Pose detection\n</string>
     <string name="prestage_no_text_detection_available">\u2022 Text detection\n</string>
-    <string name="prestage_no_jumping_sumo_available">\ u2022 جموں سمو \ n</string>
     <string name="prestage_no_front_camera_available">\ u2022 فرنٹ کیمرے \ n</string>
     <string name="prestage_no_camera_available">\u2022 Camera\n</string>
     <string name="prestage_no_flash_available">\u2022 Flashlight\n</string>
@@ -813,7 +766,8 @@
     <!--  -->
     <!-- Broadcast spinner -->
     <string name="dialog_new_broadcast_message_title">نیا پیغام</string>
-    <string name="dialog_new_broadcast_message_name">پیغام:</string>
+    <string name="dialog_broadcast_message_name">message:</string>
+    <string name="dialog_edit_broadcast_message_title">Edit message</string>
     <!--  -->
     <!-- NFC spinner -->
     <string name="brick_when_nfc_edit_list_of_nfc_tags">Edit list of NFC tags</string>
@@ -840,6 +794,7 @@
     <string name="category_cast">کروم کاسٹ</string>
     <string name="category_raspi">راسباری پائی Pi</string>
     <string name="category_assertions">Testing</string>
+    <string name="category_search_bricks">Search Bricks</string>
     <!--  -->
     <!-- User Defined Bricks -->
     <string name="brick_user_defined_add_label">Add label</string>
@@ -852,6 +807,7 @@
     <string name="brick_user_defined_script_define">Define</string>
     <string name="brick_user_defined_script_as">as</string>
     <string name="brick_user_defined_list_empty">Tap \"+\" to add your own new bricks.</string>
+    <string name="brick_report">رپورٹ</string>
     <!--  -->
     <!-- Motion bricks -->
     <string name="brick_place_at">"جگہ رکھیں"</string>
@@ -929,6 +885,8 @@
     <string name="brick_next_background">اگلے پس منظر</string>
     <string name="brick_previous_look">پچھلے نظر</string>
     <string name="brick_previous_background">پچھلے پس منظر</string>
+    <string name="brick_edit_look">Edit look</string>
+    <string name="brick_edit_background">Edit background</string>
     <string name="brick_delete_look">Delete look</string>
     <string name="brick_delete_background">Delete background</string>
     <string name="brick_flash">ٹارچ کو چالو کریں</string>
@@ -949,6 +907,9 @@
     <string name="brick_copy_look">Copy look and name it</string>
     <string name="brick_copy_look_name">name of copied look</string>
     <string name="brick_copy_background">Copy background and name it</string>
+    <string name="brick_focus_point">Become focus point with</string>
+    <string name="brick_horizontal_and">horizontal and</string>
+    <string name="brick_vertical_flex">vertical flexibility</string>
     <!--  -->
     <!-- Pen bricks -->
     <string name="brick_pen_down">قلم نیچے</string>
@@ -993,6 +954,7 @@
     <string name="brick_write_embroidery">Write embroidery data to file</string>
     <string name="brick_default_embroidery_file">embroidery.dst</string>
     <string name="brick_sew_up">Sew up</string>
+    <string name="brick_thread_color">Set thread color to</string>
     <!--  -->
     <!-- Device bricks -->
     <string name="brick_reset_timer">Reset timer</string>
@@ -1108,7 +1070,7 @@
     <string name="brick_replace_item_in_userlist_with_value">کے ساتھ</string>
     <string name="brick_web_request">Send web request to</string>
     <string name="brick_web_request_default_value">https://catrob.at/joke</string>
-    <string name="brick_web_request_result">and store answer in</string>
+    <string name="brick_web_request_result">اور جواب میں اسٹور</string>
     <string name="web_request_warning_title">Allow web access?</string>
     <string name="web_request_warning_message">Be very careful before allowing access, since the
         link may expose your personal information, such as your precise geographical location or any text
@@ -1125,9 +1087,6 @@
         the settings of this app.
     </string>
     <string name="brick_look_request">Get image from</string>
-    <string name="brick_look_request_default_value">https://catrob.at/penguin</string>
-    <string name="brick_background_request_default_value_portrait">https://catrob.at/HalloweenPortrait</string>
-    <string name="brick_background_request_default_value_landscape">https://catrob.at/HalloweenLandscape</string>
     <string name="brick_look_request_result">and use as current look</string>
     <string name="brick_background_request_result">and use as current background</string>
     <string name="look_request_http_error_message">"Get image from %1$s returned HTTP error %2$s"</string>
@@ -1183,7 +1142,11 @@
     <!--  -->
     <!-- Default Values -->
     <string name="default_project_name">My project</string>
+    <string name="default_variable_name">Variable</string>
     <string name="default_scene_name">منظر %1$d</string>
+    <string name="default_script_group_name">Script group</string>
+    <string name="default_broadcast_message_name">پیغام</string>
+    <string name="default_list_name">List</string>
     <string name="default_project_background_name">پس پشت</string>
     <string name="default_project_cloud_name">کلا وڈ</string>
     <string name="default_project_cloud_sprite_name_1">کلا وڈ 1</string>
@@ -1260,17 +1223,7 @@
     <string name="notification_download_pending">ڈاؤن لوڈ جاری ہے</string>
     <string name="notification_download_finished">ڈاؤن لوڈ کامیاب</string>
     <string name="notification_title_open">"کھولیں"</string>
-    <string name="notification_low_battery_with_value">توجہ. بیٹری کم ہے. موجودہ حیثیت٪ %d ہے</string>
     <string name="size_of_project">پیمائش:</string>
-    <string name="drone_emergency_battery_low">بیٹری کم ہے (خودکار لینڈنگ).</string>
-    <string name="drone_emergency_camera">ایک یا زیادہ کیمرے جواب نہیں دے رہے ہیں.</string>
-    <string name="drone_emergency_ultrasound">الٹراساؤنڈ سینسر جواب نہیں دے رہا ہے.</string>
-    <string name="drone_emergency_angle">AR.Done 2.0 Euler زاویہ بہت زیادہ چلا گیا. خطرناک رویے کو روکنے کے لئے موٹر بند   </string>
-    <string name="drone_emergency_cutout">ایک یا زیادہ موٹرز ماحول کی طرف سے بند کر دیا گیا تھا.</string>
-    <string name="drone_alert_battery_low">دوبارہ دوبارہ لینے کے لئے بیٹری بہت کم ہے.</string>
-    <string name="drone_alert_ultrasound">الٹراسوناؤن سینسر AR.Dron 2.0 اونچائی کا تعین نہیں کرسکتا ہے.</string>
-    <string name="drone_alert_vision">رفتار کا تخمینہ نہیں ہے, نیچے کا سامنا کیمرے سے.</string>
-    <string name="drone_emergency_title">ہنگامی</string>
     <!--  -->
     <!-- Runtime permission messages -->
     <string name="runtime_permission_general">یہ اپلی کیشن مناسب طریقے سے کام کرنے کے لئے مطلوبہ اجازت کی ضرورت ہے. مثال کے طور پر
@@ -1296,18 +1249,6 @@
          کچھ تبدیل کریں اور دوبارہ کوشش کریں.</string>
     <string name="error_adding_brick">اس اینٹ کو شامل کرتے وقت کچھ غلط ہوا.</string>
     <string name="error_copying_brick">اس اینٹ کاپی کرتے وقت کچھ غلط ہوگیا.</string>
-    <string name="error_no_drone_connected_title">AR.Done 2.0 نہیں مل سکا.</string>
-    <string name="error_no_drone_connected">اپنی وائی فائی AR.Dron 2.0 پر مربوط کریں اور دوبارہ کوشش کریں.</string>
-    <string name="error_drone_low_battery_title"> ڈرون 2.0 بیٹری کم: %d%%</string>
-    <string name="error_drone_low_battery">ایک چارج شدہ بیٹری  داخل کریں اور دوبارہ کوشش کریں.</string>
-    <string name="error_jumpingsumo_wrong_platform">ہم آپ کے آلے پر جمپنگ سومو منصوبے کو نہیں چل سکتے.</string>
-    <string name="error_no_jumpingsumo_connected_title">جمپنگ سومو کو نہیں ڈھونڈ سکتا</string>
-    <string name="error_no_jumpingsumo_connected">اپنی وائی فائی AR.Dron 2.0 پر مربوط کریں اور دوبارہ کوشش کریں.</string>
-    <string name="error_jumpingsumo_battery_title">جموں سمو بیٹری کم</string>
-    <string name="error_jumpingsumo_battery">ایک چارج شدہ بیٹری  داخل کریں اور دوبارہ کوشش کریں.</string>
-    <string name="error_jumpingsumo_wrong_platform_title">جمپنگ سومو کی حمایت نہیں</string>
-    <string name="error_drone_wrong_platform_title"> ڈرون 2.0 کی حمایت  نہیں ہے ۔</string>
-    <string name="error_drone_wrong_platform">ہم آپ کے آلہ پر AR.Done 2.0 پروجیکٹ نہیں چل سکتے.</string>
     <string name="error_rename_incompatible_project">ناممکن منصوبے کا نام تبدیل کرنا ممکن نہیں ہے.</string>
     <string name="error_embroidery_file_export">Something went wrong while sharing the embroidery file.</string>
     <string name="error_embroidery_file_write">Something went wrong while writing the embroidery file.</string>
@@ -1574,7 +1515,6 @@
     <string name="formula_editor_decimal_mark">.</string>
     <string name="formula_editor_title">فارمولہ ایڈیٹر
  </string>
-    <string name="formula_editor_changes_saved">تبدیلیاں محفوظ کردی گئیں</string>
     <string name="formula_editor_changes_discarded">تبدیلیاں مسترد کر دی گئی!</string>
     <string name="formula_editor_parse_fail">فارمولہ درست نہیں ہے!</string>
     <string name="formula_nothing_selected">ان پٹ ویلیو کی وضاحت کریں</string>
@@ -1658,6 +1598,7 @@
     <string name="formula_editor_function_is_multi_finger_touching">مرحلے چھوڑا جاتا ہے</string>
     <string name="formula_editor_function_index_of_last_finger">آخری مرحلے ٹچ انڈیکس</string>
     <string name="formula_editor_function_number_of_current_touches">number of current touches</string>
+    <string name="formula_editor_function_index_of_current_touch">index of current touch</string>
     <string name="formula_editor_function_no_parameter"></string>
     <string name="formula_editor_function_touch_parameter">(1)</string>
     <string name="formula_editor_function_list_item">اشیاء</string>
@@ -1668,12 +1609,16 @@
     <string name="formula_editor_function_index_of_item_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_number_of_items">اشیاء کی تعداد</string>
     <string name="formula_editor_function_number_of_items_parameter">(* فہرست نام *)</string>
+    <string name="formula_editor_function_flatten">flatten</string>
+    <string name="formula_editor_function_flatten_parameter">(* فہرست نام *)</string>
     <string name="formula_editor_function_collision">کردار اداکار یا اعتراض</string>
     <string name="formula_editor_function_collides_with_edge">کنارے  چھونا </string>
     <string name="formula_editor_function_touched">انگلی چھوتی ہے</string>
     <string name="formula_editor_function_collides_with_color">touches color</string>
     <string name="formula_editor_function_color_touches_color">color touches color</string>
     <string name="formula_editor_sensor_color_at_x_y">color at x y</string>
+    <string name="formula_editor_sensor_color_equals_color">color equals color with %
+        tolerance</string>
     <string name="formula_editor_sensor_x_acceleration">تیز رفتار x</string>
     <string name="formula_editor_sensor_y_acceleration">تیز رفتار y</string>
     <string name="formula_editor_sensor_z_acceleration">تیز رفتار z</string>
@@ -1749,14 +1694,17 @@
     <string name="formula_editor_object_brightness">چمک</string>
     <string name="formula_editor_object_size">سائز</string>
     <string name="formula_editor_object_rotation">سمت</string>
+    <string name="formula_editor_object_rotation_look">look direction</string>
     <string name="formula_editor_object_layer">تہوں</string>
     <string name="formula_editor_object_x_velocity">ایکس رفتار</string>
     <string name="formula_editor_object_y_velocity">Y رفتار</string>
     <string name="formula_editor_object_angular_velocity">کونیی رفتار</string>
     <string name="formula_editor_object_look_number">نمبر دیکھیں</string>
     <string name="formula_editor_object_look_name">نام دیکھو</string>
+    <string name="formula_editor_object_number_of_looks">number of looks</string>
     <string name="formula_editor_object_background_number">پس منظر نمبر</string>
     <string name="formula_editor_object_background_name">پس منظر کے نام</string>
+    <string name="formula_editor_object_number_of_backgrounds">number of backgrounds</string>
     <string name="formula_editor_object_distance_to">پوزیشن کو چھونے کے لئے فاصلہ</string>
     <string name="formula_editor_compute">شمار</string>
     <string name="formula_editor_object">آبجیکٹ</string>
@@ -1769,9 +1717,11 @@
     <string name="formula_editor_functions_lists">فہرستیں</string>
     <string name="formula_editor_logic_boolean">منطقی (بولین) آپریٹرز اور رکاوٹوں</string>
     <string name="formula_editor_logic_comparison">موازنہ آپریٹرز</string>
-    <string name="formula_editor_object_general">عام خصوصیات</string>
+    <string name="formula_editor_object_look">Look properties</string>
     <string name="formula_editor_object_movement">حرکت خصوصیات</string>
-    <string name="formula_editor_device_visual_detection">Visual sensors</string>
+    <string name="formula_editor_device_face_detection">Face detection</string>
+    <string name="formula_editor_device_pose_detection">پوز کا تشخیص</string>
+    <string name="formula_editor_device_text_recognition">Text recognition</string>
     <string name="formula_editor_device_date_and_time">تاریخ اور وقت</string>
     <string name="formula_editor_device_touch_detection"> چھونا کھوج</string>
     <string name="formula_editor_device_lego_nxt">Lego Mindstorms NXT</string>
@@ -1798,6 +1748,8 @@
     <string name="formula_editor_operator_divide">÷</string>
     <string name="formula_editor_operator_power">^</string>
     <string name="formula_editor_image_button_description_delete">ختم کریں</string>
+    <string name="formula_editor_image_button_description_color_picker">color picker</string>
+    <string name="formula_editor_image_button_description_functions_toggle">toggle functions</string>
     <string name="formula_editor_variable_dialog_title">نئی متغیر</string>
     <string name="formula_editor_list_dialog_title">نئی فہرست</string>
     <string name="formula_editor_regex_html_extractor_dialog_title">HTML extractor</string>
@@ -1813,11 +1765,84 @@
     <string name="formula_editor_sensor_face_size">چہرے کا سائز</string>
     <string name="formula_editor_sensor_face_x_position">چہرہ  x پوزیشن</string>
     <string name="formula_editor_sensor_face_y_position">چہرہ y پوزیشن</string>
+    <string name="formula_editor_sensor_second_face_detected">second face is visible</string>
+    <string name="formula_editor_sensor_second_face_size">second face size</string>
+    <string name="formula_editor_sensor_second_face_x_position">second face x position</string>
+    <string name="formula_editor_sensor_second_face_y_position">second face y position</string>
+    <string name="formula_editor_sensor_nose_x">nose x</string>
+    <string name="formula_editor_sensor_nose_y">nose y</string>
+    <string name="formula_editor_sensor_left_eye_inner_x">left eye inner x</string>
+    <string name="formula_editor_sensor_left_eye_inner_y">left eye inner y</string>
+    <string name="formula_editor_sensor_left_eye_center_x">left eye center x</string>
+    <string name="formula_editor_sensor_left_eye_center_y">left eye center y</string>
+    <string name="formula_editor_sensor_left_eye_outer_x">left eye outer x</string>
+    <string name="formula_editor_sensor_left_eye_outer_y">left eye outer y</string>
+    <string name="formula_editor_sensor_right_eye_inner_x">right eye inner x</string>
+    <string name="formula_editor_sensor_right_eye_inner_y">right eye inner y</string>
+    <string name="formula_editor_sensor_right_eye_center_x">right eye center x</string>
+    <string name="formula_editor_sensor_right_eye_center_y">right eye center y</string>
+    <string name="formula_editor_sensor_right_eye_outer_x">right eye outer x</string>
+    <string name="formula_editor_sensor_right_eye_outer_y">right eye outer y</string>
+    <string name="formula_editor_sensor_left_ear_x">left ear x</string>
+    <string name="formula_editor_sensor_left_ear_y">left ear y</string>
+    <string name="formula_editor_sensor_right_ear_x">right ear x</string>
+    <string name="formula_editor_sensor_right_ear_y">right ear y</string>
+    <string name="formula_editor_sensor_mouth_left_corner_x">mouth left corner x</string>
+    <string name="formula_editor_sensor_mouth_left_corner_y">mouth left corner y</string>
+    <string name="formula_editor_sensor_mouth_right_corner_x">mouth right corner x</string>
+    <string name="formula_editor_sensor_mouth_right_corner_y">mouth right corner y</string>
+    <string name="formula_editor_sensor_left_shoulder_x">left shoulder x</string>
+    <string name="formula_editor_sensor_left_shoulder_y">left shoulder y</string>
+    <string name="formula_editor_sensor_right_shoulder_x">right shoulder x</string>
+    <string name="formula_editor_sensor_right_shoulder_y">right shoulder y</string>
+    <string name="formula_editor_sensor_left_elbow_x">left elbow x</string>
+    <string name="formula_editor_sensor_left_elbow_y">left elbow y</string>
+    <string name="formula_editor_sensor_right_elbow_x">right elbow x</string>
+    <string name="formula_editor_sensor_right_elbow_y">right elbow y</string>
+    <string name="formula_editor_sensor_left_wrist_x">left wrist x</string>
+    <string name="formula_editor_sensor_left_wrist_y">left wrist y</string>
+    <string name="formula_editor_sensor_right_wrist_x">right wrist x</string>
+    <string name="formula_editor_sensor_right_wrist_y">right wrist y</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_x">left pinky knuckle x</string>
+    <string name="formula_editor_sensor_left_pinky_knuckle_y">left pinky knuckle y</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_x">right pinky knuckle x</string>
+    <string name="formula_editor_sensor_right_pinky_knuckle_y">right pinky knuckle y</string>
+    <string name="formula_editor_sensor_left_index_knuckle_x">left index knuckle x</string>
+    <string name="formula_editor_sensor_left_index_knuckle_y">left index knuckle y</string>
+    <string name="formula_editor_sensor_right_index_knuckle_x">right index knuckle x</string>
+    <string name="formula_editor_sensor_right_index_knuckle_y">right index knuckle y</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_x">left thumb knuckle x</string>
+    <string name="formula_editor_sensor_left_thumb_knuckle_y">left thumb knuckle y</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_x">right thumb knuckle x</string>
+    <string name="formula_editor_sensor_right_thumb_knuckle_y">right thumb knuckle y</string>
+    <string name="formula_editor_sensor_left_hip_x">left hip x</string>
+    <string name="formula_editor_sensor_left_hip_y">left hip y</string>
+    <string name="formula_editor_sensor_right_hip_x">right hip x</string>
+    <string name="formula_editor_sensor_right_hip_y">right hip y</string>
+    <string name="formula_editor_sensor_left_knee_x">left knee x</string>
+    <string name="formula_editor_sensor_left_knee_y">left knee y</string>
+    <string name="formula_editor_sensor_right_knee_x">right knee x</string>
+    <string name="formula_editor_sensor_right_knee_y">right knee y</string>
+    <string name="formula_editor_sensor_left_ankle_x">left ankle x</string>
+    <string name="formula_editor_sensor_left_ankle_y">left ankle y</string>
+    <string name="formula_editor_sensor_right_ankle_x">right ankle x</string>
+    <string name="formula_editor_sensor_right_ankle_y">right ankle y</string>
+    <string name="formula_editor_sensor_left_heel_x">left heel x</string>
+    <string name="formula_editor_sensor_left_heel_y">left heel y</string>
+    <string name="formula_editor_sensor_right_heel_x">right heel x</string>
+    <string name="formula_editor_sensor_right_heel_y">right heel y</string>
+    <string name="formula_editor_sensor_left_foot_index_x">left foot index x</string>
+    <string name="formula_editor_sensor_left_foot_index_y">left foot index y</string>
+    <string name="formula_editor_sensor_right_foot_index_x">right foot index x</string>
+    <string name="formula_editor_sensor_right_foot_index_y">right foot index y</string>
     <string name="formula_editor_sensor_text_from_camera">text from camera</string>
     <string name="formula_editor_sensor_text_blocks_number">number of text blocks</string>
     <string name="formula_editor_function_text_block_x">text block x from camera</string>
     <string name="formula_editor_function_text_block_y">text block y from camera</string>
     <string name="formula_editor_function_text_block_size">text block size from camera</string>
+    <string name="formula_editor_function_text_block_from_camera">text block from camera</string>
+    <string name="formula_editor_function_text_block_language_from_camera">text block language from camera</string>
+    <string name="formula_editor_function_text_block_parameter">(1)</string>
     <string name="formula_editor_intro_title_formula_editor">فارمولہ ایڈیٹر
  </string>
     <string name="formula_editor_intro_summary_formula_editor">فارمولا ایڈیٹر کے ساتھ آپ ریاضی اور تخلیق کرسکتے ہیں
@@ -1838,8 +1863,8 @@
     <string name="formula_editor_intro_title_functions">افعال</string>
     <string name="formula_editor_intro_summary_functions">ایک کیلکولیٹر کی طرح، فارمولہ ایڈیٹر بہت سے ریاضیاتی افعال پیش کرتا ہے. \ \"آپ trigonometric افعال جیسے\" ساین \"اور\" کاس \"، بے ترتیب تعداد جنریٹر، اور متن اور فہرست کے افعال کو تلاش کرسکتے ہیں.</string>
     <string name="formula_editor_intro_title_logic">منطق</string>
-    <string name="formula_editor_intro_summary_logic">منطق اقدار کا موازنہ کرنے کے لئے استعمال کیا جاتا ہے اور منطقی فارمولا کو یکجا جاتا ہے. \ n
-         اقدار کی موازنہ کریں جو آپ منطقی کارروائیوں کا استعمال کرسکتے ہیں جیسے \"&amp; gt؛\" (سے زیادہ) یا \"=\" (مساوات). \ n جمع کرنے کے لئے
+    <string name="formula_editor_intro_summary_logic">منطق اقدار کا موازنہ کرنے کے لئے استعمال کیا جاتا ہے اور منطقی فارمولا کو یکجا جاتا ہے. \n
+         اقدار کی موازنہ کریں جو آپ منطقی کارروائیوں کا استعمال کرسکتے ہیں جیسے \"&gt;\" (سے زیادہ) یا \"=\" (مساوات). \n جمع کرنے کے لئے
          منطقی فارمولا آپ منطقی کارروائیوں جیسے \"AND\"، \"OR\" اور \"NOT\" استعمال کرسکتے ہیں.</string>
     <string name="formula_editor_intro_title_device">سینسر</string>
     <string name="formula_editor_intro_summary_device">\"سینسر\" میں آپ معلومات حاصل کرسکتے ہیں کہ آپ کے آلے کا ریکارڈ. \ n مثال کے طور پر، آپ کے آلے کا جھگڑا، یا آپ کے ارد گرد کی بلند آواز.</string>
@@ -1849,6 +1874,9 @@
     <string name="formula_editor_speech_recognition">Speech recognition</string>
     <string name="camera_error_text_detection">        There was a problem with text detection. Some components may still be downloading in the
         background. Please make sure you are connected to the internet and check back later.</string>
+    <string name="warning_formula_recognized">You entered a text that looks like a formula. If you want to use functions,
+        sensors, variables and other formula elements, please select them instead using the
+        buttons in the formula editor.</string>
     <!--  -->
     <!-- Brick Data Editor Strings -->
     <string name="brick_show_variable">ویریئبل دکھائیں</string>
@@ -1875,6 +1903,9 @@
     <string name="camera_error_face_detection">        There was a problem with face detection. Some components may still be downloading in the
         background. Please make sure you are connected to the internet and check back later.
     </string>
+    <string name="camera_error_pose_detection">        There was a problem with pose detection. Some components may still be downloading in the
+        background. Please make sure you are connected to the internet and check back later.
+    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">اے</string>
@@ -1897,13 +1928,21 @@
     <string name="deletion_alert_title">Delete?</string>
     <string name="deletion_alert_text">Deleting a variable or list that is still in use can cause
         errors. You can\'t undo this!</string>
-    <string name="deletion_alert_yes">ہاں، بہر حال خارج کرو!</string>
     <!-- Upload progress dialog -->
     <string name="progress_upload_dialog_message">آپ کا پروجیکٹ ایپ  شراکت دار سائٹ پر اپ لوڈ ہو جاتا ہے جہاں دوسروں کو اس کا استعمال اور اسے ڈاؤن لوڈ کرسکتا ہے. آپ اپنے منصوبے کو ایک اسٹائل ایپ کے طور پر بھی ڈاؤن لوڈ کرسکتے ہیں.</string>
     <string name="progress_upload_dialog_failed">Upload failed. Please check your internet connection and try
         again!</string>
     <string name="progress_upload_dialog_show_program">منصوبے دکھائیں</string>
     <!--  -->
+    <!-- unchanged upload dialog -->
+    <string name="unchanged_upload_warning">The project you are trying to upload already exists on
+        the community platform in exactly the same form. Please change your project, ideally by
+        enhancing it, before uploading your remixed project.</string>
+    <string name="unchanged_upload_info">Please consider adding some kind words towards the original
+        author in the Credits section on the community site or in the project options. Please note
+        that the user will get a notification after your successful upload.</string>
+    <string name="unchanged_upload_url">To learn more about remixes, please visit %1s.</string>
+    <!-- -->
     <!-- Snackbar hints -->
     <string name="got_it">سمجھ گیا</string>
     <string name="preference_description_hints">نشان دکھانے کے لئے فعال کریں</string>
@@ -1918,6 +1957,14 @@
     <string name="hint_objects">آپ کا پروگرام مختلف اداکاروں اور اشیاء پر مشتمل ہوتا ہے جو ایک دوسرے کے ساتھ بات چیت کرسکتا ہے.
          نیا اداکار یا اعتراض شامل کرنے کے لئے، \"+\" علامت کو ٹیپ کریں.</string>
     <!--  -->
+    <!-- Dialog Disable hints -->
+    <string name="dialog_disable_hints_title">Show hints?</string>
+    <string name="dialog_disable_hints_text">Hints provide you with helpful information
+        while making your first project.\n\nVisibility of hints can be changed in the
+        settings.</string>
+    <string name="dialog_disable_hints_button_hide">HIDE</string>
+    <string name="dialog_disable_hints_button_show">SHOW</string>
+    <!--  -->
     <!-- Crash report dialog -->
     <!--  -->
     <!-- Multilingual List -->
@@ -1925,4 +1972,29 @@
     <!-- Symbols -->
     <string name="percent_symbol">%</string>
     <string name="hertz_symbol">㎐</string>
+    <string name="no_internet_connection">No internet connection. Make sure Wi-Fi or mobile
+    data is turned on.</string>
+    <string name="edit">تدوین کریں</string>
+    <string name="data_value">Value</string>
+    <string name="category_recently_used">Recently used</string>
+    <string name="new_sprite_dialog_place_visually">Place visually</string>
+    <string name="place_visually_text">You will be asked to place the new actor or object on the
+        stage.</string>
+    <!-- Information -->
+    <string name="no_variable_selected">No variable selected</string>
+    <string name="find">Find</string>
+    <string name="no_results_found">No results found</string>
+    <string name="query_field_is_empty">Query field is empty</string>
+    <string name="cut">کٹ</string>
+    <string name="paste">پیسٹ</string>
+    <!-- Particle Effects -->
+    <string name="fade_particle_effect">Fade particle effect</string>
+    <string name="particle_effects_fade_in">in</string>
+    <string name="particle_effects_fade_out">out</string>
+    <string name="turn_particle_effect_additivity">Turn particle effect additivity</string>
+    <string name="particle_effects_additive_on">پر</string>
+    <string name="particle_effects_additive_off">بند</string>
+    <string name="set_particle_color_to">Set particle color to</string>
+    <string name="undo_sort"> بلا ترتیب</string>
+    <string name="sort">با ترتیب </string>
 </resources>

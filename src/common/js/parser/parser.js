@@ -26,12 +26,13 @@ class File {
 }
 
 class Script {
-  constructor(name, id, posX, posY) {
+  constructor(name, id, posX, posY, commentedOut) {
     this.name = name;
     this.brickList = [];
     this.posX = posX;
     this.posY = posY;
     this.id = id;
+    this.commentedOut = commentedOut;
     this.formValues = new Map();
   }
 }
@@ -47,6 +48,7 @@ class Brick {
     this.formValues = new Map();
     this.colorVariation = 0;
     this.userBrickId = undefined;
+    this.commentedOut = false;
   }
 }
 
@@ -318,7 +320,14 @@ function parseScripts(script) {
   if (scriptIdTag.length > 0) {
     scriptId = scriptIdTag[0].innerHTML;
   }
-  const currentScript = new Script(name, scriptId, posX, posY);
+
+  let commentedOut = false;
+  const commentedOutTag = script.getElementsByTagName('commentedOut');
+  if (commentedOutTag.length > 0) {
+    commentedOut = commentedOutTag[0].innerHTML == 'true';
+  }
+
+  const currentScript = new Script(name, scriptId, posX, posY, commentedOut);
   const brickList = script.getElementsByTagName('brickList')[0].children;
   for (let i = 0; i < script.childNodes.length; i++) {
     checkUsage(script.childNodes[i], currentScript);
@@ -616,6 +625,21 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'fadeSpinnerSelectionId': {
+      const brickName = list.parentElement.getAttribute('type');
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+
+      if (brickName === 'FadeParticleEffectBrick') {
+        location.formValues.set('brick_fade_particle_effect_spinner', getMsgValueOrDefault(`FADESPINNER_${key}`, key));
+      } else if (brickName === 'ParticleEffectAdditivityBrick') {
+        location.formValues.set(
+          'brick_additive_particle_effect_spinner',
+          getMsgValueOrDefault(`PARTICLESPINNER_${key}`, key)
+        );
+      }
+      break;
+    }
+
     case 'type': {
       const key = getNodeValueOrDefault(list.childNodes[0]);
       location.formValues.set('DROPDOWN', getMsgValueOrDefault(`GRAVITY_${key}`, key));
@@ -720,12 +744,26 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'commentedOut': {
+      location.commentedOut = list.innerHTML == 'true';
+      break;
+    }
+
     default:
   }
 }
 
 function workFormula(formula, input) {
   for (let i = 0; i < input.childNodes.length; i++) {
+    if (input.childNodes[i].nodeName === 'additionalChildren') {
+      if (input.childNodes[i].hasChildNodes()) {
+        if (input.childNodes[i].childNodes[1].nodeName === 'org.catrobat.catroid.formulaeditor.FormulaElement') {
+          const newFormula = new Formula();
+          formula.setMid(newFormula);
+          workFormula(newFormula, input.childNodes[i].childNodes[1]);
+        }
+      }
+    }
     if (input.childNodes[i].nodeName === 'leftChild') {
       const newFormula = new Formula();
       formula.setLeft(newFormula);

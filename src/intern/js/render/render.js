@@ -1,5 +1,6 @@
 import { CatBlocks, renderProgram } from '../../../library/js/lib_share';
 import { Parser } from '../../../common/js/parser/parser';
+import $ from 'jquery';
 
 /**
  * Render all programs into one page
