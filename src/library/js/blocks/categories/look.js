@@ -541,7 +541,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_paint_new_look_edit_text',
+        name: 'LOOK_NEW',
         text: 'unset'
       },
       {
@@ -619,6 +619,96 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'PHIRO_LIGHT_BLUE_INFO'
+      }
+    ]
+  },
+  FadeParticleEffectBrick: {
+    message0: '%{BKY_FADE_PARTICLE_EFFECT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_fade_particle_effect_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_fade_particle_effect_spinner_INFO'
+      }
+    ]
+  },
+  ParticleEffectAdditivityBrick: {
+    message0: '%{BKY_ADDITIVE_PARTICLE_EFFECT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'brick_additive_particle_effect_spinner',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_additive_particle_effect_spinner_INFO'
+      }
+    ]
+  },
+  SetCameraFocusPointBrick: {
+    message0: '%{BKY_SET_CAMERA_FOCUS}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'HORIZONTAL_FLEXIBILITY',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'HORIZONTAL_FLEXIBILITY_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'VERTICAL_FLEXIBILITY',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'VERTICAL_FLEXIBILITY_INFO'
+      }
+    ]
+  },
+  SetParticleColorBrick: {
+    message0: '%{BKY_SET_PARTICLE_COLOR}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'COLOR',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'brick_set_particle_color_INFO'
       }
     ]
   }

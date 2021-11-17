@@ -625,6 +625,21 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'fadeSpinnerSelectionId': {
+      const brickName = list.parentElement.getAttribute('type');
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+
+      if (brickName === 'FadeParticleEffectBrick') {
+        location.formValues.set('brick_fade_particle_effect_spinner', getMsgValueOrDefault(`FADESPINNER_${key}`, key));
+      } else if (brickName === 'ParticleEffectAdditivityBrick') {
+        location.formValues.set(
+          'brick_additive_particle_effect_spinner',
+          getMsgValueOrDefault(`PARTICLESPINNER_${key}`, key)
+        );
+      }
+      break;
+    }
+
     case 'type': {
       const key = getNodeValueOrDefault(list.childNodes[0]);
       location.formValues.set('DROPDOWN', getMsgValueOrDefault(`GRAVITY_${key}`, key));
