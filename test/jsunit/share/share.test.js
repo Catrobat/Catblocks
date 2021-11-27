@@ -781,7 +781,9 @@ describe('Share catroid program rendering tests', () => {
       '#' + objID + ' #' + objID + '-looks .search',
       node => node.innerHTML
     );
-    expect(searchContainerInnerHTML).toBe('<img src="media/search_black_24dp.svg">');
+    expect(searchContainerInnerHTML).toBe(
+      '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"></path><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>'
+    );
 
     const previewSrc = await page.$eval('.imagepreview', node => node.getAttribute('src'));
     expect(previewSrc).toBe(expectedSrc);
@@ -874,8 +876,8 @@ describe('Share catroid program rendering tests', () => {
     expect(accordionHandle).not.toBeNull();
 
     const cbCardHeaderHTML = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cbCardHeaderHTML).toBe(
-      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">'
+    expect(cbCardHeaderHTML).toContain(
+      '<div class="header-title">Background</div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"></path><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>'
     );
   });
 
@@ -937,9 +939,9 @@ describe('Share catroid program rendering tests', () => {
     const sceneName1 = 'testscene1';
     const objName1 = 'Background';
     const expectedSceneHeaderText =
-      '<div class="header-title">testscene1</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
+      '<div class="header-title">testscene1</div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"></path><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>';
     const expectedCardHeaderText =
-      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
+      '<div class="header-title">Background</div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"></path><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>';
 
     const catObj = {
       scenes: [
@@ -996,10 +998,10 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector(`#${scene1ID}-collapseOne.show`);
 
     const sceneHeaderInitialText = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderInitialText).toBe(expectedSceneHeaderText);
+    expect(sceneHeaderInitialText).toContain(expectedSceneHeaderText);
 
     const cardHeaderInitialText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderInitialText).toBe(expectedCardHeaderText);
+    expect(cardHeaderInitialText).toContain(expectedCardHeaderText);
 
     // open object
     await page.click('.catblocks-object .card-header');
@@ -1007,10 +1009,10 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector(`#${obj1ID}-collapseOneScene.show`);
 
     const sceneHeaderTextExpanded = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderTextExpanded).toBe(expectedSceneHeaderText);
+    expect(sceneHeaderTextExpanded).toContain(expectedSceneHeaderText);
 
     const cardHeaderTextExpanded = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderTextExpanded).toBe(expectedCardHeaderText);
+    expect(cardHeaderTextExpanded).toContain(expectedCardHeaderText);
 
     // close object
     await page.click('.catblocks-object .card-header');
@@ -1023,10 +1025,10 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector(`#${scene1ID}-collapseOne:not(.show)`);
 
     const sceneHeaderTextCollapsed = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderTextCollapsed).toBe(expectedSceneHeaderText);
+    expect(sceneHeaderTextCollapsed).toContain(expectedSceneHeaderText);
 
     const cardHeaderTextCollapsed = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderTextCollapsed).toBe(expectedCardHeaderText);
+    expect(cardHeaderTextCollapsed).toContain(expectedCardHeaderText);
   });
 
   test('scrolling bricks on x axis on mobile share page is working', async () => {
