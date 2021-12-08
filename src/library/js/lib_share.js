@@ -72,10 +72,10 @@ export class CatBlocks {
  */
 export function renderProgram(share, container, path, name, counter = -1) {
   // be sure that path has a trailing slash
-  path = path.replace(/\/$/, '') + '/';
+  path = path.toString().replace(/\/$/, '') + '/';
 
   // remove the leading slash
-  name = name.replace(/^\//, '');
+  name = name.toString().replace(/^\//, '');
 
   return fetch(`${path}${name}/code.xml`)
     .then(res => res.text())

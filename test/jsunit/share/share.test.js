@@ -781,7 +781,11 @@ describe('Share catroid program rendering tests', () => {
       '#' + objID + ' #' + objID + '-looks .search',
       node => node.innerHTML
     );
-    expect(searchContainerInnerHTML).toBe('<img src="media/search_black_24dp.svg">');
+    const origin = await page.evaluate(() => {
+      return window.location.origin;
+    });
+
+    expect(searchContainerInnerHTML).toBe(`<img src="${origin}/media/search_black_24dp.svg">`);
 
     const previewSrc = await page.$eval('.imagepreview', node => node.getAttribute('src'));
     expect(previewSrc).toBe(expectedSrc);
@@ -874,8 +878,13 @@ describe('Share catroid program rendering tests', () => {
     expect(accordionHandle).not.toBeNull();
 
     const cbCardHeaderHTML = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
+
+    const origin = await page.evaluate(() => {
+      return window.location.origin;
+    });
+
     expect(cbCardHeaderHTML).toBe(
-      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">'
+      `<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`
     );
   });
 
@@ -936,10 +945,13 @@ describe('Share catroid program rendering tests', () => {
     const programID = 'testname';
     const sceneName1 = 'testscene1';
     const objName1 = 'Background';
-    const expectedSceneHeaderText =
-      '<div class="header-title">testscene1</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
-    const expectedCardHeaderText =
-      '<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg">';
+
+    const origin = await page.evaluate(() => {
+      return window.location.origin;
+    });
+
+    const expectedSceneHeaderText = `<div class="header-title">testscene1</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`;
+    const expectedCardHeaderText = `<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`;
 
     const catObj = {
       scenes: [
