@@ -198,9 +198,9 @@ export class Share {
     });
 
     if (sceneName && sceneName.display) {
-      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
     } else {
-      sceneHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+      sceneHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
     }
 
     const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
@@ -466,11 +466,11 @@ export class Share {
         `<div class="d-flex">` +
         picture +
         `<div class="header-title" style="padding-left: 10px">${object.name}</div></div>` +
-        `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+        `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
     } else if (object && object.name) {
-      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
     } else {
-      cardHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="media/chevron_left_black_24dp.svg" />`;
+      cardHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
     }
 
     const objectContentContainer = generateNewDOM(objectCard, 'div', {
@@ -716,7 +716,7 @@ export class Share {
         'data-target': '#modalForImg',
         name: 'not clicked'
       });
-      magnifyingGlass.innerHTML = '<img src="media/search_black_24dp.svg" />';
+      magnifyingGlass.innerHTML = `<img src="${this.config.media}search_black_24dp.svg" />`;
 
       // register on click on magnifying glass
       body.on('click', `#${magnifyingGlassID}`, () => {
@@ -863,12 +863,7 @@ export class Share {
           'aria-selected': 'true'
         },
         `<div class="catblocks-tab-script">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32px" viewBox="0 0 32 32" version="1.1">
-            <g id="surface1">
-              <path style="fill:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 27.322266 11.595703 C 27.322266 11.595703 20.138672 9.339844 14.958984 9.333984 C 10.564453 9.375 8.033203 10.904297 8.033203 10.904297 L 7.998047 22.740234 L 7.998047 37.125 L 12.228516 37.125 L 14.039062 40.001953 L 21.445312 40.001953 L 23.255859 37.125 L 40.001953 37.125 L 40.001953 11.595703 Z M 27.322266 11.595703 " transform="matrix(0.666667,0,0,0.666667,0,0)"/>
-              <path style="fill:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 7.998047 24.123047 L 12.228516 24.123047 L 14.039062 27 L 21.445312 27 L 23.255859 24.123047 L 40.001953 24.123047 " transform="matrix(0.666667,0,0,0.666667,0,0)"/>
-            </g>
-          </svg>(${object.scriptList.length})
+          <img class="rotate-left" src="${this.config.media}scripts_icon.svg" />(${object.scriptList.length})
         </div>`
       );
     }
@@ -889,7 +884,7 @@ export class Share {
           'aria-controls': 'looks',
           'aria-selected': 'false'
         },
-        `<img id="code-view-toggler" class="catblocks-tab-icon" src="media/visibility_black_24dp.svg" /> (${object.lookList.length})`
+        `<img id="code-view-toggler" class="catblocks-tab-icon" src="${this.config.media}visibility_black_24dp.svg" /> (${object.lookList.length})`
       );
     }
 
@@ -909,7 +904,7 @@ export class Share {
           'aria-controls': 'sounds',
           'aria-selected': 'false'
         },
-        `<img id="code-view-toggler" class="catblocks-tab-icon" src="media/volume_up_black_24dp.svg" /> (${object.soundList.length})`
+        `<img id="code-view-toggler" class="catblocks-tab-icon" src="${this.config.media}volume_up_black_24dp.svg" /> (${object.soundList.length})`
       );
     }
   }
