@@ -9,3 +9,17 @@ runs:
     image: 'Dockerfile'
     args: 
         - ${{ inputs.slack_webhook }}
+with:
+    add: '.'
+    message: 'Automatically fetch Language Updates from Catroid'
+    branch_mode: 'Language-Updates'
+
+on:
+    push:
+        branches:
+            - Language-Updates
+    pull_request:
+        branches:
+            - Language-Updates
+        base:
+            - develop

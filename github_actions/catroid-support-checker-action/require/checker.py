@@ -228,7 +228,7 @@ def compareLanguageSupport(catroid_languages, catblocks_languages):
 
 def generateLanguageMessage(updated_languages):
     updated_languages.sort()
-    msg = '*Updated Languages*:\n'
+    msg = '*Automatically Updated Languages*:\n'
     for lang in updated_languages:
         msg += lang.replace('values-', '') + ', '
     return msg.strip().strip(',')
@@ -236,6 +236,25 @@ def generateLanguageMessage(updated_languages):
 def sendSlackMessage(webhook, message):
     json_data = {'text': message}
     requests.post(webhook, json=json_data)
+
+def fetchLanguages():
+    global path
+    base_dir = path + '/Catroid/catroid/src/main/res/'
+    copy_dir = path + '/Catblocks/i18n/catroid_strings/'
+    repo = git.Git(path + '/Catblocks')
+    git.Git(path + '/Catroid')
+    folders = os.listdir(base_dir)
+    languages = {}
+    for folder in folders:
+        xml_file = base_dir + folder + '/strings.xml'
+        if os.path.exists(xml_file):
+            if folder == 'values':
+                folder = folder + '-en'
+            cat_blocks_xml = copy_dir + folder + '/strings.xml'
+            os.replace(xml_file, cat_blocks_xml)
+        else:
+            languages[folder] = None
+
 
 
 # Requires the following Args: 
@@ -265,6 +284,7 @@ def main():
         language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
 
         if language_updates is not None and len(language_updates) > 0:
+            fetchLanguages()
             slack_msg += '\n\n' + generateLanguageMessage(language_updates)
             send_msg = True
 
