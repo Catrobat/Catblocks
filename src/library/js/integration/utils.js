@@ -376,6 +376,10 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
             const val = childBrick.inputList[i].fieldRow[j - 1].getValue();
             if (val && val.length < childBrick.inputList[i].fieldRow[j - 1].maxDisplayLength) {
               childBrick.inputList[i].fieldRow[j].visible_ = false;
+            } else {
+              childBrick.inputList[0].fieldRow[j].setOnClickHandler(() => {
+                showFormulaPopup(val);
+              });
             }
           }
         }
