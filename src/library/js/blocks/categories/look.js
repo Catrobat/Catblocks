@@ -367,7 +367,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'LOOK_INDEX',
+        name: 'BACKGROUND_INDEX',
         text: 'unset'
       },
       {
@@ -377,7 +377,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'LOOK_INDEX_INFO'
+        name: 'BACKGROUND_INDEX_INFO'
       }
     ]
   },
@@ -405,7 +405,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'LOOK_INDEX',
+        name: 'BACKGROUND_WAIT_INDEX',
         text: 'unset'
       },
       {
@@ -415,7 +415,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'LOOK_INDEX_INFO'
+        name: 'BACKGROUND_WAIT_INDEX_INFO'
       }
     ]
   },
@@ -519,7 +519,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_copy_look_edit_text',
+        name: 'LOOK_COPY',
         text: 'unset'
       },
       {
@@ -529,7 +529,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_copy_look_edit_text_INFO'
+        name: 'LOOK_COPY_INFO'
       }
     ]
   },
@@ -551,7 +551,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_paint_new_look_edit_text_INFO'
+        name: 'LOOK_NEW_INFO'
       }
     ]
   },

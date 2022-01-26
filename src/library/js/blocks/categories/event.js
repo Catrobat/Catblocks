@@ -57,7 +57,7 @@ export default {
       {
         type: 'field_input',
         name: 'look',
-        text: 'unset'
+        text: 'new...'
       },
       {
         type: 'field_image',
