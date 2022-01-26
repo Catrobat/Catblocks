@@ -250,6 +250,8 @@ def fetchLanguages():
         if os.path.exists(xml_file):
             if folder == 'values':
                 folder = folder + '-en'
+            elif not os.path.exists(copy_dir + folder):
+                os.mkdir(copy_dir + folder)
             cat_blocks_xml = copy_dir + folder + '/strings.xml'
             os.replace(xml_file, cat_blocks_xml)
         else:
