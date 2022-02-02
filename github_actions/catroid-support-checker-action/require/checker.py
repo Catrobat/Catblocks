@@ -30,6 +30,24 @@ map_bricks_scripts = [
     ('WhenStartedBrick', 'StartScript'),
 ]
 
+bricksToCheck = [' Motion bricks ', ' Physics ', ' Look bricks ', ' Pen bricks ', ' Sound bricks ',
+                 ' Embroidery bricks ', ' Device bricks ', ' Control bricks ', ' Arduino Bricks ', ' Raspi Bricks ',
+                 ' Drone Bricks ', ' Jumping Sumo Bricks ', ' Phiro bricks ']
+
+ignoreStrings = ['brick_option_place_visually', 'brick_and_wait', 'brick_next_background', 'brick_previous_background',
+                 'brick_edit_background', 'brick_delete_background', 'brick_ask_default_question',
+                 'brick_ask_dialog_hint', 'brick_ask_dialog_submit', 'brick_ask_speech_default_question',
+                 'brick_paint_new_background', 'brick_paint_new_look_name', 'brick_copy_look_name',
+                 'brick_copy_background', 'brick_speak_default_value', 'speech_recognition_not_available',
+                 'speech_recognition_offline_mode_error_dialog_title',
+                 'speech_recognition_offline_mode_missing_data_error_dialog_msg', 'collision_with_anything',
+                 'brick_loop_end', 'brick_if_end', 'brick_write_variable_to_file_default_value',
+                 'brick_write_variable_to_file_success', 'brick_note_default_value', 'brick_think_bubble_default_value',
+                 'brick_say_bubble_default_value', 'brick_broadcast_default_value', 'brick_web_request_default_value',
+                 'web_request_warning_title', 'web_request_warning_message', 'web_request_trust_domain_warning_title',
+                 'web_request_trust_domain_warning_message', 'trusted_domains_edit_hint',
+                 'look_request_http_error_message', 'look_request_type_error_message', 'second_plural']
+
 # Loads the bricks supported by Catblocks from the JSON data.
 def loadCatblocksBricks():
     global path
@@ -233,6 +251,12 @@ def generateLanguageMessage(updated_languages):
         msg += lang.replace('values-', '') + ', '
     return msg.strip().strip(',')
 
+def generateStringsToJsonMessage(missing_strings):
+    missing_strings_in_json = str(missing_strings)
+    msg = '*Strings missing in strings_to_json_mapping.json*:\n'
+    msg += missing_strings_in_json.replace("[", "").replace("]", "").replace("'", "")
+    return msg
+
 def sendSlackMessage(webhook, message):
     json_data = {'text': message}
     requests.post(webhook, json=json_data)
@@ -257,7 +281,40 @@ def fetchLanguages():
         else:
             languages[folder] = None
 
+def checkStringsToJson():
+    global path
+    catblocks_language = path + '/Catblocks/i18n/catroid_strings/values-en/strings.xml'
+    catblocks_stringstojson = path + '/Catblocks/i18n/strings_to_json_mapping.json'
+    repo = git.Git(path + '/Catblocks')
+    catblocks_strings = []
 
+    if os.path.exists(catblocks_language):
+        parser = ET.XMLParser(target=ET.TreeBuilder(insert_comments=True))
+        tree = ET.parse(catblocks_language, parser=parser)
+        root = tree.getroot()
+        append_list = False
+        for line in root:
+            if "function Comment" in str(line.tag):
+                if line.text in bricksToCheck:
+                    append_list = True
+                else:
+                    append_list = False
+            if append_list:
+                text = str(line.items()).replace("[('name', '", "").replace("')]", "")
+                if text != '[]':
+                    catblocks_strings.append(text)
+
+    if os.path.exists(catblocks_stringstojson):
+        file = open(catblocks_stringstojson)
+        data = json.load(file)
+        check_list = catblocks_strings[:]
+        for string_line in catblocks_strings:
+            for json_line in data:
+                if (str(string_line)) in str(data[json_line]):
+                    check_list.remove(string_line)
+                    break
+        result = [x for x in check_list if x not in ignoreStrings]
+        return result
 
 # Requires the following Args: 
 #   [1] Path to the parent folder of Catblocks & Catroid project
@@ -284,6 +341,11 @@ def main():
         catroid_languages = loadSupportedCatroidLanguages()
         catblocks_languages = loadSupportedCatblocksLanguages()
         language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
+        catblocks_stringsToJson = checkStringsToJson()
+
+        if catblocks_stringsToJson is not None and len(catblocks_stringsToJson > 0):
+            slack_msg += '\n\n' + generateStringsToJsonMessage(catblocks_stringsToJson)
+            send_msg = True
 
         if language_updates is not None and len(language_updates) > 0:
             fetchLanguages()
