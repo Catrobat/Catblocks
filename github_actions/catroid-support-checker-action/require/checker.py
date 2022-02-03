@@ -343,7 +343,7 @@ def main():
         language_updates = compareLanguageSupport(catroid_languages, catblocks_languages)
         catblocks_stringsToJson = checkStringsToJson()
 
-        if catblocks_stringsToJson is not None and len(catblocks_stringsToJson > 0):
+        if catblocks_stringsToJson is not None and len(catblocks_stringsToJson) > 0:
             slack_msg += '\n\n' + generateStringsToJsonMessage(catblocks_stringsToJson)
             send_msg = True
 
