@@ -1,123 +1,6 @@
 'use strict';
 
 export default {
-  PlaySoundBrick: {
-    message0: '%{BKY_SOUND_STARTSOUND}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'sound',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'sound_INFO'
-      }
-    ]
-  },
-  PlaySoundAndWaitBrick: {
-    message0: '%{BKY_SOUND_STARTSOUNDANDWAIT}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'sound',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'sound_INFO'
-      }
-    ]
-  },
-  StopAllSoundsBrick: {
-    message0: '%{BKY_SOUND_STOPALLSOUNDS}'
-  },
-  SetVolumeToBrick: {
-    message0: '%{BKY_SOUND_SETVOLUMETO}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'VOLUME',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'VOLUME_INFO'
-      }
-    ]
-  },
-  ChangeVolumeByNBrick: {
-    message0: '%{BKY_SOUND_CHANGEVOLUMEBY}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'VOLUME_CHANGE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'VOLUME_CHANGE_INFO'
-      }
-    ]
-  },
-  SpeakBrick: {
-    message0: '%{BKY_SOUND_SPEAK}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'SPEAK',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'SPEAK_INFO'
-      }
-    ]
-  },
-  SpeakAndWaitBrick: {
-    message0: '%{BKY_SOUND_SPEAKANDWAIT}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'SPEAK',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'SPEAK_INFO'
-      }
-    ]
-  },
   AskSpeechBrick: {
     message0: '%{BKY_SOUND_ASKANDSTORESPOKENANSWERIN}',
     args0: [
@@ -151,12 +34,12 @@ export default {
       }
     ]
   },
-  StopSoundBrick: {
-    message0: '%{BKY_SOUND_STOP_SOUND}',
+  ChangeTempoByNBrick: {
+    message0: '%{BKY_SOUND_CHANGE_TEMPO_BY}',
     args0: [
       {
         type: 'field_input',
-        name: 'sound',
+        name: 'TEMPO_CHANGE',
         text: 'unset'
       },
       {
@@ -166,16 +49,16 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'sound_INFO'
+        name: 'TEMPO_CHANGE_INFO'
       }
     ]
   },
-  StartListeningBrick: {
-    message0: '%{BKY_SOUND_START_LISTENING}',
+  ChangeVolumeByNBrick: {
+    message0: '%{BKY_SOUND_CHANGEVOLUMEBY}',
     args0: [
       {
         type: 'field_input',
-        name: 'LISTEN',
+        name: 'VOLUME_CHANGE',
         text: 'unset'
       },
       {
@@ -185,12 +68,15 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'LISTEN_INFO'
+        name: 'VOLUME_CHANGE_INFO'
       }
     ]
   },
-  SetInstrumentBrick: {
-    message0: '%{BKY_SOUND_SET_INSTRUMENT}',
+  JumpingSumoNoSoundBrick: {
+    message0: '%{BKY_SUMO_NOSOUND}'
+  },
+  JumpingSumoSoundBrick: {
+    message0: '%{BKY_SUMO_SOUND}',
     args0: [
       {
         type: 'field_input',
@@ -205,6 +91,20 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'JUMPING_SUMO_VOLUME',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'JUMPING_SUMO_VOLUME_INFO'
       }
     ]
   },
@@ -227,12 +127,12 @@ export default {
       }
     ]
   },
-  SetListeningLanguageBrick: {
-    message0: '%{BKY_SOUND_SET_LISTENING_LANGUAGE}',
+  PhiroPlayToneBrick: {
+    message0: '%{BKY_PHIRO_PLAYTONE}',
     args0: [
       {
         type: 'field_input',
-        name: 'brick_set_listening_language_spinner',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -242,16 +142,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_set_listening_language_spinner_INFO'
-      }
-    ]
-  },
-  SetTempoBrick: {
-    message0: '%{BKY_SOUND_SET_TEMPO}',
-    args0: [
+        name: 'DROPDOWN_INFO'
+      },
       {
         type: 'field_input',
-        name: 'TEMPO',
+        name: 'PHIRO_DURATION_IN_SECONDS',
         text: 'unset'
       },
       {
@@ -261,26 +156,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'TEMPO_INFO'
-      }
-    ]
-  },
-  ChangeTempoByNBrick: {
-    message0: '%{BKY_SOUND_CHANGE_TEMPO_BY}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'TEMPO_CHANGE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'TEMPO_CHANGE_INFO'
+        name: 'PHIRO_DURATION_IN_SECONDS_INFO'
       }
     ]
   },
@@ -350,12 +226,12 @@ export default {
       }
     ]
   },
-  JumpingSumoSoundBrick: {
-    message0: '%{BKY_SUMO_SOUND}',
+  PlaySoundAndWaitBrick: {
+    message0: '%{BKY_SOUND_STARTSOUNDANDWAIT}',
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'sound',
         text: 'unset'
       },
       {
@@ -365,29 +241,31 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'JUMPING_SUMO_VOLUME',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'JUMPING_SUMO_VOLUME_INFO'
+        name: 'sound_INFO'
       }
     ]
   },
-  JumpingSumoNoSoundBrick: {
-    message0: '%{BKY_SUMO_NOSOUND}'
+  PlaySoundBrick: {
+    message0: '%{BKY_SOUND_STARTSOUND}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'sound',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'sound_INFO'
+      }
+    ]
   },
-  PhiroPlayToneBrick: {
-    message0: '%{BKY_PHIRO_PLAYTONE}',
+  SetInstrumentBrick: {
+    message0: '%{BKY_SOUND_SET_INSTRUMENT}',
     args0: [
       {
         type: 'field_input',
@@ -402,10 +280,15 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
-      },
+      }
+    ]
+  },
+  SetListeningLanguageBrick: {
+    message0: '%{BKY_SOUND_SET_LISTENING_LANGUAGE}',
+    args0: [
       {
         type: 'field_input',
-        name: 'PHIRO_DURATION_IN_SECONDS',
+        name: 'brick_set_listening_language_spinner',
         text: 'unset'
       },
       {
@@ -415,7 +298,124 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'PHIRO_DURATION_IN_SECONDS_INFO'
+        name: 'brick_set_listening_language_spinner_INFO'
+      }
+    ]
+  },
+  SetTempoBrick: {
+    message0: '%{BKY_SOUND_SET_TEMPO}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'TEMPO',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'TEMPO_INFO'
+      }
+    ]
+  },
+  SetVolumeToBrick: {
+    message0: '%{BKY_SOUND_SETVOLUMETO}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'VOLUME',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'VOLUME_INFO'
+      }
+    ]
+  },
+  SpeakAndWaitBrick: {
+    message0: '%{BKY_SOUND_SPEAKANDWAIT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'SPEAK',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPEAK_INFO'
+      }
+    ]
+  },
+  SpeakBrick: {
+    message0: '%{BKY_SOUND_SPEAK}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'SPEAK',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPEAK_INFO'
+      }
+    ]
+  },
+  StartListeningBrick: {
+    message0: '%{BKY_SOUND_START_LISTENING}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'LISTEN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LISTEN_INFO'
+      }
+    ]
+  },
+  StopAllSoundsBrick: {
+    message0: '%{BKY_SOUND_STOPALLSOUNDS}'
+  },
+  StopSoundBrick: {
+    message0: '%{BKY_SOUND_STOP_SOUND}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'sound',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'sound_INFO'
       }
     ]
   }

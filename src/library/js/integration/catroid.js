@@ -137,7 +137,6 @@ export class Catroid {
     for (let i = 0; i < object.scriptList.length; i++) {
       if (this.domToSvgModifiable(object.scriptList[i]) === false) {
         ++failed;
-        // console.log('failed to render script ' + i);
       }
     }
 
@@ -238,7 +237,7 @@ export class Catroid {
               input_list.push(input.value_);
             });
           } catch {
-            console.log('Cannot load input of block!');
+            console.error('Cannot load input of block!');
           }
           this.all_blocks[block.id] = input_list;
         }
@@ -265,7 +264,7 @@ export class Catroid {
         }
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

@@ -141,12 +141,11 @@ const dumpStringFile = (lang, values) => {
   dumpStringFile(DEF_LANG, def_values);
 
   const languages = fs.readdirSync(STRINGS_DIR, { encoding: 'utf-8' });
-  languages
-    .filter(lang => lang != DEF_LANG)
-    .forEach(async langname => {
-      const lang_file = path.join(STRINGS_DIR, langname, STRINGS_FILE);
-      const lang_string = await readStringFile(lang_file);
-      const lang_values = generateLangValues(lang_string, def_string);
-      dumpStringFile(langname, lang_values);
-    });
+  for (const langname of languages
+    .filter(lang => lang != DEF_LANG)) {
+    const lang_file = path.join(STRINGS_DIR, langname, STRINGS_FILE);
+    const lang_string = await readStringFile(lang_file);
+    const lang_values = generateLangValues(lang_string, def_string);
+    dumpStringFile(langname, lang_values);
+  }
 })();

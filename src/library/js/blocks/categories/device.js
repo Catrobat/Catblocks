@@ -1,12 +1,12 @@
 'use strict';
 
 export default {
-  WhenNfcBrick: {
-    message0: '%{BKY_EVENT_WHENNFC}',
+  OpenUrlBrick: {
+    message0: '%{BKY_CONTROL_OPEN_URL}',
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'OPEN_URL',
         text: 'unset'
       },
       {
@@ -16,9 +16,12 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'OPEN_URL_INFO'
       }
     ]
+  },
+  ResetTimerBrick: {
+    message0: '%{BKY_DEVICE_RESET_TIMER}'
   },
   SetNfcTagBrick: {
     message0: '%{BKY_CONTROL_SETNFCTAG}',
@@ -133,9 +136,6 @@ export default {
       }
     ]
   },
-  ResetTimerBrick: {
-    message0: '%{BKY_DEVICE_RESET_TIMER}'
-  },
   TouchAndSlideBrick: {
     message0: '%{BKY_CONTROL_TOUCH_AND_SLIDE}',
     args0: [
@@ -211,12 +211,12 @@ export default {
       }
     ]
   },
-  OpenUrlBrick: {
-    message0: '%{BKY_CONTROL_OPEN_URL}',
+  WhenNfcBrick: {
+    message0: '%{BKY_EVENT_WHENNFC}',
     args0: [
       {
         type: 'field_input',
-        name: 'OPEN_URL',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -226,7 +226,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'OPEN_URL_INFO'
+        name: 'DROPDOWN_INFO'
       }
     ]
   }

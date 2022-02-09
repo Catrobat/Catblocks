@@ -1,9 +1,6 @@
 'use strict';
 
 export default {
-  FinishStageBrick: {
-    message0: '%{BKY_ASSERTION_FINISH_TESTS}'
-  },
   AssertEqualsBrick: {
     message0: '%{BKY_ASSERTION_ASSERT_EQUALS}',
     args0: [
@@ -69,6 +66,9 @@ export default {
         name: 'ASSERT_LISTS_EXPECTED_INFO'
       }
     ]
+  },
+  FinishStageBrick: {
+    message0: '%{BKY_ASSERTION_FINISH_TESTS}'
   },
   ParameterizedBrick: {
     message0: '%{BKY_ASSERTION_PARAMETERIZED_HEAD}',

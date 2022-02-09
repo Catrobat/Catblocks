@@ -86,10 +86,7 @@ export class Playground {
       if (text) {
         document.getElementById('importExport').value = text;
       }
-      // this.taChange();
-    }
 
-    if (sessionStorage) {
       // Restore event logging state.
       let state = sessionStorage.getItem('logEvents');
       this.logEvents(Boolean(state));
@@ -238,8 +235,8 @@ export class Playground {
       } else {
         jsonDomToWorkspace(json, this.workspace);
       }
-    } catch (e) {
-      console.error(e.message);
+    } catch (error) {
+      console.error(error.message);
       console.error("Can't render current JSON object - object has to start with scriptList.");
     }
   }
@@ -271,8 +268,8 @@ export class Playground {
           }
         }
       }
-    } catch (e) {
-      console.error(e.message);
+    } catch (error) {
+      console.error(error.message);
       console.error('import script via parser failed. Only use xml object starting with script tag.');
     }
   }

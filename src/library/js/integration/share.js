@@ -155,7 +155,7 @@ export class Share {
               input_list.push(input.value_);
             });
           } catch {
-            console.log('Cannot load input of block!');
+            console.error('Cannot load input of block!');
           }
           all_blocks[block.id] = input_list;
         }
@@ -417,31 +417,7 @@ export class Share {
     const objHeadingID = `${objectID}-header`;
     const objCollapseOneSceneID = `${objectID}-collapseOneScene`;
 
-    let src;
-
-    if (object.lookList) {
-      for (const look of object.lookList) {
-        if (!options.sceneName || !look.fileName) {
-          continue;
-        }
-
-        const imgPath = `${options.sceneName}/images/${look.fileName}`;
-        src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
-
-        if (options.programRoot.startsWith('http')) {
-          src = escapeURI(`${options.programRoot}${imgPath}`);
-        }
-
-        if (options.fileMap != null && options.fileMap[imgPath]) {
-          src = options.fileMap[imgPath];
-        }
-
-        if (src === undefined || src === '') {
-          console.log('src is empty or null = ' + src);
-        }
-        break;
-      }
-    }
+    const src = this.getImage(options, object);
 
     const cardHeader = generateNewDOM(objectCard, 'div', {
       class: 'card-header d-flex justify-content-between expansion-header',
@@ -655,21 +631,7 @@ export class Share {
         continue;
       }
 
-      const imgPath = `${options.sceneName}/images/${look.fileName}`;
-      let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
-
-      // renderProgram got a full link
-      if (options.programRoot.startsWith('http')) {
-        src = escapeURI(`${options.programRoot}${imgPath}`);
-      }
-
-      if (options.fileMap != null && options.fileMap[imgPath]) {
-        src = options.fileMap[imgPath];
-      }
-
-      if (src === undefined || src === '') {
-        console.log('src is empty or null = ' + src);
-      }
+      const src = this.getImage(options, object, look);
 
       let displayLookName = look.name;
       if (!displayLookName) {
@@ -744,6 +706,45 @@ export class Share {
         )
       );
     }
+  }
+
+  getImage(options, object, look = null) {
+    let src;
+    if (!object.lookList) {
+      return null;
+    }
+
+    if (look == null) {
+      for (const tempLook of object.lookList) {
+        if (options.sceneName && tempLook.fileName) {
+          look = tempLook;
+          break;
+        }
+      }
+    }
+
+    if (look == null) {
+      console.error('src is empty or null = ' + src);
+      return null;
+    }
+
+    const imgPath = `${options.sceneName}/images/${look.fileName}`;
+    src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
+
+    // renderProgram got a full link
+    if (options.programRoot.startsWith('http')) {
+      src = escapeURI(`${options.programRoot}${imgPath}`);
+    }
+
+    if (options.fileMap != null && options.fileMap[imgPath]) {
+      src = options.fileMap[imgPath];
+    }
+
+    if (src === undefined || src === '') {
+      console.error('src is empty or null = ' + src);
+    }
+
+    return src;
   }
 
   /**

@@ -63,7 +63,7 @@ export class PasteListener {
             pl.disablePasteListener();
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       }
     });

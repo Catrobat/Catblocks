@@ -201,8 +201,7 @@ function parseObjects(object) {
 
     const userDefinedBrickList = object.getElementsByTagName('userDefinedBrickList');
     if (userDefinedBrickList && userDefinedBrickList[0]) {
-      const userBrickDefinitions = parseUserBrickDefinitions(userDefinedBrickList[0].children);
-      currentObject.userBricks = userBrickDefinitions;
+      currentObject.userBricks = parseUserBrickDefinitions(userDefinedBrickList[0].children);
     }
 
     for (let i = 0; i < lookList.length; i++) {
@@ -271,7 +270,6 @@ function parseUserBrickDefinitions(userBricks) {
     }
 
     let inputCounter = 1;
-    // <userDefinedBrickDataList>
     for (let j = 0; j < brickDataDefs.length; ++j) {
       const dataDef = brickDataDefs[j];
       if (dataDef.nodeName == 'userDefinedBrickLabel') {
@@ -824,7 +822,7 @@ function workFormula(formula, input) {
       if (input.childNodes[i].hasChildNodes()) {
         if (input.childNodes[i].childNodes[1].nodeName === 'org.catrobat.catroid.formulaeditor.FormulaElement') {
           const newFormula = new Formula();
-          formula.setMid(newFormula);
+          formula.setAdditionalChildren(newFormula);
           workFormula(newFormula, input.childNodes[i].childNodes[1]);
         }
       }

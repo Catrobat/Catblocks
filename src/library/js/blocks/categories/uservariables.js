@@ -1,9 +1,23 @@
 'use strict';
 
 export default {
-  SetVariableBrick: {
-    message0: '%{BKY_DATA_SETVARIABLETOCAT}',
+  AddItemToUserListBrick: {
+    message0: '%{BKY_DATA_ADDTOLIST}',
     args0: [
+      {
+        type: 'field_input',
+        name: 'LIST_ADD_ITEM',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LIST_ADD_ITEM_INFO'
+      },
       {
         type: 'field_input',
         name: 'DROPDOWN',
@@ -17,20 +31,6 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'VARIABLE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'VARIABLE_INFO'
       }
     ]
   },
@@ -64,6 +64,237 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'VARIABLE_CHANGE_INFO'
+      }
+    ]
+  },
+  ClearUserListBrick: {
+    message0: '%{BKY_DATA_CLEARUSERLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  DeleteItemOfUserListBrick: {
+    message0: '%{BKY_DATA_DELETEITEMFROMLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'LIST_DELETE_ITEM',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LIST_DELETE_ITEM_INFO'
+      }
+    ]
+  },
+  HideTextBrick: {
+    message0: '%{BKY_DATA_HIDEVARIABLE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  InsertItemIntoUserListBrick: {
+    message0: '%{BKY_DATA_INSERTINTOLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'INSERT_ITEM_INTO_USERLIST_VALUE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'INSERT_ITEM_INTO_USERLIST_VALUE_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'INSERT_ITEM_INTO_USERLIST_INDEX',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'INSERT_ITEM_INTO_USERLIST_INDEX_INFO'
+      }
+    ]
+  },
+  ReadVariableFromDeviceBrick: {
+    message0: '%{BKY_DATA_READVARIABLE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  ReadVariableFromFileBrick: {
+    message0: '%{BKY_DATA_READ_VARIABLE_FROM_FILE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'READ_FILENAME',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'READ_FILENAME_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'SPINNER',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'SPINNER_INFO'
+      }
+    ]
+  },
+  ReplaceItemInUserListBrick: {
+    message0: '%{BKY_DATA_REPLACEITEMINLIST}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'REPLACE_ITEM_IN_USERLIST_INDEX',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'REPLACE_ITEM_IN_USERLIST_INDEX_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'REPLACE_ITEM_IN_USERLIST_VALUE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'REPLACE_ITEM_IN_USERLIST_VALUE_INFO'
       }
     ]
   },
@@ -203,8 +434,8 @@ export default {
       }
     ]
   },
-  DeleteItemOfUserListBrick: {
-    message0: '%{BKY_DATA_DELETEITEMFROMLIST}',
+  SetVariableBrick: {
+    message0: '%{BKY_DATA_SETVARIABLETOCAT}',
     args0: [
       {
         type: 'field_input',
@@ -222,7 +453,7 @@ export default {
       },
       {
         type: 'field_input',
-        name: 'LIST_DELETE_ITEM',
+        name: 'VARIABLE',
         text: 'unset'
       },
       {
@@ -232,191 +463,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'LIST_DELETE_ITEM_INFO'
-      }
-    ]
-  },
-  AddItemToUserListBrick: {
-    message0: '%{BKY_DATA_ADDTOLIST}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'LIST_ADD_ITEM',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LIST_ADD_ITEM_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  InsertItemIntoUserListBrick: {
-    message0: '%{BKY_DATA_INSERTINTOLIST}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'INSERT_ITEM_INTO_USERLIST_VALUE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'INSERT_ITEM_INTO_USERLIST_VALUE_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'INSERT_ITEM_INTO_USERLIST_INDEX',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'INSERT_ITEM_INTO_USERLIST_INDEX_INFO'
-      }
-    ]
-  },
-  ReplaceItemInUserListBrick: {
-    message0: '%{BKY_DATA_REPLACEITEMINLIST}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'REPLACE_ITEM_IN_USERLIST_INDEX',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'REPLACE_ITEM_IN_USERLIST_INDEX_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'REPLACE_ITEM_IN_USERLIST_VALUE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'REPLACE_ITEM_IN_USERLIST_VALUE_INFO'
-      }
-    ]
-  },
-  HideTextBrick: {
-    message0: '%{BKY_DATA_HIDEVARIABLE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  ReadVariableFromDeviceBrick: {
-    message0: '%{BKY_DATA_READVARIABLE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  WriteVariableOnDeviceBrick: {
-    message0: '%{BKY_DATA_WRITEVARIABLE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'VARIABLE_INFO'
       }
     ]
   },
@@ -467,25 +514,6 @@ export default {
       }
     ]
   },
-  ClearUserListBrick: {
-    message0: '%{BKY_DATA_CLEARUSERLIST}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
   WebRequestBrick: {
     message0: '%{BKY_DATA_WEBREQUEST}',
     args0: [
@@ -519,8 +547,8 @@ export default {
       }
     ]
   },
-  ReadVariableFromFileBrick: {
-    message0: '%{BKY_DATA_READ_VARIABLE_FROM_FILE}',
+  WriteVariableOnDeviceBrick: {
+    message0: '%{BKY_DATA_WRITEVARIABLE}',
     args0: [
       {
         type: 'field_input',
@@ -535,34 +563,6 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'READ_FILENAME',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'READ_FILENAME_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'SPINNER_INFO'
       }
     ]
   },

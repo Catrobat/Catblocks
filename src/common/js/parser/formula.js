@@ -8,7 +8,7 @@ export default class Formula {
     this.operator = '';
     this.left = null;
     this.right = null;
-    this.mid = null;
+    this.additionalChildren = null;
   }
 
   setLeft(leftBlock) {
@@ -27,59 +27,59 @@ export default class Formula {
     }
   }
 
-  setMid(midBlock) {
-    if (this.mid === null) {
-      this.mid = midBlock;
+  setAdditionalChildren(additionalChildrenBlock) {
+    if (this.additionalChildren === null) {
+      this.additionalChildren = additionalChildrenBlock;
     } else {
-      this.mid.setMid(midBlock);
+      this.additionalChildren.setAdditionalChildren(additionalChildrenBlock);
     }
   }
 
   static getAllLayouts() {
     return {
-      BRACKET: '(%l%r)',
-      USER_LIST: '*%v*',
-      STRING: "'%v'",
-      USER_VARIABLE: '"%v"',
-      SIN: '%v(%l)',
-      COS: '%v(%l)',
-      TAN: '%v(%l)',
-      LN: '%v(%l)',
-      LOG: '%v(%l)',
       ABS: '%v(%l)',
-      ROUND: '%v(%l)',
-      ARCSIN: '%v(%l)',
       ARCCOS: '%v(%l)',
+      ARCSIN: '%v(%l)',
       ARCTAN: '%v(%l)',
-      FLOOR: '%v(%l)',
-      CEIL: '%v(%l)',
-      EXP: '%v(%l)',
-      SQRT: '%v(%l)',
-      MULTI_FINGER_X: '%v(%l)',
-      MULTI_FINGER_Y: '%v(%l)',
-      MULTI_FINGER_TOUCHED: '%v(%l)',
       ARCTAN2: '%v(%l, %r)',
-      POWER: '%v(%l, %r)',
-      MOD: '%v(%l, %r)',
-      RAND: '%v(%l, %r)',
-      MAX: '%v(%l, %r)',
-      MIN: '%v(%l, %r)',
-      IF_THEN_ELSE: '%v(%l,%r,%m)',
+      BRACKET: '(%l%r)',
+      CEIL: '%v(%l)',
+      COLLIDES_WITH_COLOR: '%v(%l)',
+      COLOR_AT_XY: '%v(%l, %r)',
+      COLOR_EQUALS_COLOR: '%v(%l, %r)',
+      COLOR_TOUCHES_COLOR: '%v(%l, %r)',
+      CONTAINS: '%v(%l, %r)',
+      COS: '%v(%l)',
+      EXP: '%v(%l)',
+      FLATTEN: '%v(%l)',
+      FLOOR: '%v(%l)',
+      IF_THEN_ELSE: '%v(%l,%r,%a)',
+      INDEX_CURRENT_TOUCH: '%v(%l)',
+      INDEX_OF_ITEM: '%v(%l, %r)',
+      JOIN: '%v(%l, %r)',
+      JOIN3: '%v(%l,%r,%a)',
       LENGTH: '%v(%l)',
       LETTER: '%v(%l, %r)',
-      JOIN: '%v(%l, %r)',
-      JOIN3: '%v(%l,%r,%m)',
-      FLATTEN: '%v(%l)',
-      INDEX_OF_ITEM: '%v(%l, %r)',
-      INDEX_CURRENT_TOUCH: '%v(%l)',
-      COLOR_AT_XY: '%v(%l, %r)',
-      COLOR_TOUCHES_COLOR: '%v(%l, %r)',
-      COLOR_EQUALS_COLOR: '%v(%l, %r)',
-      COLLIDES_WITH_COLOR: '%v(%l)',
-      REGEX: '%v(%l, %r)',
-      CONTAINS: '%v(%l, %r)',
-      NUMBER_OF_ITEMS: '%v(%l)',
       LIST_ITEM: '%v(%l, %r)',
+      LN: '%v(%l)',
+      LOG: '%v(%l)',
+      MAX: '%v(%l, %r)',
+      MIN: '%v(%l, %r)',
+      MOD: '%v(%l, %r)',
+      MULTI_FINGER_TOUCHED: '%v(%l)',
+      MULTI_FINGER_X: '%v(%l)',
+      MULTI_FINGER_Y: '%v(%l)',
+      NUMBER_OF_ITEMS: '%v(%l)',
+      POWER: '%v(%l, %r)',
+      RAND: '%v(%l, %r)',
+      REGEX: '%v(%l, %r)',
+      ROUND: '%v(%l)',
+      SIN: '%v(%l)',
+      SQRT: '%v(%l)',
+      STRING: "'%v'",
+      TAN: '%v(%l)',
+      USER_LIST: '*%v*',
+      USER_VARIABLE: '"%v"',
       DEFAULT: '%l %v %r'
     };
   }
@@ -95,7 +95,7 @@ export default class Formula {
   }
 
   static packValue(layout, key, value) {
-    if (['%v', '%l', '%r', '%m'].includes(key)) {
+    if (['%v', '%l', '%r', '%a'].includes(key)) {
       if (value.length > 0) {
         const result = value.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1');
         return layout.replace(key, `${result}`);
@@ -105,12 +105,12 @@ export default class Formula {
     return layout;
   }
 
-  static packLayout(op, value, left, right, mid) {
+  static packLayout(op, value, left, right, additionalChildren) {
     let layout = Formula.getOpLayout(op);
     layout = Formula.packValue(layout, '%v', value);
     layout = Formula.packValue(layout, '%l', left);
     layout = Formula.packValue(layout, '%r', right);
-    layout = Formula.packValue(layout, '%m', mid);
+    layout = Formula.packValue(layout, '%a', additionalChildren);
     return layout;
   }
 
@@ -127,14 +127,13 @@ export default class Formula {
       }
       return '';
     })();
-    const mid = (() => {
-      if (f.mid) {
-        return Formula.stringify(f.mid);
+    const additionalChildren = (() => {
+      if (f.additionalChildren) {
+        return Formula.stringify(f.additionalChildren);
       }
       return '';
     })();
 
-    const nodeValue = Formula.packLayout(f.operator, f.value, left, right, mid);
-    return nodeValue;
+    return Formula.packLayout(f.operator, f.value, left, right, additionalChildren);
   }
 }

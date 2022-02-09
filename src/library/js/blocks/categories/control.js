@@ -1,6 +1,187 @@
 'use strict';
 
 export default {
+  BroadcastBrick: {
+    message0: '%{BKY_EVENT_BROADCAST_CB}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  BroadcastWaitBrick: {
+    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  CloneBrick: {
+    message0: '%{BKY_CONTROL_CREATECLONEOFCAT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'yourself'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  DeleteThisCloneBrick: {
+    message0: '%{BKY_CONTROL_DELETETHISCLONE}'
+  },
+  ExitStageBrick: {
+    message0: '%{BKY_CONTROL_EXIT_STAGE}'
+  },
+  ForItemInUserListBrick: {
+    message0: '%{BKY_CONTROL_FOR_VARIABLE_IN_USER_LIST}',
+    message1: '%1',
+    message2: '%1',
+    lastDummyAlign2: 'RIGHT',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'FOR_ITEM_IN_USERLIST_LIST',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_ITEM_IN_USERLIST_LIST_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'FOR_ITEM_IN_USERLIST_VARIABLE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_ITEM_IN_USERLIST_VARIABLE_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/repeat.svg`,
+        height: 24,
+        width: 24,
+        alt: '*',
+        flip_rtl: true
+      }
+    ]
+  },
+  ForVariableFromToBrick: {
+    message0: '%{BKY_CONTROL_FOR_VARIABLE_FROM_TO}',
+    message1: '%1',
+    message2: '%1',
+    lastDummyAlign2: 'RIGHT',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'FOR_LOOP_FROM',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_LOOP_FROM_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'FOR_LOOP_TO',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'FOR_LOOP_TO_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/repeat.svg`,
+        height: 24,
+        width: 24,
+        alt: '*',
+        flip_rtl: true
+      }
+    ]
+  },
   ForeverBrick: {
     message0: '%{BKY_CONTROL_FOREVER}',
     message1: '%1',
@@ -20,44 +201,6 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
-      }
-    ]
-  },
-  WaitBrick: {
-    message0: '%{BKY_CONTROL_WAIT}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'TIME_TO_WAIT_IN_SECONDS',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'TIME_TO_WAIT_IN_SECONDS_CATBLOCKS_INFO'
-      }
-    ]
-  },
-  NoteBrick: {
-    message0: '%{BKY_CONTROL_NOTE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'NOTE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'NOTE_INFO'
       }
     ]
   },
@@ -123,8 +266,66 @@ export default {
       }
     ]
   },
-  WaitUntilBrick: {
-    message0: '%{BKY_CONTROL_WAITUNTILTRUE}',
+  NoteBrick: {
+    message0: '%{BKY_CONTROL_NOTE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'NOTE',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'NOTE_INFO'
+      }
+    ]
+  },
+  PhiroIfLogicBeginBrick: {
+    type: 'IfThenLogicBeginBrick',
+    message0: '%{BKY_PHIRO_IFLOGICBEGINIF}',
+    message1: '%1',
+    message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}',
+    message3: '%1',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args3: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK2'
+      }
+    ]
+  },
+  RaspiIfLogicBeginBrick: {
+    type: 'IfThenLogicBeginBrick',
+    message0: '%{BKY_RASPI_IFLOGICBEGINIF}',
+    message1: '%1',
+    message2: '%{BKY_RASPI_IFLOGICBEGINELSE}',
+    message3: '%1',
     args0: [
       {
         type: 'field_input',
@@ -139,6 +340,18 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'IF_CONDITION_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args3: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK2'
       }
     ]
   },
@@ -218,8 +431,8 @@ export default {
       }
     ]
   },
-  SceneTransitionBrick: {
-    message0: '%{BKY_CONTROL_CONTINUESCENE}',
+  SceneStartBrick: {
+    message0: '%{BKY_CONTROL_STARTSCENE}',
     args0: [
       {
         type: 'field_input',
@@ -237,8 +450,8 @@ export default {
       }
     ]
   },
-  SceneStartBrick: {
-    message0: '%{BKY_CONTROL_STARTSCENE}',
+  SceneTransitionBrick: {
+    message0: '%{BKY_CONTROL_CONTINUESCENE}',
     args0: [
       {
         type: 'field_input',
@@ -275,13 +488,13 @@ export default {
       }
     ]
   },
-  CloneBrick: {
-    message0: '%{BKY_CONTROL_CREATECLONEOFCAT}',
+  WaitBrick: {
+    message0: '%{BKY_CONTROL_WAIT}',
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'yourself'
+        name: 'TIME_TO_WAIT_IN_SECONDS',
+        text: 'unset'
       },
       {
         type: 'field_image',
@@ -290,181 +503,15 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'TIME_TO_WAIT_IN_SECONDS_CATBLOCKS_INFO'
       }
     ]
-  },
-  DeleteThisCloneBrick: {
-    message0: '%{BKY_CONTROL_DELETETHISCLONE}'
   },
   WaitTillIdleBrick: {
     message0: '%{BKY_ASSERTION_WAIT_TILL_IDLE}'
   },
-  ExitStageBrick: {
-    message0: '%{BKY_CONTROL_EXIT_STAGE}'
-  },
-  ForVariableFromToBrick: {
-    message0: '%{BKY_CONTROL_FOR_VARIABLE_FROM_TO}',
-    message1: '%1',
-    message2: '%1',
-    lastDummyAlign2: 'RIGHT',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'FOR_LOOP_FROM',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'FOR_LOOP_FROM_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'FOR_LOOP_TO',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'FOR_LOOP_TO_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'new...'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ],
-    args1: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK'
-      }
-    ],
-    args2: [
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/repeat.svg`,
-        height: 24,
-        width: 24,
-        alt: '*',
-        flip_rtl: true
-      }
-    ]
-  },
-  ForItemInUserListBrick: {
-    message0: '%{BKY_CONTROL_FOR_VARIABLE_IN_USER_LIST}',
-    message1: '%1',
-    message2: '%1',
-    lastDummyAlign2: 'RIGHT',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'FOR_ITEM_IN_USERLIST_LIST',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'FOR_ITEM_IN_USERLIST_LIST_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'FOR_ITEM_IN_USERLIST_VARIABLE',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'FOR_ITEM_IN_USERLIST_VARIABLE_INFO'
-      }
-    ],
-    args1: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK'
-      }
-    ],
-    args2: [
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/repeat.svg`,
-        height: 24,
-        width: 24,
-        alt: '*',
-        flip_rtl: true
-      }
-    ]
-  },
-  BroadcastBrick: {
-    message0: '%{BKY_EVENT_BROADCAST_CB}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  BroadcastWaitBrick: {
-    message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  RaspiIfLogicBeginBrick: {
-    type: 'IfThenLogicBeginBrick',
-    message0: '%{BKY_RASPI_IFLOGICBEGINIF}',
-    message1: '%1',
-    message2: '%{BKY_RASPI_IFLOGICBEGINELSE}',
-    message3: '%1',
+  WaitUntilBrick: {
+    message0: '%{BKY_CONTROL_WAITUNTILTRUE}',
     args0: [
       {
         type: 'field_input',
@@ -479,53 +526,6 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'IF_CONDITION_INFO'
-      }
-    ],
-    args1: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK'
-      }
-    ],
-    args3: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK2'
-      }
-    ]
-  },
-  PhiroIfLogicBeginBrick: {
-    type: 'IfThenLogicBeginBrick',
-    message0: '%{BKY_PHIRO_IFLOGICBEGINIF}',
-    message1: '%1',
-    message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}',
-    message3: '%1',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ],
-    args1: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK'
-      }
-    ],
-    args3: [
-      {
-        type: 'input_statement',
-        name: 'SUBSTACK2'
       }
     ]
   }

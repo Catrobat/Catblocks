@@ -1,39 +1,6 @@
 'use strict';
 
 export default {
-  LegoEv3MotorTurnAngleBrick: {
-    message0: '%{BKY_LEGOEV3_MOTORTURNANGLE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'LEGO_EV3_DEGREES',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_EV3_DEGREES_INFO'
-      }
-    ]
-  },
   LegoEv3MotorMoveBrick: {
     message0: '%{BKY_LEGOEV3_MOTORMOVE}',
     args0: [
@@ -86,6 +53,39 @@ export default {
       }
     ]
   },
+  LegoEv3MotorTurnAngleBrick: {
+    message0: '%{BKY_LEGOEV3_MOTORTURNANGLE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'LEGO_EV3_DEGREES',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_EV3_DEGREES_INFO'
+      }
+    ]
+  },
   LegoEv3PlayToneBrick: {
     message0: '%{BKY_LEGOEV3_PLAYTONE}',
     args0: [
@@ -135,58 +135,6 @@ export default {
   },
   LegoEv3SetLedBrick: {
     message0: '%{BKY_LEGOEV3_SETLED}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      }
-    ]
-  },
-  LegoNxtMotorTurnAngleBrick: {
-    message0: '%{BKY_LEGONXT_MOTORTURNANGLE}',
-    args0: [
-      {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'DROPDOWN_INFO'
-      },
-      {
-        type: 'field_input',
-        name: 'LEGO_NXT_DEGREES',
-        text: 'unset'
-      },
-      {
-        type: 'field_image',
-        src: `${document.location.pathname}media/info_icon.svg`,
-        height: 24,
-        width: 24,
-        alt: '(i)',
-        flip_rtl: true,
-        name: 'LEGO_NXT_DEGREES_INFO'
-      }
-    ]
-  },
-  LegoNxtMotorStopBrick: {
-    message0: '%{BKY_LEGONXT_MOTORSTOP}',
     args0: [
       {
         type: 'field_input',
@@ -267,6 +215,58 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'LEGO_NXT_FREQUENCY_INFO'
+      }
+    ]
+  },
+  LegoNxtMotorStopBrick: {
+    message0: '%{BKY_LEGONXT_MOTORSTOP}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      }
+    ]
+  },
+  LegoNxtMotorTurnAngleBrick: {
+    message0: '%{BKY_LEGONXT_MOTORTURNANGLE}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'DROPDOWN',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'DROPDOWN_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'LEGO_NXT_DEGREES',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'LEGO_NXT_DEGREES_INFO'
       }
     ]
   }

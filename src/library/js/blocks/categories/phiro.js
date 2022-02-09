@@ -1,8 +1,8 @@
 'use strict';
 
 export default {
-  PhiroMotorMoveForwardBrick: {
-    message0: '%{BKY_PHIRO_MOTORMOVEFORWARD}',
+  PhiroMotorMoveBackwardBrick: {
+    message0: '%{BKY_PHIRO_MOTORMOVEBACKWARD}',
     args0: [
       {
         type: 'field_input',
@@ -34,8 +34,8 @@ export default {
       }
     ]
   },
-  PhiroMotorMoveBackwardBrick: {
-    message0: '%{BKY_PHIRO_MOTORMOVEBACKWARD}',
+  PhiroMotorMoveForwardBrick: {
+    message0: '%{BKY_PHIRO_MOTORMOVEFORWARD}',
     args0: [
       {
         type: 'field_input',

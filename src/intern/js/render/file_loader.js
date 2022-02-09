@@ -46,7 +46,7 @@ export class FileLoader {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       updateView('onDone');
       MessageBox.show('<b>' + this.url + ':</b><br /> ' + error);
       throw error;

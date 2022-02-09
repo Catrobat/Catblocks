@@ -41,6 +41,7 @@ const locales = {
   be_BY: 'Belarusian (Belarus)',
   bg: 'Bulgarian',
   bg_BG: 'Bulgarian (Bulgaria)',
+  bn_BD: 'Bengali',
   bs_BA: 'Bosnian (Bosnia and Herzegovina)',
   ca: 'Catalan',
   ca_ES: 'Catalan (Spain)',
@@ -100,6 +101,7 @@ const locales = {
   eu: 'Basque',
   eu_ES: 'Basque (Spain)',
   fa: 'Farsi',
+  fa_AF: 'Persian',
   fa_IR: 'Farsi (Iran)',
   fi: 'Finnish',
   fi_FI: 'Finnish (Finland)',
@@ -116,6 +118,7 @@ const locales = {
   gl_ES: 'Galician (Spain)',
   gu: 'Gujarati',
   gu_IN: 'Gujarati (India)',
+  ha_HG: 'Hausa',
   he: 'Hebrew',
   he_IL: 'Hebrew (Israel)',
   hi: 'Hindi',
@@ -159,6 +162,7 @@ const locales = {
   mi_NZ: 'Maori (New Zealand)',
   mk: 'FYRO Macedonian',
   mk_MK: 'FYRO Macedonian (Former Yugoslav Republic of Macedonia)',
+  ml_IN: 'Malayalam',
   mn: 'Mongolian',
   mn_MN: 'Mongolian (Mongolia)',
   mr: 'Marathi',
@@ -174,6 +178,7 @@ const locales = {
   nl_BE: 'Dutch (Belgium)',
   nl_NL: 'Dutch (Netherlands)',
   nn_NO: 'Norwegian (Nynorsk) (Norway)',
+  no_NO: 'Norwegian',
   ns: 'Northern Sotho',
   ns_ZA: 'Northern Sotho (South Africa)',
   pa: 'Punjabi',
@@ -181,6 +186,7 @@ const locales = {
   pl: 'Polish',
   pl_PL: 'Polish (Poland)',
   ps: 'Pashto',
+  ps_AF: 'Pushto',
   ps_AR: 'Pashto (Afghanistan)',
   pt: 'Portuguese',
   pt_BR: 'Portuguese (Brazil)',
@@ -250,13 +256,7 @@ const locales = {
   zh_SG: 'Chinese (Singapore)',
   zh_TW: 'Chinese (T)',
   zu: 'Zulu',
-  zu_ZA: 'Zulu (South Africa)',
-  bn_BD: 'Bengali',
-  fa_AF: 'Persian',
-  ha_HG: 'Hausa',
-  ml_IN: 'Malayalam',
-  no_NO: 'Norwegian',
-  ps_AF: 'Pushto'
+  zu_ZA: 'Zulu (South Africa)'
 };
 
 module.exports = { locales };

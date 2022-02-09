@@ -403,7 +403,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
     parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
   } else if (
     brickListType === brickListTypes.loopOrIfBrickList ||
-    brickListType == brickListTypes.userBrickDefinition
+    brickListType === brickListTypes.userBrickDefinition
   ) {
     parentBrick.inputList[1].connection.connect(childBrick.previousConnection);
   }
