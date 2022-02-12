@@ -808,6 +808,9 @@ function checkUsage(list, location) {
               const attribute = formulaList[j].getAttribute('category');
               location.formValues.set(attribute, Formula.stringify(formula));
             }
+          } else if (children[j].nodeName === 'userList') {
+            const name = children[j].children[2].innerHTML;
+            location.formValues.set('LIST_SELECTED', name);
           }
         }
       }

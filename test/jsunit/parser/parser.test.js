@@ -3424,5 +3424,116 @@ describe('Catroid to Catblocks parser tests', () => {
       expect(mapKeys).toEqual(categoryName);
       expect(mapValues).toEqual(expectedOutput);
     });
+
+    test('Values in endBrick', async () => {
+      const blockName = 'ParameterizedBrick';
+      const blockNameEnd = 'ParameterizedEndBrick';
+      const categoryName = ['DROPDOWN', 'ASSERT_LOOP_ACTUAL', 'LIST_SELECTED'];
+      const first = 'List (1)';
+      const second = 'List (2)';
+      const third = '0';
+      const fourth = 'List (3)';
+      const expectedOutput = ['2 lists selected', ' 0 ', 'List (3)'];
+
+      const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <program>
+        <header>
+          <programName>Test Program</programName>
+          <catrobatLanguageVersion>0.99997</catrobatLanguageVersion>
+        </header>
+        <scenes>
+          <scene>
+            <name>TestScene</name>
+            <objectList>
+              <object type="Sprite" name="TestObject">
+                <lookList>
+                  <look fileName="Space-Panda.png" name="Space-Panda" />
+                </lookList>
+                <soundList />
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                      <brick type="${blockName}">
+                        <brickId>3cba021e-08ec-4e68-9ccf-ac6eb3fff087</brickId>
+                        <commentedOut>false</commentedOut>
+                        <userLists>
+                          <userList>
+                            <deviceListKey>d66ff5fb-be15-4e85-8b05-24bcaeeca120</deviceListKey>
+                            <initialIndex>-1</initialIndex>
+                            <name>${first}</name>
+                          </userList>
+                          <userList>
+                            <deviceListKey>4c9cc60b-61e3-4496-b4f4-d21a1511950f</deviceListKey>
+                            <initialIndex>-1</initialIndex>
+                            <name>${second}</name>
+                          </userList>
+                        </userLists>
+                        <endBrick type="${blockNameEnd}">
+                          <brickId>5872c621-bb05-4bfb-9150-77e7021acc88</brickId>
+                          <commentedOut>false</commentedOut>
+                          <formulaList>
+                            <formula category="${categoryName[1]}">
+                              <additionalChildren/>
+                              <type>NUMBER</type>
+                              <value>${third}</value>
+                            </formula>
+                          </formulaList>
+                          <userList>
+                            <deviceListKey>65322915-269c-4455-995c-17dd5c62c8b7</deviceListKey>
+                            <initialIndex>-1</initialIndex>
+                            <name>${fourth}</name>
+                          </userList>
+                        </endBrick>
+                        <loopBricks/>
+                      </brick>
+                    </brickList>
+                  </script>
+                </scriptList>
+              </object>
+            </objectList>
+          </scene>
+        </scenes>
+      </program>`;
+
+      const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
+        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+
+        const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
+
+        const mapKeys = [];
+        const mapValues = [];
+        formulaMap.forEach(function (value, key) {
+          mapKeys.push(key);
+          mapValues.push(value);
+        });
+
+        return [programJSON, mapKeys, mapValues];
+      }, xmlString);
+
+      expect(programJSON).toEqual(
+        expect.objectContaining({
+          scenes: expect.arrayContaining([
+            expect.objectContaining({
+              objectList: expect.arrayContaining([
+                expect.objectContaining({
+                  scriptList: expect.arrayContaining([
+                    expect.objectContaining({
+                      brickList: expect.arrayContaining([
+                        expect.objectContaining({
+                          name: blockName
+                        })
+                      ])
+                    })
+                  ])
+                })
+              ])
+            })
+          ])
+        })
+      );
+
+      expect(mapKeys).toEqual(categoryName);
+      expect(mapValues).toEqual(expectedOutput);
+    });
   });
 });
