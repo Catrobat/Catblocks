@@ -113,7 +113,7 @@ export default {
       },
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'LIST_SELECTED',
         text: 'unset'
       },
       {
@@ -123,7 +123,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'LIST_SELECTED_INFO'
       }
     ]
   }
