@@ -316,6 +316,11 @@ def checkStringsToJson():
         result = [x for x in check_list if x not in ignoreStrings]
         return result
 
+def setCreateLanguageUpdateFlag():
+    print('Writing language update flag!')
+    with open('/langupdate.txt', 'w') as f:
+        f.write('Langues updated');
+
 # Requires the following Args: 
 #   [1] Path to the parent folder of Catblocks & Catroid project
 #   [2] Slack Webhook URL
@@ -350,6 +355,7 @@ def main():
         if language_updates is not None and len(language_updates) > 0:
             fetchLanguages()
             slack_msg += '\n\n' + generateLanguageMessage(language_updates)
+            setCreateLanguageUpdateFlag()
             send_msg = True
 
         if send_msg:

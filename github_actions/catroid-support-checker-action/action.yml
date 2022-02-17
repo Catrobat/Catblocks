@@ -4,8 +4,12 @@ inputs:
     slack_webhook:
       description: 'Webhook to post on in #catblocks Slack channel'
       required: true
+    github-token:
+      description: 'Github token for push'
+      required: true
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args: 
         - ${{ inputs.slack_webhook }}
+        - ${{ inputs.github-token }}
