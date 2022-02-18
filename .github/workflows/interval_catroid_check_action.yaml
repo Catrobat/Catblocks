@@ -17,3 +17,4 @@ jobs:
               uses: ./github_actions/catroid-support-checker-action/
               with:
                 slack_webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+                github-token: ${{ secrets.PAT }} # PAT has to be defined in Repository > Settings > Secrets
