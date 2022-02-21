@@ -45,9 +45,9 @@ const shapeBricksExtention = () => {
     ) {
       this.hat = 'cap';
     } else {
-      this.setPreviousStatement(true, null);
+      this.setPreviousStatement(true, 'CatBlocksBrick');
     }
-    this.setNextStatement(true, null);
+    this.setNextStatement(true, 'CatBlocksBrick');
   };
 };
 

@@ -22,7 +22,8 @@ import {
   lazyLoadImage,
   showFormulaPopup,
   generateFormulaModal,
-  generateModalMagnifyingGlass
+  generateModalMagnifyingGlass,
+  buildUserDefinedBrick
 } from './utils';
 
 const all_blocks = new Map();
@@ -83,18 +84,22 @@ export class Share {
    */
   insertRightMediaURI() {
     if (this.config.media) {
-      for (const brick in this.blockly.Bricks) {
-        if (Object.prototype.hasOwnProperty.call(this.blockly.Bricks, brick)) {
-          const obj = this.blockly.Bricks[brick];
+      for (const brick in Blockly.Bricks) {
+        this.fixBrickMediaURI(brick);
+      }
+    }
+  }
 
-          for (const prop in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
-              const args = obj[prop];
-              for (const arg of args) {
-                if (arg.src) {
-                  arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
-                }
-              }
+  fixBrickMediaURI(brickName) {
+    if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brickName)) {
+      const obj = Blockly.Bricks[brickName];
+
+      for (const prop in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
+          const args = obj[prop];
+          for (const arg of args) {
+            if (arg.src) {
+              arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
             }
           }
         }
@@ -401,17 +406,11 @@ export class Share {
       id: objectID
     });
 
-    if (object.userBricks) {
-      for (let i = 0; i < object.userBricks.length; ++i) {
-        const jsonDef = object.userBricks[i].getJsonDefinition();
-        const brickName = object.userBricks[i].id;
-        Blockly.Bricks[brickName] = jsonDef;
-        Blockly.Blocks[brickName] = {
-          init: function () {
-            this.jsonInit(Blockly.Bricks[brickName]);
-          }
-        };
-      }
+    const createdBricks = buildUserDefinedBrick(object);
+    if (createdBricks) {
+      createdBricks.forEach(brickName => {
+        this.fixBrickMediaURI(brickName);
+      });
     }
 
     const objHeadingID = `${objectID}-header`;

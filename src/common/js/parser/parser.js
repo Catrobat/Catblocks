@@ -60,14 +60,14 @@ class UserBrickDefinition {
     this.msg = '';
   }
 
-  getJsonDefinition() {
+  getArgs(fieldNameEqualsContent) {
     const args = [];
     for (let i = 0; i < this.inputTypes.length; ++i) {
       if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
         args.push({
           type: 'field_input',
           name: this.inputTypes[i].varName,
-          text: 'unset'
+          text: fieldNameEqualsContent ? this.inputTypes[i].varName : 'unset'
         });
         args.push({
           type: 'field_image',
@@ -80,7 +80,11 @@ class UserBrickDefinition {
         });
       }
     }
+    return args;
+  }
 
+  getJsonDefinition() {
+    const args = this.getArgs(false);
     return {
       message0: this.msg,
       args0: args,
@@ -88,6 +92,18 @@ class UserBrickDefinition {
       category: 'user',
       colour: '#3556a2',
       extensions: ['shapeBrick']
+    };
+  }
+
+  getDefinitionJsonDefinition() {
+    const args = this.getArgs(true);
+    return {
+      message0: this.msg,
+      args0: args,
+      category: 'user',
+      colour: '#3556a2',
+      previousStatement: 'userdefinedtemplate',
+      nextStatement: 'userdefinedtemplate'
     };
   }
 }
@@ -200,7 +216,7 @@ function parseObjects(object) {
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     const userDefinedBrickList = object.getElementsByTagName('userDefinedBrickList');
-    if (userDefinedBrickList && userDefinedBrickList[0]) {
+    if (userDefinedBrickList && userDefinedBrickList[0] && userDefinedBrickList[0].children) {
       const userBrickDefinitions = parseUserBrickDefinitions(userDefinedBrickList[0].children);
       currentObject.userBricks = userBrickDefinitions;
     }
@@ -265,15 +281,20 @@ function parseUserBrickDefinitions(userBricks) {
     let msg = '';
     const inputs = [];
     const brickId = brickDefinition.getElementsByTagName('userDefinedBrickID')[0].innerHTML;
-    const brickDataDefs = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0].children;
-    if (!brickDataDefs) {
+    if (!brickId) {
       continue;
     }
 
+    const brickDataDefNode = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0];
+    if (!brickDataDefNode) {
+      continue;
+    }
+    const brickDataDefs = flatReference(brickDataDefNode);
+
     let inputCounter = 1;
     // <userDefinedBrickDataList>
-    for (let j = 0; j < brickDataDefs.length; ++j) {
-      const dataDef = brickDataDefs[j];
+    for (let j = 0; j < brickDataDefs.children.length; ++j) {
+      const dataDef = brickDataDefs.children[j];
       if (dataDef.nodeName == 'userDefinedBrickLabel') {
         msg += dataDef.getElementsByTagName('label')[0].innerHTML + ' ';
       } else if (dataDef.nodeName == 'userDefinedBrickInput') {
@@ -298,6 +319,7 @@ function parseUserBrickDefinitions(userBricks) {
       }
     }
     msg = msg.trimRight();
+
     const userBrick = new UserBrickDefinition(brickId);
     userDefinedBrickDefinitions.push(userBrick);
     userBrick.msg = msg;
@@ -814,6 +836,12 @@ function checkUsage(list, location) {
           }
         }
       }
+      break;
+    }
+
+    case 'screenRefresh': {
+      const key = getNodeValueOrDefault(list.childNodes[0]).toUpperCase();
+      location.formValues.set('UDB_SCREEN_REFRESH', getMsgValueOrDefault(`UDB_SCREEN_REFRESH_${key}`, key));
       break;
     }
 
