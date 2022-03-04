@@ -16,6 +16,7 @@
   "en_CA": { "DROPDOWN_NAME": "English (Canada)" },
   "en_GB": { "DROPDOWN_NAME": "English (United Kingdom)" },
   "es": { "DROPDOWN_NAME": "Spanish" },
+  "eu_ES": { "DROPDOWN_NAME": "Basque (Spain)" },
   "fa": { "DROPDOWN_NAME": "Farsi" },
   "fa_IR": { "DROPDOWN_NAME": "Farsi (Iran)" },
   "fi": { "DROPDOWN_NAME": "Finnish" },
