@@ -831,7 +831,8 @@ function checkUsage(list, location) {
               location.formValues.set(attribute, Formula.stringify(formula));
             }
           } else if (children[j].nodeName === 'userList') {
-            const name = children[j].children[2].innerHTML;
+            const node = flatReference(children[j]);
+            const name = node.children[2].innerHTML;
             location.formValues.set('LIST_SELECTED', name);
           }
         }
