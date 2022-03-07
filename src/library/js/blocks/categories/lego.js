@@ -53,7 +53,7 @@ export default {
       },
       {
         type: 'field_input',
-        name: 'LEGO_NXT_SPEED',
+        name: 'LEGO_EV3_SPEED',
         text: 'unset'
       },
       {
@@ -63,7 +63,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'LEGO_NXT_SPEED_INFO'
+        name: 'LEGO_EV3_SPEED_INFO'
       }
     ]
   },
