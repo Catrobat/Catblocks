@@ -280,8 +280,8 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'yourself'
+        name: 'SPINNER',
+        text: '%{BKY_CONTROL_OFYOURSELF}'
       },
       {
         type: 'field_image',

@@ -624,7 +624,6 @@ function checkUsage(list, location) {
     case 'spriteToBounceOffName':
     case 'receivedMessage':
     case 'sceneToStart':
-    case 'objectToClone':
     case 'soundName':
     case 'motor':
     case 'tone':
@@ -637,6 +636,15 @@ function checkUsage(list, location) {
     case 'pointedObject': {
       const brickName = list.getAttribute('name');
       location.formValues.set('DROPDOWN', brickName);
+      break;
+    }
+
+    case 'objectToClone': {
+      if (list.children[0] != null && list.children[0].children[0]) {
+        location.formValues.set('SPINNER', list.children[0].children[0].attributes.name.value);
+      } else {
+        location.formValues.set('SPINNER', getNodeValueOrDefault(list.childNodes[0]));
+      }
       break;
     }
 
