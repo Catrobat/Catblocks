@@ -665,7 +665,16 @@ function checkUsage(list, location) {
     }
 
     case 'eventValue': {
-      location.formValues.set('eventValue', getNodeValueOrDefault(list.childNodes[0]));
+      const value = getNodeValueOrDefault(list.childNodes[0]);
+      if (list.parentElement.getAttribute('type') === 'RaspiInterruptScript') {
+        if (value === 'pressed') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_PRESSED'));
+        } else if (value === 'released') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_RELEASED'));
+        }
+      } else {
+        location.formValues.set('eventValue', getNodeValueOrDefault(value));
+      }
       break;
     }
     case 'pin': {
