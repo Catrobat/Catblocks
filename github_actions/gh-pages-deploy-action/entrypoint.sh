@@ -12,7 +12,7 @@ cd /github/workspace/
 # build render
 yarn install
 yarn clean
-yarn render:build
+yarn render:ghpages
 RETVALUE="$?"
 
 mv ./dist ./../dist

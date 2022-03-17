@@ -196,24 +196,11 @@ export async function loadArchive(containerfile) {
  * @param {string} language
  * @param {boolean} isRtl
  */
-export async function initShareAndRenderPrograms(programPath, language, isRtl) {
+export async function initShareAndRenderPrograms(programPath, config) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
-  const i18nLocation = window.location.href + 'i18n/';
-  await CatBlocks.init({
-    container: catblocksWorkspaceContainer,
-    renderSize: 0.75,
-    shareRoot: '',
-    media: 'media/',
-    language: language,
-    rtl: isRtl,
-    i18n: i18nLocation,
-    noImageFound: 'No_Image_Available.jpg',
-    renderScripts: true,
-    renderLooks: true,
-    renderSounds: true,
-    readOnly: true
-  });
+  config.container = catblocksWorkspaceContainer;
+  await CatBlocks.init(config);
 
   try {
     await renderAllPrograms(programContainer, programPath);
