@@ -11,6 +11,7 @@
     "playground:build": "cross-env-shell NODE_ENV=production TYPE=playground \"yarn initiate && webpack\"",
     "render:dev": "cross-env-shell NODE_ENV=development TYPE=render \"yarn initiate && webpack-dev-server\"",
     "render:build": "cross-env-shell NODE_ENV=production TYPE=render \"yarn initiate && webpack\"",
+    "render:ghpages": "cross-env-shell NODE_ENV=production TYPE=ghpages \"yarn initiate && webpack\"",
     "test": "yarn test:build && jest -c ./test/jest_config.js",
     "test:build": "cross-env-shell NODE_ENV=production TYPE=testing \"yarn initiate && webpack\"",
     "test:dev": "cross-env-shell NODE_ENV=development TYPE=testing \"yarn initiate && webpack-dev-server\"",
