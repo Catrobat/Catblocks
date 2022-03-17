@@ -31,8 +31,9 @@ COMMITMSG="'Deploy: Merged Pull Request #${PRNUMBER}'"
 git config user.email "action@github.com"
 git config user.name "GitHub Action"
 git add ./develop
-git commit -m $COMMITMSG
+git commit -m "$COMMITMSG"
 
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
+RETVALUE=$(($? + $RETVALUE))
 
 exit $RETVALUE
