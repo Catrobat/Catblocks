@@ -26,7 +26,7 @@ git checkout gh-pages
 rm ./develop -rf ||:
 mv ./../dist ./develop
 
-COMMITMSG="'Deploy: Merged Pull Request #${PRNUMBER}'"
+COMMITMSG="Deploy: Merged Pull Request #${PRNUMBER}"
 
 git config user.email "action@github.com"
 git config user.name "GitHub Action"
