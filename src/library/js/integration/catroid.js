@@ -12,7 +12,8 @@ import {
   generateFormulaModal,
   jsonDomToWorkspace,
   parseOptions,
-  createLoadingAnimation
+  createLoadingAnimation,
+  buildUserDefinedBrick
 } from './utils';
 
 export class Catroid {
@@ -40,7 +41,11 @@ export class Catroid {
 
     const workspaceItem = {
       displayText: Blockly.CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
-      preconditionFn: function () {
+      preconditionFn: function (scope) {
+        const block = scope.block;
+        if (block && block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) {
+          return 'hidden';
+        }
         return 'enabled';
       },
       callback: function (scope) {
@@ -85,6 +90,22 @@ export class Catroid {
         // TODO: show error
       }
     };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').preconditionFn = function (scope) {
+      const block = scope.block;
+
+      if ((block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) || block.type === 'UserDefinedScript') {
+        return 'hidden';
+      }
+
+      if (!block.isInFlyout && block.isDeletable() && block.isMovable()) {
+        if (block.isDuplicatable()) {
+          return 'enabled';
+        }
+        return 'disabled';
+      }
+      return 'hidden';
+    };
   }
 
   createModifiableWorkspace() {
@@ -120,17 +141,11 @@ export class Catroid {
       throw Error('Workspace not initialized. Did you call init?');
     }
 
-    if (object.userBricks) {
-      for (let i = 0; i < object.userBricks.length; ++i) {
-        const jsonDef = object.userBricks[i].getJsonDefinition();
-        const brickName = object.userBricks[i].id;
-        Blockly.Bricks[brickName] = jsonDef;
-        Blockly.Blocks[brickName] = {
-          init: function () {
-            this.jsonInit(Blockly.Bricks[brickName]);
-          }
-        };
-      }
+    const createdBricks = buildUserDefinedBrick(object);
+    if (createdBricks) {
+      createdBricks.forEach(brickName => {
+        this.fixBrickMediaURI(brickName);
+      });
     }
 
     let failed = 0;
@@ -147,9 +162,12 @@ export class Catroid {
 
     this.workspace.cleanUp();
     const topBricks = this.workspace.getTopBlocks();
-    for (let i = 0; i < topBricks.length; ++i) {
-      const brick = topBricks[i];
+    for (let i = 0; i < object.scriptList.length; ++i) {
       const script = object.scriptList[i];
+      const brick = topBricks.find(x => x.id == script.id);
+      if (!brick) {
+        continue;
+      }
 
       brick.setMovable(true);
 
@@ -323,17 +341,21 @@ export class Catroid {
   insertRightMediaURI() {
     if (this.config.media) {
       for (const brick in Blockly.Bricks) {
-        if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brick)) {
-          const obj = Blockly.Bricks[brick];
+        this.fixBrickMediaURI(brick);
+      }
+    }
+  }
 
-          for (const prop in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
-              const args = obj[prop];
-              for (const arg of args) {
-                if (arg.src) {
-                  arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
-                }
-              }
+  fixBrickMediaURI(brickName) {
+    if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brickName)) {
+      const obj = Blockly.Bricks[brickName];
+
+      for (const prop in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
+          const args = obj[prop];
+          for (const arg of args) {
+            if (arg.src) {
+              arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
             }
           }
         }

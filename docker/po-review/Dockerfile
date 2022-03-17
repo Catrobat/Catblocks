@@ -1,6 +1,6 @@
-FROM node:10-alpine
+FROM node:16-alpine
 
-MAINTAINER Catblocks "https://github.com/Catrobat/Catblocks"
+LABEL org.opencontainers.image.authors="Catblocks https://github.com/Catrobat/Catblocks"
 
 ARG REPO="https://github.com/Catrobat/Catblocks.git"
 ARG SHAREROOT="https://share.catrob.at/app/download/"

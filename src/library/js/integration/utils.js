@@ -288,6 +288,22 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
 export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace) => {
   for (let i = 0; i < brickList.length; i++) {
     const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
+
+    if (parentBrick === null && brickList[i].userBrickId !== undefined) {
+      // When there is no parentBrick but the userBrickId is set
+      // ChildBrick is a UserDefinedScript and we need to add the UserDefinedBrick definition
+      const definitionBrickName = brickList[i].userBrickId + '_UDB_CATBLOCKS_DEF';
+      const definitionBrick = Blockly.Bricks[definitionBrickName];
+      const definitionBrickToRender = {
+        name: definitionBrickName,
+        loopOrIfBrickList: [],
+        elseBrickList: [],
+        formValues: definitionBrick.args0,
+        colorVariation: 0
+      };
+      renderBrick(childBrick, definitionBrickToRender, brickListTypes.userBrickDefinition, workspace);
+    }
+
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
       if (brickList[i].userBrickId !== undefined) {
         // if there are bricks in the brickList and the userBrickId is set, it is a UserDefinedScript
@@ -297,27 +313,6 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
           brickListTypes.userBrickList,
           workspace
         );
-
-        // create and render the definition brick
-        const brick = Blockly.Bricks[brickList[i].userBrickId];
-        const definitionFormValues = new Map();
-        // i+=2 since after every form value, the _INFO icon is defined
-        for (let i = 0; i < brick.args0.length; i += 2) {
-          definitionFormValues.set(brick.args0[i].name, brick.args0[i].name);
-        }
-
-        for (let i = 0; i < brick.args2.length; i += 2) {
-          definitionFormValues.set(brick.args2[i].name, brick.args2[i].name);
-        }
-
-        const definitionBrick = {
-          name: brickList[i].userBrickId,
-          loopOrIfBrickList: [],
-          elseBrickList: [],
-          formValues: definitionFormValues,
-          colorVariation: 0
-        };
-        renderBrick(childBrick, definitionBrick, brickListTypes.userBrickDefinition, workspace);
       } else {
         renderAndConnectBlocksInList(childBrick, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
       }
@@ -389,6 +384,10 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
 
   childBrick.initSvg();
 
+  if (childBrick.type === 'UserDefinedScript') {
+    childBrick.setDeletable(false);
+  }
+
   if (childBrick.pathObject && childBrick.pathObject.svgRoot) {
     if (jsonBrick.name == 'EmptyScript') {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
@@ -397,14 +396,18 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
     }
   }
 
-  if (brickListType === brickListTypes.brickList) {
+  if (brickListType === brickListTypes.brickList || brickListType === brickListTypes.userBrickList) {
     parentBrick.nextConnection.connect(childBrick.previousConnection);
-  } else if (brickListType === brickListTypes.elseBrickList || brickListType === brickListTypes.userBrickList) {
+  } else if (brickListType === brickListTypes.elseBrickList) {
     parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
   } else if (
     brickListType === brickListTypes.loopOrIfBrickList ||
     brickListType == brickListTypes.userBrickDefinition
   ) {
+    if (brickListType == brickListTypes.userBrickDefinition) {
+      childBrick.setMovable(false);
+      childBrick.setDeletable(false);
+    }
     parentBrick.inputList[1].connection.connect(childBrick.previousConnection);
   }
   return childBrick;
@@ -445,6 +448,42 @@ export const lazyLoadImage = event => {
   $contentContainer.find('img').each(function () {
     $(this).attr('src', $(this).data('src'));
   });
+};
+
+export const buildUserDefinedBrick = object => {
+  const createdBricks = [];
+
+  if (!object.userBricks) {
+    return createdBricks;
+  }
+
+  for (let i = 0; i < object.userBricks.length; ++i) {
+    const jsonDef = object.userBricks[i].getJsonDefinition();
+    const brickName = object.userBricks[i].id;
+    Blockly.Bricks[brickName] = jsonDef;
+    Blockly.Blocks[brickName] = {
+      init: function () {
+        this.jsonInit(Blockly.Bricks[brickName]);
+        this.setNextStatement(true, 'CatBlocksBrick');
+        this.setPreviousStatement(true, 'CatBlocksBrick');
+      }
+    };
+    createdBricks.push(brickName);
+
+    const definitionJsonDef = object.userBricks[i].getDefinitionJsonDefinition();
+    const definitionBrickName = object.userBricks[i].id + '_UDB_CATBLOCKS_DEF';
+    Blockly.Bricks[definitionBrickName] = definitionJsonDef;
+    Blockly.Blocks[definitionBrickName] = {
+      init: function () {
+        this.jsonInit(Blockly.Bricks[definitionBrickName]);
+        this.setPreviousStatement(true, 'UserDefinedReadOnly');
+        this.setNextStatement(false, null);
+      }
+    };
+    createdBricks.push(definitionBrickName);
+  }
+
+  return createdBricks;
 };
 
 export const generateFormulaModal = () => {

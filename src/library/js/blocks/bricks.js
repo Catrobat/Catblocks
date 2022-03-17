@@ -40,14 +40,15 @@ const shapeBricksExtention = () => {
         'WhenBackgroundChangesScript',
         'WhenRaspiPinChangedBrick',
         'UserDefinedScript',
-        'EmptyScript'
+        'EmptyScript',
+        'RaspiInterruptScript'
       ].includes(blockName)
     ) {
       this.hat = 'cap';
     } else {
-      this.setPreviousStatement(true, null);
+      this.setPreviousStatement(true, 'CatBlocksBrick');
     }
-    this.setNextStatement(true, null);
+    this.setNextStatement(true, 'CatBlocksBrick');
   };
 };
 

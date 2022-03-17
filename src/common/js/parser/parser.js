@@ -60,14 +60,14 @@ class UserBrickDefinition {
     this.msg = '';
   }
 
-  getJsonDefinition() {
+  getArgs(fieldNameEqualsContent) {
     const args = [];
     for (let i = 0; i < this.inputTypes.length; ++i) {
       if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
         args.push({
           type: 'field_input',
           name: this.inputTypes[i].varName,
-          text: 'unset'
+          text: fieldNameEqualsContent ? this.inputTypes[i].varName : 'unset'
         });
         args.push({
           type: 'field_image',
@@ -80,7 +80,11 @@ class UserBrickDefinition {
         });
       }
     }
+    return args;
+  }
 
+  getJsonDefinition() {
+    const args = this.getArgs(false);
     return {
       message0: this.msg,
       args0: args,
@@ -88,6 +92,18 @@ class UserBrickDefinition {
       category: 'user',
       colour: '#3556a2',
       extensions: ['shapeBrick']
+    };
+  }
+
+  getDefinitionJsonDefinition() {
+    const args = this.getArgs(true);
+    return {
+      message0: this.msg,
+      args0: args,
+      category: 'user',
+      colour: '#3556a2',
+      previousStatement: 'userdefinedtemplate',
+      nextStatement: 'userdefinedtemplate'
     };
   }
 }
@@ -200,7 +216,7 @@ function parseObjects(object) {
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     const userDefinedBrickList = object.getElementsByTagName('userDefinedBrickList');
-    if (userDefinedBrickList && userDefinedBrickList[0]) {
+    if (userDefinedBrickList && userDefinedBrickList[0] && userDefinedBrickList[0].children) {
       const userBrickDefinitions = parseUserBrickDefinitions(userDefinedBrickList[0].children);
       currentObject.userBricks = userBrickDefinitions;
     }
@@ -265,15 +281,20 @@ function parseUserBrickDefinitions(userBricks) {
     let msg = '';
     const inputs = [];
     const brickId = brickDefinition.getElementsByTagName('userDefinedBrickID')[0].innerHTML;
-    const brickDataDefs = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0].children;
-    if (!brickDataDefs) {
+    if (!brickId) {
       continue;
     }
 
+    const brickDataDefNode = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0];
+    if (!brickDataDefNode) {
+      continue;
+    }
+    const brickDataDefs = flatReference(brickDataDefNode);
+
     let inputCounter = 1;
     // <userDefinedBrickDataList>
-    for (let j = 0; j < brickDataDefs.length; ++j) {
-      const dataDef = brickDataDefs[j];
+    for (let j = 0; j < brickDataDefs.children.length; ++j) {
+      const dataDef = brickDataDefs.children[j];
       if (dataDef.nodeName == 'userDefinedBrickLabel') {
         msg += dataDef.getElementsByTagName('label')[0].innerHTML + ' ';
       } else if (dataDef.nodeName == 'userDefinedBrickInput') {
@@ -298,6 +319,7 @@ function parseUserBrickDefinitions(userBricks) {
       }
     }
     msg = msg.trimRight();
+
     const userBrick = new UserBrickDefinition(brickId);
     userDefinedBrickDefinitions.push(userBrick);
     userBrick.msg = msg;
@@ -547,7 +569,7 @@ function fillLoopControlBrick(
 function parseBrick(brick) {
   catLog(brick);
 
-  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
+  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z0-9]+/)[0];
 
   let brickId = null;
   const idTag = brick.getElementsByTagName('brickId');
@@ -603,11 +625,8 @@ function checkUsage(list, location) {
     case 'receivedMessage':
     case 'sceneToStart':
     case 'objectToClone':
-    case 'soundName':
-    case 'motor':
     case 'tone':
     case 'eye':
-    case 'ledStatus':
     case 'sceneForTransition': {
       location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
@@ -638,6 +657,22 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'ledStatus':
+    case 'soundName':
+    case 'motor': {
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault(list.childNodes[0].nodeValue));
+      break;
+    }
+
+    case 'eventValue': {
+      location.formValues.set('eventValue', getNodeValueOrDefault(list.childNodes[0]));
+      break;
+    }
+    case 'pin': {
+      location.formValues.set('pin', getNodeValueOrDefault(list.childNodes[0]));
+      break;
+    }
+
     case 'spinnerSelectionID': {
       const brickName = list.parentElement.getAttribute('type');
       const key = getNodeValueOrDefault(list.childNodes[0]);
@@ -648,6 +683,11 @@ function checkUsage(list, location) {
       } else {
         location.formValues.set('SPINNER', getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
       }
+      break;
+    }
+
+    case 'sensorSpinnerPosition': {
+      location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
     }
 
@@ -674,7 +714,25 @@ function checkUsage(list, location) {
 
     case 'spinnerSelection': {
       const key = getNodeValueOrDefault(list.childNodes[0]);
-      location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      const brickName = list.parentElement.getAttribute('type');
+      if (brickName === 'GoToBrick') {
+        if (key === '80') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_TOUCH_POSITION', key));
+        } else if (key === '81') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_RANDOM_POSITION', key));
+        } else if (key === '82') {
+          const children = list.parentElement.childNodes;
+          for (let j = 0; j < children.length; j++) {
+            if (children[j].nodeName === 'destinationSprite') {
+              const name = children[j].getAttribute('name');
+              location.formValues.set('SPINNER', name);
+              break;
+            }
+          }
+        }
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      }
       break;
     }
 
@@ -772,7 +830,10 @@ function checkUsage(list, location) {
       for (let j = 0; j < userDataList.length; j++) {
         const userDataElement = flatReference(userDataList[j]);
         const userDataCategory = userDataList[j].getAttribute('category');
-        const userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        let userDataName = null;
+        if (userDataElement.getElementsByTagName('name').length != 0) {
+          userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        }
         location.formValues.set(userDataCategory, userDataName);
       }
       break;
@@ -809,11 +870,18 @@ function checkUsage(list, location) {
               location.formValues.set(attribute, Formula.stringify(formula));
             }
           } else if (children[j].nodeName === 'userList') {
-            const name = children[j].children[2].innerHTML;
+            const node = flatReference(children[j]);
+            const name = node.children[2].innerHTML;
             location.formValues.set('LIST_SELECTED', name);
           }
         }
       }
+      break;
+    }
+
+    case 'screenRefresh': {
+      const key = getNodeValueOrDefault(list.childNodes[0]).toUpperCase();
+      location.formValues.set('UDB_SCREEN_REFRESH', getMsgValueOrDefault(`UDB_SCREEN_REFRESH_${key}`, key));
       break;
     }
 
