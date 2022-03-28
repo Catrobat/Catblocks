@@ -46,7 +46,9 @@ ignoreStrings = ['brick_option_place_visually', 'brick_and_wait', 'brick_next_ba
                  'brick_say_bubble_default_value', 'brick_broadcast_default_value', 'brick_web_request_default_value',
                  'web_request_warning_title', 'web_request_warning_message', 'web_request_trust_domain_warning_title',
                  'web_request_trust_domain_warning_message', 'trusted_domains_edit_hint',
-                 'look_request_http_error_message', 'look_request_type_error_message', 'second_plural']
+                 'look_request_http_error_message', 'look_request_type_error_message', 'second_plural', 'brick_store_csv_into_userlist_data',
+                 'brick_drone_set_config', 'brick_drone_set_altitude', 'brick_drone_set_vertical_speed','brick_drone_set_rotation_speed', 
+                 'brick_drone_set_tilt_limit']
 
 # Loads the bricks supported by Catblocks from the JSON data.
 def loadCatblocksBricks():

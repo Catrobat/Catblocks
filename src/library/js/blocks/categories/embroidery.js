@@ -87,7 +87,7 @@ export default {
       {
         type: 'field_input',
         name: 'WRITE_FILENAME',
-        text: 'unset'
+        text: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE_DEFAULT}'
       },
       {
         type: 'field_image',
