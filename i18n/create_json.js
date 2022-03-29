@@ -2,7 +2,7 @@
 /* eslint-env node */
 
 /**
- * generate crowdin json files based on build mapping and string 
+ * generate crowdin json files based on build mapping and string
  * templates from catroid
  */
 
@@ -60,7 +60,10 @@ const parseStringFile = stream => {
         });
         break;
       default:
-        console.warn(`Skip not supported xml tag from ${STRINGS_FILE}`);
+        if (Object.keys(data[xmltag]).length === 1 && Object.keys(data[xmltag]).includes('xmlns:tools')) {
+          break;
+        }
+        console.warn(`Skip not supported xml tag from ${STRINGS_FILE}: ${xmltag}`);
         break;
     }
   });

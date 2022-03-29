@@ -569,7 +569,7 @@ function fillLoopControlBrick(
 function parseBrick(brick) {
   catLog(brick);
 
-  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
+  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z0-9]+/)[0];
 
   let brickId = null;
   const idTag = brick.getElementsByTagName('brickId');
@@ -624,11 +624,8 @@ function checkUsage(list, location) {
     case 'spriteToBounceOffName':
     case 'receivedMessage':
     case 'sceneToStart':
-    case 'soundName':
-    case 'motor':
     case 'tone':
     case 'eye':
-    case 'ledStatus':
     case 'sceneForTransition': {
       location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
@@ -668,6 +665,31 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'ledStatus':
+    case 'soundName':
+    case 'motor': {
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault(list.childNodes[0].nodeValue));
+      break;
+    }
+
+    case 'eventValue': {
+      const value = getNodeValueOrDefault(list.childNodes[0]);
+      if (list.parentElement.getAttribute('type') === 'RaspiInterruptScript') {
+        if (value === 'pressed') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_PRESSED'));
+        } else if (value === 'released') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_RELEASED'));
+        }
+      } else {
+        location.formValues.set('eventValue', getNodeValueOrDefault(value));
+      }
+      break;
+    }
+    case 'pin': {
+      location.formValues.set('pin', getNodeValueOrDefault(list.childNodes[0]));
+      break;
+    }
+
     case 'spinnerSelectionID': {
       const brickName = list.parentElement.getAttribute('type');
       const key = getNodeValueOrDefault(list.childNodes[0]);
@@ -678,6 +700,11 @@ function checkUsage(list, location) {
       } else {
         location.formValues.set('SPINNER', getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
       }
+      break;
+    }
+
+    case 'sensorSpinnerPosition': {
+      location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
     }
 
@@ -704,7 +731,25 @@ function checkUsage(list, location) {
 
     case 'spinnerSelection': {
       const key = getNodeValueOrDefault(list.childNodes[0]);
-      location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      const brickName = list.parentElement.getAttribute('type');
+      if (brickName === 'GoToBrick') {
+        if (key === '80') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_TOUCH_POSITION', key));
+        } else if (key === '81') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_RANDOM_POSITION', key));
+        } else if (key === '82') {
+          const children = list.parentElement.childNodes;
+          for (let j = 0; j < children.length; j++) {
+            if (children[j].nodeName === 'destinationSprite') {
+              const name = children[j].getAttribute('name');
+              location.formValues.set('SPINNER', name);
+              break;
+            }
+          }
+        }
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      }
       break;
     }
 
@@ -802,7 +847,10 @@ function checkUsage(list, location) {
       for (let j = 0; j < userDataList.length; j++) {
         const userDataElement = flatReference(userDataList[j]);
         const userDataCategory = userDataList[j].getAttribute('category');
-        const userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        let userDataName = null;
+        if (userDataElement.getElementsByTagName('name').length != 0) {
+          userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        }
         location.formValues.set(userDataCategory, userDataName);
       }
       break;

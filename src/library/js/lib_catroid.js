@@ -42,12 +42,13 @@ export class CatBlocks {
    *
    * @memberof CatBlocks
    */
-  static render(codeXML, showScene = null, showObject = null) {
+  static render(codeXML, showScene = null, showObject = null, brickIDToFocus = null) {
     $('#spinnerModal').one('shown.bs.modal', () => {
       try {
         const objectJSON = Parser.convertObjectToJSON(codeXML, showScene, showObject);
         catblocks_instance.share.scene = showScene;
         catblocks_instance.share.object = showObject;
+        catblocks_instance.share.brickIDToFocus = brickIDToFocus;
         catblocks_instance.share.renderObjectScripts(objectJSON);
       } finally {
         $('#spinnerModal').modal('hide');
@@ -74,5 +75,9 @@ export class CatBlocks {
    */
   static addBricks(bricks) {
     catblocks_instance.share.addBricks(bricks);
+  }
+
+  static getBrickAtTopOfScreen() {
+    return catblocks_instance.share.getBrickAtTopOfScreen();
   }
 }

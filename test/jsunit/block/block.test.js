@@ -365,6 +365,7 @@ describe('WebView Block tests', () => {
                       allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
                     }
                     if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined) {
+                      // this is needed for blocks where the default value is a string from the strings_to_json mapping
                       if (jsBlock['args0'][jsBlockIndex]['text'].includes('%{BKY')) {
                         const stringReplace = jsBlock['args0'][jsBlockIndex]['text']
                           .replace('%{BKY_', '')

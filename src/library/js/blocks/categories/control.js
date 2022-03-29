@@ -465,6 +465,7 @@ export default {
     message1: '%1',
     message2: '%{BKY_RASPI_IFLOGICBEGINELSE}',
     message3: '%1',
+    message4: '%{BKY_CONTROL_IFENDIF}',
     args0: [
       {
         type: 'field_input',
@@ -500,6 +501,7 @@ export default {
     message1: '%1',
     message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}',
     message3: '%1',
+    message4: '%{BKY_CONTROL_IFENDIF}',
     args0: [
       {
         type: 'field_input',

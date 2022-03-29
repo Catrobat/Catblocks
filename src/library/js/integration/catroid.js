@@ -177,6 +177,8 @@ export class Catroid {
       }
     }
 
+    this.scrollToFocusBrick();
+
     this.workspace.addChangeListener(event => {
       if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
         const droppedBrick = this.workspace.getBlockById(event.blockId);
@@ -242,6 +244,22 @@ export class Catroid {
         Android.removeBricks(event.ids);
       }
     });
+  }
+
+  scrollToFocusBrick() {
+    if (this.brickIDToFocus) {
+      const focusBrick = this.workspace.getBlockById(this.brickIDToFocus);
+      if (focusBrick) {
+        // this.workspace.centerOnBlock(this.brickIDToFocus);
+        const workspacePosition = focusBrick.getRelativeToSurfaceXY();
+        const pixelPosition = workspacePosition.scale(this.workspace.scale);
+        // const oldPositionX = pixelPosition.x;
+        // const oldPositionY = this.workspace.scrollY;
+        const improvedPositionX = -1 * (pixelPosition.x - 5);
+        const improvedPositionY = -1 * (pixelPosition.y - 5);
+        this.workspace.scroll(improvedPositionX, improvedPositionY);
+      }
+    }
   }
 
   domToSvgModifiable(blockJSON) {
@@ -361,5 +379,25 @@ export class Catroid {
         }
       }
     }
+  }
+
+  getBrickAtTopOfScreen() {
+    const allBricks = this.workspace.getAllBlocks(true);
+    const metrics = this.workspace.getMetrics();
+
+    const topLeftPixelCoords = new Blockly.utils.Coordinate(metrics.viewLeft, metrics.viewTop);
+    const topLeftWsCoords = topLeftPixelCoords.scale(1 / this.workspace.scale);
+
+    for (const brickIdx in allBricks) {
+      const brickPos = allBricks[brickIdx].getRelativeToSurfaceXY();
+      if (brickPos.y >= topLeftWsCoords.y) {
+        if (allBricks[brickIdx].type.endsWith('_UDB_CATBLOCKS_DEF')) {
+          continue;
+        }
+        // top brick
+        return allBricks[brickIdx].id;
+      }
+    }
+    return '';
   }
 }

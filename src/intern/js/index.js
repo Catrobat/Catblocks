@@ -30,7 +30,36 @@ import $ from 'jquery';
     }
     case 'render': {
       const programPath = 'assets/programs/';
-      await initShareAndRenderPrograms(programPath, language, isRtl);
+      await initShareAndRenderPrograms(programPath, {
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: language,
+        rtl: isRtl,
+        i18n: 'i18n/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderScripts: true,
+        renderLooks: true,
+        renderSounds: true,
+        readOnly: true
+      });
+      break;
+    }
+    case 'ghpages': {
+      const programPath = 'assets/programs/';
+      await initShareAndRenderPrograms(programPath, {
+        renderSize: 0.75,
+        shareRoot: 'Catblocks/develop/',
+        media: 'media/',
+        language: language,
+        rtl: isRtl,
+        i18n: 'i18n/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderScripts: true,
+        renderLooks: true,
+        renderSounds: true,
+        readOnly: true
+      });
       break;
     }
     case 'testing': {
