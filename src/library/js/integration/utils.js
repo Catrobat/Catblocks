@@ -5,6 +5,7 @@
 import md5 from 'js-md5';
 import Blockly from 'blockly';
 import $ from 'jquery';
+import { CatblocksMsgs } from '../catblocks_msgs';
 
 /**
  * all list types in json object
@@ -543,7 +544,7 @@ export const createLoadingAnimation = () => {
 
 export const showFormulaPopup = formula => {
   if (formula.length >= Blockly.Tooltip.LIMIT) {
-    $('#formulaPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+    $('#formulaPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
     const html_formula = formula.replaceAll('\n', '<br />');
     $('#formulaPopupContent').html(html_formula);
     $('#formulaPopup').modal('show');
