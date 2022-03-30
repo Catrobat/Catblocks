@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 import Formula from './formula';
 
 class Scene {
@@ -154,7 +154,7 @@ function isSupported(program) {
 function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
-  MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
+  MESSAGES = CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**

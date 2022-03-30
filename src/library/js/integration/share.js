@@ -25,6 +25,7 @@ import {
   generateModalMagnifyingGlass,
   buildUserDefinedBrick
 } from './utils';
+import { CatblocksMsgs } from '../catblocks_msgs';
 
 const all_blocks = new Map();
 const rendered_scenes = new Map();
@@ -74,7 +75,7 @@ export class Share {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
     this.createReadonlyWorkspace();
   }
 
@@ -376,7 +377,7 @@ export class Share {
     const backgroundObjID = generateID(`${programID}-${scene.name}-${scene.objectList[0].name}`);
 
     if (renderEverything) {
-      scene.objectList[0].name = Blockly.CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
+      scene.objectList[0].name = CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
     }
 
     const bgWorkspace = this.renderObjectJSON(
@@ -695,7 +696,7 @@ export class Share {
       body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
       const lookName = generateNewDOM(
@@ -721,7 +722,7 @@ export class Share {
       body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
         magnifyingGlass.name = 'now got clicked!';
       });
 

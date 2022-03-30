@@ -159,7 +159,7 @@ describe('Webview test', () => {
     const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
 
     await page.evaluate(() => {
-      return Test.Playground.setLocale(Test.Blockly.CatblocksMsgs.getCurrentLocale());
+      return Test.Playground.setLocale(Test.CatblocksMsgs.getCurrentLocale());
     });
 
     await page.evaluate(pLanguage => {
@@ -231,7 +231,7 @@ describe('Webview test', () => {
     });
 
     await page.evaluate(pLanguageToTest => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pLanguageToTest);
+      return Test.CatblocksMsgs.setLocale(pLanguageToTest);
     }, languageToTest);
 
     const testBlockValue = await page.evaluate(() => {
@@ -265,7 +265,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${defaultLanguage}.json`)
     );
     await page.evaluate(pDefaultLanguage => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pDefaultLanguage);
+      return Test.CatblocksMsgs.setLocale(pDefaultLanguage);
     }, defaultLanguage);
 
     expect.assertions(1);
@@ -276,7 +276,7 @@ describe('share displays language of UI elements correctly', () => {
     const testLanguage = 'de';
     const testLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${testLanguage}.json`));
     await page.evaluate(pTestLanguage => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -290,7 +290,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -304,7 +304,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -318,7 +318,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.Blockly.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatblocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
