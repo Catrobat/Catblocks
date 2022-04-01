@@ -2063,10 +2063,10 @@ bl@^4.0.3:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
-blockly@^7.20211209.4:
-  version "7.20211209.4"
-  resolved "https://registry.yarnpkg.com/blockly/-/blockly-7.20211209.4.tgz#ad6ebcaec9197e5a83706d6a63ff7fab248787ee"
-  integrity sha512-Oaf8hWCbqa4M15MPHJutQxWditoXBZfWf6o7zPHOFiRayoaWTQBW1BdvVgAD6eJIGQoyWaFtEoyz5aT18AvE8A==
+blockly@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/blockly/-/blockly-8.0.0.tgz#8b26273fe4c45c9a607cf615ee1d0e4056487c42"
+  integrity sha512-zdUfpke0wFWHLAbTNMpB46FPOtaqNwa6XWnLQduCe7TqL893HfKSRB+O0wInL/t/u6WEIYLnbyI2ZyyqK8f+lw==
   dependencies:
     jsdom "15.2.1"
 
