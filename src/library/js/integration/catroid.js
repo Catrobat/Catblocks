@@ -107,6 +107,23 @@ export class Catroid {
       }
       return 'hidden';
     };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockHelp').callback = function (scope) {
+      Android.helpBrick(scope.block.id);
+    };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockHelp').displayText = function () {
+      return Blockly.CatblocksMsgs.getCurrentLocaleValues()['HELP'];
+    };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockHelp').preconditionFn = function (scope) {
+      const block = scope.block;
+      
+      if ((block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) || block.type === 'UserDefinedScript') {
+        return 'hidden';
+      }
+      return 'enabled';
+    };
   }
 
   createModifiableWorkspace() {
