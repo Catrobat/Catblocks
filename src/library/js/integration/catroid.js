@@ -118,7 +118,7 @@ export class Catroid {
 
     Blockly.ContextMenuRegistry.registry.getItem('blockHelp').preconditionFn = function (scope) {
       const block = scope.block;
-      
+
       if ((block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) || block.type === 'UserDefinedScript') {
         return 'hidden';
       }
