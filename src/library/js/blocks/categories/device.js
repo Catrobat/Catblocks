@@ -141,7 +141,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_touch_slide_edit_from_x',
+        name: 'X_POSITION',
         text: 'unset'
       },
       {
@@ -151,11 +151,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_touch_slide_edit_from_x_INFO'
+        name: 'X_POSITION_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_touch_slide_edit_from_y',
+        name: 'Y_POSITION',
         text: 'unset'
       },
       {
@@ -165,11 +165,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_touch_slide_edit_from_y_INFO'
+        name: 'Y_POSITION_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_touch_slide_edit_to_x',
+        name: 'X_POSITION_CHANGE',
         text: 'unset'
       },
       {
@@ -179,11 +179,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_touch_slide_edit_to_x_INFO'
+        name: 'X_POSITION_CHANGE_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_touch_slide_edit_to_y',
+        name: 'Y_POSITION_CHANGE',
         text: 'unset'
       },
       {
@@ -193,11 +193,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_touch_slide_edit_to_y_INFO'
+        name: 'Y_POSITION_CHANGE_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_tap_for_edit_duration',
+        name: 'DURATION_IN_SECONDS',
         text: 'unset'
       },
       {
@@ -207,7 +207,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_tap_for_edit_duration_INFO'
+        name: 'DURATION_IN_SECONDS_INFO'
       }
     ]
   },
@@ -216,7 +216,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_open_url_edit_text',
+        name: 'OPEN_URL',
         text: 'unset'
       },
       {
@@ -226,7 +226,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_open_url_edit_text_INFO'
+        name: 'OPEN_URL_INFO'
       }
     ]
   }

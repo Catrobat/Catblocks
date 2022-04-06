@@ -57,7 +57,7 @@ export default {
       {
         type: 'field_input',
         name: 'look',
-        text: 'unset'
+        text: 'new...'
       },
       {
         type: 'field_image',
@@ -67,6 +67,39 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'look_INFO'
+      }
+    ]
+  },
+  RaspiInterruptScript: {
+    message0: '%{BKY_EVENT_RASPI_INTERRUPT_SCRIPT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'pin',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'pin_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'eventValue',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'eventValue_INFO'
       }
     ]
   }

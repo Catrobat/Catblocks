@@ -156,7 +156,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
+        name: 'sound',
         text: 'unset'
       },
       {
@@ -166,7 +166,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'sound_INFO'
       }
     ]
   },
@@ -213,7 +213,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_pause_for_beats_edit_text',
+        name: 'BEATS_TO_PAUSE',
         text: 'unset'
       },
       {
@@ -223,7 +223,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_pause_for_beats_edit_text_INFO'
+        name: 'BEATS_TO_PAUSE_INFO'
       }
     ]
   },
@@ -251,7 +251,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_set_tempo_edit_text',
+        name: 'TEMPO',
         text: 'unset'
       },
       {
@@ -261,7 +261,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_set_tempo_edit_text_INFO'
+        name: 'TEMPO_INFO'
       }
     ]
   },
@@ -270,7 +270,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_change_tempo_edit_text',
+        name: 'TEMPO_CHANGE',
         text: 'unset'
       },
       {
@@ -280,7 +280,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_change_tempo_edit_text_INFO'
+        name: 'TEMPO_CHANGE_INFO'
       }
     ]
   },
@@ -289,7 +289,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'play_drum_for_beats_spinner',
+        name: 'DROPDOWN',
         text: 'unset'
       },
       {
@@ -299,11 +299,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'play_drum_for_beats_spinner_INFO'
+        name: 'DROPDOWN_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_play_drum_for_beats_edit_text',
+        name: 'PLAY_DRUM',
         text: 'unset'
       },
       {
@@ -313,7 +313,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_play_drum_for_beats_edit_text_INFO'
+        name: 'PLAY_DRUM_INFO'
       }
     ]
   },
@@ -322,7 +322,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_play_note_for_beats_note_edit_text',
+        name: 'NOTE_TO_PLAY',
         text: 'unset'
       },
       {
@@ -332,11 +332,11 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_play_note_for_beats_note_edit_text_INFO'
+        name: 'NOTE_TO_PLAY_INFO'
       },
       {
         type: 'field_input',
-        name: 'brick_play_note_for_beats_beats_edit_text',
+        name: 'BEATS_TO_PLAY_NOTE',
         text: 'unset'
       },
       {
@@ -346,7 +346,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_play_note_for_beats_beats_edit_text_INFO'
+        name: 'BEATS_TO_PLAY_NOTE_INFO'
       }
     ]
   },

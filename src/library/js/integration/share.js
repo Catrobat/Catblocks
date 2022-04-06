@@ -22,8 +22,10 @@ import {
   lazyLoadImage,
   showFormulaPopup,
   generateFormulaModal,
-  generateModalMagnifyingGlass
+  generateModalMagnifyingGlass,
+  buildUserDefinedBrick
 } from './utils';
+import { CatblocksMsgs } from '../catblocks_msgs';
 
 const all_blocks = new Map();
 const rendered_scenes = new Map();
@@ -73,7 +75,7 @@ export class Share {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
     this.createReadonlyWorkspace();
   }
 
@@ -83,18 +85,22 @@ export class Share {
    */
   insertRightMediaURI() {
     if (this.config.media) {
-      for (const brick in this.blockly.Bricks) {
-        if (Object.prototype.hasOwnProperty.call(this.blockly.Bricks, brick)) {
-          const obj = this.blockly.Bricks[brick];
+      for (const brick in Blockly.Bricks) {
+        this.fixBrickMediaURI(brick);
+      }
+    }
+  }
 
-          for (const prop in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
-              const args = obj[prop];
-              for (const arg of args) {
-                if (arg.src) {
-                  arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
-                }
-              }
+  fixBrickMediaURI(brickName) {
+    if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brickName)) {
+      const obj = Blockly.Bricks[brickName];
+
+      for (const prop in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
+          const args = obj[prop];
+          for (const arg of args) {
+            if (arg.src) {
+              arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
             }
           }
         }
@@ -371,7 +377,7 @@ export class Share {
     const backgroundObjID = generateID(`${programID}-${scene.name}-${scene.objectList[0].name}`);
 
     if (renderEverything) {
-      scene.objectList[0].name = Blockly.CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
+      scene.objectList[0].name = CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
     }
 
     const bgWorkspace = this.renderObjectJSON(
@@ -401,17 +407,11 @@ export class Share {
       id: objectID
     });
 
-    if (object.userBricks) {
-      for (let i = 0; i < object.userBricks.length; ++i) {
-        const jsonDef = object.userBricks[i].getJsonDefinition();
-        const brickName = object.userBricks[i].id;
-        Blockly.Bricks[brickName] = jsonDef;
-        Blockly.Blocks[brickName] = {
-          init: function () {
-            this.jsonInit(Blockly.Bricks[brickName]);
-          }
-        };
-      }
+    const createdBricks = buildUserDefinedBrick(object);
+    if (createdBricks) {
+      createdBricks.forEach(brickName => {
+        this.fixBrickMediaURI(brickName);
+      });
     }
 
     const objHeadingID = `${objectID}-header`;
@@ -696,7 +696,7 @@ export class Share {
       body.on('click', `#${imgID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
       });
 
       const lookName = generateNewDOM(
@@ -722,7 +722,7 @@ export class Share {
       body.on('click', `#${magnifyingGlassID}`, () => {
         $('#modalHeader').text(displayLookName);
         $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(Blockly.CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
         magnifyingGlass.name = 'now got clicked!';
       });
 

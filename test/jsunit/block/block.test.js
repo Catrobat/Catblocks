@@ -365,7 +365,17 @@ describe('WebView Block tests', () => {
                       allJsArguments.push(jsBlock['args0'][jsBlockIndex]['value']);
                     }
                     if (jsBlock['args0'][jsBlockIndex]['text'] !== undefined) {
-                      allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
+                      // this is needed for blocks where the default value is a string from the strings_to_json mapping
+                      if (jsBlock['args0'][jsBlockIndex]['text'].includes('%{BKY')) {
+                        const stringReplace = jsBlock['args0'][jsBlockIndex]['text']
+                          .replace('%{BKY_', '')
+                          .replace('}', '');
+                        const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}en.json`));
+                        const jsonArgument = languageObject[stringReplace];
+                        allJsArguments.push(jsonArgument);
+                      } else {
+                        allJsArguments.push(jsBlock['args0'][jsBlockIndex]['text']);
+                      }
                     }
                     if (jsBlock['args0'][jsBlockIndex]['options'] !== undefined) {
                       allJsArguments.push(jsBlock['args0'][jsBlockIndex]['options'][0][0]);

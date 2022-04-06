@@ -6,6 +6,7 @@ import { CatBlocks } from '../../library/js/lib_share';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
 import $ from 'jquery';
+import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
 
 (async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -23,18 +24,47 @@ import $ from 'jquery';
 
   switch (process.env.TYPE) {
     case 'playground': {
-      await Blockly.CatblocksMsgs.setLocale(language);
+      await CatblocksMsgs.setLocale(language);
       const app = new Playground();
       app.init();
       break;
     }
     case 'render': {
       const programPath = 'assets/programs/';
-      await initShareAndRenderPrograms(programPath, language, isRtl);
+      await initShareAndRenderPrograms(programPath, {
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: language,
+        rtl: isRtl,
+        i18n: 'i18n/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderScripts: true,
+        renderLooks: true,
+        renderSounds: true,
+        readOnly: true
+      });
+      break;
+    }
+    case 'ghpages': {
+      const programPath = 'assets/programs/';
+      await initShareAndRenderPrograms(programPath, {
+        renderSize: 0.75,
+        shareRoot: 'Catblocks/develop/',
+        media: 'media/',
+        language: language,
+        rtl: isRtl,
+        i18n: 'i18n/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderScripts: true,
+        renderLooks: true,
+        renderSounds: true,
+        readOnly: true
+      });
       break;
     }
     case 'testing': {
-      await Blockly.CatblocksMsgs.setLocale(language);
+      await CatblocksMsgs.setLocale(language);
 
       await CatBlocks.init({
         container: 'share',
@@ -55,16 +85,15 @@ import $ from 'jquery';
       });
 
       const share = CatBlocks.getInstance().share;
-      const toolbox = Blockly.Workspace.getById(
-        Object.keys(Blockly.Workspace.WorkspaceDB_).filter(
-          key => ![share.workspace.id, playground.workspace.id].includes(key)
-        )
+      const toolbox = Blockly.Workspace.getAll().find(
+        ws => ![share.workspace.id, playground.workspace.id].includes(ws.id)
       );
 
       window.$ = $;
       window.Test = {
         Playground: playground,
         Blockly: Blockly,
+        CatblocksMsgs: CatblocksMsgs,
         CatBlocks: CatBlocks,
         Share: share,
         ShareUtils: shareUtils,

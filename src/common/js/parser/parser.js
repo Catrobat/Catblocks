@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 import Formula from './formula';
 
 class Scene {
@@ -49,6 +49,7 @@ class Brick {
     this.colorVariation = 0;
     this.userBrickId = undefined;
     this.commentedOut = false;
+    this.endBrickList = [];
   }
 }
 
@@ -59,14 +60,14 @@ class UserBrickDefinition {
     this.msg = '';
   }
 
-  getJsonDefinition() {
+  getArgs(fieldNameEqualsContent) {
     const args = [];
     for (let i = 0; i < this.inputTypes.length; ++i) {
       if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
         args.push({
           type: 'field_input',
           name: this.inputTypes[i].varName,
-          text: 'unset'
+          text: fieldNameEqualsContent ? this.inputTypes[i].varName : 'unset'
         });
         args.push({
           type: 'field_image',
@@ -79,13 +80,30 @@ class UserBrickDefinition {
         });
       }
     }
+    return args;
+  }
 
+  getJsonDefinition() {
+    const args = this.getArgs(false);
+    return {
+      message0: this.msg,
+      args0: args,
+      args2: args,
+      category: 'user',
+      colour: '#3556a2',
+      extensions: ['shapeBrick']
+    };
+  }
+
+  getDefinitionJsonDefinition() {
+    const args = this.getArgs(true);
     return {
       message0: this.msg,
       args0: args,
       category: 'user',
       colour: '#3556a2',
-      extensions: ['shapeBrick']
+      previousStatement: 'userdefinedtemplate',
+      nextStatement: 'userdefinedtemplate'
     };
   }
 }
@@ -136,7 +154,7 @@ function isSupported(program) {
 function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
-  MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
+  MESSAGES = CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**
@@ -198,7 +216,7 @@ function parseObjects(object) {
     const scriptList = object.getElementsByTagName('scriptList')[0].children;
 
     const userDefinedBrickList = object.getElementsByTagName('userDefinedBrickList');
-    if (userDefinedBrickList && userDefinedBrickList[0]) {
+    if (userDefinedBrickList && userDefinedBrickList[0] && userDefinedBrickList[0].children) {
       const userBrickDefinitions = parseUserBrickDefinitions(userDefinedBrickList[0].children);
       currentObject.userBricks = userBrickDefinitions;
     }
@@ -263,15 +281,20 @@ function parseUserBrickDefinitions(userBricks) {
     let msg = '';
     const inputs = [];
     const brickId = brickDefinition.getElementsByTagName('userDefinedBrickID')[0].innerHTML;
-    const brickDataDefs = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0].children;
-    if (!brickDataDefs) {
+    if (!brickId) {
       continue;
     }
 
+    const brickDataDefNode = brickDefinition.getElementsByTagName('userDefinedBrickDataList')[0];
+    if (!brickDataDefNode) {
+      continue;
+    }
+    const brickDataDefs = flatReference(brickDataDefNode);
+
     let inputCounter = 1;
     // <userDefinedBrickDataList>
-    for (let j = 0; j < brickDataDefs.length; ++j) {
-      const dataDef = brickDataDefs[j];
+    for (let j = 0; j < brickDataDefs.children.length; ++j) {
+      const dataDef = brickDataDefs.children[j];
       if (dataDef.nodeName == 'userDefinedBrickLabel') {
         msg += dataDef.getElementsByTagName('label')[0].innerHTML + ' ';
       } else if (dataDef.nodeName == 'userDefinedBrickInput') {
@@ -296,6 +319,7 @@ function parseUserBrickDefinitions(userBricks) {
       }
     }
     msg = msg.trimRight();
+
     const userBrick = new UserBrickDefinition(brickId);
     userDefinedBrickDefinitions.push(userBrick);
     userBrick.msg = msg;
@@ -545,7 +569,7 @@ function fillLoopControlBrick(
 function parseBrick(brick) {
   catLog(brick);
 
-  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z]+/)[0];
+  const name = (brick.getAttribute('type') || 'emptyBlockName').match(/[a-zA-Z0-9]+/)[0];
 
   let brickId = null;
   const idTag = brick.getElementsByTagName('brickId');
@@ -600,15 +624,69 @@ function checkUsage(list, location) {
     case 'spriteToBounceOffName':
     case 'receivedMessage':
     case 'sceneToStart':
-    case 'objectToClone':
-    case 'soundName':
-    case 'motor':
     case 'tone':
     case 'eye':
-    case 'pointedObject':
-    case 'ledStatus':
     case 'sceneForTransition': {
       location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
+      break;
+    }
+    case 'pointedObject': {
+      const brickName = list.getAttribute('name');
+      location.formValues.set('DROPDOWN', brickName);
+      break;
+    }
+
+    case 'objectToClone': {
+      if (list.children[0] != null && list.children[0].children[0]) {
+        location.formValues.set('SPINNER', list.children[0].children[0].attributes.name.value);
+      } else {
+        location.formValues.set('SPINNER', getNodeValueOrDefault(list.childNodes[0]));
+      }
+      break;
+    }
+
+    case 'spinnerSelectionFRONT': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      if (key == 'true') {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMCHOOSESPINNER_1`));
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMCHOOSESPINNER_0`));
+      }
+      break;
+    }
+
+    case 'spinnerSelectionON': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      if (key == 'true') {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMSPINNER_1`));
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMSPINNER_0`));
+      }
+      break;
+    }
+
+    case 'ledStatus':
+    case 'soundName':
+    case 'motor': {
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault(list.childNodes[0].nodeValue));
+      break;
+    }
+
+    case 'eventValue': {
+      const value = getNodeValueOrDefault(list.childNodes[0]);
+      if (list.parentElement.getAttribute('type') === 'RaspiInterruptScript') {
+        if (value === 'pressed') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_PRESSED'));
+        } else if (value === 'released') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_RELEASED'));
+        }
+      } else {
+        location.formValues.set('eventValue', getNodeValueOrDefault(value));
+      }
+      break;
+    }
+    case 'pin': {
+      location.formValues.set('pin', getNodeValueOrDefault(list.childNodes[0]));
       break;
     }
 
@@ -617,11 +695,16 @@ function checkUsage(list, location) {
       const key = getNodeValueOrDefault(list.childNodes[0]);
       if (brickName === 'CameraBrick') {
         location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMSPINNER_${key}`, key));
-      } else if (brickName === 'ChooseCameraBrick') {
-        location.formValues.set('SPINNER', getMsgValueOrDefault(`CAMCHOOSESPINNER_${key}`, key));
+      } else if (brickName === 'ReadVariableFromFileBrick') {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`READ_VARIABLE_${key}`, key));
       } else {
         location.formValues.set('SPINNER', getMsgValueOrDefault(`FLASHSPINNER_${key}`, key));
       }
+      break;
+    }
+
+    case 'sensorSpinnerPosition': {
+      location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
     }
 
@@ -648,7 +731,25 @@ function checkUsage(list, location) {
 
     case 'spinnerSelection': {
       const key = getNodeValueOrDefault(list.childNodes[0]);
-      location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      const brickName = list.parentElement.getAttribute('type');
+      if (brickName === 'GoToBrick') {
+        if (key === '80') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_TOUCH_POSITION', key));
+        } else if (key === '81') {
+          location.formValues.set('SPINNER', getMsgValueOrDefault('GO_TO_RANDOM_POSITION', key));
+        } else if (key === '82') {
+          const children = list.parentElement.childNodes;
+          for (let j = 0; j < children.length; j++) {
+            if (children[j].nodeName === 'destinationSprite') {
+              const name = children[j].getAttribute('name');
+              location.formValues.set('SPINNER', name);
+              break;
+            }
+          }
+        }
+      } else {
+        location.formValues.set('SPINNER', getMsgValueOrDefault(`SPINNER_${key}`, key));
+      }
       break;
     }
 
@@ -728,12 +829,28 @@ function checkUsage(list, location) {
       break;
     }
 
+    case 'userLists': {
+      if (list.parentElement.getAttribute('type') === 'ParameterizedBrick') {
+        const lengthOfList = list.children.length;
+        let message =
+          lengthOfList === 1
+            ? getMsgValueOrDefault(`ASSERTION_PARAMETERIZED_LIST_ONE`, 'list')
+            : getMsgValueOrDefault(`ASSERTION_PARAMETERIZED_LIST_OTHER`, 'lists');
+        message = message.replaceAll('%d', lengthOfList);
+        location.formValues.set('DROPDOWN', message);
+      }
+      break;
+    }
+
     case 'userDataList': {
       const userDataList = list.children;
       for (let j = 0; j < userDataList.length; j++) {
         const userDataElement = flatReference(userDataList[j]);
-        const userDataCategory = userDataElement.getAttribute('category');
-        const userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        const userDataCategory = userDataList[j].getAttribute('category');
+        let userDataName = null;
+        if (userDataElement.getElementsByTagName('name').length != 0) {
+          userDataName = userDataElement.getElementsByTagName('name')[0].innerHTML;
+        }
         location.formValues.set(userDataCategory, userDataName);
       }
       break;
@@ -746,6 +863,42 @@ function checkUsage(list, location) {
 
     case 'commentedOut': {
       location.commentedOut = list.innerHTML == 'true';
+      break;
+    }
+
+    case 'instrumentSelection':
+    case 'drumSelection': {
+      const key = getNodeValueOrDefault(list.childNodes[0]);
+      const value = key.toLowerCase().replaceAll('_', ' ');
+      location.formValues.set('DROPDOWN', value);
+      break;
+    }
+
+    case 'endBrick': {
+      if (list.parentElement.getAttribute('type') === 'ParameterizedBrick') {
+        const children = list.children;
+        for (let j = 0; j < children.length; j++) {
+          if (children[j].nodeName === 'formulaList') {
+            const formulaList = children[j].children;
+            for (let j = 0; j < formulaList.length; j++) {
+              const formula = new Formula();
+              workFormula(formula, formulaList[j]);
+              const attribute = formulaList[j].getAttribute('category');
+              location.formValues.set(attribute, Formula.stringify(formula));
+            }
+          } else if (children[j].nodeName === 'userList') {
+            const node = flatReference(children[j]);
+            const name = node.children[2].innerHTML;
+            location.formValues.set('LIST_SELECTED', name);
+          }
+        }
+      }
+      break;
+    }
+
+    case 'screenRefresh': {
+      const key = getNodeValueOrDefault(list.childNodes[0]).toUpperCase();
+      location.formValues.set('UDB_SCREEN_REFRESH', getMsgValueOrDefault(`UDB_SCREEN_REFRESH_${key}`, key));
       break;
     }
 
@@ -795,7 +948,7 @@ function workFormula(formula, input) {
         formula.operator !== 'STRING' &&
         formula.operator !== 'NUMBER' &&
         formula.operator !== 'USER_VARIABLE' &&
-        formula.operator !== 'USER_DEFINED_BRICK_INPUT'
+        formula.optor !== 'USER_DEFINED_BRICK_INPUT'
       ) {
         formula.operator = operatorKey;
       }

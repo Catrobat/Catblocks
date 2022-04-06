@@ -12,8 +12,10 @@ import {
   generateFormulaModal,
   jsonDomToWorkspace,
   parseOptions,
-  createLoadingAnimation
+  createLoadingAnimation,
+  buildUserDefinedBrick
 } from './utils';
+import { CatblocksMsgs } from '../catblocks_msgs';
 
 export class Catroid {
   constructor() {
@@ -36,11 +38,15 @@ export class Catroid {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
 
     const workspaceItem = {
-      displayText: Blockly.CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
-      preconditionFn: function () {
+      displayText: CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
+      preconditionFn: function (scope) {
+        const block = scope.block;
+        if (block && block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) {
+          return 'hidden';
+        }
         return 'enabled';
       },
       callback: function (scope) {
@@ -85,6 +91,22 @@ export class Catroid {
         // TODO: show error
       }
     };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').preconditionFn = function (scope) {
+      const block = scope.block;
+
+      if ((block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) || block.type === 'UserDefinedScript') {
+        return 'hidden';
+      }
+
+      if (!block.isInFlyout && block.isDeletable() && block.isMovable()) {
+        if (block.isDuplicatable()) {
+          return 'enabled';
+        }
+        return 'disabled';
+      }
+      return 'hidden';
+    };
   }
 
   createModifiableWorkspace() {
@@ -120,17 +142,11 @@ export class Catroid {
       throw Error('Workspace not initialized. Did you call init?');
     }
 
-    if (object.userBricks) {
-      for (let i = 0; i < object.userBricks.length; ++i) {
-        const jsonDef = object.userBricks[i].getJsonDefinition();
-        const brickName = object.userBricks[i].id;
-        Blockly.Bricks[brickName] = jsonDef;
-        Blockly.Blocks[brickName] = {
-          init: function () {
-            this.jsonInit(Blockly.Bricks[brickName]);
-          }
-        };
-      }
+    const createdBricks = buildUserDefinedBrick(object);
+    if (createdBricks) {
+      createdBricks.forEach(brickName => {
+        this.fixBrickMediaURI(brickName);
+      });
     }
 
     let failed = 0;
@@ -147,9 +163,12 @@ export class Catroid {
 
     this.workspace.cleanUp();
     const topBricks = this.workspace.getTopBlocks();
-    for (let i = 0; i < topBricks.length; ++i) {
-      const brick = topBricks[i];
+    for (let i = 0; i < object.scriptList.length; ++i) {
       const script = object.scriptList[i];
+      const brick = topBricks.find(x => x.id == script.id);
+      if (!brick) {
+        continue;
+      }
 
       brick.setMovable(true);
 
@@ -158,6 +177,8 @@ export class Catroid {
         brick.moveBy(Math.round(script.posX - position.x), Math.round(script.posY - position.y));
       }
     }
+
+    this.scrollToFocusBrick();
 
     this.workspace.addChangeListener(event => {
       if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
@@ -224,6 +245,22 @@ export class Catroid {
         Android.removeBricks(event.ids);
       }
     });
+  }
+
+  scrollToFocusBrick() {
+    if (this.brickIDToFocus) {
+      const focusBrick = this.workspace.getBlockById(this.brickIDToFocus);
+      if (focusBrick) {
+        // this.workspace.centerOnBlock(this.brickIDToFocus);
+        const workspacePosition = focusBrick.getRelativeToSurfaceXY();
+        const pixelPosition = workspacePosition.scale(this.workspace.scale);
+        // const oldPositionX = pixelPosition.x;
+        // const oldPositionY = this.workspace.scrollY;
+        const improvedPositionX = -1 * (pixelPosition.x - 5);
+        const improvedPositionY = -1 * (pixelPosition.y - 5);
+        this.workspace.scroll(improvedPositionX, improvedPositionY);
+      }
+    }
   }
 
   domToSvgModifiable(blockJSON) {
@@ -323,21 +360,45 @@ export class Catroid {
   insertRightMediaURI() {
     if (this.config.media) {
       for (const brick in Blockly.Bricks) {
-        if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brick)) {
-          const obj = Blockly.Bricks[brick];
+        this.fixBrickMediaURI(brick);
+      }
+    }
+  }
 
-          for (const prop in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
-              const args = obj[prop];
-              for (const arg of args) {
-                if (arg.src) {
-                  arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
-                }
-              }
+  fixBrickMediaURI(brickName) {
+    if (Object.prototype.hasOwnProperty.call(Blockly.Bricks, brickName)) {
+      const obj = Blockly.Bricks[brickName];
+
+      for (const prop in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, prop) && prop.startsWith('args')) {
+          const args = obj[prop];
+          for (const arg of args) {
+            if (arg.src) {
+              arg.src = arg.src.replace(`${document.location.pathname}media/`, this.config.media);
             }
           }
         }
       }
     }
+  }
+
+  getBrickAtTopOfScreen() {
+    const allBricks = this.workspace.getAllBlocks(true);
+    const metrics = this.workspace.getMetrics();
+
+    const topLeftPixelCoords = new Blockly.utils.Coordinate(metrics.viewLeft, metrics.viewTop);
+    const topLeftWsCoords = topLeftPixelCoords.scale(1 / this.workspace.scale);
+
+    for (const brickIdx in allBricks) {
+      const brickPos = allBricks[brickIdx].getRelativeToSurfaceXY();
+      if (brickPos.y >= topLeftWsCoords.y) {
+        if (allBricks[brickIdx].type.endsWith('_UDB_CATBLOCKS_DEF')) {
+          continue;
+        }
+        // top brick
+        return allBricks[brickIdx].id;
+      }
+    }
+    return '';
   }
 }

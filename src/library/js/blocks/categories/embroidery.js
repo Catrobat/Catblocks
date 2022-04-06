@@ -86,8 +86,8 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        name: 'WRITE_FILENAME',
+        text: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE_DEFAULT}'
       },
       {
         type: 'field_image',
@@ -96,7 +96,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'WRITE_FILENAME_INFO'
       }
     ]
   },
@@ -105,7 +105,7 @@ export default {
     args0: [
       {
         type: 'field_input',
-        name: 'brick_set_thread_color_action_edit_text',
+        name: 'THREAD_COLOR',
         text: 'unset'
       },
       {
@@ -115,7 +115,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_set_thread_color_action_edit_text_INFO'
+        name: 'THREAD_COLOR_INFO'
       }
     ]
   }

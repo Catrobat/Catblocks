@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
   ~ Catroid: An on-device visual programming system for Android devices
-  ~ Copyright (C) 2010-2021 The Catrobat Team
+  ~ Copyright (C) 2010-2022 The Catrobat Team
   ~ (<http://developer.catrobat.org/credits>)
   ~
   ~ This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
     <string name="ignore">忽略</string>
     <string name="cancel">取消</string>
     <string name="save">保存</string>
+    <string name="help">帮助</string>
     <string name="discard">放弃</string>
     <string name="next">下一步</string>
     <string name="ok">好的</string>
@@ -139,6 +140,8 @@
         确认</string>
     <string name="preference_description_ai_text_recognition">启用
         文字识别砖和传感器</string>
+    <string name="preference_title_ai_object_recognition">对象识别</string>
+    <string name="preference_description_ai_object_recognition">启用对象识别和追踪传感器</string>
     <string name="preference_title_accessibility">可访问性</string>
     <string name="preference_description_accessibility">更改应用的外观</string>
     <string name="preference_title_accessibility_profiles">辅助功能配置文件</string>
@@ -200,7 +203,7 @@
     <string name="preference_title_enable_arduino_bricks">Arduino积木</string>
     <string name="preference_description_arduino_bricks">允许控制Arduino控制板</string>
     <string name="preference_title_enable_embroidery_bricks">刺绣扩展</string>
-    <string name="preference_description_embroidery_bricks">创建缝纫机創建圖案</string>
+    <string name="preference_description_embroidery_bricks">创建缝纫机图案</string>
     <string name="preference_title_cast_feature_globally_enabled">启用强制转换功能</string>
     <string name="preference_description_cast_feature_globally_enabled">显示投射按钮并启用投射项目</string>
     <string name="preference_title_enable_nfc_bricks">近距离无线通信</string>
@@ -272,7 +275,7 @@
     <string name="by_x">作者 %1$s</string>
     <string name="warning_program_visibility">警告：\n这似乎是一个私有项目。您可以尝试转换它，但它可能无法运作。</string>
     <string name="instructions">说明</string>
-    <string name="notes_and_credits">评论与得分</string>
+    <string name="notes_and_credits">说明和版权信息</string>
     <string name="shared_at_x">分享时间：%1$s</string>
     <string name="modified_at_x">修改时间：%1$s</string>
     <string name="remixes">调制</string>
@@ -282,7 +285,7 @@
     <string name="mode">模式：</string>
     <string name="remix_of">调制来源：</string>
     <string name="description_hint">按下并添加说明</string>
-    <string name="notes_and_credits_hint">点击添加便笺和点数</string>
+    <string name="notes_and_credits_hint">点击添加说明和版权信息</string>
     <!-- ScratchReconvertDialog Strings -->
     <string name="reconvert_text">你在 %1$s 之前转换了这个项目。</string>
     <plurals name="minutes">
@@ -333,6 +336,7 @@
     <string name="from_library">从库添加</string>
     <string name="sort_projects">排序</string>
     <string name="unsort_projects">取消排序</string>
+    <string name="import_from_project">选择要导入的项目</string>
     <!-- New Dialog Titles -->
     <string name="new_scene_dialog">新场景</string>
     <!-- Delete Dialog Titles -->
@@ -475,6 +479,8 @@
     <plurals name="imported_projects">
         <item quantity="other">导入了 %d 项目。</item>
     </plurals>
+    <!-- Renamed -->
+    <string name="renamed_project">重命名项目</string>
     <!--  -->
     <!-- ProjectListActivity and ProjectListFragment -->
     <string name="project_list_title">程序</string>
@@ -482,16 +488,19 @@
     <string name="size">大小：</string>
     <string name="description">描述：</string>
     <string name="set_description">设置描述</string>
-    <string name="notes_and_credits_title">致谢</string>
-    <string name="set_notes_and_credits">设置笔记和点数</string>
+    <string name="notes_and_credits_title">说明和版权信息:</string>
+    <string name="set_notes_and_credits">设置说明和版权信息</string>
     <string name="details_date_today">今天</string>
     <string name="import_project">导入项目</string>
+    <string name="export_project">保存项目到外部存储</string>
     <string name="error_import_project">获取项目时出错。</string>
     <string name="no_projects_selected">没有选择进口的项目</string>
+    <string name="only_select_catrobat_files">仅选择项目文件</string>
     <string name="error_no_files_found">未找到项目。</string>
+    <string name="import_sprite_from_project_launcher">从本地项目导入对象</string>
     <!-- ProjectOptionsFragment -->
     <string name="project_options_description">描述</string>
-    <string name="project_options_notes_and_credits">致谢</string>
+    <string name="project_options_notes_and_credits">说明和版权信息</string>
     <string name="project_options_tags">标签</string>
     <string name="project_options_aspect_ratio">保持原来的长宽比</string>
     <string name="project_options_more_details">更多详情</string>
@@ -564,12 +573,14 @@
     <string name="add_look_draw_new_image">Vẽ hình ảnh</string>
     <string name="add_look_choose_image">选择图片</string>
     <string name="add_look_media_library">媒体库</string>
+    <string name="add_look_from_local_project">本地项目</string>
     <!--  -->
     <!-- NewSoundDialog -->
     <string name="new_sound_dialog_title">添加声音</string>
     <string name="add_sound_from_recorder">录制声音</string>
     <string name="add_sound_choose_file">选择文件</string>
     <string name="add_sound_music">音乐作曲家</string>
+    <string name="add_sound_choose_sound">声音</string>
     <!-- NotePickerDialog -->
     <string name="note_picker_title">笔记选择器</string>
     <!--  -->
@@ -602,8 +613,8 @@
     <!-- UploadProjectDialog -->
     <string name="upload_project_dialog_title">上传程序</string>
     <string name="upload_description">描述：</string>
-    <string name="upload_notes_and_credits">致谢</string>
-    <string name="upload_notes_and_credits_explanation">你是如何创建这个项目的？你是否使用了其他人的想法、脚本或艺术作品？请对他们表示感谢。</string>
+    <string name="upload_notes_and_credits">说明和版权信息:</string>
+    <string name="upload_notes_and_credits_explanation">您是如何创建这个项目的？是否使用了其他人的想法、脚本或艺术作品？您可以在此对他们表示感谢。</string>
     <string name="upload_tag_dialog_title">请选择最多三个类别</string>
     <string name="upload_tags_maximum_error">无法选择3个以上的标签。</string>
     <!-- Save Project to External Storage -->
@@ -706,6 +717,7 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="prestage_text_to_speech_error">\u2022 文字转语音引擎\n</string>
     <string name="prestage_no_back_camera_available">\u2022 后置摄像头\n</string>
     <string name="prestage_no_face_detection_available">\u2022 人脸检测\n</string>
+    <string name="prestage_no_object_detection_available">\u2022 对象识别\n</string>
     <string name="prestage_no_pose_detection_available">\u2022 鼻子检测\n</string>
     <string name="prestage_no_text_detection_available">\u2022 文本检测\n</string>
     <string name="prestage_no_front_camera_available">\u2022 前置摄像头\n</string>
@@ -767,7 +779,9 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="brick_user_defined_default_label">标签文本</string>
     <string name="brick_user_defined_already_exists">带有这些标签的积木已经存在。请添加更多标签或输入。</string>
     <string name="brick_user_defined_script_define">定义</string>
-    <string name="brick_user_defined_script_as">为</string>
+    <string name="brick_user_defined_script_screen_refresh_as">屏幕刷新为</string>
+    <string name="brick_user_defined_with_screen_refreshing">以</string>
+    <string name="brick_user_defined_without_screen_refreshing">没有</string>
     <string name="brick_user_defined_list_empty">点击 \"+\" 添加您自己的积木。</string>
     <string name="brick_report">报告</string>
     <!--  -->
@@ -905,12 +919,12 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="for_string">持续</string>
     <!--  -->
     <!-- Embroidery bricks -->
-    <string name="brick_stitch">纹理</string>
-    <string name="brick_running_stitch">开始使用长度运行 sitch</string>
-    <string name="brick_zigzag_stitch">开始以zigzag sitch长度</string>
+    <string name="brick_stitch">缝制</string>
+    <string name="brick_running_stitch">开始进行缝制，按照长度</string>
+    <string name="brick_zigzag_stitch">开始以锯齿线迹缝制，按照长度</string>
     <string name="brick_zigzag_stitch_width">和宽度</string>
-    <string name="brick_triple_stitch">按长度开始三次曲目</string>
-    <string name="brick_stop_stitch">停止当前色调</string>
+    <string name="brick_triple_stitch">开始以三重线迹缝制，按照长度</string>
+    <string name="brick_stop_stitch">停止当前缝制操作</string>
     <string name="brick_write_embroidery">将刺绣数据写入文件</string>
     <string name="brick_default_embroidery_file">刺绣.dst</string>
     <string name="brick_sew_up">上移</string>
@@ -1098,7 +1112,7 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <!-- Default Values -->
     <string name="default_project_name">我的项目</string>
     <string name="default_variable_name">可变</string>
-    <string name="default_scene_name">场景 (%1$d)</string>
+    <string name="default_scene_name">场景</string>
     <string name="default_script_group_name">脚本组</string>
     <string name="default_broadcast_message_name">消息</string>
     <string name="default_list_name">列表</string>
@@ -1210,8 +1224,8 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="error_unknown_error">发生未知错误。</string>
     <string name="error_gps_not_available">地理定位数据不可用。</string>
     <string name="error_set_description">在保存说明时发生了一个错误。</string>
-    <string name="error_set_notes_and_credits">保存新笔记
-        和积分时出了错。</string>
+    <string name="error_set_notes_and_credits">保存说明信息
+        和版权信息时出错。</string>
     <string name="error_no_whatsapp">未安装 WhatsApp</string>
     <string name="error_unsupported_bricks_chromecast">此脚本不能添加到 Chromecast
         项目。</string>
@@ -1219,15 +1233,16 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <!-- Bluetooth Connection Strings -->
     <string name="notification_blueth_err">无法启用蓝牙，请尝试关闭并重新开启。</string>
     <string name="title_paired_devices">已配对设备</string>
-    <string name="title_other_devices">新的设备</string>
-    <string name="searching_devices">搜索设备&#8230;</string>
-    <string name="button_scan">搜索蓝牙设备</string>
-    <string name="select_device">选中的设备：</string>
+    <string name="title_other_devices">Thiết bị mới</string>
+    <string name="bluetooth_connection_title">蓝牙连接</string>
+    <string name="skip_bluetooth_connection">跳过</string>
     <string name="connecting_please_wait">连接到您的设备 \n请等待&#8230;</string>
-    <!-- <string name="pairing_message">After pairing, connect.</string> -->
     <string name="bt_connection_failed">连接设备失败！</string>
     <string name="none_found">未找到未配对的设备</string>
-    <string name="none_paired">未找到已配对的设备</string>
+    <string name="multiplayer_bluetooth_connection_information_title">需要蓝牙连接
+        ！</string>
+    <string name="multiplayer_bluetooth_connection_information">要在多人模式下
+        玩此游戏，必须有蓝牙连接。双方都需要启动游戏并停留在此屏上，以确保连接能正常工作！</string>
     <!--  -->
     <!-- Arduino Bricks -->
     <string name="brick_arduino_select_digital_value">设置 Arduino 数字端口</string>
@@ -1536,7 +1551,6 @@ dash(-), 下划线 (_), 和 句号(.).</string>
         助手</string>
     <string name="formula_editor_dialog_regular_expression_assistant_title">正则
         表达式助手</string>
-    <string name="formula_editor_dialog_wiki_button">详细信息</string>
     <string name="formula_editor_function_regex_html_extractor_not_found">找不到关键字。</string>
     <string name="formula_editor_function_regex_json_extractor_title">JSON 提取器</string>
     <string name="formula_editor_function_arduino_read_pin_value_digital">arduino数字端口</string>
@@ -1566,7 +1580,7 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="formula_editor_function_flatten_parameter">(*列表名称*)</string>
     <string name="formula_editor_function_collision">碰到对象</string>
     <string name="formula_editor_function_collides_with_edge">碰到边缘</string>
-    <string name="formula_editor_function_touched">碰到手指</string>
+    <string name="formula_editor_function_touched">触摸手指</string>
     <string name="formula_editor_function_collides_with_color">触摸颜色</string>
     <string name="formula_editor_function_color_touches_color">颜色触摸颜色</string>
     <string name="formula_editor_sensor_color_at_x_y">在 x y 处颜色</string>
@@ -1675,6 +1689,7 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="formula_editor_device_face_detection">面部检测</string>
     <string name="formula_editor_device_pose_detection">姿势检测</string>
     <string name="formula_editor_device_text_recognition">文本识别</string>
+    <string name="formula_editor_device_object_recognition">对象识别</string>
     <string name="formula_editor_device_date_and_time">日期与时间</string>
     <string name="formula_editor_device_touch_detection">触碰检测</string>
     <string name="formula_editor_device_lego_nxt">Lego NXT</string>
@@ -1722,6 +1737,10 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="formula_editor_sensor_second_face_size">第二面大小</string>
     <string name="formula_editor_sensor_second_face_x_position">第二面 x 位置</string>
     <string name="formula_editor_sensor_second_face_y_position">第二面 y 位置</string>
+    <string name="formula_editor_sensor_head_top_x">头顶 x</string>
+    <string name="formula_editor_sensor_head_top_y">头顶 y</string>
+    <string name="formula_editor_sensor_neck_x">颈部 x</string>
+    <string name="formula_editor_sensor_neck_y">颈部 y</string>
     <string name="formula_editor_sensor_nose_x">鼻子x</string>
     <string name="formula_editor_sensor_nose_y">鼻子y</string>
     <string name="formula_editor_sensor_left_eye_inner_x">左眼内 x</string>
@@ -1796,6 +1815,8 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="formula_editor_function_text_block_from_camera">来自相机的文本块 </string>
     <string name="formula_editor_function_text_block_language_from_camera">来自相机的文本方块语言</string>
     <string name="formula_editor_function_text_block_parameter">(1)</string>
+    <string name="formula_editor_function_get_id_of_detected_object">检测到的对象的ID</string>
+    <string name="formula_editor_function_object_with_id_visible">ID可见的对象</string>
     <string name="formula_editor_intro_title_formula_editor">公式编辑器</string>
     <string name="formula_editor_intro_summary_formula_editor">通过公式编辑器，您可以创建您可以在积木中使用的数学和
         逻辑公式。\n\n继续点击“NEXT”或退出
@@ -1851,9 +1872,6 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     </string>
     <string name="camera_error_face_detection">        文本检测出现问题。 有些组件可能仍然在
         后台下载。 请确保您已连接到互联网，稍后再试。</string>
-    <string name="camera_error_pose_detection">        姿势检测有问题。一些组件可能仍在后台下载
-        后台。请确保你已连接到互联网，并在稍后检查。
-    </string>
     <!-- -->
     <!-- Cast strings -->
     <string name="cast_gamepad_A">一种</string>
@@ -1885,9 +1903,9 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="unchanged_upload_warning">你试图上传的项目已经存在于
         社区平台上存在，而且形式完全相同。请改变你的项目，最好是通过
         增强它，然后再上传你的重混项目。</string>
-    <string name="unchanged_upload_info">请考虑在社区网站或项目选项中对原作者添加一些好话
-        请考虑在社区网站上的信用部分或项目选项中加入对原作者的赞誉。请注意
-        用户会在你成功上传后收到一个通知。</string>
+    <string name="unchanged_upload_info">请考虑在社区网站或项目选项中
+        对版权信息里的开发者给予一定赞许。
+        该用户会在你成功上传后收到通知。</string>
     <string name="unchanged_upload_url">要了解更多关于翻唱的信息，请访问%1s。</string>
     <!-- -->
     <!-- Snackbar hints -->
@@ -1925,6 +1943,8 @@ dash(-), 下划线 (_), 和 句号(.).</string>
     <string name="new_sprite_dialog_place_visually">视觉设置</string>
     <string name="place_visually_text">你将被要求把新的演员或物体放在舞台上。
         舞台上。</string>
+    <string name="new_empty_sprite_note">注意: 对象或物体创建时
+        没有设置外观。</string>
     <!-- Information -->
     <string name="no_variable_selected">未选择变量</string>
     <string name="find">查找</string>
