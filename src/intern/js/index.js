@@ -6,6 +6,7 @@ import { CatBlocks } from '../../library/js/lib_share';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
 import $ from 'jquery';
+import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
 
 (async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -23,7 +24,7 @@ import $ from 'jquery';
 
   switch (process.env.TYPE) {
     case 'playground': {
-      await Blockly.CatblocksMsgs.setLocale(language);
+      await CatblocksMsgs.setLocale(language);
       const app = new Playground();
       app.init();
       break;
@@ -63,7 +64,7 @@ import $ from 'jquery';
       break;
     }
     case 'testing': {
-      await Blockly.CatblocksMsgs.setLocale(language);
+      await CatblocksMsgs.setLocale(language);
 
       await CatBlocks.init({
         container: 'share',
@@ -84,16 +85,15 @@ import $ from 'jquery';
       });
 
       const share = CatBlocks.getInstance().share;
-      const toolbox = Blockly.Workspace.getById(
-        Object.keys(Blockly.Workspace.WorkspaceDB_).filter(
-          key => ![share.workspace.id, playground.workspace.id].includes(key)
-        )
+      const toolbox = Blockly.Workspace.getAll().find(
+        ws => ![share.workspace.id, playground.workspace.id].includes(ws.id)
       );
 
       window.$ = $;
       window.Test = {
         Playground: playground,
         Blockly: Blockly,
+        CatblocksMsgs: CatblocksMsgs,
         CatBlocks: CatBlocks,
         Share: share,
         ShareUtils: shareUtils,

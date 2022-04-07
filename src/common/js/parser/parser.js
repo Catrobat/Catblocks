@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 import Formula from './formula';
 
 class Scene {
@@ -154,7 +154,7 @@ function isSupported(program) {
 function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
-  MESSAGES = Blockly.CatblocksMsgs.getCurrentLocaleValues();
+  MESSAGES = CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**
@@ -624,7 +624,6 @@ function checkUsage(list, location) {
     case 'spriteToBounceOffName':
     case 'receivedMessage':
     case 'sceneToStart':
-    case 'objectToClone':
     case 'tone':
     case 'eye':
     case 'sceneForTransition': {
@@ -634,6 +633,15 @@ function checkUsage(list, location) {
     case 'pointedObject': {
       const brickName = list.getAttribute('name');
       location.formValues.set('DROPDOWN', brickName);
+      break;
+    }
+
+    case 'objectToClone': {
+      if (list.children[0] != null && list.children[0].children[0]) {
+        location.formValues.set('SPINNER', list.children[0].children[0].attributes.name.value);
+      } else {
+        location.formValues.set('SPINNER', getNodeValueOrDefault(list.childNodes[0]));
+      }
       break;
     }
 
@@ -665,7 +673,16 @@ function checkUsage(list, location) {
     }
 
     case 'eventValue': {
-      location.formValues.set('eventValue', getNodeValueOrDefault(list.childNodes[0]));
+      const value = getNodeValueOrDefault(list.childNodes[0]);
+      if (list.parentElement.getAttribute('type') === 'RaspiInterruptScript') {
+        if (value === 'pressed') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_PRESSED'));
+        } else if (value === 'released') {
+          location.formValues.set('eventValue', getMsgValueOrDefault('RASPI_RELEASED'));
+        }
+      } else {
+        location.formValues.set('eventValue', getNodeValueOrDefault(value));
+      }
       break;
     }
     case 'pin': {

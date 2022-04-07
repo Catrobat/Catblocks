@@ -15,6 +15,7 @@ import {
   createLoadingAnimation,
   buildUserDefinedBrick
 } from './utils';
+import { CatblocksMsgs } from '../catblocks_msgs';
 
 export class Catroid {
   constructor() {
@@ -37,10 +38,10 @@ export class Catroid {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await Blockly.CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
 
     const workspaceItem = {
-      displayText: Blockly.CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
+      displayText: CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
       preconditionFn: function (scope) {
         const block = scope.block;
         if (block && block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) {

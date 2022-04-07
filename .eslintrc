@@ -1,6 +1,5 @@
 {
   "parserOptions": {
-    "ecmaVersion": 11,
     "sourceType": "module"
   },
   "extends": [
@@ -9,7 +8,7 @@
   ],
   "env": {
     "browser": true,
-    "es6": true,
+    "es2022": true,
     "node": true,
     "jest": true
   },

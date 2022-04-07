@@ -2,6 +2,7 @@ import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
 import $ from 'jquery';
+import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 
 export class Playground {
   constructor() {
@@ -64,13 +65,13 @@ export class Playground {
 
     // Setup locale
     const select = document.getElementsByName('locale')[0];
-    Object.keys(this.Blockly.CatblocksMsgs.getLocales()).forEach(locale => {
+    Object.keys(CatblocksMsgs.getLocales()).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
-      lcoale_opt.innerHTML = this.Blockly.CatblocksMsgs.getLocales()[locale]['DROPDOWN_NAME'];
+      lcoale_opt.innerHTML = CatblocksMsgs.getLocales()[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
     });
-    document.forms.options.elements.locale.value = this.Blockly.CatblocksMsgs.getCurrentLocale();
+    document.forms.options.elements.locale.value = CatblocksMsgs.getCurrentLocale();
 
     // Create main workspace.
     this.workspace = this.Blockly.inject('blocklyDiv', {
@@ -349,7 +350,7 @@ export class Playground {
     }
   }
   setLocale(locale) {
-    return this.Blockly.CatblocksMsgs.setLocale(locale)
+    return CatblocksMsgs.setLocale(locale)
       .then(() => {
         this.workspace.updateToolbox(this.getToolbox());
         const xml = this.Blockly.Xml.workspaceToDom(this.workspace);
