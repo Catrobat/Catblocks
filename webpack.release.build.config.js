@@ -8,6 +8,9 @@ const releaseFolder = 'release' + (integrationTarget === 'share' ? '' : '_catroi
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
+  optimization: {
+    minimize: !devMode
+  },
   entry: path.join(__dirname, `src/library/js/webpack_${integrationTarget}.js`),
   output: {
     filename: 'CatBlocks.js',

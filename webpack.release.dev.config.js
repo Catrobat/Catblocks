@@ -7,6 +7,9 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
+  optimization: {
+    minimize: !devMode
+  },
   entry: path.join(__dirname, 'src/library/js/webpack_share.js'),
   output: {
     filename: 'CatBlocks.js',
@@ -45,7 +48,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename:  '[name].css',
+      filename: '[name].css',
       chunkFilename: '[id].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
