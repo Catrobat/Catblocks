@@ -282,8 +282,7 @@ export class Catroid {
       });
       return true;
     } catch (e) {
-      console.error(e.message);
-      console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
+      console.error('Failed to generate SVG from workspace, properly due to unknown bricks', e);
     }
     return false;
   }

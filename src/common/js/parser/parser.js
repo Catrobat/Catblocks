@@ -967,7 +967,7 @@ export class Parser {
    * The xml is filtered the the selected object is parsed.
    *
    * @static
-   * @param {string] xmlString code.xml as string
+   * @param {string} xmlString code.xml as string
    * @param {*} sceneName name of the scene containing the object to render
    * @param {*} objectName name of the object to render
    * @memberof Parser
@@ -975,7 +975,7 @@ export class Parser {
   static convertObjectToJSON(xmlString, sceneName, objectName) {
     if (typeof xmlString === 'string') {
       try {
-        const xml = new window.DOMParser().parseFromString(xmlString, 'text/xml');
+        const xml = new window.DOMParser().parseFromString(xmlString.trim(), 'text/xml');
         if (!isSupported(xml)) {
           return undefined;
         }
