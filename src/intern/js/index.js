@@ -3,6 +3,7 @@ import { Playground } from './playground/playground';
 import * as shareUtils from '../../library/js/integration/utils';
 import Blockly from 'blockly';
 import { CatBlocks } from '../../library/js/lib_share';
+import { CatBlocks as CatroidCatBlocks } from '../../library/js/lib_catroid';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
 import $ from 'jquery';
@@ -89,6 +90,18 @@ import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
         ws => ![share.workspace.id, playground.workspace.id].includes(ws.id)
       );
 
+      await CatroidCatBlocks.init({
+        container: 'catroid',
+        renderSize: 0.75,
+        language: language,
+        shareRoot: '',
+        media: 'media/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderLooks: false,
+        renderSounds: false,
+        readOnly: false
+      });
+
       window.$ = $;
       window.Test = {
         Playground: playground,
@@ -100,7 +113,8 @@ import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
         Toolbox: {
           workspace: toolbox
         },
-        Parser: Parser
+        Parser: Parser,
+        CatroidCatBlocks: CatroidCatBlocks
       };
       break;
     }
