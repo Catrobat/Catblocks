@@ -89,6 +89,7 @@
   "SET_CAMERA_FOCUS": "${brick_focus_point} %1%2 % ${brick_horizontal_and} %3%4 % ${brick_vertical_flex}",
   "SET_PARTICLE_COLOR": "${set_particle_color_to} %1%2",
   "SOUND_STARTSOUND": "${brick_play_sound} %1%2",
+  "SOUND_STOP_SOUND_AT": "${brick_play_sound} %1%2 ${at_string} %3%4 ${seconds_string}",
   "SOUND_STARTSOUNDANDWAIT": "${brick_play_sound_and_wait} %1%2",
   "SOUND_STOPALLSOUNDS": "${brick_stop_all_sounds}",
   "SOUND_SETVOLUMETO": "${brick_set_volume_to} %1%2 %",
