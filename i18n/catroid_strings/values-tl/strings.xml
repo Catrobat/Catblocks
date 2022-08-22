@@ -959,7 +959,7 @@ Pakiusap sumubok na lamang ng iba.</string>
     <string name="brick_change_volume_by">Change volume by</string>
     <string name="brick_speak">Speak</string>
     <string name="brick_speak_default_value">Hello!</string>
-    <string name="brick_speak_and_wait">and wait</string>
+    <string name="brick_speak_and_wait">at maghintay</string>
     <string name="brick_start_listening_to_voice">Start listening to voice and store spoken words in</string>
     <string name="speech_recognition_not_available">Speech recognition isn\'t available.</string>
     <string name="speech_recognition_offline_mode_error_dialog_title">Missing offline data</string>
@@ -974,6 +974,8 @@ Pakiusap sumubok na lamang ng iba.</string>
     <string name="beats">beats</string>
     <string name="play_note">Play note</string>
     <string name="for_string">for</string>
+    <string name="at_string">at</string>
+    <string name="seconds_string">mga segundo</string>
     <!--  -->
     <!-- Embroidery bricks -->
     <string name="brick_stitch">Stitch</string>
@@ -1274,7 +1276,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="error_internet_connection">An unknown error occurred. Check your Internet connection.</string>
     <string name="error_project_compatibility">The project is not compatible with this version of the app.</string>
     <string name="error_outdated_version">This app version is outdated. Update now?</string>
-    <string name="error_upload_project_with_default_name">You cannot upload a project with the name \"My first project\".
+    <string name="error_upload_project_with_default_name">You cannot upload a project with the name \"%s\".
         Please rename the project.</string>
     <string name="error_upload_default_project">You cannot upload an unmodified example project. Please
         change something and try again.</string>
@@ -1509,7 +1511,7 @@ needs read and write access to it. You can always change permissions through you
     <string name="phiro_play_tone">Play Phiro music\n</string>
     <string name="phiro_tone_duration">Duration</string>
     <string name="brick_phiro_select_tone">tone</string>
-    <string name="phiro_seconds">seconds</string>
+    <string name="phiro_seconds">mga segundo</string>
     <!-- light -->
     <string name="brick_phiro_rgb_led_action">Set Phiro light</string>
     <string name="phiro_rgb_led_red">Pula</string>
@@ -2032,7 +2034,7 @@ needs read and write access to it. You can always change permissions through you
         without a look.</string>
     <!-- Information -->
     <string name="no_variable_selected">No variable selected</string>
-    <string name="find">Find</string>
+    <string name="search">Maghanap</string>
     <string name="no_results_found">No results found</string>
     <string name="query_field_is_empty">Query field is empty</string>
     <string name="cut">Cut</string>
@@ -2047,4 +2049,5 @@ needs read and write access to it. You can always change permissions through you
     <string name="set_particle_color_to">Set particle color to</string>
     <string name="undo_sort">Undo sort</string>
     <string name="sort">Sort</string>
+    <string name="checkbox">checkbox</string>
 </resources>

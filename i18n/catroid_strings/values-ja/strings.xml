@@ -930,6 +930,8 @@
     <string name="beats">ビーツ</string>
     <string name="play_note">ノートを再生</string>
     <string name="for_string">次の</string>
+    <string name="at_string">位置 </string>
+    <string name="seconds_string">秒</string>
     <!--  -->
     <!-- Embroidery bricks -->
     <string name="brick_stitch">ステッチ</string>
@@ -1224,8 +1226,8 @@
     <string name="error_internet_connection">不明なエラーが発生しました。インターネット接続を確認してください</string>
     <string name="error_project_compatibility">プロジェクトは、このバージョンのアプリと互換性がありません。</string>
     <string name="error_outdated_version">このアプリのバージョンが古すぎます。今すぐ更新しますか?</string>
-    <string name="error_upload_project_with_default_name">「私の最初のプロジェクト」という名前のプロジェクトをアップロードすることはできません。
-        プロジェクトの名前を変更してください。</string>
+    <string name="error_upload_project_with_default_name">You cannot upload a project with the name \"%s\".
+        Please rename the project.</string>
     <string name="error_upload_default_project">変更されていないサンプルプロジェクトをアップロードすることはできません。
         何かを変更して再度お試し下さい。</string>
     <string name="error_adding_brick">このブロックを追加中にエラーが発生しました</string>
@@ -1961,7 +1963,7 @@
         作成されます。</string>
     <!-- Information -->
     <string name="no_variable_selected">変数が選択されていません</string>
-    <string name="find">探す</string>
+    <string name="search">検索…</string>
     <string name="no_results_found">結果は見つかりませんでした。</string>
     <string name="query_field_is_empty">クエリーフィールドが空です</string>
     <string name="cut">切り取り</string>
@@ -1976,4 +1978,5 @@
     <string name="set_particle_color_to">パーティクルカラーの設定</string>
     <string name="undo_sort">並べ替えを取り消す</string>
     <string name="sort">並べ替え</string>
+    <string name="checkbox">checkbox</string>
 </resources>

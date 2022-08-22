@@ -7,6 +7,7 @@ import Blockly from 'blockly';
 import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import pluralBricks from '../plural_bricks.json';
+import { BrickIDGenerator } from './brick_id_generator';
 
 /**
  * all list types in json object
@@ -290,6 +291,15 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
 export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace) => {
   for (let i = 0; i < brickList.length; i++) {
     const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
+
+    const brickIDGenerator = new BrickIDGenerator();
+    if (childBrick.type === 'UserDefinedScript') {
+      brickIDGenerator.createBrickIDForUserDefinedScript(childBrick, brickList[i].userBrickId);
+    } else if (childBrick.type !== 'UserDefinedScript' && brickList[i].userBrickId) {
+      brickIDGenerator.createBrickIDForUserDefinedScriptCall(childBrick, brickList[i].userBrickId);
+    } else {
+      brickIDGenerator.createBrickID(childBrick);
+    }
 
     if (parentBrick === null && brickList[i].userBrickId !== undefined) {
       // When there is no parentBrick but the userBrickId is set

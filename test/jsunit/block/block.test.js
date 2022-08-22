@@ -6,6 +6,8 @@
 'use strict';
 
 const utils = require('../commonUtils');
+const fs = require('fs');
+const path = require('path');
 
 const BLOCK_CATEGORIES = utils.getCategoryList();
 /**
@@ -430,5 +432,58 @@ describe('WebView Block tests', () => {
         expect(returnStatus).toBeTruthy();
       }
     });
+  });
+});
+
+describe('Catroid Block IDs', () => {
+  beforeAll(async () => {
+    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
+    page.evaluate(() => {
+      // function to JSON.stringify circular objects
+      window.shallowJSON = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+          obj,
+          (key, value) =>
+            typeof value === 'object' && value !== null
+              ? cache.includes(value)
+                ? undefined // Duplicate reference found, discard key
+                : cache.push(value) && value // Store value in our collection
+              : value,
+          indent
+        );
+        cache = null;
+        return retVal;
+      };
+    });
+  });
+
+  test('UserDefinedBrick IDs', async () => {
+    const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/udb_nested_recursion.xml'), 'utf8');
+
+    await page.evaluate(async pProgramXML => {
+      await Test.CatroidCatBlocks.render(pProgramXML, 'Scene', 'testSprite');
+    }, programXML);
+
+    const checkQuerySelectorExistence = async function (querySelector) {
+      const brickContent = await page.$eval(querySelector, node => node.innerHTML);
+      expect(typeof brickContent).toBe('string');
+      expect(brickContent.length).not.toBe(0);
+    };
+
+    const firstQueryBase = '#UserDefinedScript-0 #IfLogicBeginBrick-0 ';
+    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-0-Call-0');
+    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-0-Call-1');
+    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-1-Call-0');
+
+    const secondQueryBase = '#UserDefinedScript-1 #IfLogicBeginBrick-1 ';
+    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-1');
+    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-2');
+    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-0-Call-2');
   });
 });

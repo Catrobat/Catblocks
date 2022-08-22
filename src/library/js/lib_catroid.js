@@ -39,23 +39,29 @@ export class CatBlocks {
    * @param {string} showScene the script to be rendered
    * @param {string} showObject the object to be expanded
    * @param {string} showScript the script to scroll to
-   *
+   * @returns {Promise<void>}
    * @memberof CatBlocks
    */
   static render(codeXML, showScene = null, showObject = null, brickIDToFocus = null) {
-    $('#spinnerModal').one('shown.bs.modal', () => {
-      try {
-        const objectJSON = Parser.convertObjectToJSON(codeXML, showScene, showObject);
-        catblocks_instance.share.scene = showScene;
-        catblocks_instance.share.object = showObject;
-        catblocks_instance.share.brickIDToFocus = brickIDToFocus;
-        catblocks_instance.share.renderObjectScripts(objectJSON);
-      } finally {
-        $('#spinnerModal').modal('hide');
-      }
-    });
+    return new Promise((resolve, reject) => {
+      $('#spinnerModal').one('shown.bs.modal', () => {
+        try {
+          const objectJSON = Parser.convertObjectToJSON(codeXML, showScene, showObject);
+          console.log(objectJSON);
+          catblocks_instance.share.scene = showScene;
+          catblocks_instance.share.object = showObject;
+          catblocks_instance.share.brickIDToFocus = brickIDToFocus;
+          catblocks_instance.share.renderObjectScripts(objectJSON);
+          return resolve();
+        } catch (error) {
+          return reject(error);
+        } finally {
+          $('#spinnerModal').modal('hide');
+        }
+      });
 
-    $('#spinnerModal').modal('show');
+      $('#spinnerModal').modal('show');
+    });
   }
 
   /**
