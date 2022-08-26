@@ -8,6 +8,8 @@ import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import pluralBricks from '../plural_bricks.json';
 import { BrickIDGenerator } from './brick_id_generator';
+import { getScriptToBrickMapping } from '../blocks/bricks';
+import { getColourCodesForCategories } from '../blocks/colours';
 
 /**
  * all list types in json object
@@ -533,7 +535,7 @@ export const generateFormulaModal = () => {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body" id="formulaPopupContent">
-            
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" data-dismiss="modal" id="formulaPopupClose">Close</button>
@@ -585,4 +587,52 @@ export const showFormulaPopup = formula => {
     $('#formulaPopupContent').html(html_formula);
     $('#formulaPopup').modal('show');
   }
+};
+
+export const getMappedBrickNameIfExists = brickName => {
+  const scriptToBrickMapping = getScriptToBrickMapping();
+
+  if (scriptToBrickMapping.has(brickName)) {
+    return scriptToBrickMapping.get(brickName);
+  }
+
+  return brickName;
+};
+
+export const getColorForBrickCategory = categoryName => {
+  const categoryColors = getColourCodesForCategories();
+
+  const categoryNameToColor = new Map()
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_RECENTLY_USED'], '#aaaaaa')
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_EMBROIDERY'], categoryColors.embroidery.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_DUMMY'], categoryColors.dummy.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_MOTION'], categoryColors.motion.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_LOOK'], categoryColors.look.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_PEN'], categoryColors.pen.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_SOUND'], categoryColors.sound.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_EVENT'], categoryColors.event.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_CONTROL'], categoryColors.control.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_USERLIST'], categoryColors.userlist.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_USERVARIABLES'], categoryColors.uservariables.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_DEVICE'], categoryColors.device.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_USER'], '#000000')
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_LEGO_NXT'], categoryColors.lego.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_LEGO_EV3'], categoryColors.lego.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_DRONE'], '#aea626')
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_JUMPINGSUMO'], '#aea626')
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_PHIRO'], categoryColors.phiro.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_ARDUINO'], categoryColors.phiro.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_CAST'], categoryColors.phiro.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_RASPI'], categoryColors.phiro.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_TEST'], categoryColors.test.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_USER'], categoryColors.user.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_REPORT'], categoryColors.report.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_SCRIPT'], categoryColors.script.colourPrimary)
+    .set(CatblocksMsgs.getCurrentLocaleValues()['CATEGORY_DATA'], categoryColors.userlist.colourPrimary);
+
+  if (categoryNameToColor.has(categoryName)) {
+    return categoryNameToColor.get(categoryName);
+  }
+
+  return '#aaaaaa';
 };

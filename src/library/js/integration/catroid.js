@@ -2,9 +2,12 @@ import '../../css/common.css';
 import '../../css/catroid.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import { getBrickScriptMapping } from '../blocks/bricks';
+
 import Blockly from 'blockly';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import $ from 'jquery';
 
 import { Parser } from '../../../common/js/parser/parser';
 import {
@@ -13,7 +16,10 @@ import {
   jsonDomToWorkspace,
   parseOptions,
   createLoadingAnimation,
-  buildUserDefinedBrick
+  buildUserDefinedBrick,
+  injectNewDom,
+  getMappedBrickNameIfExists,
+  getColorForBrickCategory
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
 
@@ -28,6 +34,7 @@ export class Catroid {
 
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
+    this.createReadonlyWorkspace();
     this.createModifiableWorkspace();
     generateFormulaModal();
     createLoadingAnimation();
@@ -107,6 +114,73 @@ export class Catroid {
       }
       return 'hidden';
     };
+
+    $('body').on('click', '.catblocks-block-category-list-item', event => {
+      const selectedCategory = $(event.target).attr('categoryName');
+      this.listBricksOfSelectedCategory(selectedCategory);
+    });
+
+    $('body').on('click', '#catroid-catblocks-add-brick-dialog-close-container', () => {
+      $('#catroid-catblocks-brick-category-container').empty();
+      $('#catroid-catblocks-bricks-container').empty();
+      $('#catroid-catblocks-add-brick-dialog-header-text').empty();
+      $('#catroid-catblocks-add-brick-dialog').hide();
+    });
+
+    $('body').on('click', '.catblocks-brick', event => {
+      const $clickedElement = $(event.target);
+
+      let $addBrickElement = $clickedElement;
+      if (!$clickedElement.hasClass('.catroid-category')) {
+        $addBrickElement = $clickedElement.parents('.catblocks-brick');
+      }
+
+      const category = $addBrickElement.attr('catroid-category');
+      const brickType = getMappedBrickNameIfExists($addBrickElement.attr('catroid-brickType'));
+
+      if (category && brickType) {
+        const addedBricks = Android.addBrickByName(category, brickType);
+        if (addedBricks) {
+          this.addBricks(JSON.parse(addedBricks));
+
+          $('#catroid-catblocks-add-brick-dialog').hide();
+          $('#catroid-catblocks-bricks-container').hide();
+        }
+      } else {
+        console.log('invlid element for adding brick');
+      }
+    });
+
+    $('body').on('click', '#catroid-catblocks-add-brick-back-container', () => {
+      const categories = JSON.parse(Android.getBrickCategoryInfos());
+      this.showBrickCategories(categories);
+    });
+  }
+
+  /**
+   * Create new read only workspace and inject it into container Element
+   */
+  createReadonlyWorkspace() {
+    // const hiddenContainer = injectNewDom('catroid-catblocks-hidden-container', 'DIV', {
+    //   id: 'readonly-workspace'
+    // });
+
+    let mediapath = `${this.config.shareRoot}${this.config.media}`;
+    // full link or absolute path given
+    if (this.config.media.startsWith('http') || this.config.media.startsWith('/')) {
+      mediapath = this.config.media;
+    }
+    //this.readonlyWorkspace = , {
+    this.readonlyWorkspace = Blockly.inject('catroid-catblocks-hidden-container', {
+      readOnly: true,
+      media: mediapath,
+      collapse: false,
+      renderer: 'zelos',
+      rtl: this.config.rtl,
+      zoom: {
+        startScale: this.config.renderSize
+      }
+    });
   }
 
   createModifiableWorkspace() {
@@ -399,5 +473,112 @@ export class Catroid {
       }
     }
     return '';
+  }
+
+  showBrickCategories(categoryInfos) {
+    $('#catroid-catblocks-bricks-container').empty();
+    $('#catroid-catblocks-bricks-container').hide();
+
+    $('#catroid-catblocks-brick-category-container').empty();
+
+    for (const idx in categoryInfos) {
+      const categoryColor = getColorForBrickCategory(categoryInfos[idx].name);
+
+      injectNewDom(
+        'catroid-catblocks-brick-category-container',
+        'button',
+        {
+          class: 'list-group-item list-group-item-action catblocks-block-category-list-item',
+          type: 'button',
+          style: `background-color:${categoryColor};color:#fff;`,
+          categoryName: categoryInfos[idx].name
+        },
+        categoryInfos[idx].name
+      );
+    }
+
+    $('#catroid-catblocks-add-brick-dialog-header-text').text(
+      CatblocksMsgs.getCurrentLocaleValues()['BRICK_CATEGORIES']
+    );
+
+    $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
+
+    $('#catroid-catblocks-add-brick-dialog').show();
+    $('#catroid-catblocks-brick-category-container').show();
+
+    $('#catroid-catblocks-add-brick-back-container').hide();
+  }
+
+  listBricksOfSelectedCategory(categoryName) {
+    const strBricks = Android.getBricksForCategory(categoryName);
+    const bricks = JSON.parse(strBricks);
+    console.log(bricks);
+
+    $('#catroid-catblocks-add-brick-back-container').show();
+
+    $('#catroid-catblocks-brick-category-container').empty();
+    $('#catroid-catblocks-brick-category-container').hide();
+
+    this.readonlyWorkspace.clear();
+
+    const brickScriptMapping = getBrickScriptMapping();
+
+    for (const brickInfo of bricks) {
+      try {
+        let brickType = brickInfo.brickType;
+
+        if (brickScriptMapping.has(brickInfo.brickType)) {
+          brickType = brickScriptMapping.get(brickInfo.brickType);
+        }
+
+        const brick = this.readonlyWorkspace.newBlock(brickType, brickInfo.brickId);
+        brick.initSvg();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    this.readonlyWorkspace.render();
+
+    const allBlocksOfCategory = this.readonlyWorkspace.getAllBlocks(false);
+    allBlocksOfCategory.sort((a, b) => {
+      return a.type > b.type;
+    });
+
+    $('#catroid-catblocks-bricks-container').empty();
+
+    const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
+
+    for (const svgBlock of allBlocksOfCategory) {
+      const blockHeight = svgBlock.height * this.readonlyWorkspace.scale;
+      const blockWidth = svgBlock.width * this.readonlyWorkspace.scale;
+
+      const clonedBrick = svgBlock.svgGroup_.cloneNode(true);
+      clonedBrick.setAttribute('transform', `scale(${this.readonlyWorkspace.scale})`);
+      const svgContainer = document.createElement('div');
+      svgContainer.setAttribute('class', 'catblocks-svg-brick-container zelos-renderer classic-theme');
+      svgContainer.setAttribute('style', `height:${blockHeight}px;`);
+
+      svgContainer.setAttribute('class', 'catblocks-brick');
+      svgContainer.setAttribute('catroid-category', categoryName);
+      svgContainer.setAttribute('catroid-brickType', svgBlock.type);
+
+      const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svgElement.setAttribute('style', `width:${blockWidth + 10}px;height:${blockHeight}px;`);
+      // svgElement.setAttribute('class', 'catblocks-brick');
+      // svgElement.setAttribute('catroid-category', categoryName);
+      // svgElement.setAttribute('catroid-brickType', svgBlock.type);
+
+      svgElement.appendChild(clonedBrick);
+      svgContainer.appendChild(svgElement);
+      brickContainer.appendChild(svgContainer);
+    }
+
+    $('#catroid-catblocks-add-brick-dialog-header-text').text(categoryName);
+
+    $('#catroid-catblocks-add-brick-dialog').show();
+    $('#catroid-catblocks-bricks-container').show();
+
+    $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
   }
 }

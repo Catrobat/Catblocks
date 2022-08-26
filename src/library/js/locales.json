@@ -71,6 +71,7 @@
   "ur": { "DROPDOWN_NAME": "Urdu" },
   "uz": { "DROPDOWN_NAME": "Uzbek (Latin)" },
   "vi": { "DROPDOWN_NAME": "Vietnamese" },
+  "yo_NG": { "DROPDOWN_NAME": "yo_NG" },
   "zh_CN": { "DROPDOWN_NAME": "Chinese (S)" },
   "zh_TW": { "DROPDOWN_NAME": "Chinese (T)" }
 }
