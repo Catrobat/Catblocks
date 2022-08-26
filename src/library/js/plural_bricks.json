@@ -1,0 +1,128 @@
+{
+  "TapForBrick": {
+    "number_field": "7",
+    "string_field": "9",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "TouchAndSlideBrick": {
+    "number_field": "13",
+    "string_field": "15",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "MoveNStepsBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["STEPS_PLURAL"]
+  },
+
+  "GoNStepsBackBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["LAYERS_PLURAL"]
+  },
+
+  "RepeatBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["TIMES_PLURAL"]
+  },
+
+  "WaitBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "VibrationBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "ThinkForBubbleBrick": {
+    "number_field": "4",
+    "string_field": "6",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "SayForBubbleBrick": {
+    "number_field": "4",
+    "string_field": "6",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "PhiroPlayToneBrick": {
+    "number_field": "4",
+    "string_field": "6",
+    "string_value": ["SECONDS_PLURAL"]
+  },
+
+  "DroneTurnRightBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneTurnLeftBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveBackwardBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveForwardBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveRightBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveLeftBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveDownBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "DroneMoveUpBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "DRONE_WITH"]
+  },
+
+  "LegoEv3PlayToneBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "FREQUENCY"]
+  },
+
+  "GlideToBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["SECONDS_PLURAL", "GLIDE_X"]
+  },
+
+  "ParameterizedBrick": {
+    "number_field": "1",
+    "string_field": "3",
+    "string_value": ["ASSERTION_PARAMETERIZED_STORED_PLURAL"],
+    "string_value_additional": "ASSERTION_PARAMETERIZED_FOREACH_PLURAL"
+  }
+}

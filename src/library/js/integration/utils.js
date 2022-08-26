@@ -6,6 +6,7 @@ import md5 from 'js-md5';
 import Blockly from 'blockly';
 import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
+import pluralBricks from '../plural_bricks.json';
 import { BrickIDGenerator } from './brick_id_generator';
 
 /**
@@ -372,14 +373,26 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
         }
       }
     });
-    if (childBrick.type === 'ParameterizedBrick') {
-      try {
-        const dropdownString = childBrick.inputList[0].fieldRow[1].value_;
-        const numOfLists = parseInt(dropdownString.charAt(0));
 
-        if (numOfLists > 1) {
-          childBrick.inputList[0].fieldRow[0].value_ =
-            CatblocksMsgs.getCurrentLocaleValues()['ASSERTION_PARAMETERIZED_FOREACH_PLURAL'];
+    if (childBrick.type in pluralBricks) {
+      try {
+        const currentBrick = pluralBricks[childBrick.type];
+        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].value_);
+
+        if (value !== 1) {
+          if (currentBrick.string_value.length === 1) {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].value_ =
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]];
+          } else {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].value_ =
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
+              ' ' +
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]];
+          }
+          if (childBrick.type === 'ParameterizedBrick') {
+            childBrick.inputList[0].fieldRow[0].value_ =
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional];
+          }
         }
       } catch (error) {
         console.log(error);
