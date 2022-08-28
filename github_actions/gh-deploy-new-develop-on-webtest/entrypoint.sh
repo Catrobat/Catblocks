@@ -51,7 +51,7 @@ git commit -m "CATBLOCKS: update of catblocks folder"
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catroweb.git" ${BRANCH}
 RETVALUE=$(($? + $RETVALUE))
 echo $RETVALUE
-curl -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | tac | tac | grep -qsE "201 Created|422 Unprocessable Entity"
+curl -s -o /dev/null -w "%{http_code}" -i -H "Authorization: token ${GITTOKEN}" -X POST -d '{ "title": "Catblocks: New Release", "body": "Automatic deploy of new Catblocks version", "head": "gh_catblocks_automatic_deploy_develop", "base": "develop" }' https://api.github.com/repos/Catrobat/Catroweb/pulls | tac | tac | grep -qsE "200|201|422"
 RETVALUE=$(($? + $RETVALUE))
 echo $RETVALUE
 
