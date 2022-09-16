@@ -99,7 +99,6 @@ describe('Filesystem Block tests', () => {
 
 describe('WebView Block tests', () => {
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
@@ -437,7 +436,6 @@ describe('WebView Block tests', () => {
 
 describe('Catroid Block IDs', () => {
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
@@ -467,6 +465,7 @@ describe('Catroid Block IDs', () => {
     const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/udb_nested_recursion.xml'), 'utf8');
 
     await page.evaluate(async pProgramXML => {
+      debugger;
       await Test.CatroidCatBlocks.render(pProgramXML, 'Scene', 'testSprite');
     }, programXML);
 

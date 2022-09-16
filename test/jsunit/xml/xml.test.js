@@ -13,7 +13,6 @@ describe('Export and Import XML files to workspace', () => {
    * Execute once in this scope
    */
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());

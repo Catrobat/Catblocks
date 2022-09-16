@@ -10,7 +10,6 @@ const utils = require('../commonUtils');
 
 describe('Parser catroid program tests', () => {
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
@@ -389,7 +388,11 @@ describe('Parser catroid program tests', () => {
 
 describe('Catroid to Catblocks parser tests', () => {
   beforeEach(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   test('Xml Character escaping test', async () => {
