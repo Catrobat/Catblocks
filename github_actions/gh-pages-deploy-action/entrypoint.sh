@@ -7,13 +7,13 @@ Catblocks deploy testpage action
 PRNUMBER=$(python3 /PREvaluator.py)
 
 # go to checkout@v2 folder
+git config --global --add safe.directory /github/workspace
 cd /github/workspace/
 
 # build render
 yarn install
 yarn clean
 yarn render:ghpages
-RETVALUE="$?"
 
 mv ./dist ./../dist
 
@@ -34,6 +34,6 @@ git add ./develop
 git commit -m "$COMMITMSG"
 
 git push "https://${GITHUB_ACTOR}:${GITTOKEN}@github.com/Catrobat/Catblocks.git" "gh-pages"
-RETVALUE=$(($? + $RETVALUE))
-
-exit $RETVALUE
+PUSHRET=$?
+echo "Git Push exited with code $PUSHRET"
+exit $PUSHRET
