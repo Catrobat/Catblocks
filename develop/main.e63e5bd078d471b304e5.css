@@ -10690,5 +10690,21 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+html,
+body {
+  height: 100vh;
+  width: 100%;
+}
 
-/*# sourceMappingURL=main.b9fbf2ce5367cfb8cf7e.css.map*/
+#catroid-catblocks-container {
+  height: 100vh;
+  width: 100%;
+}
+
+#catroid-catblocks-container.blocklySvg {
+  height: 100vh;
+  width: 100%;
+}
+
+
+/*# sourceMappingURL=main.e63e5bd078d471b304e5.css.map*/
