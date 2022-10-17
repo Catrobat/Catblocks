@@ -27,6 +27,10 @@ const colourCodes = {
   uservariables: { colourPrimary: '#F14E50', colourSecondary: '#B3393B', colourTertiary: '#732526' }
 };
 
+export const getColourCodesForCategories = () => {
+  return colourCodes;
+};
+
 /**
  * Initiate colour codes for catblocks bricks
  *  if no colour code is defined yet, we use the default one
