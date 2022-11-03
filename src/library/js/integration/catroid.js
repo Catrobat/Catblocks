@@ -227,7 +227,7 @@ export class Catroid {
     Blockly.svgResize(this.workspace);
   }
 
-  alignBricks(object) {
+  alignLTRBricks(object) {
     if (this.workspace.RTL) {
       return;
     }
@@ -340,7 +340,7 @@ export class Catroid {
     }
 
     this.workspace.cleanUp();
-    this.alignBricks(object);
+    this.alignLTRBricks(object);
 
     this.scrollToFocusBrick();
 
@@ -349,21 +349,23 @@ export class Catroid {
 
   scrollToFocusBrick() {
     const isRTL = this.workspace.RTL;
-    const RTLxCorrection = this.workspace.scrollX * 2 - 5;
+    let xScrollCorrection = this.workspace.scrollX;
+    if (isRTL) {
+      xScrollCorrection = xScrollCorrection * 2 - 5;
+    } else {
+      xScrollCorrection += 5;
+    }
     let isScrolled = false;
 
     if (this.brickIDToFocus) {
       const focusBrick = this.workspace.getBlockById(this.brickIDToFocus);
       if (focusBrick) {
-        // this.workspace.centerOnBlock(this.brickIDToFocus);
         const workspacePosition = focusBrick.getRelativeToSurfaceXY();
         const pixelPosition = workspacePosition.scale(this.workspace.scale);
-        // const oldPositionX = pixelPosition.x;
-        // const oldPositionY = this.workspace.scrollY;
         let improvedPositionX = -1 * (pixelPosition.x - 5);
 
         if (isRTL) {
-          improvedPositionX += RTLxCorrection - 5;
+          improvedPositionX += xScrollCorrection - 5;
         }
 
         const improvedPositionY = -1 * (pixelPosition.y - 5);
@@ -372,7 +374,7 @@ export class Catroid {
       }
     }
     if (!isScrolled) {
-      this.workspace.scroll(RTLxCorrection, 0);
+      this.workspace.scroll(xScrollCorrection, 0);
     }
   }
 
