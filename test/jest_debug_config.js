@@ -8,6 +8,8 @@
  *  added jest-junit reporter for jenkins
  */
 
+ process.env.JEST_PUPPETEER_CONFIG = './test/jest-puppeteer-debug.config.js';
+
 module.exports = {
   preset: "jest-puppeteer",
   verbose: true,
@@ -17,8 +19,5 @@ module.exports = {
   ],
   testMatch: [
     "**/test/**/*.test.js"
-  ],
-  testEnvironmentOptions: {
-    url: "http://localhost:8080/"
-  }
+  ]
 };

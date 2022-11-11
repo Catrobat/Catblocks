@@ -3,3 +3,4 @@ dist/
 release/
 tools/
 release_catroid/
+jest-html-reporters-attach/

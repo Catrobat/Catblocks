@@ -1,7 +1,7 @@
 /**
  * @description Block tests
  */
-/* global $, page, SERVER, Test */
+/* global $, page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -20,11 +20,17 @@ async function waitForEvent(eventName) {
 
 describe('Performance tests', () => {
   beforeAll(async () => {
+    await page.goto('http://localhost:8080');
+
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
       }
     });
+  });
+
+  beforeEach(async () => {
+    await page.waitForNetworkIdle();
   });
 
   test('Rendering test program takes less than 30 seconds', async () => {

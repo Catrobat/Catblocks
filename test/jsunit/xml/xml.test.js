@@ -1,7 +1,7 @@
 /**
  * @description xml tests
  */
-/* global page, SERVER, Test */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -10,20 +10,19 @@
  */
 describe('Export and Import XML files to workspace', () => {
   /**
-   * Execute once in this scope
+   * Run before each test in this scope
    */
-  beforeAll(async () => {
+  beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
       }
     });
-  });
 
-  /**
-   * Run before each test in this scope
-   */
-  beforeEach(async () => {
     // clean workspace before each test
     await page.evaluate(() => {
       Test.Playground.workspace.clear();
@@ -77,7 +76,7 @@ describe('Export and Import XML files to workspace', () => {
         const length = await page.evaluate(pBlock => {
           Test.Playground.workspace.clear();
           Test.Blockly.Xml.domToWorkspace(Test.Blockly.Xml.textToDom(pBlock), Test.Playground.workspace);
-          return Object.keys(Test.Playground.workspace.blockDB_).length;
+          return Object.keys(Test.Playground.workspace.getAllBlocks()).length;
         }, block);
         // eslint-disable-next-line jest/no-conditional-expect
         expect(length).toBe(1);

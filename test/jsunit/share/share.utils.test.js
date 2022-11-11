@@ -1,11 +1,17 @@
 /**
  * @description Share utils tests
  */
-/* global page, SERVER, Test */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
+beforeAll(async () => {
+  await page.goto('http://localhost:8080');
+});
+
 beforeEach(async () => {
+  await page.waitForNetworkIdle();
+
   page.on('console', message => {
     if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
       console.log(message.text());

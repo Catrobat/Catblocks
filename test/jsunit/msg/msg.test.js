@@ -1,7 +1,7 @@
 /**
  * @description Msg tests
  */
-/* global Test, page, SERVER */
+/* global Test, page */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -65,6 +65,10 @@ describe('Filesystem msg tests', () => {
 
 describe('Webview test', () => {
   beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
@@ -233,6 +237,11 @@ describe('Webview test', () => {
       return Test.CatblocksMsgs.setLocale(pLanguageToTest);
     }, languageToTest);
 
+    const setLanguage = await page.evaluate(() => {
+      return Test.CatblocksMsgs.getCurrentLocale();
+    }, languageToTest);
+    expect(setLanguage).toMatch(languageToTest);
+
     const testBlockValue = await page.evaluate(() => {
       const testBlock = Test.Share.workspace.newBlock('WaitBrick');
       testBlock.initSvg();
@@ -250,6 +259,10 @@ describe('Webview test', () => {
 
 describe('share displays language of UI elements correctly', () => {
   beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
