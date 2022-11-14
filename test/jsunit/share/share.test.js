@@ -65,7 +65,7 @@ describe('Share basic tests', () => {
     );
     expect(sceneContainerTarget).toEqual(`#${sceneID}-collapseOne`);
 
-    const catblocksObjContainerHandle = sceneContainerHandle.$('.catblocks-object-container');
+    const catblocksObjContainerHandle = await sceneContainerHandle.$('.catblocks-object-container');
     expect(catblocksObjContainerHandle).not.toBeNull();
 
     const sceneObjContainerParentAttr = await sceneContainerHandle.$eval(`#${sceneID}-collapseOne`, x =>
