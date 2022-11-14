@@ -480,7 +480,14 @@ export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
  * @param {*} event
  */
 export const lazyLoadImage = event => {
-  const $objectHeader = $(event.target);
+  let $objectHeader = $(event.target);
+  let counter = 0;
+
+  while (!$objectHeader.attr('class').includes('card-header') && counter < 5) {
+    $objectHeader = $objectHeader.parent();
+    counter++;
+  }
+
   $objectHeader.off('click', lazyLoadImage);
 
   const $contentContainer = $objectHeader.next();
