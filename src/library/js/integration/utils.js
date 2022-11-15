@@ -481,11 +481,9 @@ export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
  */
 export const lazyLoadImage = event => {
   let $objectHeader = $(event.target);
-  let counter = 0;
 
-  while (!$objectHeader.attr('class').includes('card-header') && counter < 5) {
-    $objectHeader = $objectHeader.parent();
-    counter++;
+  if (!$objectHeader.attr('class').includes('card-header')) {
+    $objectHeader = $objectHeader.parents('.card-header');
   }
 
   $objectHeader.off('click', lazyLoadImage);
