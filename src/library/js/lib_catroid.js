@@ -86,4 +86,8 @@ export class CatBlocks {
   static getBrickAtTopOfScreen() {
     return catblocks_instance.share.getBrickAtTopOfScreen();
   }
+
+  static showBrickCategories(categoryInfos) {
+    catblocks_instance.share.showBrickCategories(categoryInfos);
+  }
 }

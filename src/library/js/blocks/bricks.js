@@ -5,6 +5,30 @@
 import Blockly from 'blockly';
 import categories from './categories';
 
+export const getBrickScriptMapping = () => {
+  return new Map()
+    .set('WhenClonedBrick', 'WhenClonedScript')
+    .set('WhenStartedBrick', 'StartScript')
+    .set('WhenBrick', 'WhenScript')
+    .set('WhenTouchDownBrick', 'WhenTouchDownScript')
+    .set('BroadcastReceiverBrick', 'BroadcastScript')
+    .set('WhenConditionBrick', 'WhenConditionScript')
+    .set('WhenBounceOffBrick', 'WhenBounceOffScript')
+    .set('WhenBackgroundChangesBrick', 'WhenBackgroundChangesScript')
+    .set('WhenRaspiPinChangedBrick', 'RaspiInterruptScript');
+};
+
+export const getScriptToBrickMapping = () => {
+  const bricksToScripts = getBrickScriptMapping();
+  const scriptsToBricks = new Map();
+
+  for (const [key, value] of bricksToScripts) {
+    scriptsToBricks.set(value, key);
+  }
+
+  return scriptsToBricks;
+};
+
 /**
  * Remove all bricks from Blockly instance
  * @param {*} blockly

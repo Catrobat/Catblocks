@@ -418,5 +418,38 @@ export default {
         name: 'PHIRO_DURATION_IN_SECONDS_INFO'
       }
     ]
+  },
+  PlaySoundAtBrick: {
+    message0: '%{BKY_SOUND_STOP_SOUND_AT}',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'sound',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'sound_INFO'
+      },
+      {
+        type: 'field_input',
+        name: 'PLAY_SOUND_AT',
+        text: 'unset'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/info_icon.svg`,
+        height: 24,
+        width: 24,
+        alt: '(i)',
+        flip_rtl: true,
+        name: 'PLAY_SOUND_AT_INFO'
+      }
+    ]
   }
 };
