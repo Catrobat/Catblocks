@@ -147,7 +147,7 @@ export class Catroid {
       const $clickedElement = $(event.target);
 
       let $addBrickElement = $clickedElement;
-      if (!$clickedElement.hasClass('.catroid-category')) {
+      if (!$clickedElement.hasClass('catblocks-brick')) {
         $addBrickElement = $clickedElement.parents('.catblocks-brick');
       }
 
@@ -500,6 +500,8 @@ export class Catroid {
     for (const idx in categoryInfos) {
       const categoryColor = getColorForBrickCategory(categoryInfos[idx].name);
 
+      const categoryNameForID = categoryInfos[idx].name.replace(/\s/, '').toUpperCase();
+
       injectNewDom(
         'catroid-catblocks-brick-category-container',
         'button',
@@ -507,7 +509,8 @@ export class Catroid {
           class: 'list-group-item list-group-item-action catblocks-block-category-list-item',
           type: 'button',
           style: `background-color:${categoryColor};color:#fff;`,
-          categoryName: categoryInfos[idx].name
+          categoryName: categoryInfos[idx].name,
+          id: `category${categoryNameForID}`
         },
         categoryInfos[idx].name
       );
@@ -577,6 +580,7 @@ export class Catroid {
       svgContainer.setAttribute('class', 'catblocks-brick');
       svgContainer.setAttribute('catroid-category', categoryName);
       svgContainer.setAttribute('catroid-brickType', svgBlock.type);
+      svgContainer.setAttribute('id', `brick${svgBlock.type}`);
 
       const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svgElement.setAttribute('style', `width:${blockWidth + 10}px;height:${blockHeight}px;`);
