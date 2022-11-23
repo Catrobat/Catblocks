@@ -134,3 +134,7 @@ img {
   overflow-x: hidden !important;
   overflow-y: auto !important;
 }
+
+.search {
+  width: 3em;
+}

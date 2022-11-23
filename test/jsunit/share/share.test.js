@@ -1260,4 +1260,85 @@ describe('Share catroid program rendering tests', () => {
     const tabs = await page.$$('.catro-tabs .nav-item');
     expect(tabs).toHaveLength(2);
   });
+
+  test('Check for magnifying glass visible on share', async () => {
+    const shareCSS = `img {
+        max-width: 100%!important;
+        page-break-inside: avoid;
+        vertical-align: middle;
+    }`;
+    await page.addStyleTag({ content: shareCSS });
+
+    const testDisplayName = 'My actor';
+    const programID = 'magnifyMe';
+    const sceneName = 'testscene';
+    const objectName = 'testobj';
+
+    const catObj = {
+      scenes: [
+        {
+          name: sceneName,
+          objectList: [
+            {
+              name: objectName,
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'testscene2'
+        }
+      ]
+    };
+
+    await page.evaluate(
+      (pCatObj, pProgramID) => {
+        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+      },
+      catObj,
+      programID
+    );
+
+    const [objID, sceneID] = await page.evaluate(
+      (pProgramID, pSceneName, pObjectName) => {
+        const objID = Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}-${pObjectName}`);
+        return [objID, Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}`)];
+      },
+      programID,
+      sceneName,
+      objectName
+    );
+
+    // open scene (clicks first element with class)
+    await page.click('.catblocks-scene-header');
+    // wait for it to show
+    await page.waitForSelector(`#${sceneID}-collapseOne.show`);
+    await page.waitForSelector('.catblocks-object-container', { visible: true });
+
+    // open modal
+    await page.click('.catblocks-object .card-header');
+
+    const tabID = '#' + objID + '-looks-tab';
+    await page.waitForSelector(tabID, { visible: true });
+
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
+    await page.click(tabID);
+
+    const searchID = '#' + objID + ' #' + objID + '-looks .search';
+    await page.waitForSelector(searchID, { visible: true });
+    const [magnifyingGlassWidth, magnifyingGlassHeight] = await page.$eval(`${searchID} img`, img => [
+      img.clientWidth,
+      img.clientHeight
+    ]);
+
+    expect(magnifyingGlassWidth).toBeGreaterThanOrEqual(24);
+    expect(magnifyingGlassHeight).toBeGreaterThanOrEqual(24);
+  });
 });
