@@ -695,6 +695,95 @@ describe('Share catroid program rendering tests', () => {
     expect(afterClickSrc).toBe(dataSrc);
   });
 
+  test('Share test lazy loading of images by clicking on sub elements', async () => {
+    const testDisplayName = 'My actor';
+    const programID = 'programID';
+    const sceneName = 'testscene';
+    const objectName = 'tobject';
+
+    const catObj = {
+      scenes: [
+        {
+          name: sceneName,
+          objectList: [
+            {
+              name: 'First Object',
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            },
+            {
+              name: `${objectName}`,
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'testscene2'
+        }
+      ]
+    };
+
+    await page.evaluate(
+      (pCatObj, pProgramID) => {
+        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+      },
+      catObj,
+      programID
+    );
+
+    const [objID, sceneID] = await page.evaluate(
+      (pProgramID, pSceneName, pObjectName) => {
+        return [
+          Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}-${pObjectName}`),
+          Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}`)
+        ];
+      },
+      programID,
+      sceneName,
+      objectName
+    );
+
+    // open scene (clicks first element with class)
+    await page.click('.catblocks-scene-header');
+    // wait for it to show
+    await page.waitForSelector(`#${sceneID}-collapseOne.show`);
+
+    const dataSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('data-src')
+    );
+    const beforeClickSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('src')
+    );
+    expect(beforeClickSrc).toBeNull();
+
+    // open object
+    await page.click(`#${objID}-header .header-title`);
+    // wait for tabs to be visible
+    await page.waitForSelector(`#${objID}-tabs`);
+
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
+    // open looks tab
+    await page.click(`#${objID}-looks-tab`);
+    // wait for content to be visible
+    await page.waitForSelector(`#${objID}-looks.show`);
+
+    const afterClickSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('src')
+    );
+    expect(afterClickSrc).toBe(dataSrc);
+  });
+
   test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
     const testDisplayName = 'My actor';
     const programID = 'magnifyMe';
