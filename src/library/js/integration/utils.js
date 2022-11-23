@@ -276,7 +276,7 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
       sceneWidth = brickWidth;
     }
   });
-  if (workspace.RTL) {
+  if (workspace.RTL && workspace.options.readOnly) {
     changeSceneToRtl(allBricks[0], workspace, sceneWidth);
   }
   return sceneWidth;

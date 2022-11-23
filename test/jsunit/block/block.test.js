@@ -466,6 +466,20 @@ describe('Catroid Block IDs', () => {
   test('UserDefinedBrick IDs', async () => {
     const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/udb_nested_recursion.xml'), 'utf8');
 
+    await page.evaluate(async () => {
+      await Test.CatroidCatBlocks.init({
+        container: 'catroid',
+        renderSize: 0.75,
+        language: 'en',
+        shareRoot: '',
+        media: 'media/',
+        noImageFound: 'No_Image_Available.jpg',
+        renderLooks: false,
+        renderSounds: false,
+        readOnly: false
+      });
+    });
+
     await page.evaluate(async pProgramXML => {
       await Test.CatroidCatBlocks.render(pProgramXML, 'Scene', 'testSprite');
     }, programXML);
