@@ -21,6 +21,7 @@ import {
   getColorForBrickCategory
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
+import advancedTheme from '../advanced_theme.json';
 
 export class Catroid {
   constructor() {
@@ -37,6 +38,10 @@ export class Catroid {
     this.createModifiableWorkspace();
     generateFormulaModal();
     createLoadingAnimation();
+
+    if (this.config.isAdvanced) {
+      this.setAdvancedTheme();
+    }
 
     if (window.CatBlocks) {
       this.insertRightMediaURI();
@@ -624,5 +629,10 @@ export class Catroid {
     $('#catroid-catblocks-bricks-container').show();
 
     $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
+  }
+  
+  setAdvancedTheme() {
+    const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
+    this.workspace.setTheme(advTheme);
   }
 }
