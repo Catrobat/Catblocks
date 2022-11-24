@@ -39,7 +39,7 @@ export class Catroid {
     generateFormulaModal();
     createLoadingAnimation();
 
-    if (this.config.isAdvanced) {
+    if (this.config.advancedMode) {
       this.setAdvancedTheme();
     }
 
