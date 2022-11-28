@@ -50,6 +50,6 @@ describe('Catroid Integration Position tests', () => {
     });
 
     const textToScriptBorderOffset = scriptOffset - textOffset;
-    expect(textToScriptBorderOffset < 6).toBe(true);
+    expect(textToScriptBorderOffset < 7).toBe(true);
   });
 });
