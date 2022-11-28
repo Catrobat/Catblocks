@@ -733,7 +733,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1298,7 +1298,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
