@@ -5,6 +5,7 @@ node_modules/
 i18n/json
 ./jenkins/testresults/*
 jest_html_reporters.html
+jest-html-reporters-attach
 release/
 release_share/
 release_catroid
