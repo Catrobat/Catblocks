@@ -323,6 +323,10 @@ img {
   overflow-y: auto !important;
 }
 
+.search {
+  width: 3em;
+}
+
 .blocklyText {
   fill: #fff;
   font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, sans-serif;
@@ -10795,4 +10799,4 @@ body {
 }
 
 
-/*# sourceMappingURL=main.8f5b1969c662ec81d98b.css.map*/
+/*# sourceMappingURL=main.34417a6fbd69be01ccd4.css.map*/
