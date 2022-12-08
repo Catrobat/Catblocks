@@ -26,6 +26,18 @@ describe('Performance tests', () => {
         console.log(message.text());
       }
     });
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+    });
   });
 
   test('Rendering test program takes less than 30 seconds', async () => {
