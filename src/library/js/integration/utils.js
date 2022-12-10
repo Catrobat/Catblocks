@@ -276,7 +276,7 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
       sceneWidth = brickWidth;
     }
   });
-  if (workspace.RTL) {
+  if (workspace.RTL && workspace.options.readOnly) {
     changeSceneToRtl(allBricks[0], workspace, sceneWidth);
   }
   return sceneWidth;
@@ -480,7 +480,12 @@ export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
  * @param {*} event
  */
 export const lazyLoadImage = event => {
-  const $objectHeader = $(event.target);
+  let $objectHeader = $(event.target);
+
+  if (!$objectHeader.attr('class').includes('card-header')) {
+    $objectHeader = $objectHeader.parents('.card-header');
+  }
+
   $objectHeader.off('click', lazyLoadImage);
 
   const $contentContainer = $objectHeader.next();

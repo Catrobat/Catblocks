@@ -716,7 +716,9 @@ export class Share {
         'data-target': '#modalForImg',
         name: 'not clicked'
       });
-      magnifyingGlass.innerHTML = `<img src="${this.config.media}search_black_24dp.svg" />`;
+      generateNewDOM(magnifyingGlass, 'img', {
+        src: `${this.config.media}search_black_24dp.svg`
+      });
 
       // register on click on magnifying glass
       body.on('click', `#${magnifyingGlassID}`, () => {

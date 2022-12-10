@@ -2,7 +2,7 @@
  * @description Parser test
  *  for the parser we always need the webview
  */
-/* global page, SERVER, Test */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -10,12 +10,17 @@ const utils = require('../commonUtils');
 
 describe('Parser catroid program tests', () => {
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    await page.goto('http://localhost:8080');
+
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
       }
     });
+  });
+
+  beforeEach(async () => {
+    await page.waitForNetworkIdle();
   });
 
   test('Recognizes not supported program version', async () => {
@@ -389,7 +394,11 @@ describe('Parser catroid program tests', () => {
 
 describe('Catroid to Catblocks parser tests', () => {
   beforeEach(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
   });
 
   test('Xml Character escaping test', async () => {

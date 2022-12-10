@@ -1,26 +1,19 @@
 /**
  * @description Share test
  */
-/* global page, SERVER, Test, shareTestContainer */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
 beforeEach(async () => {
-  await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+  await page.goto('http://localhost:8080', {
+    waitUntil: 'networkidle0'
+  });
+
   page.on('console', message => {
     if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
       console.log(message.text());
     }
-  });
-  await page.evaluate(() => {
-    function removeAllChildNodes(parent) {
-      while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-      }
-    }
-    shareTestContainer = document.getElementById('shareprogs');
-    removeAllChildNodes(shareTestContainer);
-    shareTestContainer.innerHTML = '';
   });
 });
 
@@ -33,7 +26,7 @@ describe('Share basic tests', () => {
 
     await page.evaluate(
       (pNameOfTheScene, pSceneID, pAccordionID) => {
-        Test.Share.addSceneContainer(pAccordionID, pSceneID, shareTestContainer, {
+        Test.Share.addSceneContainer(pAccordionID, pSceneID, document.getElementById('shareprogs'), {
           real: pNameOfTheScene,
           display: pNameOfTheScene
         });
@@ -84,7 +77,7 @@ describe('Share basic tests', () => {
       (pContainerID, pObjectCardID, pObjectName, pSceneObjectsID) => {
         const container = document.createElement('div');
         container.setAttribute('id', pContainerID);
-        shareTestContainer.append(container);
+        document.getElementById('shareprogs').append(container);
 
         Test.Share.renderObjectJSON(pObjectCardID, pSceneObjectsID, container, { name: pObjectName });
       },
@@ -134,12 +127,18 @@ describe('Share basic tests', () => {
 });
 
 describe('Share catroid program rendering tests', () => {
+  beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+  });
+
   test('Share render unsupported version properly', async () => {
     const catObj = undefined;
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -157,7 +156,7 @@ describe('Share catroid program rendering tests', () => {
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -182,7 +181,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -214,7 +213,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -251,7 +250,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const cardHeaderText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
@@ -291,7 +290,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -375,7 +374,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -506,7 +505,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -552,7 +551,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -596,7 +595,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -645,7 +644,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -695,6 +694,95 @@ describe('Share catroid program rendering tests', () => {
     expect(afterClickSrc).toBe(dataSrc);
   });
 
+  test('Share test lazy loading of images by clicking on sub elements', async () => {
+    const testDisplayName = 'My actor';
+    const programID = 'programID';
+    const sceneName = 'testscene';
+    const objectName = 'tobject';
+
+    const catObj = {
+      scenes: [
+        {
+          name: sceneName,
+          objectList: [
+            {
+              name: 'First Object',
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            },
+            {
+              name: `${objectName}`,
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'testscene2'
+        }
+      ]
+    };
+
+    await page.evaluate(
+      (pCatObj, pProgramID) => {
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+      },
+      catObj,
+      programID
+    );
+
+    const [objID, sceneID] = await page.evaluate(
+      (pProgramID, pSceneName, pObjectName) => {
+        return [
+          Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}-${pObjectName}`),
+          Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}`)
+        ];
+      },
+      programID,
+      sceneName,
+      objectName
+    );
+
+    // open scene (clicks first element with class)
+    await page.click('.catblocks-scene-header');
+    // wait for it to show
+    await page.waitForSelector(`#${sceneID}-collapseOne.show`);
+
+    const dataSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('data-src')
+    );
+    const beforeClickSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('src')
+    );
+    expect(beforeClickSrc).toBeNull();
+
+    // open object
+    await page.click(`#${objID}-header .header-title`);
+    // wait for tabs to be visible
+    await page.waitForSelector(`#${objID}-tabs`);
+
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
+    // open looks tab
+    await page.click(`#${objID}-looks-tab`);
+    // wait for content to be visible
+    await page.waitForSelector(`#${objID}-looks.show`);
+
+    const afterClickSrc = await page.$eval(`#${objID} #${objID}-looks .catblocks-object-look-item`, x =>
+      x.getAttribute('src')
+    );
+    expect(afterClickSrc).toBe(dataSrc);
+  });
+
   test('Share render object with magnifying glass in look tab and simulate click to popup image', async () => {
     const testDisplayName = 'My actor';
     const programID = 'magnifyMe';
@@ -725,7 +813,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -805,7 +893,7 @@ describe('Share catroid program rendering tests', () => {
     const result = await page.evaluate(pCatObj => {
       try {
         // option to render the scene directly
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj, {
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj, {
           scene: {
             renderNow: {
               scene: sceneName
@@ -846,7 +934,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -863,6 +951,7 @@ describe('Share catroid program rendering tests', () => {
     // open scene (clicks first element with class)
     await page.click('.catblocks-scene-header');
     // wait for it to show
+    // FIXME: endlos warten hier
     await page.waitForSelector(`#${sceneID}-collapseOne.show`);
 
     const cbSceneHandle = await page.$('.catblocks-scene');
@@ -908,7 +997,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -984,7 +1073,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1086,7 +1175,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1117,7 +1206,7 @@ describe('Share catroid program rendering tests', () => {
     const initialXPosition = await page.$eval('.catblocks-script', x => x.scrollLeft);
 
     await page.evaluate(() => {
-      const brickContainer = shareTestContainer.querySelector('.catblocks-script');
+      const brickContainer = document.getElementById('shareprogs').querySelector('.catblocks-script');
       brickContainer.scrollBy(1, 0);
     });
 
@@ -1164,11 +1253,92 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(pCatObj => {
       Test.Share.config.renderLooks = false;
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       Test.Share.config.renderLooks = true;
     }, catObj);
 
     const tabs = await page.$$('.catro-tabs .nav-item');
     expect(tabs).toHaveLength(2);
+  });
+
+  test('Check for magnifying glass visible on share', async () => {
+    const shareCSS = `img {
+        max-width: 100%!important;
+        page-break-inside: avoid;
+        vertical-align: middle;
+    }`;
+    await page.addStyleTag({ content: shareCSS });
+
+    const testDisplayName = 'My actor';
+    const programID = 'magnifyMe';
+    const sceneName = 'testscene';
+    const objectName = 'testobj';
+
+    const catObj = {
+      scenes: [
+        {
+          name: sceneName,
+          objectList: [
+            {
+              name: objectName,
+              lookList: [
+                {
+                  name: testDisplayName,
+                  fileName: 'My actor or object.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'testscene2'
+        }
+      ]
+    };
+
+    await page.evaluate(
+      (pCatObj, pProgramID) => {
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+      },
+      catObj,
+      programID
+    );
+
+    const [objID, sceneID] = await page.evaluate(
+      (pProgramID, pSceneName, pObjectName) => {
+        const objID = Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}-${pObjectName}`);
+        return [objID, Test.ShareUtils.generateID(`${pProgramID}-${pSceneName}`)];
+      },
+      programID,
+      sceneName,
+      objectName
+    );
+
+    // open scene (clicks first element with class)
+    await page.click('.catblocks-scene-header');
+    // wait for it to show
+    await page.waitForSelector(`#${sceneID}-collapseOne.show`);
+    await page.waitForSelector('.catblocks-object-container', { visible: true });
+
+    // open modal
+    await page.click('.catblocks-object .card-header');
+
+    const tabID = '#' + objID + '-looks-tab';
+    await page.waitForSelector(tabID, { visible: true });
+
+    // fix problem for somehow opening scene2
+    await page.waitForTimeout(500);
+
+    await page.click(tabID);
+
+    const searchID = '#' + objID + ' #' + objID + '-looks .search';
+    await page.waitForSelector(searchID, { visible: true });
+    const [magnifyingGlassWidth, magnifyingGlassHeight] = await page.$eval(`${searchID} img`, img => [
+      img.clientWidth,
+      img.clientHeight
+    ]);
+
+    expect(magnifyingGlassWidth).toBeGreaterThanOrEqual(24);
+    expect(magnifyingGlassHeight).toBeGreaterThanOrEqual(24);
   });
 });
