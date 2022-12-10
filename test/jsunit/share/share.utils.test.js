@@ -135,7 +135,7 @@ describe('Share utilities testing', () => {
     const [result1, result2] = await page.evaluate(() => {
       return [
         Test.ShareUtils.getDomElement('shareprogs') === document.getElementById('shareprogs'),
-        Test.ShareUtils.getDomElement('#share .injectionDiv') === Test.Share.workspace.injectionDiv_
+        Test.ShareUtils.getDomElement('#share .injectionDiv') === Test.Share.workspace.getInjectionDiv()
       ];
     });
     expect(result1).toBeTruthy();
