@@ -56,7 +56,9 @@ describe('Catroid Integration Position tests', () => {
 
 describe('Catroid Integration Advanced Mode tests', () => {
   beforeAll(async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
     const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/binding_of_krishna_1_12.xml'), 'utf8');
     const language = 'en';
     const rtl = false;
