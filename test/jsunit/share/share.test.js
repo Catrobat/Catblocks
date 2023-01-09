@@ -15,6 +15,22 @@ beforeEach(async () => {
       console.log(message.text());
     }
   });
+
+  await page.evaluate(async () => {
+    await Test.CatBlocks.init({
+      container: 'share',
+      renderSize: 0.75,
+      shareRoot: '',
+      media: 'media/',
+      language: 'en',
+      rtl: false,
+      noImageFound: 'No_Image_Available.jpg',
+      advancedMode: false
+    });
+
+    const share = Test.CatBlocks.getInstance().share;
+    Test.Share = share;
+  });
 });
 
 describe('Share basic tests', () => {
@@ -130,6 +146,21 @@ describe('Share catroid program rendering tests', () => {
   beforeEach(async () => {
     await page.goto('http://localhost:8080', {
       waitUntil: 'networkidle0'
+    });
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+  
+      const share = Test.CatBlocks.getInstance().share;
+      Test.Share = share;
     });
   });
 

@@ -98,36 +98,66 @@ describe('Filesystem Block tests', () => {
 });
 
 describe('WebView Block tests', () => {
+  beforeAll(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+    page.on('console', message => {
+      if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
+        console.log(message.text());
+      }
+    });
+
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+    
+      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+        media: '../media/',
+        zoom: { startScale: 0.75 },
+        toolbox: Test.Playground.getToolbox(true),
+        renderer: 'zelos'
+      });
+
+      const share = Test.CatBlocks.getInstance().share;
+      const toolbox = Test.Blockly.Workspace.getAll().find(
+        ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
+      );
+      Test.Toolbox = {
+        workspace: toolbox
+      };
+      Test.Share = share;
+    });
+  
+    await page.evaluate(() => {
+      // function to JSON.stringify circular objects
+      window.shallowJSON = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+          obj,
+          (key, value) =>
+            typeof value === 'object' && value !== null
+              ? cache.includes(value)
+                ? undefined // Duplicate reference found, discard key
+                : cache.push(value) && value // Store value in our collection
+              : value,
+          indent
+        );
+        cache = null;
+        return retVal;
+      };
+    });
+  });
   describe('Workspace initialization', () => {
     beforeEach(async () => {
-      await page.goto('http://localhost:8080', {
-        waitUntil: 'networkidle0'
-      });
-
-      page.on('console', message => {
-        if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
-          console.log(message.text());
-        }
-      });
-      await page.evaluate(() => {
-        // function to JSON.stringify circular objects
-        window.shallowJSON = (obj, indent = 2) => {
-          let cache = [];
-          const retVal = JSON.stringify(
-            obj,
-            (key, value) =>
-              typeof value === 'object' && value !== null
-                ? cache.includes(value)
-                  ? undefined // Duplicate reference found, discard key
-                  : cache.push(value) && value // Store value in our collection
-                : value,
-            indent
-          );
-          cache = null;
-          return retVal;
-        };
-      });
-
       // clean workspace before each test
       await page.evaluate(() => {
         Test.Playground.workspace.clear();
@@ -229,30 +259,6 @@ describe('WebView Block tests', () => {
   });
 
   describe('Workspace actions', () => {
-    beforeEach(async () => {
-      await page.goto('http://localhost:8080', {
-        waitUntil: 'networkidle0'
-      });
-      await page.evaluate(() => {
-        // function to JSON.stringify circular objects
-        window.shallowJSON = (obj, indent = 2) => {
-          let cache = [];
-          const retVal = JSON.stringify(
-            obj,
-            (key, value) =>
-              typeof value === 'object' && value !== null
-                ? cache.includes(value)
-                  ? undefined // Duplicate reference found, discard key
-                  : cache.push(value) && value // Store value in our collection
-                : value,
-            indent
-          );
-          cache = null;
-          return retVal;
-        };
-      });
-    });
-
     test('All icons available and rendered', async () => {
       const imgHref = await page.evaluate(() => {
         return Array.from(document.querySelectorAll('svg.blocklyFlyout image')).map(node => node.href.baseVal);
@@ -484,12 +490,6 @@ describe('Catroid Block IDs', () => {
         cache = null;
         return retVal;
       };
-    });
-  });
-
-  beforeEach(async () => {
-    await page.goto('http://localhost:8080', {
-      waitUntil: 'networkidle0'
     });
   });
 
