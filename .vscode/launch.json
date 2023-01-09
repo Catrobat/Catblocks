@@ -19,17 +19,12 @@
             "type": "node",
             "request": "launch",
             "name": "Debug Jest Tests",
-            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
-            "env": {
-                "CI": "true"
-            },
-            "args": [
+            "runtimeArgs": [
+                "--inspect-brk",
+                "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "--runInBand",
                 "-c",
-                "./test/jest_debug_config.js",
-                "--verbose",
-                "-i",
-                "--no-cache",
-                "--runInBand"
+                "./test/jest_debug_config.js"
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"

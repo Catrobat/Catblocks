@@ -413,7 +413,7 @@ export class Catroid {
       const brickIDs = JSON.parse(strBrickIDs);
       if (brickIDs) {
         for (let i = 0; i < brickIDs.length; ++i) {
-          const brickToRemove = this.workspace.blockDB_[brickIDs[i]];
+          const brickToRemove = this.workspace.getBlockById(brickIDs[i])[brickIDs[i]];
           if (brickToRemove) {
             this.workspace.removeBlockById(brickIDs[i]);
             brickToRemove.dispose(false);

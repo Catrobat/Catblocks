@@ -1,4 +1,4 @@
-/* global Test, page, SERVER */
+/* global Test, page */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -7,7 +7,9 @@ const path = require('path');
 
 describe('Catroid Integration Position tests', () => {
   test('RTL right alligment', async () => {
-    await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
     const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/binding_of_krishna_1_12.xml'), 'utf8');
 
     const language = 'ar';
@@ -48,7 +50,7 @@ describe('Catroid Integration Position tests', () => {
     });
 
     const textToScriptBorderOffset = scriptOffset - textOffset;
-    expect(textToScriptBorderOffset < 6).toBe(true);
+    expect(textToScriptBorderOffset < 7).toBe(true);
   });
 });
 

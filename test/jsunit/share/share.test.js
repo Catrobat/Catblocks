@@ -1,26 +1,19 @@
 /**
  * @description Share test
  */
-/* global page, SERVER, Test, shareTestContainer */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
 beforeEach(async () => {
-  await page.goto(`${SERVER}`, { waitUntil: 'networkidle0' });
+  await page.goto('http://localhost:8080', {
+    waitUntil: 'networkidle0'
+  });
+
   page.on('console', message => {
     if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
       console.log(message.text());
     }
-  });
-  await page.evaluate(() => {
-    function removeAllChildNodes(parent) {
-      while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-      }
-    }
-    shareTestContainer = document.getElementById('shareprogs');
-    removeAllChildNodes(shareTestContainer);
-    shareTestContainer.innerHTML = '';
   });
 });
 
@@ -33,7 +26,7 @@ describe('Share basic tests', () => {
 
     await page.evaluate(
       (pNameOfTheScene, pSceneID, pAccordionID) => {
-        Test.Share.addSceneContainer(pAccordionID, pSceneID, shareTestContainer, {
+        Test.Share.addSceneContainer(pAccordionID, pSceneID, document.getElementById('shareprogs'), {
           real: pNameOfTheScene,
           display: pNameOfTheScene
         });
@@ -84,7 +77,7 @@ describe('Share basic tests', () => {
       (pContainerID, pObjectCardID, pObjectName, pSceneObjectsID) => {
         const container = document.createElement('div');
         container.setAttribute('id', pContainerID);
-        shareTestContainer.append(container);
+        document.getElementById('shareprogs').append(container);
 
         Test.Share.renderObjectJSON(pObjectCardID, pSceneObjectsID, container, { name: pObjectName });
       },
@@ -134,12 +127,18 @@ describe('Share basic tests', () => {
 });
 
 describe('Share catroid program rendering tests', () => {
+  beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+  });
+
   test('Share render unsupported version properly', async () => {
     const catObj = undefined;
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -157,7 +156,7 @@ describe('Share catroid program rendering tests', () => {
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -182,7 +181,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -214,7 +213,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -251,7 +250,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
     const cardHeaderText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
@@ -291,7 +290,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -375,7 +374,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -506,7 +505,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -552,7 +551,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -596,7 +595,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -645,7 +644,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -734,7 +733,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -814,7 +813,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -894,7 +893,7 @@ describe('Share catroid program rendering tests', () => {
     const result = await page.evaluate(pCatObj => {
       try {
         // option to render the scene directly
-        Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj, {
+        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj, {
           scene: {
             renderNow: {
               scene: sceneName
@@ -935,7 +934,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -952,6 +951,7 @@ describe('Share catroid program rendering tests', () => {
     // open scene (clicks first element with class)
     await page.click('.catblocks-scene-header');
     // wait for it to show
+    // FIXME: endlos warten hier
     await page.waitForSelector(`#${sceneID}-collapseOne.show`);
 
     const cbSceneHandle = await page.$('.catblocks-scene');
@@ -997,7 +997,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1073,7 +1073,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1175,7 +1175,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
@@ -1206,7 +1206,7 @@ describe('Share catroid program rendering tests', () => {
     const initialXPosition = await page.$eval('.catblocks-script', x => x.scrollLeft);
 
     await page.evaluate(() => {
-      const brickContainer = shareTestContainer.querySelector('.catblocks-script');
+      const brickContainer = document.getElementById('shareprogs').querySelector('.catblocks-script');
       brickContainer.scrollBy(1, 0);
     });
 
@@ -1253,7 +1253,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(pCatObj => {
       Test.Share.config.renderLooks = false;
-      Test.Share.renderProgramJSON('programID', shareTestContainer, pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
       Test.Share.config.renderLooks = true;
     }, catObj);
 
@@ -1298,7 +1298,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, shareTestContainer, pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
       },
       catObj,
       programID
