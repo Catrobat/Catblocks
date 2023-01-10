@@ -156,6 +156,7 @@ describe('WebView Block tests', () => {
       };
     });
   });
+
   describe('Workspace initialization', () => {
     beforeEach(async () => {
       // clean workspace before each test
@@ -468,6 +469,9 @@ describe('WebView Block tests', () => {
 
 describe('Catroid Block IDs', () => {
   beforeAll(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());

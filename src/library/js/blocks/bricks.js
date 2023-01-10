@@ -4,6 +4,7 @@
 
 import Blockly from 'blockly';
 import categories from './categories';
+import { initCatblocksColours } from './colours';
 
 export const getBrickScriptMapping = () => {
   return new Map()
@@ -81,7 +82,7 @@ const shapeBricksExtention = () => {
  * @param {*} cats
  * @param {*} blockly
  */
-const loadBricks = (cats = categories, blockly = Blockly) => {
+const loadBricks = (cats = categories, blockly = Blockly, advancedMode) => {
   blockly.Extensions.register(`shapeBrick`, shapeBricksExtention());
 
   for (const catName in cats) {
@@ -101,6 +102,9 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
       blockly.Blocks[brickName] = {
         init: function () {
           this.jsonInit(blockly.Bricks[brickName]);
+          if (advancedMode) {
+            this.setStyle(catName);
+          }
         }
       };
     }
@@ -111,14 +115,15 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
  * Init bricks for blockly
  * @param {*} blockly
  */
-const initBricks = (blockly = Blockly) => {
-  removeAllBricks(blockly);
-  loadBricks(categories, blockly);
-};
+export function initBricks (advancedMode) {
+  removeAllBricks(Blockly);
+  loadBricks(categories, Blockly, advancedMode);
+  initCatblocksColours();
+}
 
 /**
  * Main brick function
  */
-(() => {
-  initBricks();
-})();
+// (() => {
+//   initBricks();
+// })();
