@@ -158,7 +158,7 @@ describe('Share catroid program rendering tests', () => {
         noImageFound: 'No_Image_Available.jpg',
         advancedMode: false
       });
-  
+
       const share = Test.CatBlocks.getInstance().share;
       Test.Share = share;
     });

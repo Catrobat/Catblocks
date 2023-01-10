@@ -115,7 +115,7 @@ const loadBricks = (cats = categories, blockly = Blockly, advancedMode) => {
  * Init bricks for blockly
  * @param {*} blockly
  */
-export function initBricks (advancedMode) {
+export function initBricks(advancedMode) {
   removeAllBricks(Blockly);
   loadBricks(categories, Blockly, advancedMode);
   initCatblocksColours();
