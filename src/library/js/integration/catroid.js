@@ -630,7 +630,7 @@ export class Catroid {
 
     $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
   }
-  
+
   setAdvancedTheme() {
     const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
     this.workspace.setTheme(advTheme);
