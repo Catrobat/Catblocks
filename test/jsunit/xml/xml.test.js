@@ -31,7 +31,7 @@ describe('Export and Import XML files to workspace', () => {
         noImageFound: 'No_Image_Available.jpg',
         advancedMode: false
       });
-    
+
       Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },

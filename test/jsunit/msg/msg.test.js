@@ -83,7 +83,7 @@ describe('Webview test', () => {
         noImageFound: 'No_Image_Available.jpg',
         advancedMode: false
       });
-    
+
       Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
@@ -294,7 +294,7 @@ describe('share displays language of UI elements correctly', () => {
         noImageFound: 'No_Image_Available.jpg',
         advancedMode: false
       });
-    
+
       Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },

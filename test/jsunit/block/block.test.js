@@ -117,7 +117,7 @@ describe('WebView Block tests', () => {
         noImageFound: 'No_Image_Available.jpg',
         advancedMode: false
       });
-    
+
       Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
@@ -134,7 +134,7 @@ describe('WebView Block tests', () => {
       };
       Test.Share = share;
     });
-  
+
     await page.evaluate(() => {
       // function to JSON.stringify circular objects
       window.shallowJSON = (obj, indent = 2) => {

@@ -12,7 +12,7 @@ beforeEach(async () => {
       console.log(message.text());
     }
   });
-  
+
   await page.evaluate(async () => {
     await Test.CatBlocks.init({
       container: 'share',
