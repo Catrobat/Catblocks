@@ -176,4 +176,21 @@ describe('Catroid Integration Advanced Mode tests', () => {
 
     expect(blocksHeight < 40).toBe(true);
   });
+
+  test('Semicolon test', async () => {
+    const semicolons = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      if (
+        blocks[3].tooltip.inputList[0].fieldRow[5].getValue() === ');' &&
+        blocks[12].tooltip.inputList[0].fieldRow[5].getValue() === ');' &&
+        blocks[26].tooltip.inputList[0].fieldRow[2].getValue() === ');'
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    expect(semicolons).toBe(true);
+  });
 });
