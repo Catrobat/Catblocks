@@ -634,5 +634,13 @@ export class Catroid {
   setAdvancedTheme() {
     const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
     this.workspace.setTheme(advTheme);
+    const styleOfInputFields = document.createElement('style');
+    document.head.appendChild(styleOfInputFields);
+    styleOfInputFields.sheet.insertRule(
+      '.blocklyNonEditableText > rect:not(.blocklyDropdownRect), .blocklyEditableText > rect:not(.blocklyDropdownRect) {fill: #1a1a1a !important;}'
+    );
+    styleOfInputFields.sheet.insertRule(
+      '.blocklyNonEditableText > text, .blocklyEditableText > text, .blocklyNonEditableText > g > text, .blocklyEditableText > g > text {fill: #fff !important;}'
+    );
   }
 }
