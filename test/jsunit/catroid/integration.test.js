@@ -125,4 +125,20 @@ describe('Catroid Integration Advanced Mode tests', () => {
 
     expect(selectedGlowColour).toBe('#9a9a9a');
   });
+
+  test('Input fields color test', async () => {
+    const inputFieldsInAdvancedMode = await page.evaluate(() => {
+      const inputFields = document.querySelectorAll('.blocklyEditableText > rect:not(.blocklyDropdownRect)');
+      let counter = 0;
+      let darkColor = true;
+      inputFields.forEach(field => {
+        darkColor = field.attributes.stroke.value === '#1a1a1a' && darkColor;
+        counter++;
+      });
+      darkColor = counter > 20 && darkColor;
+      return darkColor;
+    });
+
+    expect(inputFieldsInAdvancedMode).toBe(true);
+  });
 });
