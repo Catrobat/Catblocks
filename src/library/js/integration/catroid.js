@@ -257,7 +257,7 @@ export class Catroid {
   handleWorkspaceChange(event) {
     if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
       const droppedBrick = this.workspace.getBlockById(event.blockId);
-      const isTopBrick = droppedBrick.hat !== undefined;
+      const isTopBrick = droppedBrick.hat !== undefined && droppedBrick.hat !== '';
       const position = droppedBrick.getRelativeToSurfaceXY();
 
       if (isTopBrick) {
@@ -325,7 +325,7 @@ export class Catroid {
       throw Error('Workspace not initialized. Did you call init?');
     }
 
-    const createdBricks = buildUserDefinedBrick(object);
+    const createdBricks = buildUserDefinedBrick(object, this.config.advancedMode);
     if (createdBricks) {
       createdBricks.forEach(brickName => {
         this.fixBrickMediaURI(brickName);
