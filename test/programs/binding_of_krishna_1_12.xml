@@ -13621,7 +13621,7 @@ Mori Shohei</description>
                     </brick>
                     <brick type="ShowTextColorSizeAlignmentBrick">
                       <brickId>0af0293b-c19e-4053-bbbd-787942855325</brickId>
-                      <commentedOut>false</commentedOut>
+                      <commentedOut>true</commentedOut>
                       <formulaList>
                         <formula category="X_POSITION">
                           <additionalChildren/>

@@ -634,10 +634,10 @@ export class Catroid {
   setAdvancedTheme() {
     const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
     this.workspace.setTheme(advTheme);
-    this.workspace.renderer_.constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size
+    this.workspace.renderer_.constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size of blocks
     this.workspace.renderer_.constants_.MEDIUM_PADDING = 5; // Padding of block left & right
     this.workspace.renderer_.constants_.FIELD_BORDER_RECT_HEIGHT = 14; // Determines height of block with input field
-    this.workspace.renderer_.constants_.FIELD_TEXT_HEIGHT = 14; // Determines heigh of block without input field
+    this.workspace.renderer_.constants_.FIELD_TEXT_HEIGHT = 14; // Determines height of a block without input field
     this.workspace.renderer_.constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 14; // Height of bottom part of e.g. 'if' block
     this.workspace.renderer_.constants_.FIELD_BORDER_RECT_X_PADDING = 0;
     this.workspace.renderer_.constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
@@ -649,5 +649,6 @@ export class Catroid {
     styleOfInputFields.sheet.insertRule(
       '.blocklyNonEditableText > text, .blocklyEditableText > text, .blocklyNonEditableText > g > text, .blocklyEditableText > g > text {fill: #fff !important;}'
     );
+    styleOfInputFields.sheet.insertRule('.blocklyMainBackground {stroke-width: 0 !important;}');
   }
 }

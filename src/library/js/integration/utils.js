@@ -302,6 +302,11 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
     } else {
       brickIDGenerator.createBrickID(childBrick);
     }
+    if (workspace.getTheme().name === 'advancedtheme') {
+      if (childBrick.getStyleName() === 'disabled' || childBrick.type === 'NoteBrick') {
+        advancedModeCommentOutBricks(childBrick);
+      }
+    }
 
     if (parentBrick === null && brickList[i].userBrickId !== undefined) {
       // When there is no parentBrick but the userBrickId is set
@@ -446,6 +451,9 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
     } else if (jsonBrick.commentedOut) {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+      if (workspace.getTheme().name === 'advancedtheme') {
+        childBrick.setStyle('disabled');
+      }
     }
   }
 
@@ -665,7 +673,7 @@ export const getColorForBrickCategory = categoryName => {
 };
 
 function advancedModeAddParentheses(childBrick) {
-  if (childBrick.type === 'UserDefinedScript') {
+  if (childBrick.type === 'NoteBrick' || childBrick.type === 'UserDefinedScript') {
     return;
   }
   for (const input of childBrick.inputList) {
@@ -725,6 +733,13 @@ function advancedModeAddCurlyBrackets(childBrick) {
 }
 
 function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
+  if (
+    childBrick.type === 'NoteBrick' ||
+    childBrick.type === 'UserDefinedScript' ||
+    childBrick.getStyleName() === 'user'
+  ) {
+    return;
+  }
   if (childBrick.inputList.length === 1) {
     if (
       childBrick.type === 'StartScript' ||
@@ -732,7 +747,9 @@ function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
       childBrick.type === 'BroadcastScript'
     ) {
       childBrick.hat = 'top';
+      return;
     }
+
     const fieldRow = childBrick.inputList[0].fieldRow;
     const newVal = fieldRow[fieldRow.length - 1].getValue() + ';';
     fieldRow[fieldRow.length - 1].setValue(newVal);
@@ -752,5 +769,37 @@ function advancedModeRemoveWhiteSpacesInFormulas(field) {
 
   for (const key in replaceDict) {
     field.setValue(field.getValue().replaceAll(key, replaceDict[key]));
+  }
+}
+
+function advancedModeCommentOutBricks(childBrick) {
+  childBrick.inputList[0].fieldRow[0].setValue('// ' + childBrick.inputList[0].fieldRow[0].getValue());
+  if (
+    childBrick.type === 'IfLogicBeginBrick' ||
+    childBrick.type === 'PhiroIfLogicBeginBrick' ||
+    childBrick.type === 'RaspiIfLogicBeginBrick'
+  ) {
+    childBrick.inputList[2].fieldRow[0].setValue('// ' + childBrick.inputList[2].fieldRow[0].getValue());
+    childBrick.inputList[4].fieldRow[0].setValue('// ' + childBrick.inputList[4].fieldRow[0].getValue());
+  }
+  if (childBrick.inputList.length === 3) {
+    childBrick.inputList[2].fieldRow[0].setValue('// ' + childBrick.inputList[2].fieldRow[0].getValue());
+  }
+  if (childBrick.type === 'NoteBrick') {
+    Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+    childBrick.inputList[0].fieldRow[0].setValue('//');
+    childBrick.inputList[0].fieldRow[1].setValue(childBrick.inputList[0].fieldRow[1].getValue().slice(1, -1));
+  }
+
+  const brickElements = document.getElementById(childBrick.pathObject.svgRoot.id).childNodes;
+  let count = 1;
+  while (count < brickElements.length && !brickElements[count].id) {
+    if (
+      brickElements[count].classList[0] !== 'blocklyNonEditableText' &&
+      brickElements[count].classList[0] !== 'blocklyEditableText'
+    ) {
+      brickElements[count].style.opacity = 0.5;
+    }
+    count++;
   }
 }
