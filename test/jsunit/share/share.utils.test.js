@@ -6,17 +6,35 @@
 'use strict';
 
 beforeAll(async () => {
-  await page.goto('http://localhost:8080');
-});
-
-beforeEach(async () => {
-  await page.waitForNetworkIdle();
+  await page.goto('http://localhost:8080', {
+    waitUntil: 'networkidle0'
+  });
 
   page.on('console', message => {
     if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
       console.log(message.text());
     }
   });
+
+  await page.evaluate(async () => {
+    await Test.CatBlocks.init({
+      container: 'share',
+      renderSize: 0.75,
+      shareRoot: '',
+      media: 'media/',
+      language: 'en',
+      rtl: false,
+      noImageFound: 'No_Image_Available.jpg',
+      advancedMode: false
+    });
+
+    const share = Test.CatBlocks.getInstance().share;
+    Test.Share = share;
+  });
+});
+
+beforeEach(async () => {
+  await page.waitForNetworkIdle();
 });
 
 describe('Share utilities testing', () => {
