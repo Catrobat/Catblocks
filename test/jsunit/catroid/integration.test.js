@@ -116,4 +116,13 @@ describe('Catroid Integration Advanced Mode tests', () => {
 
     expect(allBlocksInAdvancedMode).toBe(true);
   });
+
+  test('Blocks select color test', async () => {
+    const selectedGlowColour = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      return blocks[0].tooltip.workspace.getTheme().componentStyles.selectedGlowColour;
+    });
+
+    expect(selectedGlowColour).toBe('#9a9a9a');
+  });
 });
