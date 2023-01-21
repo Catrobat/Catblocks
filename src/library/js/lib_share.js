@@ -25,7 +25,7 @@ export class CatBlocks {
     if (!config) {
       throw new Error('No configuration given');
     }
-    initBricks(config.advancedMode);
+    initBricks(false);
 
     catblocks_instance = new CatBlocks(config);
 

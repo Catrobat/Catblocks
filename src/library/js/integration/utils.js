@@ -8,7 +8,7 @@ import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import pluralBricks from '../plural_bricks.json';
 import { BrickIDGenerator } from './brick_id_generator';
-import { getScriptToBrickMapping } from '../blocks/bricks';
+import { getScriptToBrickMapping, scriptBricks } from '../blocks/bricks';
 import { getColourCodesForCategories } from '../blocks/colours';
 
 /**
@@ -302,7 +302,7 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
     } else {
       brickIDGenerator.createBrickID(childBrick);
     }
-    if (workspace.getTheme().name === 'advancedtheme') {
+    if (workspace.getTheme().name.toLowerCase() === 'advanced') {
       if (childBrick.getStyleName() === 'disabled' || childBrick.type === 'NoteBrick') {
         advancedModeCommentOutBricks(childBrick);
       }
@@ -411,7 +411,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
 
   if (childBrick && childBrick.inputList && childBrick.inputList[0] && childBrick.inputList[0].fieldRow) {
-    if (workspace.getTheme().name === 'advancedtheme') {
+    if (workspace.getTheme().name.toLowerCase() === 'advanced') {
       advancedModeAddParentheses(childBrick);
       advancedModeAddCurlyBrackets(childBrick);
       advancedModeAddSemicolonsAndClassifyTopBricks(childBrick);
@@ -422,7 +422,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
           if (j > 0) {
             const val = childBrick.inputList[i].fieldRow[j - 1].getValue();
             if (val && val.length < childBrick.inputList[i].fieldRow[j - 1].maxDisplayLength) {
-              childBrick.inputList[i].fieldRow[j].visible_ = false;
+              childBrick.inputList[i].fieldRow[j].setVisible(false);
             } else {
               childBrick.inputList[0].fieldRow[j].setOnClickHandler(() => {
                 showFormulaPopup(val);
@@ -451,7 +451,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
     } else if (jsonBrick.commentedOut) {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
-      if (workspace.getTheme().name === 'advancedtheme') {
+      if (workspace.getTheme().name.toLowerCase() === 'advanced') {
         childBrick.setStyle('disabled');
       }
     }
@@ -749,15 +749,10 @@ export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
     return;
   }
   if (childBrick.inputList.length === 1) {
-    if (
-      childBrick.type === 'StartScript' ||
-      childBrick.type.includes('When') ||
-      childBrick.type === 'BroadcastScript'
-    ) {
+    if (scriptBricks.includes(childBrick.type)) {
       childBrick.hat = 'top';
       return;
     }
-
     const fieldRow = childBrick.inputList[0].fieldRow;
     const newVal = fieldRow[fieldRow.length - 1].getValue() + ';';
     fieldRow[fieldRow.length - 1].setValue(newVal);
@@ -765,19 +760,19 @@ export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
 }
 
 function advancedModeRemoveWhiteSpacesInFormulas(field) {
-  field.setValue(field.getValue().trim());
-
-  const replaceDict = {
-    '( ': '(',
-    ' )': ')',
-    ' ,': ',',
-    '  ': ' ',
-    '- ': '-'
-  };
-
-  for (const key in replaceDict) {
-    field.setValue(field.getValue().replaceAll(key, replaceDict[key]));
+  let cleanFieldValue = field.getValue().trim();
+  if (!cleanFieldValue.startsWith("'") && !cleanFieldValue.endsWith("'")) {
+    const replaceDict = {
+      '( ': '(',
+      ' )': ')',
+      ' ,': ',',
+      '  ': ' '
+    };
+    for (const key in replaceDict) {
+      cleanFieldValue = cleanFieldValue.replaceAll(key, replaceDict[key]);
+    }
   }
+  field.setValue(cleanFieldValue);
 }
 
 function advancedModeCommentOutBricks(childBrick) {

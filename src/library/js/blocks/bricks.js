@@ -19,6 +19,21 @@ export const getBrickScriptMapping = () => {
     .set('WhenRaspiPinChangedBrick', 'RaspiInterruptScript');
 };
 
+export const scriptBricks = [
+  'WhenClonedScript',
+  'StartScript',
+  'WhenScript',
+  'WhenTouchDownScript',
+  'BroadcastScript',
+  'WhenConditionScript',
+  'WhenBounceOffScript',
+  'WhenBackgroundChangesScript',
+  'WhenRaspiPinChangedBrick',
+  'UserDefinedScript',
+  'EmptyScript',
+  'RaspiInterruptScript'
+];
+
 export const getScriptToBrickMapping = () => {
   const bricksToScripts = getBrickScriptMapping();
   const scriptsToBricks = new Map();
@@ -53,22 +68,7 @@ const shapeBricksExtention = () => {
   return function () {
     const blockName = this.type;
     // TODO: please find a better logic than this
-    if (
-      [
-        'WhenClonedScript',
-        'StartScript',
-        'WhenScript',
-        'WhenTouchDownScript',
-        'BroadcastScript',
-        'WhenConditionScript',
-        'WhenBounceOffScript',
-        'WhenBackgroundChangesScript',
-        'WhenRaspiPinChangedBrick',
-        'UserDefinedScript',
-        'EmptyScript',
-        'RaspiInterruptScript'
-      ].includes(blockName)
-    ) {
+    if (scriptBricks.includes(blockName)) {
       this.hat = 'cap';
     } else {
       this.setPreviousStatement(true, 'CatBlocksBrick');
@@ -78,11 +78,11 @@ const shapeBricksExtention = () => {
 };
 
 /**
- * Load all bricks from cats into Blockly
- * @param {*} cats
- * @param {*} blockly
+ * @param {Array<string>} [cats]
+ * @param {Blockly} [blockly]
+ * @param {boolean} [advancedMode]
  */
-const loadBricks = (cats = categories, blockly = Blockly, advancedMode) => {
+const loadBricks = (cats = categories, blockly = Blockly, advancedMode = false) => {
   blockly.Extensions.register(`shapeBrick`, shapeBricksExtention());
 
   for (const catName in cats) {
@@ -112,18 +112,10 @@ const loadBricks = (cats = categories, blockly = Blockly, advancedMode) => {
 };
 
 /**
- * Init bricks for blockly
- * @param {*} blockly
+ * @param {boolean} advancedMode
  */
 export function initBricks(advancedMode) {
   removeAllBricks(Blockly);
   loadBricks(categories, Blockly, advancedMode);
   initCatblocksColours();
 }
-
-/**
- * Main brick function
- */
-// (() => {
-//   initBricks();
-// })();

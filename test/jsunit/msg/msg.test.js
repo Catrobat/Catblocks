@@ -147,7 +147,9 @@ describe('Webview test', () => {
         for (let idx = 0; idx < msgBlockParts.length; idx++) {
           const msgBlockPart = msgBlockParts[idx];
           const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
-          msgs.push(testString);
+          if (testString) {
+            msgs.push(testString);
+          }
         }
 
         blockArray.push({
@@ -178,9 +180,6 @@ describe('Webview test', () => {
       });
 
       for (let idx = 0; idx < block.msgBlockParts.length; idx++) {
-        if (idx === msgDefParts.length) {
-          break;
-        }
         const testString = block.msgBlockParts[idx];
         const refString = msgDefParts[idx].replace(/ /g, '');
         expect(refString).toMatch(testString);
@@ -211,7 +210,9 @@ describe('Webview test', () => {
         for (let idx = 0; idx < msgBlockParts.length; idx++) {
           const msgBlockPart = msgBlockParts[idx];
           const testString = msgBlockPart.innerHTML.replace(/&nbsp;/g, '').replace(/…$/, '');
-          msgs.push(testString);
+          if (testString) {
+            msgs.push(testString);
+          }
         }
 
         blockArray.push({
@@ -242,9 +243,6 @@ describe('Webview test', () => {
       });
 
       for (let idx = 0; idx < block.msgBlockParts.length; idx++) {
-        if (idx === msgDefParts.length) {
-          break;
-        }
         const testString = block.msgBlockParts[idx];
         const refString = msgDefParts[idx].replace(/ /g, '');
         expect(refString).toMatch(testString);
