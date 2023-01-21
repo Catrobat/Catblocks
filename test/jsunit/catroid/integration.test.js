@@ -92,12 +92,28 @@ describe('Catroid Integration Advanced Mode tests', () => {
       await Test.CatroidCatBlocks.render(pProgramXML, 'Main Menu', 'Play', 'd9e76a0d-8f6b-44b4-887d-fdd31b7e5bf1');
     }, programXML);
   });
-  test('Background color check', async () => {
-    // debugger;
+
+  test('Background color test', async () => {
     const backgroundColor = await page.evaluate(() => {
       return document.querySelector('#catroid .blocklySvg').style.backgroundColor;
     });
 
     expect(backgroundColor).toBe('rgb(26, 26, 26)');
+  });
+
+  test('Blocks color test', async () => {
+    const allBlocksInAdvancedMode = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      let counter = 0;
+      let darkColor = true;
+      blocks.forEach(block => {
+        darkColor = block.attributes.fill.value === '#1a1a1a' && darkColor;
+        counter++;
+      });
+      darkColor = counter > 10 && darkColor;
+      return darkColor;
+    });
+
+    expect(allBlocksInAdvancedMode).toBe(true);
   });
 });
