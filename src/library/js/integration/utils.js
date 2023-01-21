@@ -672,16 +672,16 @@ export const getColorForBrickCategory = categoryName => {
   return '#aaaaaa';
 };
 
-function advancedModeAddParentheses(childBrick) {
-  if (childBrick.type === 'NoteBrick' || childBrick.type === 'UserDefinedScript') {
+export function advancedModeAddParentheses(childBrick, addBrickDialog = false) {
+  if (childBrick.type === 'UserDefinedScript' && !addBrickDialog) {
     return;
   }
   for (const input of childBrick.inputList) {
     for (let field = 1; field < input.fieldRow.length; field++) {
       if (input.fieldRow[field].EDITABLE) {
-        const newVal = input.fieldRow[field - 1].getValue() + ' (';
-        input.fieldRow[field - 1].setValue(newVal);
-        advancedModeRemoveWhiteSpacesInFormulas(input.fieldRow[field]);
+        if (addBrickDialog) {
+          input.fieldRow[field].setValue('...');
+        }
 
         if (input.fieldRow[field + 1].name && input.fieldRow[field + 1].name.endsWith('_INFO')) {
           const sourceBlock = input.fieldRow[field + 1].getSourceBlock();
@@ -689,13 +689,21 @@ function advancedModeAddParentheses(childBrick) {
           labelField.setSourceBlock(sourceBlock);
           input.fieldRow[field + 1] = labelField;
           input.fieldRow[field + 1].setValue(')');
+
+          if (childBrick.type === 'NoteBrick') {
+            input.fieldRow[field + 1].setValue('');
+            return;
+          }
         }
+        advancedModeRemoveWhiteSpacesInFormulas(input.fieldRow[field]);
+        const newVal = input.fieldRow[field - 1].getValue() + ' (';
+        input.fieldRow[field - 1].setValue(newVal);
       }
     }
   }
 }
 
-function advancedModeAddCurlyBrackets(childBrick) {
+export function advancedModeAddCurlyBrackets(childBrick) {
   if (childBrick.inputList.some(field => field.name === 'SUBSTACK')) {
     const sourceBlock = childBrick.inputList[0].getSourceBlock();
     const labelField = new Blockly.FieldLabel('}');
@@ -713,7 +721,7 @@ function advancedModeAddCurlyBrackets(childBrick) {
       childBrick.inputList[4].fieldRow[0] = labelField;
       childBrick.inputList[4].fieldRow[0].setValue('}');
     }
-    if (childBrick.inputList.length === 3) {
+    if (childBrick.inputList.length === 3 && childBrick.type !== 'ParameterizedBrick') {
       childBrick.inputList[2].setAlign(Blockly.ALIGN_LEFT);
       childBrick.inputList[2].fieldRow[0] = labelField;
     }
@@ -732,7 +740,7 @@ function advancedModeAddCurlyBrackets(childBrick) {
   }
 }
 
-function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
+export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
   if (
     childBrick.type === 'NoteBrick' ||
     childBrick.type === 'UserDefinedScript' ||
