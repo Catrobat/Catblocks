@@ -89,7 +89,12 @@ describe('Catroid Integration Advanced Mode tests', () => {
       advancedMode
     );
     await page.evaluate(async pProgramXML => {
-      await Test.CatroidCatBlocks.render(pProgramXML, 'Main Menu', 'Play', 'd9e76a0d-8f6b-44b4-887d-fdd31b7e5bf1');
+      await Test.CatroidCatBlocks.render(
+        pProgramXML,
+        'Introduction',
+        'Caption',
+        '7fc239bb-d330-4226-b075-0c4c545198e2'
+      );
     }, programXML);
   });
 
@@ -140,5 +145,25 @@ describe('Catroid Integration Advanced Mode tests', () => {
     });
 
     expect(inputFieldsInAdvancedMode).toBe(true);
+  });
+
+  test('JS Syntax characters test', async () => {
+    const syntaxCharacters = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const ifBlock = Array.from(blocks).find(block => block.tooltip.type === 'IfThenLogicBeginBrick');
+
+      if (
+        ifBlock.tooltip.inputList[0].fieldRow[0].getValue() === 'If (' &&
+        ifBlock.tooltip.inputList[0].fieldRow[2].getValue() === ')' &&
+        ifBlock.tooltip.inputList[0].fieldRow[3].getValue() === 'is true then {' &&
+        ifBlock.tooltip.inputList[2].fieldRow[0].getValue() === '}'
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    expect(syntaxCharacters).toBe(true);
   });
 });

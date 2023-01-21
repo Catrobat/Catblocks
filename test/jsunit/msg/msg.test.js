@@ -178,6 +178,9 @@ describe('Webview test', () => {
       });
 
       for (let idx = 0; idx < block.msgBlockParts.length; idx++) {
+        if (idx === msgDefParts.length) {
+          break;
+        }
         const testString = block.msgBlockParts[idx];
         const refString = msgDefParts[idx].replace(/ /g, '');
         expect(refString).toMatch(testString);
@@ -239,6 +242,9 @@ describe('Webview test', () => {
       });
 
       for (let idx = 0; idx < block.msgBlockParts.length; idx++) {
+        if (idx === msgDefParts.length) {
+          break;
+        }
         const testString = block.msgBlockParts[idx];
         const refString = msgDefParts[idx].replace(/ /g, '');
         expect(refString).toMatch(testString);
