@@ -4,7 +4,7 @@ export default {
   ForeverBrick: {
     message0: '%{BKY_CONTROL_FOREVER}',
     message1: '%1',
-    message2: '%1',
+    message2: '%1%2',
     lastDummyAlign2: 'RIGHT',
     args1: [
       {
@@ -20,6 +20,14 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
@@ -65,8 +73,9 @@ export default {
     type: 'IfThenLogicBeginBrick',
     message0: '%{BKY_CONTROL_IFISTRUEELSEIF}',
     message1: '%1',
-    message2: '%{BKY_CONTROL_IFISTRUEELSEELSE}',
+    message2: '%{BKY_CONTROL_IFISTRUEELSEELSE}%1',
     message3: '%1',
+    message4: '%1%2',
     args0: [
       {
         type: 'field_input',
@@ -87,6 +96,16 @@ export default {
       {
         type: 'input_statement',
         name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ],
     args3: [
@@ -94,12 +113,27 @@ export default {
         type: 'input_statement',
         name: 'SUBSTACK2'
       }
+    ],
+    args4: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
     ]
   },
   IfThenLogicBeginBrick: {
     type: 'IfLogicBeginBrick',
     message0: '%{BKY_CONTROL_IFISTRUEELSEIF}',
     message1: '%1',
+    message2: '%1%2',
     args0: [
       {
         type: 'field_input',
@@ -120,6 +154,20 @@ export default {
       {
         type: 'input_statement',
         name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
@@ -145,7 +193,7 @@ export default {
   RepeatBrick: {
     message0: '%{BKY_CONTROL_REPEATTIMES}',
     message1: '%1',
-    message2: '%1',
+    message2: '%1%2',
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
@@ -177,13 +225,21 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
   RepeatUntilBrick: {
     message0: '%{BKY_CONTROL_REPEATUNTILISTRUE}',
     message1: '%1',
-    message2: '%1',
+    message2: '%1%2',
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
@@ -215,6 +271,14 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
@@ -306,7 +370,7 @@ export default {
   ForVariableFromToBrick: {
     message0: '%{BKY_CONTROL_FOR_VARIABLE_FROM_TO}',
     message1: '%1',
-    message2: '%1',
+    message2: '%1%2',
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
@@ -366,13 +430,21 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
   ForItemInUserListBrick: {
     message0: '%{BKY_CONTROL_FOR_VARIABLE_IN_USER_LIST}',
     message1: '%1',
-    message2: '%1',
+    message2: '%1%2',
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
@@ -418,6 +490,14 @@ export default {
         width: 24,
         alt: '*',
         flip_rtl: true
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
@@ -463,9 +543,9 @@ export default {
     type: 'IfThenLogicBeginBrick',
     message0: '%{BKY_RASPI_IFLOGICBEGINIF}',
     message1: '%1',
-    message2: '%{BKY_RASPI_IFLOGICBEGINELSE}',
+    message2: '%{BKY_RASPI_IFLOGICBEGINELSE}%1',
     message3: '%1',
-    message4: '%{BKY_CONTROL_IFENDIF}',
+    message4: '%{BKY_CONTROL_IFENDIF}%1',
     args0: [
       {
         type: 'field_input',
@@ -488,10 +568,30 @@ export default {
         name: 'SUBSTACK'
       }
     ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ],
     args3: [
       {
         type: 'input_statement',
         name: 'SUBSTACK2'
+      }
+    ],
+    args4: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   },
@@ -499,9 +599,9 @@ export default {
     type: 'IfThenLogicBeginBrick',
     message0: '%{BKY_PHIRO_IFLOGICBEGINIF}',
     message1: '%1',
-    message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}',
+    message2: '%{BKY_PHIRO_IFLOGICBEGINELSE}%1',
     message3: '%1',
-    message4: '%{BKY_CONTROL_IFENDIF}',
+    message4: '%{BKY_CONTROL_IFENDIF}%1',
     args0: [
       {
         type: 'field_input',
@@ -524,10 +624,30 @@ export default {
         name: 'SUBSTACK'
       }
     ],
+    args2: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ],
     args3: [
       {
         type: 'input_statement',
         name: 'SUBSTACK2'
+      }
+    ],
+    args4: [
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   }
