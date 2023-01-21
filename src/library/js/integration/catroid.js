@@ -18,7 +18,10 @@ import {
   buildUserDefinedBrick,
   injectNewDom,
   getMappedBrickNameIfExists,
-  getColorForBrickCategory
+  getColorForBrickCategory,
+  advancedModeAddSemicolonsAndClassifyTopBricks,
+  advancedModeAddParentheses,
+  advancedModeAddCurlyBrackets
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import advancedTheme from '../advanced_theme.json';
@@ -532,13 +535,17 @@ export class Catroid {
 
       const categoryNameForID = categoryInfos[idx].name.replace(/\s/, '').toUpperCase();
 
+      const categoryStyle = this.config.advancedMode
+        ? 'background-color:#3c3c3c;color:#b3b3b3;'
+        : `background-color:${categoryColor};color:#fff;`;
+
       injectNewDom(
         'catroid-catblocks-brick-category-container',
         'button',
         {
           class: 'list-group-item list-group-item-action catblocks-block-category-list-item',
           type: 'button',
-          style: `background-color:${categoryColor};color:#fff;`,
+          style: categoryStyle,
           categoryName: categoryInfos[idx].name,
           id: `category${categoryNameForID}`
         },
@@ -580,6 +587,11 @@ export class Catroid {
         }
 
         const brick = this.readonlyWorkspace.newBlock(brickType, brickInfo.brickId);
+        if (this.config.advancedMode) {
+          advancedModeAddParentheses(brick, true);
+          advancedModeAddCurlyBrackets(brick);
+          advancedModeAddSemicolonsAndClassifyTopBricks(brick);
+        }
         brick.initSvg();
       } catch (error) {
         console.log(error);
@@ -634,13 +646,22 @@ export class Catroid {
   setAdvancedTheme() {
     const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
     this.workspace.setTheme(advTheme);
-    this.workspace.renderer_.constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size of blocks
-    this.workspace.renderer_.constants_.MEDIUM_PADDING = 5; // Padding of block left & right
-    this.workspace.renderer_.constants_.FIELD_BORDER_RECT_HEIGHT = 14; // Determines height of block with input field
-    this.workspace.renderer_.constants_.FIELD_TEXT_HEIGHT = 14; // Determines height of a block without input field
-    this.workspace.renderer_.constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 14; // Height of bottom part of e.g. 'if' block
-    this.workspace.renderer_.constants_.FIELD_BORDER_RECT_X_PADDING = 0;
-    this.workspace.renderer_.constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
+    this.readonlyWorkspace.setTheme(advTheme);
+    this.workspace.getRenderer().constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size of blocks
+    this.workspace.getRenderer().constants_.MEDIUM_PADDING = 5; // Padding of block left & right
+    this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_HEIGHT = 14; // Determines height of block with input field
+    this.workspace.getRenderer().constants_.FIELD_TEXT_HEIGHT = 14; // Determines height of a block without input field
+    this.workspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 14; // Height of bottom part of e.g. 'if' block
+    this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
+    this.workspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
+    this.readonlyWorkspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
+    this.readonlyWorkspace.getRenderer().constants_.DUMMY_INPUT_MIN_HEIGHT = 0;
+    this.readonlyWorkspace.getRenderer().constants_.MEDIUM_PADDING = 5;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_TEXT_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
+
     const styleOfInputFields = document.createElement('style');
     document.head.appendChild(styleOfInputFields);
     styleOfInputFields.sheet.insertRule(
@@ -649,6 +670,13 @@ export class Catroid {
     styleOfInputFields.sheet.insertRule(
       '.blocklyNonEditableText > text, .blocklyEditableText > text, .blocklyNonEditableText > g > text, .blocklyEditableText > g > text {fill: #fff !important;}'
     );
+    styleOfInputFields.sheet.insertRule('#catroid-catblocks-add-brick-dialog {background-color: #1a1a1a !important;}');
     styleOfInputFields.sheet.insertRule('.blocklyMainBackground {stroke-width: 0 !important;}');
+    const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
+    const headerContainer = document.getElementById('catroid-catblocks-add-brick-dialog-header');
+    const textContainer = document.getElementById('catroid-catblocks-add-brick-text-container');
+    brickContainer.setAttribute('class', 'zelos-renderer advancedtheme-theme');
+    headerContainer.setAttribute('style', 'background-color: #3c3c3c');
+    textContainer.setAttribute('style', 'color: #b3b3b3');
   }
 }
