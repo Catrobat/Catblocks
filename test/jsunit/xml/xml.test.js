@@ -23,6 +23,34 @@ describe('Export and Import XML files to workspace', () => {
       }
     });
 
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+
+      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+        media: '../media/',
+        zoom: { startScale: 0.75 },
+        toolbox: Test.Playground.getToolbox(true),
+        renderer: 'zelos'
+      });
+
+      const share = Test.CatBlocks.getInstance().share;
+      const toolbox = Test.Blockly.Workspace.getAll().find(
+        ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
+      );
+      Test.Toolbox = {
+        workspace: toolbox
+      };
+      Test.Share = share;
+    });
     // clean workspace before each test
     await page.evaluate(() => {
       Test.Playground.workspace.clear();

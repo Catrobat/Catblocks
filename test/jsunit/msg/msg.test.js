@@ -74,8 +74,36 @@ describe('Webview test', () => {
         console.log(message.text());
       }
     });
-    await page.evaluate(() => {
-      Test.Playground.workspace.clear();
+
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+
+      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+        media: '../media/',
+        zoom: { startScale: 0.75 },
+        toolbox: Test.Playground.getToolbox(true),
+        renderer: 'zelos'
+      });
+
+      const share = Test.CatBlocks.getInstance().share;
+      const toolbox = Test.Blockly.Workspace.getAll().find(
+        ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
+      );
+
+      Test.Toolbox = {
+        workspace: toolbox
+      };
+
+      Test.Share = share;
     });
 
     await page.evaluate(() => {
@@ -267,6 +295,29 @@ describe('share displays language of UI elements correctly', () => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
       }
+    });
+
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'share',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
+
+      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+        media: '../media/',
+        zoom: { startScale: 0.75 },
+        toolbox: Test.Playground.getToolbox(true),
+        renderer: 'zelos'
+      });
+
+      const share = Test.CatBlocks.getInstance().share;
+      Test.Share = share;
     });
   });
 
