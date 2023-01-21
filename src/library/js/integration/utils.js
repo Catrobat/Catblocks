@@ -673,6 +673,7 @@ function advancedModeAddParentheses(childBrick) {
       if (input.fieldRow[field].EDITABLE) {
         const newVal = input.fieldRow[field - 1].getValue() + ' (';
         input.fieldRow[field - 1].setValue(newVal);
+        advancedModeRemoveWhiteSpacesInFormulas(input.fieldRow[field]);
 
         if (input.fieldRow[field + 1].name && input.fieldRow[field + 1].name.endsWith('_INFO')) {
           const sourceBlock = input.fieldRow[field + 1].getSourceBlock();
@@ -735,5 +736,21 @@ function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
     const fieldRow = childBrick.inputList[0].fieldRow;
     const newVal = fieldRow[fieldRow.length - 1].getValue() + ';';
     fieldRow[fieldRow.length - 1].setValue(newVal);
+  }
+}
+
+function advancedModeRemoveWhiteSpacesInFormulas(field) {
+  field.setValue(field.getValue().trim());
+
+  const replaceDict = {
+    '( ': '(',
+    ' )': ')',
+    ' ,': ',',
+    '  ': ' ',
+    '- ': '-'
+  };
+
+  for (const key in replaceDict) {
+    field.setValue(field.getValue().replaceAll(key, replaceDict[key]));
   }
 }

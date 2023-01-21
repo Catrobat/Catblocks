@@ -193,4 +193,20 @@ describe('Catroid Integration Advanced Mode tests', () => {
 
     expect(semicolons).toBe(true);
   });
+
+  test('Formulas formatting test', async () => {
+    const formatted = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      if (
+        blocks[4].tooltip.inputList[0].fieldRow[1].getValue() === '"currentcaption" = 7' &&
+        blocks[24].tooltip.inputList[0].fieldRow[4].getValue() === 'item("currentcaption", *Language List-Caption*)'
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    expect(formatted).toBe(true);
+  });
 });
