@@ -10798,5 +10798,35 @@ body {
   margin-top: 5px;
 }
 
+.advanced-theme .blocklyNonEditableText > rect:not(.blocklyDropdownRect),
+.advanced-theme .blocklyEditableText > rect:not(.blocklyDropdownRect) {
+  fill: #1a1a1a !important;
+}
 
-/*# sourceMappingURL=main.9b2cb3932ae226eadf6a.css.map*/
+.advanced-theme .blocklyNonEditableText > text,
+.advanced-theme .blocklyEditableText > text,
+.advanced-theme .blocklyNonEditableText > g > text,
+.advanced-theme .blocklyEditableText > g > text {
+  fill: #fff !important;
+}
+
+.advanced-theme#catroid-catblocks-add-brick-dialog {
+  background-color: #1a1a1a !important;
+}
+.advanced-theme .blocklyMainBackground {
+  stroke-width: 0 !important;
+}
+.advanced-theme #catroid-catblocks-add-brick-dialog-header {
+  background-color: #3c3c3c !important;
+}
+
+.advanced-theme #catroid-catblocks-add-brick-text-container {
+  color: #b3b3b3 !important;
+}
+
+.advanced-theme #catroid-catblocks-add-brick-dialog-header img {
+  filter: brightness(0) invert(0.8);
+}
+
+
+/*# sourceMappingURL=main.3568877d1dd33eb133cf.css.map*/
