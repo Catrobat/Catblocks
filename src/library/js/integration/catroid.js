@@ -260,7 +260,7 @@ export class Catroid {
   handleWorkspaceChange(event) {
     if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
       const droppedBrick = this.workspace.getBlockById(event.blockId);
-      const isTopBrick = droppedBrick.hat !== undefined && droppedBrick.hat !== '';
+      const isTopBrick = !droppedBrick.hat;
       const position = droppedBrick.getRelativeToSurfaceXY();
 
       if (isTopBrick) {
@@ -626,9 +626,6 @@ export class Catroid {
 
       const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svgElement.setAttribute('style', `width:${blockWidth + 10}px;height:${blockHeight}px;`);
-      // svgElement.setAttribute('class', 'catblocks-brick');
-      // svgElement.setAttribute('catroid-category', categoryName);
-      // svgElement.setAttribute('catroid-brickType', svgBlock.type);
 
       svgElement.appendChild(clonedBrick);
       svgContainer.appendChild(svgElement);
@@ -644,7 +641,7 @@ export class Catroid {
   }
 
   setAdvancedTheme() {
-    const advTheme = Blockly.Theme.defineTheme('advancedTheme', advancedTheme);
+    const advTheme = Blockly.Theme.defineTheme('advanced', advancedTheme);
     this.workspace.setTheme(advTheme);
     this.readonlyWorkspace.setTheme(advTheme);
     this.workspace.getRenderer().constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size of blocks
@@ -662,21 +659,8 @@ export class Catroid {
     this.readonlyWorkspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 30;
     this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
 
-    const styleOfInputFields = document.createElement('style');
-    document.head.appendChild(styleOfInputFields);
-    styleOfInputFields.sheet.insertRule(
-      '.blocklyNonEditableText > rect:not(.blocklyDropdownRect), .blocklyEditableText > rect:not(.blocklyDropdownRect) {fill: #1a1a1a !important;}'
-    );
-    styleOfInputFields.sheet.insertRule(
-      '.blocklyNonEditableText > text, .blocklyEditableText > text, .blocklyNonEditableText > g > text, .blocklyEditableText > g > text {fill: #fff !important;}'
-    );
-    styleOfInputFields.sheet.insertRule('#catroid-catblocks-add-brick-dialog {background-color: #1a1a1a !important;}');
-    styleOfInputFields.sheet.insertRule('.blocklyMainBackground {stroke-width: 0 !important;}');
+    document.getElementById('catroid-catblocks-add-brick-dialog').classList.add('advanced-theme');
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
-    const headerContainer = document.getElementById('catroid-catblocks-add-brick-dialog-header');
-    const textContainer = document.getElementById('catroid-catblocks-add-brick-text-container');
-    brickContainer.setAttribute('class', 'zelos-renderer advancedtheme-theme');
-    headerContainer.setAttribute('style', 'background-color: #3c3c3c');
-    textContainer.setAttribute('style', 'color: #b3b3b3');
+    brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
   }
 }

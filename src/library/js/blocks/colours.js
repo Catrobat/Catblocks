@@ -58,7 +58,3 @@ export const initCatblocksColours = (colours = colourCodes, blockly = Blockly) =
     console.error('Failed to initiate colours, because undefined or null options passed in params');
   }
 };
-
-// (() => {
-//   initCatblocksColours(colourCodes, Blockly);
-// })();
