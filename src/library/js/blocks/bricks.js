@@ -4,6 +4,7 @@
 
 import Blockly from 'blockly';
 import categories from './categories';
+import { initCatblocksColours } from './colours';
 
 export const getBrickScriptMapping = () => {
   return new Map()
@@ -17,6 +18,21 @@ export const getBrickScriptMapping = () => {
     .set('WhenBackgroundChangesBrick', 'WhenBackgroundChangesScript')
     .set('WhenRaspiPinChangedBrick', 'RaspiInterruptScript');
 };
+
+export const scriptBricks = [
+  'WhenClonedScript',
+  'StartScript',
+  'WhenScript',
+  'WhenTouchDownScript',
+  'BroadcastScript',
+  'WhenConditionScript',
+  'WhenBounceOffScript',
+  'WhenBackgroundChangesScript',
+  'WhenRaspiPinChangedBrick',
+  'UserDefinedScript',
+  'EmptyScript',
+  'RaspiInterruptScript'
+];
 
 export const getScriptToBrickMapping = () => {
   const bricksToScripts = getBrickScriptMapping();
@@ -52,22 +68,7 @@ const shapeBricksExtention = () => {
   return function () {
     const blockName = this.type;
     // TODO: please find a better logic than this
-    if (
-      [
-        'WhenClonedScript',
-        'StartScript',
-        'WhenScript',
-        'WhenTouchDownScript',
-        'BroadcastScript',
-        'WhenConditionScript',
-        'WhenBounceOffScript',
-        'WhenBackgroundChangesScript',
-        'WhenRaspiPinChangedBrick',
-        'UserDefinedScript',
-        'EmptyScript',
-        'RaspiInterruptScript'
-      ].includes(blockName)
-    ) {
+    if (scriptBricks.includes(blockName)) {
       this.hat = 'cap';
     } else {
       this.setPreviousStatement(true, 'CatBlocksBrick');
@@ -77,11 +78,11 @@ const shapeBricksExtention = () => {
 };
 
 /**
- * Load all bricks from cats into Blockly
- * @param {*} cats
- * @param {*} blockly
+ * @param {Array<string>} [cats]
+ * @param {Blockly} [blockly]
+ * @param {boolean} [advancedMode]
  */
-const loadBricks = (cats = categories, blockly = Blockly) => {
+const loadBricks = (cats = categories, blockly = Blockly, advancedMode = false) => {
   blockly.Extensions.register(`shapeBrick`, shapeBricksExtention());
 
   for (const catName in cats) {
@@ -101,6 +102,9 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
       blockly.Blocks[brickName] = {
         init: function () {
           this.jsonInit(blockly.Bricks[brickName]);
+          if (advancedMode) {
+            this.setStyle(catName);
+          }
         }
       };
     }
@@ -108,17 +112,10 @@ const loadBricks = (cats = categories, blockly = Blockly) => {
 };
 
 /**
- * Init bricks for blockly
- * @param {*} blockly
+ * @param {boolean} advancedMode
  */
-const initBricks = (blockly = Blockly) => {
-  removeAllBricks(blockly);
-  loadBricks(categories, blockly);
-};
-
-/**
- * Main brick function
- */
-(() => {
-  initBricks();
-})();
+export function initBricks(advancedMode) {
+  removeAllBricks(Blockly);
+  loadBricks(categories, Blockly, advancedMode);
+  initCatblocksColours();
+}

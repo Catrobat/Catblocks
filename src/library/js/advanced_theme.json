@@ -1,0 +1,110 @@
+{
+  "componentStyles": {
+    "workspaceBackgroundColour": "#1a1a1a",
+    "scrollbarColour": "#3c3c3c",
+    "selectedGlowColour": "#9a9a9a",
+    "insertionMarkerColour": "#7c7c7c"
+  },
+  "fontStyle": {
+    "family": "Source Code Pro, monospace",
+    "weight": "300",
+    "size": 12
+  },
+  "blockStyles": {
+    "arduino": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "control": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "device": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "dummy": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "embroidery": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "event": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "lego": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "look": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "motion": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "pen": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "phiro": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "report": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "script": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "sound": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "test": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "user": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "userlist": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "uservariables": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    },
+    "disabled": {
+      "colourPrimary": "#1a1a1a",
+      "colourSecondary": "#1a1a1a",
+      "colourTertiary": "#1a1a1a"
+    }
+  }
+}

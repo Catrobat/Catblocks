@@ -67,28 +67,7 @@ import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
     case 'testing': {
       await CatblocksMsgs.setLocale(language);
 
-      await CatBlocks.init({
-        container: 'share',
-        renderSize: 0.75,
-        shareRoot: '',
-        media: 'media/',
-        language: language,
-        rtl: isRtl,
-        noImageFound: 'No_Image_Available.jpg'
-      });
       const playground = new Playground();
-
-      playground.workspace = Blockly.inject('playworkspace', {
-        media: '../media/',
-        zoom: { startScale: 0.75 },
-        toolbox: playground.getToolbox(true),
-        renderer: 'zelos'
-      });
-
-      const share = CatBlocks.getInstance().share;
-      const toolbox = Blockly.Workspace.getAll().find(
-        ws => ![share.workspace.id, playground.workspace.id].includes(ws.id)
-      );
 
       window.$ = $;
       window.Test = {
@@ -96,11 +75,7 @@ import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
         Blockly: Blockly,
         CatblocksMsgs: CatblocksMsgs,
         CatBlocks: CatBlocks,
-        Share: share,
         ShareUtils: shareUtils,
-        Toolbox: {
-          workspace: toolbox
-        },
         Parser: Parser,
         CatroidCatBlocks: CatroidCatBlocks
       };

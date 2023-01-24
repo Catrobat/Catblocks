@@ -8,7 +8,7 @@ import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import pluralBricks from '../plural_bricks.json';
 import { BrickIDGenerator } from './brick_id_generator';
-import { getScriptToBrickMapping } from '../blocks/bricks';
+import { getScriptToBrickMapping, scriptBricks } from '../blocks/bricks';
 import { getColourCodesForCategories } from '../blocks/colours';
 
 /**
@@ -302,6 +302,11 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
     } else {
       brickIDGenerator.createBrickID(childBrick);
     }
+    if (workspace.getTheme().name.toLowerCase() === 'advanced') {
+      if (childBrick.getStyleName() === 'disabled' || childBrick.type === 'NoteBrick') {
+        advancedModeCommentOutBricks(childBrick);
+      }
+    }
 
     if (parentBrick === null && brickList[i].userBrickId !== undefined) {
       // When there is no parentBrick but the userBrickId is set
@@ -379,21 +384,24 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
     if (childBrick.type in pluralBricks) {
       try {
         const currentBrick = pluralBricks[childBrick.type];
-        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].value_);
+        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].getValue());
 
         if (value !== 1) {
           if (currentBrick.string_value.length === 1) {
-            childBrick.inputList[0].fieldRow[currentBrick.string_field].value_ =
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]];
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
+            );
           } else {
-            childBrick.inputList[0].fieldRow[currentBrick.string_field].value_ =
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
               CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
-              ' ' +
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]];
+                ' ' +
+                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
+            );
           }
           if (childBrick.type === 'ParameterizedBrick') {
-            childBrick.inputList[0].fieldRow[0].value_ =
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional];
+            childBrick.inputList[0].fieldRow[0].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
+            );
           }
         }
       } catch (error) {
@@ -403,19 +411,30 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
 
   if (childBrick && childBrick.inputList && childBrick.inputList[0] && childBrick.inputList[0].fieldRow) {
+    if (workspace.getTheme().name.toLowerCase() === 'advanced') {
+      advancedModeAddParentheses(childBrick);
+      advancedModeAddCurlyBrackets(childBrick);
+      advancedModeAddSemicolonsAndClassifyTopBricks(childBrick);
+    }
     for (let i = 0; i < childBrick.inputList.length; i++) {
       for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
         if (childBrick.inputList[i].fieldRow[j].name && childBrick.inputList[i].fieldRow[j].name.endsWith('_INFO')) {
           if (j > 0) {
             const val = childBrick.inputList[i].fieldRow[j - 1].getValue();
             if (val && val.length < childBrick.inputList[i].fieldRow[j - 1].maxDisplayLength) {
-              childBrick.inputList[i].fieldRow[j].visible_ = false;
+              childBrick.inputList[i].fieldRow[j].setVisible(false);
             } else {
               childBrick.inputList[0].fieldRow[j].setOnClickHandler(() => {
                 showFormulaPopup(val);
               });
             }
           }
+        }
+        if (
+          childBrick.inputList[i].fieldRow[j].name &&
+          childBrick.inputList[i].fieldRow[j].name === 'ADVANCED_MODE_PLACEHOLDER'
+        ) {
+          childBrick.inputList[i].fieldRow[j].setVisible(false);
         }
       }
     }
@@ -432,6 +451,9 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
     } else if (jsonBrick.commentedOut) {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+      if (workspace.getTheme().name.toLowerCase() === 'advanced') {
+        childBrick.setStyle('disabled');
+      }
     }
   }
 
@@ -494,7 +516,7 @@ export const lazyLoadImage = event => {
   });
 };
 
-export const buildUserDefinedBrick = object => {
+export const buildUserDefinedBrick = (object, advancedMode = false) => {
   const createdBricks = [];
 
   if (!object.userBricks) {
@@ -508,6 +530,9 @@ export const buildUserDefinedBrick = object => {
     Blockly.Blocks[brickName] = {
       init: function () {
         this.jsonInit(Blockly.Bricks[brickName]);
+        if (advancedMode) {
+          this.setStyle('user');
+        }
         this.setNextStatement(true, 'CatBlocksBrick');
         this.setPreviousStatement(true, 'CatBlocksBrick');
       }
@@ -520,6 +545,9 @@ export const buildUserDefinedBrick = object => {
     Blockly.Blocks[definitionBrickName] = {
       init: function () {
         this.jsonInit(Blockly.Bricks[definitionBrickName]);
+        if (advancedMode) {
+          this.setStyle('user');
+        }
         this.setPreviousStatement(true, 'UserDefinedReadOnly');
         this.setNextStatement(false, null);
       }
@@ -643,3 +671,138 @@ export const getColorForBrickCategory = categoryName => {
 
   return '#aaaaaa';
 };
+
+export function advancedModeAddParentheses(childBrick, addBrickDialog = false) {
+  if (childBrick.type === 'UserDefinedScript' && !addBrickDialog) {
+    return;
+  }
+  for (const input of childBrick.inputList) {
+    for (let field = 1; field < input.fieldRow.length; field++) {
+      if (input.fieldRow[field].EDITABLE) {
+        if (addBrickDialog) {
+          input.fieldRow[field].setValue('...');
+        }
+
+        if (input.fieldRow[field + 1].name && input.fieldRow[field + 1].name.endsWith('_INFO')) {
+          const sourceBlock = input.fieldRow[field + 1].getSourceBlock();
+          const labelField = new Blockly.FieldLabel('');
+          labelField.setSourceBlock(sourceBlock);
+          input.fieldRow[field + 1] = labelField;
+          input.fieldRow[field + 1].setValue(')');
+
+          if (childBrick.type === 'NoteBrick') {
+            input.fieldRow[field + 1].setValue('');
+            return;
+          }
+        }
+        advancedModeRemoveWhiteSpacesInFormulas(input.fieldRow[field]);
+        const newVal = input.fieldRow[field - 1].getValue() + ' (';
+        input.fieldRow[field - 1].setValue(newVal);
+      }
+    }
+  }
+}
+
+export function advancedModeAddCurlyBrackets(childBrick) {
+  if (childBrick.inputList.some(field => field.name === 'SUBSTACK')) {
+    const sourceBlock = childBrick.inputList[0].getSourceBlock();
+    const labelField = new Blockly.FieldLabel('}');
+    labelField.setSourceBlock(sourceBlock);
+    const firstRow = childBrick.inputList[0].fieldRow;
+    const newVal = firstRow[firstRow.length - 1].getValue() + ' {';
+    firstRow[firstRow.length - 1].setValue(newVal);
+    if (
+      childBrick.type === 'IfLogicBeginBrick' ||
+      childBrick.type === 'PhiroIfLogicBeginBrick' ||
+      childBrick.type === 'RaspiIfLogicBeginBrick'
+    ) {
+      const newVal = '} ' + childBrick.inputList[2].fieldRow[0].getValue() + ' {';
+      childBrick.inputList[2].fieldRow[0].setValue(newVal);
+      childBrick.inputList[4].fieldRow[0] = labelField;
+      childBrick.inputList[4].fieldRow[0].setValue('}');
+    }
+    if (childBrick.inputList.length === 3 && childBrick.type !== 'ParameterizedBrick') {
+      childBrick.inputList[2].setAlign(Blockly.ALIGN_LEFT);
+      childBrick.inputList[2].fieldRow[0] = labelField;
+    }
+    if (childBrick.type === 'ParameterizedBrick') {
+      const newVal = childBrick.inputList[2].fieldRow[5].getValue() + ' }';
+      childBrick.inputList[2].fieldRow[5].setValue(newVal);
+    }
+  } else if (childBrick.type === 'UserDefinedScript') {
+    const newVal = childBrick.inputList[0].fieldRow[0].getValue() + ' {';
+    childBrick.inputList[0].fieldRow[0].setValue(newVal);
+    const sourceBlock = childBrick.inputList[0].getSourceBlock();
+    const labelField = new Blockly.FieldLabel('}');
+    labelField.setSourceBlock(sourceBlock);
+    childBrick.inputList[2].setAlign(Blockly.ALIGN_LEFT);
+    childBrick.inputList[2].fieldRow[0] = labelField;
+  }
+}
+
+export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
+  if (
+    childBrick.type === 'NoteBrick' ||
+    childBrick.type === 'UserDefinedScript' ||
+    childBrick.getStyleName() === 'user'
+  ) {
+    return;
+  }
+  if (childBrick.inputList.length === 1) {
+    if (scriptBricks.includes(childBrick.type)) {
+      childBrick.hat = 'top';
+      return;
+    }
+    const fieldRow = childBrick.inputList[0].fieldRow;
+    const newVal = fieldRow[fieldRow.length - 1].getValue() + ';';
+    fieldRow[fieldRow.length - 1].setValue(newVal);
+  }
+}
+
+function advancedModeRemoveWhiteSpacesInFormulas(field) {
+  let cleanFieldValue = field.getValue().trim();
+  if (!cleanFieldValue.startsWith("'") && !cleanFieldValue.endsWith("'")) {
+    const replaceDict = {
+      '( ': '(',
+      ' )': ')',
+      ' ,': ',',
+      '  ': ' '
+    };
+    for (const key in replaceDict) {
+      cleanFieldValue = cleanFieldValue.replaceAll(key, replaceDict[key]);
+    }
+  }
+  field.setValue(cleanFieldValue);
+}
+
+function advancedModeCommentOutBricks(childBrick) {
+  childBrick.inputList[0].fieldRow[0].setValue('// ' + childBrick.inputList[0].fieldRow[0].getValue());
+  if (
+    childBrick.type === 'IfLogicBeginBrick' ||
+    childBrick.type === 'PhiroIfLogicBeginBrick' ||
+    childBrick.type === 'RaspiIfLogicBeginBrick'
+  ) {
+    childBrick.inputList[2].fieldRow[0].setValue('// ' + childBrick.inputList[2].fieldRow[0].getValue());
+    childBrick.inputList[4].fieldRow[0].setValue('// ' + childBrick.inputList[4].fieldRow[0].getValue());
+  }
+  if (childBrick.inputList.length === 3) {
+    childBrick.inputList[2].fieldRow[0].setValue('// ' + childBrick.inputList[2].fieldRow[0].getValue());
+  }
+  if (childBrick.type === 'NoteBrick') {
+    Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+    childBrick.inputList[0].fieldRow[0].setValue('//');
+    childBrick.inputList[0].fieldRow[1].setValue(childBrick.inputList[0].fieldRow[1].getValue().slice(1, -1));
+  }
+
+  const brickElements = document.getElementById(childBrick.pathObject.svgRoot.id).childNodes;
+  let count = 1;
+  while (count < brickElements.length && !brickElements[count].id) {
+    if (
+      brickElements[count].classList[0] !== 'blocklyNonEditableText' &&
+      brickElements[count].classList[0] !== 'blocklyEditableText'
+    ) {
+      brickElements[count].style.opacity = 0.5;
+    }
+    count++;
+  }
+}

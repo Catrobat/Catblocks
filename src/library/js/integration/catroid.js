@@ -18,9 +18,13 @@ import {
   buildUserDefinedBrick,
   injectNewDom,
   getMappedBrickNameIfExists,
-  getColorForBrickCategory
+  getColorForBrickCategory,
+  advancedModeAddSemicolonsAndClassifyTopBricks,
+  advancedModeAddParentheses,
+  advancedModeAddCurlyBrackets
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
+import advancedTheme from '../advanced_theme.json';
 
 export class Catroid {
   constructor() {
@@ -37,6 +41,10 @@ export class Catroid {
     this.createModifiableWorkspace();
     generateFormulaModal();
     createLoadingAnimation();
+
+    if (this.config.advancedMode) {
+      this.setAdvancedTheme();
+    }
 
     if (window.CatBlocks) {
       this.insertRightMediaURI();
@@ -252,7 +260,7 @@ export class Catroid {
   handleWorkspaceChange(event) {
     if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
       const droppedBrick = this.workspace.getBlockById(event.blockId);
-      const isTopBrick = droppedBrick.hat !== undefined;
+      const isTopBrick = !droppedBrick.hat;
       const position = droppedBrick.getRelativeToSurfaceXY();
 
       if (isTopBrick) {
@@ -320,7 +328,7 @@ export class Catroid {
       throw Error('Workspace not initialized. Did you call init?');
     }
 
-    const createdBricks = buildUserDefinedBrick(object);
+    const createdBricks = buildUserDefinedBrick(object, this.config.advancedMode);
     if (createdBricks) {
       createdBricks.forEach(brickName => {
         this.fixBrickMediaURI(brickName);
@@ -527,13 +535,17 @@ export class Catroid {
 
       const categoryNameForID = categoryInfos[idx].name.replace(/\s/, '').toUpperCase();
 
+      const categoryStyle = this.config.advancedMode
+        ? 'background-color:#3c3c3c;color:#b3b3b3;'
+        : `background-color:${categoryColor};color:#fff;`;
+
       injectNewDom(
         'catroid-catblocks-brick-category-container',
         'button',
         {
           class: 'list-group-item list-group-item-action catblocks-block-category-list-item',
           type: 'button',
-          style: `background-color:${categoryColor};color:#fff;`,
+          style: categoryStyle,
           categoryName: categoryInfos[idx].name,
           id: `category${categoryNameForID}`
         },
@@ -575,6 +587,11 @@ export class Catroid {
         }
 
         const brick = this.readonlyWorkspace.newBlock(brickType, brickInfo.brickId);
+        if (this.config.advancedMode) {
+          advancedModeAddParentheses(brick, true);
+          advancedModeAddCurlyBrackets(brick);
+          advancedModeAddSemicolonsAndClassifyTopBricks(brick);
+        }
         brick.initSvg();
       } catch (error) {
         console.log(error);
@@ -609,9 +626,6 @@ export class Catroid {
 
       const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svgElement.setAttribute('style', `width:${blockWidth + 10}px;height:${blockHeight}px;`);
-      // svgElement.setAttribute('class', 'catblocks-brick');
-      // svgElement.setAttribute('catroid-category', categoryName);
-      // svgElement.setAttribute('catroid-brickType', svgBlock.type);
 
       svgElement.appendChild(clonedBrick);
       svgContainer.appendChild(svgElement);
@@ -624,5 +638,29 @@ export class Catroid {
     $('#catroid-catblocks-bricks-container').show();
 
     $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
+  }
+
+  setAdvancedTheme() {
+    const advTheme = Blockly.Theme.defineTheme('advanced', advancedTheme);
+    this.workspace.setTheme(advTheme);
+    this.readonlyWorkspace.setTheme(advTheme);
+    this.workspace.getRenderer().constants_.DUMMY_INPUT_MIN_HEIGHT = 0; // Allows to change size of blocks
+    this.workspace.getRenderer().constants_.MEDIUM_PADDING = 5; // Padding of block left & right
+    this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_HEIGHT = 14; // Determines height of block with input field
+    this.workspace.getRenderer().constants_.FIELD_TEXT_HEIGHT = 14; // Determines height of a block without input field
+    this.workspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 14; // Height of bottom part of e.g. 'if' block
+    this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
+    this.workspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
+    this.readonlyWorkspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
+    this.readonlyWorkspace.getRenderer().constants_.DUMMY_INPUT_MIN_HEIGHT = 0;
+    this.readonlyWorkspace.getRenderer().constants_.MEDIUM_PADDING = 5;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_TEXT_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 30;
+    this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
+
+    document.getElementById('catroid-catblocks-add-brick-dialog').classList.add('advanced-theme');
+    const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
+    brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
   }
 }

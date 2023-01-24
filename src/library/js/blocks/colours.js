@@ -37,7 +37,7 @@ export const getColourCodesForCategories = () => {
  * @param {*} colours
  * @param {*} blockly
  */
-const initCatblocksColours = (colours = colourCodes, blockly = Blockly) => {
+export const initCatblocksColours = (colours = colourCodes, blockly = Blockly) => {
   if (colours) {
     blockly.Colours = {};
     if (Object.keys(blockly.Categories).length > 0) {
@@ -58,7 +58,3 @@ const initCatblocksColours = (colours = colourCodes, blockly = Blockly) => {
     console.error('Failed to initiate colours, because undefined or null options passed in params');
   }
 };
-
-(() => {
-  initCatblocksColours(colourCodes, Blockly);
-})();
