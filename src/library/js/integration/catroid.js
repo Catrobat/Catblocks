@@ -260,7 +260,7 @@ export class Catroid {
   handleWorkspaceChange(event) {
     if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
       const droppedBrick = this.workspace.getBlockById(event.blockId);
-      const isTopBrick = !droppedBrick.hat;
+      const isTopBrick = !!droppedBrick.hat;
       const position = droppedBrick.getRelativeToSurfaceXY();
 
       if (isTopBrick) {
