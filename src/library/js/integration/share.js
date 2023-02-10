@@ -148,7 +148,7 @@ export class Share {
     let svg = undefined;
     try {
       const sceneWidth = jsonDomToWorkspace(blockJSON, this.workspace);
-      zebraChangeColor(this.workspace.topBlocks_);
+      zebraChangeColor(this.workspace.getTopBlocks());
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();
 
@@ -173,7 +173,7 @@ export class Share {
       svg.setAttribute('height', `${oriBox.height}px`);
       svg.setAttribute('class', 'catblocks-svg');
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
       console.error('Failed to generate SVG from workspace, properly due to unknown bricks');
       return undefined;
     }

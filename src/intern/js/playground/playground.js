@@ -278,7 +278,7 @@ export class Playground {
     }
   }
   zebra() {
-    const blocks = this.workspace.topBlocks_;
+    const blocks = this.workspace.getTopBlocks();
     console.log(blocks);
     zebraChangeColor(blocks);
   }
