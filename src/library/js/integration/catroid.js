@@ -1,13 +1,8 @@
-import '../../css/common.css';
-import '../../css/catroid.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import '../../scss/catroid.scss';
 
 import { getBrickScriptMapping } from '../blocks/bricks';
 
 import Blockly from 'blockly';
-import 'bootstrap/dist/js/bootstrap.bundle';
-import $ from 'jquery';
-
 import { Parser } from '../../../common/js/parser/parser';
 import {
   defaultOptions,
@@ -25,6 +20,7 @@ import {
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import advancedTheme from '../advanced_theme.json';
+import { jQueryFunctions } from '../../../common/js/jquery_functions';
 
 export class Catroid {
   constructor() {
@@ -139,43 +135,38 @@ export class Catroid {
       return 'enabled';
     };
 
-    $('body').on('click', '.catblocks-block-category-list-item', event => {
-      const selectedCategory = $(event.target).attr('categoryName');
+    jQueryFunctions.addBodyClickListener('.catblocks-block-category-list-item', (event, eventRoot) => {
+      const selectedCategory = eventRoot.getAttribute('categoryName');
       this.listBricksOfSelectedCategory(selectedCategory);
     });
 
-    $('body').on('click', '#catroid-catblocks-add-brick-dialog-close-container', () => {
-      $('#catroid-catblocks-brick-category-container').empty();
-      $('#catroid-catblocks-bricks-container').empty();
-      $('#catroid-catblocks-add-brick-dialog-header-text').empty();
-      $('#catroid-catblocks-add-brick-dialog').hide();
+    jQueryFunctions.addBodyClickListener('#catroid-catblocks-add-brick-dialog-close-container', () => {
+      document.getElementById('catroid-catblocks-brick-category-container').innerHTML = '';
+      document.getElementById('catroid-catblocks-bricks-container').innerHTML = '';
+      document.getElementById('catroid-catblocks-add-brick-dialog-header-text').innerHTML = '';
+      document.getElementById('catroid-catblocks-add-brick-dialog').style.display = 'none';
     });
 
-    $('body').on('click', '.catblocks-brick', event => {
-      const $clickedElement = $(event.target);
+    jQueryFunctions.addBodyClickListener('.catblocks-brick', (event, eventRoot) => {
+      const addBrickElement = eventRoot;
 
-      let $addBrickElement = $clickedElement;
-      if (!$clickedElement.hasClass('catblocks-brick')) {
-        $addBrickElement = $clickedElement.parents('.catblocks-brick');
-      }
-
-      const category = $addBrickElement.attr('catroid-category');
-      const brickType = getMappedBrickNameIfExists($addBrickElement.attr('catroid-brickType'));
+      const category = addBrickElement.getAttribute('catroid-category');
+      const brickType = getMappedBrickNameIfExists(addBrickElement.getAttribute('catroid-brickType'));
 
       if (category && brickType) {
         const addedBricks = Android.addBrickByName(category, brickType);
         if (addedBricks) {
           this.addBricks(JSON.parse(addedBricks));
 
-          $('#catroid-catblocks-add-brick-dialog').hide();
-          $('#catroid-catblocks-bricks-container').hide();
+          document.getElementById('catroid-catblocks-add-brick-dialog').style.display = 'none';
+          document.getElementById('catroid-catblocks-bricks-container').style.display = 'none';
         }
       } else {
         console.log('invlid element for adding brick');
       }
     });
 
-    $('body').on('click', '#catroid-catblocks-add-brick-back-container', () => {
+    jQueryFunctions.addBodyClickListener('#catroid-catblocks-add-brick-back-container', () => {
       const categories = JSON.parse(Android.getBrickCategoryInfos());
       this.showBrickCategories(categories);
     });
@@ -260,7 +251,7 @@ export class Catroid {
   handleWorkspaceChange(event) {
     if (event.type == Blockly.Events.BLOCK_DRAG && !event.isStart) {
       const droppedBrick = this.workspace.getBlockById(event.blockId);
-      const isTopBrick = !droppedBrick.hat;
+      const isTopBrick = !!droppedBrick.hat;
       const position = droppedBrick.getRelativeToSurfaceXY();
 
       if (isTopBrick) {
@@ -525,10 +516,10 @@ export class Catroid {
   }
 
   showBrickCategories(categoryInfos) {
-    $('#catroid-catblocks-bricks-container').empty();
-    $('#catroid-catblocks-bricks-container').hide();
+    document.getElementById('catroid-catblocks-bricks-container').innerHTML = '';
+    document.getElementById('catroid-catblocks-bricks-container').style.display = 'none';
 
-    $('#catroid-catblocks-brick-category-container').empty();
+    document.getElementById('catroid-catblocks-brick-category-container').innerHTML = '';
 
     for (const idx in categoryInfos) {
       const categoryColor = getColorForBrickCategory(categoryInfos[idx].name);
@@ -553,26 +544,25 @@ export class Catroid {
       );
     }
 
-    $('#catroid-catblocks-add-brick-dialog-header-text').text(
-      CatblocksMsgs.getCurrentLocaleValues()['BRICK_CATEGORIES']
-    );
+    document.getElementById('catroid-catblocks-add-brick-dialog-header-text').innerText =
+      CatblocksMsgs.getCurrentLocaleValues()['BRICK_CATEGORIES'];
 
-    $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
+    document.getElementById('catroid-catblocks-add-brick-dialog-content').scrollTop = 0;
 
-    $('#catroid-catblocks-add-brick-dialog').show();
-    $('#catroid-catblocks-brick-category-container').show();
+    document.getElementById('catroid-catblocks-add-brick-dialog').style.display = 'block';
+    document.getElementById('catroid-catblocks-brick-category-container').style.display = 'block';
 
-    $('#catroid-catblocks-add-brick-back-container').hide();
+    document.getElementById('catroid-catblocks-add-brick-back-container').style.display = 'none';
   }
 
   listBricksOfSelectedCategory(categoryName) {
     const strBricks = Android.getBricksForCategory(categoryName);
     const bricks = JSON.parse(strBricks);
 
-    $('#catroid-catblocks-add-brick-back-container').show();
+    document.getElementById('catroid-catblocks-add-brick-back-container').style.display = 'block';
 
-    $('#catroid-catblocks-brick-category-container').empty();
-    $('#catroid-catblocks-brick-category-container').hide();
+    document.getElementById('catroid-catblocks-brick-category-container').innerHTML = '';
+    document.getElementById('catroid-catblocks-brick-category-container').style.display = 'none';
 
     this.readonlyWorkspace.clear();
 
@@ -605,7 +595,7 @@ export class Catroid {
       return a.type > b.type;
     });
 
-    $('#catroid-catblocks-bricks-container').empty();
+    document.getElementById('catroid-catblocks-bricks-container').innerHTML = '';
 
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
 
@@ -632,12 +622,12 @@ export class Catroid {
       brickContainer.appendChild(svgContainer);
     }
 
-    $('#catroid-catblocks-add-brick-dialog-header-text').text(categoryName);
+    document.getElementById('catroid-catblocks-add-brick-dialog-header-text').innerText = categoryName;
 
-    $('#catroid-catblocks-add-brick-dialog').show();
-    $('#catroid-catblocks-bricks-container').show();
+    document.getElementById('catroid-catblocks-add-brick-dialog').style.display = 'block';
+    document.getElementById('catroid-catblocks-bricks-container').style.display = 'block';
 
-    $('#catroid-catblocks-add-brick-dialog-content').scrollTop(0);
+    document.getElementById('catroid-catblocks-add-brick-dialog-content').scrollTop = 0;
   }
 
   setAdvancedTheme() {

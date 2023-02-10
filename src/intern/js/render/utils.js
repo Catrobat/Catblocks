@@ -5,7 +5,6 @@ import { FileLoader } from './file_loader';
 import { FileDropper } from './file_dropper';
 import { PasteListener } from './paste_listener';
 import { CatBlocks } from '../../../library/js/lib_share';
-import $ from 'jquery';
 
 /**
  * Gets the requested param from a passed URLSearchParam
@@ -36,11 +35,11 @@ export function getSearchParam(search_params, key) {
 export function updateView(event) {
   switch (event) {
     case 'onStart':
-      $('#loading-overlay').show();
+      document.getElementById('loading-overlay').style.display = 'block';
       break;
 
     case 'onDone':
-      $('#loading-overlay').hide();
+      document.getElementById('loading-overlay').style.display = 'none';
       break;
 
     default:
@@ -199,6 +198,7 @@ export async function loadArchive(containerfile) {
 export async function initShareAndRenderPrograms(programPath, config) {
   const catblocksWorkspaceContainer = 'catblocks-workspace-container';
   const programContainer = document.getElementById('catblocks-programs-container');
+  programContainer.classList.add('catblocks-render');
   config.container = catblocksWorkspaceContainer;
   await CatBlocks.init(config);
 

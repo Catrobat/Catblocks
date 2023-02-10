@@ -1,4 +1,5 @@
-import '../css/style.css';
+import '../scss/style.scss';
+
 import { Playground } from './playground/playground';
 import * as shareUtils from '../../library/js/integration/utils';
 import Blockly from 'blockly';
@@ -6,7 +7,6 @@ import { CatBlocks } from '../../library/js/lib_share';
 import { CatBlocks as CatroidCatBlocks } from '../../library/js/lib_catroid';
 import { Parser } from '../../common/js/parser/parser';
 import { initShareAndRenderPrograms } from './render/utils';
-import $ from 'jquery';
 import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
 
 (async () => {
@@ -69,7 +69,6 @@ import { CatblocksMsgs } from '../../library/js/catblocks_msgs';
 
       const playground = new Playground();
 
-      window.$ = $;
       window.Test = {
         Playground: playground,
         Blockly: Blockly,

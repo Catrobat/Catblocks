@@ -4,10 +4,10 @@
 
 import md5 from 'js-md5';
 import Blockly from 'blockly';
-import $ from 'jquery';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import pluralBricks from '../plural_bricks.json';
 import { BrickIDGenerator } from './brick_id_generator';
+import { Modal } from 'bootstrap';
 import { getScriptToBrickMapping, scriptBricks } from '../blocks/bricks';
 import { getColourCodesForCategories } from '../blocks/colours';
 
@@ -502,19 +502,19 @@ export const changeSceneToRtl = (brick, workspace, sceneWidth) => {
  * Handler for loading images when Object is opened
  * @param {*} event
  */
-export const lazyLoadImage = event => {
-  let $objectHeader = $(event.target);
+export const lazyLoadImage = (event, eventRoot, callback) => {
+  const target = eventRoot;
+  target.removeEventListener('click', callback);
 
-  if (!$objectHeader.attr('class').includes('card-header')) {
-    $objectHeader = $objectHeader.parents('.card-header');
+  const contentContainer = target.nextElementSibling;
+  if (contentContainer.className.includes('catblocks-script-container')) {
+    for (const imgElement of contentContainer.querySelectorAll('img')) {
+      if (!imgElement.getAttribute('data-src')) {
+        continue;
+      }
+      imgElement.setAttribute('src', imgElement.getAttribute('data-src'));
+    }
   }
-
-  $objectHeader.off('click', lazyLoadImage);
-
-  const $contentContainer = $objectHeader.next();
-  $contentContainer.find('img').each(function () {
-    $(this).attr('src', $(this).data('src'));
-  });
 };
 
 export const buildUserDefinedBrick = (object, advancedMode = false) => {
@@ -561,65 +561,67 @@ export const buildUserDefinedBrick = (object, advancedMode = false) => {
 
 export const generateFormulaModal = () => {
   const formulaModal = `
-      <div class="modal" id="formulaPopup">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="formulaPopupHeader"></h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body" id="formulaPopupContent">
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-dismiss="modal" id="formulaPopupClose">Close</button>
-          </div>
+  <div class="modal fade" id="formulaPopup" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formulaPopupHeader"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="formulaPopupContent">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="formulaPopupClose">Close</button>
         </div>
       </div>
-    </div>`;
-  $('body').append(formulaModal);
+    </div>
+  </div>`;
+  document.querySelector('body').insertAdjacentHTML('beforeend', formulaModal);
 };
 
 export const generateModalMagnifyingGlass = () => {
-  const modal = $(
-    ` <div class="modal" id="modalForImg">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <span id="modalHeader"></span>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body">
-              <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-dismiss="modal" id="imgPopupClose">Close</button>
-            </div>
-          </div>
+  const modal = `
+  <div class="modal fade" id="modalForImg" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalHeader"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </div>`
-  );
-  $('body').append(modal);
+        <div class="modal-body">
+          <img src="" id="modalImg" class="imagepreview" style="max-width: 100%; max-height: 100%; margin: auto; display: block" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="imgPopupClose">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.querySelector('body').insertAdjacentHTML('beforeend', modal);
 };
 
 export const createLoadingAnimation = () => {
   const loadingAnimation = `
-  <div class="modal fade" tabindex="-1" role="dialog" id="spinnerModal">
-      <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
-          <span class="spinner-border" data-dismiss='modal'></span>
+    <div class="modal fade" id="spinnerModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
-  </div>`;
-  $('body').append(loadingAnimation);
+    </div>`;
+  document.querySelector('body').insertAdjacentHTML('beforeend', loadingAnimation);
 };
 
 export const showFormulaPopup = formula => {
   if (formula.length >= Blockly.Tooltip.LIMIT) {
-    $('#formulaPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+    document.getElementById('formulaPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
     const html_formula = formula.replaceAll('\n', '<br />');
-    $('#formulaPopupContent').html(html_formula);
-    $('#formulaPopup').modal('show');
+    document.getElementById('formulaPopupContent').innerHTML = html_formula;
+
+    const popup = document.getElementById('formulaPopup');
+    const popupModal = new Modal(popup);
+    popupModal.show();
   }
 };
 

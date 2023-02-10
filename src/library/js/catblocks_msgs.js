@@ -1,6 +1,5 @@
 import Blockly from 'blockly';
 import locales from './locales.json';
-import $ from 'jquery';
 
 export class CatblocksMsgs {
   static msgs = {};
@@ -59,8 +58,12 @@ export class CatblocksMsgs {
       url = window.CatBlocks.config.i18n + locale + '.json';
     }
 
-    const result = await $.getJSON(url);
-    json_object = result;
+    const result = await fetch(url);
+    if (result.status !== 200) {
+      console.log('Error while loading locale: ' + locale);
+      return;
+    }
+    json_object = await result.json();
     for (const key in json_object) {
       if (Object.hasOwnProperty.call(json_object, key)) {
         if (key !== 'DROPDOWN_NAME') {

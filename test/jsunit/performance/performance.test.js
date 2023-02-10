@@ -48,6 +48,10 @@ describe('Performance tests', () => {
     await page.waitForNetworkIdle();
   });
 
+  beforeEach(async () => {
+    await page.waitForNetworkIdle();
+  });
+
   test('Rendering test program takes less than 30 seconds', async () => {
     const startTime = await page.evaluate(() => {
       return performance.now();

@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import { generateNewDOM } from '../../../library/js/integration/utils';
 
 // default display duration
 const DISPLAY_DURATION = 10000;
@@ -35,32 +35,31 @@ export class MessageBox {
    * @memberof MessageBox
    */
   static _render() {
+    const container = document.getElementById(CONTAINER_ID);
     if (messages.length === 0) {
-      $(`#${CONTAINER_ID}`).fadeOut('slow', () => {
-        $(`#${CONTAINER_ID}`).remove();
-      });
-    } else if ($(`#${CONTAINER_ID}`).length) {
-      const $ul = $('<ul/>');
+      container.style.transition = 'opacity 0.5s';
+      container.style.opacity = 0;
+      setTimeout(() => {
+        container.parentNode.removeChild(container);
+      }, 500);
+    } else if (container) {
+      container.innerHTML = '';
+      const ul = generateNewDOM(container, 'ul');
       for (const msg of messages) {
-        const $li = $(`<li>${msg}</li>`);
-        $ul.prepend($li);
+        generateNewDOM(ul, 'li', {}, msg);
       }
-      $(`#${CONTAINER_ID}`).html($ul);
     } else {
-      const $div = $('<div />', {
-        id: CONTAINER_ID,
-        class: 'message-box'
-      });
+      const div = generateNewDOM(null, 'div', { id: CONTAINER_ID, class: 'message-box' });
 
-      const $ul = $('<ul/>');
+      const ul = generateNewDOM(div, 'ul');
       for (const msg of messages) {
-        const $li = $(`<li>${msg}</li>`);
-        $ul.prepend($li);
+        generateNewDOM(ul, 'li', {}, msg);
       }
 
-      $div.append($ul);
-      $('body').append($div);
-      $(`#${CONTAINER_ID}`).fadeIn('slow');
+      div.style.transition = 'opacity 0.5s';
+      div.style.opacity = 0;
+      document.body.appendChild(div);
+      div.style.opacity = 1;
     }
   }
 }

@@ -2,7 +2,7 @@ import { Catroid } from './integration/catroid';
 import { Parser } from '../../common/js/parser/parser';
 import './catblocks_msgs';
 import { preparePaths } from './lib_utils';
-import $ from 'jquery';
+import { Modal } from 'bootstrap';
 import { initBricks } from './blocks/bricks';
 
 let catblocks_instance = undefined;
@@ -45,7 +45,11 @@ export class CatBlocks {
    */
   static render(codeXML, showScene = null, showObject = null, brickIDToFocus = null) {
     return new Promise((resolve, reject) => {
-      $('#spinnerModal').one('shown.bs.modal', () => {
+      const spinnerElement = document.getElementById('spinnerModal');
+      const spinnerModal = new Modal(spinnerElement);
+
+      const eventListener = () => {
+        spinnerElement.removeEventListener('shown.bs.modal', eventListener, false);
         try {
           const objectJSON = Parser.convertObjectToJSON(codeXML, showScene, showObject);
           console.log(objectJSON);
@@ -57,11 +61,11 @@ export class CatBlocks {
         } catch (error) {
           return reject(error);
         } finally {
-          $('#spinnerModal').modal('hide');
+          spinnerModal.hide();
         }
-      });
-
-      $('#spinnerModal').modal('show');
+      };
+      spinnerElement.addEventListener('shown.bs.modal', eventListener);
+      spinnerModal.show();
     });
   }
 
