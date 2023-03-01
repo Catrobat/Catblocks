@@ -1,5 +1,4 @@
 import { FileLoader } from './file_loader';
-import $ from 'jquery';
 
 /**
  * Initialize Drag & Drop Field and handle Files.
@@ -59,7 +58,7 @@ export class PasteListener {
         const fl = new FileLoader(pastedData, pl.container);
         try {
           if (await fl.loadAndRenderProgram()) {
-            $('#catblocks-file-dropper').hide();
+            document.getElementById('catblocks-file-dropper').style.display = 'none';
             pl.disablePasteListener();
           }
         } catch (error) {

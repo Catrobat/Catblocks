@@ -1,0 +1,28 @@
+@import './blockly';
+
+// Required
+@import '../../../node_modules/bootstrap/scss/functions';
+@import '../../../node_modules/bootstrap/scss/variables';
+@import '../../../node_modules/bootstrap/scss/maps';
+@import '../../../node_modules/bootstrap/scss/mixins';
+@import '../../../node_modules/bootstrap/scss/root';
+
+@import '../../../node_modules/bootstrap/scss/reboot';
+@import '../../../node_modules/bootstrap/scss/bootstrap-grid.scss';
+
+// modal and fade
+@import '../../../node_modules/bootstrap/scss/transitions';
+@import '../../../node_modules/bootstrap/scss/close';
+@import '../../../node_modules/bootstrap/scss/modal';
+
+// @import "../../../node_modules/bootstrap/scss/popover";
+@import '../../../node_modules/bootstrap/scss/buttons';
+
+// for spinner in modal
+@import '../../../node_modules/bootstrap/scss/spinners';
+// loading text for accessability which is hidden inside spinner
+@import '../../../node_modules/bootstrap/scss/helpers';
+
+// text formatting
+@import '../../../node_modules/bootstrap/scss/utilities';
+@import '../../../node_modules/bootstrap/scss/utilities/api';

@@ -1,7 +1,6 @@
 import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
-import $ from 'jquery';
 import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 
 export class Playground {
@@ -101,44 +100,46 @@ export class Playground {
     }
   }
   bindListeners() {
-    $('#showWorkspace').click(e => {
+    document.getElementById('showWorkspace').attachEventListener('click', e => {
       e.preventDefault();
       this.workspace.setVisible(true);
     });
-    $('#hideWorkspace').click(e => {
+    document.getElementById('hideWorkspace').attachEventListener('click', e => {
       e.preventDefault();
       this.workspace.setVisible(false);
     });
-    $('#locale').change(() => this.setLocale(document.forms.options.elements.locale.value));
+    document
+      .getElementById('locale')
+      .attachEventListener('click', () => this.setLocale(document.forms.options.elements.locale.value));
 
-    $('#exportToXML').click(() => this.toXml());
-    $('#importFromJSON').click(() => this.fromJSON());
-    $('#importFromParser').click(() => this.fromParser());
+    document.getElementById('exportToXML').attachEventListener('click', () => this.toXml());
+    document.getElementById('importFromJSON').attachEventListener('click', () => this.fromJSON());
+    document.getElementById('importFromParser').attachEventListener('click', () => this.fromParser());
 
     const self = this;
-    $('#logCheck').click(function () {
-      self.logEvents($(this).is(':checked'));
+    document.getElementById('logCheck').attachEventListener('click', function () {
+      self.logEvents(this.checked);
     });
-    $('#logFlyoutCheck').click(function () {
-      self.logFlyoutEvents($(this).is(':checked'));
+    document.getElementById('logFlyoutCheck').attachEventListener('click', function () {
+      self.logFlyoutEvents(this.checked);
     });
-    $('#soundsEnabled').click(function () {
-      self.setSoundsEnabled($(this).is(':checked'));
+    document.getElementById('soundsEnabled').attachEventListener('click', function () {
+      self.setSoundsEnabled(this.checked);
     });
 
-    $('#sprinkles').click(() => this.sprinkles(100));
-    $('#spaghetti').click(() => this.spaghetti(3));
+    document.getElementById('sprinkles').attachEventListener('click', () => this.sprinkles(100));
+    document.getElementById('spaghetti').attachEventListener('click', () => this.spaghetti(3));
 
-    $('#glowBlock').click(() => this.glowBlock());
-    $('#unglowBlock').click(() => this.unglowBlock());
-    $('#zebra').click(() => this.zebra());
-    $('#glowStack').click(() => this.glowStack());
-    $('#unglowStack').click(() => this.unglowStack());
+    document.getElementById('glowBlock').attachEventListener('click', () => this.glowBlock());
+    document.getElementById('unglowBlock').attachEventListener('click', () => this.unglowBlock());
+    document.getElementById('zebra').attachEventListener('click', () => this.zebra());
+    document.getElementById('glowStack').attachEventListener('click', () => this.glowStack());
+    document.getElementById('unglowStack').attachEventListener('click', () => this.unglowStack());
 
-    $('#undo').click(() => this.workspace.undo());
-    $('#redo').click(() => this.workspace.undo(true));
+    document.getElementById('undo').attachEventListener('click', () => this.workspace.undo());
+    document.getElementById('redo').attachEventListener('click', () => this.workspace.undo(true));
 
-    $('#reportDemo').click(() => this.reportDemo());
+    document.getElementById('reportDemo').attachEventListener('click', () => this.reportDemo());
   }
   setSoundsEnabled(state) {
     const checkbox = document.getElementById('soundsEnabled');

@@ -28,10 +28,21 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader'
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          'sass-loader'
         ]
       }
     ]
@@ -74,6 +85,12 @@ module.exports = {
     },
     devMiddleware: {
       writeToDisk: !devMode
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      }
     }
   },
   target: 'web'

@@ -1,6 +1,6 @@
 import { CatBlocks, renderProgram } from '../../../library/js/lib_share';
 import { Parser } from '../../../common/js/parser/parser';
-import $ from 'jquery';
+import { generateNewDOM } from '../../../library/js/integration/utils';
 
 /**
  * Render all programs into one page
@@ -84,13 +84,16 @@ export function renderProgramByLocalFile(container, codeXML, name, counter, file
  * @returns {Element} container for injecting scenes
  */
 function createProgramContainer(container, programName, programCounter) {
-  const $programContainer = $('<div/>', {
-    class: 'catblocks-container text-dark catblocks-scene-header card-header collapsed',
-    text: 'Program ' + programCounter + ' / ' + programName
-  });
-  $(container).append($programContainer);
+  const programContainer = generateNewDOM(
+    container,
+    'div',
+    {
+      class: 'catblocks-container text-dark catblocks-scene-header card-header collapsed'
+    },
+    `Program ${programCounter} / ${programName}`
+  );
   console.log(programName);
   console.log(container);
-  console.log($programContainer);
-  return $programContainer[0];
+  console.log(programContainer);
+  return programContainer;
 }

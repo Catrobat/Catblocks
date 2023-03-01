@@ -1,7 +1,7 @@
 /**
  * @description Block tests
  */
-/* global $, page, Test */
+/* global page, Test */
 /* eslint no-global-assign:0 */
 'use strict';
 
@@ -13,7 +13,7 @@
 async function waitForEvent(eventName) {
   return page.evaluate(pEventName => {
     return new Promise(resolve => {
-      $('body').one(pEventName, resolve);
+      document.body.addEventListener(pEventName, resolve, { once: true });
     });
   }, eventName);
 }
@@ -42,6 +42,10 @@ describe('Performance tests', () => {
         advancedMode: false
       });
     });
+  });
+
+  beforeEach(async () => {
+    await page.waitForNetworkIdle();
   });
 
   beforeEach(async () => {

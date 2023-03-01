@@ -2,7 +2,6 @@ import { MessageBox } from './message_box';
 import { loadArchive, updateView } from './utils';
 import { PasteListener } from './paste_listener';
 import { renderProgramByLocalFile } from './render';
-import $ from 'jquery';
 
 /**
  * Initialize Drag & Drop Field and handle Files.
@@ -46,24 +45,28 @@ export class FileDropper {
    * @memberof FileDropper
    */
   enableDragAndDrop() {
-    const $ele = $('#catblocks-file-dropper');
-
-    $ele
-      .on('drag dragstart dragend dragover dragenter dragleave drop', e => {
+    const element = document.getElementById('catblocks-file-dropper');
+    for (const event of ['drag', 'dragstart', 'dragend', 'dragenter', 'dragover', 'dragleave', 'drop']) {
+      element.addEventListener(event, e => {
         e.preventDefault();
         e.stopPropagation();
-      })
-      .on('dragover dragenter', () => {
-        $ele.addClass('hover');
-      })
-      .on('dragleave dragend drop', () => {
-        $ele.removeClass('hover');
-      })
-      .on('drop', this._handleFileDrop);
+      });
+    }
+    for (const event of ['dragenter', 'dragover']) {
+      element.addEventListener(event, () => {
+        element.classList.add('hover');
+      });
+    }
+    for (const event of ['dragleave', 'dragend', 'drop']) {
+      element.addEventListener(event, () => {
+        element.classList.remove('hover');
+      });
+    }
 
-    $('#dropper-file-input').on('change', this._handleInputChange);
+    element.addEventListener('drop', this._handleFileDrop);
 
-    $ele.css('display', 'flex');
+    document.getElementById('dropper-file-input').addEventListener('change', this._handleInputChange);
+    element.style.display = 'flex';
   }
 
   /**
@@ -73,7 +76,7 @@ export class FileDropper {
    * @memberof FileDropper
    */
   _handleFileDrop(e) {
-    const files = e.originalEvent.dataTransfer.files;
+    const files = e.dataTransfer.files;
     if (files && files.length > 0) {
       FileDropper.getInstance().computeFiles(files);
     }
@@ -86,7 +89,7 @@ export class FileDropper {
    * @memberof FileDropper
    */
   _handleInputChange(e) {
-    const files = e.originalEvent.target.files;
+    const files = e.currentTarget.files;
     if (files && files.length > 0) {
       FileDropper.getInstance().computeFiles(files);
     }
@@ -122,7 +125,7 @@ export class FileDropper {
               result.fileMap
             );
             MessageBox.show(`Rendered ${++finished}/${inputFiles.length} Programs`, 4000);
-            $('#catblocks-file-dropper').hide();
+            document.getElementById('catblocks-file-dropper').style.display = 'none';
           } catch (error) {
             MessageBox.show('<b>' + containerfile.name + ':</b> ' + error);
           }

@@ -64,13 +64,13 @@ describe('Share basic tests', () => {
     expect(realSceneID).toEqual(sceneID);
 
     const sceneContainerClass = await (await sceneContainerHandle.getProperty('className')).jsonValue();
-    expect(sceneContainerClass).toEqual('catblocks-scene card');
+    expect(sceneContainerClass).toEqual('catblocks-scene accordion-item');
 
     const sceneContainerInnerText = await sceneContainerHandle.$eval(`#${sceneID}-header`, x => x.innerText);
     expect(sceneContainerInnerText.startsWith(nameOfTheScene)).toBeTruthy();
 
-    const sceneContainerTarget = await sceneContainerHandle.$eval(`#${sceneID}-header`, x =>
-      x.getAttribute('data-target')
+    const sceneContainerTarget = await sceneContainerHandle.$eval(`#${sceneID}-header > button`, x =>
+      x.getAttribute('data-bs-target')
     );
     expect(sceneContainerTarget).toEqual(`#${sceneID}-collapseOne`);
 
@@ -78,7 +78,7 @@ describe('Share basic tests', () => {
     expect(catblocksObjContainerHandle).not.toBeNull();
 
     const sceneObjContainerParentAttr = await sceneContainerHandle.$eval(`#${sceneID}-collapseOne`, x =>
-      x.getAttribute('data-parent')
+      x.getAttribute('data-bs-parent')
     );
     expect(sceneObjContainerParentAttr).toEqual(`#${accordionID}`);
   });
@@ -110,13 +110,13 @@ describe('Share basic tests', () => {
     expect(realObjectCardID).toEqual(objectCardID);
 
     const objectCardClass = await (await objectCardHandle.getProperty('className')).jsonValue();
-    expect(objectCardClass).toEqual('catblocks-object card');
+    expect(objectCardClass).toEqual('catblocks-object accordion-item');
 
     const objectHeaderText = await containerHandle.$eval(`#${objectCardID}-header`, x => x.innerText);
     expect(objectHeaderText.startsWith(objectName)).toBeTruthy();
 
     const dataParent = await containerHandle.$eval(`#${objectCardID}-collapseOneScene`, x =>
-      x.getAttribute('data-parent')
+      x.getAttribute('data-bs-parent')
     );
     expect(dataParent).toEqual(`#${sceneObjectsID}`);
 
@@ -127,12 +127,8 @@ describe('Share basic tests', () => {
     expect(tabsContainer).not.toBeNull();
 
     async function checkTabs(id) {
-      const container = await containerHandle.$(id);
-      expect(container).not.toBeNull();
-
-      const href = await (await container.getProperty('href')).jsonValue();
-      const anchor = href.split('/').pop();
-      const anchorItem = await containerHandle.$(anchor);
+      const target = await containerHandle.$eval(id, x => x.getAttribute('data-bs-target'));
+      const anchorItem = await containerHandle.$(target);
       expect(anchorItem).not.toBeNull();
     }
 
@@ -178,7 +174,7 @@ describe('Share catroid program rendering tests', () => {
     expect(errorMessage).toEqual('Empty program found');
 
     const shareTestContainerHandle = await page.$('#shareprogs');
-    const cardHeaderText = await shareTestContainerHandle.$eval('.card-header', x => x.innerText);
+    const cardHeaderText = await shareTestContainerHandle.$eval('.accordion-header', x => x.innerText);
     expect(cardHeaderText).toEqual('Empty program found');
   });
 
@@ -195,7 +191,7 @@ describe('Share catroid program rendering tests', () => {
 
     expect(errorMessage).toEqual('Empty program found');
 
-    const cardHeaderText = await page.$eval('.card-header', x => x.innerText);
+    const cardHeaderText = await page.$eval('.accordion-header', x => x.innerText);
     expect(cardHeaderText).toEqual('Empty program found');
   });
 
@@ -227,7 +223,7 @@ describe('Share catroid program rendering tests', () => {
     const accordion = await page.$('.accordion');
     expect(accordion).not.toBeNull();
 
-    const cardHeaderText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
+    const cardHeaderText = await page.$eval('.catblocks-object .accordion-header', x => x.innerHTML);
     expect(cardHeaderText.startsWith('No objects found')).toBeTruthy();
   });
 
@@ -262,7 +258,7 @@ describe('Share catroid program rendering tests', () => {
     const catblocksHandle = await page.$$('.catblocks-object');
     expect(catblocksHandle).toHaveLength(2);
 
-    const cardHeaderText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
+    const cardHeaderText = await page.$eval('.catblocks-object .accordion-header', x => x.innerHTML);
     expect(cardHeaderText.startsWith('No objects found')).toBeTruthy();
   });
 
@@ -284,8 +280,8 @@ describe('Share catroid program rendering tests', () => {
       Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
     }, catObj);
 
-    const cardHeaderText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderText.startsWith('<div class="header-title">tobject</div>')).toBeTruthy();
+    const cardHeaderText = await page.$eval('.catblocks-object .accordion-header', x => x.innerText);
+    expect(cardHeaderText).toBe('tobject');
 
     const tabContainer = await page.$('.tab-pane');
     expect(tabContainer).not.toBeNull();
@@ -796,7 +792,7 @@ describe('Share catroid program rendering tests', () => {
     expect(beforeClickSrc).toBeNull();
 
     // open object
-    await page.click(`#${objID}-header .header-title`);
+    await page.click(`#${objID}-header .accordion-button`);
     // wait for tabs to be visible
     await page.waitForSelector(`#${objID}-tabs`);
 
@@ -876,7 +872,7 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector('.catblocks-object-container', { visible: true });
 
     // open modal
-    await page.click('.catblocks-object .card-header');
+    await page.click('.catblocks-object .accordion-header');
 
     const tabID = '#' + objID + '-looks-tab';
     await page.waitForSelector(tabID, { visible: true });
@@ -997,15 +993,9 @@ describe('Share catroid program rendering tests', () => {
     const accordionHandle = await page.$('.accordion');
     expect(accordionHandle).not.toBeNull();
 
-    const cbCardHeaderHTML = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
+    const cbCardHeaderText = await page.$eval('.catblocks-object .accordion-header', x => x.innerText);
 
-    const origin = await page.evaluate(() => {
-      return window.location.origin;
-    });
-
-    expect(cbCardHeaderHTML).toBe(
-      `<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`
-    );
+    expect(cbCardHeaderText).toBe('Background');
   });
 
   test('Share renders scene and card headers for one scene properly', async () => {
@@ -1042,7 +1032,7 @@ describe('Share catroid program rendering tests', () => {
       sceneName
     );
 
-    const identifier = '.catblocks-scene .card-header .header-title';
+    const identifier = '.catblocks-scene .accordion-header .accordion-button';
     const cardHeaderInitialText = await page.$eval(identifier, x => x.innerHTML);
     expect(cardHeaderInitialText).toBe(programID);
 
@@ -1065,13 +1055,6 @@ describe('Share catroid program rendering tests', () => {
     const programID = 'testname';
     const sceneName1 = 'testscene1';
     const objName1 = 'Background';
-
-    const origin = await page.evaluate(() => {
-      return window.location.origin;
-    });
-
-    const expectedSceneHeaderText = `<div class="header-title">testscene1</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`;
-    const expectedCardHeaderText = `<div class="header-title">Background</div><img id="code-view-toggler" class="rotate-left" src="${origin}/media/chevron_left_black_24dp.svg">`;
 
     const catObj = {
       scenes: [
@@ -1127,43 +1110,52 @@ describe('Share catroid program rendering tests', () => {
     // wait for it to show
     await page.waitForSelector(`#${scene1ID}-collapseOne.show`);
 
-    const sceneHeaderInitialText = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderInitialText).toBe(expectedSceneHeaderText);
+    const sceneHeaderInitialText = await page.$eval('.catblocks-scene-header', x => x.innerText);
+    expect(sceneHeaderInitialText).toBe(sceneName1);
 
-    const cardHeaderInitialText = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderInitialText).toBe(expectedCardHeaderText);
+    const cardHeaderInitialText = await page.$eval('.catblocks-object .accordion-header', x => x.innerText);
+    expect(cardHeaderInitialText).toBe(objName1);
+
+    // accordion transition time...
+    await page.waitForTimeout(500);
+    const scriptsVisible = await page.$eval(`#${obj1ID}-scripts`, x => x.offsetParent !== null);
+    expect(scriptsVisible).toBe(false);
 
     // open object
-    await page.click('.catblocks-object .card-header');
+    await page.click('.catblocks-object .accordion-header');
     // wait for it
     await page.waitForSelector(`#${obj1ID}-collapseOneScene.show`);
 
-    const sceneHeaderTextExpanded = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderTextExpanded).toBe(expectedSceneHeaderText);
-
-    const cardHeaderTextExpanded = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderTextExpanded).toBe(expectedCardHeaderText);
+    // accordion transition time...
+    await page.waitForTimeout(500);
+    const scriptsVisibleAfterOpen = await page.$eval(`#${obj1ID}-scripts`, x => x.offsetParent !== null);
+    expect(scriptsVisibleAfterOpen).toBe(true);
 
     // close object
-    await page.click('.catblocks-object .card-header');
+    await page.click('.catblocks-object .accordion-header');
     // wait for it
     await page.waitForSelector(`#${obj1ID}-collapseOneScene:not(.show)`);
+
+    // accordion transition time...
+    await page.waitForTimeout(500);
+    const scriptsVisibleAfterClose = await page.$eval(`#${obj1ID}-scripts`, x => x.offsetParent !== null);
+    expect(scriptsVisibleAfterClose).toBe(false);
 
     // close scene
     await page.click('.catblocks-scene-header');
     // wait for it to show
     await page.waitForSelector(`#${scene1ID}-collapseOne:not(.show)`);
 
-    const sceneHeaderTextCollapsed = await page.$eval('.catblocks-scene-header', x => x.innerHTML);
-    expect(sceneHeaderTextCollapsed).toBe(expectedSceneHeaderText);
-
-    const cardHeaderTextCollapsed = await page.$eval('.catblocks-object .card-header', x => x.innerHTML);
-    expect(cardHeaderTextCollapsed).toBe(expectedCardHeaderText);
+    // accordion transition time...
+    await page.waitForTimeout(500);
+    const objectVisible = await page.$eval(`#${obj1ID}-header`, x => x.offsetParent !== null);
+    expect(objectVisible).toBe(false);
   });
 
   test('scrolling bricks on x axis on mobile share page is working', async () => {
+    const oldViewPort = await page.viewport();
     await page.setViewport({
-      width: 200,
+      width: 100,
       height: 1000
     });
 
@@ -1230,7 +1222,7 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector(`#${scene1ID}-collapseOne.show`);
 
     // close object
-    await page.click('.catblocks-object .card-header');
+    await page.click('.catblocks-object .accordion-header');
     // wait for it
     await page.waitForSelector(`#${obj1ID}-collapseOneScene.show`);
 
@@ -1246,6 +1238,7 @@ describe('Share catroid program rendering tests', () => {
 
     const overflowX = await page.$eval('.catblocks-script', x => x.style.overflowX);
     expect(overflowX).toBe('auto');
+    await page.setViewport(oldViewPort);
   });
 
   test('Images not rendered when disabled', async () => {
@@ -1352,7 +1345,7 @@ describe('Share catroid program rendering tests', () => {
     await page.waitForSelector('.catblocks-object-container', { visible: true });
 
     // open modal
-    await page.click('.catblocks-object .card-header');
+    await page.click('.catblocks-object .accordion-header');
 
     const tabID = '#' + objID + '-looks-tab';
     await page.waitForSelector(tabID, { visible: true });
@@ -1369,7 +1362,16 @@ describe('Share catroid program rendering tests', () => {
       img.clientHeight
     ]);
 
-    expect(magnifyingGlassWidth).toBeGreaterThanOrEqual(24);
-    expect(magnifyingGlassHeight).toBeGreaterThanOrEqual(24);
+    const magnifyingGlassPixelSize = 22;
+    expect(magnifyingGlassWidth).toBeGreaterThanOrEqual(magnifyingGlassPixelSize);
+    expect(magnifyingGlassHeight).toBeGreaterThanOrEqual(magnifyingGlassPixelSize);
+
+    const [magnifyingButtonWidth, magnifyingButtonHeight] = await page.$eval(searchID, btn => [
+      btn.offsetWidth,
+      btn.offsetWidth
+    ]);
+
+    expect(magnifyingButtonWidth).toBeGreaterThanOrEqual(2 * magnifyingGlassPixelSize);
+    expect(magnifyingButtonHeight).toBeGreaterThanOrEqual(2 * magnifyingGlassPixelSize);
   });
 });

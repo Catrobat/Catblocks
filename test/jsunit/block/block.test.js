@@ -260,6 +260,12 @@ describe('WebView Block tests', () => {
   });
 
   describe('Workspace actions', () => {
+    beforeEach(async () => {
+      await page.evaluate(() => {
+        Test.Playground.workspace.clear();
+      });
+    });
+
     test('All icons available and rendered', async () => {
       const imgHref = await page.evaluate(() => {
         return Array.from(document.querySelectorAll('svg.blocklyFlyout image')).map(node => node.href.baseVal);
@@ -494,6 +500,12 @@ describe('Catroid Block IDs', () => {
         cache = null;
         return retVal;
       };
+    });
+  });
+
+  beforeEach(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
     });
   });
 

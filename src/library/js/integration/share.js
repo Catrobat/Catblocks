@@ -1,13 +1,10 @@
 /**
  * This file will be used in catroweb to render everything properly
  */
-import '../../css/share.css';
-import '../../css/common.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import '../../scss/share.scss';
 
 import Blockly from 'blockly';
-import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.bundle';
+import { Modal, Tab } from 'bootstrap';
 
 import {
   escapeURI,
@@ -23,9 +20,11 @@ import {
   showFormulaPopup,
   generateFormulaModal,
   generateModalMagnifyingGlass,
-  buildUserDefinedBrick
+  buildUserDefinedBrick,
+  createLoadingAnimation
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
+import { jQueryFunctions } from '../../../common/js/jquery_functions';
 
 const all_blocks = new Map();
 const rendered_scenes = new Map();
@@ -48,21 +47,31 @@ export class Share {
     this.config = parseOptions(options, defaultOptions.render);
     generateFormulaModal();
     generateModalMagnifyingGlass();
-    $('meta[name=viewport]')[0].content = $('meta[name=viewport]')[0].content + ' user-scalable=yes';
-    this.createLoadingAnimation();
 
-    $('body').on('click', '.blocklyNonEditableText', function () {
-      const block = all_blocks[$(this).parent().attr('data-id')];
-      const element_idx = $(this).parent().children('g').index($(this));
-      const full_formula = block[element_idx];
-      showFormulaPopup(full_formula);
+    try {
+      if (!document.querySelector('meta[name=viewport]').content.includes('user-scalable')) {
+        document.querySelector('meta[name=viewport]').content += ' user-scalable=yes';
+      }
+    } catch (e) {
+      // ignore
+    }
+    createLoadingAnimation();
+
+    jQueryFunctions.addBodyClickListener('.blocklyNonEditableText', (event, target) => {
+      const parent = target.parentNode;
+      const block = all_blocks[parent.getAttribute('data-id')];
+      const element_idx = [...parent.querySelectorAll('g')].indexOf(target);
+      if (element_idx >= 0) {
+        const full_formula = block[element_idx];
+        showFormulaPopup(full_formula);
+      }
     });
 
-    $('body').on('click', 'image', function () {
-      if ($(this).attr('xlink:href').endsWith('info_icon.svg')) {
-        const $parent = $(this).parent();
-        const block = all_blocks[$parent.parent().attr('data-id')];
-        const element_idx = $parent.parent().children('g').index($parent);
+    jQueryFunctions.addBodyClickListener('image', (event, target) => {
+      if (target.getAttribute('xlink:href').endsWith('info_icon.svg')) {
+        const parent = target.parentNode;
+        const block = all_blocks[parent.parentNode.getAttribute('data-id')];
+        const element_idx = [...parent.parentNode.querySelectorAll('g')].indexOf(parent);
         const full_formula = block[element_idx - 1];
         showFormulaPopup(full_formula);
       }
@@ -190,35 +199,39 @@ export class Share {
    */
   addSceneContainer(accordionID, sceneID, container, sceneName) {
     const sceneContainer = generateNewDOM(container, 'div', {
-      class: 'catblocks-scene card',
+      class: 'catblocks-scene accordion-item',
       id: sceneID
     });
 
-    const sceneHeader = generateNewDOM(sceneContainer, 'div', {
-      class: 'catblocks-scene-header card-header d-flex justify-content-between expansion-header collapsed',
-      id: `${sceneID}-header`,
-      'data-toggle': 'collapse',
-      'data-target': `#${sceneID}-collapseOne`,
-      'aria-expanded': 'false',
-      'aria-controls': `${sceneID}-collapseOne`
+    const sceneHeader = generateNewDOM(sceneContainer, 'h2', {
+      class: 'catblocks-scene-header accordion-header header-title',
+      id: `${sceneID}-header`
     });
 
-    if (sceneName && sceneName.display) {
-      sceneHeader.innerHTML = `<div class="header-title">${sceneName.display}</div><img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
-    } else {
-      sceneHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
-    }
+    generateNewDOM(
+      sceneHeader,
+      'button',
+      {
+        class: 'accordion-button collapsed',
+        type: 'button',
+        'data-bs-toggle': 'collapse',
+        'data-bs-target': `#${sceneID}-collapseOne`,
+        'aria-expanded': 'false',
+        'aria-controls': `${sceneID}-collapseOne`
+      },
+      sceneName.display
+    );
 
     const sceneObjectContainer = generateNewDOM(sceneContainer, 'div', {
-      class: 'catblocks-object-container collapse',
+      class: 'catblocks-object-container accordion-collapse collapse',
       id: `${sceneID}-collapseOne`,
       'aria-labelledby': `${sceneID}-header`,
-      'data-parent': `#${accordionID}`,
+      'data-bs-parent': `#${accordionID}`,
       'data-scene': sceneName.real
     });
 
     const cardBody = generateNewDOM(sceneObjectContainer, 'div', {
-      class: 'card-body'
+      class: 'accordion-body p-0'
     });
 
     const accordionObjects = generateNewDOM(cardBody, 'div', {
@@ -226,7 +239,7 @@ export class Share {
       id: `${sceneID}-accordionObjects`
     });
 
-    return accordionObjects;
+    return { accordionObjects: accordionObjects, sceneContainer: sceneContainer };
   }
 
   /**
@@ -238,10 +251,12 @@ export class Share {
    */
   renderProgramJSON(programID, container, programJSON, options = {}, renderEverything = false) {
     options = parseOptions(options, defaultOptions);
-    // create row and col
-    const programContainers = this.createProgramContainer(generateID(programID), undefined);
 
-    const programContainer = programContainers[1];
+    const programContainer = generateNewDOM(container, 'div', {
+      class: 'catblocks-program-container',
+      id: generateID(programID)
+    });
+
     const scenesContainerID = `${generateID(programID)}-accordionScenes`;
     const scenesContainer = generateNewDOM(programContainer, 'div', {
       class: 'catblocks-scene-container accordion',
@@ -250,18 +265,18 @@ export class Share {
 
     if (programJSON == null || programJSON.scenes == null || programJSON.scenes.length === 0) {
       const errorContainer = generateNewDOM(scenesContainer, 'div', {
-        class: 'catblocks-scene card'
+        class: 'catblocks-scene accordion-item'
       });
       generateNewDOM(
         errorContainer,
         'div',
         {
-          class: 'card-header d-flex justify-content-between'
+          class: 'accordion-header d-flex justify-content-between'
         },
         'Empty program found'
       );
 
-      container.appendChild(programContainers[0]);
+      container.appendChild(programContainer);
 
       throw new Error('Empty program found');
     }
@@ -280,16 +295,21 @@ export class Share {
         sceneName.display = trimString(scene.name);
       }
 
-      const sceneObjectContainer = this.addSceneContainer(scenesContainerID, sceneID, scenesContainer, sceneName);
+      const { accordionObjects, sceneContainer } = this.addSceneContainer(
+        scenesContainerID,
+        sceneID,
+        scenesContainer,
+        sceneName
+      );
       if (scene.objectList == null || scene.objectList.length === 0) {
-        const errorContainer = generateNewDOM(sceneObjectContainer, 'div', {
-          class: 'catblocks-object card'
+        const errorContainer = generateNewDOM(accordionObjects, 'div', {
+          class: 'catblocks-object accordion-item'
         });
         generateNewDOM(
           errorContainer,
           'div',
           {
-            class: 'card-header d-flex justify-content-between'
+            class: 'accordion-header d-flex justify-content-between'
           },
           'No objects found'
         );
@@ -297,31 +317,30 @@ export class Share {
       }
 
       if (!renderEverything) {
-        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything);
+        this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, accordionObjects, renderEverything);
         continue;
       }
 
-      const $spinnerModal = $('#spinnerModal');
+      const spinnerElement = document.getElementById('spinnerModal');
+      const spinnerModal = new Modal(spinnerElement);
 
-      $('body').on('click', `#${sceneID}`, () => {
+      sceneContainer.addEventListener('click', () => {
         if (rendered_scenes[sceneID] !== true) {
-          $spinnerModal.one('shown.bs.modal', () => {
-            this.renderAllObjectsFromOneScene(
-              options,
-              scene,
-              programID,
-              sceneID,
-              sceneObjectContainer,
-              renderEverything
-            );
-            $spinnerModal.modal('hide');
-          });
-          $spinnerModal.modal('show');
+          const eventListener = () => {
+            spinnerElement.removeEventListener('shown.bs.modal', eventListener, false);
+
+            this.renderAllObjectsFromOneScene(options, scene, programID, sceneID, accordionObjects, renderEverything);
+
+            spinnerModal.hide();
+          };
+          spinnerElement.addEventListener('shown.bs.modal', eventListener);
+
+          spinnerModal.show();
         }
       });
     }
 
-    container.appendChild(programContainers[0]);
+    container.appendChild(programContainer);
   }
 
   renderAllObjectsFromOneScene(options, scene, programID, sceneID, sceneObjectContainer, renderEverything) {
@@ -362,16 +381,6 @@ export class Share {
     sceneObjectContainer.appendChild(performanceContainer);
   }
 
-  createLoadingAnimation() {
-    const loadingAnimation = `
-    <div class="modal fade" tabindex="-1" role="dialog" id="spinnerModal">
-        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
-            <span class="spinner-border" data-dismiss='modal'></span>
-        </div>
-    </div>`;
-    $('body').append(loadingAnimation);
-  }
-
   handleBackgroundName(programID, scene, sceneID, sceneObjectContainer, options, renderEverything) {
     options.object.sceneName = scene.name;
     const backgroundObjID = generateID(`${programID}-${scene.name}-${scene.objectList[0].name}`);
@@ -403,7 +412,7 @@ export class Share {
    */
   renderObjectJSON(objectID, accordionID, sceneObjectContainer, object, options = defaultOptions.object) {
     const objectCard = generateNewDOM(sceneObjectContainer, 'div', {
-      class: 'catblocks-object card',
+      class: 'catblocks-object accordion-item',
       id: objectID
     });
 
@@ -444,46 +453,64 @@ export class Share {
     }
 
     const cardHeader = generateNewDOM(objectCard, 'div', {
-      class: 'card-header d-flex justify-content-between expansion-header',
-      id: objHeadingID,
-      'data-toggle': 'collapse',
-      'data-target': `#${objCollapseOneSceneID}`,
+      class: 'accordion-header header-title',
+      id: objHeadingID
+    });
+
+    const headerButton = generateNewDOM(cardHeader, 'button', {
+      class: 'accordion-button collapsed ps-sm-5',
+      type: 'button',
+      'data-bs-toggle': 'collapse',
+      'data-bs-target': `#${objCollapseOneSceneID}`,
       'aria-expanded': 'false',
       'aria-controls': objCollapseOneSceneID
     });
 
     // attach listener for lazyloading
-    $(cardHeader).on('click', lazyLoadImage);
+    jQueryFunctions.onEvent(cardHeader, 'click', lazyLoadImage);
 
     if (this.config.rtl) {
       cardHeader.style.paddingLeft = '1.5em';
       cardHeader.style.paddingRight = '3.5em';
     }
 
-    if (object && object.name && src) {
-      const picture = `<img src="${src}" class="catblocks-object-thumbnail" />`;
-      cardHeader.innerHTML =
-        `<div class="d-flex">` +
-        picture +
-        `<div class="header-title" style="padding-left: 10px">${object.name}</div></div>` +
-        `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
-    } else if (object && object.name) {
-      cardHeader.innerHTML = `<div class="header-title">${object.name}</div><img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
-    } else {
-      cardHeader.innerHTML = `<img id="code-view-toggler" class="rotate-left" src="${this.config.media}chevron_left_black_24dp.svg" />`;
+    const thumbnailContainer = generateNewDOM(headerButton, 'div', {
+      class: 'catblocks-object-thumbnail-container'
+    });
+
+    if (src) {
+      generateNewDOM(thumbnailContainer, 'img', {
+        src: src,
+        class: 'catblocks-object-thumbnail'
+      });
+    }
+
+    if (object && object.name) {
+      generateNewDOM(
+        headerButton,
+        'span',
+        {
+          class: 'ps-1'
+        },
+        object.name
+      );
     }
 
     const objectContentContainer = generateNewDOM(objectCard, 'div', {
-      class: 'catblocks-script-container collapse',
+      class: 'catblocks-script-container accordion-collapse collapse',
       id: objCollapseOneSceneID,
       'aria-labelledby': objHeadingID,
-      'data-parent': `#${accordionID}`,
-      'data-object': object.name
+      'data-bs-parent': `#${accordionID}`,
+      'data-bs-object': object.name
     });
 
-    this.generateTabs(objectContentContainer, objectID, object);
-    const contentContainer = generateNewDOM(objectContentContainer, 'div', {
-      class: 'tab-content card-body'
+    const bodyContainer = generateNewDOM(objectContentContainer, 'div', {
+      class: 'accordion-body p-0'
+    });
+
+    this.generateTabs(bodyContainer, objectID, object);
+    const contentContainer = generateNewDOM(bodyContainer, 'div', {
+      class: 'tab-content'
     });
 
     if (this.config.renderScripts) {
@@ -506,20 +533,20 @@ export class Share {
    */
   generateSounds(container, objectID, object, options = defaultOptions.object) {
     const soundsContainer = generateNewDOM(container, 'div', {
-      class: 'tab-pane fade p-3',
+      class: 'tab-pane fade container-fluid',
       id: `${objectID}-sounds`,
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-sounds-tab`
     });
 
-    const noSoundsText = 'No Sounds found';
     if (!object || !object.soundList || object.soundList.length <= 0) {
+      const noSoundsText = 'No Sounds found';
       soundsContainer.appendChild(
         generateNewDOM(
           soundsContainer,
           'p',
           {
-            class: 'catblocks-empty-text'
+            class: 'catblocks-empty-text pt-3'
           },
           noSoundsText
         )
@@ -530,18 +557,14 @@ export class Share {
       return;
     }
 
-    const group = generateNewDOM(soundsContainer, 'div', {
-      class: 'list-group-flush'
-    });
-
     let failed = 0;
     for (const sound of object.soundList) {
-      const row = generateNewDOM(group, 'div', {
-        class: 'list-group-item row'
+      const row = generateNewDOM(soundsContainer, 'div', {
+        class: 'row pt-3 catblocks-object-sound-row'
       });
 
       const col = generateNewDOM(row, 'div', {
-        class: 'col-12'
+        class: 'col'
       });
 
       if (!options.sceneName || !sound.fileName) {
@@ -565,25 +588,25 @@ export class Share {
         displaySoundName = sound.fileName;
       }
 
+      const audioContainer = generateNewDOM(col, 'audio', {
+        class: 'catblocks-object-sound-item w-100',
+        controls: 'controls'
+      });
+      generateNewDOM(audioContainer, 'source', {
+        src: src
+      });
+
       const soundName = generateNewDOM(
         col,
         'span',
         {
-          class: 'catblocks-object-sound-name d-block'
+          class: 'mb-0 text-wrap catblocks-object-sound-name'
         },
         displaySoundName
       );
       if (this.config.rtl) {
         soundName.style.textAlign = 'right';
       }
-
-      const audioContainer = generateNewDOM(col, 'audio', {
-        class: 'catblocks-object-sound-item',
-        controls: 'controls'
-      });
-      generateNewDOM(audioContainer, 'source', {
-        src: src
-      });
     }
 
     if (failed > 0) {
@@ -593,7 +616,7 @@ export class Share {
           soundsContainer,
           'p',
           {
-            class: 'catblocks-empty-text'
+            class: 'catblocks-empty-text pt-3'
           },
           failedSoundsText
         )
@@ -610,20 +633,20 @@ export class Share {
    */
   generateLooks(container, objectID, object, options = defaultOptions.object) {
     const looksContainer = generateNewDOM(container, 'div', {
-      class: 'tab-pane fade p-3',
+      class: 'tab-pane fade container-fluid',
       id: `${objectID}-looks`,
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-looks-tab`
     });
 
-    const noLooksText = 'No Looks found';
     if (!object || !object.lookList || object.lookList.length <= 0) {
+      const noLooksText = 'No Looks found';
       looksContainer.appendChild(
         generateNewDOM(
           looksContainer,
           'p',
           {
-            class: 'catblocks-empty-text'
+            class: 'catblocks-empty-text pt-3'
           },
           noLooksText
         )
@@ -634,20 +657,16 @@ export class Share {
       return;
     }
 
-    const group = generateNewDOM(looksContainer, 'div', {
-      class: 'list-group-flush'
-    });
-
     let failed = 0;
     for (const look of object.lookList) {
-      const row = generateNewDOM(group, 'div', {
-        class: 'list-group-item align-items-center'
+      const row = generateNewDOM(looksContainer, 'div', {
+        class: 'row pt-3 catblocks-object-look-row'
       });
-      const col = generateNewDOM(row, 'div', {
-        class: 'col-3'
+      const leftCol = generateNewDOM(row, 'div', {
+        class: 'col-12 col-sm-6 mb-3 mb-sm-0 text-center'
       });
-      const button = generateNewDOM(row, 'span', {
-        class: 'align-items-center'
+      const rightCol = generateNewDOM(row, 'div', {
+        class: 'col-12 col-sm-6 d-flex align-items-center'
       });
 
       if (!options.sceneName || !look.fileName) {
@@ -677,56 +696,48 @@ export class Share {
       }
 
       const imgID = generateID(`${objectID}-${displayLookName}`) + '-imgID';
-      generateNewDOM(
-        col,
-        'img',
-        {
-          'data-src': src,
-          class: 'img-fluid catblocks-object-look-item',
-          id: imgID,
-          'data-toggle': 'modal',
-          'data-target': '#modalForImg'
-        },
-        displayLookName
-      );
-
-      const body = $('body');
+      const imgElement = generateNewDOM(leftCol, 'img', {
+        'data-src': src,
+        class: 'img-fluid catblocks-object-look-item',
+        id: imgID,
+        'data-bs-toggle': 'modal',
+        'data-bs-target': '#modalForImg'
+      });
 
       // register on click on image
-      body.on('click', `#${imgID}`, () => {
-        $('#modalHeader').text(displayLookName);
-        $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
+      imgElement.addEventListener('click', () => {
+        document.getElementById('modalHeader').innerText = displayLookName;
+        document.getElementById('modalImg').setAttribute('src', src);
+        document.getElementById('imgPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
+      });
+
+      const magnifyingGlassID = generateID(`${objectID}-button-${displayLookName}`);
+      const magnifyingGlass = generateNewDOM(
+        rightCol,
+        'button',
+        {
+          class: 'btn btn-light search me-3',
+          id: magnifyingGlassID,
+          'data-bs-toggle': 'modal',
+          'data-bs-target': '#modalForImg'
+        },
+        `<img src="${this.config.media}search_black_24dp.svg" />`
+      );
+
+      magnifyingGlass.addEventListener('click', () => {
+        document.getElementById('modalHeader').innerText = displayLookName;
+        document.getElementById('modalImg').setAttribute('src', src);
+        document.getElementById('imgPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
       });
 
       const lookName = generateNewDOM(
-        row,
-        'div',
+        rightCol,
+        'span',
         {
-          class: 'col-9'
+          class: 'mb-0 text-wrap'
         },
         look.name
       );
-
-      const magnifyingGlassID = generateID(`${objectID}-button-${displayLookName}`);
-      const magnifyingGlass = generateNewDOM(button, 'button', {
-        class: 'search',
-        id: magnifyingGlassID,
-        'data-toggle': 'modal',
-        'data-target': '#modalForImg',
-        name: 'not clicked'
-      });
-      generateNewDOM(magnifyingGlass, 'img', {
-        src: `${this.config.media}search_black_24dp.svg`
-      });
-
-      // register on click on magnifying glass
-      body.on('click', `#${magnifyingGlassID}`, () => {
-        $('#modalHeader').text(displayLookName);
-        $('#modalImg').attr('src', src);
-        $('#imgPopupClose').text(CatblocksMsgs.getCurrentLocaleValues()['CLOSE']);
-        magnifyingGlass.name = 'now got clicked!';
-      });
 
       if (this.config.rtl) {
         lookName.style.textAlign = 'right';
@@ -740,7 +751,7 @@ export class Share {
           looksContainer,
           'p',
           {
-            class: 'catblocks-empty-text'
+            class: 'catblocks-empty-text pt-3'
           },
           failedLooksText
         )
@@ -757,7 +768,7 @@ export class Share {
    */
   generateScripts(container, objectID, object) {
     const wrapperContainer = generateNewDOM(container, 'div', {
-      class: 'tab-pane show active fade p-3',
+      class: 'tab-pane show active fade container-fluid',
       id: `${objectID}-scripts`,
       role: 'tabpanel',
       'aria-labelledby': `${objectID}-scripts-tab`
@@ -769,7 +780,7 @@ export class Share {
           wrapperContainer,
           'p',
           {
-            class: 'catblocks-empty-text'
+            class: 'catblocks-empty-text pt-3'
           },
           noScriptText
         )
@@ -782,9 +793,16 @@ export class Share {
 
     let failed = 0;
     for (let i = 0; i < object.scriptList.length; i++) {
-      const scriptContainer = generateNewDOM(wrapperContainer, 'div', {
+      const rowContainer = generateNewDOM(wrapperContainer, 'div', {
+        class: 'row pt-3 catblocks-object-script-row'
+      });
+      const colContainer = generateNewDOM(rowContainer, 'div', {
+        class: 'col'
+      });
+      const scriptContainer = generateNewDOM(colContainer, 'div', {
         class: 'catblocks-script'
       });
+
       if (this.config.rtl) {
         scriptContainer.style.textAlign = 'right';
       }
@@ -814,120 +832,92 @@ export class Share {
   }
 
   /**
+   * Generate Bootstrap 5 Tabs
+   * @param {Element} container
+   * @param {boolean} firstTab
+   * @param {string} objectID
+   * @param {string} imageName
+   * @param {integer} count
+   * @param {string} type
+   */
+  generateTabButton(container, firstTab, objectID, imageName, count, type) {
+    const liScript = generateNewDOM(container, 'li', {
+      class: 'nav-item',
+      role: 'presentation'
+    });
+
+    const linkButton = generateNewDOM(liScript, 'button', {
+      class: 'ps-1 nav-link' + (firstTab ? ' active' : ''),
+      id: `${objectID}-${type}-tab`,
+      'data-bs-toggle': 'tab',
+      'data-bs-target': `#${objectID}-${type}`,
+      role: 'tab',
+      'aria-controls': `${type}-pane`,
+      'aria-selected': firstTab + ''
+    });
+
+    generateNewDOM(linkButton, 'img', {
+      src: this.config.media + imageName
+    });
+    generateNewDOM(linkButton, 'span', {}, `(${count})`);
+  }
+
+  /**
    * Generate Tabcontainer for sounds
    * @param {Element} container
    * @param {string} objectID
    * @param {Object} object
    */
-  generateTabs(container, objectID, object) {
-    if (!object) {
-      object = {
+  generateTabs(container, objectID, givenObject) {
+    const object = Object.assign(
+      {
         scriptList: [],
         lookList: [],
         soundList: []
-      };
-    } else {
-      if (!object.scriptList) {
-        object.scriptList = [];
-      }
-      if (!object.lookList) {
-        object.lookList = [];
-      }
-      if (!object.soundList) {
-        object.soundList = [];
-      }
-    }
+      },
+      givenObject
+    );
 
-    const tabs = generateNewDOM(container, 'div', {
-      class: 'catro-tabs'
-    });
-    const ul = generateNewDOM(tabs, 'ul', {
-      class: 'nav nav-tabs nav-fill',
+    const ul = generateNewDOM(container, 'ul', {
+      class: 'nav nav-tabs nav-fill catro-tabs',
       id: `${objectID}-tabs`,
       role: 'tablist'
     });
 
+    let firstTab = true;
     if (this.config.renderScripts) {
-      const liScript = generateNewDOM(ul, 'li', {
-        class: 'nav-item'
-      });
-
-      generateNewDOM(
-        liScript,
-        'a',
-        {
-          class: 'nav-link active',
-          id: `${objectID}-scripts-tab`,
-          'data-toggle': 'tab',
-          href: `#${objectID}-scripts`,
-          role: 'tab',
-          'aria-controls': 'scripts',
-          'aria-selected': 'true'
-        },
-        `<div class="catblocks-tab-script">
-          <img class="rotate-left" src="${this.config.media}scripts_icon.svg" />(${object.scriptList.length})
-        </div>`
+      firstTab = this.generateTabButton(
+        ul,
+        firstTab,
+        objectID,
+        'scripts_icon.svg',
+        object.scriptList.length,
+        'scripts'
       );
     }
 
     if (this.config.renderLooks) {
-      const liLooks = generateNewDOM(ul, 'li', {
-        class: 'nav-item'
-      });
-      generateNewDOM(
-        liLooks,
-        'a',
-        {
-          class: 'nav-link',
-          id: `${objectID}-looks-tab`,
-          'data-toggle': 'tab',
-          href: `#${objectID}-looks`,
-          role: 'tab',
-          'aria-controls': 'looks',
-          'aria-selected': 'false'
-        },
-        `<img id="code-view-toggler" class="catblocks-tab-icon" src="${this.config.media}visibility_black_24dp.svg" /> (${object.lookList.length})`
+      firstTab = this.generateTabButton(
+        ul,
+        firstTab,
+        objectID,
+        'visibility_black_24dp.svg',
+        object.lookList.length,
+        'looks'
       );
     }
 
     if (this.config.renderSounds) {
-      const liSounds = generateNewDOM(ul, 'li', {
-        class: 'nav-item'
-      });
-      generateNewDOM(
-        liSounds,
-        'a',
-        {
-          class: 'nav-link',
-          id: `${objectID}-sounds-tab`,
-          'data-toggle': 'tab',
-          href: `#${objectID}-sounds`,
-          role: 'tab',
-          'aria-controls': 'sounds',
-          'aria-selected': 'false'
-        },
-        `<img id="code-view-toggler" class="catblocks-tab-icon" src="${this.config.media}volume_up_black_24dp.svg" /> (${object.soundList.length})`
-      );
+      this.generateTabButton(ul, firstTab, objectID, 'volume_up_black_24dp.svg', object.soundList.length, 'sounds');
     }
-  }
 
-  /**
-   * Create program wrapper structure
-   * @param {string} containerID unique ID of the container
-   * @param {Element} container parent container where the structure is added
-   * @returns {Element} wrapper where the scene container should be injected
-   * @memberof Share
-   */
-  createProgramContainer(containerID, container) {
-    const row = generateNewDOM(container, 'div', {
-      class: 'row',
-      id: containerID
-    });
-
-    const col = generateNewDOM(row, 'div', {
-      class: 'col-12'
-    });
-
-    return [row, col];
+    const tabButtons = ul.querySelectorAll('button');
+    for (const button of tabButtons) {
+      const tabTrigger = new Tab(button);
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        tabTrigger.show();
+      });
+    }
   }
 }
