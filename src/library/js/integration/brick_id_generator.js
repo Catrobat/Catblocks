@@ -96,15 +96,23 @@ export class BrickIDGenerator {
   _createBrickID({ brick, type, id }) {
     const brickType = type ?? brick.type;
     const idToUse = id ?? this._generateNewID(brickType);
+    return idToUse;
+  }
 
+  /**
+   * Sets the id to the SVG root of the brick.
+   * @param {BlockSVG} brick a Brick from blockly workspace
+   * @param {string} [id] optional, to overwrite used id
+   * @returns id
+   */
+  setBrickID(brick, id) {
     const brickSVG = brick.getSvgRoot();
-    brickSVG.setAttribute('id', idToUse);
+    brickSVG.setAttribute('id', id);
 
     const brickGContainer = this._getTextContainerOfBrick(brickSVG);
     if (brickGContainer) {
-      brickGContainer.setAttribute('id', idToUse + '-text');
+      brickGContainer.setAttribute('id', id + '-text');
     }
-
-    return idToUse;
+    return id;
   }
 }

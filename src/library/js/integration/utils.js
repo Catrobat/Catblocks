@@ -10,6 +10,11 @@ import { BrickIDGenerator } from './brick_id_generator';
 import { Modal } from 'bootstrap';
 import { getScriptToBrickMapping, scriptBricks } from '../blocks/bricks';
 import { getColourCodesForCategories } from '../blocks/colours';
+import { CatblocksSpinner } from '../blocks/custom_fields/CatblocksSpinner';
+import { CatblocksTextField } from '../blocks/custom_fields/CatblocksTextField';
+
+export const RenderSource_Share = 0;
+export const RenderSource_Catroid = 1;
 
 /**
  * all list types in json object
@@ -264,10 +269,10 @@ export const escapeURI = string => {
  * @param {object} workspace where bricks are rendered
  * @return {number} sceneWidth width of current scene
  */
-export const jsonDomToWorkspace = (jsonObject, workspace) => {
+export const jsonDomToWorkspace = (jsonObject, workspace, renderSource) => {
   const brickList = [];
   brickList.push(jsonObject);
-  renderAndConnectBlocksInList(null, brickList, brickListTypes.noBrickList, workspace);
+  renderAndConnectBlocksInList(null, brickList, brickListTypes.noBrickList, workspace, renderSource);
   workspace.render(false);
   let sceneWidth = 0;
   const allBricks = workspace.getAllBlocks();
@@ -291,18 +296,10 @@ export const jsonDomToWorkspace = (jsonObject, workspace) => {
  * @param {object} brickListType of list
  * @param {object} workspace where bricks are rendered
  */
-export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace) => {
+export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListType, workspace, renderSource) => {
   for (let i = 0; i < brickList.length; i++) {
-    const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace);
+    const childBrick = renderBrick(parentBrick, brickList[i], brickListType, workspace, renderSource);
 
-    const brickIDGenerator = new BrickIDGenerator();
-    if (childBrick.type === 'UserDefinedScript') {
-      brickIDGenerator.createBrickIDForUserDefinedScript(childBrick, brickList[i].userBrickId);
-    } else if (childBrick.type !== 'UserDefinedScript' && brickList[i].userBrickId) {
-      brickIDGenerator.createBrickIDForUserDefinedScriptCall(childBrick, brickList[i].userBrickId);
-    } else {
-      brickIDGenerator.createBrickID(childBrick);
-    }
     if (workspace.getTheme().name.toLowerCase() === 'advanced') {
       if (childBrick.getStyleName() === 'disabled' || childBrick.type === 'NoteBrick') {
         advancedModeCommentOutBricks(childBrick);
@@ -318,10 +315,10 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
         name: definitionBrickName,
         loopOrIfBrickList: [],
         elseBrickList: [],
-        formValues: definitionBrick.args0,
+        formValues: definitionBrick.formValueMap,
         colorVariation: 0
       };
-      renderBrick(childBrick, definitionBrickToRender, brickListTypes.userBrickDefinition, workspace);
+      renderBrick(childBrick, definitionBrickToRender, brickListTypes.userBrickDefinition, workspace, renderSource);
     }
 
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
@@ -331,10 +328,17 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
           childBrick,
           brickList[i].brickList.reverse(),
           brickListTypes.userBrickList,
-          workspace
+          workspace,
+          renderSource
         );
       } else {
-        renderAndConnectBlocksInList(childBrick, brickList[i].brickList.reverse(), brickListTypes.brickList, workspace);
+        renderAndConnectBlocksInList(
+          childBrick,
+          brickList[i].brickList.reverse(),
+          brickListTypes.brickList,
+          workspace,
+          renderSource
+        );
       }
     }
     if (brickList[i].elseBrickList !== undefined && brickList[i].elseBrickList.length > 0) {
@@ -342,7 +346,8 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
         childBrick,
         brickList[i].elseBrickList.reverse(),
         brickListTypes.elseBrickList,
-        workspace
+        workspace,
+        renderSource
       );
     }
     if (brickList[i].loopOrIfBrickList !== undefined && brickList[i].loopOrIfBrickList.length > 0) {
@@ -350,7 +355,8 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
         childBrick,
         brickList[i].loopOrIfBrickList.reverse(),
         brickListTypes.loopOrIfBrickList,
-        workspace
+        workspace,
+        renderSource
       );
     }
   }
@@ -364,51 +370,29 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
  * @param {object} workspace where bricks are rendered
  * @return {object} childBrick
  */
-export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) => {
+export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace, renderSource) => {
   let childBrick;
   if (jsonBrick.id) {
     childBrick = workspace.newBlock(jsonBrick.name, jsonBrick.id);
   } else {
     childBrick = workspace.newBlock(jsonBrick.name);
   }
-  if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
-    jsonBrick.formValues.forEach(function (value, key) {
-      for (let i = 0; i < childBrick.inputList.length; i++) {
-        for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
-          if (childBrick.inputList[i].fieldRow[j].name === key) {
-            childBrick.inputList[i].fieldRow[j].setValue(value);
-          }
-        }
-      }
-    });
 
-    if (childBrick.type in pluralBricks) {
-      try {
-        const currentBrick = pluralBricks[childBrick.type];
-        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].getValue());
+  let catblocksDomBrickID;
+  const brickIDGenerator = new BrickIDGenerator();
+  if (childBrick.type === 'UserDefinedScript') {
+    catblocksDomBrickID = brickIDGenerator.createBrickIDForUserDefinedScript(childBrick, jsonBrick.userBrickId);
+  } else if (childBrick.type !== 'UserDefinedScript' && jsonBrick.userBrickId) {
+    catblocksDomBrickID = brickIDGenerator.createBrickIDForUserDefinedScriptCall(childBrick, jsonBrick.userBrickId);
+  } else {
+    catblocksDomBrickID = brickIDGenerator.createBrickID(childBrick);
+  }
+  childBrick.domBrickID = catblocksDomBrickID;
 
-        if (value !== 1) {
-          if (currentBrick.string_value.length === 1) {
-            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
-            );
-          } else {
-            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
-                ' ' +
-                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
-            );
-          }
-          if (childBrick.type === 'ParameterizedBrick') {
-            childBrick.inputList[0].fieldRow[0].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
-            );
-          }
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  if (renderSource === RenderSource_Catroid) {
+    setFieldValuesForCatroid(jsonBrick, childBrick, catblocksDomBrickID);
+  } else {
+    setFieldValuesForShare(jsonBrick, childBrick);
   }
 
   if (childBrick && childBrick.inputList && childBrick.inputList[0] && childBrick.inputList[0].fieldRow) {
@@ -421,7 +405,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
       for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
         if (childBrick.inputList[i].fieldRow[j].name && childBrick.inputList[i].fieldRow[j].name.endsWith('_INFO')) {
           if (j > 0) {
-            const val = childBrick.inputList[i].fieldRow[j - 1].getValue();
+            const val = childBrick.inputList[i].fieldRow[j - 1].getText();
             if (val && val.length < childBrick.inputList[i].fieldRow[j - 1].maxDisplayLength) {
               childBrick.inputList[i].fieldRow[j].setVisible(false);
             } else {
@@ -442,6 +426,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
 
   childBrick.initSvg();
+  brickIDGenerator.setBrickID(childBrick, catblocksDomBrickID);
 
   if (childBrick.type === 'UserDefinedScript') {
     childBrick.setDeletable(false);
@@ -474,6 +459,126 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace) =>
   }
   return childBrick;
 };
+
+function setFieldValuesForCatroid(jsonBrick, childBrick, catblocksDomBrickID) {
+  for (let i = 0; i < childBrick.inputList.length; i++) {
+    for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
+      const inputField = childBrick.inputList[i].fieldRow[j];
+
+      if (inputField instanceof CatblocksTextField) {
+        const domID = `${catblocksDomBrickID}-field`;
+        inputField.setDomIdPrefix(domID);
+      } else if (inputField instanceof CatblocksSpinner) {
+        const domID = `${catblocksDomBrickID}-spinner`;
+        inputField.setDomIdPrefix(domID);
+      }
+      let spinnerValues = null;
+      if (inputField instanceof CatblocksSpinner) {
+        const catroidBrickType = getMappedBrickNameIfExists(childBrick.type);
+        try {
+          spinnerValues = JSON.parse(Android.getSelectionValuesForBrick(catroidBrickType, inputField.catroid_field_id));
+          inputField.updateSpinnerValues(spinnerValues);
+        } catch (ex) {
+          console.error(
+            `Error loading available spinner items for brick ${catroidBrickType} field ${inputField.catroid_field_id}`
+          );
+        }
+      }
+
+      if (jsonBrick.formValues && jsonBrick.formValues.has(inputField.name)) {
+        const currentValue = jsonBrick.formValues.get(inputField.name);
+        if (inputField instanceof CatblocksSpinner) {
+          if (!spinnerValues) {
+            spinnerValues = [currentValue];
+            inputField.updateSpinnerValues(spinnerValues);
+          }
+          inputField.setValue(spinnerValues.indexOf(currentValue));
+        } else {
+          inputField.setValue(currentValue);
+        }
+      } else if (spinnerValues !== null) {
+        inputField.setValue(0);
+      }
+    }
+  }
+
+  if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
+    if (childBrick.type in pluralBricks) {
+      try {
+        const currentBrick = pluralBricks[childBrick.type];
+        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].getValue());
+
+        if (value !== 1) {
+          if (currentBrick.string_value.length === 1) {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
+            );
+          } else {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
+                ' ' +
+                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
+            );
+          }
+          if (childBrick.type === 'ParameterizedBrick') {
+            childBrick.inputList[0].fieldRow[0].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
+            );
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+}
+
+function setFieldValuesForShare(jsonBrick, childBrick) {
+  if (jsonBrick.formValues !== undefined && jsonBrick.formValues.size !== undefined && jsonBrick.formValues.size > 0) {
+    for (let i = 0; i < childBrick.inputList.length; i++) {
+      for (let j = 0; j < childBrick.inputList[i].fieldRow.length; j++) {
+        const inputField = childBrick.inputList[i].fieldRow[j];
+        if (jsonBrick.formValues && jsonBrick.formValues.has(inputField.name)) {
+          const currentValue = jsonBrick.formValues.get(inputField.name);
+          if (inputField instanceof CatblocksSpinner) {
+            inputField.updateSpinnerValues([currentValue]);
+            inputField.setValue(0);
+          } else {
+            inputField.setValue(currentValue);
+          }
+        }
+      }
+    }
+
+    if (childBrick.type in pluralBricks) {
+      try {
+        const currentBrick = pluralBricks[childBrick.type];
+        const value = parseFloat(childBrick.inputList[0].fieldRow[currentBrick.number_field].getValue());
+
+        if (value !== 1) {
+          if (currentBrick.string_value.length === 1) {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
+            );
+          } else {
+            childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
+                ' ' +
+                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
+            );
+          }
+          if (childBrick.type === 'ParameterizedBrick') {
+            childBrick.inputList[0].fieldRow[0].setValue(
+              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
+            );
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+}
 
 /**
  * Change scene to RTL layout by changing x coordinates of first brick in scene
@@ -762,20 +867,22 @@ export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
   }
 }
 
-function advancedModeRemoveWhiteSpacesInFormulas(field) {
-  let cleanFieldValue = field.getValue().trim();
-  if (!cleanFieldValue.startsWith("'") && !cleanFieldValue.endsWith("'")) {
-    const replaceDict = {
-      '( ': '(',
-      ' )': ')',
-      ' ,': ',',
-      '  ': ' '
-    };
-    for (const key in replaceDict) {
-      cleanFieldValue = cleanFieldValue.replaceAll(key, replaceDict[key]);
+export function advancedModeRemoveWhiteSpacesInFormulas(field) {
+  if (!(field instanceof CatblocksSpinner)) {
+    let cleanFieldValue = field.getValue().trim();
+    if (!cleanFieldValue.startsWith("'") && !cleanFieldValue.endsWith("'")) {
+      const replaceDict = {
+        '( ': '(',
+        ' )': ')',
+        ' ,': ',',
+        '  ': ' '
+      };
+      for (const key in replaceDict) {
+        cleanFieldValue = cleanFieldValue.replaceAll(key, replaceDict[key]);
+      }
     }
+    field.setValue(cleanFieldValue);
   }
-  field.setValue(cleanFieldValue);
 }
 
 function advancedModeCommentOutBricks(childBrick) {
@@ -809,3 +916,16 @@ function advancedModeCommentOutBricks(childBrick) {
     count++;
   }
 }
+
+export const getFieldByCatroidFieldID = (brick, fieldID) => {
+  for (const input of brick.inputList) {
+    for (const field of input.fieldRow) {
+      if (Object.prototype.hasOwnProperty.call(field, 'catroid_field_id')) {
+        if (field.catroid_field_id === fieldID) {
+          return field;
+        }
+      }
+    }
+  }
+  return null;
+};

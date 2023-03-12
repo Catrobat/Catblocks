@@ -8,6 +8,7 @@ import {
   defaultOptions,
   generateFormulaModal,
   jsonDomToWorkspace,
+  RenderSource_Catroid,
   parseOptions,
   createLoadingAnimation,
   buildUserDefinedBrick,
@@ -16,7 +17,9 @@ import {
   getColorForBrickCategory,
   advancedModeAddSemicolonsAndClassifyTopBricks,
   advancedModeAddParentheses,
-  advancedModeAddCurlyBrackets
+  advancedModeAddCurlyBrackets,
+  getFieldByCatroidFieldID,
+  advancedModeRemoveWhiteSpacesInFormulas
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import advancedTheme from '../advanced_theme.json';
@@ -224,6 +227,15 @@ export class Catroid {
       sounds: false
     });
     Blockly.svgResize(this.workspace);
+
+    const blocklyWorkspaceContainer = document.getElementById(this.config.container);
+    if (blocklyWorkspaceContainer) {
+      const horizontalScrollbar = document.getElementsByClassName('blocklyScrollbarHorizontal')[0];
+      const verticalScrollbar = document.getElementsByClassName('blocklyScrollbarVertical')[0];
+
+      verticalScrollbar.setAttribute('id', 'catblocks-vertical-scrollbar');
+      horizontalScrollbar.setAttribute('id', 'catblocks-horizontal-scrollbar');
+    }
   }
 
   alignLTRBricks(object) {
@@ -379,7 +391,7 @@ export class Catroid {
 
   domToSvgModifiable(blockJSON) {
     try {
-      jsonDomToWorkspace(blockJSON, this.workspace);
+      jsonDomToWorkspace(blockJSON, this.workspace, RenderSource_Catroid);
       // store all block inputs in a map for later use
       this.workspace.getAllBlocks().forEach(block => {
         if (!(block.id in this.all_blocks)) {
@@ -652,5 +664,28 @@ export class Catroid {
     document.getElementById('catroid-catblocks-add-brick-dialog').classList.add('advanced-theme');
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
     brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
+  }
+
+  updateBrickFields(brickFields) {
+    const updatedBrick = this.workspace.getBlockById(brickFields.brickId);
+    if (updatedBrick) {
+      for (const field of brickFields.fields) {
+        const updatedField = getFieldByCatroidFieldID(updatedBrick, field.fieldId);
+        if (updatedField) {
+          updatedField.setValue(field.value);
+          if (this.workspace.getTheme().name.toLowerCase() === 'advanced') {
+            advancedModeRemoveWhiteSpacesInFormulas(updatedField);
+          }
+        }
+      }
+    }
+  }
+
+  scrollToInputField(domFieldID) {
+    const targetField = document.getElementById(domFieldID);
+    if (targetField) {
+      const boundingRect = targetField.getBoundingClientRect();
+      this.workspace.scroll(this.workspace.scrollX - boundingRect.x, this.workspace.scrollY - boundingRect.y);
+    }
   }
 }

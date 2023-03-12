@@ -21,7 +21,8 @@ import {
   generateFormulaModal,
   generateModalMagnifyingGlass,
   buildUserDefinedBrick,
-  createLoadingAnimation
+  createLoadingAnimation,
+  RenderSource_Share
 } from './utils';
 import { CatblocksMsgs } from '../catblocks_msgs';
 import { jQueryFunctions } from '../../../common/js/jquery_functions';
@@ -156,7 +157,7 @@ export class Share {
     this.workspace.clear();
     let svg = undefined;
     try {
-      const sceneWidth = jsonDomToWorkspace(blockJSON, this.workspace);
+      const sceneWidth = jsonDomToWorkspace(blockJSON, this.workspace, RenderSource_Share);
       zebraChangeColor(this.workspace.getTopBlocks());
       const oriSvg = this.workspace.getParentSvg();
       const oriBox = oriSvg.lastElementChild.getBBox();

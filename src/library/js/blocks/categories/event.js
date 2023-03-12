@@ -17,9 +17,9 @@ export default {
     message0: '%{BKY_EVENT_WHENYOURECEIVE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_broadcast_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -36,7 +36,7 @@ export default {
     message0: '%{BKY_EVENT_WHENBECOMESTRUE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'IF_CONDITION',
         text: 'unset'
       },
@@ -55,9 +55,9 @@ export default {
     message0: '%{BKY_EVENT_WHENBACKGROUNDCHANGES}',
     args0: [
       {
-        type: 'field_input',
-        name: 'look',
-        text: 'new...'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_when_background_spinner',
+        name: 'look'
       },
       {
         type: 'field_image',
@@ -74,9 +74,9 @@ export default {
     message0: '%{BKY_EVENT_RASPI_INTERRUPT_SCRIPT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'pin',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_raspi_when_pinspinner',
+        name: 'pin'
       },
       {
         type: 'field_image',
@@ -88,9 +88,9 @@ export default {
         name: 'pin_INFO'
       },
       {
-        type: 'field_input',
-        name: 'eventValue',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_raspi_when_valuespinner',
+        name: 'eventValue'
       },
       {
         type: 'field_image',

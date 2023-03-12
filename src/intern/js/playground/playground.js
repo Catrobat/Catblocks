@@ -1,5 +1,5 @@
 import Blockly from 'blockly';
-import { jsonDomToWorkspace, zebraChangeColor } from '../../../library/js/integration/utils';
+import { jsonDomToWorkspace, zebraChangeColor, RenderSource_Share } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
 import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
 
@@ -235,10 +235,10 @@ export class Playground {
       const json = JSON.parse(input.value);
       if (json.scriptList !== undefined && json.scriptList.length > 0) {
         for (let i = 0; i < json.scriptList.length; i++) {
-          jsonDomToWorkspace(json.scriptList[i], this.workspace);
+          jsonDomToWorkspace(json.scriptList[i], this.workspace, RenderSource_Share);
         }
       } else {
-        jsonDomToWorkspace(json, this.workspace);
+        jsonDomToWorkspace(json, this.workspace, RenderSource_Share);
       }
     } catch (e) {
       console.error(e.message);
@@ -265,7 +265,7 @@ export class Playground {
                 const scriptList = objectList[j].scriptList;
                 if (scriptList !== undefined && scriptList.length > 0) {
                   for (let k = 0; k < scriptList.length; k++) {
-                    jsonDomToWorkspace(scriptList[k], this.workspace);
+                    jsonDomToWorkspace(scriptList[k], this.workspace, RenderSource_Share);
                   }
                 }
               }

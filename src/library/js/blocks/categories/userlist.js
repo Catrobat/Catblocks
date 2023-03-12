@@ -5,9 +5,9 @@ export default {
     message0: '%{BKY_DATA_READLISTFROMDEVICE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'read_list_from_device_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -24,9 +24,9 @@ export default {
     message0: '%{BKY_DATA_WRITELISTONDEVICE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'write_list_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
