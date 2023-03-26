@@ -249,7 +249,7 @@ export class Playground {
   }
   fromParser() {
     const beforeScript = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><program><header>
-      <catrobatLanguageVersion>0.99997</catrobatLanguageVersion></header><scenes><scene><name>testscene</name>
+      <catrobatLanguageVersion>0.99997</catrobatLanguageVersion><programName>Catblocks Playground</programName></header><scenes><scene><name>testscene</name>
       <objectList><object type="Sprite" name="testsprite"><lookList><look fileName="test.png" name="testlook"/>
       </lookList><soundList/><scriptList>`;
     const afterScript = `</scriptList></object></objectList></scene></scenes></program>`;
@@ -276,8 +276,8 @@ export class Playground {
         }
       }
     } catch (e) {
-      console.error(e.message);
       console.error('import script via parser failed. Only use xml object starting with script tag.');
+      console.error(e);
     }
   }
   zebra() {
