@@ -65,7 +65,7 @@ class UserBrickDefinition {
     for (let i = 0; i < this.inputTypes.length; ++i) {
       if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
         args.push({
-          type: 'field_input',
+          type: 'field_catblockstext',
           name: this.inputTypes[i].varName,
           text: fieldNameEqualsContent ? this.inputTypes[i].varName : 'unset'
         });
@@ -95,6 +95,16 @@ class UserBrickDefinition {
     };
   }
 
+  getFormValueMapForDefinitionBrick() {
+    const args = new Map();
+    for (let i = 0; i < this.inputTypes.length; ++i) {
+      if (this.inputTypes[i].type.toUpperCase() == 'INPUT') {
+        args.set(this.inputTypes[i].varName, this.inputTypes[i].varName);
+      }
+    }
+    return args;
+  }
+
   getDefinitionJsonDefinition() {
     const args = this.getArgs(true);
     return {
@@ -103,7 +113,8 @@ class UserBrickDefinition {
       category: 'user',
       colour: '#3556a2',
       previousStatement: 'userdefinedtemplate',
-      nextStatement: 'userdefinedtemplate'
+      nextStatement: 'userdefinedtemplate',
+      formValueMap: this.getFormValueMapForDefinitionBrick()
     };
   }
 }
@@ -352,6 +363,12 @@ function parseScripts(script) {
   }
 
   const currentScript = new Script(name, scriptId, posX, posY, commentedOut);
+
+  const actionTags = script.getElementsByTagName('action');
+  if (actionTags && actionTags.length > 0) {
+    currentScript.formValues.set('ACTION', actionTags[0].textContent);
+  }
+
   const brickList = script.getElementsByTagName('brickList')[0].children;
   for (let i = 0; i < script.childNodes.length; i++) {
     checkUsage(script.childNodes[i], currentScript);
@@ -624,8 +641,6 @@ function checkUsage(list, location) {
     case 'spriteToBounceOffName':
     case 'receivedMessage':
     case 'sceneToStart':
-    case 'tone':
-    case 'eye':
     case 'sceneForTransition': {
       location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
       break;
@@ -633,6 +648,16 @@ function checkUsage(list, location) {
     case 'pointedObject': {
       const brickName = list.getAttribute('name');
       location.formValues.set('DROPDOWN', brickName);
+      break;
+    }
+    case 'eye': {
+      const eye = getNodeValueOrDefault(list.childNodes[0]);
+      location.formValues.set('eye', getMsgValueOrDefault(`PHIRO_EYE_${eye}`));
+      break;
+    }
+    case 'tone': {
+      const tone = getNodeValueOrDefault(list.childNodes[0], 'DO');
+      location.formValues.set('tone', getMsgValueOrDefault(`PHIRO_TONE_${tone}`));
       break;
     }
 
@@ -704,7 +729,12 @@ function checkUsage(list, location) {
     }
 
     case 'sensorSpinnerPosition': {
-      location.formValues.set('DROPDOWN', getNodeValueOrDefault(list.childNodes[0]));
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault(`SPINNER_PHIRO_${list.childNodes[0].textContent}`));
+      break;
+    }
+
+    case 'nfcTagNdefType': {
+      location.formValues.set('DROPDOWN', getMsgValueOrDefault('TNF_' + list.childNodes[0].textContent));
       break;
     }
 
@@ -837,7 +867,7 @@ function checkUsage(list, location) {
             ? getMsgValueOrDefault(`ASSERTION_PARAMETERIZED_LIST_ONE`, 'list')
             : getMsgValueOrDefault(`ASSERTION_PARAMETERIZED_LIST_OTHER`, 'lists');
         message = message.replaceAll('%d', lengthOfList);
-        location.formValues.set('DROPDOWN', message);
+        location.formValues.set('CATBLOCKS_ASSERT_LISTS_SELECTED', message);
       }
       break;
     }
@@ -980,13 +1010,32 @@ export class Parser {
           return undefined;
         }
 
-        const xpath = `/program/scenes/scene[name='${sceneName}']/objectList/object[@name='${objectName}']`;
+        const xpath = `/program/scenes/scene[name='${sceneName}']/objectList`;
         const xpathResult = xml.evaluate(xpath, xml, null, XPathResult.ANY_TYPE, null);
         if (!xpathResult) {
           return undefined;
         }
 
-        const objectTag = xpathResult.iterateNext();
+        const objectListTag = xpathResult.iterateNext();
+        if (!objectListTag) {
+          return undefined;
+        }
+
+        let objectTag = null;
+
+        const objectTagResult = xml.evaluate('object', objectListTag);
+        let currentObjectNode = objectTagResult.iterateNext();
+        while (currentObjectNode) {
+          const flatObjectNode = flatReference(currentObjectNode, xml);
+          if (flatObjectNode.hasAttribute('name')) {
+            if (flatObjectNode.getAttribute('name') == objectName) {
+              objectTag = flatObjectNode;
+              break;
+            }
+          }
+          currentObjectNode = objectTagResult.iterateNext();
+        }
+
         if (!objectTag) {
           return undefined;
         }

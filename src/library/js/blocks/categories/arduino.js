@@ -5,7 +5,7 @@ export default {
     message0: '%{BKY_RASPI_SENDDIGITALVALUE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'RASPI_DIGITAL_PIN_NUMBER',
         text: 'unset'
       },
@@ -19,7 +19,7 @@ export default {
         name: 'RASPI_DIGITAL_PIN_NUMBER_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'RASPI_DIGITAL_PIN_VALUE',
         text: 'unset'
       },
@@ -38,7 +38,7 @@ export default {
     message0: '%{BKY_RASPI_PWM}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'RASPI_DIGITAL_PIN_NUMBER',
         text: 'unset'
       },
@@ -52,7 +52,7 @@ export default {
         name: 'RASPI_DIGITAL_PIN_NUMBER_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'RASPI_PWM_PERCENTAGE',
         text: 'unset'
       },
@@ -66,7 +66,7 @@ export default {
         name: 'RASPI_PWM_PERCENTAGE_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'RASPI_PWM_FREQUENCY',
         text: 'unset'
       },
@@ -85,7 +85,7 @@ export default {
     message0: '%{BKY_ARDUINO_SENDDIGITALVALUE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ARDUINO_DIGITAL_PIN_NUMBER',
         text: 'unset'
       },
@@ -99,7 +99,7 @@ export default {
         name: 'ARDUINO_DIGITAL_PIN_NUMBER_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ARDUINO_DIGITAL_PIN_VALUE',
         text: 'unset'
       },
@@ -118,7 +118,7 @@ export default {
     message0: '%{BKY_ARDUINO_SENDPWMALVALUE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ARDUINO_ANALOG_PIN_NUMBER',
         text: 'unset'
       },
@@ -132,7 +132,7 @@ export default {
         name: 'ARDUINO_ANALOG_PIN_NUMBER_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ARDUINO_ANALOG_PIN_VALUE',
         text: 'unset'
       },

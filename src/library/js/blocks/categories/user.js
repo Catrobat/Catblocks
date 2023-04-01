@@ -22,9 +22,9 @@ export default {
         name: 'dummy_icon'
       },
       {
-        type: 'field_input',
-        name: 'UDB_SCREEN_REFRESH',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_screen_refresh_spinner',
+        name: 'UDB_SCREEN_REFRESH'
       },
       {
         type: 'field_image',

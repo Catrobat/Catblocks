@@ -16,7 +16,10 @@ export const getBrickScriptMapping = () => {
     .set('WhenConditionBrick', 'WhenConditionScript')
     .set('WhenBounceOffBrick', 'WhenBounceOffScript')
     .set('WhenBackgroundChangesBrick', 'WhenBackgroundChangesScript')
-    .set('WhenRaspiPinChangedBrick', 'RaspiInterruptScript');
+    .set('WhenRaspiPinChangedBrick', 'RaspiInterruptScript')
+    .set('WhenNfcBrick', 'WhenNfcScript')
+    .set('WhenGamepadButtonBrick', 'WhenGamepadButtonScript')
+    .set('UserDefinedReceiverBrick', 'UserDefinedScript');
 };
 
 export const scriptBricks = [
@@ -31,7 +34,9 @@ export const scriptBricks = [
   'WhenRaspiPinChangedBrick',
   'UserDefinedScript',
   'EmptyScript',
-  'RaspiInterruptScript'
+  'RaspiInterruptScript',
+  'WhenNfcScript',
+  'WhenGamepadButtonScript'
 ];
 
 export const getScriptToBrickMapping = () => {

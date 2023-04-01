@@ -8,7 +8,7 @@ export default {
     message0: '%{BKY_ASSERTION_ASSERT_EQUALS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ASSERT_EQUALS_ACTUAL',
         text: 'unset'
       },
@@ -22,7 +22,7 @@ export default {
         name: 'ASSERT_EQUALS_ACTUAL_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ASSERT_EQUALS_EXPECTED',
         text: 'unset'
       },
@@ -41,9 +41,9 @@ export default {
     message0: '%{BKY_ASSERTION_ASSERT_USER_LISTS}',
     args0: [
       {
-        type: 'field_input',
-        name: 'ASSERT_LISTS_ACTUAL',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_assert_lists_actual',
+        name: 'ASSERT_LISTS_ACTUAL'
       },
       {
         type: 'field_image',
@@ -55,9 +55,9 @@ export default {
         name: 'ASSERT_LISTS_ACTUAL_INFO'
       },
       {
-        type: 'field_input',
-        name: 'ASSERT_LISTS_EXPECTED',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_assert_lists_expected',
+        name: 'ASSERT_LISTS_EXPECTED'
       },
       {
         type: 'field_image',
@@ -76,8 +76,8 @@ export default {
     message2: '%{BKY_ASSERTION_PARAMETERIZED_BOTTOM}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
+        type: 'field_catblockstext',
+        name: 'CATBLOCKS_ASSERT_LISTS_SELECTED',
         text: 'unset'
       },
       {
@@ -87,7 +87,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'CATBLOCKS_ASSERT_LISTS_SELECTED_INFO'
       }
     ],
     args1: [
@@ -98,7 +98,7 @@ export default {
     ],
     args2: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ASSERT_LOOP_ACTUAL',
         text: 'unset'
       },
@@ -112,9 +112,9 @@ export default {
         name: 'ASSERT_LOOP_ACTUAL_INFO'
       },
       {
-        type: 'field_input',
-        name: 'LIST_SELECTED',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_param_expected_list',
+        name: 'LIST_SELECTED'
       },
       {
         type: 'field_image',

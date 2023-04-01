@@ -49,7 +49,7 @@ describe('Filesystem Block tests', () => {
             if (block[key].length === 0) {
               return false;
             }
-            return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
+            return ['field_catblocksspinner', 'field_catblockstext'].includes(block[key][0]['type']);
           }
           return false;
         });
@@ -81,7 +81,7 @@ describe('Filesystem Block tests', () => {
             if (block[key].length === 0) {
               return false;
             }
-            return ['field_dropdown', 'field_number', 'field_input'].includes(block[key][0]['type']);
+            return ['field_catblocksspinner', 'field_catblockstext'].includes(block[key][0]['type']);
           }
           return false;
         });
@@ -373,7 +373,7 @@ describe('WebView Block tests', () => {
 
         const returnArray = [];
         for (const block of blocks) {
-          const currentObj = block.svgGroup_.querySelectorAll('g.blocklyEditableText');
+          const currentObj = block.svgGroup_.querySelectorAll('g.blocklyNonEditableText');
           const parameterArray = [];
 
           // extract arguments of blocks

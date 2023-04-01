@@ -35,7 +35,7 @@ export default {
     message0: '%{BKY_CONTROL_WAIT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TIME_TO_WAIT_IN_SECONDS',
         text: 'unset'
       },
@@ -54,7 +54,7 @@ export default {
     message0: '%{BKY_CONTROL_NOTE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'NOTE',
         text: 'unset'
       },
@@ -78,7 +78,7 @@ export default {
     message4: '%1%2',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'IF_CONDITION',
         text: 'unset'
       },
@@ -136,7 +136,7 @@ export default {
     message2: '%1%2',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'IF_CONDITION',
         text: 'unset'
       },
@@ -175,7 +175,7 @@ export default {
     message0: '%{BKY_CONTROL_WAITUNTILTRUE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'IF_CONDITION',
         text: 'unset'
       },
@@ -197,7 +197,7 @@ export default {
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TIMES_TO_REPEAT',
         text: 'unset'
       },
@@ -243,7 +243,7 @@ export default {
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'REPEAT_UNTIL_CONDITION',
         text: 'unset'
       },
@@ -286,9 +286,9 @@ export default {
     message0: '%{BKY_CONTROL_CONTINUESCENE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_scene_transition_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -305,9 +305,9 @@ export default {
     message0: '%{BKY_CONTROL_STARTSCENE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_scene_start_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -324,9 +324,9 @@ export default {
     message0: '%{BKY_CONTROL_STOPCAT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_stop_script_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -343,9 +343,9 @@ export default {
     message0: '%{BKY_CONTROL_CREATECLONEOFCAT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: '%{BKY_CONTROL_OFYOURSELF}'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_clone_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -374,7 +374,7 @@ export default {
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'FOR_LOOP_FROM',
         text: 'unset'
       },
@@ -388,7 +388,7 @@ export default {
         name: 'FOR_LOOP_FROM_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'FOR_LOOP_TO',
         text: 'unset'
       },
@@ -402,9 +402,9 @@ export default {
         name: 'FOR_LOOP_TO_INFO'
       },
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'new...'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_for_variable_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -448,9 +448,9 @@ export default {
     lastDummyAlign2: 'RIGHT',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblocksspinner',
         name: 'FOR_ITEM_IN_USERLIST_LIST',
-        text: 'unset'
+        catroid_field_id: 'for_item_in_userlist_list_spinner'
       },
       {
         type: 'field_image',
@@ -462,9 +462,9 @@ export default {
         name: 'FOR_ITEM_IN_USERLIST_LIST_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblocksspinner',
         name: 'FOR_ITEM_IN_USERLIST_VARIABLE',
-        text: 'unset'
+        catroid_field_id: 'for_item_in_userlist_variable_spinner'
       },
       {
         type: 'field_image',
@@ -505,9 +505,9 @@ export default {
     message0: '%{BKY_EVENT_BROADCAST_CB}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_broadcast_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -524,9 +524,9 @@ export default {
     message0: '%{BKY_EVENT_BROADCASTANDWAIT_CB}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_broadcast_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -548,7 +548,7 @@ export default {
     message4: '%{BKY_CONTROL_IFENDIF}%1',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'IF_CONDITION',
         text: 'unset'
       },
@@ -604,9 +604,9 @@ export default {
     message4: '%{BKY_CONTROL_IFENDIF}%1',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_phiro_sensor_action_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',

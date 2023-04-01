@@ -5,7 +5,7 @@ export default {
     message0: '%{BKY_MOTION_PLACEATXY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'X_POSITION',
         text: 'unset'
       },
@@ -19,7 +19,7 @@ export default {
         name: 'X_POSITION_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'Y_POSITION',
         text: 'unset'
       },
@@ -38,7 +38,7 @@ export default {
     message0: '%{BKY_MOTION_SETXTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'X_POSITION',
         text: 'unset'
       },
@@ -57,7 +57,7 @@ export default {
     message0: '%{BKY_MOTION_SETYTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'Y_POSITION',
         text: 'unset'
       },
@@ -76,7 +76,7 @@ export default {
     message0: '%{BKY_MOTION_CHANGEXBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'X_POSITION_CHANGE',
         text: 'unset'
       },
@@ -95,7 +95,7 @@ export default {
     message0: '%{BKY_MOTION_CHANGEYBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'Y_POSITION_CHANGE',
         text: 'unset'
       },
@@ -114,9 +114,9 @@ export default {
     message0: '%{BKY_MOTION_GOTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblocksspinner',
         name: 'SPINNER',
-        text: 'unset'
+        catroid_field_id: 'brick_go_to_spinner'
       },
       {
         type: 'field_image',
@@ -136,7 +136,7 @@ export default {
     message0: '%{BKY_MOTION_MOVESTEPS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STEPS',
         text: 'unset'
       },
@@ -155,7 +155,7 @@ export default {
     message0: '%{BKY_MOTION_TURNRIGHTDEGREES}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TURN_RIGHT_DEGREES',
         text: 'unset'
       },
@@ -174,7 +174,7 @@ export default {
     message0: '%{BKY_MOTION_TURNLEFTDEGREES}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TURN_LEFT_DEGREES',
         text: 'unset'
       },
@@ -193,7 +193,7 @@ export default {
     message0: '%{BKY_MOTION_POINTINDIRECTIONDEGREES}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DEGREES',
         text: 'unset'
       },
@@ -212,9 +212,9 @@ export default {
     message0: '%{BKY_MOTION_POINTTOWARDS}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_point_to_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -231,9 +231,9 @@ export default {
     message0: '%{BKY_MOTION_SETROTATIONSTYLE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_rotation_style_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -250,7 +250,7 @@ export default {
     message0: '%{BKY_MOTION_GLIDESECONDTOXY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -264,7 +264,7 @@ export default {
         name: 'DURATION_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'X_DESTINATION',
         text: 'unset'
       },
@@ -278,7 +278,7 @@ export default {
         name: 'X_DESTINATION_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'Y_DESTINATION',
         text: 'unset'
       },
@@ -297,7 +297,7 @@ export default {
     message0: '%{BKY_MOTION_GOBACKLAYER}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STEPS',
         text: 'unset'
       },
@@ -319,7 +319,7 @@ export default {
     message0: '%{BKY_MOTION_VIBRATEFORSECOND}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'VIBRATE_DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -338,9 +338,9 @@ export default {
     message0: '%{BKY_MOTION_SETYOURMOTIONTYPETO}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_physics_object_type_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -357,7 +357,7 @@ export default {
     message0: '%{BKY_MOTION_SETVELOCITYTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_VELOCITY_X',
         text: 'unset'
       },
@@ -371,7 +371,7 @@ export default {
         name: 'PHYSICS_VELOCITY_X_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_VELOCITY_Y',
         text: 'unset'
       },
@@ -390,7 +390,7 @@ export default {
     message0: '%{BKY_MOTION_SPINLEFTDEGREESSECOND}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_TURN_LEFT_SPEED',
         text: 'unset'
       },
@@ -409,7 +409,7 @@ export default {
     message0: '%{BKY_MOTION_SPINRIGHTDEGREESSECOND}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_TURN_RIGHT_SPEED',
         text: 'unset'
       },
@@ -428,7 +428,7 @@ export default {
     message0: '%{BKY_MOTION_SETGRAVITYFORALLACTORSANDOBJECTSTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_GRAVITY_X',
         text: 'unset'
       },
@@ -442,7 +442,7 @@ export default {
         name: 'PHYSICS_GRAVITY_X_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_GRAVITY_Y',
         text: 'unset'
       },
@@ -461,7 +461,7 @@ export default {
     message0: '%{BKY_MOTION_SETMASSTOKILOGRAM}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_MASS',
         text: 'unset'
       },
@@ -480,7 +480,7 @@ export default {
     message0: '%{BKY_MOTION_SETBOUNCEFACTORTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_BOUNCE_FACTOR',
         text: 'unset'
       },
@@ -499,7 +499,7 @@ export default {
     message0: '%{BKY_MOTION_SETFRICTIONTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHYSICS_FRICTION',
         text: 'unset'
       },
@@ -524,7 +524,7 @@ export default {
     message0: '%{BKY_DRONE_MOVEUP}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -538,7 +538,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -557,7 +557,7 @@ export default {
     message0: '%{BKY_DRONE_MOVEDOWN}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -571,7 +571,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -590,7 +590,7 @@ export default {
     message0: '%{BKY_DRONE_MOVELEFT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -604,7 +604,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -623,7 +623,7 @@ export default {
     message0: '%{BKY_DRONE_MOVERIGHT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -637,7 +637,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -656,7 +656,7 @@ export default {
     message0: '%{BKY_DRONE_MOVEFORWARD}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -670,7 +670,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -689,7 +689,7 @@ export default {
     message0: '%{BKY_DRONE_MOVEBACKWARD}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -703,7 +703,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -722,7 +722,7 @@ export default {
     message0: '%{BKY_DRONE_TURNLEFT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -736,7 +736,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -755,7 +755,7 @@ export default {
     message0: '%{BKY_DRONE_TURNRIGHT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS',
         text: 'unset'
       },
@@ -769,7 +769,7 @@ export default {
         name: 'DRONE_TIME_TO_FLY_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DRONE_POWER_IN_PERCENT',
         text: 'unset'
       },
@@ -791,7 +791,8 @@ export default {
     message0: '%{BKY_DRONE_PLAYLEDANIMATION}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_drone_play_led_animation_spinner',
         name: 'ADRONEANIMATION',
         text: 'unset'
       },
@@ -810,9 +811,9 @@ export default {
     message0: '%{BKY_SUMO_ANIMATION}',
     args0: [
       {
-        type: 'field_input',
-        name: 'ANIMATION',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_jumping_sumo_animation_spinner',
+        name: 'ANIMATION'
       },
       {
         type: 'field_image',
@@ -835,7 +836,7 @@ export default {
     message0: '%{BKY_SUMO_MOVEBACKWARD}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS',
         text: 'unset'
       },
@@ -849,7 +850,7 @@ export default {
         name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_SPEED',
         text: 'unset'
       },
@@ -868,7 +869,7 @@ export default {
     message0: '%{BKY_SUMO_MOVEFORWARD}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS',
         text: 'unset'
       },
@@ -882,7 +883,7 @@ export default {
         name: 'JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_SPEED',
         text: 'unset'
       },
@@ -901,7 +902,7 @@ export default {
     message0: '%{BKY_SUMO_ROTATELEFT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_ROTATE',
         text: 'unset'
       },
@@ -920,7 +921,7 @@ export default {
     message0: '%{BKY_SUMO_ROTATERIGHT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_ROTATE',
         text: 'unset'
       },
@@ -945,9 +946,9 @@ export default {
     message0: '%{BKY_EVENT_WHENYOUBOUNCEOFF}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_when_bounce_off_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',

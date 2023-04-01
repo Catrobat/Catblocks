@@ -5,9 +5,9 @@ export default {
     message0: '%{BKY_LEGOEV3_MOTORTURNANGLE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'lego_ev3_motor_turn_angle_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -19,7 +19,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_EV3_DEGREES',
         text: 'unset'
       },
@@ -38,9 +38,9 @@ export default {
     message0: '%{BKY_LEGOEV3_MOTORMOVE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_ev3_motor_move_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -52,7 +52,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_EV3_SPEED',
         text: 'unset'
       },
@@ -71,9 +71,9 @@ export default {
     message0: '%{BKY_LEGOEV3_MOTORSTOP}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'ev3_stop_motor_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -90,7 +90,7 @@ export default {
     message0: '%{BKY_LEGOEV3_PLAYTONE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_EV3_DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -104,7 +104,7 @@ export default {
         name: 'LEGO_EV3_DURATION_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_EV3_FREQUENCY',
         text: 'unset'
       },
@@ -118,7 +118,7 @@ export default {
         name: 'LEGO_EV3_FREQUENCY_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_EV3_VOLUME',
         text: 'unset'
       },
@@ -137,9 +137,9 @@ export default {
     message0: '%{BKY_LEGOEV3_SETLED}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_ev3_set_led_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -156,9 +156,9 @@ export default {
     message0: '%{BKY_LEGONXT_MOTORTURNANGLE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'lego_motor_turn_angle_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -170,7 +170,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_NXT_DEGREES',
         text: 'unset'
       },
@@ -189,9 +189,9 @@ export default {
     message0: '%{BKY_LEGONXT_MOTORSTOP}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'stop_motor_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -208,9 +208,9 @@ export default {
     message0: '%{BKY_LEGONXT_MOTORMOVE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'lego_motor_action_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -222,7 +222,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_NXT_SPEED',
         text: 'unset'
       },
@@ -241,7 +241,7 @@ export default {
     message0: '%{BKY_LEGONXT_PLAYTONE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_NXT_DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -255,7 +255,7 @@ export default {
         name: 'LEGO_NXT_DURATION_IN_SECONDS_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LEGO_NXT_FREQUENCY',
         text: 'unset'
       },

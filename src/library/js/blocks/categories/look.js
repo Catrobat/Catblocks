@@ -5,9 +5,9 @@ export default {
     message0: '%{BKY_LOOKS_SWITCHTOLOOK}',
     args0: [
       {
-        type: 'field_input',
-        name: 'look',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_look_spinner',
+        name: 'look'
       },
       {
         type: 'field_image',
@@ -24,7 +24,7 @@ export default {
     message0: '%{BKY_LOOKS_SWITCHTOLOOKWITHNUMBER}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LOOK_INDEX',
         text: 'unset'
       },
@@ -49,7 +49,7 @@ export default {
     message0: '%{BKY_LOOKS_SETSIZETO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'SIZE',
         text: 'unset'
       },
@@ -74,7 +74,7 @@ export default {
     message0: '%{BKY_LOOKS_ASKANDSTOREWRITTENANSWERIN}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ASK_QUESTION',
         text: 'unset'
       },
@@ -88,9 +88,9 @@ export default {
         name: 'ASK_QUESTION_INFO'
       },
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_ask_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -107,7 +107,7 @@ export default {
     message0: '%{BKY_LOOKS_SAY_CAT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STRING',
         text: 'unset'
       },
@@ -126,7 +126,7 @@ export default {
     message0: '%{BKY_LOOKS_SAYFORSECOND}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STRING',
         text: 'unset'
       },
@@ -140,7 +140,7 @@ export default {
         name: 'STRING_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -159,7 +159,7 @@ export default {
     message0: '%{BKY_LOOKS_THINK_CAT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STRING',
         text: 'unset'
       },
@@ -178,7 +178,7 @@ export default {
     message0: '%{BKY_LOOKS_THINKFORSECONDS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'STRING',
         text: 'unset'
       },
@@ -192,7 +192,7 @@ export default {
         name: 'STRING_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -211,7 +211,7 @@ export default {
     message0: '%{BKY_LOOKS_SETTRANSPARENCYTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TRANSPARENCY',
         text: 'unset'
       },
@@ -230,7 +230,7 @@ export default {
     message0: '%{BKY_LOOKS_CHANGESIZEBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'SIZE_CHANGE',
         text: 'unset'
       },
@@ -249,7 +249,7 @@ export default {
     message0: '%{BKY_LOOKS_CHANGETRANSPARENCYBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TRANSPARENCY_CHANGE',
         text: 'unset'
       },
@@ -268,7 +268,7 @@ export default {
     message0: '%{BKY_LOOKS_SETBRIGHTHNESSTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BRIGHTNESS',
         text: 'unset'
       },
@@ -287,7 +287,7 @@ export default {
     message0: '%{BKY_LOOKS_CHANGEBRIGHTHNESSBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BRIGHTNESS_CHANGE',
         text: 'unset'
       },
@@ -306,7 +306,7 @@ export default {
     message0: '%{BKY_LOOKS_SETCOLORTO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'COLOR',
         text: 'unset'
       },
@@ -325,7 +325,7 @@ export default {
     message0: '%{BKY_LOOKS_CHANGECOLORBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'COLOR_CHANGE',
         text: 'unset'
       },
@@ -347,9 +347,9 @@ export default {
     message0: '%{BKY_LOOKS_SETBACKGROUND}',
     args0: [
       {
-        type: 'field_input',
-        name: 'look',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_background_spinner',
+        name: 'look'
       },
       {
         type: 'field_image',
@@ -366,7 +366,7 @@ export default {
     message0: '%{BKY_LOOKS_SETBACKGROUNDTONUMBER}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BACKGROUND_INDEX',
         text: 'unset'
       },
@@ -385,9 +385,9 @@ export default {
     message0: '%{BKY_LOOKS_SETBACKGROUNDANDWAIT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'look',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_background_spinner',
+        name: 'look'
       },
       {
         type: 'field_image',
@@ -404,7 +404,7 @@ export default {
     message0: '%{BKY_LOOKS_SETBACKGROUNDTONUMBERANDWAIT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BACKGROUND_WAIT_INDEX',
         text: 'unset'
       },
@@ -423,9 +423,9 @@ export default {
     message0: '%{BKY_LOOKS_TURNCAMERA}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_video_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -442,9 +442,9 @@ export default {
     message0: '%{BKY_LOOKS_USECAMERA}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_choose_camera_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -461,9 +461,9 @@ export default {
     message0: '%{BKY_LOOKS_TURNFLASHLIGHT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'SPINNER',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_flash_spinner',
+        name: 'SPINNER'
       },
       {
         type: 'field_image',
@@ -480,7 +480,7 @@ export default {
     message0: '%{BKY_LOOKS_BACKGROUNDREQUEST}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BACKGROUND_REQUEST',
         text: 'unset'
       },
@@ -499,7 +499,7 @@ export default {
     message0: '%{BKY_LOOKS_LOOKREQUEST}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LOOK_REQUEST',
         text: 'unset'
       },
@@ -518,7 +518,7 @@ export default {
     message0: '%{BKY_LOOKS_COPY_LOOK}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LOOK_COPY',
         text: 'unset'
       },
@@ -540,7 +540,7 @@ export default {
     message0: '%{BKY_LOOKS_PAINT_NEW_LOOK}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'LOOK_NEW',
         text: 'unset'
       },
@@ -565,9 +565,9 @@ export default {
     message0: '%{BKY_PHIRO_RGBLIGHT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_phiro_rgb_light_spinner',
+        name: 'eye'
       },
       {
         type: 'field_image',
@@ -576,10 +576,10 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'eye_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHIRO_LIGHT_RED',
         text: 'unset'
       },
@@ -593,7 +593,7 @@ export default {
         name: 'PHIRO_LIGHT_RED_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHIRO_LIGHT_GREEN',
         text: 'unset'
       },
@@ -607,7 +607,7 @@ export default {
         name: 'PHIRO_LIGHT_GREEN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHIRO_LIGHT_BLUE',
         text: 'unset'
       },
@@ -626,9 +626,8 @@ export default {
     message0: '%{BKY_FADE_PARTICLE_EFFECT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'brick_fade_particle_effect_spinner',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        name: 'brick_fade_particle_effect_spinner'
       },
       {
         type: 'field_image',
@@ -645,9 +644,8 @@ export default {
     message0: '%{BKY_ADDITIVE_PARTICLE_EFFECT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'brick_additive_particle_effect_spinner',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        name: 'brick_additive_particle_effect_spinner'
       },
       {
         type: 'field_image',
@@ -664,7 +662,7 @@ export default {
     message0: '%{BKY_SET_CAMERA_FOCUS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'HORIZONTAL_FLEXIBILITY',
         text: 'unset'
       },
@@ -678,7 +676,7 @@ export default {
         name: 'HORIZONTAL_FLEXIBILITY_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'VERTICAL_FLEXIBILITY',
         text: 'unset'
       },
@@ -697,7 +695,7 @@ export default {
     message0: '%{BKY_SET_PARTICLE_COLOR}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'COLOR',
         text: 'unset'
       },

@@ -8,7 +8,7 @@ export default {
     message0: '%{BKY_STITCH_RUNNING}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'EMBROIDERY_LENGTH',
         text: 'unset'
       },
@@ -27,7 +27,7 @@ export default {
     message0: '%{BKY_STITCH_ZIGZAG}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ZIGZAG_EMBROIDERY_LENGTH',
         text: 'unset'
       },
@@ -41,7 +41,7 @@ export default {
         name: 'ZIGZAG_EMBROIDERY_LENGTH_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ZIGZAG_EMBROIDERY_WIDTH',
         text: 'unset'
       },
@@ -60,7 +60,7 @@ export default {
     message0: '%{BKY_STITCH_TRIPLE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'EMBROIDERY_LENGTH',
         text: 'unset'
       },
@@ -85,7 +85,7 @@ export default {
     message0: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'WRITE_FILENAME',
         text: '%{BKY_DATA_WRITE_EMBROIDERY_TO_FILE_DEFAULT}'
       },
@@ -104,7 +104,7 @@ export default {
     message0: '%{BKY_EMBRIODERY_SET_THREAD_COLOR}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'THREAD_COLOR',
         text: 'unset'
       },

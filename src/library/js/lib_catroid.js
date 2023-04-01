@@ -95,4 +95,12 @@ export class CatBlocks {
   static showBrickCategories(categoryInfos) {
     catblocks_instance.share.showBrickCategories(categoryInfos);
   }
+
+  static updateBrickFields(brickFields) {
+    catblocks_instance.share.updateBrickFields(brickFields);
+  }
+
+  static scrollToInputField(domFieldID) {
+    catblocks_instance.share.scrollToInputField(domFieldID);
+  }
 }

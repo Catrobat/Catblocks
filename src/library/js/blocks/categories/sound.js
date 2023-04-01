@@ -5,9 +5,9 @@ export default {
     message0: '%{BKY_SOUND_STARTSOUND}',
     args0: [
       {
-        type: 'field_input',
-        name: 'sound',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_play_sound_spinner',
+        name: 'sound'
       },
       {
         type: 'field_image',
@@ -24,9 +24,9 @@ export default {
     message0: '%{BKY_SOUND_STARTSOUNDANDWAIT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'sound',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_play_sound_spinner',
+        name: 'sound'
       },
       {
         type: 'field_image',
@@ -46,7 +46,7 @@ export default {
     message0: '%{BKY_SOUND_SETVOLUMETO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'VOLUME',
         text: 'unset'
       },
@@ -65,7 +65,7 @@ export default {
     message0: '%{BKY_SOUND_CHANGEVOLUMEBY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'VOLUME_CHANGE',
         text: 'unset'
       },
@@ -84,7 +84,7 @@ export default {
     message0: '%{BKY_SOUND_SPEAK}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'SPEAK',
         text: 'unset'
       },
@@ -103,7 +103,7 @@ export default {
     message0: '%{BKY_SOUND_SPEAKANDWAIT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'SPEAK',
         text: 'unset'
       },
@@ -122,7 +122,7 @@ export default {
     message0: '%{BKY_SOUND_ASKANDSTORESPOKENANSWERIN}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'ASK_SPEECH_QUESTION',
         text: 'unset'
       },
@@ -136,9 +136,9 @@ export default {
         name: 'ASK_SPEECH_QUESTION_INFO'
       },
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_ask_speech_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -155,9 +155,9 @@ export default {
     message0: '%{BKY_SOUND_STOP_SOUND}',
     args0: [
       {
-        type: 'field_input',
-        name: 'sound',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_stop_sound_spinner',
+        name: 'sound'
       },
       {
         type: 'field_image',
@@ -174,9 +174,9 @@ export default {
     message0: '%{BKY_SOUND_START_LISTENING}',
     args0: [
       {
-        type: 'field_input',
-        name: 'LISTEN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_start_listening_spinner',
+        name: 'LISTEN'
       },
       {
         type: 'field_image',
@@ -193,9 +193,9 @@ export default {
     message0: '%{BKY_SOUND_SET_INSTRUMENT}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'set_instrument_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -212,7 +212,7 @@ export default {
     message0: '%{BKY_SOUND_PAUSE_FOR_BEATS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BEATS_TO_PAUSE',
         text: 'unset'
       },
@@ -231,9 +231,9 @@ export default {
     message0: '%{BKY_SOUND_SET_LISTENING_LANGUAGE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'brick_set_listening_language_spinner',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_set_listening_language_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -242,7 +242,7 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'brick_set_listening_language_spinner_INFO'
+        name: 'DROPDOWN_INFO'
       }
     ]
   },
@@ -250,7 +250,7 @@ export default {
     message0: '%{BKY_SOUND_SET_TEMPO}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TEMPO',
         text: 'unset'
       },
@@ -269,7 +269,7 @@ export default {
     message0: '%{BKY_SOUND_CHANGE_TEMPO_BY}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'TEMPO_CHANGE',
         text: 'unset'
       },
@@ -288,9 +288,9 @@ export default {
     message0: '%{BKY_SOUND_PLAY_DRUM_FOR_BEATS}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'play_drum_for_beats_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -302,7 +302,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PLAY_DRUM',
         text: 'unset'
       },
@@ -321,7 +321,7 @@ export default {
     message0: '%{BKY_SOUND_PLAY_NOTE_FOR_BEATS}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'NOTE_TO_PLAY',
         text: 'unset'
       },
@@ -335,7 +335,7 @@ export default {
         name: 'NOTE_TO_PLAY_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'BEATS_TO_PLAY_NOTE',
         text: 'unset'
       },
@@ -354,9 +354,9 @@ export default {
     message0: '%{BKY_SUMO_SOUND}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_jumping_sumo_sound_spinner',
+        name: 'DROPDOWN'
       },
       {
         type: 'field_image',
@@ -368,7 +368,7 @@ export default {
         name: 'DROPDOWN_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'JUMPING_SUMO_VOLUME',
         text: 'unset'
       },
@@ -390,9 +390,9 @@ export default {
     message0: '%{BKY_PHIRO_PLAYTONE}',
     args0: [
       {
-        type: 'field_input',
-        name: 'DROPDOWN',
-        text: 'unset'
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_phiro_select_tone_spinner',
+        name: 'tone'
       },
       {
         type: 'field_image',
@@ -401,10 +401,10 @@ export default {
         width: 24,
         alt: '(i)',
         flip_rtl: true,
-        name: 'DROPDOWN_INFO'
+        name: 'tone_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PHIRO_DURATION_IN_SECONDS',
         text: 'unset'
       },
@@ -423,7 +423,8 @@ export default {
     message0: '%{BKY_SOUND_STOP_SOUND_AT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblocksspinner',
+        catroid_field_id: 'brick_play_sound_at_spinner',
         name: 'sound',
         text: 'unset'
       },
@@ -437,7 +438,7 @@ export default {
         name: 'sound_INFO'
       },
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'PLAY_SOUND_AT',
         text: 'unset'
       },

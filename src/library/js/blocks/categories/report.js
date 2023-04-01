@@ -5,7 +5,7 @@ export default {
     message0: '%{BKY_USER_BRICK_REPORT}',
     args0: [
       {
-        type: 'field_input',
+        type: 'field_catblockstext',
         name: 'REPORT_BRICK',
         text: 'unset'
       },
