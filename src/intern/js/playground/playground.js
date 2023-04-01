@@ -2,6 +2,7 @@ import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor, RenderSource_Share } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
 import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
+import { initBricks } from '../../../library/js/blocks/bricks';
 
 export class Playground {
   constructor() {
@@ -72,9 +73,10 @@ export class Playground {
     });
     document.forms.options.elements.locale.value = CatblocksMsgs.getCurrentLocale();
 
+    initBricks(false);
+
     // Create main workspace.
     this.workspace = this.Blockly.inject('blocklyDiv', {
-      media: '../media/',
       zoom: { startScale: 0.75 },
       toolbox: this.getToolbox(),
       renderer: 'zelos'
@@ -100,46 +102,46 @@ export class Playground {
     }
   }
   bindListeners() {
-    document.getElementById('showWorkspace').attachEventListener('click', e => {
+    document.getElementById('showWorkspace').addEventListener('click', e => {
       e.preventDefault();
       this.workspace.setVisible(true);
     });
-    document.getElementById('hideWorkspace').attachEventListener('click', e => {
+    document.getElementById('hideWorkspace').addEventListener('click', e => {
       e.preventDefault();
       this.workspace.setVisible(false);
     });
     document
       .getElementById('locale')
-      .attachEventListener('click', () => this.setLocale(document.forms.options.elements.locale.value));
+      .addEventListener('click', () => this.setLocale(document.forms.options.elements.locale.value));
 
-    document.getElementById('exportToXML').attachEventListener('click', () => this.toXml());
-    document.getElementById('importFromJSON').attachEventListener('click', () => this.fromJSON());
-    document.getElementById('importFromParser').attachEventListener('click', () => this.fromParser());
+    document.getElementById('exportToXML').addEventListener('click', () => this.toXml());
+    document.getElementById('importFromJSON').addEventListener('click', () => this.fromJSON());
+    document.getElementById('importFromParser').addEventListener('click', () => this.fromParser());
 
     const self = this;
-    document.getElementById('logCheck').attachEventListener('click', function () {
+    document.getElementById('logCheck').addEventListener('click', () => {
       self.logEvents(this.checked);
     });
-    document.getElementById('logFlyoutCheck').attachEventListener('click', function () {
+    document.getElementById('logFlyoutCheck').addEventListener('click', () => {
       self.logFlyoutEvents(this.checked);
     });
-    document.getElementById('soundsEnabled').attachEventListener('click', function () {
+    document.getElementById('soundsEnabled').addEventListener('click', () => {
       self.setSoundsEnabled(this.checked);
     });
 
-    document.getElementById('sprinkles').attachEventListener('click', () => this.sprinkles(100));
-    document.getElementById('spaghetti').attachEventListener('click', () => this.spaghetti(3));
+    document.getElementById('sprinkles').addEventListener('click', () => this.sprinkles(100));
+    document.getElementById('spaghetti').addEventListener('click', () => this.spaghetti(3));
 
-    document.getElementById('glowBlock').attachEventListener('click', () => this.glowBlock());
-    document.getElementById('unglowBlock').attachEventListener('click', () => this.unglowBlock());
-    document.getElementById('zebra').attachEventListener('click', () => this.zebra());
-    document.getElementById('glowStack').attachEventListener('click', () => this.glowStack());
-    document.getElementById('unglowStack').attachEventListener('click', () => this.unglowStack());
+    document.getElementById('glowBlock').addEventListener('click', () => this.glowBlock());
+    document.getElementById('unglowBlock').addEventListener('click', () => this.unglowBlock());
+    document.getElementById('zebra').addEventListener('click', () => this.zebra());
+    document.getElementById('glowStack').addEventListener('click', () => this.glowStack());
+    document.getElementById('unglowStack').addEventListener('click', () => this.unglowStack());
 
-    document.getElementById('undo').attachEventListener('click', () => this.workspace.undo());
-    document.getElementById('redo').attachEventListener('click', () => this.workspace.undo(true));
+    document.getElementById('undo').addEventListener('click', () => this.workspace.undo());
+    document.getElementById('redo').addEventListener('click', () => this.workspace.undo(true));
 
-    document.getElementById('reportDemo').attachEventListener('click', () => this.reportDemo());
+    document.getElementById('reportDemo').addEventListener('click', () => this.reportDemo());
   }
   setSoundsEnabled(state) {
     const checkbox = document.getElementById('soundsEnabled');
@@ -155,7 +157,7 @@ export class Playground {
         let parentNode = xml;
         if (!simple) {
           const category = document.createElement('category');
-          category.setAttribute('name', `%{BKY_CATEGORY_${catName.toUpperCase()}}`);
+          category.setAttribute('name', catName.toUpperCase());
           category.setAttribute('id', catName);
           category.setAttribute('colour', this.Blockly.Colours[catName]['colourPrimary']);
           category.setAttribute('secondaryColour', this.Blockly.Colours[catName]['colourSecondary']);
@@ -213,9 +215,9 @@ export class Playground {
       sessionStorage.setItem('logFlyoutEvents', state ? 'checked' : '');
     }
 
-    const flyoutWorkspace = this.workspace.flyout_
-      ? this.workspace.flyout_.workspace_
-      : this.workspace.toolbox_.flyout_.workspace_;
+    const flyoutWorkspace = this.workspace.getFlyout(true)
+      ? this.workspace.getFlyout(true).getWorkspace()
+      : this.workspace.getToolbox().getFlyout(true).getWorkspace();
     if (state) {
       flyoutWorkspace.addChangeListener(this.logger);
     } else {
