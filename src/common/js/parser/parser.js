@@ -1,4 +1,4 @@
-import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
+import { CatBlocksMsgs } from '../../../library/ts/i18n/CatBlocksMsgs';
 import Formula from './formula';
 
 class Scene {
@@ -123,8 +123,6 @@ const sceneList = [];
 let xmlDoc = undefined;
 const supportedAppVersion = 0.9994;
 
-let MESSAGES = {};
-
 // global log enable switch
 const DEBUG = false;
 
@@ -165,7 +163,6 @@ function isSupported(program) {
 function initParser(xml) {
   xmlDoc = xml;
   sceneList.length = 0;
-  MESSAGES = CatblocksMsgs.getCurrentLocaleValues();
 }
 
 /**
@@ -619,7 +616,7 @@ const getMsgValueOrDefault = (key, def = '') => {
   if (key === undefined) {
     return def;
   }
-  const msgValue = MESSAGES[key];
+  const msgValue = CatBlocksMsgs.getTranslationForKey(key);
   return msgValue ? msgValue : def;
 };
 
@@ -1082,7 +1079,7 @@ export class Parser {
   /**
    * Convert given XML to JSON object and return every error
    * @static
-   * @param {Element} xmlString code.xml file
+   * @param {XMLDocument | string} xmlString code.xml file
    * @returns {Object}
    */
   static convertProgramToJSONDebug(xmlString) {

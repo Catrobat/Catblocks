@@ -9,3 +9,4 @@ jest-html-reporters-attach
 release/
 release_share/
 release_catroid
+.vscode/settings.json

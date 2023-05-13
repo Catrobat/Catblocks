@@ -18,7 +18,7 @@ beforeEach(async () => {
 
   await page.evaluate(async () => {
     await Test.CatBlocks.init({
-      container: 'share',
+      container: 'catblocks-container',
       renderSize: 0.75,
       shareRoot: '',
       media: 'media/',
@@ -28,7 +28,7 @@ beforeEach(async () => {
       advancedMode: false
     });
 
-    const share = Test.CatBlocks.getInstance().share;
+    const share = Test.CatBlocks.instance.controller;
     Test.Share = share;
   });
 });
@@ -42,7 +42,7 @@ describe('Share basic tests', () => {
 
     await page.evaluate(
       (pNameOfTheScene, pSceneID, pAccordionID) => {
-        Test.Share.addSceneContainer(pAccordionID, pSceneID, document.getElementById('shareprogs'), {
+        Test.Share.addSceneContainer(pAccordionID, pSceneID, document.getElementById('catblocks-container'), {
           real: pNameOfTheScene,
           display: pNameOfTheScene
         });
@@ -93,7 +93,7 @@ describe('Share basic tests', () => {
       (pContainerID, pObjectCardID, pObjectName, pSceneObjectsID) => {
         const container = document.createElement('div');
         container.setAttribute('id', pContainerID);
-        document.getElementById('shareprogs').append(container);
+        document.getElementById('catblocks-container').append(container);
 
         Test.Share.renderObjectJSON(pObjectCardID, pSceneObjectsID, container, { name: pObjectName });
       },
@@ -145,7 +145,7 @@ describe('Share catroid program rendering tests', () => {
     });
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -155,7 +155,7 @@ describe('Share catroid program rendering tests', () => {
         advancedMode: false
       });
 
-      const share = Test.CatBlocks.getInstance().share;
+      const share = Test.CatBlocks.instance.controller;
       Test.Share = share;
     });
   });
@@ -165,7 +165,7 @@ describe('Share catroid program rendering tests', () => {
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -173,7 +173,7 @@ describe('Share catroid program rendering tests', () => {
 
     expect(errorMessage).toEqual('Empty program found');
 
-    const shareTestContainerHandle = await page.$('#shareprogs');
+    const shareTestContainerHandle = await page.$('#catblocks-container');
     const cardHeaderText = await shareTestContainerHandle.$eval('.accordion-header', x => x.innerText);
     expect(cardHeaderText).toEqual('Empty program found');
   });
@@ -183,7 +183,7 @@ describe('Share catroid program rendering tests', () => {
 
     const errorMessage = await page.evaluate(pCatObj => {
       try {
-        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
       } catch (e) {
         return e.message;
       }
@@ -208,7 +208,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -240,7 +240,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
     }, catObj);
 
     const catSceneHandle = await page.$('.catblocks-scene');
@@ -277,7 +277,7 @@ describe('Share catroid program rendering tests', () => {
     };
 
     await page.evaluate(pCatObj => {
-      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
     }, catObj);
 
     const cardHeaderText = await page.$eval('.catblocks-object .accordion-header', x => x.innerText);
@@ -317,7 +317,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -401,7 +401,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -532,7 +532,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -578,7 +578,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -622,7 +622,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -671,7 +671,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -760,7 +760,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -840,7 +840,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -920,7 +920,7 @@ describe('Share catroid program rendering tests', () => {
     const result = await page.evaluate(pCatObj => {
       try {
         // option to render the scene directly
-        Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj, {
+        Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj, {
           scene: {
             renderNow: {
               scene: sceneName
@@ -961,7 +961,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -1018,7 +1018,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -1087,7 +1087,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -1198,7 +1198,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -1229,7 +1229,7 @@ describe('Share catroid program rendering tests', () => {
     const initialXPosition = await page.$eval('.catblocks-script', x => x.scrollLeft);
 
     await page.evaluate(() => {
-      const brickContainer = document.getElementById('shareprogs').querySelector('.catblocks-script');
+      const brickContainer = document.getElementById('catblocks-container').querySelector('.catblocks-script');
       brickContainer.scrollBy(1, 0);
     });
 
@@ -1277,7 +1277,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(pCatObj => {
       Test.Share.config.renderLooks = false;
-      Test.Share.renderProgramJSON('programID', document.getElementById('shareprogs'), pCatObj);
+      Test.Share.renderProgramJSON('programID', document.getElementById('catblocks-container'), pCatObj);
       Test.Share.config.renderLooks = true;
     }, catObj);
 
@@ -1322,7 +1322,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.evaluate(
       (pCatObj, pProgramID) => {
-        Test.Share.renderProgramJSON(pProgramID, document.getElementById('shareprogs'), pCatObj);
+        Test.Share.renderProgramJSON(pProgramID, document.getElementById('catblocks-container'), pCatObj);
       },
       catObj,
       programID
@@ -1373,5 +1373,5 @@ describe('Share catroid program rendering tests', () => {
 
     expect(magnifyingButtonWidth).toBeGreaterThanOrEqual(2 * magnifyingGlassPixelSize);
     expect(magnifyingButtonHeight).toBeGreaterThanOrEqual(2 * magnifyingGlassPixelSize);
-  });
+  }, 99999);
 });

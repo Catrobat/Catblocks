@@ -4,9 +4,9 @@
 
 import md5 from 'js-md5';
 import Blockly from 'blockly';
-import { CatblocksMsgs } from '../catblocks_msgs';
+import { CatBlocksMsgs } from '../../ts/i18n/CatBlocksMsgs';
 import pluralBricks from '../plural_bricks.json';
-import { BrickIDGenerator } from './brick_id_generator';
+import { BrickIDGenerator } from '../../ts/BrickIDGenerator';
 import { Modal } from 'bootstrap';
 import { getScriptToBrickMapping, scriptBricks } from '../blocks/bricks';
 import { getColourCodesForCategories } from '../blocks/colours';
@@ -511,18 +511,18 @@ function setFieldValuesForCatroid(jsonBrick, childBrick, catblocksDomBrickID) {
         if (value !== 1) {
           if (currentBrick.string_value.length === 1) {
             childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
             );
           } else {
             childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
                 ' ' +
-                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
+                CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
             );
           }
           if (childBrick.type === 'ParameterizedBrick') {
             childBrick.inputList[0].fieldRow[0].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
             );
           }
         }
@@ -558,18 +558,18 @@ function setFieldValuesForShare(jsonBrick, childBrick) {
         if (value !== 1) {
           if (currentBrick.string_value.length === 1) {
             childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]]
             );
           } else {
             childBrick.inputList[0].fieldRow[currentBrick.string_field].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[0]] +
                 ' ' +
-                CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
+                CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value[1]]
             );
           }
           if (childBrick.type === 'ParameterizedBrick') {
             childBrick.inputList[0].fieldRow[0].setValue(
-              CatblocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
+              CatBlocksMsgs.getCurrentLocaleValues()[currentBrick.string_value_additional]
             );
           }
         }
@@ -720,7 +720,7 @@ export const createLoadingAnimation = () => {
 
 export const showFormulaPopup = formula => {
   if (formula.length >= Blockly.Tooltip.LIMIT) {
-    document.getElementById('formulaPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
+    document.getElementById('formulaPopupClose').innerText = CatBlocksMsgs.getCurrentLocaleValues()['CLOSE'];
     const html_formula = formula.replaceAll('\n', '<br />');
     document.getElementById('formulaPopupContent').innerHTML = html_formula;
 
@@ -743,7 +743,7 @@ export const getMappedBrickNameIfExists = brickName => {
 export const getColorForBrickCategory = categoryName => {
   const categoryColors = getColourCodesForCategories();
 
-  const locales = CatblocksMsgs.getCurrentLocaleValues();
+  const locales = CatBlocksMsgs.getCurrentLocaleValues();
 
   const categoryNameToColor = new Map()
     .set(locales['CATEGORY_RECENTLY_USED'], '#aaaaaa')

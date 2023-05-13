@@ -24,8 +24,8 @@ import {
   createLoadingAnimation,
   RenderSource_Share
 } from './utils';
-import { CatblocksMsgs } from '../catblocks_msgs';
-import { jQueryFunctions } from '../../../common/js/jquery_functions';
+import { CatBlocksMsgs } from '../../ts/i18n/CatBlocksMsgs';
+import { jQueryFunctions } from '../../../common/ts/jQueryFunctions';
 
 const all_blocks = new Map();
 const rendered_scenes = new Map();
@@ -42,7 +42,7 @@ export class Share {
 
   /**
    * init share class instance
-   * @param {Element} options for rendering process
+   * @param {CatBBlocksConfig} options for rendering process
    */
   async init(options) {
     this.config = parseOptions(options, defaultOptions.render);
@@ -85,7 +85,7 @@ export class Share {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatBlocksMsgs.setLocale(this.config.language);
     this.createReadonlyWorkspace();
   }
 
@@ -387,7 +387,7 @@ export class Share {
     const backgroundObjID = generateID(`${programID}-${scene.name}-${scene.objectList[0].name}`);
 
     if (renderEverything) {
-      scene.objectList[0].name = CatblocksMsgs.getCurrentLocaleValues().BACKGROUND;
+      scene.objectList[0].name = CatBlocksMsgs.getCurrentLocaleValues().BACKGROUND;
     }
 
     const bgWorkspace = this.renderObjectJSON(
@@ -709,7 +709,7 @@ export class Share {
       imgElement.addEventListener('click', () => {
         document.getElementById('modalHeader').innerText = displayLookName;
         document.getElementById('modalImg').setAttribute('src', src);
-        document.getElementById('imgPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
+        document.getElementById('imgPopupClose').innerText = CatBlocksMsgs.getCurrentLocaleValues()['CLOSE'];
       });
 
       const magnifyingGlassID = generateID(`${objectID}-button-${displayLookName}`);
@@ -728,7 +728,7 @@ export class Share {
       magnifyingGlass.addEventListener('click', () => {
         document.getElementById('modalHeader').innerText = displayLookName;
         document.getElementById('modalImg').setAttribute('src', src);
-        document.getElementById('imgPopupClose').innerText = CatblocksMsgs.getCurrentLocaleValues()['CLOSE'];
+        document.getElementById('imgPopupClose').innerText = CatBlocksMsgs.getCurrentLocaleValues()['CLOSE'];
       });
 
       const lookName = generateNewDOM(

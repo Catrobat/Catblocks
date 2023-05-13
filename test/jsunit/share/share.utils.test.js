@@ -18,7 +18,7 @@ beforeAll(async () => {
 
   await page.evaluate(async () => {
     await Test.CatBlocks.init({
-      container: 'share',
+      container: 'catblocks-container',
       renderSize: 0.75,
       shareRoot: '',
       media: 'media/',
@@ -28,7 +28,7 @@ beforeAll(async () => {
       advancedMode: false
     });
 
-    const share = Test.CatBlocks.getInstance().share;
+    const share = Test.CatBlocks.instance.controller;
     Test.Share = share;
   });
 });
@@ -80,7 +80,7 @@ describe('Share utilities testing', () => {
   });
 
   test('Inject dom node performs properly', async () => {
-    const parentID = 'shareprogs';
+    const parentID = 'catblocks-container';
     const tag = 'p';
     const id = 'tid';
     const classes = 'tclass1 tclass2';
@@ -152,8 +152,8 @@ describe('Share utilities testing', () => {
   test('Get dom element performs properly', async () => {
     const [result1, result2] = await page.evaluate(() => {
       return [
-        Test.ShareUtils.getDomElement('shareprogs') === document.getElementById('shareprogs'),
-        Test.ShareUtils.getDomElement('#share .injectionDiv') === Test.Share.workspace.getInjectionDiv()
+        Test.ShareUtils.getDomElement('catblocks-container') === document.getElementById('catblocks-container'),
+        Test.ShareUtils.getDomElement('#catblocks-container .injectionDiv') === Test.Share.workspace.getInjectionDiv()
       ];
     });
     expect(result1).toBeTruthy();

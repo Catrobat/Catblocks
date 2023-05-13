@@ -25,7 +25,7 @@ describe('Export and Import XML files to workspace', () => {
 
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -35,14 +35,14 @@ describe('Export and Import XML files to workspace', () => {
         advancedMode: false
       });
 
-      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+      Test.Playground.workspace = Test.Blockly.inject('catblocks-workspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
         toolbox: Test.Playground.getToolbox(true),
         renderer: 'zelos'
       });
 
-      const share = Test.CatBlocks.getInstance().share;
+      const share = Test.CatBlocks.instance.controller;
       const toolbox = Test.Blockly.Workspace.getAll().find(
         ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
       );

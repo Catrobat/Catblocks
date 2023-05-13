@@ -1,11 +1,10 @@
 {
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:jest/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:jest/recommended", "plugin:@typescript-eslint/recommended"],
   "env": {
     "browser": true,
     "es2022": true,
@@ -14,39 +13,60 @@
   },
   "rules": {
     "no-unused-vars": [
-      "warn"
-    ],
-    "semi": [
-      "warn"
-    ],
-    "prefer-const": [
-      "warn"
-    ],
-    "no-var": [
-      "warn"
-    ],
-    "indent": [
       "warn",
-      2,
-      { "SwitchCase": 1 }
+      {
+        "argsIgnorePattern": "^_"
+      }
     ],
-    "curly": [
-      "error",
-      "all"
-    ],
-    "no-multi-spaces": [
-      "error"
-    ],
-    "no-multi-assign": [
-      "error"
-    ],
-    "no-mixed-spaces-and-tabs": [
-      "error"
-    ]
+    "semi": "warn",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "curly": ["error", "all"],
+    "no-multi-spaces": "error",
+    "no-multi-assign": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-var-requires": "off"
   },
   "globals": {
     "process": false,
     "Android": true
   },
-  "plugins": ["jest"]
+  "plugins": ["jest", "@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "warn",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "accessors": "off",
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "no-public",
+              "parameterProperties": "explicit"
+            }
+          }
+        ],
+        "@typescript-eslint/no-var-requires": "error",
+        "@typescript-eslint/no-empty-function": [
+          "warn",
+          {
+            "allow": ["private-constructors", "protected-constructors"]
+          }
+        ]
+      }
+    }
+  ]
 }

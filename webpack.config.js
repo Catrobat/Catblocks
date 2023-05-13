@@ -6,18 +6,28 @@ const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
+const integrationType = process.env.TYPE;
+const integrationTypeUpperCase = integrationType.charAt(0).toUpperCase() + integrationType.slice(1);
+const entryFile = `${integrationTypeUpperCase}.ts`;
+
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  entry: path.join(__dirname, 'src/intern/js/index.js'),
+  entry: path.join(__dirname, 'src/intern/ts/', entryFile),
+  devtool: 'inline-source-map',
   output: {
     filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.tsx', '.ts', '.js', '.json']
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',

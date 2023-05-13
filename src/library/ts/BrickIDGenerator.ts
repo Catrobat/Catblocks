@@ -1,15 +1,23 @@
+import { BlockSvg } from 'blockly';
+
+interface GenerateBrickOptions {
+  brick: BlockSvg;
+  id?: string;
+  type?: string;
+}
+
 export class BrickIDGenerator {
-  static idBricksCounter = new Map();
-  static userDefinedBrickIDs = new Map();
+  private static idBricksCounter = new Map();
+  private static userDefinedBrickIDs = new Map();
 
   /**
    * Assign an ID to the given brick in the format <brickType>-<counter> and the first text child
    * element gets <brickType>-<counter>-text. Used for testing purposes.
-   * @param {BlockSVG} brick a Brick from blockly workspace
+   * @param {BlockSvg} brick a Brick from blockly workspace
    * @returns {string} id of brick
    */
-  createBrickID(brick) {
-    return this._createBrickID({ brick: brick });
+  public createBrickID(brick: BlockSvg): string {
+    return this.generateBrickID({ brick: brick });
   }
 
   /**
@@ -18,16 +26,16 @@ export class BrickIDGenerator {
    * @param {string} userDefinedScriptID the user defined userDefinedScriptBrick ID
    * @returns {string} id of the brick
    */
-  createBrickIDForUserDefinedScript(brick, userDefinedScriptID) {
+  public createBrickIDForUserDefinedScript(brick: BlockSvg, userDefinedScriptID: string): string {
     const udbID = BrickIDGenerator.userDefinedBrickIDs.get(userDefinedScriptID);
 
     if (!udbID) {
-      const givenID = this._createBrickID({ brick: brick });
+      const givenID = this.generateBrickID({ brick: brick });
       BrickIDGenerator.userDefinedBrickIDs.set(userDefinedScriptID, givenID);
 
       return givenID;
     } else {
-      return this._createBrickID({ brick: brick, id: udbID });
+      return this.generateBrickID({ brick: brick, id: udbID });
     }
   }
 
@@ -38,21 +46,23 @@ export class BrickIDGenerator {
    * @param {string} userDefinedScriptID the user defined userDefinedScriptBrick ID
    * @returns {string} id of the brick
    */
-  createBrickIDForUserDefinedScriptCall(brick, userDefinedScriptID) {
+  public createBrickIDForUserDefinedScriptCall(brick: BlockSvg, userDefinedScriptID: string): string {
     let udbID = BrickIDGenerator.userDefinedBrickIDs.get(userDefinedScriptID);
+
     if (!udbID) {
-      udbID = this._generateNewID('UserDefinedScript');
+      udbID = this.generateBrickID({ brick: brick, type: 'UserDefinedScript' });
       BrickIDGenerator.userDefinedBrickIDs.set(userDefinedScriptID, udbID);
     }
-    return this._createBrickID({ brick: brick, type: udbID + '-Call' });
+
+    return this.generateBrickID({ brick: brick, type: udbID + '-Call' });
   }
 
   /**
    * Get the first Text element of an Brick.
-   * @param {HTMLElement} brickSVG the root of a blockly SVG
-   * @returns {HTMLElement|null}
+   * @param brickSVG the root of a blockly SVG
+   * @returns {Element | null}
    */
-  _getTextContainerOfBrick(brickSVG) {
+  private getTextContainerOfBrick(brickSVG: SVGElement): Element | null {
     try {
       for (const htmlElement of brickSVG.children) {
         if (htmlElement.firstElementChild) {
@@ -71,10 +81,10 @@ export class BrickIDGenerator {
 
   /**
    * Generate a new ID for a given brick type.
-   * @param {string} brickType
+   * @param brickType
    * @returns {string} something like UserDefinedScript-0
    */
-  _generateNewID(brickType) {
+  private generateNewID(brickType: string) {
     let currentIDCount = BrickIDGenerator.idBricksCounter.get(brickType);
     if (currentIDCount == null) {
       currentIDCount = 0;
@@ -93,23 +103,25 @@ export class BrickIDGenerator {
    * @param {string} [id] optional, to overwrite used id
    * @returns
    */
-  _createBrickID({ brick, type, id }) {
-    const brickType = type ?? brick.type;
-    const idToUse = id ?? this._generateNewID(brickType);
+  private generateBrickID(opts: GenerateBrickOptions) {
+    const brick = opts.brick;
+    const brickType = opts.type ?? brick.type;
+    const idToUse = opts.id ?? this.generateNewID(brickType);
+
     return idToUse;
   }
 
   /**
    * Sets the id to the SVG root of the brick.
-   * @param {BlockSVG} brick a Brick from blockly workspace
-   * @param {string} [id] optional, to overwrite used id
-   * @returns id
+   * @param brick
+   * @param id
+   * @returns
    */
-  setBrickID(brick, id) {
+  public setBrickID(brick: BlockSvg, id: string): string {
     const brickSVG = brick.getSvgRoot();
     brickSVG.setAttribute('id', id);
 
-    const brickGContainer = this._getTextContainerOfBrick(brickSVG);
+    const brickGContainer = this.getTextContainerOfBrick(brickSVG);
     if (brickGContainer) {
       brickGContainer.setAttribute('id', id + '-text');
     }
