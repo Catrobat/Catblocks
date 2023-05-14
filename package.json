@@ -17,12 +17,12 @@
     "test:dev": "cross-env-shell NODE_ENV=development TYPE=testing \"yarn initiate && webpack-dev-server\"",
     "initiate": "yarn translate",
     "translate": "node i18n/create_json.js && node i18n/create_msg.js",
-    "clean": "rimraf dist ; rimraf release ; rimraf release_catroid",
-    "release:dev": "cross-env-shell NODE_ENV=development \"yarn initiate && webpack-dev-server --config webpack.release.dev.config.js\"",
+    "clean": "rimraf dist ; rimraf release ; rimraf release_catroid ; rimraf jest*html*reporters*",
+    "release:dev": "cross-env-shell NODE_ENV=development TARGET=share \"yarn initiate && webpack-dev-server --config webpack.release.dev.config.js\"",
     "release:build": "cross-env-shell NODE_ENV=production TARGET=share \"yarn initiate && webpack --config webpack.release.build.config.js\"",
     "catroid:builddev": "cross-env-shell NODE_ENV=development TARGET=catroid \"yarn initiate && webpack --config webpack.release.build.config.js\"",
     "catroid:build": "cross-env-shell NODE_ENV=production TARGET=catroid \"yarn initiate && webpack --config webpack.release.build.config.js\"",
-    "lint:es": "yarn eslint --ext .js ./",
+    "lint:es": "yarn eslint --ext .js,.ts ./",
     "lint:pr": "yarn prettier -c src test",
     "lint": "yarn lint:es --max-warnings 0 && yarn lint:pr",
     "lint:fix": "yarn lint:es --fix && yarn lint:pr --write"
@@ -52,11 +52,14 @@
     "simple-git": "^3.17.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.76.0",
-    "webpack-cli": "^4.10.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "eslint-plugin-jest": "^27.1.4",
     "jest": "^29.2.2",
     "jest-environment-jsdom": "^29.2.2",
@@ -64,6 +67,8 @@
     "jest-puppeteer": "^6.1.1",
     "prettier": "^2.7.1",
     "puppeteer": "^19.2.2",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5"
   }
 }

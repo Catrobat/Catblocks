@@ -3,18 +3,6 @@
  * and https://www.science.co.il/language/Codes.php
  */
 
-/**
- * export from webpage via Firefox console
- */
-// const exportLocales = function () {
-//   var locale = {};
-//   var values = document.getElementsByTagName('TR');
-//   Object.keys(values).forEach(key => {
-//     var tr = values[key]
-//     locale[tr.children[0].textContent] = tr.children[1].textContent
-//   })
-// }
-
 const locales = {
   af: 'Afrikaans',
   af_ZA: 'Afrikaans (South Africa)',

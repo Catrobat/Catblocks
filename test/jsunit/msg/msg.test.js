@@ -22,8 +22,6 @@ const CATROID_MSGS = utils.listDirectorySync(utils.PATHS.CATROID_MSGS);
  */
 const CATBLOCKS_MSGS = utils.listDirectorySync(utils.PATHS.CATBLOCKS_MSGS);
 
-const CATBLOCKS_LOCALES = utils.readFileSync(utils.PATHS.CATBLOCKS_LOCALES).toString();
-
 /**
  * Msg filesystem tests
  */
@@ -50,17 +48,6 @@ describe('Filesystem msg tests', () => {
       });
     });
   });
-
-  test('Lang JSON file linked in CatblocksMsg.js', () => {
-    expect.hasAssertions();
-
-    const langs = JSON.parse(CATBLOCKS_LOCALES);
-
-    for (const langfile of CATBLOCKS_MSGS) {
-      const lang = langfile.split('.')[0];
-      expect(langs[lang]).toBeDefined();
-    }
-  });
 });
 
 describe('Webview test', () => {
@@ -77,7 +64,7 @@ describe('Webview test', () => {
 
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -87,14 +74,14 @@ describe('Webview test', () => {
         advancedMode: false
       });
 
-      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+      Test.Playground.workspace = Test.Blockly.inject('catblocks-workspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
         toolbox: Test.Playground.getToolbox(true),
         renderer: 'zelos'
       });
 
-      const share = Test.CatBlocks.getInstance().share;
+      const share = Test.CatBlocks.instance.controller;
       const toolbox = Test.Blockly.Workspace.getAll().find(
         ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
       );
@@ -192,7 +179,7 @@ describe('Webview test', () => {
     const languageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${languageToTest}.json`));
 
     await page.evaluate(() => {
-      return Test.Playground.setLocale(Test.CatblocksMsgs.getCurrentLocale());
+      return Test.Playground.setLocale(Test.CatBlocksMsgs.getCurrentLocale());
     });
 
     await page.evaluate(pLanguage => {
@@ -266,11 +253,11 @@ describe('Webview test', () => {
     });
 
     await page.evaluate(pLanguageToTest => {
-      return Test.CatblocksMsgs.setLocale(pLanguageToTest);
+      return Test.CatBlocksMsgs.setLocale(pLanguageToTest);
     }, languageToTest);
 
     const setLanguage = await page.evaluate(() => {
-      return Test.CatblocksMsgs.getCurrentLocale();
+      return Test.CatBlocksMsgs.getCurrentLocale();
     }, languageToTest);
     expect(setLanguage).toMatch(languageToTest);
 
@@ -303,7 +290,7 @@ describe('share displays language of UI elements correctly', () => {
 
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -313,14 +300,14 @@ describe('share displays language of UI elements correctly', () => {
         advancedMode: false
       });
 
-      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+      Test.Playground.workspace = Test.Blockly.inject('catblocks-workspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
         toolbox: Test.Playground.getToolbox(true),
         renderer: 'zelos'
       });
 
-      const share = Test.CatBlocks.getInstance().share;
+      const share = Test.CatBlocks.instance.controller;
       Test.Share = share;
     });
   });
@@ -331,7 +318,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${defaultLanguage}.json`)
     );
     await page.evaluate(pDefaultLanguage => {
-      return Test.CatblocksMsgs.setLocale(pDefaultLanguage);
+      return Test.CatBlocksMsgs.setLocale(pDefaultLanguage);
     }, defaultLanguage);
 
     expect.assertions(1);
@@ -342,7 +329,7 @@ describe('share displays language of UI elements correctly', () => {
     const testLanguage = 'de';
     const testLanguageObject = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${testLanguage}.json`));
     await page.evaluate(pTestLanguage => {
-      return Test.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatBlocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -356,7 +343,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatBlocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -370,7 +357,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatBlocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -384,7 +371,7 @@ describe('share displays language of UI elements correctly', () => {
       utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${fallbackLanguage}.json`)
     );
     await page.evaluate(pTestLanguage => {
-      return Test.CatblocksMsgs.setLocale(pTestLanguage);
+      return Test.CatBlocksMsgs.setLocale(pTestLanguage);
     }, testLanguage);
 
     expect.assertions(1);
@@ -428,7 +415,7 @@ describe('share displays language of UI elements correctly', () => {
     };
 
     await page.evaluate(pObj => {
-      const shareTestContainer = document.getElementById('shareprogs');
+      const shareTestContainer = document.getElementById('catblocks-container');
       Test.Share.renderProgramJSON('programID', shareTestContainer, pObj);
     }, catObj);
 

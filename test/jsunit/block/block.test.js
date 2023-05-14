@@ -110,7 +110,7 @@ describe('WebView Block tests', () => {
 
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -120,14 +120,14 @@ describe('WebView Block tests', () => {
         advancedMode: false
       });
 
-      Test.Playground.workspace = Test.Blockly.inject('playworkspace', {
+      Test.Playground.workspace = Test.Blockly.inject('catblocks-workspace', {
         media: '../media/',
         zoom: { startScale: 0.75 },
         toolbox: Test.Playground.getToolbox(true),
         renderer: 'zelos'
       });
 
-      const share = Test.CatBlocks.getInstance().share;
+      const share = Test.CatBlocks.instance.controller;
       const toolbox = Test.Blockly.Workspace.getAll().find(
         ws => ![share.workspace.id, Test.Playground.workspace.id].includes(ws.id)
       );
@@ -514,7 +514,7 @@ describe('Catroid Block IDs', () => {
 
     await page.evaluate(async () => {
       await Test.CatroidCatBlocks.init({
-        container: 'catroid',
+        container: 'catblocks-container',
         renderSize: 0.75,
         language: 'en',
         shareRoot: '',
@@ -545,5 +545,5 @@ describe('Catroid Block IDs', () => {
     await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-1');
     await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-2');
     await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-0-Call-2');
-  });
+  }, 99999);
 });

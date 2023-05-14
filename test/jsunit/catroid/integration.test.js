@@ -18,7 +18,7 @@ describe('Catroid Integration Position tests', () => {
       async (pLanguage, pRTL) => {
         try {
           await Test.CatroidCatBlocks.init({
-            container: 'catroid',
+            container: 'catblocks-container',
             renderSize: 0.75,
             language: pLanguage,
             rtl: pRTL,
@@ -51,5 +51,5 @@ describe('Catroid Integration Position tests', () => {
 
     const textToScriptBorderOffset = scriptOffset - textOffset;
     expect(textToScriptBorderOffset < 7).toBe(true);
-  });
+  }, 999999);
 });

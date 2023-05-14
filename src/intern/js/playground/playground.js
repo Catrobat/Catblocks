@@ -1,7 +1,7 @@
 import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor, RenderSource_Share } from '../../../library/js/integration/utils';
 import { Parser } from '../../../common/js/parser/parser';
-import { CatblocksMsgs } from '../../../library/js/catblocks_msgs';
+import { CatBlocksMsgs } from '../../../library/ts/i18n/CatBlocksMsgs';
 import { initBricks } from '../../../library/js/blocks/bricks';
 
 export class Playground {
@@ -65,13 +65,13 @@ export class Playground {
 
     // Setup locale
     const select = document.getElementsByName('locale')[0];
-    Object.keys(CatblocksMsgs.getLocales()).forEach(locale => {
+    Object.keys(CatBlocksMsgs.getLocales()).forEach(locale => {
       const lcoale_opt = document.createElement('option');
       lcoale_opt.value = locale;
-      lcoale_opt.innerHTML = CatblocksMsgs.getLocales()[locale]['DROPDOWN_NAME'];
+      lcoale_opt.innerHTML = CatBlocksMsgs.getLocales()[locale]['DROPDOWN_NAME'];
       select.appendChild(lcoale_opt);
     });
-    document.forms.options.elements.locale.value = CatblocksMsgs.getCurrentLocale();
+    document.forms.options.elements.locale.value = CatBlocksMsgs.getCurrentLocale();
 
     initBricks(false);
 
@@ -118,15 +118,14 @@ export class Playground {
     document.getElementById('importFromJSON').addEventListener('click', () => this.fromJSON());
     document.getElementById('importFromParser').addEventListener('click', () => this.fromParser());
 
-    const self = this;
-    document.getElementById('logCheck').addEventListener('click', () => {
-      self.logEvents(this.checked);
+    document.getElementById('logCheck').addEventListener('click', event => {
+      this.logEvents(event.target.checked);
     });
-    document.getElementById('logFlyoutCheck').addEventListener('click', () => {
-      self.logFlyoutEvents(this.checked);
+    document.getElementById('logFlyoutCheck').addEventListener('click', event => {
+      this.logFlyoutEvents(event.target.checked);
     });
-    document.getElementById('soundsEnabled').addEventListener('click', () => {
-      self.setSoundsEnabled(this.checked);
+    document.getElementById('soundsEnabled').addEventListener('click', event => {
+      this.setSoundsEnabled(event.target.checked);
     });
 
     document.getElementById('sprinkles').addEventListener('click', () => this.sprinkles(100));
@@ -353,7 +352,7 @@ export class Playground {
     }
   }
   setLocale(locale) {
-    return CatblocksMsgs.setLocale(locale)
+    return CatBlocksMsgs.setLocale(locale)
       .then(() => {
         this.workspace.updateToolbox(this.getToolbox());
         const xml = this.Blockly.Xml.workspaceToDom(this.workspace);

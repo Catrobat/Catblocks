@@ -32,7 +32,7 @@ describe('Performance tests', () => {
 
     await page.evaluate(async () => {
       await Test.CatBlocks.init({
-        container: 'share',
+        container: 'catblocks-container',
         renderSize: 0.75,
         shareRoot: '',
         media: 'media/',
@@ -42,10 +42,6 @@ describe('Performance tests', () => {
         advancedMode: false
       });
     });
-  });
-
-  beforeEach(async () => {
-    await page.waitForNetworkIdle();
   });
 
   beforeEach(async () => {

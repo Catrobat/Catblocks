@@ -10,12 +10,27 @@ const utils = require('../commonUtils');
 
 describe('Parser catroid program tests', () => {
   beforeAll(async () => {
-    await page.goto('http://localhost:8080');
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
 
     page.on('console', message => {
       if (!message.text().includes('Failed to load resource: the server responded with a status of')) {
         console.log(message.text());
       }
+    });
+
+    await page.evaluate(async () => {
+      await Test.CatBlocks.init({
+        container: 'catblocks-container',
+        renderSize: 0.75,
+        shareRoot: '',
+        media: 'media/',
+        language: 'en',
+        rtl: false,
+        noImageFound: 'No_Image_Available.jpg',
+        advancedMode: false
+      });
     });
   });
 

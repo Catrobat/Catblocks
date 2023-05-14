@@ -18,7 +18,7 @@ describe('Catroid Integration Advanced Mode tests', () => {
       async (pLanguage, pRTL, pAdvancedMode) => {
         try {
           await Test.CatroidCatBlocks.init({
-            container: 'catroid',
+            container: 'catblocks-container',
             renderSize: 0.75,
             language: pLanguage,
             rtl: pRTL,
@@ -70,7 +70,7 @@ describe('Catroid Integration Advanced Mode tests', () => {
 
   test('Background color test', async () => {
     const backgroundColor = await page.evaluate(() => {
-      return document.querySelector('#catroid .blocklySvg').style.backgroundColor;
+      return document.querySelector('#catblocks-container .blocklySvg').style.backgroundColor;
     });
 
     expect(backgroundColor).toBe('rgb(26, 26, 26)');

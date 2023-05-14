@@ -5,23 +5,36 @@ const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
+const integrationTarget = process.env.TARGET;
+const integrationTargetUppercase = integrationTarget.charAt(0).toUpperCase() + integrationTarget.slice(1);
+const entryClassName = `CatBlocks${integrationTargetUppercase}`;
+const entryFile = `${entryClassName}.ts`;
+
 module.exports = {
-  mode: devMode ? 'development' : 'production',
+  mode: 'production',
   optimization: {
     minimize: !devMode
   },
-  entry: path.join(__dirname, 'src/library/js/webpack_share.js'),
+  entry: path.join(__dirname, 'src/library/ts/', entryFile),
   output: {
     filename: 'CatBlocks.js',
     path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'var',
-    library: 'CatBlocks'
+    library: {
+      name: 'CatBlocks',
+      type: 'var',
+      export: entryClassName
+    }
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.tsx', '.ts', '.js', '.json']
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',

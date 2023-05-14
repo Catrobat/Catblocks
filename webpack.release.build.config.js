@@ -3,19 +3,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
-const integrationTarget = process.env.TARGET;
 const simpleGit = require("simple-git");
-
 const git = simpleGit.default();
+const devMode = process.env.NODE_ENV !== 'production';
+
+const integrationTarget = process.env.TARGET;
+const integrationTargetUppercase = integrationTarget.charAt(0).toUpperCase() + integrationTarget.slice(1);
+
+const entryClassName = `CatBlocks${integrationTargetUppercase}`;
+const entryFile = `${entryClassName}.ts`;
+
 const releaseFolder = 'release' + (integrationTarget === 'share' ? '' : '_catroid');
 
-module.exports = async function() {
-  
+module.exports = async function () {
   let versionInformation = '*** no version found ***';
   try {
     await git.pull('--tags', '--ff-only');
-    const loadedTags = await git.tags({'--points-at': 'HEAD'});
+    const loadedTags = await git.tags({ '--points-at': 'HEAD' });
     console.log('Loaded Tags:', loadedTags);
     if (loadedTags && loadedTags.all && loadedTags.all.length > 0) {
       versionInformation = loadedTags.all.join(', ')
@@ -25,7 +29,7 @@ module.exports = async function() {
   }
 
   const configuration = {
-    mode: devMode ? 'development' : 'production',
+    mode: 'production',
     optimization: {
       minimize: !devMode,
       minimizer: [
@@ -41,20 +45,28 @@ module.exports = async function() {
             },
           },
         }),
-      ],
+      ]
     },
-    entry: path.join(__dirname, `src/library/js/webpack_${integrationTarget}.js`),
+    entry: path.join(__dirname, 'src/library/ts/', entryFile),
     output: {
       filename: 'CatBlocks.js',
       path: path.resolve(__dirname, releaseFolder),
-      libraryTarget: 'var',
-      library: 'CatBlocks'
+      library: {
+        name: 'CatBlocks',
+        type: 'var',
+        export: entryClassName
+      }
     },
     resolve: {
-      extensions: ['.js', '.json']
+      extensions: ['.tsx', '.ts', '.js', '.json']
     },
     module: {
       rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
+        },
         {
           test: /\.js$/,
           loader: 'babel-loader',
@@ -87,7 +99,7 @@ module.exports = async function() {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // all options are optional
-        filename:  '[name].css',
+        filename: '[name].css',
         chunkFilename: '[id].css',
         ignoreOrder: false, // Enable to remove warnings about conflicting order
       }),

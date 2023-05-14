@@ -21,9 +21,9 @@ import {
   getFieldByCatroidFieldID,
   advancedModeRemoveWhiteSpacesInFormulas
 } from './utils';
-import { CatblocksMsgs } from '../catblocks_msgs';
+import { CatBlocksMsgs } from '../../ts/i18n/CatBlocksMsgs';
 import advancedTheme from '../advanced_theme.json';
-import { jQueryFunctions } from '../../../common/js/jquery_functions';
+import { jQueryFunctions } from '../../../common/ts/jQueryFunctions';
 
 export class Catroid {
   constructor() {
@@ -32,6 +32,7 @@ export class Catroid {
     this.all_blocks = new Map();
     this.scene = null;
     this.object = null;
+    this.brickIDToFocus = null;
   }
 
   async init(options) {
@@ -51,10 +52,10 @@ export class Catroid {
     if (this.config.rtl) {
       document.documentElement.style.direction = 'rtl';
     }
-    await CatblocksMsgs.setLocale(this.config.language, this.config.i18n);
+    await CatBlocksMsgs.setLocale(this.config.language);
 
     const workspaceItem = {
-      displayText: CatblocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
+      displayText: CatBlocksMsgs.getCurrentLocaleValues()['SWITCH_TO_1D'],
       preconditionFn: function (scope) {
         const block = scope.block;
         if (block && block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) {
@@ -81,17 +82,16 @@ export class Catroid {
     Blockly.ContextMenuRegistry.registry.unregister('collapseWorkspace');
     Blockly.ContextMenuRegistry.registry.unregister('blockCollapseExpand');
 
-    const thisShare = this;
-    Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').callback = function (scope) {
+    Blockly.ContextMenuRegistry.registry.getItem('blockDuplicate').callback = scope => {
       const newId = Android.duplicateBrick(scope.block.id);
       const codeXML = Android.getCurrentProject();
 
-      const objectJSON = Parser.convertObjectToJSON(codeXML, thisShare.scene, thisShare.object);
+      const objectJSON = Parser.convertObjectToJSON(codeXML, this.scene, this.object);
 
       const clone = objectJSON.scriptList.filter(x => x.id.toLowerCase() == newId.toLowerCase());
       if (clone && clone.length) {
-        const workspace = thisShare.workspace;
-        thisShare.domToSvgModifiable(clone[0], workspace);
+        const workspace = this.workspace;
+        this.domToSvgModifiable(clone[0], workspace);
         const oldPosition = scope.block.getRelativeToSurfaceXY();
         const newBrick = workspace.getBlockById(newId);
         if (newBrick) {
@@ -126,7 +126,7 @@ export class Catroid {
     };
 
     Blockly.ContextMenuRegistry.registry.getItem('blockHelp').displayText = function () {
-      return CatblocksMsgs.getCurrentLocaleValues()['HELP'];
+      return CatBlocksMsgs.getCurrentLocaleValues()['HELP'];
     };
 
     Blockly.ContextMenuRegistry.registry.getItem('blockHelp').preconditionFn = function (scope) {
@@ -557,7 +557,7 @@ export class Catroid {
     }
 
     document.getElementById('catroid-catblocks-add-brick-dialog-header-text').innerText =
-      CatblocksMsgs.getCurrentLocaleValues()['BRICK_CATEGORIES'];
+      CatBlocksMsgs.getCurrentLocaleValues()['BRICK_CATEGORIES'];
 
     document.getElementById('catroid-catblocks-add-brick-dialog-content').scrollTop = 0;
 
@@ -661,9 +661,14 @@ export class Catroid {
     this.readonlyWorkspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 30;
     this.readonlyWorkspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
 
-    document.getElementById('catroid-catblocks-add-brick-dialog').classList.add('advanced-theme');
+    const catBlocksAddBrickDialog = document.getElementById('catroid-catblocks-add-brick-dialog');
+    if (catBlocksAddBrickDialog) {
+      catBlocksAddBrickDialog.classList.add('advanced-theme');
+    }
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
-    brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
+    if (brickContainer) {
+      brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
+    }
   }
 
   updateBrickFields(brickFields) {
