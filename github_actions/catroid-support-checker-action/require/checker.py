@@ -28,6 +28,10 @@ map_bricks_scripts = [
     ('WhenClonedBrick', 'WhenClonedScript'),
     ('WhenTouchDownBrick', 'WhenTouchDownScript'),
     ('WhenStartedBrick', 'StartScript'),
+    ('EmptyEventBrick', 'EmptyScript'),
+    ('WhenRaspiPinChangedBrick', 'RaspiInterruptScript'),
+    ('WhenNfcBrick', 'WhenNfcScript'),
+    ('WhenGamepadButtonBrick', 'WhenGamepadButtonScript')
 ]
 
 bricksToCheck = [' Motion bricks ', ' Physics ', ' Look bricks ', ' Pen bricks ', ' Sound bricks ',
