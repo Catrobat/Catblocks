@@ -792,7 +792,7 @@ describe('Share catroid program rendering tests', () => {
     expect(beforeClickSrc).toBeNull();
 
     // open object
-    await page.click(`#${objID}-header .accordion-button`);
+    await page.click(`#${objID}-header .catblocks-accordion-button`);
     // wait for tabs to be visible
     await page.waitForSelector(`#${objID}-tabs`);
 
@@ -1032,7 +1032,7 @@ describe('Share catroid program rendering tests', () => {
       sceneName
     );
 
-    const identifier = '.catblocks-scene .accordion-header .accordion-button';
+    const identifier = '.catblocks-scene .accordion-header .catblocks-accordion-button';
     const cardHeaderInitialText = await page.$eval(identifier, x => x.innerHTML);
     expect(cardHeaderInitialText).toBe(programID);
 
@@ -1281,7 +1281,7 @@ describe('Share catroid program rendering tests', () => {
       Test.Share.config.renderLooks = true;
     }, catObj);
 
-    const tabs = await page.$$('.catro-tabs .nav-item');
+    const tabs = await page.$$('.catblocks-tabs .nav-item');
     expect(tabs).toHaveLength(2);
   });
 

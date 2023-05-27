@@ -36,7 +36,7 @@
     border-right: 4px solid $primary;
   }
 
-  .catro-tabs {
+  .catblocks-tabs {
     height: 100%;
 
     .nav-link {
@@ -55,10 +55,11 @@
     }
   }
 
-  .accordion-button {
+  .catblocks-accordion-button {
     &:not(.collapsed) {
       font-weight: bold;
     }
+    @extend .accordion-button
   }
 
   .catblocks-object-look-row,
@@ -98,6 +99,6 @@
   }
 }
 
-.search {
+.catblocks-search {
   width: 3em;
 }

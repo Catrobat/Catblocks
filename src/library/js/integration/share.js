@@ -213,7 +213,7 @@ export class Share {
       sceneHeader,
       'button',
       {
-        class: 'accordion-button collapsed',
+        class: 'catblocks-accordion-button collapsed',
         type: 'button',
         'data-bs-toggle': 'collapse',
         'data-bs-target': `#${sceneID}-collapseOne`,
@@ -459,7 +459,7 @@ export class Share {
     });
 
     const headerButton = generateNewDOM(cardHeader, 'button', {
-      class: 'accordion-button collapsed ps-sm-5',
+      class: 'catblocks-accordion-button collapsed ps-sm-5',
       type: 'button',
       'data-bs-toggle': 'collapse',
       'data-bs-target': `#${objCollapseOneSceneID}`,
@@ -880,7 +880,7 @@ export class Share {
     );
 
     const ul = generateNewDOM(container, 'ul', {
-      class: 'nav nav-tabs nav-fill catro-tabs',
+      class: 'nav nav-tabs nav-fill catblocks-tabs',
       id: `${objectID}-tabs`,
       role: 'tablist'
     });
