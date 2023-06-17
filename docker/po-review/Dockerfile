@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 LABEL org.opencontainers.image.authors="Catblocks https://github.com/Catrobat/Catblocks"
 
