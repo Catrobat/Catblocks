@@ -663,11 +663,11 @@ export class Catroid {
 
     const catBlocksAddBrickDialog = document.getElementById('catroid-catblocks-add-brick-dialog');
     if (catBlocksAddBrickDialog) {
-      catBlocksAddBrickDialog.classList.add('advanced-theme');
+      catBlocksAddBrickDialog.classList.add('catblocks-advanced-theme');
     }
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
     if (brickContainer) {
-      brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
+      brickContainer.setAttribute('class', 'catblocks-advanced-theme zelos-renderer');
     }
   }
 

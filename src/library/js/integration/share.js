@@ -717,7 +717,7 @@ export class Share {
         rightCol,
         'button',
         {
-          class: 'btn btn-light search me-3',
+          class: 'btn btn-light catblocks-search me-3',
           id: magnifyingGlassID,
           'data-bs-toggle': 'modal',
           'data-bs-target': '#modalForImg'
@@ -880,7 +880,7 @@ export class Share {
     );
 
     const ul = generateNewDOM(container, 'ul', {
-      class: 'nav nav-tabs nav-fill catro-tabs',
+      class: 'nav nav-tabs nav-fill catblocks-tabs',
       id: `${objectID}-tabs`,
       role: 'tablist'
     });
