@@ -98,32 +98,32 @@ body,
   margin-top: 5px;
 }
 
-.catblocks.advanced-theme .blocklyNonEditableText > rect:not(.blocklyDropdownRect),
-.catblocks.advanced-theme .blocklyEditableText > rect:not(.blocklyDropdownRect) {
+.advanced-theme .blocklyNonEditableText > rect:not(.blocklyDropdownRect),
+.advanced-theme .blocklyEditableText > rect:not(.blocklyDropdownRect) {
   fill: #1a1a1a !important;
 }
 
-.catblocks.advanced-theme .blocklyNonEditableText > text,
-.catblocks.advanced-theme .blocklyEditableText > text,
-.catblocks.advanced-theme .blocklyNonEditableText > g > text,
-.catblocks.advanced-theme .blocklyEditableText > g > text {
+.advanced-theme .blocklyNonEditableText > text,
+.advanced-theme .blocklyEditableText > text,
+.advanced-theme .blocklyNonEditableText > g > text,
+.advanced-theme .blocklyEditableText > g > text {
   fill: #fff !important;
 }
 
-.catblocks.advanced-theme#catroid-catblocks-add-brick-dialog {
+.advanced-theme#catroid-catblocks-add-brick-dialog {
   background-color: #1a1a1a !important;
 }
-.catblocks.advanced-theme .blocklyMainBackground {
+.advanced-theme .blocklyMainBackground {
   stroke-width: 0 !important;
 }
-.catblocks.advanced-theme #catroid-catblocks-add-brick-dialog-header {
+.advanced-theme #catroid-catblocks-add-brick-dialog-header {
   background-color: #3c3c3c !important;
 }
 
-.catblocks.advanced-theme #catroid-catblocks-add-brick-text-container {
+.advanced-theme #catroid-catblocks-add-brick-text-container {
   color: #b3b3b3 !important;
 }
 
-.catblocks.advanced-theme #catroid-catblocks-add-brick-dialog-header img {
+.advanced-theme #catroid-catblocks-add-brick-dialog-header img {
   filter: brightness(0) invert(0.8);
 }

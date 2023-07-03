@@ -882,7 +882,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.click(tabID);
 
-    const searchID = '#' + objID + ' #' + objID + '-looks .catblocks-search';
+    const searchID = '#' + objID + ' #' + objID + '-looks .search';
     await page.waitForSelector(searchID, { visible: true });
     await page.click(searchID);
 
@@ -893,7 +893,7 @@ describe('Share catroid program rendering tests', () => {
     expect(itemContainerID).toBe(expectedID);
 
     const searchContainerInnerHTML = await page.$eval(
-      '#' + objID + ' #' + objID + '-looks .catblocks-search',
+      '#' + objID + ' #' + objID + '-looks .search',
       node => node.innerHTML
     );
     const origin = await page.evaluate(() => {
@@ -1281,7 +1281,7 @@ describe('Share catroid program rendering tests', () => {
       Test.Share.config.renderLooks = true;
     }, catObj);
 
-    const tabs = await page.$$('.catblocks-tabs .nav-item');
+    const tabs = await page.$$('.catro-tabs .nav-item');
     expect(tabs).toHaveLength(2);
   });
 
@@ -1355,7 +1355,7 @@ describe('Share catroid program rendering tests', () => {
 
     await page.click(tabID);
 
-    const searchID = '#' + objID + ' #' + objID + '-looks .catblocks-search';
+    const searchID = '#' + objID + ' #' + objID + '-looks .search';
     await page.waitForSelector(searchID, { visible: true });
     const [magnifyingGlassWidth, magnifyingGlassHeight] = await page.$eval(`${searchID} img`, img => [
       img.clientWidth,
