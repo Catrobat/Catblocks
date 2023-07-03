@@ -286,6 +286,7 @@ export class Catroid {
           const newEmptyBrickPositionY = position.y - newEmptyBrickSize.height + connectionOffset;
           newEmptyBrick.moveBy(newEmptyBrickPositionX, newEmptyBrickPositionY);
 
+          newEmptyBrick.setNextStatement(true);
           newEmptyBrick.nextConnection.connect(droppedBrick.previousConnection);
           droppedBrick.setParent(newEmptyBrick);
 
@@ -311,7 +312,7 @@ export class Catroid {
             for (let i = 0; i < subStacks.length; ++i) {
               if (subStacks[i].connection.targetConnection) {
                 if (subStacks[i].connection.targetConnection.sourceBlock_.id == firstBrickInStack.id) {
-                  subStackIdx = i;
+                  subStackIdx = i - 1;
                   break;
                 }
               }

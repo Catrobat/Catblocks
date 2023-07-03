@@ -444,7 +444,17 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace, re
   }
 
   if (brickListType === brickListTypes.brickList || brickListType === brickListTypes.userBrickList) {
-    parentBrick.nextConnection.connect(childBrick.previousConnection);
+    if (brickListType === brickListTypes.userBrickList) {
+      parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
+    } else {
+      if (parentBrick.domBrickID.includes('EmptyScript')) {
+        parentBrick.setNextStatement(true);
+        parentBrick.nextConnection.connect(childBrick.previousConnection);
+      } else {
+        parentBrick.inputList[1].connection.connect(childBrick.previousConnection);
+        parentBrick.setNextStatement(false);
+      }
+    }
   } else if (brickListType === brickListTypes.elseBrickList) {
     parentBrick.inputList[3].connection.connect(childBrick.previousConnection);
   } else if (
@@ -856,11 +866,11 @@ export function advancedModeAddSemicolonsAndClassifyTopBricks(childBrick) {
   ) {
     return;
   }
+  if (scriptBricks.includes(childBrick.type)) {
+    childBrick.hat = 'top';
+    return;
+  }
   if (childBrick.inputList.length === 1) {
-    if (scriptBricks.includes(childBrick.type)) {
-      childBrick.hat = 'top';
-      return;
-    }
     const fieldRow = childBrick.inputList[0].fieldRow;
     const newVal = fieldRow[fieldRow.length - 1].getValue() + ';';
     fieldRow[fieldRow.length - 1].setValue(newVal);

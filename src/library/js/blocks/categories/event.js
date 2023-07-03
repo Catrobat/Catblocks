@@ -2,19 +2,109 @@
 
 export default {
   StartScript: {
-    message0: '%{BKY_EVENT_WHENSCENESTARTS}'
+    message0: '%{BKY_EVENT_WHENSCENESTARTS}',
+    message1: '%1',
+    message2: '%1%2',
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ]
   },
   WhenScript: {
-    message0: '%{BKY_EVENT_WHENTAPPED}'
+    message0: '%{BKY_EVENT_WHENTAPPED}',
+    message1: '%1',
+    message2: '%1%2',
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ]
   },
   WhenTouchDownScript: {
-    message0: '%{BKY_EVENT_WHENSTAGEISTAPPED}'
+    message0: '%{BKY_EVENT_WHENSTAGEISTAPPED}',
+    message1: '%1',
+    message2: '%1%2',
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ]
   },
   WhenClonedScript: {
-    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}'
+    message0: '%{BKY_CONTROL_WHENYOUSTARTASACLONE}',
+    message1: '%1',
+    message2: '%1%2',
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
+    ]
   },
   BroadcastScript: {
     message0: '%{BKY_EVENT_WHENYOURECEIVE}',
+    message1: '%1',
+    message2: '%1%2',
     args0: [
       {
         type: 'field_catblocksspinner',
@@ -30,10 +120,32 @@ export default {
         flip_rtl: true,
         name: 'DROPDOWN_INFO'
       }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
     ]
   },
   WhenConditionScript: {
     message0: '%{BKY_EVENT_WHENBECOMESTRUE}',
+    message1: '%1',
+    message2: '%1%2',
     args0: [
       {
         type: 'field_catblockstext',
@@ -49,10 +161,32 @@ export default {
         flip_rtl: true,
         name: 'IF_CONDITION_INFO'
       }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      }
     ]
   },
   WhenBackgroundChangesScript: {
     message0: '%{BKY_EVENT_WHENBACKGROUNDCHANGES}',
+    message1: '%1',
+    message2: '%1%2',
     args0: [
       {
         type: 'field_catblocksspinner',
@@ -67,6 +201,26 @@ export default {
         alt: '(i)',
         flip_rtl: true,
         name: 'look_INFO'
+      }
+    ],
+    args1: [
+      {
+        type: 'input_statement',
+        name: 'SUBSTACK'
+      }
+    ],
+    args2: [
+      {
+        type: 'field_label',
+        name: 'ADVANCED_MODE_PLACEHOLDER'
+      },
+      {
+        type: 'field_image',
+        src: `${document.location.pathname}media/empty_icon.svg`,
+        height: 24,
+        width: 24,
+        flip_rtl: true,
+        name: 'ADVANCED_MODE_PLACEHOLDER'
       }
     ]
   }

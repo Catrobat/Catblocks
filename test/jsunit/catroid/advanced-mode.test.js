@@ -139,7 +139,7 @@ describe('Catroid Integration Advanced Mode tests', () => {
       return startBlock.tooltip.height;
     });
 
-    expect(blocksHeight).toBeLessThan(40);
+    expect(blocksHeight).toBeLessThan(120);
   });
 
   test('Semicolon test', async () => {
