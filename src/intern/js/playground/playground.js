@@ -1,6 +1,6 @@
 import Blockly from 'blockly';
 import { jsonDomToWorkspace, zebraChangeColor, RenderSource_Share } from '../../../library/js/integration/utils';
-import { Parser } from '../../../common/js/parser/parser';
+import { CatblocksParser } from '../../../common/ts/parser/Parser';
 import { CatBlocksMsgs } from '../../../library/ts/i18n/CatBlocksMsgs';
 import { initBricks } from '../../../library/js/blocks/bricks';
 
@@ -8,7 +8,6 @@ export class Playground {
   constructor() {
     // for debugging
     this.Blockly = Blockly;
-    this.Parser = Parser;
 
     this.toolbox = undefined;
     this.workspace = undefined;
@@ -255,7 +254,8 @@ export class Playground {
     try {
       const input = document.getElementById('importExport');
       const xmlString = beforeScript + input.value + afterScript;
-      const blocksJSON = this.Parser.convertProgramToJSONDebug(xmlString);
+      const parser = new CatblocksParser(xmlString);
+      const blocksJSON = parser.xmlToCatblocksProject();
       if (blocksJSON !== undefined) {
         const scenes = blocksJSON.scenes;
         if (scenes !== undefined && scenes.length > 0) {

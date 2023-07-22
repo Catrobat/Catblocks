@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'lego_ev3_motor_turn_angle_spinner',
+        value_xpath: ['motor'],
+        message_format: 'EV3_%v',
         name: 'DROPDOWN'
       },
       {
@@ -40,6 +42,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_ev3_motor_move_spinner',
+        value_xpath: ['motor'],
+        message_format: 'EV3_%v',
         name: 'DROPDOWN'
       },
       {
@@ -73,6 +77,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'ev3_stop_motor_spinner',
+        value_xpath: ['motor'],
+        message_format: 'EV3_%v',
         name: 'DROPDOWN'
       },
       {
@@ -139,6 +145,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_ev3_set_led_spinner',
+        value_xpath: ['ledStatus'],
+        message_format: 'EV3_%v',
         name: 'DROPDOWN'
       },
       {
@@ -158,6 +166,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'lego_motor_turn_angle_spinner',
+        value_xpath: ['motor'],
+        message_format: 'NXT_%v',
         name: 'DROPDOWN'
       },
       {
@@ -191,6 +201,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'stop_motor_spinner',
+        value_xpath: ['motor'],
+        message_format: 'NXT_%v',
         name: 'DROPDOWN'
       },
       {
@@ -210,6 +222,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'lego_motor_action_spinner',
+        value_xpath: ['motor'],
+        message_format: 'NXT_%v',
         name: 'DROPDOWN'
       },
       {

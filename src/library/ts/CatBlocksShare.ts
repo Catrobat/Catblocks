@@ -1,4 +1,4 @@
-import { Parser } from '../../common/js/parser/parser';
+import { CatblocksParser } from '../../common/ts/parser/Parser';
 import { CatBlocksConfig } from './config/CatBlocksConfig';
 import { Share } from '../js/integration/share';
 import { CatBlocksBase } from './CatBlocksBase';
@@ -51,7 +51,8 @@ export class CatBlocksShare extends CatBlocksBase {
     const response = await fetch(`${path}${name}/code.xml`);
     const codeXML = await response.text();
 
-    const programJSON = Parser.convertProgramToJSONDebug(codeXML);
+    const parser = new CatblocksParser(codeXML);
+    const programJSON = parser.xmlToCatblocksProject();
 
     const programID = `catblocks-program-${name}`;
 

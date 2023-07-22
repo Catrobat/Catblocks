@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_play_sound_spinner',
+        value_xpath: ['sound', '@name'],
+        message_format: '%v',
         name: 'sound'
       },
       {
@@ -26,6 +28,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_play_sound_spinner',
+        value_xpath: ['sound', '@name'],
+        message_format: '%v',
         name: 'sound'
       },
       {
@@ -138,6 +142,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_ask_speech_spinner',
+        value_xpath: ['userVariable', 'userVariable', 'default', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -157,6 +163,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_stop_sound_spinner',
+        value_xpath: ['sound', '@name'],
+        message_format: '%v',
         name: 'sound'
       },
       {
@@ -176,6 +184,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_start_listening_spinner',
+        value_xpath: ['userVariable', 'userVariable', 'default', 'name'],
+        message_format: '%v',
         name: 'LISTEN'
       },
       {
@@ -195,6 +205,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'set_instrument_spinner',
+        value_xpath: ['instrumentSelection'],
+        message_format: 'INSTRUMENT_%v',
         name: 'DROPDOWN'
       },
       {
@@ -233,6 +245,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_listening_language_spinner',
+        value_xpath: ['languageObject'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -290,6 +304,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'play_drum_for_beats_spinner',
+        value_xpath: ['drumSelection'],
+        message_format: 'DRUM_%v',
         name: 'DROPDOWN'
       },
       {
@@ -356,6 +372,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_jumping_sumo_sound_spinner',
+        value_xpath: ['soundName'],
+        message_format: 'JUMPING_SUMO_SOUND_%v',
         name: 'DROPDOWN'
       },
       {
@@ -392,6 +410,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_select_tone_spinner',
+        value_xpath: ['tone'],
+        message_format: 'PHIRO_TONE_%v',
         name: 'tone'
       },
       {
@@ -426,6 +446,8 @@ export default {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_play_sound_at_spinner',
         name: 'sound',
+        value_xpath: ['sound', '@name'],
+        message_format: '%v',
         text: 'unset'
       },
       {

@@ -39,12 +39,12 @@
             "internalConsoleOptions": "neverOpen"
         },
         {
+            "name": "Launch Chromium",
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chromium Ubuntu (http://localhost:8080)",
-            "url": "http://localhost:8080",
+            "cwd": "${workspaceFolder}",
             "webRoot": "${workspaceFolder}",
-            "runtimeExecutable": "/snap/bin/chromium"
+            "url": "http://localhost:8080"
         }
     ]
 }

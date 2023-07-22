@@ -431,11 +431,11 @@ export class Share {
 
     if (object.lookList) {
       for (const look of object.lookList) {
-        if (!options.sceneName || !look.fileName) {
+        if (!options.sceneName || !look.name) {
           continue;
         }
 
-        const imgPath = `${options.sceneName}/images/${look.fileName}`;
+        const imgPath = `${options.sceneName}/images/${look.path}`;
         src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
 
         if (options.programRoot.startsWith('http')) {
@@ -568,12 +568,12 @@ export class Share {
         class: 'col'
       });
 
-      if (!options.sceneName || !sound.fileName) {
+      if (!options.sceneName || !sound.name) {
         failed++;
         continue;
       }
 
-      const soundPath = `${options.sceneName}/sounds/${sound.fileName}`;
+      const soundPath = `${options.sceneName}/sounds/${sound.path}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${soundPath}`);
 
       if (options.programRoot.startsWith('http')) {
@@ -586,7 +586,7 @@ export class Share {
 
       let displaySoundName = sound.name;
       if (!displaySoundName) {
-        displaySoundName = sound.fileName;
+        displaySoundName = sound.name;
       }
 
       const audioContainer = generateNewDOM(col, 'audio', {
@@ -670,12 +670,12 @@ export class Share {
         class: 'col-12 col-sm-6 d-flex align-items-center'
       });
 
-      if (!options.sceneName || !look.fileName) {
+      if (!options.sceneName || !look.name) {
         failed++;
         continue;
       }
 
-      const imgPath = `${options.sceneName}/images/${look.fileName}`;
+      const imgPath = `${options.sceneName}/images/${look.path}`;
       let src = escapeURI(`${this.config.shareRoot}${options.programRoot}${imgPath}`);
 
       // renderProgram got a full link
@@ -693,7 +693,7 @@ export class Share {
 
       let displayLookName = look.name;
       if (!displayLookName) {
-        displayLookName = look.fileName;
+        displayLookName = look.name;
       }
 
       const imgID = generateID(`${objectID}-${displayLookName}`) + '-imgID';

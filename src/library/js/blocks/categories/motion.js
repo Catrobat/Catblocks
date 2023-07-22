@@ -116,6 +116,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         name: 'SPINNER',
+        value_xpath: ['destinationSprite', '@name'],
+        message_format: '%v',
         catroid_field_id: 'brick_go_to_spinner'
       },
       {
@@ -214,6 +216,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_point_to_spinner',
+        value_xpath: ['pointedObject', '@name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -233,6 +237,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_rotation_style_spinner',
+        value_xpath: ['selection'],
+        message_format: 'POINTTO_%v',
         name: 'SPINNER'
       },
       {
@@ -340,6 +346,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_physics_object_type_spinner',
+        value_xpath: ['type'],
+        message_format: 'GRAVITY_%v',
         name: 'DROPDOWN'
       },
       {
@@ -793,6 +801,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_drone_play_led_animation_spinner',
+        value_xpath: ['ledAnimationName'],
+        message_format: '%v',
         name: 'ADRONEANIMATION',
         text: 'unset'
       },
@@ -813,6 +823,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_jumping_sumo_animation_spinner',
+        value_xpath: ['animationName'],
+        message_format: 'ANIMATION_%v',
         name: 'ANIMATION'
       },
       {
@@ -948,6 +960,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_when_bounce_off_spinner',
+        value_xpath: ['spriteToBounceOffName'], // empty if all
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
