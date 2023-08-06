@@ -19,6 +19,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_broadcast_spinner',
+        value_xpath: ['receivedMessage'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -57,6 +59,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_when_background_spinner',
+        value_xpath: ['look', '@name'],
+        message_format: '%v',
         name: 'look'
       },
       {

@@ -5,6 +5,7 @@
 import Blockly from 'blockly';
 import categories from './categories';
 import { initCatblocksColours } from './colours';
+import { CatblocksSpinnerProperties } from '../../../common/ts/parser/CatblocksSpinnerProperties';
 
 export const getBrickScriptMapping = () => {
   return new Map()
@@ -115,6 +116,41 @@ const loadBricks = (cats = categories, blockly = Blockly, advancedMode = false) 
     }
   }
 };
+
+function getAllBricks() {
+  const bricks = {};
+  for (const catName in categories) {
+    const cat = categories[catName];
+    for (const brickName in cat) {
+      bricks[`${brickName}`] = cat[brickName];
+    }
+  }
+  return bricks;
+}
+
+export function getBrickSpinnerProperties(brickType) {
+  const allBricks = getAllBricks();
+  const spinners = [];
+
+  if (Object.prototype.hasOwnProperty.call(allBricks, brickType)) {
+    const brick = allBricks[brickType];
+    for (let i = 0; i < 5; i++) {
+      const argName = `args${i}`;
+      if (Object.prototype.hasOwnProperty.call(brick, argName)) {
+        const args = brick[argName];
+        for (const arg of args) {
+          if (arg['type'] === 'field_catblocksspinner') {
+            const name = arg['name'];
+            const valueXpaths = arg['value_xpath'];
+            const messageFormat = arg['message_format'];
+            spinners.push(new CatblocksSpinnerProperties(name, valueXpaths, messageFormat));
+          }
+        }
+      }
+    }
+  }
+  return spinners;
+}
 
 /**
  * @param {boolean} advancedMode

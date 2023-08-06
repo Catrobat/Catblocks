@@ -17,7 +17,7 @@ const releaseFolder = 'release' + (integrationTarget === 'share' ? '' : '_catroi
 
 module.exports = async function () {
   let versionInformation = '*** no version found ***';
-  try {
+  /*try {
     await git.pull('--tags', '--ff-only');
     const loadedTags = await git.tags({ '--points-at': 'HEAD' });
     console.log('Loaded Tags:', loadedTags);
@@ -26,7 +26,7 @@ module.exports = async function () {
     }
   } catch (error) {
     console.error('Error loading git tags.', error);
-  }
+  }*/
 
   const configuration = {
     mode: 'production',

@@ -7,7 +7,7 @@ import { Playground } from '../js/playground/playground';
 import Blockly from 'blockly';
 import { CatBlocksShare } from '../../library/ts/CatBlocksShare';
 import * as shareUtils from '../../library/js/integration/utils';
-import { Parser } from '../../common/js/parser/parser';
+import { CatblocksParser } from '../../common/ts/parser/Parser';
 import { CatBlocksCatroid } from '../../library/ts/CatBlocksCatroid';
 import { IAndroid } from '../../library/ts/IAndroid';
 
@@ -60,7 +60,7 @@ class Test {
   CatBlocksMsgs: typeof CatBlocksMsgs;
   CatBlocks: typeof CatBlocksShare;
   ShareUtils: typeof shareUtils;
-  Parser: typeof Parser;
+  Parser: CatblocksParser;
   CatroidCatBlocks: typeof CatBlocksCatroid;
 
   constructor() {
@@ -69,8 +69,8 @@ class Test {
     this.CatBlocksMsgs = CatBlocksMsgs;
     this.CatBlocks = CatBlocksShare;
     this.ShareUtils = shareUtils;
-    this.Parser = Parser;
     this.CatroidCatBlocks = CatBlocksCatroid;
+    this.Parser = new CatblocksParser();
   }
 }
 

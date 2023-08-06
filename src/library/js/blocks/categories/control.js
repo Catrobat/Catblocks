@@ -288,6 +288,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_scene_transition_spinner',
+        value_xpath: ['sceneForTransition'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -307,6 +309,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_scene_start_spinner',
+        value_xpath: ['sceneToStart'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -326,6 +330,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_stop_script_spinner',
+        value_xpath: ['spinnerSelection'],
+        message_format: 'STOP_SCRIPT_%v',
         name: 'SPINNER'
       },
       {
@@ -345,6 +351,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_clone_spinner',
+        value_xpath: ['objectToClone', '@name'],
+        message_format: '%v',
         name: 'SPINNER'
       },
       {
@@ -404,6 +412,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_for_variable_spinner',
+        value_xpath: ['userVariable', 'userVariable', 'default', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -450,6 +460,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         name: 'FOR_ITEM_IN_USERLIST_LIST',
+        value_xpath: ['userDataList', 'userData[@category="FOR_ITEM_IN_USERLIST_LIST"]', 'name'],
+        message_format: '%v',
         catroid_field_id: 'for_item_in_userlist_list_spinner'
       },
       {
@@ -464,6 +476,14 @@ export default {
       {
         type: 'field_catblocksspinner',
         name: 'FOR_ITEM_IN_USERLIST_VARIABLE',
+        value_xpath: [
+          'userDataList',
+          'userData[@category="FOR_ITEM_IN_USERLIST_VARIABLE"]',
+          'userVariable',
+          'default',
+          'name'
+        ],
+        message_format: '%v',
         catroid_field_id: 'for_item_in_userlist_variable_spinner'
       },
       {
@@ -507,6 +527,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_broadcast_spinner',
+        value_xpath: ['broadcastMessage'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -526,6 +548,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_broadcast_spinner',
+        value_xpath: ['broadcastMessage'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -606,6 +630,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_sensor_action_spinner',
+        value_xpath: ['sensorSpinnerPosition'],
+        message_format: 'SPINNER_PHIRO_%v',
         name: 'DROPDOWN'
       },
       {

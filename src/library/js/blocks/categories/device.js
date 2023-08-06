@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_when_nfc_spinner',
+        value_xpath: ['nfcTag', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -40,6 +42,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_nfc_tag_ndef_record_spinner',
+        value_xpath: ['nfcTagNdefType'],
+        message_format: 'TNF_%v',
         name: 'DROPDOWN'
       },
       {

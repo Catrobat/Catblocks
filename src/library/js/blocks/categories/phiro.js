@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_motor_forward_action_spinner',
+        value_xpath: ['motor'],
+        message_format: 'PHIRO_%v',
         name: 'DROPDOWN'
       },
       {
@@ -40,6 +42,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_motor_backward_action_spinner',
+        value_xpath: ['motor'],
+        message_format: 'PHIRO_%v',
         name: 'DROPDOWN'
       },
       {
@@ -73,6 +77,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_stop_motor_spinner',
+        value_xpath: ['motor'],
+        message_format: 'PHIRO_%v',
         name: 'DROPDOWN'
       },
       {

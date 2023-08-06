@@ -3,7 +3,7 @@ import '../../scss/catroid.scss';
 import { getBrickScriptMapping } from '../blocks/bricks';
 
 import Blockly from 'blockly';
-import { Parser } from '../../../common/js/parser/parser';
+import { CatblocksParser } from '../../../common/ts/parser/Parser';
 import {
   defaultOptions,
   generateFormulaModal,
@@ -86,7 +86,8 @@ export class Catroid {
       const newId = Android.duplicateBrick(scope.block.id);
       const codeXML = Android.getCurrentProject();
 
-      const objectJSON = Parser.convertObjectToJSON(codeXML, this.scene, this.object);
+      const parser = new CatblocksParser(codeXML);
+      const objectJSON = parser.xmlToCatblocksObject(this.scene, this.object);
 
       const clone = objectJSON.scriptList.filter(x => x.id.toLowerCase() == newId.toLowerCase());
       if (clone && clone.length) {
@@ -455,7 +456,8 @@ export class Catroid {
     const newScriptId = bricksToAdd[0].brickId.toLowerCase();
 
     const codeXML = Android.getCurrentProject();
-    const objectJSON = Parser.convertObjectToJSON(codeXML, this.scene, this.object);
+    const parser = new CatblocksParser(codeXML);
+    const objectJSON = parser.xmlToCatblocksObject(this.scene, this.object);
     const newScript = objectJSON.scriptList.filter(x => x.id.toLowerCase() == newScriptId);
 
     if (newScript && newScript.length) {
