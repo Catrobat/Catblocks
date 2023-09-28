@@ -1,8 +1,8 @@
 import JSZip from 'jszip';
 import { MessageBox } from './MessageBox';
-import { Parser } from '../../../common/js/parser/parser';
 import { CatBlocksShare } from '../../../library/ts/CatBlocksShare';
 import { generateNewDOM } from '../../../library/js/integration/utils';
+import { CatblocksParser } from '../../../common/ts/parser/Parser';
 
 enum FileType {
   IMAGE,
@@ -202,8 +202,8 @@ class FileHandlerBase {
     counter: number,
     fileMap: Record<string, string>
   ) {
-    // inject code
-    const programJSON = Parser.convertProgramToJSONDebug(codeXML);
+    const parser = new CatblocksParser(codeXML);
+    const projectJson = parser.xmlToCatblocksProject();
 
     // prepare container for program injection
     const programContainer = this.createProgramContainer(container, name, counter);
@@ -212,7 +212,7 @@ class FileHandlerBase {
     CatBlocksShare.controller.renderProgramJSON(
       programID,
       programContainer,
-      programJSON,
+      projectJson,
       {
         object: {
           fileMap: fileMap

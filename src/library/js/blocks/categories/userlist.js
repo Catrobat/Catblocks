@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'read_list_from_device_spinner',
+        value_xpath: ['userList', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -26,6 +28,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'write_list_spinner',
+        value_xpath: ['userList', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {

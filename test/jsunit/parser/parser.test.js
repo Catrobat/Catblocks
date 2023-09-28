@@ -55,7 +55,8 @@ describe('Parser catroid program tests', () => {
 
     const result = await page.evaluate(pXML => {
       try {
-        Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        Test.Parser.xmlToCatblocksProject();
       } catch (e) {
         return e.message;
       }
@@ -80,7 +81,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -106,7 +108,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -133,7 +136,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -170,7 +174,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -214,7 +219,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -264,7 +270,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -324,7 +331,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -382,7 +390,8 @@ describe('Parser catroid program tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -455,12 +464,13 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const formula = await page.evaluate(pXML => {
-      const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      const programJSON = Test.Parser.xmlToCatblocksProject();
       const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
       return formulaMap.entries().next().value.toString();
     }, xmlString);
 
-    expect(formula).toMatch('SIZE, 60& ');
+    expect(formula).toMatch('SIZE,60&.0');
   });
 
   test('LookList reference not within the same object', async () => {
@@ -505,7 +515,8 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -517,7 +528,7 @@ describe('Catroid to Catblocks parser tests', () => {
                 lookList: expect.arrayContaining([
                   expect.objectContaining({
                     name: lookName,
-                    fileName: lookFileName
+                    path: lookFileName
                   })
                 ])
               })
@@ -570,7 +581,8 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -583,7 +595,7 @@ describe('Catroid to Catblocks parser tests', () => {
                 soundList: expect.arrayContaining([
                   expect.objectContaining({
                     name: soundName,
-                    fileName: soundFileName
+                    path: soundFileName
                   })
                 ])
               })
@@ -624,7 +636,7 @@ describe('Catroid to Catblocks parser tests', () => {
                     <brick type="${brickName}">
                       <commentedOut>false</commentedOut>
                       <formulaList>
-                        <formula category="testFormula">
+                        <formula category="TIME_TO_WAIT_IN_SECONDS">
                           <leftChild>
                             <type>NUMBER</type>
                             <value>${val1}</value>
@@ -649,7 +661,8 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const [programJSON, formulaString] = await page.evaluate(pXML => {
-      const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      const programJSON = Test.Parser.xmlToCatblocksProject();
       return [
         programJSON,
         programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].formValues.entries().next().value.toString()
@@ -657,7 +670,7 @@ describe('Catroid to Catblocks parser tests', () => {
     }, xmlString);
 
     expect(programJSON.scenes[0].objectList[1].scriptList[0].brickList[0].name).toBe(brickName);
-    expect(formulaString).toMatch(`${val1}    ${val2}`);
+    expect(formulaString).toMatch(`${val1}  ${val2}`);
   });
 
   test('parser converts catroid script properly', async () => {
@@ -703,7 +716,8 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -773,7 +787,7 @@ describe('Catroid to Catblocks parser tests', () => {
                     <brick type="${setBackgroundBrick}"></brick>
                     <brick type="${waitBrick}"></brick>
                     <brick type="LoopEndBrick">
-                      <commentedOut>false</commentedOut>
+                    <commentedOut>false</commentedOut>
                     </brick>
                   </brickList>
                   <commentedOut>false</commentedOut>
@@ -787,7 +801,8 @@ describe('Catroid to Catblocks parser tests', () => {
     </program>`;
 
     const programJSON = await page.evaluate(pXML => {
-      return Test.Parser.convertProgramToJSONDebug(pXML);
+      Test.Parser.parseXmlString(pXML);
+      return Test.Parser.xmlToCatblocksProject();
     }, xmlString);
 
     expect(programJSON).toEqual(
@@ -862,7 +877,8 @@ describe('Catroid to Catblocks parser tests', () => {
       const langObj = JSON.parse(utils.readFileSync(`${utils.PATHS.CATBLOCKS_MSGS}${lang}.json`));
 
       const [programJSON, formulaString] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
         return [
           programJSON,
           programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues.entries().next().value.toString()
@@ -910,7 +926,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, formulaSize, formulaString] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
         return [
           programJSON,
           programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues.size,
@@ -976,7 +993,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, formula] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
         return [
           programJSON,
           programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues.entries().next().value
@@ -1005,7 +1023,8 @@ describe('Catroid to Catblocks parser tests', () => {
         })
       );
 
-      expect(formula).toBeNull();
+      expect(formula[0]).toBe('ADRONEANIMATION');
+      expect(formula[1]).toBe('');
     });
   });
 
@@ -1061,7 +1080,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
         const mapKeys = [];
@@ -1097,7 +1117,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', userVarialbe]);
+      expect(mapValues).toEqual([firstValue, userVarialbe]);
     });
 
     test('local empty name uservariable parsing', async () => {
@@ -1150,7 +1170,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
         const mapKeys = [];
@@ -1186,7 +1207,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
+      expect(mapValues).toEqual([firstValue, '']);
     });
 
     test('local uservariable parsing without name tag', async () => {
@@ -1239,7 +1260,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
         const mapKeys = [];
@@ -1275,7 +1297,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
+      expect(mapValues).toEqual([firstValue, '']);
     });
 
     test('remote uservariable parsing', async () => {
@@ -1339,7 +1361,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1376,7 +1399,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', userVariable]);
+      expect(mapValues).toEqual([firstValue, userVariable]);
     });
 
     test('remote empty name uservariable parsing', async () => {
@@ -1439,7 +1462,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1476,7 +1500,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
+      expect(mapValues).toEqual([firstValue, '']);
     });
 
     test('remote uservariable parsing without name tag', async () => {
@@ -1539,7 +1563,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1576,7 +1601,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
-      expect(mapValues).toEqual([' ' + firstValue + ' ', '']);
+      expect(mapValues).toEqual([firstValue, '']);
     });
 
     test('parser handles formula operator properly', async () => {
@@ -1630,7 +1655,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1666,8 +1692,8 @@ describe('Catroid to Catblocks parser tests', () => {
         })
       );
 
-      expect(mapKeys).toEqual([variableName]);
-      expect(mapValues).toEqual([` ${firstValue}  =  ${secondValue} `]);
+      expect(mapKeys).toEqual([variableName, 'DROPDOWN']);
+      expect(mapValues).toEqual([`${firstValue} = ${secondValue}`, '']);
     });
   });
 
@@ -1747,7 +1773,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1784,7 +1811,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([` ${first}  × ( ${second}  ÷ ( ${third}  +  ${fourth} ))`]);
+      expect(mapValues).toEqual([`${first} × (${second} ÷ (${third} + ${fourth}))`]);
     });
 
     test('Formula with left sided brackets', async () => {
@@ -1862,7 +1889,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -1899,7 +1927,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`(( ${first}  +  ${second} ) ×  ${third} ) ÷  ${fourth} `]);
+      expect(mapValues).toEqual([`((${first} + ${second}) × ${third}) ÷ ${fourth}`]);
     });
 
     test('Formula with both sided brackets', async () => {
@@ -1977,7 +2005,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2014,7 +2043,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`( ${first}  ×  ${second} ) + ( ${third}  ×  ${fourth} )`]);
+      expect(mapValues).toEqual([`(${first} × ${second}) + (${third} × ${fourth})`]);
     });
   });
 
@@ -2074,7 +2103,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2111,7 +2141,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`square root( ${first} ) ×  ${second} `]);
+      expect(mapValues).toEqual([`square root(${first}) × ${second}`]);
     });
 
     test('Single value like sin function with logic', async () => {
@@ -2169,7 +2199,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2206,7 +2237,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`sine( ${first} ) >  ${second} `]);
+      expect(mapValues).toEqual([`sine(${first}) > ${second}`]);
     });
 
     test('Two single values like sin plus cos', async () => {
@@ -2268,7 +2299,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2305,7 +2337,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`cosine( ${first} ) + sine( ${second} )`]);
+      expect(mapValues).toEqual([`cosine(${first}) + sine(${second})`]);
     });
 
     test('Double value like contains', async () => {
@@ -2359,7 +2391,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2396,7 +2429,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`contains( ${first} ,  ${second} )`]);
+      expect(mapValues).toEqual([`contains(${first}, ${second})`]);
     });
 
     test('Sensor action in formula', async () => {
@@ -2448,7 +2481,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2485,7 +2519,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([` touches finger  +  true `]);
+      expect(mapValues).toEqual([`touches finger + true`]);
     });
 
     test('UserList in formula', async () => {
@@ -2529,7 +2563,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2610,7 +2645,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2701,7 +2737,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2803,7 +2840,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -2904,7 +2942,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
         const mapKeys = [];
@@ -2940,7 +2979,7 @@ describe('Catroid to Catblocks parser tests', () => {
       );
 
       expect(mapKeys).toEqual([categoryName]);
-      expect(mapValues).toEqual([`join( ${first} , ${second} , ${third} )`]);
+      expect(mapValues).toEqual([`join(${first}, ${second}, ${third})`]);
     });
 
     test('multiple formula', async () => {
@@ -2976,18 +3015,18 @@ describe('Catroid to Catblocks parser tests', () => {
       const second = ['2', ' world', 'flatten', 'INDEX_CURRENT_TOUCH'];
       const third = ['3', '!', 'INDEX_OF_ITEM'];
       const output = [
-        `if then else( ${first[0].toLowerCase()} , ${second[0]} , ${third[0]} )`,
+        `if then else(${first[0].toLowerCase()}, ${second[0]}, ${third[0]})`,
         `length('${first[1]}')`,
-        `join('${first[2]}','${second[1]}','${third[1]}')`,
+        `join('${first[2]}', '${second[1]}', '${third[1]}')`,
         `flatten(*${first[3]}*)`,
-        `item's index( ${first[4]} , *${second[2]}*)`,
-        ` ${first[5].toLowerCase().replaceAll('_', ' ')} `,
-        ` number of looks `,
-        ` ${first[7].toLowerCase().replaceAll('_', ' ')} `,
-        ` ${first[8].toLowerCase().replaceAll('_', ' ')} `,
-        ` number of current touches `,
-        `index of current touch( ${first[10]} )`,
-        ` ${first[11].toLowerCase()} `
+        `item's index(${first[4]}, *${second[2]}*)`,
+        `${first[5].toLowerCase().replaceAll('_', ' ')}`,
+        `number of looks`,
+        `${first[7].toLowerCase().replaceAll('_', ' ')}`,
+        `${first[8].toLowerCase().replaceAll('_', ' ')}`,
+        `number of current touches`,
+        `index of current touch(${first[10]})`,
+        `${first[11].toLowerCase()}`
       ];
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <program>
@@ -3211,7 +3250,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
         const formulaMap = [];
         const mapKeys = [];
         const mapValues = [];
@@ -3289,7 +3329,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -3335,10 +3376,7 @@ describe('Catroid to Catblocks parser tests', () => {
       const first = ['200', '#ff0000'];
       const second = ['600', '#fe0000'];
       const third = '1';
-      const expectedOutput = [
-        'color at x y( 200 ,  600 )',
-        "color equals color with % tolerance('#ff0000', '#fe0000')"
-      ];
+      const expectedOutput = ['color at x y(200, 600)', "color equals color with % tolerance('#ff0000', '#fe0000')"];
 
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <program>
@@ -3409,7 +3447,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 
@@ -3452,12 +3491,12 @@ describe('Catroid to Catblocks parser tests', () => {
     test('Values in endBrick', async () => {
       const blockName = 'ParameterizedBrick';
       const blockNameEnd = 'ParameterizedEndBrick';
-      const categoryName = ['CATBLOCKS_ASSERT_LISTS_SELECTED', 'ASSERT_LOOP_ACTUAL', 'LIST_SELECTED'];
+      const categoryName = ['ASSERT_LOOP_ACTUAL', 'CATBLOCKS_ASSERT_LISTS_SELECTED', 'LIST_SELECTED'];
       const first = 'List (1)';
       const second = 'List (2)';
       const third = '0';
       const fourth = 'List (3)';
-      const expectedOutput = ['2 lists selected', ' 0 ', 'List (3)'];
+      const expectedOutput = [third, '2 lists selected', fourth];
 
       const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <program>
@@ -3496,7 +3535,7 @@ describe('Catroid to Catblocks parser tests', () => {
                           <brickId>5872c621-bb05-4bfb-9150-77e7021acc88</brickId>
                           <commentedOut>false</commentedOut>
                           <formulaList>
-                            <formula category="${categoryName[1]}">
+                            <formula category="${categoryName[0]}">
                               <additionalChildren/>
                               <type>NUMBER</type>
                               <value>${third}</value>
@@ -3520,7 +3559,8 @@ describe('Catroid to Catblocks parser tests', () => {
       </program>`;
 
       const [programJSON, mapKeys, mapValues] = await page.evaluate(pXML => {
-        const programJSON = Test.Parser.convertProgramToJSONDebug(pXML);
+        Test.Parser.parseXmlString(pXML);
+        const programJSON = Test.Parser.xmlToCatblocksProject();
 
         const formulaMap = programJSON.scenes[0].objectList[0].scriptList[0].brickList[0].formValues;
 

@@ -24,6 +24,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_screen_refresh_spinner',
+        value_xpath: ['screenRefresh'],
+        message_format: 'UDB_SCREEN_REFRESH_%v',
         name: 'UDB_SCREEN_REFRESH'
       },
       {

@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_look_spinner',
+        value_xpath: ['look', '@name'],
+        message_format: '%v',
         name: 'look'
       },
       {
@@ -90,6 +92,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_ask_spinner',
+        value_xpath: ['userVariable', 'userVariable', 'default', 'name'],
+        message_format: '%v',
         name: 'DROPDOWN'
       },
       {
@@ -349,6 +353,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_background_spinner',
+        value_xpath: ['look', '@name'],
+        message_format: '%v',
         name: 'look'
       },
       {
@@ -387,6 +393,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_set_background_spinner',
+        value_xpath: ['look', '@name'],
+        message_format: '%v',
         name: 'look'
       },
       {
@@ -425,6 +433,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_video_spinner',
+        value_xpath: ['spinnerSelectionON'],
+        message_format: 'CAMSPINNER_%v',
         name: 'SPINNER'
       },
       {
@@ -444,6 +454,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_choose_camera_spinner',
+        value_xpath: ['spinnerSelectionFRONT'],
+        message_format: 'CAMCHOOSESPINNER_%v',
         name: 'SPINNER'
       },
       {
@@ -463,6 +475,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_flash_spinner',
+        value_xpath: ['spinnerSelectionID'],
+        message_format: 'FLASHSPINNER_%v',
         name: 'SPINNER'
       },
       {
@@ -567,6 +581,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_phiro_rgb_light_spinner',
+        value_xpath: ['eye'],
+        message_format: 'PHIRO_EYE_%v',
         name: 'eye'
       },
       {
@@ -627,6 +643,8 @@ export default {
     args0: [
       {
         type: 'field_catblocksspinner',
+        value_xpath: ['fadeSpinnerSelectionId'],
+        message_format: 'FADESPINNER_%v',
         name: 'brick_fade_particle_effect_spinner'
       },
       {
@@ -645,6 +663,8 @@ export default {
     args0: [
       {
         type: 'field_catblocksspinner',
+        value_xpath: ['fadeSpinnerSelectionId'],
+        message_format: 'PARTICLESPINNER_%v',
         name: 'brick_additive_particle_effect_spinner'
       },
       {

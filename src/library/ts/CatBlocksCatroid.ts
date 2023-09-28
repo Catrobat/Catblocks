@@ -1,5 +1,5 @@
 import { Modal } from 'bootstrap';
-import { Parser } from '../../common/js/parser/parser';
+import { CatblocksParser } from '../../common/ts/parser/Parser';
 import { CatBlocksConfig } from './config/CatBlocksConfig';
 import { Catroid } from '../js/integration/catroid';
 import { CatBlocksBase } from './CatBlocksBase';
@@ -24,6 +24,10 @@ export class CatBlocksCatroid extends CatBlocksBase {
   }
 
   public static render(codeXML: string, showScene?: string, showObject?: string, brickIDToFocus?: string) {
+    if (!showObject || !showScene) {
+      throw new Error('Invalid object or scene. Object and scene must be selected');
+    }
+
     return new Promise<void>((resolve, reject) => {
       const spinnerElement = document.getElementById('spinnerModal');
       if (!spinnerElement) {
@@ -35,7 +39,8 @@ export class CatBlocksCatroid extends CatBlocksBase {
       const eventListener = () => {
         spinnerElement.removeEventListener('shown.bs.modal', eventListener, false);
         try {
-          const objectJSON = Parser.convertObjectToJSON(codeXML, showScene, showObject);
+          const parser = new CatblocksParser(codeXML);
+          const objectJSON = parser.xmlToCatblocksObject(showScene, showObject);
           console.log(objectJSON);
           this.controller.scene = showScene;
           this.controller.object = showObject;

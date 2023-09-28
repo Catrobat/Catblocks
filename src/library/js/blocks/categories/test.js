@@ -43,6 +43,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_assert_lists_actual',
+        value_xpath: ['userDataList', 'userData[@category="ASSERT_LISTS_ACTUAL"]', 'name'],
+        message_format: '%v',
         name: 'ASSERT_LISTS_ACTUAL'
       },
       {
@@ -57,6 +59,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_assert_lists_expected',
+        value_xpath: ['userDataList', 'userData[@category="ASSERT_LISTS_EXPECTED"]', 'name'],
+        message_format: '%v',
         name: 'ASSERT_LISTS_EXPECTED'
       },
       {
@@ -114,6 +118,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_param_expected_list',
+        value_xpath: ['endBrick', 'userList', 'name'],
+        message_format: '%v',
         name: 'LIST_SELECTED'
       },
       {
