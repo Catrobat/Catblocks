@@ -537,13 +537,13 @@ describe('Catroid Block IDs', () => {
     };
 
     const firstQueryBase = '#UserDefinedScript-0 #IfLogicBeginBrick-0 ';
-    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-0-Call-0');
-    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-0-Call-1');
-    await checkQuerySelectorExistence(firstQueryBase + '#UserDefinedScript-1-Call-0');
+    await checkQuerySelectorExistence(firstQueryBase + '#e8535f0b-477f-42da-b2cf-ed1168eafda9-0');
+    await checkQuerySelectorExistence(firstQueryBase + '#e8535f0b-477f-42da-b2cf-ed1168eafda9-1');
+    await checkQuerySelectorExistence(firstQueryBase + '#f3bbf4a4-15bf-4eea-b622-82548f172ade-0');
 
     const secondQueryBase = '#UserDefinedScript-1 #IfLogicBeginBrick-1 ';
-    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-1');
-    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-1-Call-2');
-    await checkQuerySelectorExistence(secondQueryBase + '#UserDefinedScript-0-Call-2');
+    await checkQuerySelectorExistence(secondQueryBase + '#f3bbf4a4-15bf-4eea-b622-82548f172ade-1');
+    await checkQuerySelectorExistence(secondQueryBase + '#f3bbf4a4-15bf-4eea-b622-82548f172ade-2');
+    await checkQuerySelectorExistence(secondQueryBase + '#e8535f0b-477f-42da-b2cf-ed1168eafda9-2');
   }, 99999);
 });

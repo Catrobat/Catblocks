@@ -306,10 +306,8 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
       }
     }
 
-    if (parentBrick === null && brickList[i].userBrickId !== undefined) {
-      // When there is no parentBrick but the userBrickId is set
-      // ChildBrick is a UserDefinedScript and we need to add the UserDefinedBrick definition
-      const definitionBrickName = brickList[i].userBrickId + '_UDB_CATBLOCKS_DEF';
+    if (brickList[i].name === 'UserDefinedScript') {
+      const definitionBrickName = brickList[i].userDefinedBrickID + '_UDB_CATBLOCKS_DEF';
       const definitionBrick = Blockly.Bricks[definitionBrickName];
       const definitionBrickToRender = {
         name: definitionBrickName,
@@ -322,7 +320,7 @@ export const renderAndConnectBlocksInList = (parentBrick, brickList, brickListTy
     }
 
     if (brickList[i].brickList !== undefined && brickList[i].brickList.length > 0) {
-      if (brickList[i].userBrickId !== undefined) {
+      if (brickList[i].userDefinedBrickID !== undefined) {
         // if there are bricks in the brickList and the userBrickId is set, it is a UserDefinedScript
         renderAndConnectBlocksInList(
           childBrick,
@@ -381,9 +379,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace, re
   let catblocksDomBrickID;
   const brickIDGenerator = new BrickIDGenerator();
   if (childBrick.type === 'UserDefinedScript') {
-    catblocksDomBrickID = brickIDGenerator.createBrickIDForUserDefinedScript(childBrick, jsonBrick.userBrickId);
-  } else if (childBrick.type !== 'UserDefinedScript' && jsonBrick.userBrickId) {
-    catblocksDomBrickID = brickIDGenerator.createBrickIDForUserDefinedScriptCall(childBrick, jsonBrick.userBrickId);
+    catblocksDomBrickID = brickIDGenerator.createBrickIDForUserDefinedScript(childBrick, jsonBrick.userDefinedBrickID);
   } else {
     catblocksDomBrickID = brickIDGenerator.createBrickID(childBrick);
   }
@@ -625,13 +621,13 @@ export const lazyLoadImage = (event, eventRoot, callback) => {
 export const buildUserDefinedBrick = (object, advancedMode = false) => {
   const createdBricks = [];
 
-  if (!object.userBricks) {
+  if (!object.userDefinedBricks) {
     return createdBricks;
   }
 
-  for (let i = 0; i < object.userBricks.length; ++i) {
-    const jsonDef = object.userBricks[i].getJsonDefinition();
-    const brickName = object.userBricks[i].id;
+  for (let i = 0; i < object.userDefinedBricks.length; ++i) {
+    const jsonDef = object.userDefinedBricks[i].getJson();
+    const brickName = object.userDefinedBricks[i].userDefinedBrickID;
     Blockly.Bricks[brickName] = jsonDef;
     Blockly.Blocks[brickName] = {
       init: function () {
@@ -645,8 +641,8 @@ export const buildUserDefinedBrick = (object, advancedMode = false) => {
     };
     createdBricks.push(brickName);
 
-    const definitionJsonDef = object.userBricks[i].getDefinitionJsonDefinition();
-    const definitionBrickName = object.userBricks[i].id + '_UDB_CATBLOCKS_DEF';
+    const definitionJsonDef = object.userDefinedBricks[i].getJsonForDefinitionBrick();
+    const definitionBrickName = object.userDefinedBricks[i].userDefinedBrickID + '_UDB_CATBLOCKS_DEF';
     Blockly.Bricks[definitionBrickName] = definitionJsonDef;
     Blockly.Blocks[definitionBrickName] = {
       init: function () {

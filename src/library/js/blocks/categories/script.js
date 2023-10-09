@@ -7,6 +7,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_when_gamepad_button_spinner',
+        value_xpath: ['action'],
+        message_format: '%v',
         name: 'ACTION'
       },
       {
@@ -26,6 +28,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_raspi_when_pinspinner',
+        value_xpath: ['pin'],
+        message_format: '%v',
         name: 'pin'
       },
       {
@@ -40,6 +44,8 @@ export default {
       {
         type: 'field_catblocksspinner',
         catroid_field_id: 'brick_raspi_when_valuespinner',
+        value_xpath: ['eventValue'],
+        message_format: 'RASPI_%v',
         name: 'eventValue'
       },
       {
