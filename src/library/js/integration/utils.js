@@ -430,7 +430,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace, re
 
   if (childBrick.pathObject && childBrick.pathObject.svgRoot) {
     if (jsonBrick.name == 'EmptyScript') {
-      Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+      Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-invisible');
     } else if (jsonBrick.commentedOut) {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
       if (workspace.getTheme().name.toLowerCase() === 'advanced') {

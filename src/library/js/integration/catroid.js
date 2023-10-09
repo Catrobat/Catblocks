@@ -293,7 +293,7 @@ export class Catroid {
           Android.updateScriptPosition(newEmptyBrickId, newEmptyBrickPositionX, newEmptyBrickPositionY);
 
           if (newEmptyBrick.pathObject && newEmptyBrick.pathObject.svgRoot) {
-            Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+            Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblocks-blockly-invisible');
           }
           this.removeEmptyScriptBricks();
         } else {
