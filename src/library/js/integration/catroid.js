@@ -293,7 +293,7 @@ export class Catroid {
           Android.updateScriptPosition(newEmptyBrickId, newEmptyBrickPositionX, newEmptyBrickPositionY);
 
           if (newEmptyBrick.pathObject && newEmptyBrick.pathObject.svgRoot) {
-            Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
+            Blockly.utils.dom.addClass(newEmptyBrick.pathObject.svgRoot, 'catblocks-blockly-invisible');
           }
           this.removeEmptyScriptBricks();
         } else {
@@ -665,11 +665,11 @@ export class Catroid {
 
     const catBlocksAddBrickDialog = document.getElementById('catroid-catblocks-add-brick-dialog');
     if (catBlocksAddBrickDialog) {
-      catBlocksAddBrickDialog.classList.add('advanced-theme');
+      catBlocksAddBrickDialog.classList.add('catblocks-advanced-theme');
     }
     const brickContainer = document.getElementById('catroid-catblocks-bricks-container');
     if (brickContainer) {
-      brickContainer.setAttribute('class', 'advanced-theme zelos-renderer');
+      brickContainer.setAttribute('class', 'catblocks-advanced-theme zelos-renderer');
     }
   }
 
