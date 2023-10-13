@@ -287,6 +287,7 @@ export class Catroid {
           const newEmptyBrickPositionY = position.y - newEmptyBrickSize.height + connectionOffset;
           newEmptyBrick.moveBy(newEmptyBrickPositionX, newEmptyBrickPositionY);
 
+          newEmptyBrick.setNextStatement(true);
           newEmptyBrick.nextConnection.connect(droppedBrick.previousConnection);
           droppedBrick.setParent(newEmptyBrick);
 
@@ -312,7 +313,7 @@ export class Catroid {
             for (let i = 0; i < subStacks.length; ++i) {
               if (subStacks[i].connection.targetConnection) {
                 if (subStacks[i].connection.targetConnection.sourceBlock_.id == firstBrickInStack.id) {
-                  subStackIdx = i;
+                  subStackIdx = i - 1;
                   break;
                 }
               }
@@ -653,6 +654,7 @@ export class Catroid {
     this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_HEIGHT = 14; // Determines height of block with input field
     this.workspace.getRenderer().constants_.FIELD_TEXT_HEIGHT = 14; // Determines height of a block without input field
     this.workspace.getRenderer().constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 14; // Height of bottom part of e.g. 'if' block
+    this.workspace.getRenderer().constants_.FIELD_DROPDOWN_BORDER_RECT_HEIGHT = 14; // Determines height of a block with a dropdown field
     this.workspace.getRenderer().constants_.FIELD_BORDER_RECT_X_PADDING = 0;
     this.workspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;
     this.readonlyWorkspace.getRenderer().constants_.BETWEEN_STATEMENT_PADDING_Y = 0;

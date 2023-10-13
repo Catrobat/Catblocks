@@ -22,6 +22,25 @@ const BLOCKS = (function () {
 })();
 
 /**
+ * All script blocks
+ */
+const SCRIPTBLOCKS = [
+  'WhenClonedScript',
+  'StartScript',
+  'WhenScript',
+  'WhenTouchDownScript',
+  'BroadcastScript',
+  'WhenConditionScript',
+  'WhenBounceOffScript',
+  'WhenBackgroundChangesScript',
+  'UserDefinedScript',
+  'EmptyScript',
+  'RaspiInterruptScript',
+  'WhenNfcScript',
+  'WhenGamepadButtonScript'
+];
+
+/**
  * Load block messages mapping
  */
 const BLOCK_MSG_MAPPINGS = JSON.parse(utils.readFileSync(utils.PATHS.MESSAGE_MAPPING).toString());
@@ -256,6 +275,27 @@ describe('WebView Block tests', () => {
         return true;
       }, allBlocks);
       expect(result).toBeTruthy();
+    });
+
+    test('All ScriptBlocks have smaller heights without a nextStatement', async () => {
+      const expectedMaxHeights = Array.from({ length: SCRIPTBLOCKS.length }, () => 150);
+      // UserDefinedScript
+      expectedMaxHeights[8] = 230;
+
+      const scriptBlockHeights = await page.evaluate(pAllScriptBlocks => {
+        const blockHeights = [];
+        for (const scriptBlock of pAllScriptBlocks) {
+          const block = Test.Playground.workspace.newBlock(scriptBlock);
+          block.initSvg();
+          block.render(false);
+          blockHeights.push(block.height);
+        }
+        return blockHeights;
+      }, SCRIPTBLOCKS);
+
+      for (let i = 0; i < SCRIPTBLOCKS.length; i++) {
+        expect(scriptBlockHeights[i]).toBeLessThan(expectedMaxHeights[i]);
+      }
     });
   });
 
