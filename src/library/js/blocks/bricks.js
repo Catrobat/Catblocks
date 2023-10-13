@@ -32,7 +32,6 @@ export const scriptBricks = [
   'WhenConditionScript',
   'WhenBounceOffScript',
   'WhenBackgroundChangesScript',
-  'WhenRaspiPinChangedBrick',
   'UserDefinedScript',
   'EmptyScript',
   'RaspiInterruptScript',
@@ -110,6 +109,9 @@ const loadBricks = (cats = categories, blockly = Blockly, advancedMode = false) 
           this.jsonInit(blockly.Bricks[brickName]);
           if (advancedMode) {
             this.setStyle(catName);
+          }
+          if (scriptBricks.includes(brickName)) {
+            this.setNextStatement(false);
           }
         }
       };

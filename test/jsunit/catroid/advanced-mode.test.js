@@ -139,7 +139,7 @@ describe('Catroid Integration Advanced Mode tests', () => {
       return startBlock.tooltip.height;
     });
 
-    expect(blocksHeight).toBeLessThan(40);
+    expect(blocksHeight).toBeLessThan(100);
   });
 
   test('Semicolon test', async () => {
@@ -157,6 +157,28 @@ describe('Catroid Integration Advanced Mode tests', () => {
     for (const endChars of semicolons) {
       expect(endChars).toBe(');');
     }
+  });
+
+  test('Script blocks have curly brackets', async () => {
+    const startBlockSyntax = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const startBlock = Array.from(blocks).find(block => block.tooltip.type === 'StartScript');
+      const broadcastBlock = Array.from(blocks).find(block => block.tooltip.type === 'BroadcastScript');
+
+      return [
+        startBlock.tooltip.inputList[0].fieldRow[0].getValue(),
+        startBlock.tooltip.inputList[2].fieldRow[0].getValue(),
+        broadcastBlock.tooltip.inputList[0].fieldRow[0].getValue(),
+        broadcastBlock.tooltip.inputList[0].fieldRow[2].getValue(),
+        broadcastBlock.tooltip.inputList[2].fieldRow[0].getValue()
+      ];
+    });
+
+    expect(startBlockSyntax[0]).toBe('When scene starts {');
+    expect(startBlockSyntax[1]).toBe('}');
+    expect(startBlockSyntax[2]).toBe('When you receive (');
+    expect(startBlockSyntax[3]).toBe(') {');
+    expect(startBlockSyntax[4]).toBe('}');
   });
 
   test('Formulas formatting test', async () => {
@@ -179,5 +201,96 @@ describe('Catroid Integration Advanced Mode tests', () => {
     });
 
     expect(commentedOut).toBe('// Show variable (');
+  });
+});
+
+describe('Catroid Integration Advanced Mode tests for height', () => {
+  beforeAll(async () => {
+    await page.goto('http://localhost:8080', {
+      waitUntil: 'networkidle0'
+    });
+    const programXML = fs.readFileSync(path.resolve(__dirname, '../../programs/binding_of_krishna_1_12.xml'), 'utf8');
+    const language = 'en';
+    const rtl = false;
+    const advancedMode = true;
+    await page.evaluate(
+      async (pLanguage, pRTL, pAdvancedMode) => {
+        try {
+          await Test.CatroidCatBlocks.init({
+            container: 'catblocks-container',
+            renderSize: 0.75,
+            language: pLanguage,
+            rtl: pRTL,
+            i18n: '/i18n',
+            shareRoot: '',
+            media: 'media/',
+            noImageFound: 'No_Image_Available.jpg',
+            renderLooks: false,
+            renderSounds: false,
+            readOnly: false,
+            advancedMode: pAdvancedMode
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+      language,
+      rtl,
+      advancedMode
+    );
+    await page.evaluate(async pProgramXML => {
+      await Test.CatroidCatBlocks.render(pProgramXML, 'Scene 1', 'Krishna', '38a46c1f-a2b7-4229-9f1d-c12435df8758');
+    }, programXML);
+
+    await page.evaluate(() => {
+      // function to JSON.stringify circular objects
+      window.shallowJSON = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+          obj,
+          (key, value) =>
+            typeof value === 'object' && value !== null
+              ? cache.includes(value)
+                ? undefined // Duplicate reference found, discard key
+                : cache.push(value) && value // Store value in our collection
+              : value,
+          indent
+        );
+        cache = null;
+        return retVal;
+      };
+    });
+  });
+
+  test('Same vertical space between each block', async () => {
+    const waitBrickHeight = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const waitBrick = Array.from(blocks).find(block => block.tooltip.type === 'WaitBrick');
+      return waitBrick.tooltip.height;
+    });
+
+    const setVarBrickHeight = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const setVarBlock = Array.from(blocks).find(block => block.tooltip.type === 'SetVariableBrick');
+      return setVarBlock.tooltip.height;
+    });
+
+    expect(setVarBrickHeight).toBe(waitBrickHeight);
+  });
+
+  test('Blocks within scripts have a shorter width than the script', async () => {
+    const startBrickWidth = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const waitBrick = Array.from(blocks).find(block => block.tooltip.type === 'StartScript');
+      return waitBrick.tooltip.width;
+    });
+
+    const setVarBrickWidth = await page.evaluate(() => {
+      const blocks = document.querySelectorAll('.blocklyPath');
+      const setVarBlock = Array.from(blocks).find(block => block.tooltip.type === 'SetVariableBrick');
+      return setVarBlock.tooltip.width;
+    });
+
+    expect(setVarBrickWidth).toBeLessThan(startBrickWidth);
   });
 });
