@@ -433,6 +433,7 @@ export const renderBrick = (parentBrick, jsonBrick, brickListType, workspace, re
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblockls-blockly-invisible');
     } else if (jsonBrick.commentedOut) {
       Blockly.utils.dom.addClass(childBrick.pathObject.svgRoot, 'catblocks-blockly-disabled');
+      childBrick.disable = true;
       if (workspace.getTheme().name.toLowerCase() === 'advanced') {
         childBrick.setStyle('disabled');
       }
@@ -908,6 +909,77 @@ function advancedModeCommentOutBricks(childBrick) {
       brickElements[count].classList[0] !== 'blocklyEditableText'
     ) {
       brickElements[count].style.opacity = 0.5;
+    }
+    count++;
+  }
+}
+
+export function updateAdvancedModeCommentOutBricks(brick) {
+  if (!brick.inputList[0].fieldRow[0].getValue().startsWith('// ')) {
+    brick.inputList[0].fieldRow[0].setValue('// ' + brick.inputList[0].fieldRow[0].getValue());
+  }
+  if (
+    brick.type === 'IfLogicBeginBrick' ||
+    brick.type === 'PhiroIfLogicBeginBrick' ||
+    brick.type === 'RaspiIfLogicBeginBrick'
+  ) {
+    if (!brick.inputList[2].fieldRow[0].getValue().startsWith('// ')) {
+      brick.inputList[2].fieldRow[0].setValue('// ' + brick.inputList[2].fieldRow[0].getValue());
+      brick.inputList[4].fieldRow[0].setValue('// ' + brick.inputList[4].fieldRow[0].getValue());
+    }
+  }
+  if (brick.inputList.length === 3 && !brick.inputList[2].fieldRow[0].getValue().startsWith('// ')) {
+    brick.inputList[2].fieldRow[0].setValue('// ' + brick.inputList[2].fieldRow[0].getValue());
+  }
+
+  const brickElements = document.getElementById(brick.pathObject.svgRoot.id).childNodes;
+  let count = 1;
+  while (
+    count < brickElements.length &&
+    (brickElements[count].id.includes(brick.getSvgRoot().id) || !brickElements[count].id)
+  ) {
+    if (
+      brickElements[count].classList[0] !== 'blocklyNonEditableText' &&
+      brickElements[count].classList[0] !== 'blocklyEditableText'
+    ) {
+      brickElements[count].style.opacity = 0.5;
+    }
+    count++;
+  }
+}
+
+export function updateAdvancedModeUncommentOutBricks(brick) {
+  if (brick.inputList[0].fieldRow[0].getValue().startsWith('// ')) {
+    brick.inputList[0].fieldRow[0].setValue(brick.inputList[0].fieldRow[0].getValue().slice(3));
+  }
+  if (
+    brick.type === 'IfLogicBeginBrick' ||
+    brick.type === 'PhiroIfLogicBeginBrick' ||
+    brick.type === 'RaspiIfLogicBeginBrick'
+  ) {
+    if (
+      brick.inputList[2].fieldRow[0].getValue().startsWith('// ') &&
+      brick.inputList[4].fieldRow[0].getValue().startsWith('// ')
+    ) {
+      brick.inputList[2].fieldRow[0].setValue(brick.inputList[2].fieldRow[0].getValue().slice(3));
+      brick.inputList[4].fieldRow[0].setValue(brick.inputList[4].fieldRow[0].getValue().slice(3));
+    }
+  }
+  if (brick.inputList.length === 3 && brick.inputList[2].fieldRow[0].getValue().startsWith('// ')) {
+    brick.inputList[2].fieldRow[0].setValue(brick.inputList[2].fieldRow[0].getValue().slice(3));
+  }
+
+  const brickElements = document.getElementById(brick.pathObject.svgRoot.id).childNodes;
+  let count = 1;
+  while (
+    count < brickElements.length &&
+    (brickElements[count].id.includes(brick.getSvgRoot().id) || !brickElements[count].id)
+  ) {
+    if (
+      brickElements[count].classList[0] !== 'blocklyNonEditableText' &&
+      brickElements[count].classList[0] !== 'blocklyEditableText'
+    ) {
+      brickElements[count].style.opacity = 1;
     }
     count++;
   }

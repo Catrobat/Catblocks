@@ -22,6 +22,9 @@ class MockAndroid implements IAndroid {
   public duplicateBrick(brickID: string): string {
     throw new Error('Method not implemented.');
   }
+  public commentOutBrick(brickID: string): string {
+    throw new Error('Method not implemented.');
+  }
   public getCurrentProject(): string {
     throw new Error('Method not implemented.');
   }
