@@ -19,7 +19,9 @@ import {
   advancedModeAddParentheses,
   advancedModeAddCurlyBrackets,
   getFieldByCatroidFieldID,
-  advancedModeRemoveWhiteSpacesInFormulas
+  advancedModeRemoveWhiteSpacesInFormulas,
+  updateAdvancedModeCommentOutBricks,
+  updateAdvancedModeUncommentOutBricks
 } from './utils';
 import { CatBlocksMsgs } from '../../ts/i18n/CatBlocksMsgs';
 import advancedTheme from '../advanced_theme.json';
@@ -110,6 +112,82 @@ export class Catroid {
       const block = scope.block;
 
       if ((block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) || block.type === 'UserDefinedScript') {
+        return 'hidden';
+      }
+
+      if (!block.isInFlyout && block.isDeletable() && block.isMovable()) {
+        if (block.isDuplicatable()) {
+          return 'enabled';
+        }
+        return 'disabled';
+      }
+      return 'hidden';
+    };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockComment').callback = scope => {
+      const block = scope.block;
+      // TODO: Why should it be possible to disable a NoteBrick? (It is possible in 1D-View)
+      if (block && block.id) {
+        Android.commentOutBrick(scope.block.id);
+        if (block.disable) {
+          block.disable = false;
+          if (this.config.advancedMode) {
+            updateAdvancedModeUncommentOutBricks(block);
+          }
+          Blockly.utils.dom.removeClass(block.pathObject.svgRoot, 'catblocks-blockly-disabled');
+          if (Array.from(getBrickScriptMapping().values()).includes(block.type)) {
+            this.enableDisableAllBlocksAndNestedStatements(null, block.getChildren()[0], false);
+          }
+          if (block.statementInputCount > 0) {
+            const child = Array.from(block.getChildren().filter(c => c !== block.nextConnection.targetBlock()));
+            this.enableDisableAllBlocksAndNestedStatements(block, child, false);
+          }
+        } else {
+          block.disable = true;
+          if (this.config.advancedMode) {
+            updateAdvancedModeCommentOutBricks(block);
+          }
+          Blockly.utils.dom.addClass(block.pathObject.svgRoot, 'catblocks-blockly-disabled');
+          // Change CSS class of all blocks inside the script
+          if (Array.from(getBrickScriptMapping().values()).includes(block.type)) {
+            this.enableDisableAllBlocksAndNestedStatements(null, block.getChildren()[0], true);
+          }
+          if (block.statementInputCount > 0) {
+            // get all child of block, except the nextConnection
+            const child = Array.from(block.getChildren().filter(c => c !== block.nextConnection.targetBlock()));
+            this.enableDisableAllBlocksAndNestedStatements(block, child, true);
+          }
+        }
+      } else {
+        console.log('could not disable or enable brick - might be that it is a NoteBrick');
+      }
+    };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockComment').displayText = function (scope) {
+      const block = scope.block;
+      if (!block.isInFlyout && block.isDeletable() && block.isMovable()) {
+        if (Array.from(getBrickScriptMapping().values()).includes(block.type)) {
+          if (!block.disable) {
+            return CatBlocksMsgs.getCurrentLocaleValues()['BRICK_CONTEXT_DIALOG_COMMENT_OUT_SCRIPT'];
+          } else {
+            return CatBlocksMsgs.getCurrentLocaleValues()['BRICK_CONTEXT_DIALOG_COMMENT_IN_SCRIPT'];
+          }
+        }
+        if (!block.disable) {
+          return CatBlocksMsgs.getCurrentLocaleValues()['BRICK_CONTEXT_DIALOG_COMMENT_OUT'];
+        }
+        return CatBlocksMsgs.getCurrentLocaleValues()['BRICK_CONTEXT_DIALOG_COMMENT_IN'];
+      }
+    };
+
+    Blockly.ContextMenuRegistry.registry.getItem('blockComment').preconditionFn = function (scope) {
+      const block = scope.block;
+
+      if (
+        (block.type && block.type.endsWith('_UDB_CATBLOCKS_DEF')) ||
+        block.type === 'UserDefinedScript' ||
+        block.type === 'NoteBrick'
+      ) {
         return 'hidden';
       }
 
@@ -693,6 +771,44 @@ export class Catroid {
     if (targetField) {
       const boundingRect = targetField.getBoundingClientRect();
       this.workspace.scroll(this.workspace.scrollX - boundingRect.x, this.workspace.scrollY - boundingRect.y);
+    }
+  }
+
+  enableDisableAllBlocksAndNestedStatements(block, child, disable) {
+    if (block) {
+      child.forEach(child => {
+        child.disable = disable;
+        if (disable) {
+          if (this.config.advancedMode && child.type !== 'NoteBrick') {
+            updateAdvancedModeCommentOutBricks(child);
+          }
+          Blockly.utils.dom.addClass(child.pathObject.svgRoot, 'catblocks-blockly-disabled');
+        } else {
+          if (this.config.advancedMode && child.type !== 'NoteBrick') {
+            updateAdvancedModeUncommentOutBricks(child);
+          }
+          Blockly.utils.dom.removeClass(child.pathObject.svgRoot, 'catblocks-blockly-disabled');
+        }
+        child.getChildren().forEach(c => {
+          this.enableDisableAllBlocksAndNestedStatements(null, c, disable);
+        });
+      });
+    } else {
+      child.disable = disable;
+      if (disable) {
+        if (this.config.advancedMode && child.type !== 'NoteBrick') {
+          updateAdvancedModeCommentOutBricks(child);
+        }
+        Blockly.utils.dom.addClass(child.pathObject.svgRoot, 'catblocks-blockly-disabled');
+      } else {
+        if (this.config.advancedMode && child.type !== 'NoteBrick') {
+          updateAdvancedModeUncommentOutBricks(child);
+        }
+        Blockly.utils.dom.removeClass(child.pathObject.svgRoot, 'catblocks-blockly-disabled');
+      }
+      child.getChildren().forEach(c => {
+        this.enableDisableAllBlocksAndNestedStatements(null, c, disable);
+      });
     }
   }
 }

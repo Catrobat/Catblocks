@@ -2,6 +2,7 @@
 interface IAndroid {
   switchTo1D(brickID: string): void;
   duplicateBrick(brickID: string): string;
+  commentOutBrick(brickID: string): void;
   getCurrentProject(): string; // returns coeXML
   updateScriptPosition(brickID: string, newX: number, newY: number): void;
   helpBrick(brickID: string): void;
